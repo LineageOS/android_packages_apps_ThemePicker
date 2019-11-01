@@ -48,6 +48,8 @@ LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res
 
 LOCAL_MANIFEST_FILE := AndroidManifest.xml
 
+LOCAL_REQUIRED_MODULES := privapp_whitelist_com.android.wallpaper
+
 include $(BUILD_PACKAGE)
 
 
