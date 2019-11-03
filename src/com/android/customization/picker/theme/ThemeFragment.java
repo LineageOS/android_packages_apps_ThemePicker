@@ -104,6 +104,7 @@ public class ThemeFragment extends ToolbarFragment {
     private WallpaperInfo mCurrentHomeWallpaper;
     private CurrentWallpaperInfoFactory mCurrentWallpaperFactory;
     private TimeTicker mTicker;
+    private boolean mNoCustomWallpaper;
 
     @Override
     public void onAttach(Context context) {
@@ -216,7 +217,7 @@ public class ThemeFragment extends ToolbarFragment {
                 (homeWallpaper, lockWallpaper, presentationMode) -> {
                     mCurrentHomeWallpaper = homeWallpaper;
                     if (mSelectedTheme != null) {
-                        if (mUseMyWallpaper || (mSelectedTheme instanceof CustomTheme)) {
+                        if (mUseMyWallpaper || mNoCustomWallpaper) {
                             mSelectedTheme.setOverrideThemeWallpaper(homeWallpaper);
                         } else {
                             mSelectedTheme.setOverrideThemeWallpaper(null);
@@ -242,8 +243,7 @@ public class ThemeFragment extends ToolbarFragment {
     }
 
     private void updateButtonsVisibility() {
-        mUseMyWallpaperButton.setVisibility(mSelectedTheme instanceof CustomTheme
-                ? View.INVISIBLE : View.VISIBLE);
+        mUseMyWallpaperButton.setVisibility(mNoCustomWallpaper ? View.GONE : View.VISIBLE);
     }
 
     private void hideError() {
@@ -270,7 +270,9 @@ public class ThemeFragment extends ToolbarFragment {
                         navigateToCustomTheme((CustomTheme) selected);
                     } else {
                         mSelectedTheme = (ThemeBundle) selected;
-                        if (mUseMyWallpaper || mSelectedTheme instanceof CustomTheme) {
+                        mNoCustomWallpaper = mSelectedTheme instanceof CustomTheme
+                            || mSelectedTheme.getWallpaperInfo() == null;
+                        if (mUseMyWallpaper || mNoCustomWallpaper) {
                             mSelectedTheme.setOverrideThemeWallpaper(mCurrentHomeWallpaper);
                         } else {
                             mSelectedTheme.setOverrideThemeWallpaper(null);
