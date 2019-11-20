@@ -54,6 +54,7 @@ public class ShapeOptionsProvider extends ThemeComponentOptionProvider<ShapeOpti
 
     private static final String TAG = "ShapeOptionsProvider";
     private final String[] mShapePreviewIconPackages;
+    private final int MAX_ICON_SHAPE_PREVIEWS = 6;
     private int mThumbSize;
 
     public ShapeOptionsProvider(Context context, OverlayManagerCompat manager) {
@@ -105,6 +106,10 @@ public class ShapeOptionsProvider extends ThemeComponentOptionProvider<ShapeOpti
     private List<Drawable> getShapedIcons(Path path) {
         List<Drawable> icons = new ArrayList<>();
         for (String packageName : mShapePreviewIconPackages) {
+            if (icons.size() == MAX_ICON_SHAPE_PREVIEWS) {
+                break;
+            }
+
             try {
                 Drawable appIcon = mContext.getPackageManager().getApplicationIcon(packageName);
                 if (appIcon instanceof AdaptiveIconDrawable) {
