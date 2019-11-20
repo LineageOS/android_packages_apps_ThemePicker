@@ -54,6 +54,7 @@ public class ShapeOptionsProvider extends ThemeComponentOptionProvider<ShapeOpti
 
     private static final String TAG = "ShapeOptionsProvider";
     private final String[] mShapePreviewIconPackages;
+    private final int MAX_ICON_SHAPE_PREVIEWS = 6;
     private int mThumbSize;
 
     public ShapeOptionsProvider(Context context, OverlayManagerCompat manager) {
@@ -104,13 +105,20 @@ public class ShapeOptionsProvider extends ThemeComponentOptionProvider<ShapeOpti
 
     private List<Drawable> getShapedIcons(Path path) {
         List<Drawable> icons = new ArrayList<>();
+        int iconShapePreviews = 0;
         for (String packageName : mShapePreviewIconPackages) {
+            if (iconShapePreviews == MAX_ICON_SHAPE_PREVIEWS) {
+                break;
+            }
+
             try {
                 Drawable appIcon = mContext.getPackageManager().getApplicationIcon(packageName);
                 if (appIcon instanceof AdaptiveIconDrawable) {
                     AdaptiveIconDrawable adaptiveIcon = (AdaptiveIconDrawable) appIcon;
                     icons.add(new DynamicAdaptiveIconDrawable(adaptiveIcon.getBackground(),
                             adaptiveIcon.getForeground(), path));
+
+                    iconShapePreviews++;
                 }
             } catch (NameNotFoundException e) {
                 Log.d(TAG, "Couldn't find app " + packageName
