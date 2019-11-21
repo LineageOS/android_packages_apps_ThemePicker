@@ -22,6 +22,30 @@
       "revId": "14808a82ebfd037c6377409ad3add8d905e84f1c",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a910edd6_76cb1353",
+        "filename": "src/com/android/customization/model/theme/custom/ShapeOptionsProvider.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2019-11-21T23:43:36Z",
+      "side": 1,
+      "message": "I guess you mean icons.size()",
+      "parentUuid": "b7425508_26405fd0",
+      "range": {
+        "startLine": 110,
+        "startChar": 12,
+        "endLine": 110,
+        "endChar": 63
+      },
+      "revId": "14808a82ebfd037c6377409ad3add8d905e84f1c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }
