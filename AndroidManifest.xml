@@ -29,9 +29,11 @@
             android:resizeableActivity="true"
             android:theme="@style/CustomizationTheme.NoActionBar">
             <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
                 <action android:name="android.intent.action.SET_WALLPAPER"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity android:name="com.android.customization.picker.theme.CustomThemeActivity"
