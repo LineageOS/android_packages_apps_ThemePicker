@@ -55,4 +55,12 @@
         android:layout_gravity="bottom|center_horizontal"
         android:gravity="center_horizontal"
         android:text="@string/font_card_body"/>
+    <TextView
+        style="@style/FontCardBodyTextStyle"
+        android:id="@+id/font_card_body_name"
+        android:layout_height="56sp"
+        android:layout_weight="2"
+        android:layout_gravity="bottom|center_horizontal"
+        android:gravity="center_horizontal"
+        android:text=""/>
 </LinearLayout>
