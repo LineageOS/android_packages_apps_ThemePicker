@@ -403,6 +403,9 @@ public class ThemeFragment extends ToolbarFragment {
                     title.setTypeface(previewInfo.headlineFontFamily);
                     TextView body = card.findViewById(R.id.font_card_body);
                     body.setTypeface(previewInfo.bodyFontFamily);
+                    TextView name = card.findViewById(R.id.font_card_body_name);
+                    name.setTypeface(previewInfo.bodyFontFamily);
+                    name.setText(previewInfo.fontName);
                     card.findViewById(R.id.font_card_divider).setBackgroundColor(accentColor);
                 }
             });
