@@ -15,10 +15,13 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-        android:shape="ring"
-        android:innerRadius="10dp"
-        android:thickness="8dp"
-        android:useLevel="false">
-    <solid android:color="@android:color/black"/>
-</shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:state_activated="true"
+        android:drawable="@drawable/color_chip_filled_bg" />
+    <item
+        android:state_activated="false"
+        android:drawable="@drawable/color_chip_hollow_bg" />
+    <item
+        android:drawable="@drawable/color_chip_hollow_bg"/>
+</selector>

@@ -19,7 +19,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="?android:colorPrimary">
+    android:background="@color/color_primary">
     <include layout="@layout/section_header"/>
 
     <LinearLayout
@@ -32,7 +32,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="?android:colorPrimary">
+            android:background="@color/color_primary" >
             <include
                 android:id="@+id/component_preview_content"
                 android:layout_width="match_parent"
@@ -71,6 +71,11 @@
                 android:layout_weight="1"
                 android:scrollbars="vertical"/>
 
+            <TextView
+                android:id="@+id/options_container_message"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

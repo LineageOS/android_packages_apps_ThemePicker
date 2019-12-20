@@ -96,7 +96,8 @@
 
     <dimen name="component_icon_thumb_size">40dp</dimen>
 
-    <dimen name="component_color_chip_size">32dp</dimen>
+    <dimen name="component_color_chip_size">36dp</dimen>
+    <dimen name="component_color_chip_size_bg">39dp</dimen>
     <dimen name="component_color_chip_container_size">33dp</dimen>
 
     <dimen name="component_shape_thumb_size">72dp</dimen>

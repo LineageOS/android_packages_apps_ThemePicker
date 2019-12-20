@@ -19,6 +19,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -62,6 +63,7 @@ public class CustomThemeComponentFragment extends CustomThemeStepFragment {
     private RecyclerView mOptionsContainer;
     private OptionSelectorController<ThemeComponentOption> mOptionsController;
     private ThemeComponentOption mSelectedOption;
+    private TextView mOptionsMessage;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,6 +78,7 @@ public class CustomThemeComponentFragment extends CustomThemeStepFragment {
             @Nullable Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
         mOptionsContainer = view.findViewById(R.id.options_container);
+        mOptionsMessage = view.findViewById(R.id.options_container_message);
         mPreviewContainer = view.findViewById(R.id.component_preview_content);
         mTitle = view.findViewById(R.id.component_options_title);
         mTitle.setText(mTitleResId);
@@ -99,25 +102,33 @@ public class CustomThemeComponentFragment extends CustomThemeStepFragment {
 
     private void setUpOptions() {
         mProvider.fetch(options -> {
-            mOptionsController = new OptionSelectorController(
-                    mOptionsContainer, options, mUseGridLayout, false);
+            if (options.size() > 1) {
+                mOptionsContainer.setVisibility(View.VISIBLE);
+                mOptionsMessage.setVisibility(View.GONE);
+                mOptionsController = new OptionSelectorController(
+                        mOptionsContainer, options, mUseGridLayout, false);
 
-            mOptionsController.addListener(selected -> {
-                mSelectedOption = (ThemeComponentOption) selected;
-                bindPreview();
-            });
-            mOptionsController.initOptions(mCustomThemeManager);
+                mOptionsController.addListener(selected -> {
+                    mSelectedOption = (ThemeComponentOption) selected;
+                    bindPreview();
+                });
+                mOptionsController.initOptions(mCustomThemeManager);
 
-            for (ThemeComponentOption option : options) {
-                if (option.isActive(mCustomThemeManager)) {
-                    mSelectedOption = option;
-                    break;
+                for (ThemeComponentOption option : options) {
+                    if (option.isActive(mCustomThemeManager)) {
+                        mSelectedOption = option;
+                        break;
+                    }
                 }
+                if (mSelectedOption == null) {
+                    mSelectedOption = options.get(0);
+                }
+                mOptionsController.setSelectedOption(mSelectedOption);
+            } else {
+                mOptionsContainer.setVisibility(View.GONE);
+                mOptionsMessage.setVisibility(View.VISIBLE);
+                mOptionsMessage.setText(R.string.no_options_message);
             }
-            if (mSelectedOption == null) {
-                mSelectedOption = options.get(0);
-            }
-            mOptionsController.setSelectedOption(mSelectedOption);
-        }, false);
+        }, true);
     }
 }
