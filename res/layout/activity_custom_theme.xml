@@ -33,20 +33,22 @@
         android:id="@+id/custom_theme_nav"
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_theme_nav_height"
-        android:layout_marginHorizontal="12dp">
+        android:background="@color/color_primary" >
         <Button
             android:id="@+id/previous_button"
             style="@style/ActionSecondaryButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start|center_vertical"
-            android:text="@string/custom_theme_previous"/>
+            android:text="@string/custom_theme_previous"
+            android:layout_marginStart="12dp" />
         <Button
             android:id="@+id/next_button"
             style="@style/ActionPrimaryButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|center_vertical"
-            android:text="@string/custom_theme_next"/>
+            android:text="@string/custom_theme_next"
+            android:layout_marginEnd="12dp" />
     </FrameLayout>
 </LinearLayout>
