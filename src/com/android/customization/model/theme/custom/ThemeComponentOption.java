@@ -23,6 +23,7 @@ import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY
 import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_ICON_SYSUI;
 import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_ICON_THEMEPICKER;
 import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_SHAPE;
+import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_PRIMARY;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -340,7 +341,7 @@ public abstract class ThemeComponentOption implements CustomizationOption<ThemeC
 
         @Override
         public void bindPreview(ViewGroup container) {
-            bindPreviewHeader(container, R.string.preview_name_color, R.drawable.ic_colorize_24px);
+            bindPreviewHeader(container, R.string.preview_name_accent_color, R.drawable.ic_colorize_24px);
 
             ViewGroup cardBody = container.findViewById(R.id.theme_preview_card_body_container);
             if (cardBody.getChildCount() == 0) {
@@ -409,6 +410,106 @@ public abstract class ThemeComponentOption implements CustomizationOption<ThemeC
         @Override
         public Builder buildStep(Builder builder) {
             builder.setColorAccentDark(mColorAccentDark).setColorAccentLight(mColorAccentLight);
+            return super.buildStep(builder);
+        }
+    }
+
+    public static class PrimaryOption extends ThemeComponentOption {
+
+        /**
+         * Ids of views used to represent control buttons in the color preview screen
+         */
+        private static int[] COLOR_BUTTON_IDS = {
+                R.id.preview_check_selected, R.id.preview_radio_selected,
+                R.id.preview_toggle_selected
+        };
+
+        @ColorInt private int mPrimaryColor;
+        @ColorInt private int mAccentColor;
+
+        private String mLabel;
+
+        PrimaryOption(String packageName, String label, @ColorInt int primaryColor, @ColorInt int accentColor) {
+            addOverlayPackage(OVERLAY_CATEGORY_PRIMARY, packageName);
+            mLabel = label;
+            mPrimaryColor = primaryColor;
+            mAccentColor = accentColor;
+        }
+
+        @Override
+        public void bindThumbnailTile(View view) {
+            @ColorInt int color = resolveColor(view.getResources());
+            ((ImageView) view.findViewById(R.id.option_tile)).setImageTintList(
+                    ColorStateList.valueOf(color));
+            view.setContentDescription(mLabel);
+        }
+
+        @ColorInt
+        private int resolveColor(Resources res) {
+            return mPrimaryColor;
+        }
+
+        @Override
+        public boolean isActive(CustomizationManager<ThemeComponentOption> manager) {
+            CustomThemeManager customThemeManager = (CustomThemeManager) manager;
+            return Objects.equals(getOverlayPackages().get(OVERLAY_CATEGORY_PRIMARY),
+                    customThemeManager.getOverlayPackages().get(OVERLAY_CATEGORY_PRIMARY));
+        }
+
+        @Override
+        public int getLayoutResId() {
+            return R.layout.theme_primary_option;
+        }
+
+        @Override
+        public void bindPreview(ViewGroup container) {
+            bindPreviewHeader(container, R.string.preview_name_primary_color, R.drawable.ic_colorize_24px);
+
+            ViewGroup cardBody = container.findViewById(R.id.theme_preview_card_body_container);
+            if (cardBody.getChildCount() == 0) {
+                LayoutInflater.from(container.getContext()).inflate(
+                        R.layout.preview_card_primary_content, cardBody, true);
+            }
+            Resources res = container.getResources();
+            @ColorInt int primaryColor = resolveColor(res);
+            View v = container.findViewById(R.id.preview_primary);
+            v.setBackgroundColor(primaryColor);
+
+            @ColorInt int controlGreyColor = res.getColor(R.color.control_grey);
+            ColorStateList tintList = new ColorStateList(
+                    new int[][]{
+                            new int[]{android.R.attr.state_selected},
+                            new int[]{android.R.attr.state_checked},
+                            new int[]{-android.R.attr.state_enabled}
+                    },
+                    new int[] {
+                            mAccentColor,
+                            mAccentColor,
+                            controlGreyColor
+                    }
+            );
+
+            for (int i = 0; i < COLOR_BUTTON_IDS.length; i++) {
+                CompoundButton button = container.findViewById(COLOR_BUTTON_IDS[i]);
+                button.setButtonTintList(tintList);
+            }
+
+            Switch enabledSwitch = container.findViewById(R.id.preview_toggle_selected);
+            enabledSwitch.setThumbTintList(tintList);
+            enabledSwitch.setTrackTintList(tintList);
+
+            ColorStateList seekbarTintList = ColorStateList.valueOf(mAccentColor);
+            SeekBar seekbar = container.findViewById(R.id.preview_seekbar);
+            seekbar.setThumbTintList(seekbarTintList);
+            seekbar.setProgressTintList(seekbarTintList);
+            seekbar.setProgressBackgroundTintList(seekbarTintList);
+            // Disable seekbar
+            seekbar.setOnTouchListener((view, motionEvent) -> true);
+        }
+
+        @Override
+        public Builder buildStep(Builder builder) {
+            builder.setColorPrimary(mPrimaryColor);
             return super.buildStep(builder);
         }
     }

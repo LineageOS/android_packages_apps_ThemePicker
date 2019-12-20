@@ -19,6 +19,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -99,25 +100,30 @@ public class CustomThemeComponentFragment extends CustomThemeStepFragment {
 
     private void setUpOptions() {
         mProvider.fetch(options -> {
-            mOptionsController = new OptionSelectorController(
-                    mOptionsContainer, options, mUseGridLayout, false);
+            if (options.size() > 1) {
+                mOptionsContainer.setVisibility(View.VISIBLE);
+                mOptionsController = new OptionSelectorController(
+                        mOptionsContainer, options, mUseGridLayout, false);
 
-            mOptionsController.addListener(selected -> {
-                mSelectedOption = (ThemeComponentOption) selected;
-                bindPreview();
-            });
-            mOptionsController.initOptions(mCustomThemeManager);
+                mOptionsController.addListener(selected -> {
+                    mSelectedOption = (ThemeComponentOption) selected;
+                    bindPreview();
+                });
+                mOptionsController.initOptions(mCustomThemeManager);
 
-            for (ThemeComponentOption option : options) {
-                if (option.isActive(mCustomThemeManager)) {
-                    mSelectedOption = option;
-                    break;
+                for (ThemeComponentOption option : options) {
+                    if (option.isActive(mCustomThemeManager)) {
+                        mSelectedOption = option;
+                        break;
+                    }
                 }
+                if (mSelectedOption == null) {
+                    mSelectedOption = options.get(0);
+                }
+                mOptionsController.setSelectedOption(mSelectedOption);
+            } else {
+                mOptionsContainer.setVisibility(View.GONE);
             }
-            if (mSelectedOption == null) {
-                mSelectedOption = options.get(0);
-            }
-            mOptionsController.setSelectedOption(mSelectedOption);
-        }, false);
+        }, true);
     }
 }

@@ -41,11 +41,13 @@ import com.android.customization.model.theme.custom.CustomTheme;
 import com.android.customization.model.theme.custom.CustomThemeManager;
 import com.android.customization.model.theme.custom.FontOptionsProvider;
 import com.android.customization.model.theme.custom.IconOptionsProvider;
+import com.android.customization.model.theme.custom.PrimaryOptionsProvider;
 import com.android.customization.model.theme.custom.ShapeOptionsProvider;
 import com.android.customization.model.theme.custom.ThemeComponentOption;
 import com.android.customization.model.theme.custom.ThemeComponentOption.ColorOption;
 import com.android.customization.model.theme.custom.ThemeComponentOption.FontOption;
 import com.android.customization.model.theme.custom.ThemeComponentOption.IconOption;
+import com.android.customization.model.theme.custom.ThemeComponentOption.PrimaryOption;
 import com.android.customization.model.theme.custom.ThemeComponentOption.ShapeOption;
 import com.android.customization.model.theme.custom.ThemeComponentOptionProvider;
 import com.android.customization.module.CustomizationInjector;
@@ -162,8 +164,9 @@ public class CustomThemeActivity extends FragmentActivity implements
         mSteps.add(new FontStep(new FontOptionsProvider(this, manager), 0));
         mSteps.add(new IconStep(new IconOptionsProvider(this, manager), 1));
         mSteps.add(new ColorStep(new ColorOptionsProvider(this, manager, mCustomThemeManager), 2));
-        mSteps.add(new ShapeStep(new ShapeOptionsProvider(this, manager), 3));
-        mSteps.add(new NameStep(4));
+        mSteps.add(new PrimaryStep(new PrimaryOptionsProvider(this, manager, mCustomThemeManager), 3));
+        mSteps.add(new ShapeStep(new ShapeOptionsProvider(this, manager), 4));
+        mSteps.add(new NameStep(5));
         mCurrentStep = currentStep;
     }
 
@@ -346,7 +349,24 @@ public class CustomThemeActivity extends FragmentActivity implements
 
         protected ColorStep(ThemeComponentOptionProvider<ColorOption> provider,
                 int position) {
-            super(R.string.color_component_title, provider, position);
+            super(R.string.accent_color_component_title, provider, position);
+        }
+
+        @Override
+        CustomThemeComponentFragment createFragment(String title) {
+            return CustomThemeComponentFragment.newInstance(
+                    title,
+                    position,
+                    titleResId,
+                    true);
+        }
+    }
+
+    private class PrimaryStep extends ComponentStep<PrimaryOption> {
+
+        protected PrimaryStep(ThemeComponentOptionProvider<PrimaryOption> provider,
+                int position) {
+            super(R.string.primary_color_component_title, provider, position);
         }
 
         @Override
