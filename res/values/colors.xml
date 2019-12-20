@@ -65,5 +65,6 @@
 
     <color name="cover_title_color">@color/black_87_alpha</color>
 
-    <color name="preview_pager_background">@color/secondary_color</color>
+    <color name="color_primary_dark">@*android:color/primary_dark_device_default_settings_light</color>
+    <color name="color_primary">@*android:color/primary_device_default_settings_light</color>
 </resources>

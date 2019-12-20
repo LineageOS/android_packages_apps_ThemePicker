@@ -19,7 +19,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="?android:colorPrimary">
+    android:background="@color/color_primary">
     <include layout="@layout/section_header"/>
 
     <FrameLayout
@@ -36,7 +36,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/secondary_color"
+            android:background="@color/color_primary_dark"
             app:card_style="screen_aspect_ratio"/>
 
         <LinearLayout

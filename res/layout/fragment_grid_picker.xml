@@ -20,7 +20,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="?android:colorPrimary">
+    android:background="@color/color_primary">
     <include layout="@layout/section_header"/>
 
     <FrameLayout
@@ -36,7 +36,7 @@
                 android:id="@+id/grid_preview_pager"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/preview_pager_background"
+                android:background="@color/color_primary_dark"
                 app:card_style="screen_aspect_ratio"
                 app:layout_constrainedHeight="true"
                 app:layout_constraintBottom_toTopOf="@id/options_container"
