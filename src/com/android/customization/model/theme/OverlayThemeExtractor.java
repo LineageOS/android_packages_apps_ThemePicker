@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.om.OverlayInfo;
 import android.content.om.OverlayManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.Resources.NotFoundException;
 import android.graphics.Typeface;
@@ -17,6 +18,7 @@ import android.os.UserHandle;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.Dimension;
 import androidx.annotation.Nullable;
 
@@ -71,6 +73,18 @@ class OverlayThemeExtractor {
                             colorOverlayPackage));
         } else {
             addSystemDefaultColor(builder);
+        }
+    }
+
+    void addPrimaryOverlay(Builder builder, String primaryOverlayPackage)
+            throws NameNotFoundException {
+        if (!TextUtils.isEmpty(primaryOverlayPackage)) {
+            builder.addOverlayPackage(getOverlayCategory(primaryOverlayPackage),
+                    primaryOverlayPackage)
+                    .setColorPrimary(loadColor(ResourceConstants.PRIMARY_COLOR_NAME,
+                            primaryOverlayPackage));
+        } else {
+            addSystemDefaultPrimary(builder);
         }
     }
 
@@ -190,6 +204,22 @@ class OverlayThemeExtractor {
                 system.getIdentifier(ResourceConstants.ACCENT_COLOR_DARK_NAME, "color",
                         ResourceConstants.ANDROID_PACKAGE), null);
         builder.setColorAccentDark(colorAccentDark);
+    }
+
+    void addSystemDefaultPrimary(Builder builder) {
+        @ColorInt int colorPrimary = getSystemDefaultPrimary();
+        builder.setColorPrimary(colorPrimary);
+    }
+
+    @ColorInt int getSystemDefaultPrimary() {
+        Configuration configuration = mContext.getResources().getConfiguration();
+        boolean nightMode = (configuration.uiMode & Configuration.UI_MODE_NIGHT_MASK)
+                    == Configuration.UI_MODE_NIGHT_YES ? true : false;
+        Resources system = Resources.getSystem();
+        int colorPrimary = system.getColor(
+                system.getIdentifier(nightMode ? ResourceConstants.PRIMARY_COLOR_DEFAULT_DARK_NAME : ResourceConstants.PRIMARY_COLOR_DEFAULT_LIGHT_NAME, "color",
+                ResourceConstants.ANDROID_PACKAGE), null);
+        return colorPrimary;
     }
 
     void addSystemDefaultFont(Builder builder) {
