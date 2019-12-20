@@ -16,6 +16,7 @@
 package com.android.customization.model.theme.custom;
 
 import android.content.Context;
+import android.content.res.Resources;
 
 import androidx.annotation.Nullable;
 
@@ -81,4 +82,7 @@ public class CustomThemeManager implements CustomizationManager<ThemeComponentOp
         return new CustomThemeManager(themeManager.getCurrentOverlays(), customTheme);
     }
 
+    public int resolveAccentColor(Resources res) {
+        return mBuilder.resolveAccentColor(res);
+    }
 }
