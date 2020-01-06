@@ -52,10 +52,13 @@ public class Clockface implements CustomizationOption<Clockface> {
 
     @Override
     public boolean isActive(CustomizationManager<Clockface> manager) {
+        // setting contains a json string like e.g.
+        // {"clock":"com.android.keyguard.clock.BinaryClockController"}
+        // be lazy and just use contains of mId - no need to construt json object
         String currentClock = ((BaseClockManager) manager).getCurrentClock();
         // Empty clock Id is the default system clock
         return (TextUtils.isEmpty(currentClock) && TextUtils.isEmpty(mId))
-                || (mId != null && mId.equals(currentClock));
+                || (mId != null && !TextUtils.isEmpty(currentClock) && currentClock.contains(mId));
     }
 
     @Override

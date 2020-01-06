@@ -25,8 +25,7 @@ import com.android.customization.module.ThemesUserEventLogger;
  */
 public class ClockManager extends BaseClockManager {
 
-    // TODO: use constant from Settings.Secure
-    static final String CLOCK_FACE_SETTING = "lock_screen_custom_clock_face";
+    static final String CLOCK_FACE_SETTING = Secure.LOCK_SCREEN_CUSTOM_CLOCK_FACE;
     private final ContentResolver mContentResolver;
     private final ThemesUserEventLogger mEventLogger;
 
