@@ -54,6 +54,7 @@
     <dimen name="option_tile_padding_horizontal">10dp</dimen>
 
     <dimen name="option_bottom_margin">8dp</dimen>
+    <dimen name="option_padding_horizontal">2dp</dimen>
     <!-- Note, using dp instead of sp as this text is more like a "snapshot" of the font -->
     <dimen name="theme_option_font_text_size">16dp</dimen>
     <dimen name="theme_option_font_min_text_size">15dp</dimen>

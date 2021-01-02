@@ -68,6 +68,7 @@ abstract class ThemePreviewPage extends PreviewPage {
         header.setText(nameResId);
         header.setCompoundDrawables(null, icon, null, null);
         header.setCompoundDrawableTintList(ColorStateList.valueOf(accentColor));
+        header.setSingleLine();
         card.findViewById(R.id.theme_preview_top_bar).setVisibility(View.GONE);
         card.findViewById(R.id.edit_label).setVisibility(View.GONE);
 
@@ -192,6 +193,7 @@ abstract class ThemePreviewPage extends PreviewPage {
             header.setText(mTitle);
             header.setTextAppearance(R.style.CoverTitleTextAppearance);
             header.setTypeface(mHeadlineFont);
+            header.setSingleLine();
 
             card.findViewById(R.id.theme_preview_top_bar).setVisibility(View.VISIBLE);
             TextView clock = card.findViewById(R.id.theme_preview_clock);
