@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.icu.text.DateFormat;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -68,6 +69,8 @@ abstract class ThemePreviewPage extends PreviewPage {
         header.setText(nameResId);
         header.setCompoundDrawables(null, icon, null, null);
         header.setCompoundDrawableTintList(ColorStateList.valueOf(accentColor));
+        header.setSingleLine();
+        header.setEllipsize(TextUtils.TruncateAt.END);
         card.findViewById(R.id.theme_preview_top_bar).setVisibility(View.GONE);
         card.findViewById(R.id.edit_label).setVisibility(View.GONE);
 
@@ -192,6 +195,8 @@ abstract class ThemePreviewPage extends PreviewPage {
             header.setText(mTitle);
             header.setTextAppearance(R.style.CoverTitleTextAppearance);
             header.setTypeface(mHeadlineFont);
+            header.setSingleLine();
+            header.setEllipsize(TextUtils.TruncateAt.END);
 
             card.findViewById(R.id.theme_preview_top_bar).setVisibility(View.VISIBLE);
             TextView clock = card.findViewById(R.id.theme_preview_clock);

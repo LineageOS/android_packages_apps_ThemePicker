@@ -31,7 +31,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/secondary_color">
+            android:background="?android:colorPrimary">
             <include
                 android:id="@+id/component_preview_content"
                 android:layout_width="match_parent"
@@ -41,6 +41,12 @@
                 android:layout_marginBottom="@dimen/component_preview_page_bottom_margin"
                 layout="@layout/theme_preview_card"/>
         </FrameLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/divider_color"/>
+
         <LinearLayout
             android:id="@+id/options_section"
             android:layout_width="0dp"
@@ -71,6 +77,8 @@
                     android:id="@+id/custom_theme_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginVertical="16dp"
+                    android:layout_marginHorizontal="16dp"
                     android:layout_gravity="center"
                     android:minWidth="300dp"/>
             </FrameLayout>
