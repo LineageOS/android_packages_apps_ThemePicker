@@ -82,7 +82,7 @@
                     android:layout_marginVertical="18dp"
                     android:layout_marginHorizontal="16dp"
                     android:textAlignment="center"
-                    android:textAppearance="@style/TitleTextAppearance"
+                    android:textAppearance="@style/OptionTitleTextAppearance"
                     android:textSize="@dimen/component_options_title_size" />
 
                 <androidx.recyclerview.widget.RecyclerView

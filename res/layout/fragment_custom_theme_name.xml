@@ -31,7 +31,7 @@
             android:id="@+id/component_preview_container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@color/secondary_color"
+            android:background="?android:colorPrimary"
             app:layout_constrainedHeight="true"
             app:layout_constraintBottom_toTopOf="@+id/component_options_title"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,6 +50,16 @@
                 android:layout_marginTop="@dimen/preview_page_top_margin"
                 android:layout_marginBottom="@dimen/indicator_container_height"/>
         </FrameLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/component_preview_container"
+            app:layout_constraintBottom_toTopOf="@+id/component_scroll_view"/>
 
         <TextView
             android:id="@+id/component_options_title"
