@@ -34,7 +34,7 @@
             android:paddingTop="@dimen/preview_content_padding_top"
             android:paddingBottom="@dimen/preview_content_padding_bottom"
             android:clipToPadding="false"
-            android:background="@color/fullscreen_preview_background"
+            android:background="?android:colorPrimary"
             app:layout_constrainedHeight="true"
             app:layout_constraintBottom_toTopOf="@+id/component_scroll_view"
             app:layout_constraintEnd_toEndOf="parent"
