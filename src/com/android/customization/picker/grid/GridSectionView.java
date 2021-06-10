@@ -13,20 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.customization.model.themedicon
+package com.android.customization.picker.grid;
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.content.Context;
+import android.util.AttributeSet;
 
-/**
- * ViewModel class to keep track of themed icon
- */
-class ThemedIconViewModel : ViewModel() {
+import androidx.annotation.Nullable;
 
-    /**
-     * Flag for the themed icon enabled or not
-     */
-    val themedIconEnabled: MutableLiveData<Boolean> by lazy {
-        MutableLiveData<Boolean>()
+import com.android.wallpaper.picker.SectionView;
+
+/** The {@link SectionView} for app grid. */
+public final class GridSectionView extends SectionView {
+
+    public GridSectionView(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
     }
 }
