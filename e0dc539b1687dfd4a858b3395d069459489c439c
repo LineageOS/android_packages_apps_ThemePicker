@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "68fb8f7e_3fa4cfb7",
+        "filename": "Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 11883
+      },
+      "writtenOn": "2021-10-06T17:47:35Z",
+      "side": 1,
+      "message": "I was lazy and went ahead with xml module name\n    name: \"com.android.wallpaper.xml\",\n    sub_dir: \"permissions\",\n    src: \"com.android.wallpaper.xml\",\n    system_ext_specific: true,\n\nShamelly copies from TV",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 28
+      },
+      "revId": "e0dc539b1687dfd4a858b3395d069459489c439c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
