@@ -22,12 +22,24 @@
         android:id="@+id/option_tile"
         android:layout_width="@dimen/option_tile_width"
         android:layout_height="@dimen/option_tile_width"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="@dimen/component_options_margin_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:paddingHorizontal="@dimen/option_tile_padding_horizontal"
+        android:paddingVertical="@dimen/option_tile_padding_vertical"
+        android:layout_marginHorizontal="@dimen/component_options_margin_horizontal"
+        android:background="@drawable/option_border">
         <ImageView
             android:id="@+id/shape_thumbnail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"/>
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/option_label"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/theme_option_label_margin"
+        android:gravity="center"
+        android:textAppearance="@style/OptionTitleTextAppearance" />
 </LinearLayout>
