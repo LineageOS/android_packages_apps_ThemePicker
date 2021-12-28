@@ -8,9 +8,16 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.android.customization.model.color.ColorSectionController;
+import com.android.customization.model.font.FontManager;
+import com.android.customization.model.font.FontSectionController;
 import com.android.customization.model.grid.GridOptionsManager;
 import com.android.customization.model.grid.GridSectionController;
+import com.android.customization.model.iconpack.IconPackManager;
+import com.android.customization.model.iconpack.IconPackSectionController;
+import com.android.customization.model.iconshape.IconShapeManager;
+import com.android.customization.model.iconshape.IconShapeSectionController;
 import com.android.customization.model.mode.DarkModeSectionController;
+import com.android.customization.model.theme.OverlayManagerCompat;
 import com.android.customization.model.themedicon.ThemedIconSectionController;
 import com.android.customization.model.themedicon.ThemedIconSwitchProvider;
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor;
@@ -144,6 +151,18 @@ public final class DefaultCustomizationSections implements CustomizationSections
         // App grid section.
         sectionControllers.add(new GridSectionController(
                 GridOptionsManager.getInstance(activity), sectionNavigationController));
+
+        // Icon pack selection section.
+        sectionControllers.add(new IconPackSectionController(
+                IconPackManager.getInstance(activity, new OverlayManagerCompat(activity)), sectionNavigationController));
+
+        // Font selection section.
+        sectionControllers.add(new FontSectionController(
+                FontManager.getInstance(activity, new OverlayManagerCompat(activity)), sectionNavigationController));
+
+        // Icon shape selection section.
+        sectionControllers.add(new IconShapeSectionController(
+                IconShapeManager.getInstance(activity, new OverlayManagerCompat(activity)), sectionNavigationController));
 
         return sectionControllers;
     }
