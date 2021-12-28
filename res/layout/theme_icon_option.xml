@@ -35,4 +35,13 @@
             android:layout_gravity="center"
             android:tint="?android:colorForeground"/>
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/option_label"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/theme_option_label_margin"
+        android:gravity="center"
+        android:textAppearance="@style/OptionTitleTextAppearance" />
 </LinearLayout>
