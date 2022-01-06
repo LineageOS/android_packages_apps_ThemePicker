@@ -20,6 +20,8 @@ import com.android.wallpaper.model.WallpaperSectionController;
 import com.android.wallpaper.model.WorkspaceViewModel;
 import com.android.wallpaper.module.CustomizationSections;
 
+import com.android.customization.model.color.ColorSectionController;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +42,11 @@ public final class DefaultCustomizationSections implements CustomizationSections
                 activity, lifecycleOwner, permissionRequester, wallpaperColorsViewModel,
                 workspaceViewModel, sectionNavigationController, wallpaperPreviewNavigator,
                 savedInstanceState));
+
+        // Color section
+        sectionControllers.add(
+            new ColorSectionController(activity, wallpaperColorsViewModel, lifecycleOwner,
+                savedInstanceState, sectionNavigationController));
 
         // Dark/Light theme section.
         sectionControllers.add(new DarkModeSectionController(activity,

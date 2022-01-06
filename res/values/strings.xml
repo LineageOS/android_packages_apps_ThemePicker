@@ -247,4 +247,10 @@
 
     <!-- The content description of grid picker entry. [CHAR LIMIT=NONE] -->
     <string name="gird_picker_entry_content_description" msgid="7538418512525897691">Change app grid</string>
+
+    <string name="wallpaper_color_tab">Wallpaper colors</string>
+    <string name="wallpaper_color_title">Wallpaper color</string>
+    <string name="preset_color_tab">Basic colors</string>
+    <string name="color_changed">Color changed</string>
+
 </resources>

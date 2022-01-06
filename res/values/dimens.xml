@@ -123,4 +123,21 @@
 
     <dimen name="beta_tag_background_width">46dp</dimen>
     <dimen name="beta_tag_background_height">24dp</dimen>
+
+    <!-- Color section -->
+    <dimen name="color_option_tile_margin_horizontal">2dp</dimen>
+    <dimen name="color_option_tile_padding_bottom">11dp</dimen>
+    <dimen name="color_options_container_min_height">96dp</dimen>
+    <dimen name="color_options_container_top_margin">24dp</dimen>
+    <dimen name="color_seed_chip_margin">12dp</dimen>
+    <dimen name="color_seed_option_tile_padding">10dp</dimen>
+    <dimen name="color_seed_option_tile_padding_selected">6dp</dimen>
+    <dimen name="component_color_chip_container_medium_size">48dp</dimen>
+    <dimen name="component_color_chip_medium_size">48dp</dimen>
+    <dimen name="component_color_chip_small_size_default">24dp</dimen>
+    <dimen name="component_color_chip_small_size_selected">32dp</dimen>
+    <dimen name="option_tile_width_big">82dp</dimen>
+    <!--  Default page horizontal margin (24dp) - separated tabs inset horizontal (4dp) -->
+    <dimen name="separated_tabs_horizontal_margin">20dp</dimen>
+
 </resources>
