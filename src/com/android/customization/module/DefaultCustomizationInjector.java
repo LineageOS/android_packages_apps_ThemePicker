@@ -18,6 +18,7 @@ package com.android.customization.module;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -26,6 +27,7 @@ import com.android.customization.model.theme.OverlayManagerCompat;
 import com.android.customization.model.theme.ThemeBundleProvider;
 import com.android.customization.model.theme.ThemeManager;
 import com.android.wallpaper.model.CategoryProvider;
+import com.android.wallpaper.model.LiveWallpaperInfo;
 import com.android.wallpaper.model.WallpaperInfo;
 import com.android.wallpaper.module.BaseWallpaperInjector;
 import com.android.wallpaper.module.CustomizationSections;
@@ -35,7 +37,15 @@ import com.android.wallpaper.module.WallpaperPreferences;
 import com.android.wallpaper.module.WallpaperRotationRefresher;
 import com.android.wallpaper.monitor.PerformanceMonitor;
 import com.android.wallpaper.picker.CustomizationPickerActivity;
+import com.android.wallpaper.picker.ImageWallpaperColorThemePreviewFragment;
+import com.android.wallpaper.picker.LiveWallpaperColorThemePreviewFragment;
 import com.android.wallpaper.picker.PreviewFragment;
+
+import static com.android.wallpaper.picker.PreviewFragment.ARG_FULL_SCREEN;
+import static com.android.wallpaper.picker.PreviewFragment.ARG_PREVIEW_MODE;
+import static com.android.wallpaper.picker.PreviewFragment.ARG_TESTING_MODE_ENABLED;
+import static com.android.wallpaper.picker.PreviewFragment.ARG_VIEW_AS_HOME;
+import static com.android.wallpaper.picker.PreviewFragment.ARG_WALLPAPER;
 
 public class DefaultCustomizationInjector extends BaseWallpaperInjector
         implements CustomizationInjector {
@@ -97,8 +107,17 @@ public class DefaultCustomizationInjector extends BaseWallpaperInjector
             boolean viewAsHome,
             boolean viewFullScreen,
             boolean testingModeEnabled) {
-        return PreviewFragment.newInstance(wallpaperInfo, mode, viewAsHome, viewFullScreen,
-                testingModeEnabled);
+        Bundle args = new Bundle();
+        args.putParcelable(ARG_WALLPAPER, wallpaperInfo);
+        args.putInt(ARG_PREVIEW_MODE, mode);
+        args.putBoolean(ARG_VIEW_AS_HOME, viewAsHome);
+        args.putBoolean(ARG_TESTING_MODE_ENABLED, testingModeEnabled);
+
+        PreviewFragment fragment = wallpaperInfo instanceof LiveWallpaperInfo
+                ? new LiveWallpaperColorThemePreviewFragment()
+                : new ImageWallpaperColorThemePreviewFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
