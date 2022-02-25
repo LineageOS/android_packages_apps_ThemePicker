@@ -84,4 +84,14 @@
     <string name="themed_icon_title" msgid="7312460430471956558">"Թեմատիկ պատկերակներ"</string>
     <string name="beta_title" msgid="8703819523760746458">"Բետա"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"Փոխել հավելվածների ցանցը"</string>
+    <!-- no translation found for wallpaper_color_tab (1447926591721403840) -->
+    <skip />
+    <!-- no translation found for wallpaper_color_title (5687965239180986458) -->
+    <skip />
+    <!-- no translation found for preset_color_tab (3133391839341329314) -->
+    <skip />
+    <!-- no translation found for color_changed (7029571720331641235) -->
+    <skip />
+    <!-- no translation found for adaptive_color_title (1336508599235896205) -->
+    <skip />
 </resources>
