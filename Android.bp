@@ -140,6 +140,6 @@ android_app {
     platform_apis: true,
     manifest: "AndroidManifest.xml",
     additional_manifests: [":WallpaperPicker2_Manifest"],
-    overrides: ["WallpaperPicker", "WallpaperPicker2"],
+    overrides: ["WallpaperCropper", "WallpaperPicker", "WallpaperPicker2"],
     static_libs: ["ThemePickerApplicationLib"],
 }
