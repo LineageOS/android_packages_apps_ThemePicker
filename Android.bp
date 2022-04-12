@@ -69,6 +69,7 @@ android_library {
         "monet",
         "wallpaper-common-deps",
         "SettingsLibSettingsTheme",
+        "SystemUIFlagsLib",
         "SystemUI-statsd",
         "styleprotoslite",
     ],
