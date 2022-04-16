@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.customization.picker.color.ColorSectionView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/separated_tabs_horizontal_margin">
+
+        <include layout="@layout/separated_tabs" />
+    </FrameLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/color_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/color_options_container_top_margin"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:minHeight="@dimen/color_options_container_min_height"
+        android:paddingHorizontal="@dimen/section_horizontal_padding" />
+
+
+</com.android.customization.picker.color.ColorSectionView>
