@@ -40,7 +40,7 @@ class ColorCustomizationManager(
                 sColorCustomizationManager = ColorCustomizationManager(
                     ColorProvider(
                         applicationContext, applicationContext.getString(
-                            R.string.themes_stub_package
+                            R.string.themes_colors_provider
                         )
                     ), applicationContext.contentResolver
                 )
