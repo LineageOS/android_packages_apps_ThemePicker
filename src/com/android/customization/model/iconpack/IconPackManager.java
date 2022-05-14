@@ -73,8 +73,6 @@ public class IconPackManager implements CustomizationManager<IconPackOption> {
         if (option.getTitle().equals("Default")) {
             if (mActiveOption.getTitle().equals("Default")) return;
             mActiveOption.getOverlayPackages().forEach((category, overlay) -> mOverlayManager.disableOverlay(overlay, UserHandle.myUserId()));
-        } else {
-            option.getOverlayPackages().forEach((category, overlay) -> mOverlayManager.setEnabledExclusiveInCategory(overlay, UserHandle.myUserId()));
         }
         if (callback != null) {
             callback.onSuccess();
