@@ -271,7 +271,6 @@ class ColorProvider(context: Context, stubPackageName: String) :
                 builder.setColorPrimaryLight(lightColors[0]).setColorSecondaryLight(lightColors[1])
             }
 
-            extractor.addAndroidIconOverlay(builder)
             bundles.add(builder.build(mContext))
             index++
         }
