@@ -56,11 +56,18 @@ public class IconPackOption implements CustomizationOption<IconPackOption> {
 
     private List<Drawable> mIcons = new ArrayList<>();
     private String mTitle;
+    private boolean mIsDefault;
+
     // Mapping from category to overlay package name
     private final Map<String, String> mOverlayPackageNames = new HashMap<>();
 
-    public IconPackOption(String title) {
+    public IconPackOption(String title, boolean isDefault) {
         mTitle = title;
+        mIsDefault = isDefault;
+    }
+
+    public IconPackOption(String title) {
+        this(title, false);
     }
 
     @Override
@@ -86,13 +93,13 @@ public class IconPackOption implements CustomizationOption<IconPackOption> {
     public boolean isActive(CustomizationManager<IconPackOption> manager) {
         IconPackManager iconManager = (IconPackManager) manager;
         OverlayManagerCompat overlayManager = iconManager.getOverlayManager();
-        if (mTitle.equals("Default")) {
+        if (mIsDefault) {
             return overlayManager.getEnabledPackageName(SYSUI_PACKAGE, OVERLAY_CATEGORY_ICON_SYSUI) == null &&
                     overlayManager.getEnabledPackageName(SETTINGS_PACKAGE, OVERLAY_CATEGORY_ICON_SETTINGS) == null &&
                     overlayManager.getEnabledPackageName(ANDROID_PACKAGE, OVERLAY_CATEGORY_ICON_ANDROID) == null;
         }
         for (Map.Entry<String, String> overlayEntry : getOverlayPackages().entrySet()) {
-            if(overlayEntry.getValue() == null || !overlayEntry.getValue().equals(overlayManager.getEnabledPackageName(determinePackage(overlayEntry.getKey()), overlayEntry.getKey()))) {
+            if (overlayEntry.getValue() == null || !overlayEntry.getValue().equals(overlayManager.getEnabledPackageName(determinePackage(overlayEntry.getKey()), overlayEntry.getKey()))) {
                 return false;
             }
         }
@@ -152,5 +159,9 @@ public class IconPackOption implements CustomizationOption<IconPackOption> {
     public boolean isValid(Context context) {
         return mOverlayPackageNames.keySet().size() ==
                 ResourceConstants.getPackagesToOverlay(context).length;
+    }
+
+    public boolean isDefault() {
+        return mIsDefault;
     }
 }
