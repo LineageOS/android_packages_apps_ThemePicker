@@ -70,8 +70,8 @@ public class IconPackManager implements CustomizationManager<IconPackOption> {
             }
             return;
         }
-        if (option.getTitle().equals("Default")) {
-            if (mActiveOption.getTitle().equals("Default")) return;
+        if (option.isDefault()) {
+            if (mActiveOption.isDefault()) return;
             mActiveOption.getOverlayPackages().forEach((category, overlay) -> mOverlayManager.disableOverlay(overlay, UserHandle.myUserId()));
         }
         if (callback != null) {
