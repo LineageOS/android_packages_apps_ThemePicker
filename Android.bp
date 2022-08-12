@@ -54,7 +54,7 @@ genrule {
     name: "ThemePicker_res",
     tools: ["soong_zip"],
     srcs: [
-        "res/**/*"
+        "res/**/*",
     ],
     out: ["ThemePicker_res.zip"],
     cmd: "INPUTS=($(in)) && "
@@ -87,6 +87,10 @@ android_app {
         ":ThemePicker_srcs",
         "src_override/**/*.java",
         "src_override/**/*.kt",
+    ],
+
+    resource_dirs: [
+        "res_override",
     ],
 
     use_embedded_native_libs: true,
