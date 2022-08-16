@@ -24,7 +24,14 @@
 
     <!-- Title of a section of the customization picker where the user can select a Clock face.
         [CHAR LIMIT=15] -->
-    <string name="clock_title">Clock</string>
+    <string name="clock_title">Custom Clock</string>
+
+    <!-- Description of a section of the customization picker where the user can select a Clock
+        face. [CHAR LIMIT=15] -->
+    <string name="clock_description">Pick a custom clock</string>
+
+    <!-- The content description of clock entry. [CHAR LIMIT=NONE] -->
+    <string name="clock_picker_entry_content_description">Change a custom clock</string>
 
     <!-- Title of a section of the customization picker where the user can select a Grid size for
         the home screen. [CHAR LIMIT=15] -->
