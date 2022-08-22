@@ -19,7 +19,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"နောက်ခံနှင့် ပုံစံ"</string>
     <string name="theme_title" msgid="2144932106319405101">"ပုံစံ"</string>
-    <string name="clock_title" msgid="2126046720254613991">"နာရီ"</string>
+    <string name="clock_title" msgid="1974314575211361352">"စိတ်ကြိုက်နာရီ"</string>
+    <string name="clock_description" msgid="3563839327378948">"စိတ်ကြိုက်နာရီရွေးပါ"</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"စိတ်ကြိုက်နာရီ ပြောင်းနိုင်သည်"</string>
     <string name="grid_title" msgid="1688173478777254123">"အက်ပ်ဇယား"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"အသုံးပြုရန်"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"တည်းဖြတ်ရန် တို့ပါ"</string>
@@ -78,7 +80,7 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"စိတ်ကြိုက်အရောင်"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"စိတ်ကြိုက်ပုံသဏ္ဌာန်"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"စိတ်ကြိုက်ပုံစံအမည်"</string>
-    <string name="mode_title" msgid="2394873501427436055">"မှောင်သည့် အပြင်အဆင်"</string>
+    <string name="mode_title" msgid="2394873501427436055">"အမှောင်နောက်ခံ"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"‘ဘက်ထရီ အားထိန်း’ ကြောင့် ယာယီပိတ်ထားသည်"</string>
     <string name="mode_changed" msgid="2243581369395418584">"အပြင်အဆင် ပြောင်းလိုက်ပါပြီ"</string>
     <string name="themed_icon_title" msgid="7312460430471956558">"အပြင်အဆင်သုံး သင်္ကေတများ"</string>
