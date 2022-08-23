@@ -19,7 +19,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"വാൾപേപ്പറും സ്‌റ്റൈലും"</string>
     <string name="theme_title" msgid="2144932106319405101">"സ്‌റ്റൈൽ"</string>
-    <string name="clock_title" msgid="2126046720254613991">"ക്ലോക്ക്"</string>
+    <string name="clock_title" msgid="1974314575211361352">"കസ്റ്റം ക്ലോക്ക്"</string>
+    <string name="clock_description" msgid="3563839327378948">"കസ്റ്റം ക്ലോക്ക് തിരഞ്ഞെടുക്കൂ"</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"ഇഷ്‌ടാനുസൃത  ക്ലോക്ക് മാറ്റൂ"</string>
     <string name="grid_title" msgid="1688173478777254123">"ആപ്പ് ഗ്രിഡ്"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"പ്രയോഗിക്കുക"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"എഡിറ്റ് ചെയ്യാൻ ടാപ്പ് ചെയ്യുക"</string>

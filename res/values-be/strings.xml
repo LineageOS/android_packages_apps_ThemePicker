@@ -19,7 +19,12 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"Шпалеры і стыль"</string>
     <string name="theme_title" msgid="2144932106319405101">"Стыль"</string>
-    <string name="clock_title" msgid="2126046720254613991">"Гадзіннік"</string>
+    <!-- no translation found for clock_title (1974314575211361352) -->
+    <skip />
+    <!-- no translation found for clock_description (3563839327378948) -->
+    <skip />
+    <!-- no translation found for clock_picker_entry_content_description (8377139273468595734) -->
+    <skip />
     <string name="grid_title" msgid="1688173478777254123">"Сетка праграм"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Ужыць"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Дакраніцеся, каб рэдагаваць"</string>
