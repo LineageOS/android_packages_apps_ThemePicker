@@ -19,7 +19,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"Тушкагаз жана стиль"</string>
     <string name="theme_title" msgid="2144932106319405101">"Стиль"</string>
-    <string name="clock_title" msgid="2126046720254613991">"Саат"</string>
+    <string name="clock_title" msgid="1974314575211361352">"Жеке саат"</string>
+    <string name="clock_description" msgid="3563839327378948">"Жеке саатты тандоо"</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Жеке саатты өзгөртүү"</string>
     <string name="grid_title" msgid="1688173478777254123">"Колдонмонун торчосу"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Колдонуу"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Өзгөртүү үчүн таптап коюңуз"</string>
