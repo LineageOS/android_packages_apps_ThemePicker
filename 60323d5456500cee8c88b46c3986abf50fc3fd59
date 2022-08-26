@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72ea9a8e_70925ac1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2022-08-26T18:22:30Z",
+      "side": 1,
+      "message": "Made this a bit stricter since QUERY_ALL_PACKAGES is considered bad practice. Sadly we can\u0027t reference the package name from string overlay so it is hardcoded.",
+      "revId": "60323d5456500cee8c88b46c3986abf50fc3fd59",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
