@@ -19,7 +19,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"Divar kağızı və üslub"</string>
     <string name="theme_title" msgid="2144932106319405101">"Üslub"</string>
-    <string name="clock_title" msgid="2126046720254613991">"Saat"</string>
+    <string name="clock_title" msgid="1974314575211361352">"Fərdi Saat"</string>
+    <string name="clock_description" msgid="3563839327378948">"Fərdi saat seç"</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Fərdi saatı dəyişdir"</string>
     <string name="grid_title" msgid="1688173478777254123">"Tətbiq toru"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Tətbiq edin"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Redaktə etmək üçün klikləyin"</string>
