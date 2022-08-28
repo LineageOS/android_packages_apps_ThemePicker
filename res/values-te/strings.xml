@@ -19,7 +19,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"వాల్‌పేపర్ &amp; స్టయిల్"</string>
     <string name="theme_title" msgid="2144932106319405101">"శైలి"</string>
-    <string name="clock_title" msgid="2126046720254613991">"గడియారం"</string>
+    <string name="clock_title" msgid="1974314575211361352">"అనుకూల గడియారం"</string>
+    <string name="clock_description" msgid="3563839327378948">"అనుకూల గడియారాన్ని ఎంచుకోండి"</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"అనుకూల గడియారాన్ని మార్చండి"</string>
     <string name="grid_title" msgid="1688173478777254123">"యాప్ గ్రిడ్"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"వర్తింపజేయి"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"ఎడిట్ చేయడానికి నొక్కండి"</string>

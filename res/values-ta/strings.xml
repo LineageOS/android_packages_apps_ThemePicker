@@ -19,7 +19,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"வால்பேப்பரும் ஸ்டைலும்"</string>
     <string name="theme_title" msgid="2144932106319405101">"ஸ்டைல்"</string>
-    <string name="clock_title" msgid="2126046720254613991">"கடிகாரம்"</string>
+    <string name="clock_title" msgid="1974314575211361352">"பிரத்தியேகக் கடிகாரம்"</string>
+    <string name="clock_description" msgid="3563839327378948">"பிரத்தியேகக் கடிகாரத்தைத் தேர்வுசெய்க"</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"பிரத்தியேகக் கடிகாரத்தை மாற்றும்"</string>
     <string name="grid_title" msgid="1688173478777254123">"ஆப்ஸ் கட்டம்"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"பயன்படுத்து"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"\'தீமைத்\' திருத்த தட்டவும்"</string>

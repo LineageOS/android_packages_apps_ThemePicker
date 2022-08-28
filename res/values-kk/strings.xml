@@ -19,17 +19,19 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"Тұсқағаз және стиль"</string>
     <string name="theme_title" msgid="2144932106319405101">"Стиль"</string>
-    <string name="clock_title" msgid="2126046720254613991">"Cағат"</string>
+    <string name="clock_title" msgid="1974314575211361352">"Арнаулы сағат"</string>
+    <string name="clock_description" msgid="3563839327378948">"Арнаулы сағатты таңдау"</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Арнаулы сағатты өзгерту"</string>
     <string name="grid_title" msgid="1688173478777254123">"Қолданба торы"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Қолдану"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Өзгерту үшін түртіңіз"</string>
     <string name="keep_my_wallpaper" msgid="8012385376769568517">"Қазіргі тұсқағазды қалдыру"</string>
-    <string name="theme_preview_card_content_description" msgid="5989222908619535533">"Стильді алдын ала қарау"</string>
-    <string name="grid_preview_card_content_description" msgid="8449383777584714842">"Торды алдын ала қарау"</string>
-    <string name="font_preview_content_description" msgid="128230439293337891">"Қаріпті алдын ала қарау"</string>
-    <string name="icon_preview_content_description" msgid="7761101284351952890">"Белгішені алдын ала қарау"</string>
-    <string name="color_preview_content_description" msgid="4879120462082058124">"Түсті алдын ала қарау"</string>
-    <string name="shape_preview_content_description" msgid="6479487796176550432">"Пішінді алдын ала қарау"</string>
+    <string name="theme_preview_card_content_description" msgid="5989222908619535533">"Стильді алдын ала көру"</string>
+    <string name="grid_preview_card_content_description" msgid="8449383777584714842">"Торды алдын ала көру"</string>
+    <string name="font_preview_content_description" msgid="128230439293337891">"Қаріпті алдын ала көру"</string>
+    <string name="icon_preview_content_description" msgid="7761101284351952890">"Белгішені алдын ала көру"</string>
+    <string name="color_preview_content_description" msgid="4879120462082058124">"Түсті алдын ала көру"</string>
+    <string name="shape_preview_content_description" msgid="6479487796176550432">"Пішінді алдын ала көру"</string>
     <string name="option_applied_description" msgid="5022305212078053534">"<xliff:g id="ID_1">%1$s</xliff:g>, қазір қосулы"</string>
     <string name="option_applied_previewed_description" msgid="5269654286638446858">"<xliff:g id="ID_1">%1$s</xliff:g>, қазір қолданылды және алдын ала қаралды"</string>
     <string name="option_previewed_description" msgid="3467217598865047661">"<xliff:g id="ID_1">%1$s</xliff:g>, қазір алдын ала қаралды"</string>
@@ -69,10 +71,10 @@
     <string name="use_style_instead_body" msgid="3051937045807471496">"Таңдаған компоненттеріңіз <xliff:g id="ID_1">%1$s</xliff:g> стиліне сәйкес келеді. Орнына <xliff:g id="ID_2">%1$s</xliff:g> стилін пайдаланғыңыз келе ме?"</string>
     <string name="use_style_button" msgid="1754493078383627019">"<xliff:g id="ID_1">%1$s</xliff:g> таңдалсын"</string>
     <string name="no_thanks" msgid="7286616980115687627">"Жоқ, рақмет"</string>
-    <string name="clock_preview_content_description" msgid="5460561185905717460">"<xliff:g id="ID_1">%1$s</xliff:g> сағатын алдын ала қарау"</string>
+    <string name="clock_preview_content_description" msgid="5460561185905717460">"<xliff:g id="ID_1">%1$s</xliff:g> сағатын алдын ала көру"</string>
     <string name="something_went_wrong" msgid="529840112449799117">"Қап! Бірдеңе дұрыс болмады."</string>
     <string name="theme_preview_icons_section_title" msgid="7064768910744000643">"Түс/Белгішелер"</string>
-    <string name="style_info_description" msgid="2612473574431003251">"Қаріпті, белгішелерді, қолданба пішінін алдын ала қарау"</string>
+    <string name="style_info_description" msgid="2612473574431003251">"Қаріпті, белгішелерді, қолданба пішінін алдын ала көру"</string>
     <string name="accessibility_custom_font_title" msgid="966867359157303705">"Арнаулы қаріп"</string>
     <string name="accessibility_custom_icon_title" msgid="5753297905849062296">"Арнаулы белгіше"</string>
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"Арнаулы түс"</string>
