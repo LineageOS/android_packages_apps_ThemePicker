@@ -78,7 +78,7 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"စိတ်ကြိုက်အရောင်"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"စိတ်ကြိုက်ပုံသဏ္ဌာန်"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"စိတ်ကြိုက်ပုံစံအမည်"</string>
-    <string name="mode_title" msgid="2394873501427436055">"မှောင်သည့် အပြင်အဆင်"</string>
+    <string name="mode_title" msgid="2394873501427436055">"အမှောင်နောက်ခံ"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"‘ဘက်ထရီ အားထိန်း’ ကြောင့် ယာယီပိတ်ထားသည်"</string>
     <string name="mode_changed" msgid="2243581369395418584">"အပြင်အဆင် ပြောင်းလိုက်ပါပြီ"</string>
     <string name="themed_icon_title" msgid="7312460430471956558">"အပြင်အဆင်သုံး သင်္ကေတများ"</string>
