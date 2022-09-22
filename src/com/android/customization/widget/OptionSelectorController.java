@@ -293,17 +293,18 @@ public class OptionSelectorController<T extends CustomizationOption<T>> {
                 .getDefaultDisplay().getMetrics(metrics);
         // This is based on the assumption that the parent view is the same width as the screen.
         final int availableDynamicWidth = metrics.widthPixels - 2 * res.getDimensionPixelSize(
-                R.dimen.section_horizontal_padding) - 2 * padding;
+                R.dimen.section_horizontal_padding);
         final int availableWidth = (fixWidth != 0) ? fixWidth : availableDynamicWidth;
         final boolean hasDecoration = mContainer.getItemDecorationCount() != 0;
-        final int widthPerItem = res.getDimensionPixelSize(R.dimen.option_tile_width) + (
-                hasDecoration ? 0 : 2 * padding);
 
         if (mUseGrid) {
             int numColumns = res.getInteger(R.integer.options_grid_num_columns);
             GridLayoutManager gridLayoutManager = new GridLayoutManager(mContainer.getContext(),
                     numColumns);
             mContainer.setLayoutManager(gridLayoutManager);
+            if (!hasDecoration) {
+                mContainer.addItemDecoration(new GridPaddingDecoration(padding, 0));
+            }
             // Measure RecyclerView to get to the total amount of space used by all options.
             mContainer.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
             while (mContainer.getMeasuredWidth() > availableWidth && numColumns > 1) {
@@ -311,14 +312,12 @@ public class OptionSelectorController<T extends CustomizationOption<T>> {
                 gridLayoutManager.setSpanCount(numColumns);
                 mContainer.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
             }
-
-            if (!hasDecoration) {
-                mContainer.addItemDecoration(new GridPaddingDecoration(padding, 0));
-                if (numColumns > 1) {
-                    mContainer.addItemDecoration(new GridRowSpacerDecoration(2 * padding));
-                }
+            if (!hasDecoration && numColumns > 1) {
+                mContainer.addItemDecoration(new GridRowSpacerDecoration(2 * padding));
             }
         } else {
+            final int widthPerItem = res.getDimensionPixelSize(R.dimen.option_tile_width) + (
+                    hasDecoration ? 0 : 2 * padding);
             mContainer.setLayoutManager(new LinearLayoutManager(mContainer.getContext(),
                     LinearLayoutManager.HORIZONTAL, false));
             int extraSpace = availableWidth - mContainer.getMeasuredWidth();
