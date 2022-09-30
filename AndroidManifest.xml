@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.CHANGE_OVERLAY_PACKAGES"/>
     <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"/>
     <uses-permission android:name="android.permission.SET_WALLPAPER_COMPONENT" />
-
+    <uses-permission android:name="android.permission.READ_DEVICE_CONFIG" />
     <uses-permission android:name="android.permission.MODIFY_DAY_NIGHT_MODE" />
 
     <queries>
@@ -36,6 +36,11 @@
         <!-- Intent filter with action used to discover partner -->
         <intent>
             <action android:name="com.android.launcher3.action.PARTNER_CUSTOMIZATION" />
+        </intent>
+        <!-- Intent filter used to query the launcher Activity for grid preview metadata -->
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.HOME" />
         </intent>
     </queries>
 
