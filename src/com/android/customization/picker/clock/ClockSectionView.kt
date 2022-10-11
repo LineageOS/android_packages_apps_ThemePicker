@@ -19,5 +19,5 @@ import android.content.Context
 import android.util.AttributeSet
 import com.android.wallpaper.picker.SectionView
 
-/** The [SectionView] for app clock.  */
+/** The [SectionView] for app clock. */
 class ClockSectionView(context: Context?, attrs: AttributeSet?) : SectionView(context, attrs)
