@@ -32,71 +32,45 @@ import androidx.fragment.app.FragmentActivity;
 import com.android.customization.model.theme.OverlayManagerCompat;
 import com.android.customization.model.theme.ThemeBundleProvider;
 import com.android.customization.model.theme.ThemeManager;
-import com.android.wallpaper.model.CategoryProvider;
 import com.android.wallpaper.model.LiveWallpaperInfo;
 import com.android.wallpaper.model.WallpaperInfo;
-import com.android.wallpaper.module.BaseWallpaperInjector;
 import com.android.wallpaper.module.CustomizationSections;
-import com.android.wallpaper.module.DefaultCategoryProvider;
-import com.android.wallpaper.module.LoggingOptInStatusProvider;
+import com.android.wallpaper.module.WallpaperPicker2Injector;
 import com.android.wallpaper.module.WallpaperPreferences;
-import com.android.wallpaper.module.WallpaperRotationRefresher;
-import com.android.wallpaper.monitor.PerformanceMonitor;
 import com.android.wallpaper.picker.CustomizationPickerActivity;
 import com.android.wallpaper.picker.ImagePreviewFragment;
 import com.android.wallpaper.picker.LivePreviewFragment;
 import com.android.wallpaper.picker.PreviewFragment;
 
-public class DefaultCustomizationInjector extends BaseWallpaperInjector
+/**
+ * A concrete, real implementation of the dependency provider.
+ */
+public class ThemePickerInjector extends WallpaperPicker2Injector
         implements CustomizationInjector {
-    private CategoryProvider mCategoryProvider;
-    private ThemesUserEventLogger mUserEventLogger;
-    private WallpaperRotationRefresher mWallpaperRotationRefresher;
-    private PerformanceMonitor mPerformanceMonitor;
-    private WallpaperPreferences mPrefs;
     private CustomizationSections mCustomizationSections;
+    private ThemesUserEventLogger mUserEventLogger;
+    private WallpaperPreferences mPrefs;
 
     @Override
-    public synchronized WallpaperPreferences getPreferences(Context context) {
-        if (mPrefs == null) {
-            mPrefs = new DefaultCustomizationPreferences(context.getApplicationContext());
+    public CustomizationSections getCustomizationSections() {
+        if (mCustomizationSections == null) {
+            mCustomizationSections = new DefaultCustomizationSections();
         }
-        return mPrefs;
+        return mCustomizationSections;
     }
 
     @Override
-    public CustomizationPreferences getCustomizationPreferences(Context context) {
-        return (CustomizationPreferences) getPreferences(context);
+    public Intent getDeepLinkRedirectIntent(Context context, Uri uri) {
+        Intent intent = new Intent();
+        intent.setClass(context, CustomizationPickerActivity.class);
+        intent.setData(uri);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        return intent;
     }
 
     @Override
-    public synchronized CategoryProvider getCategoryProvider(Context context) {
-        if (mCategoryProvider == null) {
-            mCategoryProvider = new DefaultCategoryProvider(context.getApplicationContext());
-        }
-        return mCategoryProvider;
-    }
-
-    @Override
-    public synchronized ThemesUserEventLogger getUserEventLogger(Context context) {
-        if (mUserEventLogger == null) {
-            mUserEventLogger = new StatsLogUserEventLogger(context);
-        }
-        return mUserEventLogger;
-    }
-
-    @Override
-    public synchronized WallpaperRotationRefresher getWallpaperRotationRefresher() {
-        if (mWallpaperRotationRefresher == null) {
-            mWallpaperRotationRefresher = new WallpaperRotationRefresher() {
-                @Override
-                public void refreshWallpaper(Context context, Listener listener) {
-                    // Not implemented
-                    listener.onError();
-                }
-            };
-        }
-        return mWallpaperRotationRefresher;
+    public String getDownloadableIntentAction() {
+        return null;
     }
 
     @Override
@@ -120,48 +94,32 @@ public class DefaultCustomizationInjector extends BaseWallpaperInjector
     }
 
     @Override
-    public Intent getDeepLinkRedirectIntent(Context context, Uri uri) {
-        Intent intent = new Intent();
-        intent.setClass(context, CustomizationPickerActivity.class);
-        intent.setData(uri);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        return intent;
-    }
-
-    @Override
-    public String getDownloadableIntentAction() {
-        return null;
-    }
-
-    @Override
-    public synchronized PerformanceMonitor getPerformanceMonitor() {
-        if (mPerformanceMonitor == null) {
-            mPerformanceMonitor = new PerformanceMonitor() {
-                @Override
-                public void recordFullResPreviewLoadedMemorySnapshot() {
-                    // No Op
-                }
-            };
+    public synchronized ThemesUserEventLogger getUserEventLogger(Context context) {
+        if (mUserEventLogger == null) {
+            mUserEventLogger = new StatsLogUserEventLogger(context);
         }
-        return mPerformanceMonitor;
+        return mUserEventLogger;
     }
 
     @Override
-    public synchronized LoggingOptInStatusProvider getLoggingOptInStatusProvider(Context context) {
-        return null;
+    public synchronized WallpaperPreferences getPreferences(Context context) {
+        if (mPrefs == null) {
+            mPrefs = new DefaultCustomizationPreferences(context.getApplicationContext());
+        }
+        return mPrefs;
+    }
+
+    //
+    // Functions from {@link CustomizationInjector}
+    //
+    @Override
+    public CustomizationPreferences getCustomizationPreferences(Context context) {
+        return (CustomizationPreferences) getPreferences(context);
     }
 
     @Override
     public ThemeManager getThemeManager(ThemeBundleProvider provider, FragmentActivity activity,
             OverlayManagerCompat overlayManagerCompat, ThemesUserEventLogger logger) {
         return new ThemeManager(provider, activity, overlayManagerCompat, logger);
-    }
-
-    @Override
-    public CustomizationSections getCustomizationSections() {
-        if (mCustomizationSections == null) {
-            mCustomizationSections = new DefaultCustomizationSections();
-        }
-        return mCustomizationSections;
     }
 }
