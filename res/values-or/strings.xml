@@ -22,7 +22,7 @@
     <string name="clock_title" msgid="2126046720254613991">"ଘଣ୍ଟା"</string>
     <string name="grid_title" msgid="1688173478777254123">"ଆପ୍ ଗ୍ରିଡ୍"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"ପ୍ରୟୋଗ କରନ୍ତୁ"</string>
-    <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"ଏଡିଟ୍ କରିବା ପାଇଁ ଟାପ୍ କରନ୍ତୁ"</string>
+    <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"ଏଡିଟ କରିବା ପାଇଁ ଟାପ କରନ୍ତୁ"</string>
     <string name="keep_my_wallpaper" msgid="8012385376769568517">"ବର୍ତ୍ତମାନର ୱାଲ୍‌ପେପର୍‌କୁ ରଖନ୍ତୁ"</string>
     <string name="theme_preview_card_content_description" msgid="5989222908619535533">"ଷ୍ଟାଇଲ୍ ପ୍ରିଭ୍ୟୁ"</string>
     <string name="grid_preview_card_content_description" msgid="8449383777584714842">"ଗ୍ରିଡ୍ ପ୍ରିଭ୍ୟୁ"</string>
@@ -63,7 +63,7 @@
     <string name="icon_component_label" msgid="2625784884001407944">"ଆଇକନ୍ <xliff:g id="ID_1">%1$d</xliff:g>"</string>
     <string name="delete_custom_theme_confirmation" msgid="4452137183628769394">"କଷ୍ଟମ୍‌ ଶୈଳୀ ଡିଲିଟ୍ କରିବେ?"</string>
     <string name="delete_custom_theme_button" msgid="5102462988130208824">"ଡିଲିଟ୍‍ କରନ୍ତୁ"</string>
-    <string name="cancel" msgid="4651030493668562067">"ବାତିଲ୍ କରନ୍ତୁ"</string>
+    <string name="cancel" msgid="4651030493668562067">"ବାତିଲ କରନ୍ତୁ"</string>
     <string name="set_theme_wallpaper_dialog_message" msgid="2179661027350908003">"ଶୈଳୀ ଯୁକ୍ତ ୱାଲ୍‌ପେପର୍‌କୁ ସେଟ୍ କରନ୍ତୁ"</string>
     <string name="use_style_instead_title" msgid="1578754995763917502">"ଏହା ପରିବର୍ତ୍ତେ <xliff:g id="ID_1">%1$s</xliff:g> ବ୍ୟବହାର କରିବେ?"</string>
     <string name="use_style_instead_body" msgid="3051937045807471496">"ଆପଣ ବଛିଥିବା ଉପାଦାନଗୁଡ଼ିକ <xliff:g id="ID_1">%1$s</xliff:g> ଶୈଳୀ ସହ ମେଳ ହେଉଛି। ଏହା ପରିବର୍ତ୍ତେ ଆପଣ <xliff:g id="ID_2">%1$s</xliff:g>କୁ ବ୍ୟବହାର କରିବାକୁ ଚାହୁଁଛନ୍ତି କି?"</string>
