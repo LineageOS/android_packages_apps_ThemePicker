@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.SET_WALLPAPER_COMPONENT" />
     <uses-permission android:name="android.permission.READ_DEVICE_CONFIG" />
     <uses-permission android:name="android.permission.MODIFY_DAY_NIGHT_MODE" />
+    <uses-permission android:name="android.permission.ACCESS_KEYGUARD_QUICK_AFFORDANCES" />
 
     <queries>
         <!-- Specific intents Wallpaper picker query for -->
