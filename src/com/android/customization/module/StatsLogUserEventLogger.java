@@ -177,11 +177,14 @@ public class StatsLogUserEventLogger extends NoOpUserEventLogger implements Them
     }
 
     @Override
-    public void logEffectApply(String effect, @EffectStatus int status) {
+    public void logEffectApply(String effect, @EffectStatus int status, long timeElapsedMillis,
+            int resultCode) {
         new SysUiStatsLogger()
                 .setAction(StyleEnums.WALLPAPER_EFFECT_APPLIED)
                 .setEffectPreference(status)
                 .setEffectIdHash(getIdHashCode(effect))
+                .setTimeElapsed(timeElapsedMillis)
+                .setEffectResultCode(resultCode)
                 .log();
     }
 
