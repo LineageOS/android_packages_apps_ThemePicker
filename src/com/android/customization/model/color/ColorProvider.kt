@@ -37,6 +37,7 @@ import com.android.customization.model.color.ColorUtils.toColorString
 import com.android.systemui.monet.ColorScheme
 import com.android.systemui.monet.Style
 import com.android.wallpaper.compat.WallpaperManagerCompat
+import com.android.wallpaper.config.Flags
 import com.android.wallpaper.module.InjectorProvider
 import java.util.*
 import kotlinx.coroutines.CoroutineScope
@@ -246,6 +247,11 @@ class ColorProvider(context: Context, stubPackageName: String) :
         return when (this.style) {
             Style.FRUIT_SALAD -> intArrayOf(seed, this.accent1[2])
             Style.TONAL_SPOT -> intArrayOf(this.accentColor, this.accentColor)
+            Style.MONOCHROMATIC ->
+                intArrayOf(
+                    setAlphaComponent(0x000000, 255),
+                    setAlphaComponent(0xFFFFFF, 255),
+                )
             else -> intArrayOf(this.accent1[2], this.accent1[2])
         }
     }
@@ -280,6 +286,10 @@ class ColorProvider(context: Context, stubPackageName: String) :
                         } catch (e: IllegalArgumentException) {
                             Style.TONAL_SPOT
                         }
+
+                    if (style == Style.MONOCHROMATIC && !Flags.isMonochromaticFlagEnabled) {
+                        continue
+                    }
 
                     val darkColors =
                         ColorScheme(colorFromStub, true, style).getPresetColorPreview(colorFromStub)
