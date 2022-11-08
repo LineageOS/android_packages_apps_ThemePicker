@@ -43,6 +43,8 @@ class SysUiStatsLogger {
     private var firstWallpaperApplyDateSinceSetup = 0
     private var appLaunchCount = 0
     private var colorVariant = 0
+    private var timeElapsedMillis = 0L
+    private var effectResultCode = -1
 
     fun setAction(action: Int) = apply { this.action = action }
 
@@ -112,6 +114,14 @@ class SysUiStatsLogger {
 
     fun setColorVariant(color_variant: Int) = apply { this.colorVariant = color_variant }
 
+    fun setTimeElapsed(time_elapsed_millis: Long) = apply {
+      this.timeElapsedMillis = time_elapsed_millis
+    }
+
+    fun setEffectResultCode(effect_result_code: Int) = apply {
+        this.effectResultCode = effect_result_code
+    }
+
     fun log() {
         SysUiStatsLog.write(
             atom,
@@ -134,7 +144,9 @@ class SysUiStatsLogger {
             firstLaunchDateSinceSetup,
             firstWallpaperApplyDateSinceSetup,
             appLaunchCount,
-            colorVariant
+            colorVariant,
+            timeElapsedMillis,
+            effectResultCode,
         )
     }
 }
