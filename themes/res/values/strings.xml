@@ -23,6 +23,7 @@
     <string name="rainbow_color_name_blue">Blue</string>
     <string name="rainbow_color_name_purple">Purple</string>
     <string name="rainbow_color_name_magenta">Magenta</string>
+    <string name="monochromatic_name">Monochromatic</string>
 
     <string name="bundle_name_rainbow1" translatable="false">@string/rainbow_color_name_red</string>
     <string name="bundle_name_rainbow2" translatable="false">@string/rainbow_color_name_orange</string>
@@ -31,6 +32,7 @@
     <string name="bundle_name_rainbow5" translatable="false">@string/rainbow_color_name_blue</string>
     <string name="bundle_name_rainbow6" translatable="false">@string/rainbow_color_name_purple</string>
     <string name="bundle_name_rainbow7" translatable="false">@string/rainbow_color_name_magenta</string>
+    <string name="bundle_name_monochromatic" translatable="false">@string/monochromatic_name</string>
 
     <string name="color_style_rainbow1" translatable="false">RAINBOW</string>
     <string name="color_style_rainbow2" translatable="false">RAINBOW</string>
@@ -39,4 +41,5 @@
     <string name="color_style_rainbow5" translatable="false">RAINBOW</string>
     <string name="color_style_rainbow6" translatable="false">RAINBOW</string>
     <string name="color_style_rainbow7" translatable="false">RAINBOW</string>
+    <string name="color_style_monochromatic" translatable="false">MONOCHROMATIC</string>
 </resources>
