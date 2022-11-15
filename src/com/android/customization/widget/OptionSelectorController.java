@@ -291,13 +291,13 @@ public class OptionSelectorController<T extends CustomizationOption<T>> {
         final DisplayMetrics metrics = new DisplayMetrics();
         mContainer.getContext().getSystemService(WindowManager.class)
                 .getDefaultDisplay().getMetrics(metrics);
-        // This is based on the assumption that the parent view is the same width as the screen.
-        final int availableDynamicWidth = metrics.widthPixels - 2 * res.getDimensionPixelSize(
-                R.dimen.section_horizontal_padding);
-        final int availableWidth = (fixWidth != 0) ? fixWidth : availableDynamicWidth;
         final boolean hasDecoration = mContainer.getItemDecorationCount() != 0;
 
         if (mUseGrid) {
+            // This is based on the assumption that the parent view is the same width as the screen.
+            final int availableDynamicWidth = metrics.widthPixels - 2 * res.getDimensionPixelSize(
+                    R.dimen.section_horizontal_padding);
+            final int availableWidth = (fixWidth != 0) ? fixWidth : availableDynamicWidth;
             int numColumns = res.getInteger(R.integer.options_grid_num_columns);
             GridLayoutManager gridLayoutManager = new GridLayoutManager(mContainer.getContext(),
                     numColumns);
@@ -320,6 +320,8 @@ public class OptionSelectorController<T extends CustomizationOption<T>> {
                     hasDecoration ? 0 : 2 * padding);
             mContainer.setLayoutManager(new LinearLayoutManager(mContainer.getContext(),
                     LinearLayoutManager.HORIZONTAL, false));
+            mContainer.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+            int availableWidth = metrics.widthPixels;
             int extraSpace = availableWidth - mContainer.getMeasuredWidth();
             if (extraSpace >= 0) {
                 mContainer.setOverScrollMode(View.OVER_SCROLL_NEVER);
@@ -331,10 +333,8 @@ public class OptionSelectorController<T extends CustomizationOption<T>> {
                         - mContainer.getPaddingLeft();
                 int itemEndMargin =
                         spaceBetweenItems / (int) mLinearLayoutHorizontalDisplayOptionsMax;
-                if (itemEndMargin <= 0) {
-                    itemEndMargin = res.getDimensionPixelOffset(
-                            R.dimen.option_tile_margin_horizontal);
-                }
+                itemEndMargin = Math.max(itemEndMargin, res.getDimensionPixelOffset(
+                        R.dimen.option_tile_margin_horizontal));
                 mContainer.addItemDecoration(new ItemEndHorizontalSpaceItemDecoration(
                         mContainer.getContext(), itemEndMargin));
                 return;
