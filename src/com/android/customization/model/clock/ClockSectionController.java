@@ -37,7 +37,7 @@ public class ClockSectionController implements CustomizationSectionController<Cl
 
     @Override
     public boolean isAvailable(@Nullable Context context) {
-        return Flags.enableClockCustomization;
+        return Flags.enableCustomClocks;
     }
 
     @Override
