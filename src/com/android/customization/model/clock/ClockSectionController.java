@@ -20,7 +20,7 @@ import android.view.LayoutInflater;
 
 import androidx.annotation.Nullable;
 
-import com.android.customization.picker.clock.ClockCustomFragment;
+import com.android.customization.picker.clock.ClockCustomDemoFragment;
 import com.android.customization.picker.clock.ClockSectionView;
 import com.android.wallpaper.R;
 import com.android.wallpaper.config.Flags;
@@ -45,7 +45,8 @@ public class ClockSectionController implements CustomizationSectionController<Cl
         ClockSectionView view = (ClockSectionView) LayoutInflater.from(context).inflate(
                 R.layout.clock_section_view,
                 null);
-        view.setOnClickListener(v -> mNavigationController.navigateTo(new ClockCustomFragment()));
+        view.setOnClickListener(v ->
+                mNavigationController.navigateTo(new ClockCustomDemoFragment()));
         return view;
     }
 }
