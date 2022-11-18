@@ -22,13 +22,13 @@ import com.android.systemui.plugins.ClockMetadata
 import com.android.systemui.plugins.ClockProviderPlugin
 import com.android.systemui.plugins.Plugin
 import com.android.systemui.plugins.PluginListener
+import com.android.systemui.plugins.PluginManager
 import com.android.systemui.shared.clocks.ClockRegistry
 import com.android.systemui.shared.clocks.DefaultClockProvider
 import com.android.systemui.shared.plugins.PluginActionManager
 import com.android.systemui.shared.plugins.PluginEnabler
 import com.android.systemui.shared.plugins.PluginEnabler.ENABLED
 import com.android.systemui.shared.plugins.PluginInstance
-import com.android.systemui.shared.plugins.PluginManager
 import com.android.systemui.shared.plugins.PluginManagerImpl
 import com.android.systemui.shared.plugins.PluginPrefs
 import com.android.systemui.shared.system.UncaughtExceptionPreHandlerManager_Factory
