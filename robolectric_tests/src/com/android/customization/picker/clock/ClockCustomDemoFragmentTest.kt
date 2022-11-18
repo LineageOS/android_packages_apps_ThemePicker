@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.systemui.plugins.ClockId
 import com.android.systemui.plugins.ClockMetadata
 import com.android.systemui.plugins.ClockProviderPlugin
+import com.android.systemui.plugins.PluginManager
 import com.android.systemui.shared.clocks.ClockRegistry
 import com.android.systemui.shared.clocks.DefaultClockProvider
-import com.android.systemui.shared.plugins.PluginManager
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
