@@ -91,4 +91,18 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"Basic colours"</string>
     <string name="color_changed" msgid="7029571720331641235">"Colour changed"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Dynamic"</string>
+    <!-- no translation found for keyguard_slot_name_bottom_start (6717374042663171860) -->
+    <skip />
+    <!-- no translation found for keyguard_slot_name_bottom_end (7636885379738905151) -->
+    <skip />
+    <!-- no translation found for keyguard_affordance_none (1751643933430782312) -->
+    <skip />
+    <!-- no translation found for keyguard_affordance_enablement_dialog_title (307756993596011884) -->
+    <skip />
+    <!-- no translation found for keyguard_affordance_enablement_dialog_action_template (8117011931337357438) -->
+    <skip />
+    <!-- no translation found for keyguard_affordance_enablement_dialog_message (6136286758939253570) -->
+    <skip />
+    <!-- no translation found for keyguard_affordance_enablement_dialog_dismiss_button (629754625264422508) -->
+    <skip />
 </resources>
