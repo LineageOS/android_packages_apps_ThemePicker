@@ -28,7 +28,9 @@ LOCAL_STATIC_JAVA_LIBRARIES := \
     androidx.test.runner \
     androidx.test.rules \
     mockito-robolectric-prebuilt \
-    truth-prebuilt
+    truth-prebuilt \
+    kotlinx_coroutines_test
+
 LOCAL_JAVA_LIBRARIES := \
     platform-robolectric-4.8.2-prebuilt
 
