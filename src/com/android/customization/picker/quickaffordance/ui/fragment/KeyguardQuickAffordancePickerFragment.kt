@@ -17,6 +17,16 @@
 
 package com.android.customization.picker.quickaffordance.ui.fragment
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
+import com.android.customization.module.ThemePickerInjector
+import com.android.customization.picker.quickaffordance.ui.binder.KeyguardQuickAffordancePickerBinder
+import com.android.wallpaper.R
+import com.android.wallpaper.module.InjectorProvider
 import com.android.wallpaper.picker.AppbarFragment
 
 class KeyguardQuickAffordancePickerFragment : AppbarFragment() {
@@ -26,5 +36,33 @@ class KeyguardQuickAffordancePickerFragment : AppbarFragment() {
         }
     }
 
-    // TODO(b/254858701): implement this UI.
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val view =
+            inflater.inflate(
+                R.layout.fragment_lock_screen_quick_affordances,
+                container,
+                false,
+            )
+        setUpToolbar(view)
+        val injector = InjectorProvider.getInjector() as ThemePickerInjector
+        KeyguardQuickAffordancePickerBinder.bind(
+            view = view,
+            viewModel =
+                ViewModelProvider(
+                        requireActivity(),
+                        injector.getKeyguardQuickAffordancePickerViewModelFactory(requireContext()),
+                    )
+                    .get(),
+            lifecycleOwner = this,
+        )
+        return view
+    }
+
+    override fun getDefaultTitle(): CharSequence {
+        return requireContext().getString(R.string.keyguard_quick_affordance_title)
+    }
 }

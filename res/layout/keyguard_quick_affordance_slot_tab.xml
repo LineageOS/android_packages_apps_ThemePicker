@@ -20,9 +20,10 @@
     android:id="@+id/text"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:textColor="#fff"
-    android:padding="8dp"
+    android:textColor="@color/keyguard_quick_affordance_slot_tab_text_color"
+    android:paddingVertical="8dp"
+    android:paddingHorizontal="16dp"
     android:minWidth="48dp"
     android:minHeight="48dp"
     android:gravity="center"
-    android:background="@drawable/selectable" />
+    android:background="@drawable/keyguard_quick_affordance_slot_tab_background" />

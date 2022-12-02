@@ -38,6 +38,7 @@ class AffordancesAdapter : RecyclerView.Adapter<AffordancesAdapter.ViewHolder>()
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val iconContainerView: View = itemView.requireViewById(R.id.icon_container)
         val iconView: ImageView = itemView.requireViewById(R.id.icon)
         val nameView: TextView = itemView.requireViewById(R.id.name)
     }
@@ -71,6 +72,13 @@ class AffordancesAdapter : RecyclerView.Adapter<AffordancesAdapter.ViewHolder>()
                 View.OnClickListener { item.onClicked.invoke() }
             } else {
                 null
+            }
+        )
+        holder.iconContainerView.setBackgroundResource(
+            if (item.isSelected) {
+                R.drawable.keyguard_quick_affordance_icon_container_background_selected
+            } else {
+                R.drawable.keyguard_quick_affordance_icon_container_background
             }
         )
         holder.iconView.isSelected = item.isSelected
