@@ -21,7 +21,9 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
+import android.graphics.Rect
 import android.view.View
+import androidx.core.view.ViewCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
@@ -52,10 +54,12 @@ object KeyguardQuickAffordancePickerBinder {
         slotTabView.adapter = slotTabAdapter
         slotTabView.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
+        slotTabView.addItemDecoration(ItemSpacing())
         val affordancesAdapter = AffordancesAdapter()
         affordancesView.adapter = affordancesAdapter
         affordancesView.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
+        affordancesView.addItemDecoration(ItemSpacing())
 
         var dialog: Dialog? = null
 
@@ -127,5 +131,29 @@ object KeyguardQuickAffordancePickerBinder {
                 },
             )
             .show()
+    }
+
+    private class ItemSpacing : RecyclerView.ItemDecoration() {
+        override fun getItemOffsets(outRect: Rect, itemPosition: Int, parent: RecyclerView) {
+            val addSpacingToStart = itemPosition > 0
+            val addSpacingToEnd = itemPosition < (parent.adapter?.itemCount ?: 0) - 1
+            val isRtl = parent.layoutManager?.layoutDirection == ViewCompat.LAYOUT_DIRECTION_RTL
+            val density = parent.context.resources.displayMetrics.density
+            if (!isRtl) {
+                outRect.left = if (addSpacingToStart) ITEM_SPACING_DP.toPx(density) else 0
+                outRect.right = if (addSpacingToEnd) ITEM_SPACING_DP.toPx(density) else 0
+            } else {
+                outRect.left = if (addSpacingToEnd) ITEM_SPACING_DP.toPx(density) else 0
+                outRect.right = if (addSpacingToStart) ITEM_SPACING_DP.toPx(density) else 0
+            }
+        }
+
+        private fun Int.toPx(density: Float): Int {
+            return (this * density).toInt()
+        }
+
+        companion object {
+            private const val ITEM_SPACING_DP = 8
+        }
     }
 }
