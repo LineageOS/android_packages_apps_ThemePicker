@@ -297,7 +297,6 @@ class KeyguardQuickAffordancePickerViewModelTest {
                                 " ${FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_3}",
                         icon1 = FakeKeyguardQuickAffordanceProviderClient.ICON_1,
                         icon2 = FakeKeyguardQuickAffordanceProviderClient.ICON_3,
-                        isIconSpacingVisible = true,
                     )
                 )
             jobs.forEach { it.cancel() }
@@ -324,7 +323,6 @@ class KeyguardQuickAffordancePickerViewModelTest {
                         description = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_1,
                         icon1 = FakeKeyguardQuickAffordanceProviderClient.ICON_1,
                         icon2 = null,
-                        isIconSpacingVisible = false,
                     )
                 )
             jobs.forEach { it.cancel() }
@@ -354,7 +352,6 @@ class KeyguardQuickAffordancePickerViewModelTest {
                         description = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_3,
                         icon1 = null,
                         icon2 = FakeKeyguardQuickAffordanceProviderClient.ICON_3,
-                        isIconSpacingVisible = false,
                     )
                 )
             jobs.forEach { it.cancel() }
@@ -375,7 +372,6 @@ class KeyguardQuickAffordancePickerViewModelTest {
             assertThat(summary.last().description).isEqualTo("None")
             assertThat(summary.last().icon1).isNotNull()
             assertThat(summary.last().icon2).isNull()
-            assertThat(summary.last().isIconSpacingVisible).isFalse()
             jobs.forEach { it.cancel() }
         }
 
