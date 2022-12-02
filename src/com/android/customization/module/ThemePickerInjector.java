@@ -21,6 +21,7 @@ import static com.android.wallpaper.picker.PreviewFragment.ARG_TESTING_MODE_ENAB
 import static com.android.wallpaper.picker.PreviewFragment.ARG_VIEW_AS_HOME;
 import static com.android.wallpaper.picker.PreviewFragment.ARG_WALLPAPER;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -32,6 +33,11 @@ import androidx.fragment.app.FragmentActivity;
 import com.android.customization.model.theme.OverlayManagerCompat;
 import com.android.customization.model.theme.ThemeBundleProvider;
 import com.android.customization.model.theme.ThemeManager;
+import com.android.customization.picker.quickaffordance.data.repository.KeyguardQuickAffordancePickerRepository;
+import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor;
+import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel;
+import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderClient;
+import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderClientImpl;
 import com.android.wallpaper.model.LiveWallpaperInfo;
 import com.android.wallpaper.model.WallpaperInfo;
 import com.android.wallpaper.module.CustomizationSections;
@@ -42,6 +48,8 @@ import com.android.wallpaper.picker.ImagePreviewFragment;
 import com.android.wallpaper.picker.LivePreviewFragment;
 import com.android.wallpaper.picker.PreviewFragment;
 
+import kotlinx.coroutines.Dispatchers;
+
 /**
  * A concrete, real implementation of the dependency provider.
  */
@@ -50,9 +58,12 @@ public class ThemePickerInjector extends WallpaperPicker2Injector
     private CustomizationSections mCustomizationSections;
     private ThemesUserEventLogger mUserEventLogger;
     private WallpaperPreferences mPrefs;
+    private KeyguardQuickAffordancePickerInteractor mKeyguardQuickAffordancePickerInteractor;
+    private KeyguardQuickAffordancePickerViewModel.Factory
+            mKeyguardQuickAffordancePickerViewModelFactory;
 
     @Override
-    public CustomizationSections getCustomizationSections() {
+    public CustomizationSections getCustomizationSections(Activity activity) {
         if (mCustomizationSections == null) {
             mCustomizationSections = new DefaultCustomizationSections();
         }
@@ -121,5 +132,32 @@ public class ThemePickerInjector extends WallpaperPicker2Injector
     public ThemeManager getThemeManager(ThemeBundleProvider provider, FragmentActivity activity,
             OverlayManagerCompat overlayManagerCompat, ThemesUserEventLogger logger) {
         return new ThemeManager(provider, activity, overlayManagerCompat, logger);
+    }
+
+    @Override
+    public KeyguardQuickAffordancePickerInteractor getKeyguardQuickAffordancePickerInteractor(
+            Context context) {
+        if (mKeyguardQuickAffordancePickerInteractor == null) {
+            final KeyguardQuickAffordanceProviderClient client =
+                    new KeyguardQuickAffordanceProviderClientImpl(context, Dispatchers.getIO());
+            mKeyguardQuickAffordancePickerInteractor = new KeyguardQuickAffordancePickerInteractor(
+                    new KeyguardQuickAffordancePickerRepository(client, Dispatchers.getIO()),
+                    client);
+        }
+        return mKeyguardQuickAffordancePickerInteractor;
+    }
+
+    /**
+     * Returns a {@link KeyguardQuickAffordancePickerViewModel.Factory}.
+     */
+    public KeyguardQuickAffordancePickerViewModel.Factory
+            getKeyguardQuickAffordancePickerViewModelFactory(Context context) {
+        if (mKeyguardQuickAffordancePickerViewModelFactory == null) {
+            mKeyguardQuickAffordancePickerViewModelFactory =
+                    new KeyguardQuickAffordancePickerViewModel.Factory(
+                            context,
+                            getKeyguardQuickAffordancePickerInteractor(context));
+        }
+        return mKeyguardQuickAffordancePickerViewModelFactory;
     }
 }
