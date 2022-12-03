@@ -19,7 +19,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"Estilo e fondo de pantalla"</string>
     <string name="theme_title" msgid="2144932106319405101">"Estilo"</string>
-    <string name="clock_title" msgid="2126046720254613991">"Reloxo"</string>
+    <string name="clock_title" msgid="1974314575211361352">"Reloxo person."</string>
+    <string name="clock_description" msgid="3563839327378948">"Elixe reloxo pers."</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Cambiar reloxo personalizado"</string>
     <string name="grid_title" msgid="1688173478777254123">"Grade de apps"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Aplicar"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Toca para editar"</string>
@@ -67,7 +69,7 @@
     <string name="set_theme_wallpaper_dialog_message" msgid="2179661027350908003">"Definir fondo de pantalla do estilo"</string>
     <string name="use_style_instead_title" msgid="1578754995763917502">"Prefires utilizar <xliff:g id="ID_1">%1$s</xliff:g>?"</string>
     <string name="use_style_instead_body" msgid="3051937045807471496">"O estilo de <xliff:g id="ID_1">%1$s</xliff:g> concorda cos compoñentes que escolliches. Prefires utilizar <xliff:g id="ID_2">%1$s</xliff:g>?"</string>
-    <string name="use_style_button" msgid="1754493078383627019">"Utilizar <xliff:g id="ID_1">%1$s</xliff:g>"</string>
+    <string name="use_style_button" msgid="1754493078383627019">"Usar <xliff:g id="ID_1">%1$s</xliff:g>"</string>
     <string name="no_thanks" msgid="7286616980115687627">"Non, grazas"</string>
     <string name="clock_preview_content_description" msgid="5460561185905717460">"Vista previa do reloxo <xliff:g id="ID_1">%1$s</xliff:g>"</string>
     <string name="something_went_wrong" msgid="529840112449799117">"Ai! Produciuse un erro."</string>

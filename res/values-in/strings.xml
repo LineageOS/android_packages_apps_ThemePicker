@@ -19,7 +19,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"Wallpaper &amp; gaya"</string>
     <string name="theme_title" msgid="2144932106319405101">"Gaya"</string>
-    <string name="clock_title" msgid="2126046720254613991">"Jam"</string>
+    <string name="clock_title" msgid="1974314575211361352">"Jam Kustom"</string>
+    <string name="clock_description" msgid="3563839327378948">"Pilih jam kustom"</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Ubah jam kustom"</string>
     <string name="grid_title" msgid="1688173478777254123">"Petak aplikasi"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Terapkan"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Ketuk untuk mengedit"</string>
@@ -48,7 +50,7 @@
     <string name="applied_theme_msg" msgid="3749018706366796244">"Gaya berhasil disetel"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"Jam berhasil disetel"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"Petak berhasil disetel"</string>
-    <string name="apply_theme_error_msg" msgid="791364062636538317">"Terjadi masalah saat menerapkan gaya"</string>
+    <string name="apply_theme_error_msg" msgid="791364062636538317">"Terjadi error saat menerapkan gaya"</string>
     <string name="custom_theme_next" msgid="6235420097213197301">"Berikutnya"</string>
     <string name="custom_theme_previous" msgid="4941132112640503022">"Sebelumnya"</string>
     <string name="custom_theme" msgid="1618351922263478163">"Kustom"</string>
@@ -70,7 +72,7 @@
     <string name="use_style_button" msgid="1754493078383627019">"Gunakan <xliff:g id="ID_1">%1$s</xliff:g>"</string>
     <string name="no_thanks" msgid="7286616980115687627">"Lain kali"</string>
     <string name="clock_preview_content_description" msgid="5460561185905717460">"Pratinjau jam <xliff:g id="ID_1">%1$s</xliff:g>"</string>
-    <string name="something_went_wrong" msgid="529840112449799117">"Ups! Ada yang tidak beres."</string>
+    <string name="something_went_wrong" msgid="529840112449799117">"Maaf, terjadi error."</string>
     <string name="theme_preview_icons_section_title" msgid="7064768910744000643">"Warna/Ikon"</string>
     <string name="style_info_description" msgid="2612473574431003251">"Pratinjau font, ikon, bentuk aplikasi, dan warna"</string>
     <string name="accessibility_custom_font_title" msgid="966867359157303705">"Font khusus"</string>
