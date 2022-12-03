@@ -22,6 +22,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.android.customization.model.theme.OverlayManagerCompat;
 import com.android.customization.model.theme.ThemeBundleProvider;
 import com.android.customization.model.theme.ThemeManager;
+import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor;
 import com.android.wallpaper.module.Injector;
 
 public interface CustomizationInjector extends Injector {
@@ -30,4 +31,11 @@ public interface CustomizationInjector extends Injector {
 
     ThemeManager getThemeManager(ThemeBundleProvider provider, FragmentActivity activity,
             OverlayManagerCompat overlayManagerCompat, ThemesUserEventLogger logger);
+
+
+    /**
+     * Get {@link KeyguardQuickAffordancePickerInteractor}
+     */
+    KeyguardQuickAffordancePickerInteractor getKeyguardQuickAffordancePickerInteractor(
+            Context context);
 }
