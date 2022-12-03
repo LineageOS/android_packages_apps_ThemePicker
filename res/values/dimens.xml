@@ -137,8 +137,10 @@
     <dimen name="color_seed_chip_margin">14dp</dimen>
 
     <!-- Keyguard quick affordances -->
+    <!-- Size for the container for the icon of a quick affordance for the lock screen in the picker experience. -->
+    <dimen name="keyguard_quick_affordance_icon_container_size">74dp</dimen>
     <!-- Size for the icon of a quick affordance for the lock screen in the picker experience. -->
     <dimen name="keyguard_quick_affordance_icon_size">24dp</dimen>
     <!-- Width of a single selectable item in the lock screen quick affordance picker. -->
-    <dimen name="keyguard_quick_affordance_picker_item_width">64dp</dimen>
+    <dimen name="keyguard_quick_affordance_picker_item_width">74dp</dimen>
 </resources>

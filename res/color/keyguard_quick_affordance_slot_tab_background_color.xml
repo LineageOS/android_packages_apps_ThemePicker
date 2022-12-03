@@ -15,9 +15,7 @@
   ~
   -->
 
-<resources>
-    <item name="start_affordance" type="id" />
-    <item name="end_affordance" type="id" />
-    <item name="slot_tabs" type="id" />
-    <item name="affordances" type="id" />
-</resources>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true" android:color="@color/color_accent_primary" />
+    <item android:color="@android:color/transparent" />
+</selector>
