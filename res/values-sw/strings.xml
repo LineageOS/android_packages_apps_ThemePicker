@@ -19,7 +19,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"Mandhari na mtindo"</string>
     <string name="theme_title" msgid="2144932106319405101">"Mtindo"</string>
-    <string name="clock_title" msgid="2126046720254613991">"Saa"</string>
+    <string name="clock_title" msgid="1974314575211361352">"Saa Maalum"</string>
+    <string name="clock_description" msgid="3563839327378948">"Chagua saa maalum"</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Badili saa maalum"</string>
     <string name="grid_title" msgid="1688173478777254123">"Gridi ya programu"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Tumia"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Gusa ili ubadilishe"</string>
@@ -81,7 +83,7 @@
     <string name="mode_title" msgid="2394873501427436055">"Mandhari meusi"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"Imezimwa kwa muda kwa sababu ya Kiokoa Betri"</string>
     <string name="mode_changed" msgid="2243581369395418584">"Mandhari yamebadilishwa"</string>
-    <string name="themed_icon_title" msgid="7312460430471956558">"Aikoni zenye mada"</string>
+    <string name="themed_icon_title" msgid="7312460430471956558">"Aikoni za kujifanyia"</string>
     <string name="beta_title" msgid="8703819523760746458">"Beta"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"Badilisha gridi ya programu"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"Rangi za mandhari"</string>

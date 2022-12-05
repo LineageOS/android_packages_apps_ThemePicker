@@ -17,9 +17,11 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name" msgid="1647136562008520313">"الخلفية والنمط"</string>
+    <string name="app_name" msgid="1647136562008520313">"الخلفية والأسلوب"</string>
     <string name="theme_title" msgid="2144932106319405101">"النمط"</string>
-    <string name="clock_title" msgid="2126046720254613991">"الساعة"</string>
+    <string name="clock_title" msgid="1974314575211361352">"خلفية شاشة ساعة مخصّصة"</string>
+    <string name="clock_description" msgid="3563839327378948">"اختيار خلفية شاشة ساعة مخصّصة"</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"تغيير خلفية شاشة ساعة مخصّصة"</string>
     <string name="grid_title" msgid="1688173478777254123">"شبكة التطبيقات"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"تطبيق"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"انقُر للتعديل."</string>

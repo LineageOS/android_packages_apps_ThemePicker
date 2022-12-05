@@ -19,7 +19,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"Horma-papera eta estiloa"</string>
     <string name="theme_title" msgid="2144932106319405101">"Estiloa"</string>
-    <string name="clock_title" msgid="2126046720254613991">"Erlojua"</string>
+    <string name="clock_title" msgid="1974314575211361352">"Esfera pertsonalizatuak"</string>
+    <string name="clock_description" msgid="3563839327378948">"Hautatu esfera pertsonalizatu bat"</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Aldatu esfera pertsonalizatua"</string>
     <string name="grid_title" msgid="1688173478777254123">"Aplikazioen sareta"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Aplikatu"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Sakatu editatzeko"</string>
@@ -79,7 +81,7 @@
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"Forma pertsonalizatua"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"Estilo pertsonalizatuaren izena"</string>
     <string name="mode_title" msgid="2394873501427436055">"Gai iluna"</string>
-    <string name="mode_disabled_msg" msgid="9196245518435936512">"Aldi baterako desgaituta, bateria-aurrezlea dela eta"</string>
+    <string name="mode_disabled_msg" msgid="9196245518435936512">"Aldi baterako desgaituta, bateria-aurreztailea dela eta"</string>
     <string name="mode_changed" msgid="2243581369395418584">"Aldatu da gaia"</string>
     <string name="themed_icon_title" msgid="7312460430471956558">"Ikono gaidunak"</string>
     <string name="beta_title" msgid="8703819523760746458">"Beta"</string>
