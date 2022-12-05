@@ -176,7 +176,6 @@ private constructor(
                     ?.firstOrNull()
                     ?.icon
 
-            val isIconSpacingVisible = icon1 != null && icon2 != null
             KeyguardQuickAffordanceSummaryViewModel(
                 description = toDescriptionText(context, slots),
                 icon1 = icon1
@@ -186,7 +185,6 @@ private constructor(
                             null
                         },
                 icon2 = icon2,
-                isIconSpacingVisible = isIconSpacingVisible,
             )
         }
 
