@@ -41,6 +41,7 @@ import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAff
 import com.android.wallpaper.model.LiveWallpaperInfo;
 import com.android.wallpaper.model.WallpaperInfo;
 import com.android.wallpaper.module.CustomizationSections;
+import com.android.wallpaper.module.FragmentFactory;
 import com.android.wallpaper.module.WallpaperPicker2Injector;
 import com.android.wallpaper.module.WallpaperPreferences;
 import com.android.wallpaper.picker.CustomizationPickerActivity;
@@ -61,6 +62,7 @@ public class ThemePickerInjector extends WallpaperPicker2Injector
     private KeyguardQuickAffordancePickerInteractor mKeyguardQuickAffordancePickerInteractor;
     private KeyguardQuickAffordancePickerViewModel.Factory
             mKeyguardQuickAffordancePickerViewModelFactory;
+    private FragmentFactory mFragmentFactory;
 
     @Override
     public CustomizationSections getCustomizationSections(Activity activity) {
@@ -159,5 +161,13 @@ public class ThemePickerInjector extends WallpaperPicker2Injector
                             getKeyguardQuickAffordancePickerInteractor(context));
         }
         return mKeyguardQuickAffordancePickerViewModelFactory;
+    }
+
+    @Override
+    public FragmentFactory getFragmentFactory() {
+        if (mFragmentFactory == null) {
+            mFragmentFactory = new ThemePickerFragmentFactory();
+        }
+        return mFragmentFactory;
     }
 }
