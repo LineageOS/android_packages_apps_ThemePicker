@@ -23,5 +23,4 @@ data class KeyguardQuickAffordanceSummaryViewModel(
     val description: String,
     val icon1: Drawable?,
     val icon2: Drawable?,
-    val isIconSpacingVisible: Boolean,
 )

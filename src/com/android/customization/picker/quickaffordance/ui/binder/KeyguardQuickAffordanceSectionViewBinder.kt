@@ -43,7 +43,6 @@ object KeyguardQuickAffordanceSectionViewBinder {
             view.requireViewById(R.id.keyguard_quick_affordance_description)
         val icon1: ImageView = view.requireViewById(R.id.icon_1)
         val icon2: ImageView = view.requireViewById(R.id.icon_2)
-        val iconSpacer: View = view.requireViewById(R.id.icon_spacer)
 
         lifecycleOwner.lifecycleScope.launch {
             viewModel.summary
@@ -56,8 +55,6 @@ object KeyguardQuickAffordanceSectionViewBinder {
 
                     icon2.setImageDrawable(summary.icon2)
                     icon2.isVisible = summary.icon2 != null
-
-                    iconSpacer.isVisible = summary.isIconSpacingVisible
                 }
         }
     }
