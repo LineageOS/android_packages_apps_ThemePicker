@@ -91,18 +91,19 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"Culori de bază"</string>
     <string name="color_changed" msgid="7029571720331641235">"Culoare modificată"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Dinamic"</string>
-    <!-- no translation found for keyguard_slot_name_bottom_start (6717374042663171860) -->
+    <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"Butonul stâng"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"Butonul drept"</string>
+    <string name="keyguard_affordance_none" msgid="1751643933430782312">"Fără"</string>
+    <string name="keyguard_affordance_enablement_dialog_title" msgid="307756993596011884">"Configurare suplimentară necesară"</string>
+    <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Deschide <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
+    <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Pentru a adăuga aplicația <xliff:g id="APPNAME">%1$s</xliff:g> drept comandă rapidă, asigură-te"</string>
+    <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Gata"</string>
+    <!-- no translation found for keyguard_quick_affordance_title (4242813186995735584) -->
     <skip />
-    <!-- no translation found for keyguard_slot_name_bottom_end (7636885379738905151) -->
+    <!-- no translation found for keyguard_quick_affordance_section_title (2806304242671717309) -->
     <skip />
-    <!-- no translation found for keyguard_affordance_none (1751643933430782312) -->
+    <!-- no translation found for keyguard_quick_affordance_two_selected_template (1757099194522296363) -->
     <skip />
-    <!-- no translation found for keyguard_affordance_enablement_dialog_title (307756993596011884) -->
-    <skip />
-    <!-- no translation found for keyguard_affordance_enablement_dialog_action_template (8117011931337357438) -->
-    <skip />
-    <!-- no translation found for keyguard_affordance_enablement_dialog_message (6136286758939253570) -->
-    <skip />
-    <!-- no translation found for keyguard_affordance_enablement_dialog_dismiss_button (629754625264422508) -->
+    <!-- no translation found for keyguard_quick_affordance_none_selected (8494127020144112003) -->
     <skip />
 </resources>
