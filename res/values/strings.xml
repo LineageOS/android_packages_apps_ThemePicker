@@ -313,35 +313,4 @@
     [CHAR LIMIT=10].
     -->
     <string name="keyguard_affordance_enablement_dialog_dismiss_button">Done</string>
-
-    <!--
-    Title for a screen where the user can configure the lock screen shortcut buttons that appear on
-    the device without unlocking.
-    [CHAR LIMIT=32].
-    -->
-    <string name="keyguard_quick_affordance_title">Shortcuts</string>
-
-    <!--
-    Label for a menu item on a settings screen that helps the user open a new screen where they can
-    configure the lock screen shortcut buttons that appear on the device without unlocking.
-    [CHAR LIMIT=16].
-    -->
-    <string name="keyguard_quick_affordance_section_title">Shortcuts</string>
-
-    <!--
-    Template for text that shows the names of two currently-selected lock screen shortcuts on the
-    lock screen. For example, it may say "Camera, Wallet", if the first selected shortcut opens the
-    camera app and the second one opens the tap-to-pay wallet experience.
-    [CHAR LIMIT=60].
-    -->
-    <string name="keyguard_quick_affordance_two_selected_template"><xliff:g id="first">%1$s</xliff:g>, <xliff:g id="second">%2$s</xliff:g></string>
-
-    <!--
-    Placeholder text that shows when no lock screen shortcuts are currently selected on the lock
-    screen. When selected, "None" is replaced by another string that shows what is currently
-    selected. For example, it may say "Camera, Wallet", if the first selected shortcut opens the
-    camera app and the second one opens the tap-to-pay wallet experience.
-    [CHAR LIMIT=60].
-    -->
-    <string name="keyguard_quick_affordance_none_selected">None</string>
 </resources>

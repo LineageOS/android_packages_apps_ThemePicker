@@ -1,9 +1,9 @@
 package com.android.customization.module;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.LifecycleOwner;
 
 import com.android.customization.model.color.ColorSectionController;
@@ -28,12 +28,9 @@ import java.util.List;
 public final class DefaultCustomizationSections implements CustomizationSections {
 
     @Override
-    public List<CustomizationSectionController<?>> getAllSectionControllers(
-            FragmentActivity activity,
-            LifecycleOwner lifecycleOwner,
-            WallpaperColorsViewModel wallpaperColorsViewModel,
-            WorkspaceViewModel workspaceViewModel,
-            PermissionRequester permissionRequester,
+    public List<CustomizationSectionController<?>> getAllSectionControllers(Activity activity,
+            LifecycleOwner lifecycleOwner, WallpaperColorsViewModel wallpaperColorsViewModel,
+            WorkspaceViewModel workspaceViewModel, PermissionRequester permissionRequester,
             WallpaperPreviewNavigator wallpaperPreviewNavigator,
             CustomizationSectionNavigationController sectionNavigationController,
             @Nullable Bundle savedInstanceState) {
