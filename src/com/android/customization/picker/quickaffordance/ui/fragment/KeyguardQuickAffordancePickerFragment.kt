@@ -31,6 +31,8 @@ import com.android.wallpaper.picker.AppbarFragment
 
 class KeyguardQuickAffordancePickerFragment : AppbarFragment() {
     companion object {
+        const val DESTINATION_ID = "quick_affordances"
+        @JvmStatic
         fun newInstance(): KeyguardQuickAffordancePickerFragment {
             return KeyguardQuickAffordancePickerFragment()
         }

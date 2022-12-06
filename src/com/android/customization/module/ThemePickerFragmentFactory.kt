@@ -15,12 +15,19 @@
  *
  */
 
-package com.android.customization.picker.quickaffordance.ui.viewmodel
+package com.android.customization.module
 
-import android.graphics.drawable.Drawable
+import androidx.fragment.app.Fragment
+import com.android.customization.picker.quickaffordance.ui.fragment.KeyguardQuickAffordancePickerFragment
+import com.android.wallpaper.module.FragmentFactory
 
-data class KeyguardQuickAffordanceSummaryViewModel(
-    val description: String,
-    val icon1: Drawable?,
-    val icon2: Drawable?,
-)
+class ThemePickerFragmentFactory : FragmentFactory {
+
+    override fun create(id: String): Fragment? {
+        return when (id) {
+            KeyguardQuickAffordancePickerFragment.DESTINATION_ID ->
+                KeyguardQuickAffordancePickerFragment.newInstance()
+            else -> null
+        }
+    }
+}

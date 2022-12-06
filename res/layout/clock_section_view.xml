@@ -49,6 +49,7 @@
         android:scaleType="center"
         android:src="@drawable/ic_clock_24px"
         android:background="@drawable/option_border_color"
-        android:contentDescription="@string/clock_picker_entry_content_description" />
+        android:contentDescription="@string/clock_picker_entry_content_description"
+        android:tint="@color/text_color_primary" />
 
 </com.android.customization.picker.clock.ClockSectionView>
