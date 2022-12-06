@@ -91,4 +91,19 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"Colores básicos"</string>
     <string name="color_changed" msgid="7029571720331641235">"Se cambió el color"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Dinámico"</string>
+    <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"Botón izquierdo"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"Botón derecho"</string>
+    <string name="keyguard_affordance_none" msgid="1751643933430782312">"Ninguno"</string>
+    <string name="keyguard_affordance_enablement_dialog_title" msgid="307756993596011884">"Se necesitan parámetros de configuración adicionales"</string>
+    <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Abrir <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
+    <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Para agregar la app <xliff:g id="APPNAME">%1$s</xliff:g> como acceso directo, asegúrate que se cumplan los siguientes requisitos:"</string>
+    <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Listo"</string>
+    <!-- no translation found for keyguard_quick_affordance_title (4242813186995735584) -->
+    <skip />
+    <!-- no translation found for keyguard_quick_affordance_section_title (2806304242671717309) -->
+    <skip />
+    <!-- no translation found for keyguard_quick_affordance_two_selected_template (1757099194522296363) -->
+    <skip />
+    <!-- no translation found for keyguard_quick_affordance_none_selected (8494127020144112003) -->
+    <skip />
 </resources>
