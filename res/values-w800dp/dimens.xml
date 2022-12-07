@@ -18,6 +18,4 @@
     <!-- Dimensions for the customization option tiles -->
     <dimen name="option_tile_width">87dp</dimen>
     <dimen name="option_tile_linear_padding_horizontal">8dp</dimen>
-    <dimen name="option_tile_grid_icon_padding_min">8dp</dimen>
-    <dimen name="option_tile_grid_tile_padding_min">4dp</dimen>
 </resources>
