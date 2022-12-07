@@ -55,15 +55,11 @@ public class ColorBundle extends ColorOption {
         Resources res = view.getContext().getResources();
         int primaryColor = mPreviewInfo.resolvePrimaryColor(res);
         int secondaryColor = mPreviewInfo.resolveSecondaryColor(res);
-        int padding = view.isActivated()
-                ? res.getDimensionPixelSize(R.dimen.color_seed_option_tile_padding_selected)
-                : res.getDimensionPixelSize(R.dimen.color_seed_option_tile_padding);
 
         for (int i = 0; i < mPreviewColorIds.length; i++) {
             ImageView colorPreviewImageView = view.findViewById(mPreviewColorIds[i]);
             int color = i % 2 == 0 ? primaryColor : secondaryColor;
             colorPreviewImageView.getDrawable().setColorFilter(color, PorterDuff.Mode.SRC);
-            colorPreviewImageView.setPadding(padding, padding, padding, padding);
         }
         view.setContentDescription(getContentDescription(view.getContext()));
     }
