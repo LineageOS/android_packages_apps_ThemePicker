@@ -71,13 +71,9 @@ public class ColorSeedOption extends ColorOption {
         Resources res = view.getContext().getResources();
         @ColorInt int[] colors = mPreviewInfo.resolveColors(res);
 
-        int padding = view.isActivated()
-                ? res.getDimensionPixelSize(R.dimen.color_seed_option_tile_padding_selected)
-                : res.getDimensionPixelSize(R.dimen.color_seed_option_tile_padding);
         for (int i = 0; i < mPreviewColorIds.length; i++) {
             ImageView colorPreviewImageView = view.findViewById(mPreviewColorIds[i]);
             colorPreviewImageView.getDrawable().setColorFilter(colors[i], Mode.SRC);
-            colorPreviewImageView.setPadding(padding, padding, padding, padding);
         }
 
         view.setContentDescription(getContentDescription(view.getContext()));
