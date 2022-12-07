@@ -21,6 +21,7 @@ import com.android.customization.model.color.ColorOptionsProvider.COLOR_SOURCE_P
 import com.android.systemui.monet.Style
 import com.google.common.truth.Truth.assertThat
 import org.junit.Assert.assertEquals
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -30,22 +31,25 @@ import org.mockito.junit.MockitoJUnit
 import org.mockito.junit.MockitoRule
 import org.robolectric.RobolectricTestRunner
 
-/**
- * Tests of {@link ColorOption}.
- */
+/** Tests of {@link ColorOption}. */
 @RunWith(RobolectricTestRunner::class)
 class ColorOptionTest {
 
-    @get:Rule
-    val rule: MockitoRule = MockitoJUnit.rule()
+    @get:Rule val rule: MockitoRule = MockitoJUnit.rule()
 
-    @Mock
-    private lateinit var manager: ColorCustomizationManager
+    @Mock private lateinit var manager: ColorCustomizationManager
 
     @Test
     fun colorOption_Source_Preset() {
-        val bundleOption: ColorOption = ColorBundle("fake color",
-                mapOf("fake_package" to "fake_color"), false, null, /* index= */ 0, null)
+        val bundleOption: ColorOption =
+            ColorBundle(
+                "fake color",
+                mapOf("fake_package" to "fake_color"),
+                false,
+                null,
+                /* index= */ 0,
+                null
+            )
         assertEquals(COLOR_SOURCE_PRESET, bundleOption.source)
     }
 
@@ -58,8 +62,15 @@ class ColorOptionTest {
     }
 
     private fun testBundleOptionIndex(index: Int) {
-        val bundleOption: ColorBundle = ColorBundle("fake color",
-                mapOf("fake_package" to "fake_color"), false, null, /* index= */ index, null)
+        val bundleOption: ColorBundle =
+            ColorBundle(
+                "fake color",
+                mapOf("fake_package" to "fake_color"),
+                false,
+                null,
+                /* index= */ index,
+                null
+            )
         assertThat(bundleOption.index).isEqualTo(index)
     }
 
@@ -70,8 +81,16 @@ class ColorOptionTest {
     }
 
     private fun testSeedOptionSource(source: String) {
-        val seedOption: ColorOption = ColorSeedOption("fake color",
-                mapOf("fake_package" to "fake_color"), false, source, null, /* index= */ 0, null)
+        val seedOption: ColorOption =
+            ColorSeedOption(
+                "fake color",
+                mapOf("fake_package" to "fake_color"),
+                false,
+                source,
+                null,
+                /* index= */ 0,
+                null
+            )
         assertThat(seedOption.source).isEqualTo(source)
     }
 
@@ -84,9 +103,16 @@ class ColorOptionTest {
     }
 
     private fun testSeedOptionStyle(style: Style) {
-        val seedOption: ColorOption = ColorSeedOption("fake color",
-            mapOf("fake_package" to "fake_color"), /* isDefault= */ false, "fake_source", style,
-            0, null)
+        val seedOption: ColorOption =
+            ColorSeedOption(
+                "fake color",
+                mapOf("fake_package" to "fake_color"),
+                /* isDefault= */ false,
+                "fake_source",
+                style,
+                0,
+                null
+            )
         assertThat(seedOption.style).isEqualTo(style)
     }
 
@@ -99,31 +125,39 @@ class ColorOptionTest {
     }
 
     private fun testSeedOptionIndex(index: Int) {
-        val seedOption: ColorOption = ColorSeedOption("fake color",
+        val seedOption: ColorOption =
+            ColorSeedOption(
+                "fake color",
                 mapOf("fake_package" to "fake_color"),
                 /* isDefault= */ false,
                 "fake_source",
                 Style.TONAL_SPOT,
                 index,
-                /* previewInfo= */ null)
+                /* previewInfo= */ null
+            )
         assertThat(seedOption.index).isEqualTo(index)
     }
 
-    private fun setUpSeedOption(isDefault: Boolean, source: String = "some_source")
-            : ColorSeedOption {
-        val overlays = if (isDefault) {
-            HashMap()
-        } else {
-            mapOf("package" to "value", "otherPackage" to "otherValue")
-        }
+    private fun setUpSeedOption(
+        isDefault: Boolean,
+        source: String = "some_source"
+    ): ColorSeedOption {
+        val overlays =
+            if (isDefault) {
+                HashMap()
+            } else {
+                mapOf("package" to "value", "otherPackage" to "otherValue")
+            }
         `when`(manager.currentOverlays).thenReturn(overlays)
-        return ColorSeedOption("seed",
-                overlays,
-                isDefault,
-                source,
-                Style.TONAL_SPOT,
-                /* index= */ 0,
-                /* previewInfo= */ null)
+        return ColorSeedOption(
+            "seed",
+            overlays,
+            isDefault,
+            source,
+            Style.TONAL_SPOT,
+            /* index= */ 0,
+            /* previewInfo= */ null
+        )
     }
 
     @Test
@@ -170,6 +204,7 @@ class ColorOptionTest {
     }
 
     @Test
+    @Ignore("b/260925899")
     fun seedOption_isActive_default_nonEmptyOverlays() {
         val seedOption = setUpSeedOption(true)
 
