@@ -19,7 +19,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"વૉલપેપર અને સ્ટાઇલ"</string>
     <string name="theme_title" msgid="2144932106319405101">"શૈલી"</string>
-    <string name="clock_title" msgid="2126046720254613991">"ઘડિયાળ"</string>
+    <string name="clock_title" msgid="1974314575211361352">"કસ્ટમ ઘડિયાળ"</string>
+    <string name="clock_description" msgid="3563839327378948">"કસ્ટમ ઘડિયાળ ચૂંટો"</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"કસ્ટમ ઘડિયાળ બદલો"</string>
     <string name="grid_title" msgid="1688173478777254123">"ઍપ ગ્રિડ"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"લાગુ કરો"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"ફેરફાર કરવા માટે ટૅપ કરો"</string>
