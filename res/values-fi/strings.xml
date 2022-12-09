@@ -19,7 +19,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"Taustakuva ja tyyli"</string>
     <string name="theme_title" msgid="2144932106319405101">"Tyyli"</string>
-    <string name="clock_title" msgid="2126046720254613991">"Kello"</string>
+    <string name="clock_title" msgid="1974314575211361352">"Oma kello"</string>
+    <string name="clock_description" msgid="3563839327378948">"Valitse kello"</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Muuta omaa kelloa"</string>
     <string name="grid_title" msgid="1688173478777254123">"Ruudukko"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Käytä"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Muokkaa napauttamalla"</string>

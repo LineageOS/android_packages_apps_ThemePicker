@@ -19,7 +19,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"Isithombe sangemuva nesitayela"</string>
     <string name="theme_title" msgid="2144932106319405101">"Isitayela"</string>
-    <string name="clock_title" msgid="2126046720254613991">"Iwashi"</string>
+    <string name="clock_title" msgid="1974314575211361352">"Iwashi Elingokomuntu Ngamunye"</string>
+    <string name="clock_description" msgid="3563839327378948">"Khetha iwashi elingokomuntu ngamunye"</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Shintsha iwashi elingokomuntu ngamunye"</string>
     <string name="grid_title" msgid="1688173478777254123">"Igridi ye-app"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Faka"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Thepha ukuze uhlele"</string>

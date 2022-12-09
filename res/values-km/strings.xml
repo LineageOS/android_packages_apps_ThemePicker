@@ -19,7 +19,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"ផ្ទាំងរូបភាព និងរចនាប័ទ្ម"</string>
     <string name="theme_title" msgid="2144932106319405101">"រចនាប័ទ្ម"</string>
-    <string name="clock_title" msgid="2126046720254613991">"នាឡិកា"</string>
+    <string name="clock_title" msgid="1974314575211361352">"នាឡិកាផ្ទាល់ខ្លួន"</string>
+    <string name="clock_description" msgid="3563839327378948">"ជ្រើសរើសនាឡិកាផ្ទាល់ខ្លួន"</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"ប្ដូរនាឡិកា​ផ្ទាល់ខ្លួន"</string>
     <string name="grid_title" msgid="1688173478777254123">"ក្រឡា​កម្មវិធី"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"ប្រើ"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"ចុច ដើម្បី​កែ"</string>
@@ -81,7 +83,7 @@
     <string name="mode_title" msgid="2394873501427436055">"​រចនាប័ទ្ម​ងងឹត"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"បានបិទ​ជា​បណ្តោះអាសន្ន ដោយសារ​មុខងារ​សន្សំ​ថ្ម"</string>
     <string name="mode_changed" msgid="2243581369395418584">"បាន​ផ្លាស់ប្ដូរ​រចនាប័ទ្ម"</string>
-    <string name="themed_icon_title" msgid="7312460430471956558">"រូបតំណាងប្ដូររចនាប័ទ្ម"</string>
+    <string name="themed_icon_title" msgid="7312460430471956558">"រូបតំណាងប្ដូរតាមទម្រង់រចនា"</string>
     <string name="beta_title" msgid="8703819523760746458">"បេតា"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"ប្ដូរ​ក្រឡា​កម្មវិធី"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"ពណ៌ផ្ទាំងរូបភាព"</string>

@@ -16,10 +16,18 @@
      limitations under the License.
 -->
 <resources>
-    <string name="themes_stub_package" translatable="false"/>
+    <!-- Package of the stub apk containing the themes descriptions -->
+    <string name="themes_stub_package" translatable="false">
+        com.android.customization.themes
+    </string>
+
+    <!-- Package of the stub apk containing the clock content -->
     <string name="clocks_stub_package" translatable="false"/>
-    <!-- Authority of a provider in System UI that will provide preview info for available clockfaces. -->
-    <string name="clocks_provider_authority" translatable="false">com.android.keyguard.clock</string>
+
+    <!-- Authority of a System UI provider that provides preview info for available clockfaces. -->
+    <string name="clocks_provider_authority" translatable="false">
+        com.android.keyguard.clock
+    </string>
 
     <string name="launcher_overlayable_package" translatable="false">com.android.launcher3</string>
 
