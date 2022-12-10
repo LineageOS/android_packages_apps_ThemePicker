@@ -91,20 +91,13 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"Հիմնական գույներ"</string>
     <string name="color_changed" msgid="7029571720331641235">"Գույնը փոխվեց"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Դինամիկ"</string>
-    <!-- no translation found for keyguard_slot_name_bottom_start (6717374042663171860) -->
-    <skip />
-    <!-- no translation found for keyguard_slot_name_bottom_end (7636885379738905151) -->
-    <skip />
-    <!-- no translation found for keyguard_affordance_none (1751643933430782312) -->
-    <skip />
-    <!-- no translation found for keyguard_affordance_enablement_dialog_title (307756993596011884) -->
-    <skip />
-    <!-- no translation found for keyguard_affordance_enablement_dialog_action_template (8117011931337357438) -->
-    <skip />
-    <!-- no translation found for keyguard_affordance_enablement_dialog_message (6136286758939253570) -->
-    <skip />
-    <!-- no translation found for keyguard_affordance_enablement_dialog_dismiss_button (629754625264422508) -->
-    <skip />
+    <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"«Ձախ» կոճակ"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"«Աջ» կոճակ"</string>
+    <string name="keyguard_affordance_none" msgid="1751643933430782312">"Ոչ մեկը"</string>
+    <string name="keyguard_affordance_enablement_dialog_title" msgid="307756993596011884">"Պահանջվում է լրացուցիչ կարգավորում"</string>
+    <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Բացել <xliff:g id="APPNAME">%1$s</xliff:g> հավելվածը"</string>
+    <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"<xliff:g id="APPNAME">%1$s</xliff:g> հավելվածի դյուրանցումն ավելացնելու համար համոզվեք, որ՝"</string>
+    <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Պատրաստ է"</string>
     <!-- no translation found for keyguard_quick_affordance_title (4242813186995735584) -->
     <skip />
     <!-- no translation found for keyguard_quick_affordance_section_title (2806304242671717309) -->
