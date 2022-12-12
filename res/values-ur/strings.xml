@@ -98,12 +98,8 @@
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g> کھولیں"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"<xliff:g id="APPNAME">%1$s</xliff:g> ایپ کو شارٹ کٹ کے طور پر شامل کرنے کے لیے درج ذیل کو یقینی بنائیں"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"ہو گیا"</string>
-    <!-- no translation found for keyguard_quick_affordance_title (4242813186995735584) -->
-    <skip />
-    <!-- no translation found for keyguard_quick_affordance_section_title (2806304242671717309) -->
-    <skip />
-    <!-- no translation found for keyguard_quick_affordance_two_selected_template (1757099194522296363) -->
-    <skip />
-    <!-- no translation found for keyguard_quick_affordance_none_selected (8494127020144112003) -->
-    <skip />
+    <string name="keyguard_quick_affordance_title" msgid="4242813186995735584">"شارٹ کٹس"</string>
+    <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"شارٹ کٹس"</string>
+    <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>، <xliff:g id="SECOND">%2$s</xliff:g>"</string>
+    <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"کوئی نہیں"</string>
 </resources>
