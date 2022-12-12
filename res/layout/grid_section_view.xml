@@ -20,7 +20,7 @@
     android:layout_height="wrap_content"
     android:background="?selectableItemBackground"
     android:clickable="true"
-    android:paddingVertical="@dimen/section_top_padding"
+    android:paddingBottom="@dimen/section_bottom_padding"
     android:paddingHorizontal="@dimen/section_horizontal_padding"
     android:orientation="horizontal">
 
@@ -28,6 +28,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:layout_gravity="center_vertical"
         android:orientation="vertical">
 
         <TextView
