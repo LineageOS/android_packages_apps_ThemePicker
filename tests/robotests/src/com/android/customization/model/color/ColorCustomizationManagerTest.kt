@@ -18,8 +18,8 @@ package com.android.customization.model.color
 import android.app.WallpaperColors
 import android.graphics.Color
 import com.android.customization.model.CustomizationManager
-import com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_SYSTEM_PALETTE
 import com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_COLOR
+import com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_SYSTEM_PALETTE
 import com.android.customization.model.color.ColorOptionsProvider.COLOR_SOURCE_HOME
 import com.android.customization.model.color.ColorOptionsProvider.COLOR_SOURCE_PRESET
 import com.android.customization.model.color.ColorOptionsProvider.OVERLAY_COLOR_BOTH
@@ -30,6 +30,7 @@ import com.android.systemui.monet.Style
 import com.google.common.truth.Truth.assertThat
 import org.json.JSONObject
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -41,15 +42,12 @@ import org.mockito.junit.MockitoRule
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 
-/**
- * Tests of {@link ColorCustomizationManager}.
- */
+/** Tests of {@link ColorCustomizationManager}. */
 // TODO(b/222433744): most of these tests are failing due to the manager apk missing in the image
 @RunWith(RobolectricTestRunner::class)
 class ColorCustomizationManagerTest {
 
-    @get:Rule
-    val rule: MockitoRule = MockitoJUnit.rule()
+    @get:Rule val rule: MockitoRule = MockitoJUnit.rule()
 
     @Mock private lateinit var provider: ColorOptionsProvider
     @Mock private lateinit var mockOM: OverlayManagerCompat
@@ -64,15 +62,19 @@ class ColorCustomizationManagerTest {
     }
 
     @Test
+    @Ignore("b/260925899")
     fun testParseSettings() {
         val source = COLOR_SOURCE_HOME
         val style = Style.SPRITZ
         val someColor = "aabbcc"
         val someOtherColor = "bbccdd"
-        val settings = mapOf(OVERLAY_CATEGORY_SYSTEM_PALETTE to someColor,
+        val settings =
+            mapOf(
+                OVERLAY_CATEGORY_SYSTEM_PALETTE to someColor,
                 OVERLAY_CATEGORY_COLOR to someOtherColor,
                 OVERLAY_COLOR_SOURCE to source,
-                ColorOption.TIMESTAMP_FIELD to "12345")
+                ColorOption.TIMESTAMP_FIELD to "12345"
+            )
         val json = JSONObject(settings).toString()
 
         manager.parseSettings(json)
@@ -82,10 +84,11 @@ class ColorCustomizationManagerTest {
         assertThat(manager.currentOverlays.size).isEqualTo(2)
         assertThat(manager.currentOverlays.get(OVERLAY_CATEGORY_COLOR)).isEqualTo(someOtherColor)
         assertThat(manager.currentOverlays.get(OVERLAY_CATEGORY_SYSTEM_PALETTE))
-                .isEqualTo(someColor)
+            .isEqualTo(someColor)
     }
 
     @Test
+    @Ignore("b/260925899")
     fun apply_ColorBundle_index() {
         testApplyColorBundle(1, "1")
         testApplyColorBundle(2, "2")
@@ -94,10 +97,13 @@ class ColorCustomizationManagerTest {
     }
 
     private fun testApplyColorBundle(index: Int, value: String) {
-        manager.apply(getColorBundle(index), object : CustomizationManager.Callback {
-            override fun onSuccess() {}
-            override fun onError(throwable: Throwable?) {}
-        })
+        manager.apply(
+            getColorBundle(index),
+            object : CustomizationManager.Callback {
+                override fun onSuccess() {}
+                override fun onError(throwable: Throwable?) {}
+            }
+        )
 
         val overlaysJson = JSONObject(manager.storedOverlays)
 
@@ -106,7 +112,8 @@ class ColorCustomizationManagerTest {
 
     private fun getColorBundle(index: Int): ColorBundle {
         return ColorBundle(
-            "fake color", mapOf("fake_package" to "fake_color"),
+            "fake color",
+            mapOf("fake_package" to "fake_color"),
             /* isDefault= */ false,
             null,
             /* index= */ index,
@@ -115,6 +122,7 @@ class ColorCustomizationManagerTest {
     }
 
     @Test
+    @Ignore("b/260925899")
     fun apply_ColorSeed_index() {
         testApplyColorSeed(1, "1")
         testApplyColorSeed(2, "2")
@@ -123,10 +131,13 @@ class ColorCustomizationManagerTest {
     }
 
     private fun testApplyColorSeed(index: Int, value: String) {
-        manager.apply(getColorSeed(index), object : CustomizationManager.Callback {
-            override fun onSuccess() {}
-            override fun onError(throwable: Throwable?) {}
-        })
+        manager.apply(
+            getColorSeed(index),
+            object : CustomizationManager.Callback {
+                override fun onSuccess() {}
+                override fun onError(throwable: Throwable?) {}
+            }
+        )
 
         val overlaysJson = JSONObject(manager.storedOverlays)
         assertThat(overlaysJson.getString(OVERLAY_COLOR_INDEX)).isEqualTo(value)
@@ -145,29 +156,37 @@ class ColorCustomizationManagerTest {
     }
 
     @Test
+    @Ignore("b/260925899")
     fun testApply_colorSeedFromWallpaperBoth_shouldReturnBothValue() {
         val wallpaperColor = WallpaperColors(Color.valueOf(Color.RED), null, null)
         manager.setWallpaperColors(wallpaperColor, wallpaperColor)
 
-        manager.apply(getColorSeed(anyInt()), object : CustomizationManager.Callback {
-            override fun onSuccess() {}
-            override fun onError(throwable: Throwable?) {}
-        })
+        manager.apply(
+            getColorSeed(anyInt()),
+            object : CustomizationManager.Callback {
+                override fun onSuccess() {}
+                override fun onError(throwable: Throwable?) {}
+            }
+        )
 
         val overlaysJson = JSONObject(manager.storedOverlays)
         assertThat(overlaysJson.getString(OVERLAY_COLOR_BOTH)).isEqualTo("1")
     }
 
     @Test
+    @Ignore("b/260925899")
     fun testApply_colorSeedFromWallpaperDifferent_shouldReturnNonBothValue() {
         val wallpaperColor1 = WallpaperColors(Color.valueOf(Color.RED), null, null)
         val wallpaperColor2 = WallpaperColors(Color.valueOf(Color.BLUE), null, null)
         manager.setWallpaperColors(wallpaperColor1, wallpaperColor2)
 
-        manager.apply(getColorSeed(anyInt()), object : CustomizationManager.Callback {
-            override fun onSuccess() {}
-            override fun onError(throwable: Throwable?) {}
-        })
+        manager.apply(
+            getColorSeed(anyInt()),
+            object : CustomizationManager.Callback {
+                override fun onSuccess() {}
+                override fun onError(throwable: Throwable?) {}
+            }
+        )
 
         val overlaysJson = JSONObject(manager.storedOverlays)
         assertThat(overlaysJson.getString(OVERLAY_COLOR_BOTH)).isEqualTo("0")

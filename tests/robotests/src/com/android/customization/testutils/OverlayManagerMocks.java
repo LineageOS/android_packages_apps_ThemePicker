@@ -42,22 +42,22 @@ import java.util.stream.Collectors;
  */
 public class OverlayManagerMocks {
     private static class MockOverlay {
-        final String packageName;
-        final String targetPackage;
-        final String category;
+        final String mPackageName;
+        final String mTargetPackage;
+        final String mCategory;
 
-        public MockOverlay(String packageName, String targetPackage, String category) {
-            this.packageName = packageName;
-            this.targetPackage = targetPackage;
-            this.category = category;
+        MockOverlay(String packageName, String targetPackage, String category) {
+            this.mPackageName = packageName;
+            this.mTargetPackage = targetPackage;
+            this.mCategory = category;
         }
 
         @Override
         public boolean equals(Object obj) {
             return obj instanceof MockOverlay
-                    && TextUtils.equals(((MockOverlay) obj).packageName, packageName)
-                    && TextUtils.equals(((MockOverlay) obj).targetPackage, targetPackage)
-                    && TextUtils.equals(((MockOverlay) obj).category, category);
+                    && TextUtils.equals(((MockOverlay) obj).mPackageName, mPackageName)
+                    && TextUtils.equals(((MockOverlay) obj).mTargetPackage, mTargetPackage)
+                    && TextUtils.equals(((MockOverlay) obj).mCategory, mCategory);
         }
     }
 
@@ -69,8 +69,8 @@ public class OverlayManagerMocks {
             return false;
         }
         Set<MockOverlay> packageOverlays = mAllOverlays.stream()
-                .filter(mockOverlay -> mockOverlay.packageName.equals(packageName)).collect(
-                Collectors.toSet());;
+                .filter(mockOverlay -> mockOverlay.mPackageName.equals(packageName)).collect(
+                Collectors.toSet());
         if (packageOverlays.isEmpty()) {
             return false;
         }
@@ -101,9 +101,9 @@ public class OverlayManagerMocks {
                 (Answer<String>) inv ->
                         mEnabledOverlays.stream().filter(
                                 mockOverlay ->
-                                        mockOverlay.targetPackage.equals(inv.getArgument(0))
-                                            && mockOverlay.category.equals(inv.getArgument(1)))
-                                .map(overlay -> overlay.packageName).findFirst().orElse(null));
+                                        mockOverlay.mTargetPackage.equals(inv.getArgument(0))
+                                            && mockOverlay.mCategory.equals(inv.getArgument(1)))
+                                .map(overlay -> overlay.mPackageName).findFirst().orElse(null));
 
 
         when(mockOverlayManager.disableOverlay(anyString(), anyInt())).then(
@@ -124,12 +124,12 @@ public class OverlayManagerMocks {
                         mEnabledOverlays.stream().filter(
                                 overlay ->
                                         Arrays.asList(inv.getArguments())
-                                                .contains(overlay.targetPackage))
+                                                .contains(overlay.mTargetPackage))
                                 .collect(Collectors.toMap(
                                         overlay ->
-                                                overlay.category,
+                                                overlay.mCategory,
                                         (Function<MockOverlay, String>) overlay ->
-                                                overlay.packageName))
+                                                overlay.mPackageName))
         );
     }
 }
