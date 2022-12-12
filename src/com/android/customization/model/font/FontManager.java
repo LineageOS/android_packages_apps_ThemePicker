@@ -110,7 +110,7 @@ public class FontManager implements CustomizationManager<FontOption> {
 
     private boolean persistOverlay(FontOption toPersist) {
         String value = Settings.Secure.getStringForUser(mContext.getContentResolver(),
-                Settings.Secure.THEME_CUSTOMIZATION_OVERLAY_PACKAGES, UserHandle.USER_CURRENT);
+                Settings.Secure.THEME_CUSTOMIZATION_OVERLAY_PACKAGES, UserHandle.myUserId());
         JSONObject json;
         if (value == null) {
             json = new JSONObject();
@@ -134,7 +134,7 @@ public class FontManager implements CustomizationManager<FontOption> {
         // updating the setting
         Settings.Secure.putStringForUser(mContext.getContentResolver(),
                 Settings.Secure.THEME_CUSTOMIZATION_OVERLAY_PACKAGES,
-                json.toString(), UserHandle.USER_CURRENT);
+                json.toString(), UserHandle.myUserId());
         return true;
     }
 
