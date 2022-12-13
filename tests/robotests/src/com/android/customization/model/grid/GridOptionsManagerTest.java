@@ -27,6 +27,7 @@ import com.android.customization.model.CustomizationManager.Callback;
 import com.android.customization.module.ThemesUserEventLogger;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -66,6 +67,7 @@ public class GridOptionsManagerTest {
     }
 
     @Test
+    @Ignore("b/260925899")
     public void testFetch_backgroundThread() {
         mManager.fetchOptions(null, false);
         verify(mProvider).fetch(anyBoolean());
