@@ -25,10 +25,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import com.android.customization.module.ThemePickerInjector
 import com.android.customization.picker.quickaffordance.ui.binder.KeyguardQuickAffordancePickerBinder
+import com.android.customization.picker.quickaffordance.ui.binder.KeyguardQuickAffordancePreviewBinder
+import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel
 import com.android.wallpaper.R
 import com.android.wallpaper.module.InjectorProvider
 import com.android.wallpaper.picker.AppbarFragment
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.suspendCancellableCoroutine
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class KeyguardQuickAffordancePickerFragment : AppbarFragment() {
     companion object {
         const val DESTINATION_ID = "quick_affordances"
@@ -51,14 +56,32 @@ class KeyguardQuickAffordancePickerFragment : AppbarFragment() {
             )
         setUpToolbar(view)
         val injector = InjectorProvider.getInjector() as ThemePickerInjector
+        val wallpaperInfoFactory = injector.getCurrentWallpaperInfoFactory(requireContext())
+        val viewModel: KeyguardQuickAffordancePickerViewModel =
+            ViewModelProvider(
+                    requireActivity(),
+                    injector.getKeyguardQuickAffordancePickerViewModelFactory(requireContext()),
+                )
+                .get()
+        KeyguardQuickAffordancePreviewBinder.bind(
+            activity = requireActivity(),
+            previewView = view.requireViewById(R.id.preview),
+            viewModel = viewModel,
+            lifecycleOwner = this,
+            wallpaperInfoProvider = {
+                suspendCancellableCoroutine { continuation ->
+                    wallpaperInfoFactory.createCurrentWallpaperInfos(
+                        { homeWallpaper, lockWallpaper, _ ->
+                            continuation.resume(lockWallpaper ?: homeWallpaper, null)
+                        },
+                        /* forceRefresh= */ true,
+                    )
+                }
+            },
+        )
         KeyguardQuickAffordancePickerBinder.bind(
             view = view,
-            viewModel =
-                ViewModelProvider(
-                        requireActivity(),
-                        injector.getKeyguardQuickAffordancePickerViewModelFactory(requireContext()),
-                    )
-                    .get(),
+            viewModel = viewModel,
             lifecycleOwner = this,
         )
         return view
