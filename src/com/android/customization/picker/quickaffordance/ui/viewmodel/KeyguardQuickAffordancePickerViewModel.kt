@@ -32,6 +32,7 @@ import com.android.wallpaper.R
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
@@ -47,7 +48,8 @@ private constructor(
 
     @SuppressLint("StaticFieldLeak") private val applicationContext = context.applicationContext
 
-    private val selectedSlotId = MutableStateFlow<String?>(null)
+    private val _selectedSlotId = MutableStateFlow<String?>(null)
+    val selectedSlotId: StateFlow<String?> = _selectedSlotId.asStateFlow()
 
     /** View-models for each slot, keyed by slot ID. */
     val slots: Flow<Map<String, KeyguardQuickAffordanceSlotViewModel>> =
@@ -90,7 +92,7 @@ private constructor(
                                 if (isSelected) {
                                     null
                                 } else {
-                                    { this.selectedSlotId.value = slot.id }
+                                    { _selectedSlotId.tryEmit(slot.id) }
                                 },
                         )
                 }
