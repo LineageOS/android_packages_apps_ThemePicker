@@ -56,4 +56,4 @@ LOCAL_INSTRUMENT_SOURCE_DIRS := packages/apps/ThemePicker/src \
 
 LOCAL_ROBOTEST_TIMEOUT := 36000
 
-include prebuilts/misc/common/robolectric/3.6.2/run_robotests.mk
+include prebuilts/misc/common/robolectric/4.5.1/run_robotests.mk
