@@ -15,8 +15,7 @@
   ~
   -->
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -30,11 +29,21 @@
 
     </FrameLayout>
 
-    <!-- TODO(b/254858701): plug in the preview here. -->
-    <View
+    <com.android.wallpaper.picker.DisplayAspectRatioFrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:paddingTop="36dp"
+        android:paddingBottom="40dp">
+
+        <include
+            android:id="@+id/preview"
+            layout="@layout/wallpaper_preview_card"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"/>
+
+    </com.android.wallpaper.picker.DisplayAspectRatioFrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,23 +55,66 @@
         android:paddingTop="22dp"
         android:paddingBottom="62dp">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@id/slot_tabs"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:paddingHorizontal="16dp" />
+            >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@id/slot_tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingHorizontal="16dp" />
+
+            <!--
+            This is just an invisible placeholder put in place so that the parent keeps its height
+            stable as the RecyclerView updates from 0 items to N items. Keeping it stable allows the
+            layout logic to keep the size of the preview container stable as well, which bodes well
+            for setting up the SurfaceView for remote rendering without changing its size after the
+            content is loaded into the RecyclerView.
+
+            It's critical for any TextViews inside the included layout to have text.
+            -->
+            <include
+                layout="@layout/keyguard_quick_affordance_slot_tab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible" />
+
+        </FrameLayout>
 
         <View
             android:layout_width="0dp"
             android:layout_height="22dp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@id/affordances"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:paddingHorizontal="16dp" />
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@id/affordances"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingHorizontal="16dp" />
+
+            <!--
+            This is just an invisible placeholder put in place so that the parent keeps its height
+            stable as the RecyclerView updates from 0 items to N items. Keeping it stable allows the
+            layout logic to keep the size of the preview container stable as well, which bodes well
+            for setting up the SurfaceView for remote rendering without changing its size after the
+            content is loaded into the RecyclerView.
+
+            It's critical for any TextViews inside the included layout to have text.
+            -->
+            <include
+                layout="@layout/keyguard_quick_affordance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible" />
+
+        </FrameLayout>
 
     </LinearLayout>
 
