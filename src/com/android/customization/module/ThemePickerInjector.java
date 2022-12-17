@@ -62,6 +62,7 @@ public class ThemePickerInjector extends WallpaperPicker2Injector
     private KeyguardQuickAffordancePickerInteractor mKeyguardQuickAffordancePickerInteractor;
     private KeyguardQuickAffordancePickerViewModel.Factory
             mKeyguardQuickAffordancePickerViewModelFactory;
+    private KeyguardQuickAffordanceProviderClient mKeyguardQuickAffordanceProviderClient;
     private FragmentFactory mFragmentFactory;
 
     @Override
@@ -141,7 +142,7 @@ public class ThemePickerInjector extends WallpaperPicker2Injector
             Context context) {
         if (mKeyguardQuickAffordancePickerInteractor == null) {
             final KeyguardQuickAffordanceProviderClient client =
-                    new KeyguardQuickAffordanceProviderClientImpl(context, Dispatchers.getIO());
+                    getKeyguardQuickAffordancePickerProviderClient(context);
             mKeyguardQuickAffordancePickerInteractor = new KeyguardQuickAffordancePickerInteractor(
                     new KeyguardQuickAffordancePickerRepository(client, Dispatchers.getIO()),
                     client);
@@ -169,5 +170,16 @@ public class ThemePickerInjector extends WallpaperPicker2Injector
             mFragmentFactory = new ThemePickerFragmentFactory();
         }
         return mFragmentFactory;
+    }
+
+    /** Returns the {@link KeyguardQuickAffordanceProviderClient}. */
+    public KeyguardQuickAffordanceProviderClient getKeyguardQuickAffordancePickerProviderClient(
+            Context context) {
+        if (mKeyguardQuickAffordanceProviderClient == null) {
+            mKeyguardQuickAffordanceProviderClient =
+                    new KeyguardQuickAffordanceProviderClientImpl(context, Dispatchers.getIO());
+        }
+
+        return mKeyguardQuickAffordanceProviderClient;
     }
 }
