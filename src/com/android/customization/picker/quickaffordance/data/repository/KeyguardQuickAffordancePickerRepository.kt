@@ -60,8 +60,11 @@ class KeyguardQuickAffordancePickerRepository(
     }
 
     private fun List<Client.Flag>.isFeatureEnabled(): Boolean {
-        return find { flag -> flag.name == Contract.FlagsTable.FLAG_NAME_FEATURE_ENABLED }?.value ==
-            true
+        return find { flag ->
+                flag.name ==
+                    Contract.FlagsTable.FLAG_NAME_CUSTOM_LOCK_SCREEN_QUICK_AFFORDANCES_ENABLED
+            }
+            ?.value == true
     }
 
     private fun Client.Slot.toModel(): SlotModel {
