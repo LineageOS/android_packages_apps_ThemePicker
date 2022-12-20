@@ -37,7 +37,6 @@ import com.android.customization.model.color.ColorUtils.toColorString
 import com.android.systemui.monet.ColorScheme
 import com.android.systemui.monet.Style
 import com.android.wallpaper.compat.WallpaperManagerCompat
-import com.android.wallpaper.config.Flags
 import com.android.wallpaper.module.InjectorProvider
 import java.util.*
 import kotlinx.coroutines.CoroutineScope
@@ -287,7 +286,10 @@ class ColorProvider(context: Context, stubPackageName: String) :
                             Style.TONAL_SPOT
                         }
 
-                    if (style == Style.MONOCHROMATIC && !Flags.isMonochromaticFlagEnabled) {
+                    if (
+                        style == Style.MONOCHROMATIC &&
+                            !InjectorProvider.getInjector().flags.isMonochromaticFlagEnabled()
+                    ) {
                         continue
                     }
 

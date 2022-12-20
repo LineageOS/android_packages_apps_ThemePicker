@@ -38,6 +38,7 @@ import com.android.customization.picker.quickaffordance.domain.interactor.Keygua
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel;
 import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderClient;
 import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderClientImpl;
+import com.android.wallpaper.config.BaseFlags;
 import com.android.wallpaper.model.LiveWallpaperInfo;
 import com.android.wallpaper.model.WallpaperInfo;
 import com.android.wallpaper.module.CustomizationSections;
@@ -64,6 +65,7 @@ public class ThemePickerInjector extends WallpaperPicker2Injector
             mKeyguardQuickAffordancePickerViewModelFactory;
     private KeyguardQuickAffordanceProviderClient mKeyguardQuickAffordanceProviderClient;
     private FragmentFactory mFragmentFactory;
+    private BaseFlags mFlags;
 
     @Override
     public CustomizationSections getCustomizationSections(Activity activity) {
@@ -181,5 +183,14 @@ public class ThemePickerInjector extends WallpaperPicker2Injector
         }
 
         return mKeyguardQuickAffordanceProviderClient;
+    }
+
+    @Override
+    public BaseFlags getFlags() {
+        if (mFlags == null) {
+            mFlags = new BaseFlags() {};
+        }
+
+        return mFlags;
     }
 }

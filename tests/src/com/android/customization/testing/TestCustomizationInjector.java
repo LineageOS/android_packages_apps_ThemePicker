@@ -15,6 +15,7 @@ import com.android.customization.picker.quickaffordance.domain.interactor.Keygua
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel;
 import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderClient;
 import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderClientImpl;
+import com.android.wallpaper.config.BaseFlags;
 import com.android.wallpaper.module.DrawableLayerResolver;
 import com.android.wallpaper.module.PackageStatusNotifier;
 import com.android.wallpaper.module.UserEventLogger;
@@ -34,6 +35,7 @@ public class TestCustomizationInjector extends TestInjector implements Customiza
     private KeyguardQuickAffordancePickerInteractor mKeyguardQuickAffordancePickerInteractor;
     private KeyguardQuickAffordancePickerViewModel.Factory
             mKeyguardQuickAffordancePickerViewModelFactory;
+    private BaseFlags mFlags;
 
     @Override
     public CustomizationPreferences getCustomizationPreferences(Context context) {
@@ -90,5 +92,14 @@ public class TestCustomizationInjector extends TestInjector implements Customiza
                     client);
         }
         return mKeyguardQuickAffordancePickerInteractor;
+    }
+
+    @Override
+    public BaseFlags getFlags() {
+        if (mFlags == null) {
+            mFlags = new BaseFlags() {};
+        }
+
+        return mFlags;
     }
 }
