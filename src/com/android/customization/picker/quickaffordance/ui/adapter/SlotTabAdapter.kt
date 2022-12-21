@@ -44,7 +44,7 @@ class SlotTabAdapter : RecyclerView.Adapter<SlotTabAdapter.ViewHolder>() {
         return ViewHolder(
             LayoutInflater.from(parent.context)
                 .inflate(
-                    R.layout.keyguard_quick_affordance_slot_tab,
+                    R.layout.picker_fragment_tab,
                     parent,
                     false,
                 )

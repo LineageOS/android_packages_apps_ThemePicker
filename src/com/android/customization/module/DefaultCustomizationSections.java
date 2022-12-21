@@ -8,6 +8,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.android.customization.model.color.ColorSectionController;
+import com.android.customization.model.color.ColorSectionController2;
 import com.android.customization.model.grid.GridOptionsManager;
 import com.android.customization.model.grid.GridSectionController;
 import com.android.customization.model.mode.DarkModeSectionController;
@@ -47,7 +48,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
     }
 
     @Override
-    public List<CustomizationSectionController<?>> getSectionControllersForScreen(
+    public List<CustomizationSectionController<?>> getRevampedUISectionControllersForScreen(
             Screen screen,
             FragmentActivity activity,
             LifecycleOwner lifecycleOwner,
@@ -70,8 +71,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
                         wallpaperColorsViewModel));
 
         // Theme color section.
-        sectionControllers.add(new ColorSectionController(
-                activity, wallpaperColorsViewModel, lifecycleOwner, savedInstanceState));
+        sectionControllers.add(new ColorSectionController2(
+                activity, wallpaperColorsViewModel, lifecycleOwner, sectionNavigationController));
 
         switch (screen) {
             case LOCK_SCREEN:
