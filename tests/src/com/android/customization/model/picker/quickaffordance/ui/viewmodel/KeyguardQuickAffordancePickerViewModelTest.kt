@@ -33,6 +33,7 @@ import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAff
 import com.android.wallpaper.picker.undo.data.repository.UndoRepository
 import com.android.wallpaper.picker.undo.domain.interactor.UndoInteractor
 import com.android.wallpaper.testing.FAKE_RESTORERS
+import com.android.wallpaper.testing.TestCurrentWallpaperInfoFactory
 import com.android.wallpaper.testing.collectLastValue
 import com.google.common.truth.Truth.assertThat
 import com.google.common.truth.Truth.assertWithMessage
@@ -97,6 +98,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
                     context = context,
                     quickAffordanceInteractor = quickAffordanceInteractor,
                     undoInteractor = undoInteractor,
+                    wallpaperInfoFactory = TestCurrentWallpaperInfoFactory(context),
                 )
                 .create(KeyguardQuickAffordancePickerViewModel::class.java)
     }

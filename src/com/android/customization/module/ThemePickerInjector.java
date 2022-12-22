@@ -170,7 +170,8 @@ public class ThemePickerInjector extends WallpaperPicker2Injector
                     new KeyguardQuickAffordancePickerViewModel.Factory(
                             context,
                             getKeyguardQuickAffordancePickerInteractor(context),
-                            getUndoInteractor(context));
+                            getUndoInteractor(context),
+                            getCurrentWallpaperInfoFactory(context));
         }
         return mKeyguardQuickAffordancePickerViewModelFactory;
     }
