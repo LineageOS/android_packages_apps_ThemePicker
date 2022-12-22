@@ -70,7 +70,9 @@ public class ThemePickerInjector extends WallpaperPicker2Injector
     @Override
     public CustomizationSections getCustomizationSections(Activity activity) {
         if (mCustomizationSections == null) {
-            mCustomizationSections = new DefaultCustomizationSections();
+            mCustomizationSections = new DefaultCustomizationSections(
+                    mKeyguardQuickAffordancePickerInteractor,
+                    mKeyguardQuickAffordancePickerViewModelFactory);
         }
         return mCustomizationSections;
     }
