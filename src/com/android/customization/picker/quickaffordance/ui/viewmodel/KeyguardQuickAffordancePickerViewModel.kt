@@ -21,6 +21,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.os.Bundle
 import androidx.annotation.DrawableRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -28,7 +29,9 @@ import androidx.lifecycle.viewModelScope
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
 import com.android.systemui.shared.keyguard.shared.model.KeyguardQuickAffordanceSlots
 import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderContract as Contract
+import com.android.systemui.shared.quickaffordance.shared.model.KeyguardQuickAffordancePreviewConstants
 import com.android.wallpaper.R
+import com.android.wallpaper.picker.customization.ui.viewmodel.ScreenPreviewViewModel
 import com.android.wallpaper.picker.undo.domain.interactor.UndoInteractor
 import com.android.wallpaper.picker.undo.ui.viewmodel.UndoViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -50,6 +53,22 @@ private constructor(
 ) : ViewModel() {
 
     @SuppressLint("StaticFieldLeak") private val applicationContext = context.applicationContext
+
+    val preview: ScreenPreviewViewModel
+        get() =
+            ScreenPreviewViewModel(
+                contentProviderAuthorityProvider = {
+                    applicationContext.getString(R.string.lock_screen_preview_provider_authority)
+                },
+                initialExtrasProvider = {
+                    Bundle().apply {
+                        putString(
+                            KeyguardQuickAffordancePreviewConstants.KEY_INITIALLY_SELECTED_SLOT_ID,
+                            selectedSlotId.value,
+                        )
+                    }
+                },
+            )
 
     val undo: UndoViewModel =
         UndoViewModel(
