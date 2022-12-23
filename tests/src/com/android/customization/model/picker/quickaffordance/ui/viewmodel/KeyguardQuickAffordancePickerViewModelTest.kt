@@ -233,7 +233,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
             val quickAffordances = collectLastValue(underTest.quickAffordances)
             val dialog = collectLastValue(underTest.dialog)
 
-            val enablementInstructions = listOf("header", "enablementInstructions")
+            val enablementInstructions = listOf("instruction1", "instruction2")
             val enablementActionText = "enablementActionText"
             val packageName = "packageName"
             val action = "action"
@@ -244,7 +244,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
                     KeyguardQuickAffordanceProviderClient.Affordance(
                         id = "disabled",
                         name = "disabled",
-                        iconResourceId = 0,
+                        iconResourceId = 1,
                         isEnabled = false,
                         enablementInstructions = enablementInstructions,
                         enablementActionText = enablementActionText,
@@ -256,9 +256,8 @@ class KeyguardQuickAffordancePickerViewModelTest {
             quickAffordances()?.get(affordanceIndex + 1)?.onClicked?.invoke()
 
             // We expect there to be a dialog that should be shown:
-            assertThat(dialog()?.instructionHeader).isEqualTo(enablementInstructions[0])
-            assertThat(dialog()?.instructions)
-                .isEqualTo(enablementInstructions.subList(1, enablementInstructions.size))
+            assertThat(dialog()?.icon).isEqualTo(FakeKeyguardQuickAffordanceProviderClient.ICON_1)
+            assertThat(dialog()?.instructions).isEqualTo(enablementInstructions)
             assertThat(dialog()?.actionText).isEqualTo(enablementActionText)
             assertThat(dialog()?.intent?.`package`).isEqualTo(packageName)
             assertThat(dialog()?.intent?.action).isEqualTo(action)

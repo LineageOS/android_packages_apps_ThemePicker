@@ -167,8 +167,9 @@ private constructor(
             ) +
                 affordances.map { affordance ->
                     val isSelected = selectedAffordanceIds.contains(affordance.id)
+                    val affordanceIcon = getAffordanceIcon(affordance.iconResourceId)
                     KeyguardQuickAffordanceViewModel(
-                        icon = getAffordanceIcon(affordance.iconResourceId),
+                        icon = affordanceIcon,
                         contentDescription = affordance.name,
                         isSelected = isSelected,
                         onClicked =
@@ -191,13 +192,9 @@ private constructor(
                             } else {
                                 {
                                     showEnablementDialog(
-                                        instructionHeader =
-                                            affordance.enablementInstructions.first(),
-                                        instructions =
-                                            affordance.enablementInstructions.subList(
-                                                1,
-                                                affordance.enablementInstructions.size
-                                            ),
+                                        icon = affordanceIcon,
+                                        name = affordance.name,
+                                        instructions = affordance.enablementInstructions,
                                         actionText = affordance.enablementActionText,
                                         actionComponentName =
                                             affordance.enablementActionComponentName,
@@ -249,14 +246,16 @@ private constructor(
     }
 
     private fun showEnablementDialog(
-        instructionHeader: String,
+        icon: Drawable,
+        name: String,
         instructions: List<String>,
         actionText: String?,
         actionComponentName: String?,
     ) {
         _dialog.value =
             DialogViewModel(
-                instructionHeader = instructionHeader,
+                icon = icon,
+                name = name,
                 instructions = instructions,
                 actionText = actionText
                         ?: applicationContext.getString(
@@ -317,8 +316,11 @@ private constructor(
 
     /** Encapsulates a request to show a dialog. */
     data class DialogViewModel(
-        /** The header for the instructions section. */
-        val instructionHeader: String,
+        /** An icon to show. */
+        val icon: Drawable,
+
+        /** Name of the affordance. */
+        val name: String,
 
         /** The set of instructions to show below the header. */
         val instructions: List<String>,
