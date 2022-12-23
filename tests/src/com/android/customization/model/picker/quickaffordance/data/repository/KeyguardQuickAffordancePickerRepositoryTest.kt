@@ -72,7 +72,7 @@ class KeyguardQuickAffordancePickerRepositoryTest {
                 com.android.systemui.shared.quickaffordance.data.content
                     .KeyguardQuickAffordanceProviderContract
                     .FlagsTable
-                    .FLAG_NAME_CUSTOM_LOCK_SCREEN_QUICK_AFFORDANCES_ENABLED,
+                    .FLAG_NAME_FEATURE_ENABLED,
                 true,
             )
             val values = mutableListOf<Boolean>()
@@ -90,7 +90,7 @@ class KeyguardQuickAffordancePickerRepositoryTest {
                 com.android.systemui.shared.quickaffordance.data.content
                     .KeyguardQuickAffordanceProviderContract
                     .FlagsTable
-                    .FLAG_NAME_CUSTOM_LOCK_SCREEN_QUICK_AFFORDANCES_ENABLED,
+                    .FLAG_NAME_FEATURE_ENABLED,
                 false,
             )
             val values = mutableListOf<Boolean>()
