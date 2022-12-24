@@ -13,8 +13,8 @@ import com.android.customization.module.ThemesUserEventLogger;
 import com.android.customization.picker.quickaffordance.data.repository.KeyguardQuickAffordancePickerRepository;
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor;
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordanceSnapshotRestorer;
-import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderClient;
-import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderClientImpl;
+import com.android.systemui.shared.customization.data.content.CustomizationProviderClient;
+import com.android.systemui.shared.customization.data.content.CustomizationProviderClientImpl;
 import com.android.wallpaper.config.BaseFlags;
 import com.android.wallpaper.module.DrawableLayerResolver;
 import com.android.wallpaper.module.PackageStatusNotifier;
@@ -38,7 +38,7 @@ public class TestCustomizationInjector extends TestInjector implements Customiza
     private UserEventLogger mUserEventLogger;
     private KeyguardQuickAffordancePickerInteractor mKeyguardQuickAffordancePickerInteractor;
     private BaseFlags mFlags;
-    private KeyguardQuickAffordanceProviderClient mKeyguardQuickAffordanceProviderClient;
+    private CustomizationProviderClient mCustomizationProviderClient;
     private KeyguardQuickAffordanceSnapshotRestorer mKeyguardQuickAffordanceSnapshotRestorer;
 
     @Override
@@ -89,8 +89,8 @@ public class TestCustomizationInjector extends TestInjector implements Customiza
     public KeyguardQuickAffordancePickerInteractor getKeyguardQuickAffordancePickerInteractor(
             Context context) {
         if (mKeyguardQuickAffordancePickerInteractor == null) {
-            final KeyguardQuickAffordanceProviderClient client =
-                    new KeyguardQuickAffordanceProviderClientImpl(context, Dispatchers.getIO());
+            final CustomizationProviderClient client =
+                    new CustomizationProviderClientImpl(context, Dispatchers.getIO());
             mKeyguardQuickAffordancePickerInteractor = new KeyguardQuickAffordancePickerInteractor(
                     new KeyguardQuickAffordancePickerRepository(client, Dispatchers.getIO()),
                     client,
@@ -117,15 +117,15 @@ public class TestCustomizationInjector extends TestInjector implements Customiza
         return restorers;
     }
 
-    /** Returns the {@link KeyguardQuickAffordanceProviderClient}. */
-    private KeyguardQuickAffordanceProviderClient getKeyguardQuickAffordancePickerProviderClient(
+    /** Returns the {@link CustomizationProviderClient}. */
+    private CustomizationProviderClient getKeyguardQuickAffordancePickerProviderClient(
             Context context) {
-        if (mKeyguardQuickAffordanceProviderClient == null) {
-            mKeyguardQuickAffordanceProviderClient =
-                    new KeyguardQuickAffordanceProviderClientImpl(context, Dispatchers.getIO());
+        if (mCustomizationProviderClient == null) {
+            mCustomizationProviderClient =
+                    new CustomizationProviderClientImpl(context, Dispatchers.getIO());
         }
 
-        return mKeyguardQuickAffordanceProviderClient;
+        return mCustomizationProviderClient;
     }
 
     private KeyguardQuickAffordanceSnapshotRestorer getKeyguardQuickAffordanceSnapshotRestorer(

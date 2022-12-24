@@ -22,8 +22,8 @@ import com.android.customization.picker.quickaffordance.data.repository.Keyguard
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordanceSnapshotRestorer
 import com.android.customization.picker.quickaffordance.shared.model.KeyguardQuickAffordancePickerSelectionModel
+import com.android.systemui.shared.customization.data.content.FakeCustomizationProviderClient
 import com.android.systemui.shared.keyguard.shared.model.KeyguardQuickAffordanceSlots
-import com.android.systemui.shared.quickaffordance.data.content.FakeKeyguardQuickAffordanceProviderClient
 import com.android.wallpaper.testing.collectLastValue
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.Dispatchers
@@ -48,14 +48,14 @@ class KeyguardQuickAffordancePickerInteractorTest {
     private lateinit var underTest: KeyguardQuickAffordancePickerInteractor
 
     private lateinit var testScope: TestScope
-    private lateinit var client: FakeKeyguardQuickAffordanceProviderClient
+    private lateinit var client: FakeCustomizationProviderClient
 
     @Before
     fun setUp() {
         val testDispatcher = StandardTestDispatcher()
         testScope = TestScope(testDispatcher)
         Dispatchers.setMain(testDispatcher)
-        client = FakeKeyguardQuickAffordanceProviderClient()
+        client = FakeCustomizationProviderClient()
         underTest =
             KeyguardQuickAffordancePickerInteractor(
                 repository =
@@ -86,28 +86,28 @@ class KeyguardQuickAffordancePickerInteractorTest {
 
             underTest.select(
                 slotId = KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START,
-                affordanceId = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_1,
+                affordanceId = FakeCustomizationProviderClient.AFFORDANCE_1,
             )
             assertThat(selections())
                 .isEqualTo(
                     listOf(
                         KeyguardQuickAffordancePickerSelectionModel(
                             slotId = KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START,
-                            affordanceId = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_1,
+                            affordanceId = FakeCustomizationProviderClient.AFFORDANCE_1,
                         ),
                     )
                 )
 
             underTest.select(
                 slotId = KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START,
-                affordanceId = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_2,
+                affordanceId = FakeCustomizationProviderClient.AFFORDANCE_2,
             )
             assertThat(selections())
                 .isEqualTo(
                     listOf(
                         KeyguardQuickAffordancePickerSelectionModel(
                             slotId = KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START,
-                            affordanceId = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_2,
+                            affordanceId = FakeCustomizationProviderClient.AFFORDANCE_2,
                         ),
                     )
                 )
@@ -119,12 +119,12 @@ class KeyguardQuickAffordancePickerInteractorTest {
             val selections = collectLastValue(underTest.selections)
             underTest.select(
                 slotId = KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START,
-                affordanceId = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_1,
+                affordanceId = FakeCustomizationProviderClient.AFFORDANCE_1,
             )
 
             underTest.unselect(
                 slotId = KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START,
-                affordanceId = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_1,
+                affordanceId = FakeCustomizationProviderClient.AFFORDANCE_1,
             )
 
             assertThat(selections()).isEmpty()
@@ -137,15 +137,15 @@ class KeyguardQuickAffordancePickerInteractorTest {
             val selections = collectLastValue(underTest.selections)
             underTest.select(
                 slotId = KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END,
-                affordanceId = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_1,
+                affordanceId = FakeCustomizationProviderClient.AFFORDANCE_1,
             )
             underTest.select(
                 slotId = KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END,
-                affordanceId = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_2,
+                affordanceId = FakeCustomizationProviderClient.AFFORDANCE_2,
             )
             underTest.select(
                 slotId = KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END,
-                affordanceId = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_3,
+                affordanceId = FakeCustomizationProviderClient.AFFORDANCE_3,
             )
 
             underTest.unselectAll(

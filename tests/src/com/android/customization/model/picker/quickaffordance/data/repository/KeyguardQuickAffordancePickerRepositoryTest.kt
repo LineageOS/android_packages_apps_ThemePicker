@@ -19,7 +19,8 @@ package com.android.customization.model.picker.quickaffordance.data.repository
 
 import androidx.test.filters.SmallTest
 import com.android.customization.picker.quickaffordance.data.repository.KeyguardQuickAffordancePickerRepository
-import com.android.systemui.shared.quickaffordance.data.content.FakeKeyguardQuickAffordanceProviderClient
+import com.android.systemui.shared.customization.data.content.CustomizationProviderContract
+import com.android.systemui.shared.customization.data.content.FakeCustomizationProviderClient
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -44,11 +45,11 @@ class KeyguardQuickAffordancePickerRepositoryTest {
     private lateinit var underTest: KeyguardQuickAffordancePickerRepository
 
     private lateinit var testScope: TestScope
-    private lateinit var client: FakeKeyguardQuickAffordanceProviderClient
+    private lateinit var client: FakeCustomizationProviderClient
 
     @Before
     fun setUp() {
-        client = FakeKeyguardQuickAffordanceProviderClient()
+        client = FakeCustomizationProviderClient()
         val coroutineDispatcher = UnconfinedTestDispatcher()
         testScope = TestScope(coroutineDispatcher)
         Dispatchers.setMain(coroutineDispatcher)
@@ -69,9 +70,7 @@ class KeyguardQuickAffordancePickerRepositoryTest {
     fun `isFeatureEnabled - enabled`() =
         testScope.runTest {
             client.setFlag(
-                com.android.systemui.shared.quickaffordance.data.content
-                    .KeyguardQuickAffordanceProviderContract
-                    .FlagsTable
+                CustomizationProviderContract.FlagsTable
                     .FLAG_NAME_CUSTOM_LOCK_SCREEN_QUICK_AFFORDANCES_ENABLED,
                 true,
             )
@@ -87,9 +86,7 @@ class KeyguardQuickAffordancePickerRepositoryTest {
     fun `isFeatureEnabled - not enabled`() =
         testScope.runTest {
             client.setFlag(
-                com.android.systemui.shared.quickaffordance.data.content
-                    .KeyguardQuickAffordanceProviderContract
-                    .FlagsTable
+                CustomizationProviderContract.FlagsTable
                     .FLAG_NAME_CUSTOM_LOCK_SCREEN_QUICK_AFFORDANCES_ENABLED,
                 false,
             )
