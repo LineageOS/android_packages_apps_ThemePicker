@@ -24,6 +24,7 @@ import com.android.customization.picker.quickaffordance.shared.model.KeyguardQui
 import com.android.customization.picker.quickaffordance.shared.model.KeyguardQuickAffordancePickerSelectionModel as SelectionModel
 import com.android.customization.picker.quickaffordance.shared.model.KeyguardQuickAffordancePickerSlotModel as SlotModel
 import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderClient as Client
+import javax.inject.Provider
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -33,10 +34,8 @@ import kotlinx.coroutines.flow.Flow
 class KeyguardQuickAffordancePickerInteractor(
     private val repository: KeyguardQuickAffordancePickerRepository,
     private val client: Client,
+    private val snapshotRestorer: Provider<KeyguardQuickAffordanceSnapshotRestorer>,
 ) {
-    /** Whether the feature is enabled. */
-    val isFeatureEnabled: Flow<Boolean> = repository.isFeatureEnabled
-
     /** List of slots available on the device. */
     val slots: Flow<List<SlotModel>> = repository.slots
 
@@ -60,6 +59,8 @@ class KeyguardQuickAffordancePickerInteractor(
             slotId = slotId,
             affordanceId = affordanceId,
         )
+
+        snapshotRestorer.get().storeSnapshot()
     }
 
     /** Unselects an affordance with the given ID from the slot with the given ID. */
@@ -68,6 +69,8 @@ class KeyguardQuickAffordancePickerInteractor(
             slotId = slotId,
             affordanceId = affordanceId,
         )
+
+        snapshotRestorer.get().storeSnapshot()
     }
 
     /** Unselects all affordances from the slot with the given ID. */
@@ -75,6 +78,8 @@ class KeyguardQuickAffordancePickerInteractor(
         client.deleteAllSelections(
             slotId = slotId,
         )
+
+        snapshotRestorer.get().storeSnapshot()
     }
 
     /** Returns a [Drawable] for the given resource ID, from the system UI package. */
