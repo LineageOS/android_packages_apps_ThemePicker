@@ -35,6 +35,7 @@ import com.android.customization.model.theme.ThemeBundleProvider;
 import com.android.customization.model.theme.ThemeManager;
 import com.android.customization.picker.quickaffordance.data.repository.KeyguardQuickAffordancePickerRepository;
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor;
+import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordanceSnapshotRestorer;
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel;
 import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderClient;
 import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderClientImpl;
@@ -49,6 +50,9 @@ import com.android.wallpaper.picker.CustomizationPickerActivity;
 import com.android.wallpaper.picker.ImagePreviewFragment;
 import com.android.wallpaper.picker.LivePreviewFragment;
 import com.android.wallpaper.picker.PreviewFragment;
+import com.android.wallpaper.picker.undo.domain.interactor.SnapshotRestorer;
+
+import java.util.Map;
 
 import kotlinx.coroutines.Dispatchers;
 
@@ -66,6 +70,7 @@ public class ThemePickerInjector extends WallpaperPicker2Injector
     private KeyguardQuickAffordanceProviderClient mKeyguardQuickAffordanceProviderClient;
     private FragmentFactory mFragmentFactory;
     private BaseFlags mFlags;
+    private KeyguardQuickAffordanceSnapshotRestorer mKeyguardQuickAffordanceSnapshotRestorer;
 
     @Override
     public CustomizationSections getCustomizationSections(Activity activity) {
@@ -149,7 +154,8 @@ public class ThemePickerInjector extends WallpaperPicker2Injector
                     getKeyguardQuickAffordancePickerProviderClient(context);
             mKeyguardQuickAffordancePickerInteractor = new KeyguardQuickAffordancePickerInteractor(
                     new KeyguardQuickAffordancePickerRepository(client, Dispatchers.getIO()),
-                    client);
+                    client,
+                    () -> getKeyguardQuickAffordanceSnapshotRestorer(context));
         }
         return mKeyguardQuickAffordancePickerInteractor;
     }
@@ -163,7 +169,8 @@ public class ThemePickerInjector extends WallpaperPicker2Injector
             mKeyguardQuickAffordancePickerViewModelFactory =
                     new KeyguardQuickAffordancePickerViewModel.Factory(
                             context,
-                            getKeyguardQuickAffordancePickerInteractor(context));
+                            getKeyguardQuickAffordancePickerInteractor(context),
+                            getUndoInteractor(context));
         }
         return mKeyguardQuickAffordancePickerViewModelFactory;
     }
@@ -176,8 +183,26 @@ public class ThemePickerInjector extends WallpaperPicker2Injector
         return mFragmentFactory;
     }
 
+    @Override
+    public BaseFlags getFlags() {
+        if (mFlags == null) {
+            mFlags = new BaseFlags() {};
+        }
+
+        return mFlags;
+    }
+
+    @Override
+    public Map<Integer, SnapshotRestorer> getSnapshotRestorers(Context context) {
+        final Map<Integer, SnapshotRestorer> restorers = super.getSnapshotRestorers(context);
+        restorers.put(
+                KEY_QUICK_AFFORDANCE_SNAPSHOT_RESTORER,
+                getKeyguardQuickAffordanceSnapshotRestorer(context));
+        return restorers;
+    }
+
     /** Returns the {@link KeyguardQuickAffordanceProviderClient}. */
-    public KeyguardQuickAffordanceProviderClient getKeyguardQuickAffordancePickerProviderClient(
+    protected KeyguardQuickAffordanceProviderClient getKeyguardQuickAffordancePickerProviderClient(
             Context context) {
         if (mKeyguardQuickAffordanceProviderClient == null) {
             mKeyguardQuickAffordanceProviderClient =
@@ -187,12 +212,24 @@ public class ThemePickerInjector extends WallpaperPicker2Injector
         return mKeyguardQuickAffordanceProviderClient;
     }
 
-    @Override
-    public BaseFlags getFlags() {
-        if (mFlags == null) {
-            mFlags = new BaseFlags() {};
+    protected KeyguardQuickAffordanceSnapshotRestorer getKeyguardQuickAffordanceSnapshotRestorer(
+            Context context) {
+        if (mKeyguardQuickAffordanceSnapshotRestorer == null) {
+            mKeyguardQuickAffordanceSnapshotRestorer = new KeyguardQuickAffordanceSnapshotRestorer(
+                    getKeyguardQuickAffordancePickerInteractor(context),
+                    getKeyguardQuickAffordancePickerProviderClient(context));
         }
 
-        return mFlags;
+        return mKeyguardQuickAffordanceSnapshotRestorer;
     }
+
+    private static final int KEY_QUICK_AFFORDANCE_SNAPSHOT_RESTORER =
+            WallpaperPicker2Injector.MIN_SNAPSHOT_RESTORER_KEY;
+
+    /**
+     * When this injector is overridden, this is the minimal value that should be used by restorers
+     * returns in {@link #getSnapshotRestorers(Context)}.
+     */
+    protected static final int MIN_SNAPSHOT_RESTORER_KEY =
+            KEY_QUICK_AFFORDANCE_SNAPSHOT_RESTORER + 1;
 }
