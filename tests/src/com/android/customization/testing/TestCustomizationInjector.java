@@ -12,14 +12,18 @@ import com.android.customization.module.CustomizationPreferences;
 import com.android.customization.module.ThemesUserEventLogger;
 import com.android.customization.picker.quickaffordance.data.repository.KeyguardQuickAffordancePickerRepository;
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor;
-import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel;
+import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordanceSnapshotRestorer;
 import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderClient;
 import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderClientImpl;
 import com.android.wallpaper.config.BaseFlags;
 import com.android.wallpaper.module.DrawableLayerResolver;
 import com.android.wallpaper.module.PackageStatusNotifier;
 import com.android.wallpaper.module.UserEventLogger;
+import com.android.wallpaper.picker.undo.domain.interactor.SnapshotRestorer;
 import com.android.wallpaper.testing.TestInjector;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import kotlinx.coroutines.Dispatchers;
 
@@ -33,9 +37,9 @@ public class TestCustomizationInjector extends TestInjector implements Customiza
     private DrawableLayerResolver mDrawableLayerResolver;
     private UserEventLogger mUserEventLogger;
     private KeyguardQuickAffordancePickerInteractor mKeyguardQuickAffordancePickerInteractor;
-    private KeyguardQuickAffordancePickerViewModel.Factory
-            mKeyguardQuickAffordancePickerViewModelFactory;
     private BaseFlags mFlags;
+    private KeyguardQuickAffordanceProviderClient mKeyguardQuickAffordanceProviderClient;
+    private KeyguardQuickAffordanceSnapshotRestorer mKeyguardQuickAffordanceSnapshotRestorer;
 
     @Override
     public CustomizationPreferences getCustomizationPreferences(Context context) {
@@ -89,7 +93,8 @@ public class TestCustomizationInjector extends TestInjector implements Customiza
                     new KeyguardQuickAffordanceProviderClientImpl(context, Dispatchers.getIO());
             mKeyguardQuickAffordancePickerInteractor = new KeyguardQuickAffordancePickerInteractor(
                     new KeyguardQuickAffordancePickerRepository(client, Dispatchers.getIO()),
-                    client);
+                    client,
+                    () -> getKeyguardQuickAffordanceSnapshotRestorer(context));
         }
         return mKeyguardQuickAffordancePickerInteractor;
     }
@@ -102,4 +107,37 @@ public class TestCustomizationInjector extends TestInjector implements Customiza
 
         return mFlags;
     }
+
+    @Override
+    public Map<Integer, SnapshotRestorer> getSnapshotRestorers(Context context) {
+        final Map<Integer, SnapshotRestorer> restorers = new HashMap<>();
+        restorers.put(
+                KEY_QUICK_AFFORDANCE_SNAPSHOT_RESTORER,
+                getKeyguardQuickAffordanceSnapshotRestorer(context));
+        return restorers;
+    }
+
+    /** Returns the {@link KeyguardQuickAffordanceProviderClient}. */
+    private KeyguardQuickAffordanceProviderClient getKeyguardQuickAffordancePickerProviderClient(
+            Context context) {
+        if (mKeyguardQuickAffordanceProviderClient == null) {
+            mKeyguardQuickAffordanceProviderClient =
+                    new KeyguardQuickAffordanceProviderClientImpl(context, Dispatchers.getIO());
+        }
+
+        return mKeyguardQuickAffordanceProviderClient;
+    }
+
+    private KeyguardQuickAffordanceSnapshotRestorer getKeyguardQuickAffordanceSnapshotRestorer(
+            Context context) {
+        if (mKeyguardQuickAffordanceSnapshotRestorer == null) {
+            mKeyguardQuickAffordanceSnapshotRestorer = new KeyguardQuickAffordanceSnapshotRestorer(
+                    getKeyguardQuickAffordancePickerInteractor(context),
+                    getKeyguardQuickAffordancePickerProviderClient(context));
+        }
+
+        return mKeyguardQuickAffordanceSnapshotRestorer;
+    }
+
+    private static final int KEY_QUICK_AFFORDANCE_SNAPSHOT_RESTORER = 1;
 }
