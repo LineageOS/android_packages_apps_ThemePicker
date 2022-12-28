@@ -21,6 +21,8 @@ import com.android.customization.model.theme.OverlayManagerCompat
 import com.android.customization.model.theme.ThemeBundleProvider
 import com.android.customization.model.theme.ThemeManager
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
+import com.android.systemui.plugins.PluginManager
+import com.android.systemui.shared.clocks.ClockRegistry
 import com.android.wallpaper.module.Injector
 
 interface CustomizationInjector : Injector {
@@ -36,4 +38,8 @@ interface CustomizationInjector : Injector {
     fun getKeyguardQuickAffordancePickerInteractor(
         context: Context
     ): KeyguardQuickAffordancePickerInteractor
+
+    fun getClockRegistry(context: Context): ClockRegistry
+
+    fun getPluginManager(context: Context): PluginManager
 }
