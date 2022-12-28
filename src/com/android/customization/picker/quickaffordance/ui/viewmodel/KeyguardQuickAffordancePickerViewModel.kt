@@ -31,9 +31,11 @@ import com.android.systemui.shared.keyguard.shared.model.KeyguardQuickAffordance
 import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderContract as Contract
 import com.android.systemui.shared.quickaffordance.shared.model.KeyguardQuickAffordancePreviewConstants
 import com.android.wallpaper.R
+import com.android.wallpaper.module.CurrentWallpaperInfoFactory
 import com.android.wallpaper.picker.customization.ui.viewmodel.ScreenPreviewViewModel
 import com.android.wallpaper.picker.undo.domain.interactor.UndoInteractor
 import com.android.wallpaper.picker.undo.ui.viewmodel.UndoViewModel
+import com.android.wallpaper.util.PreviewUtils
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -42,6 +44,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
 
 /** Models UI state for a lock screen quick affordance picker experience. */
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -50,25 +53,40 @@ private constructor(
     context: Context,
     private val quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor,
     undoInteractor: UndoInteractor,
+    private val wallpaperInfoFactory: CurrentWallpaperInfoFactory,
 ) : ViewModel() {
 
     @SuppressLint("StaticFieldLeak") private val applicationContext = context.applicationContext
 
-    val preview: ScreenPreviewViewModel
-        get() =
-            ScreenPreviewViewModel(
-                contentProviderAuthorityProvider = {
-                    applicationContext.getString(R.string.lock_screen_preview_provider_authority)
-                },
-                initialExtrasProvider = {
-                    Bundle().apply {
-                        putString(
-                            KeyguardQuickAffordancePreviewConstants.KEY_INITIALLY_SELECTED_SLOT_ID,
-                            selectedSlotId.value,
-                        )
-                    }
-                },
-            )
+    val preview =
+        ScreenPreviewViewModel(
+            previewUtils =
+                PreviewUtils(
+                    context = applicationContext,
+                    authority =
+                        applicationContext.getString(
+                            R.string.lock_screen_preview_provider_authority,
+                        ),
+                ),
+            initialExtrasProvider = {
+                Bundle().apply {
+                    putString(
+                        KeyguardQuickAffordancePreviewConstants.KEY_INITIALLY_SELECTED_SLOT_ID,
+                        selectedSlotId.value,
+                    )
+                }
+            },
+            wallpaperInfoProvider = {
+                suspendCancellableCoroutine { continuation ->
+                    wallpaperInfoFactory.createCurrentWallpaperInfos(
+                        { homeWallpaper, lockWallpaper, _ ->
+                            continuation.resume(lockWallpaper ?: homeWallpaper, null)
+                        },
+                        /* forceRefresh= */ true,
+                    )
+                }
+            },
+        )
 
     val undo: UndoViewModel =
         UndoViewModel(
@@ -349,6 +367,7 @@ private constructor(
         private val context: Context,
         private val quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor,
         private val undoInteractor: UndoInteractor,
+        private val wallpaperInfoFactory: CurrentWallpaperInfoFactory,
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             @Suppress("UNCHECKED_CAST")
@@ -356,6 +375,7 @@ private constructor(
                 context = context,
                 quickAffordanceInteractor = quickAffordanceInteractor,
                 undoInteractor = undoInteractor,
+                wallpaperInfoFactory = wallpaperInfoFactory,
             )
                 as T
         }
