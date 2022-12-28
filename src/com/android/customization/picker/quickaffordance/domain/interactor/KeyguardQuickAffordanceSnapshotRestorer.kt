@@ -17,14 +17,14 @@
 
 package com.android.customization.picker.quickaffordance.domain.interactor
 
-import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderClient
+import com.android.systemui.shared.customization.data.content.CustomizationProviderClient
 import com.android.wallpaper.picker.undo.domain.interactor.SnapshotRestorer
 import com.android.wallpaper.picker.undo.shared.model.RestorableSnapshot
 
 /** Handles state restoration for the quick affordances system. */
 class KeyguardQuickAffordanceSnapshotRestorer(
     private val interactor: KeyguardQuickAffordancePickerInteractor,
-    private val client: KeyguardQuickAffordanceProviderClient,
+    private val client: CustomizationProviderClient,
 ) : SnapshotRestorer {
 
     private lateinit var snapshotUpdater: (RestorableSnapshot) -> Unit
