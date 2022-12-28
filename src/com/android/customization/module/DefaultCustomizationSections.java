@@ -23,7 +23,9 @@ import com.android.wallpaper.model.WallpaperColorsViewModel;
 import com.android.wallpaper.model.WallpaperPreviewNavigator;
 import com.android.wallpaper.model.WallpaperSectionController;
 import com.android.wallpaper.model.WorkspaceViewModel;
+import com.android.wallpaper.module.CurrentWallpaperInfoFactory;
 import com.android.wallpaper.module.CustomizationSections;
+import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewSectionController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,14 +56,18 @@ public final class DefaultCustomizationSections implements CustomizationSections
             PermissionRequester permissionRequester,
             WallpaperPreviewNavigator wallpaperPreviewNavigator,
             CustomizationSectionNavigationController sectionNavigationController,
-            @Nullable Bundle savedInstanceState) {
+            @Nullable Bundle savedInstanceState,
+            CurrentWallpaperInfoFactory wallpaperInfoFactory) {
         List<CustomizationSectionController<?>> sectionControllers = new ArrayList<>();
 
         // Wallpaper section.
-        sectionControllers.add(new WallpaperSectionController(
-                activity, lifecycleOwner, permissionRequester, wallpaperColorsViewModel,
-                workspaceViewModel, sectionNavigationController, wallpaperPreviewNavigator,
-                savedInstanceState));
+        sectionControllers.add(
+                new ScreenPreviewSectionController(
+                        activity,
+                        lifecycleOwner,
+                        screen,
+                        wallpaperInfoFactory,
+                        wallpaperColorsViewModel));
 
         // Theme color section.
         sectionControllers.add(new ColorSectionController(

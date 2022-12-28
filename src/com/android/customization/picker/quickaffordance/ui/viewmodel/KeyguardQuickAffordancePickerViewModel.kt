@@ -21,6 +21,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.os.Bundle
 import androidx.annotation.DrawableRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -28,7 +29,13 @@ import androidx.lifecycle.viewModelScope
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
 import com.android.systemui.shared.keyguard.shared.model.KeyguardQuickAffordanceSlots
 import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderContract as Contract
+import com.android.systemui.shared.quickaffordance.shared.model.KeyguardQuickAffordancePreviewConstants
 import com.android.wallpaper.R
+import com.android.wallpaper.module.CurrentWallpaperInfoFactory
+import com.android.wallpaper.picker.customization.ui.viewmodel.ScreenPreviewViewModel
+import com.android.wallpaper.picker.undo.domain.interactor.UndoInteractor
+import com.android.wallpaper.picker.undo.ui.viewmodel.UndoViewModel
+import com.android.wallpaper.util.PreviewUtils
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -37,16 +44,54 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
 
 /** Models UI state for a lock screen quick affordance picker experience. */
 @OptIn(ExperimentalCoroutinesApi::class)
 class KeyguardQuickAffordancePickerViewModel
 private constructor(
     context: Context,
-    private val interactor: KeyguardQuickAffordancePickerInteractor,
+    private val quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor,
+    undoInteractor: UndoInteractor,
+    private val wallpaperInfoFactory: CurrentWallpaperInfoFactory,
 ) : ViewModel() {
 
     @SuppressLint("StaticFieldLeak") private val applicationContext = context.applicationContext
+
+    val preview =
+        ScreenPreviewViewModel(
+            previewUtils =
+                PreviewUtils(
+                    context = applicationContext,
+                    authority =
+                        applicationContext.getString(
+                            R.string.lock_screen_preview_provider_authority,
+                        ),
+                ),
+            initialExtrasProvider = {
+                Bundle().apply {
+                    putString(
+                        KeyguardQuickAffordancePreviewConstants.KEY_INITIALLY_SELECTED_SLOT_ID,
+                        selectedSlotId.value,
+                    )
+                }
+            },
+            wallpaperInfoProvider = {
+                suspendCancellableCoroutine { continuation ->
+                    wallpaperInfoFactory.createCurrentWallpaperInfos(
+                        { homeWallpaper, lockWallpaper, _ ->
+                            continuation.resume(lockWallpaper ?: homeWallpaper, null)
+                        },
+                        /* forceRefresh= */ true,
+                    )
+                }
+            },
+        )
+
+    val undo: UndoViewModel =
+        UndoViewModel(
+            interactor = undoInteractor,
+        )
 
     private val _selectedSlotId = MutableStateFlow<String?>(null)
     val selectedSlotId: StateFlow<String?> = _selectedSlotId.asStateFlow()
@@ -54,9 +99,9 @@ private constructor(
     /** View-models for each slot, keyed by slot ID. */
     val slots: Flow<Map<String, KeyguardQuickAffordanceSlotViewModel>> =
         combine(
-            interactor.slots,
-            interactor.affordances,
-            interactor.selections,
+            quickAffordanceInteractor.slots,
+            quickAffordanceInteractor.affordances,
+            quickAffordanceInteractor.selections,
             selectedSlotId,
         ) { slots, affordances, selections, selectedSlotIdOrNull ->
             slots
@@ -102,9 +147,9 @@ private constructor(
     /** The list of all available quick affordances for the selected slot. */
     val quickAffordances: Flow<List<KeyguardQuickAffordanceViewModel>> =
         combine(
-            interactor.slots,
-            interactor.affordances,
-            interactor.selections,
+            quickAffordanceInteractor.slots,
+            quickAffordanceInteractor.affordances,
+            quickAffordanceInteractor.selections,
             selectedSlotId,
         ) { slots, affordances, selections, selectedSlotIdOrNull ->
             val selectedSlot =
@@ -131,12 +176,12 @@ private constructor(
                                 {
                                     viewModelScope.launch {
                                         if (isSelected) {
-                                            interactor.unselect(
+                                            quickAffordanceInteractor.unselect(
                                                 slotId = selectedSlot.id,
                                                 affordanceId = affordance.id,
                                             )
                                         } else {
-                                            interactor.select(
+                                            quickAffordanceInteractor.select(
                                                 slotId = selectedSlot.id,
                                                 affordanceId = affordance.id,
                                             )
@@ -229,7 +274,9 @@ private constructor(
         return KeyguardQuickAffordanceViewModel.none(
             context = applicationContext,
             isSelected = isSelected,
-            onSelected = { viewModelScope.launch { interactor.unselectAll(slotId) } },
+            onSelected = {
+                viewModelScope.launch { quickAffordanceInteractor.unselectAll(slotId) }
+            },
         )
     }
 
@@ -246,7 +293,7 @@ private constructor(
     }
 
     private suspend fun getAffordanceIcon(@DrawableRes iconResourceId: Int): Drawable {
-        return interactor.getAffordanceIcon(iconResourceId)
+        return quickAffordanceInteractor.getAffordanceIcon(iconResourceId)
     }
 
     private fun String?.toIntent(): Intent? {
@@ -318,13 +365,17 @@ private constructor(
 
     class Factory(
         private val context: Context,
-        private val interactor: KeyguardQuickAffordancePickerInteractor,
+        private val quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor,
+        private val undoInteractor: UndoInteractor,
+        private val wallpaperInfoFactory: CurrentWallpaperInfoFactory,
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             @Suppress("UNCHECKED_CAST")
             return KeyguardQuickAffordancePickerViewModel(
                 context = context,
-                interactor = interactor,
+                quickAffordanceInteractor = quickAffordanceInteractor,
+                undoInteractor = undoInteractor,
+                wallpaperInfoFactory = wallpaperInfoFactory,
             )
                 as T
         }
