@@ -294,7 +294,7 @@
     enabled. The dialog contains a list of instructions that the user needs to take in order to
     enable the option before it can be selected again. [CHAR LIMIT=NONE].
     -->
-    <string name="keyguard_affordance_enablement_dialog_title">Additional setup needed</string>
+    <string name="keyguard_affordance_enablement_dialog_title">To select `<xliff:g id="appName" example="Wallet">%1$s</xliff:g>` check the following</string>
 
     <!--
     Template for an action that opens a specific app. [CHAR LIMIT=16]
