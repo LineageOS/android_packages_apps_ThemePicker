@@ -20,8 +20,8 @@ package com.android.customization.picker.quickaffordance.ui.binder
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
-import android.content.DialogInterface
 import android.graphics.Rect
+import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.ViewCompat
 import androidx.lifecycle.Lifecycle
@@ -88,7 +88,6 @@ object KeyguardQuickAffordancePickerBinder {
                                     onDismissed = viewModel::onDialogDismissed
                                 )
                             } else {
-                                dialog?.dismiss()
                                 null
                             }
                     }
@@ -102,34 +101,21 @@ object KeyguardQuickAffordancePickerBinder {
         request: KeyguardQuickAffordancePickerViewModel.DialogViewModel,
         onDismissed: () -> Unit,
     ): Dialog {
-        // TODO(b/254858701): make this dialog prettier and probably use a DialogFragment.
-        return AlertDialog.Builder(context, context.themeResId)
-            .setTitle(context.getString(R.string.keyguard_affordance_enablement_dialog_title))
-            .setMessage(
-                buildString {
-                    append(request.instructionHeader)
-                    if (request.instructions.isNotEmpty()) {
-                        append("\n")
-                    }
-                    request.instructions.forEachIndexed { index, instruction ->
-                        append(instruction)
-                        if (index < request.instructions.size - 1) {
-                            append("\n")
-                        }
-                    }
-                }
-            )
-            .setOnDismissListener { onDismissed.invoke() }
-            .setPositiveButton(
-                request.actionText,
-                if (request.intent != null) {
-                    DialogInterface.OnClickListener { _, _ ->
-                        context.startActivity(request.intent)
-                    }
-                } else {
-                    DialogInterface.OnClickListener { _, _ -> onDismissed() }
-                },
-            )
+        val view: View =
+            LayoutInflater.from(context)
+                .inflate(
+                    R.layout.keyguard_quick_affordance_enablement_dialog,
+                    null,
+                )
+        KeyguardQuickAffordanceEnablementDialogBinder.bind(
+            view = view,
+            viewModel = request,
+            onDismissed = onDismissed,
+        )
+
+        return AlertDialog.Builder(context, R.style.LightDialogTheme)
+            .setView(view)
+            .setOnDismissListener { onDismissed() }
             .show()
     }
 
