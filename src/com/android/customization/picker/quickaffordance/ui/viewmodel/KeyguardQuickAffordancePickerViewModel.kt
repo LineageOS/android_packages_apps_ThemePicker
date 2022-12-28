@@ -27,8 +27,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
+import com.android.systemui.shared.customization.data.content.CustomizationProviderContract
 import com.android.systemui.shared.keyguard.shared.model.KeyguardQuickAffordanceSlots
-import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderContract as Contract
 import com.android.systemui.shared.quickaffordance.shared.model.KeyguardQuickAffordancePreviewConstants
 import com.android.wallpaper.R
 import com.android.wallpaper.module.CurrentWallpaperInfoFactory
@@ -300,11 +300,15 @@ private constructor(
             return null
         }
 
-        val splitUp = split(Contract.AffordanceTable.COMPONENT_NAME_SEPARATOR)
+        val splitUp =
+            split(
+                CustomizationProviderContract.LockScreenQuickAffordances.AffordanceTable
+                    .COMPONENT_NAME_SEPARATOR
+            )
         check(splitUp.size == 1 || splitUp.size == 2) {
             "Illegal component name \"$this\". Must be either just an action or a package and an" +
                 " action separated by a" +
-                " \"${Contract.AffordanceTable.COMPONENT_NAME_SEPARATOR}\"!"
+                " \"${CustomizationProviderContract.LockScreenQuickAffordances.AffordanceTable.COMPONENT_NAME_SEPARATOR}\"!"
         }
 
         return Intent(splitUp.last()).apply {
