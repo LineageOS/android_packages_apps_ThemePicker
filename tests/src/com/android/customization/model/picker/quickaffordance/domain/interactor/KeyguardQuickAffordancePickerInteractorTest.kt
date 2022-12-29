@@ -20,16 +20,17 @@ package com.android.customization.model.picker.quickaffordance.domain.interactor
 import androidx.test.filters.SmallTest
 import com.android.customization.picker.quickaffordance.data.repository.KeyguardQuickAffordancePickerRepository
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
+import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordanceSnapshotRestorer
 import com.android.customization.picker.quickaffordance.shared.model.KeyguardQuickAffordancePickerSelectionModel
+import com.android.systemui.shared.customization.data.content.FakeCustomizationProviderClient
 import com.android.systemui.shared.keyguard.shared.model.KeyguardQuickAffordanceSlots
-import com.android.systemui.shared.quickaffordance.data.content.FakeKeyguardQuickAffordanceProviderClient
+import com.android.wallpaper.testing.collectLastValue
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestScope
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
@@ -47,22 +48,29 @@ class KeyguardQuickAffordancePickerInteractorTest {
     private lateinit var underTest: KeyguardQuickAffordancePickerInteractor
 
     private lateinit var testScope: TestScope
-    private lateinit var client: FakeKeyguardQuickAffordanceProviderClient
+    private lateinit var client: FakeCustomizationProviderClient
 
     @Before
     fun setUp() {
-        val coroutineDispatcher = UnconfinedTestDispatcher()
-        testScope = TestScope(coroutineDispatcher)
-        Dispatchers.setMain(coroutineDispatcher)
-        client = FakeKeyguardQuickAffordanceProviderClient()
+        val testDispatcher = StandardTestDispatcher()
+        testScope = TestScope(testDispatcher)
+        Dispatchers.setMain(testDispatcher)
+        client = FakeCustomizationProviderClient()
         underTest =
             KeyguardQuickAffordancePickerInteractor(
                 repository =
                     KeyguardQuickAffordancePickerRepository(
                         client = client,
-                        backgroundDispatcher = coroutineDispatcher,
+                        backgroundDispatcher = testDispatcher,
                     ),
                 client = client,
+                snapshotRestorer = {
+                    KeyguardQuickAffordanceSnapshotRestorer(
+                            interactor = underTest,
+                            client = client,
+                        )
+                        .apply { runBlocking { setUpSnapshotRestorer {} } }
+                },
             )
     }
 
@@ -74,85 +82,76 @@ class KeyguardQuickAffordancePickerInteractorTest {
     @Test
     fun select() =
         testScope.runTest {
-            val selections = mutableListOf<List<KeyguardQuickAffordancePickerSelectionModel>>()
-            val job = launch { underTest.selections.toList(selections) }
+            val selections = collectLastValue(underTest.selections)
 
             underTest.select(
                 slotId = KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START,
-                affordanceId = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_1,
+                affordanceId = FakeCustomizationProviderClient.AFFORDANCE_1,
             )
-            assertThat(selections.last())
+            assertThat(selections())
                 .isEqualTo(
                     listOf(
                         KeyguardQuickAffordancePickerSelectionModel(
                             slotId = KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START,
-                            affordanceId = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_1,
+                            affordanceId = FakeCustomizationProviderClient.AFFORDANCE_1,
                         ),
                     )
                 )
 
             underTest.select(
                 slotId = KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START,
-                affordanceId = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_2,
+                affordanceId = FakeCustomizationProviderClient.AFFORDANCE_2,
             )
-            assertThat(selections.last())
+            assertThat(selections())
                 .isEqualTo(
                     listOf(
                         KeyguardQuickAffordancePickerSelectionModel(
                             slotId = KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START,
-                            affordanceId = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_2,
+                            affordanceId = FakeCustomizationProviderClient.AFFORDANCE_2,
                         ),
                     )
                 )
-
-            job.cancel()
         }
 
     @Test
     fun unselect() =
         testScope.runTest {
-            val selections = mutableListOf<List<KeyguardQuickAffordancePickerSelectionModel>>()
-            val job = launch { underTest.selections.toList(selections) }
+            val selections = collectLastValue(underTest.selections)
             underTest.select(
                 slotId = KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START,
-                affordanceId = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_1,
+                affordanceId = FakeCustomizationProviderClient.AFFORDANCE_1,
             )
 
             underTest.unselect(
                 slotId = KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START,
-                affordanceId = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_1,
+                affordanceId = FakeCustomizationProviderClient.AFFORDANCE_1,
             )
 
-            assertThat(selections.last()).isEmpty()
-
-            job.cancel()
+            assertThat(selections()).isEmpty()
         }
 
     @Test
     fun unselectAll() =
         testScope.runTest {
             client.setSlotCapacity(KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END, 3)
-            val selections = mutableListOf<List<KeyguardQuickAffordancePickerSelectionModel>>()
-            val job = launch { underTest.selections.toList(selections) }
+            val selections = collectLastValue(underTest.selections)
             underTest.select(
                 slotId = KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END,
-                affordanceId = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_1,
+                affordanceId = FakeCustomizationProviderClient.AFFORDANCE_1,
             )
             underTest.select(
                 slotId = KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END,
-                affordanceId = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_2,
+                affordanceId = FakeCustomizationProviderClient.AFFORDANCE_2,
             )
             underTest.select(
                 slotId = KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END,
-                affordanceId = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_3,
+                affordanceId = FakeCustomizationProviderClient.AFFORDANCE_3,
             )
 
             underTest.unselectAll(
                 slotId = KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END,
             )
 
-            assertThat(selections.last()).isEmpty()
-
-            job.cancel()
+            assertThat(selections()).isEmpty()
         }
 }

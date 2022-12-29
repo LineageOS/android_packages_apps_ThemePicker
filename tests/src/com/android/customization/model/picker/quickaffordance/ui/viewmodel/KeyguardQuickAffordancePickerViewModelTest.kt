@@ -22,21 +22,26 @@ import androidx.test.filters.SmallTest
 import androidx.test.platform.app.InstrumentationRegistry
 import com.android.customization.picker.quickaffordance.data.repository.KeyguardQuickAffordancePickerRepository
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
+import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordanceSnapshotRestorer
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordanceSlotViewModel
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordanceSummaryViewModel
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordanceViewModel
+import com.android.systemui.shared.customization.data.content.CustomizationProviderClient
+import com.android.systemui.shared.customization.data.content.FakeCustomizationProviderClient
 import com.android.systemui.shared.keyguard.shared.model.KeyguardQuickAffordanceSlots
-import com.android.systemui.shared.quickaffordance.data.content.FakeKeyguardQuickAffordanceProviderClient
-import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderClient
+import com.android.wallpaper.picker.undo.data.repository.UndoRepository
+import com.android.wallpaper.picker.undo.domain.interactor.UndoInteractor
+import com.android.wallpaper.testing.FAKE_RESTORERS
+import com.android.wallpaper.testing.TestCurrentWallpaperInfoFactory
+import com.android.wallpaper.testing.collectLastValue
 import com.google.common.truth.Truth.assertThat
 import com.google.common.truth.Truth.assertWithMessage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestScope
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
@@ -55,28 +60,45 @@ class KeyguardQuickAffordancePickerViewModelTest {
 
     private lateinit var context: Context
     private lateinit var testScope: TestScope
-    private lateinit var client: FakeKeyguardQuickAffordanceProviderClient
+    private lateinit var client: FakeCustomizationProviderClient
+    private lateinit var quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor
 
     @Before
     fun setUp() {
         context = InstrumentationRegistry.getInstrumentation().targetContext
-        val coroutineDispatcher = UnconfinedTestDispatcher()
-        testScope = TestScope(coroutineDispatcher)
-        Dispatchers.setMain(coroutineDispatcher)
-        client = FakeKeyguardQuickAffordanceProviderClient()
+        val testDispatcher = StandardTestDispatcher()
+        testScope = TestScope(testDispatcher)
+        Dispatchers.setMain(testDispatcher)
+        client = FakeCustomizationProviderClient()
 
+        quickAffordanceInteractor =
+            KeyguardQuickAffordancePickerInteractor(
+                repository =
+                    KeyguardQuickAffordancePickerRepository(
+                        client = client,
+                        backgroundDispatcher = testDispatcher,
+                    ),
+                client = client,
+                snapshotRestorer = {
+                    KeyguardQuickAffordanceSnapshotRestorer(
+                            interactor = quickAffordanceInteractor,
+                            client = client,
+                        )
+                        .apply { runBlocking { setUpSnapshotRestorer {} } }
+                },
+            )
+        val undoInteractor =
+            UndoInteractor(
+                scope = testScope.backgroundScope,
+                repository = UndoRepository(),
+                restorerByOwnerId = FAKE_RESTORERS,
+            )
         underTest =
             KeyguardQuickAffordancePickerViewModel.Factory(
                     context = context,
-                    interactor =
-                        KeyguardQuickAffordancePickerInteractor(
-                            repository =
-                                KeyguardQuickAffordancePickerRepository(
-                                    client = client,
-                                    backgroundDispatcher = coroutineDispatcher,
-                                ),
-                            client = client,
-                        ),
+                    quickAffordanceInteractor = quickAffordanceInteractor,
+                    undoInteractor = undoInteractor,
+                    wallpaperInfoFactory = TestCurrentWallpaperInfoFactory(context),
                 )
                 .create(KeyguardQuickAffordancePickerViewModel::class.java)
     }
@@ -89,23 +111,18 @@ class KeyguardQuickAffordancePickerViewModelTest {
     @Test
     fun `Select an affordance for each side`() =
         testScope.runTest {
-            val slots = mutableListOf<Map<String, KeyguardQuickAffordanceSlotViewModel>>()
-            val quickAffordances = mutableListOf<List<KeyguardQuickAffordanceViewModel>>()
-
-            val jobs = buildList {
-                add(launch { underTest.slots.toList(slots) })
-                add(launch { underTest.quickAffordances.toList(quickAffordances) })
-            }
+            val slots = collectLastValue(underTest.slots)
+            val quickAffordances = collectLastValue(underTest.quickAffordances)
 
             // Initially, the first slot is selected with the "none" affordance selected.
             assertPickerUiState(
-                slots = slots.last(),
-                affordances = quickAffordances.last(),
+                slots = slots(),
+                affordances = quickAffordances(),
                 selectedSlotText = "Left button",
                 selectedAffordanceText = "None",
             )
             assertPreviewUiState(
-                slots = slots.last(),
+                slots = slots(),
                 expectedAffordanceNameBySlotId =
                     mapOf(
                         KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START to null,
@@ -114,123 +131,109 @@ class KeyguardQuickAffordancePickerViewModelTest {
             )
 
             // Select "affordance 1" for the first slot.
-            quickAffordances.last()[1].onClicked?.invoke()
+            quickAffordances()?.get(1)?.onClicked?.invoke()
             assertPickerUiState(
-                slots = slots.last(),
-                affordances = quickAffordances.last(),
+                slots = slots(),
+                affordances = quickAffordances(),
                 selectedSlotText = "Left button",
-                selectedAffordanceText = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_1,
+                selectedAffordanceText = FakeCustomizationProviderClient.AFFORDANCE_1,
             )
             assertPreviewUiState(
-                slots = slots.last(),
+                slots = slots(),
                 expectedAffordanceNameBySlotId =
                     mapOf(
                         KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START to
-                            FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_1,
+                            FakeCustomizationProviderClient.AFFORDANCE_1,
                         KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END to null,
                     ),
             )
 
             // Select an affordance for the second slot.
             // First, switch to the second slot:
-            slots.last()[KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END]?.onClicked?.invoke()
+            slots()?.get(KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END)?.onClicked?.invoke()
             // Second, select the "affordance 3" affordance:
-            quickAffordances.last()[3].onClicked?.invoke()
+            quickAffordances()?.get(3)?.onClicked?.invoke()
             assertPickerUiState(
-                slots = slots.last(),
-                affordances = quickAffordances.last(),
+                slots = slots(),
+                affordances = quickAffordances(),
                 selectedSlotText = "Right button",
-                selectedAffordanceText = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_3,
+                selectedAffordanceText = FakeCustomizationProviderClient.AFFORDANCE_3,
             )
             assertPreviewUiState(
-                slots = slots.last(),
+                slots = slots(),
                 expectedAffordanceNameBySlotId =
                     mapOf(
                         KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START to
-                            FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_1,
+                            FakeCustomizationProviderClient.AFFORDANCE_1,
                         KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END to
-                            FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_3,
+                            FakeCustomizationProviderClient.AFFORDANCE_3,
                     ),
             )
 
             // Select a different affordance for the second slot.
-            quickAffordances.last()[2].onClicked?.invoke()
+            quickAffordances()?.get(2)?.onClicked?.invoke()
             assertPickerUiState(
-                slots = slots.last(),
-                affordances = quickAffordances.last(),
+                slots = slots(),
+                affordances = quickAffordances(),
                 selectedSlotText = "Right button",
-                selectedAffordanceText = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_2,
+                selectedAffordanceText = FakeCustomizationProviderClient.AFFORDANCE_2,
             )
             assertPreviewUiState(
-                slots = slots.last(),
+                slots = slots(),
                 expectedAffordanceNameBySlotId =
                     mapOf(
                         KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START to
-                            FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_1,
+                            FakeCustomizationProviderClient.AFFORDANCE_1,
                         KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END to
-                            FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_2,
+                            FakeCustomizationProviderClient.AFFORDANCE_2,
                     ),
             )
-
-            jobs.forEach { it.cancel() }
         }
 
     @Test
     fun `Unselect - AKA selecting the none affordance - on one side`() =
         testScope.runTest {
-            val slots = mutableListOf<Map<String, KeyguardQuickAffordanceSlotViewModel>>()
-            val quickAffordances = mutableListOf<List<KeyguardQuickAffordanceViewModel>>()
-
-            val jobs = buildList {
-                add(launch { underTest.slots.toList(slots) })
-                add(launch { underTest.quickAffordances.toList(quickAffordances) })
-            }
+            val slots = collectLastValue(underTest.slots)
+            val quickAffordances = collectLastValue(underTest.quickAffordances)
 
             // Select "affordance 1" for the first slot.
-            quickAffordances.last()[1].onClicked?.invoke()
+            quickAffordances()?.get(1)?.onClicked?.invoke()
             // Select an affordance for the second slot.
             // First, switch to the second slot:
-            slots.last()[KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END]?.onClicked?.invoke()
+            slots()?.get(KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END)?.onClicked?.invoke()
             // Second, select the "affordance 3" affordance:
-            quickAffordances.last()[3].onClicked?.invoke()
+            quickAffordances()?.get(3)?.onClicked?.invoke()
 
             // Switch back to the first slot:
-            slots.last()[KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START]?.onClicked?.invoke()
+            slots()?.get(KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START)?.onClicked?.invoke()
             // Select the "none" affordance, which is always in position 0:
-            quickAffordances.last()[0].onClicked?.invoke()
+            quickAffordances()?.get(0)?.onClicked?.invoke()
 
             assertPickerUiState(
-                slots = slots.last(),
-                affordances = quickAffordances.last(),
+                slots = slots(),
+                affordances = quickAffordances(),
                 selectedSlotText = "Left button",
                 selectedAffordanceText = "None",
             )
             assertPreviewUiState(
-                slots = slots.last(),
+                slots = slots(),
                 expectedAffordanceNameBySlotId =
                     mapOf(
                         KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START to null,
                         KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END to
-                            FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_3,
+                            FakeCustomizationProviderClient.AFFORDANCE_3,
                     ),
             )
-
-            jobs.forEach { it.cancel() }
         }
 
     @Test
     fun `Show enablement dialog when selecting a disabled affordance`() =
         testScope.runTest {
-            val slots = mutableListOf<Map<String, KeyguardQuickAffordanceSlotViewModel>>()
-            val quickAffordances = mutableListOf<List<KeyguardQuickAffordanceViewModel>>()
-            val dialog = mutableListOf<KeyguardQuickAffordancePickerViewModel.DialogViewModel?>()
+            val slots = collectLastValue(underTest.slots)
+            val quickAffordances = collectLastValue(underTest.quickAffordances)
+            val dialog = collectLastValue(underTest.dialog)
 
-            val jobs = buildList {
-                add(launch { underTest.slots.toList(slots) })
-                add(launch { underTest.quickAffordances.toList(quickAffordances) })
-                add(launch { underTest.dialog.toList(dialog) })
-            }
-            val enablementInstructions = listOf("header", "enablementInstructions")
+            val enablementInstructions = listOf("instruction1", "instruction2")
             val enablementActionText = "enablementActionText"
             val packageName = "packageName"
             val action = "action"
@@ -238,10 +241,10 @@ class KeyguardQuickAffordancePickerViewModelTest {
             // Lets add a disabled affordance to the picker:
             val affordanceIndex =
                 client.addAffordance(
-                    KeyguardQuickAffordanceProviderClient.Affordance(
+                    CustomizationProviderClient.Affordance(
                         id = "disabled",
                         name = "disabled",
-                        iconResourceId = 0,
+                        iconResourceId = 1,
                         isEnabled = false,
                         enablementInstructions = enablementInstructions,
                         enablementActionText = enablementActionText,
@@ -250,129 +253,102 @@ class KeyguardQuickAffordancePickerViewModelTest {
                 )
 
             // Lets try to select that disabled affordance:
-            quickAffordances.last()[affordanceIndex + 1].onClicked?.invoke()
+            quickAffordances()?.get(affordanceIndex + 1)?.onClicked?.invoke()
 
             // We expect there to be a dialog that should be shown:
-            assertThat(dialog.last()?.instructionHeader).isEqualTo(enablementInstructions[0])
-            assertThat(dialog.last()?.instructions)
-                .isEqualTo(enablementInstructions.subList(1, enablementInstructions.size))
-            assertThat(dialog.last()?.actionText).isEqualTo(enablementActionText)
-            assertThat(dialog.last()?.intent?.`package`).isEqualTo(packageName)
-            assertThat(dialog.last()?.intent?.action).isEqualTo(action)
+            assertThat(dialog()?.icon).isEqualTo(FakeCustomizationProviderClient.ICON_1)
+            assertThat(dialog()?.instructions).isEqualTo(enablementInstructions)
+            assertThat(dialog()?.actionText).isEqualTo(enablementActionText)
+            assertThat(dialog()?.intent?.`package`).isEqualTo(packageName)
+            assertThat(dialog()?.intent?.action).isEqualTo(action)
 
             // Once we report that the dialog has been dismissed by the user, we expect there to be
             // no
             // dialog to be shown:
             underTest.onDialogDismissed()
-            assertThat(dialog.last()).isNull()
-
-            jobs.forEach { it.cancel() }
+            assertThat(dialog()).isNull()
         }
 
     @Test
     fun `summary - affordance selected in both bottom-start and bottom-end`() =
         testScope.runTest {
-            val slots = mutableListOf<Map<String, KeyguardQuickAffordanceSlotViewModel>>()
-            val quickAffordances = mutableListOf<List<KeyguardQuickAffordanceViewModel>>()
-            val summary = mutableListOf<KeyguardQuickAffordanceSummaryViewModel>()
-            val jobs = buildList {
-                add(launch { underTest.slots.toList(slots) })
-                add(launch { underTest.quickAffordances.toList(quickAffordances) })
-                add(launch { underTest.summary.toList(summary) })
-            }
+            val slots = collectLastValue(underTest.slots)
+            val quickAffordances = collectLastValue(underTest.quickAffordances)
+            val summary = collectLastValue(underTest.summary)
 
             // Select "affordance 1" for the first slot.
-            quickAffordances.last()[1].onClicked?.invoke()
+            quickAffordances()?.get(1)?.onClicked?.invoke()
             // Select an affordance for the second slot.
             // First, switch to the second slot:
-            slots.last()[KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END]?.onClicked?.invoke()
+            slots()?.get(KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END)?.onClicked?.invoke()
             // Second, select the "affordance 3" affordance:
-            quickAffordances.last()[3].onClicked?.invoke()
+            quickAffordances()?.get(3)?.onClicked?.invoke()
 
-            assertThat(summary.last())
+            assertThat(summary())
                 .isEqualTo(
                     KeyguardQuickAffordanceSummaryViewModel(
                         description =
-                            "${FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_1}," +
-                                " ${FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_3}",
-                        icon1 = FakeKeyguardQuickAffordanceProviderClient.ICON_1,
-                        icon2 = FakeKeyguardQuickAffordanceProviderClient.ICON_3,
+                            "${FakeCustomizationProviderClient.AFFORDANCE_1}," +
+                                " ${FakeCustomizationProviderClient.AFFORDANCE_3}",
+                        icon1 = FakeCustomizationProviderClient.ICON_1,
+                        icon2 = FakeCustomizationProviderClient.ICON_3,
                     )
                 )
-            jobs.forEach { it.cancel() }
         }
 
     @Test
     fun `summary - affordance selected only on bottom-start`() =
         testScope.runTest {
-            val slots = mutableListOf<Map<String, KeyguardQuickAffordanceSlotViewModel>>()
-            val quickAffordances = mutableListOf<List<KeyguardQuickAffordanceViewModel>>()
-            val summary = mutableListOf<KeyguardQuickAffordanceSummaryViewModel>()
-            val jobs = buildList {
-                add(launch { underTest.slots.toList(slots) })
-                add(launch { underTest.quickAffordances.toList(quickAffordances) })
-                add(launch { underTest.summary.toList(summary) })
-            }
+            val slots = collectLastValue(underTest.slots)
+            val quickAffordances = collectLastValue(underTest.quickAffordances)
+            val summary = collectLastValue(underTest.summary)
 
             // Select "affordance 1" for the first slot.
-            quickAffordances.last()[1].onClicked?.invoke()
+            quickAffordances()?.get(1)?.onClicked?.invoke()
 
-            assertThat(summary.last())
+            assertThat(summary())
                 .isEqualTo(
                     KeyguardQuickAffordanceSummaryViewModel(
-                        description = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_1,
-                        icon1 = FakeKeyguardQuickAffordanceProviderClient.ICON_1,
+                        description = FakeCustomizationProviderClient.AFFORDANCE_1,
+                        icon1 = FakeCustomizationProviderClient.ICON_1,
                         icon2 = null,
                     )
                 )
-            jobs.forEach { it.cancel() }
         }
 
     @Test
     fun `summary - affordance selected only on bottom-end`() =
         testScope.runTest {
-            val slots = mutableListOf<Map<String, KeyguardQuickAffordanceSlotViewModel>>()
-            val quickAffordances = mutableListOf<List<KeyguardQuickAffordanceViewModel>>()
-            val summary = mutableListOf<KeyguardQuickAffordanceSummaryViewModel>()
-            val jobs = buildList {
-                add(launch { underTest.slots.toList(slots) })
-                add(launch { underTest.quickAffordances.toList(quickAffordances) })
-                add(launch { underTest.summary.toList(summary) })
-            }
+            val slots = collectLastValue(underTest.slots)
+            val quickAffordances = collectLastValue(underTest.quickAffordances)
+            val summary = collectLastValue(underTest.summary)
 
             // Select an affordance for the second slot.
             // First, switch to the second slot:
-            slots.last()[KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END]?.onClicked?.invoke()
+            slots()?.get(KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END)?.onClicked?.invoke()
             // Second, select the "affordance 3" affordance:
-            quickAffordances.last()[3].onClicked?.invoke()
+            quickAffordances()?.get(3)?.onClicked?.invoke()
 
-            assertThat(summary.last())
+            assertThat(summary())
                 .isEqualTo(
                     KeyguardQuickAffordanceSummaryViewModel(
-                        description = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_3,
+                        description = FakeCustomizationProviderClient.AFFORDANCE_3,
                         icon1 = null,
-                        icon2 = FakeKeyguardQuickAffordanceProviderClient.ICON_3,
+                        icon2 = FakeCustomizationProviderClient.ICON_3,
                     )
                 )
-            jobs.forEach { it.cancel() }
         }
 
     @Test
     fun `summary - no affordances selected`() =
         testScope.runTest {
-            val slots = mutableListOf<Map<String, KeyguardQuickAffordanceSlotViewModel>>()
-            val quickAffordances = mutableListOf<List<KeyguardQuickAffordanceViewModel>>()
-            val summary = mutableListOf<KeyguardQuickAffordanceSummaryViewModel>()
-            val jobs = buildList {
-                add(launch { underTest.slots.toList(slots) })
-                add(launch { underTest.quickAffordances.toList(quickAffordances) })
-                add(launch { underTest.summary.toList(summary) })
-            }
+            val slots = collectLastValue(underTest.slots)
+            val quickAffordances = collectLastValue(underTest.quickAffordances)
+            val summary = collectLastValue(underTest.summary)
 
-            assertThat(summary.last().description).isEqualTo("None")
-            assertThat(summary.last().icon1).isNotNull()
-            assertThat(summary.last().icon2).isNull()
-            jobs.forEach { it.cancel() }
+            assertThat(summary()?.description).isEqualTo("None")
+            assertThat(summary()?.icon1).isNotNull()
+            assertThat(summary()?.icon2).isNull()
         }
 
     /**
@@ -385,8 +361,8 @@ class KeyguardQuickAffordancePickerViewModelTest {
      * @param selectedAffordanceText The text of the affordance that's expected to be selected
      */
     private fun assertPickerUiState(
-        slots: Map<String, KeyguardQuickAffordanceSlotViewModel>,
-        affordances: List<KeyguardQuickAffordanceViewModel>,
+        slots: Map<String, KeyguardQuickAffordanceSlotViewModel>?,
+        affordances: List<KeyguardQuickAffordanceViewModel>?,
         selectedSlotText: String,
         selectedAffordanceText: String,
     ) {
@@ -402,7 +378,8 @@ class KeyguardQuickAffordancePickerViewModelTest {
         )
 
         var foundSelectedAffordance = false
-        affordances.forEach { affordance ->
+        assertThat(affordances).isNotNull()
+        affordances?.forEach { affordance ->
             val nameMatchesSelectedName = affordance.contentDescription == selectedAffordanceText
             assertWithMessage(
                     "Expected affordance with name \"${affordance.contentDescription}\" to have" +
@@ -423,11 +400,11 @@ class KeyguardQuickAffordancePickerViewModelTest {
      * @param isSelected Whether that slot should be selected
      */
     private fun assertSlotTabUiState(
-        slots: Map<String, KeyguardQuickAffordanceSlotViewModel>,
+        slots: Map<String, KeyguardQuickAffordanceSlotViewModel>?,
         slotId: String,
         isSelected: Boolean,
     ) {
-        val viewModel = slots[slotId] ?: error("No slot with ID \"$slotId\"!")
+        val viewModel = slots?.get(slotId) ?: error("No slot with ID \"$slotId\"!")
         assertThat(viewModel.isSelected).isEqualTo(isSelected)
     }
 
@@ -439,10 +416,11 @@ class KeyguardQuickAffordancePickerViewModelTest {
      * slot ID or `null` if it's expected for there to be no affordance for that slot in the preview
      */
     private fun assertPreviewUiState(
-        slots: Map<String, KeyguardQuickAffordanceSlotViewModel>,
+        slots: Map<String, KeyguardQuickAffordanceSlotViewModel>?,
         expectedAffordanceNameBySlotId: Map<String, String?>,
     ) {
-        slots.forEach { (slotId, slotViewModel) ->
+        assertThat(slots).isNotNull()
+        slots?.forEach { (slotId, slotViewModel) ->
             val expectedAffordanceName = expectedAffordanceNameBySlotId[slotId]
             val actualAffordanceName =
                 slotViewModel.selectedQuickAffordances.firstOrNull()?.contentDescription
