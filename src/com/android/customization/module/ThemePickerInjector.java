@@ -37,8 +37,8 @@ import com.android.customization.picker.quickaffordance.data.repository.Keyguard
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor;
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordanceSnapshotRestorer;
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel;
-import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderClient;
-import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderClientImpl;
+import com.android.systemui.shared.customization.data.content.CustomizationProviderClient;
+import com.android.systemui.shared.customization.data.content.CustomizationProviderClientImpl;
 import com.android.wallpaper.config.BaseFlags;
 import com.android.wallpaper.model.LiveWallpaperInfo;
 import com.android.wallpaper.model.WallpaperInfo;
@@ -67,7 +67,7 @@ public class ThemePickerInjector extends WallpaperPicker2Injector
     private KeyguardQuickAffordancePickerInteractor mKeyguardQuickAffordancePickerInteractor;
     private KeyguardQuickAffordancePickerViewModel.Factory
             mKeyguardQuickAffordancePickerViewModelFactory;
-    private KeyguardQuickAffordanceProviderClient mKeyguardQuickAffordanceProviderClient;
+    private CustomizationProviderClient mCustomizationProviderClient;
     private FragmentFactory mFragmentFactory;
     private BaseFlags mFlags;
     private KeyguardQuickAffordanceSnapshotRestorer mKeyguardQuickAffordanceSnapshotRestorer;
@@ -150,7 +150,7 @@ public class ThemePickerInjector extends WallpaperPicker2Injector
     public KeyguardQuickAffordancePickerInteractor getKeyguardQuickAffordancePickerInteractor(
             Context context) {
         if (mKeyguardQuickAffordancePickerInteractor == null) {
-            final KeyguardQuickAffordanceProviderClient client =
+            final CustomizationProviderClient client =
                     getKeyguardQuickAffordancePickerProviderClient(context);
             mKeyguardQuickAffordancePickerInteractor = new KeyguardQuickAffordancePickerInteractor(
                     new KeyguardQuickAffordancePickerRepository(client, Dispatchers.getIO()),
@@ -170,7 +170,8 @@ public class ThemePickerInjector extends WallpaperPicker2Injector
                     new KeyguardQuickAffordancePickerViewModel.Factory(
                             context,
                             getKeyguardQuickAffordancePickerInteractor(context),
-                            getUndoInteractor(context));
+                            getUndoInteractor(context),
+                            getCurrentWallpaperInfoFactory(context));
         }
         return mKeyguardQuickAffordancePickerViewModelFactory;
     }
@@ -201,15 +202,15 @@ public class ThemePickerInjector extends WallpaperPicker2Injector
         return restorers;
     }
 
-    /** Returns the {@link KeyguardQuickAffordanceProviderClient}. */
-    protected KeyguardQuickAffordanceProviderClient getKeyguardQuickAffordancePickerProviderClient(
+    /** Returns the {@link CustomizationProviderClient}. */
+    protected CustomizationProviderClient getKeyguardQuickAffordancePickerProviderClient(
             Context context) {
-        if (mKeyguardQuickAffordanceProviderClient == null) {
-            mKeyguardQuickAffordanceProviderClient =
-                    new KeyguardQuickAffordanceProviderClientImpl(context, Dispatchers.getIO());
+        if (mCustomizationProviderClient == null) {
+            mCustomizationProviderClient =
+                    new CustomizationProviderClientImpl(context, Dispatchers.getIO());
         }
 
-        return mKeyguardQuickAffordanceProviderClient;
+        return mCustomizationProviderClient;
     }
 
     protected KeyguardQuickAffordanceSnapshotRestorer getKeyguardQuickAffordanceSnapshotRestorer(

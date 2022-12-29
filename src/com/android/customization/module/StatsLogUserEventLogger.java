@@ -188,6 +188,15 @@ public class StatsLogUserEventLogger extends NoOpUserEventLogger implements Them
                 .log();
     }
 
+    @Override
+    public void logEffectProbe(String effect, @EffectStatus int status) {
+        new SysUiStatsLogger()
+                .setAction(StyleEnums.WALLPAPER_EFFECT_PROBE)
+                .setEffectPreference(status)
+                .setEffectIdHash(getIdHashCode(effect))
+                .log();
+    }
+
     @Nullable
     private String getThemePackage(ThemeBundle theme, String category) {
         Map<String, String> packages = theme.getPackagesByCategory();

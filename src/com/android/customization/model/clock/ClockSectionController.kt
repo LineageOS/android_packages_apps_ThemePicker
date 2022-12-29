@@ -19,8 +19,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import com.android.customization.picker.clock.ClockCustomDemoFragment
 import com.android.customization.picker.clock.ClockSectionView
-import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderClient
-import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderContract as Contract
+import com.android.systemui.shared.customization.data.content.CustomizationProviderClient
+import com.android.systemui.shared.customization.data.content.CustomizationProviderContract as Contract
 import com.android.wallpaper.R
 import com.android.wallpaper.model.CustomizationSectionController
 import com.android.wallpaper.model.CustomizationSectionController.CustomizationSectionNavigationController
@@ -29,10 +29,10 @@ import kotlinx.coroutines.runBlocking
 /** A [CustomizationSectionController] for clock customization. */
 class ClockSectionController(
     private val navigationController: CustomizationSectionNavigationController,
-    private val keyguardQuickAffordanceProviderClient: KeyguardQuickAffordanceProviderClient,
+    private val customizationProviderClient: CustomizationProviderClient,
 ) : CustomizationSectionController<ClockSectionView?> {
     override fun isAvailable(context: Context?): Boolean {
-        return runBlocking { keyguardQuickAffordanceProviderClient.queryFlags() }
+        return runBlocking { customizationProviderClient.queryFlags() }
             .firstOrNull { it.name == Contract.FlagsTable.FLAG_NAME_CUSTOM_CLOCKS_ENABLED }
             ?.value == true
     }

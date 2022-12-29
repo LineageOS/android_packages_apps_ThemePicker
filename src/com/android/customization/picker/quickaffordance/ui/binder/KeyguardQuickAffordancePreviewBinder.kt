@@ -27,7 +27,6 @@ import androidx.lifecycle.lifecycleScope
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel
 import com.android.systemui.shared.quickaffordance.shared.model.KeyguardQuickAffordancePreviewConstants
 import com.android.wallpaper.R
-import com.android.wallpaper.model.WallpaperInfo
 import com.android.wallpaper.picker.customization.ui.binder.ScreenPreviewBinder
 import kotlinx.coroutines.launch
 
@@ -40,7 +39,6 @@ object KeyguardQuickAffordancePreviewBinder {
         previewView: CardView,
         viewModel: KeyguardQuickAffordancePickerViewModel,
         lifecycleOwner: LifecycleOwner,
-        wallpaperInfoProvider: suspend () -> WallpaperInfo?,
     ) {
         val binding =
             ScreenPreviewBinder.bind(
@@ -48,7 +46,6 @@ object KeyguardQuickAffordancePreviewBinder {
                 previewView = previewView,
                 viewModel = viewModel.preview,
                 lifecycleOwner = lifecycleOwner,
-                wallpaperInfoProvider = wallpaperInfoProvider,
             )
 
         previewView.contentDescription =
