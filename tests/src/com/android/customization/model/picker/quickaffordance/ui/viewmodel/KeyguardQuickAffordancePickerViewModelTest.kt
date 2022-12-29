@@ -27,9 +27,9 @@ import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQui
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordanceSlotViewModel
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordanceSummaryViewModel
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordanceViewModel
+import com.android.systemui.shared.customization.data.content.CustomizationProviderClient
+import com.android.systemui.shared.customization.data.content.FakeCustomizationProviderClient
 import com.android.systemui.shared.keyguard.shared.model.KeyguardQuickAffordanceSlots
-import com.android.systemui.shared.quickaffordance.data.content.FakeKeyguardQuickAffordanceProviderClient
-import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderClient
 import com.android.wallpaper.picker.undo.data.repository.UndoRepository
 import com.android.wallpaper.picker.undo.domain.interactor.UndoInteractor
 import com.android.wallpaper.testing.FAKE_RESTORERS
@@ -60,7 +60,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
 
     private lateinit var context: Context
     private lateinit var testScope: TestScope
-    private lateinit var client: FakeKeyguardQuickAffordanceProviderClient
+    private lateinit var client: FakeCustomizationProviderClient
     private lateinit var quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor
 
     @Before
@@ -69,7 +69,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
         val testDispatcher = StandardTestDispatcher()
         testScope = TestScope(testDispatcher)
         Dispatchers.setMain(testDispatcher)
-        client = FakeKeyguardQuickAffordanceProviderClient()
+        client = FakeCustomizationProviderClient()
 
         quickAffordanceInteractor =
             KeyguardQuickAffordancePickerInteractor(
@@ -136,14 +136,14 @@ class KeyguardQuickAffordancePickerViewModelTest {
                 slots = slots(),
                 affordances = quickAffordances(),
                 selectedSlotText = "Left button",
-                selectedAffordanceText = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_1,
+                selectedAffordanceText = FakeCustomizationProviderClient.AFFORDANCE_1,
             )
             assertPreviewUiState(
                 slots = slots(),
                 expectedAffordanceNameBySlotId =
                     mapOf(
                         KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START to
-                            FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_1,
+                            FakeCustomizationProviderClient.AFFORDANCE_1,
                         KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END to null,
                     ),
             )
@@ -157,16 +157,16 @@ class KeyguardQuickAffordancePickerViewModelTest {
                 slots = slots(),
                 affordances = quickAffordances(),
                 selectedSlotText = "Right button",
-                selectedAffordanceText = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_3,
+                selectedAffordanceText = FakeCustomizationProviderClient.AFFORDANCE_3,
             )
             assertPreviewUiState(
                 slots = slots(),
                 expectedAffordanceNameBySlotId =
                     mapOf(
                         KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START to
-                            FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_1,
+                            FakeCustomizationProviderClient.AFFORDANCE_1,
                         KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END to
-                            FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_3,
+                            FakeCustomizationProviderClient.AFFORDANCE_3,
                     ),
             )
 
@@ -176,16 +176,16 @@ class KeyguardQuickAffordancePickerViewModelTest {
                 slots = slots(),
                 affordances = quickAffordances(),
                 selectedSlotText = "Right button",
-                selectedAffordanceText = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_2,
+                selectedAffordanceText = FakeCustomizationProviderClient.AFFORDANCE_2,
             )
             assertPreviewUiState(
                 slots = slots(),
                 expectedAffordanceNameBySlotId =
                     mapOf(
                         KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START to
-                            FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_1,
+                            FakeCustomizationProviderClient.AFFORDANCE_1,
                         KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END to
-                            FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_2,
+                            FakeCustomizationProviderClient.AFFORDANCE_2,
                     ),
             )
         }
@@ -221,7 +221,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
                     mapOf(
                         KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START to null,
                         KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END to
-                            FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_3,
+                            FakeCustomizationProviderClient.AFFORDANCE_3,
                     ),
             )
         }
@@ -233,7 +233,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
             val quickAffordances = collectLastValue(underTest.quickAffordances)
             val dialog = collectLastValue(underTest.dialog)
 
-            val enablementInstructions = listOf("header", "enablementInstructions")
+            val enablementInstructions = listOf("instruction1", "instruction2")
             val enablementActionText = "enablementActionText"
             val packageName = "packageName"
             val action = "action"
@@ -241,10 +241,10 @@ class KeyguardQuickAffordancePickerViewModelTest {
             // Lets add a disabled affordance to the picker:
             val affordanceIndex =
                 client.addAffordance(
-                    KeyguardQuickAffordanceProviderClient.Affordance(
+                    CustomizationProviderClient.Affordance(
                         id = "disabled",
                         name = "disabled",
-                        iconResourceId = 0,
+                        iconResourceId = 1,
                         isEnabled = false,
                         enablementInstructions = enablementInstructions,
                         enablementActionText = enablementActionText,
@@ -256,9 +256,8 @@ class KeyguardQuickAffordancePickerViewModelTest {
             quickAffordances()?.get(affordanceIndex + 1)?.onClicked?.invoke()
 
             // We expect there to be a dialog that should be shown:
-            assertThat(dialog()?.instructionHeader).isEqualTo(enablementInstructions[0])
-            assertThat(dialog()?.instructions)
-                .isEqualTo(enablementInstructions.subList(1, enablementInstructions.size))
+            assertThat(dialog()?.icon).isEqualTo(FakeCustomizationProviderClient.ICON_1)
+            assertThat(dialog()?.instructions).isEqualTo(enablementInstructions)
             assertThat(dialog()?.actionText).isEqualTo(enablementActionText)
             assertThat(dialog()?.intent?.`package`).isEqualTo(packageName)
             assertThat(dialog()?.intent?.action).isEqualTo(action)
@@ -289,10 +288,10 @@ class KeyguardQuickAffordancePickerViewModelTest {
                 .isEqualTo(
                     KeyguardQuickAffordanceSummaryViewModel(
                         description =
-                            "${FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_1}," +
-                                " ${FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_3}",
-                        icon1 = FakeKeyguardQuickAffordanceProviderClient.ICON_1,
-                        icon2 = FakeKeyguardQuickAffordanceProviderClient.ICON_3,
+                            "${FakeCustomizationProviderClient.AFFORDANCE_1}," +
+                                " ${FakeCustomizationProviderClient.AFFORDANCE_3}",
+                        icon1 = FakeCustomizationProviderClient.ICON_1,
+                        icon2 = FakeCustomizationProviderClient.ICON_3,
                     )
                 )
         }
@@ -310,8 +309,8 @@ class KeyguardQuickAffordancePickerViewModelTest {
             assertThat(summary())
                 .isEqualTo(
                     KeyguardQuickAffordanceSummaryViewModel(
-                        description = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_1,
-                        icon1 = FakeKeyguardQuickAffordanceProviderClient.ICON_1,
+                        description = FakeCustomizationProviderClient.AFFORDANCE_1,
+                        icon1 = FakeCustomizationProviderClient.ICON_1,
                         icon2 = null,
                     )
                 )
@@ -333,9 +332,9 @@ class KeyguardQuickAffordancePickerViewModelTest {
             assertThat(summary())
                 .isEqualTo(
                     KeyguardQuickAffordanceSummaryViewModel(
-                        description = FakeKeyguardQuickAffordanceProviderClient.AFFORDANCE_3,
+                        description = FakeCustomizationProviderClient.AFFORDANCE_3,
                         icon1 = null,
-                        icon2 = FakeKeyguardQuickAffordanceProviderClient.ICON_3,
+                        icon2 = FakeCustomizationProviderClient.ICON_3,
                     )
                 )
         }
@@ -414,8 +413,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
      *
      * @param slots The observed slot view-models, keyed by slot ID
      * @param expectedAffordanceNameBySlotId The expected name of the selected affordance for each
-     *   slot ID or `null` if it's expected for there to be no affordance for that slot in the
-     *   preview
+     * slot ID or `null` if it's expected for there to be no affordance for that slot in the preview
      */
     private fun assertPreviewUiState(
         slots: Map<String, KeyguardQuickAffordanceSlotViewModel>?,

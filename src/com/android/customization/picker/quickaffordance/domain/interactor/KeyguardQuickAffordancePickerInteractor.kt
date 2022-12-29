@@ -23,7 +23,7 @@ import com.android.customization.picker.quickaffordance.data.repository.Keyguard
 import com.android.customization.picker.quickaffordance.shared.model.KeyguardQuickAffordancePickerAffordanceModel as AffordanceModel
 import com.android.customization.picker.quickaffordance.shared.model.KeyguardQuickAffordancePickerSelectionModel as SelectionModel
 import com.android.customization.picker.quickaffordance.shared.model.KeyguardQuickAffordancePickerSlotModel as SlotModel
-import com.android.systemui.shared.quickaffordance.data.content.KeyguardQuickAffordanceProviderClient as Client
+import com.android.systemui.shared.customization.data.content.CustomizationProviderClient as Client
 import javax.inject.Provider
 import kotlinx.coroutines.flow.Flow
 
