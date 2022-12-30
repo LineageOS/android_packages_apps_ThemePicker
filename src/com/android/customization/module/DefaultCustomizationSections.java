@@ -25,11 +25,15 @@ import com.android.wallpaper.model.WallpaperSectionController;
 import com.android.wallpaper.model.WorkspaceViewModel;
 import com.android.wallpaper.module.CurrentWallpaperInfoFactory;
 import com.android.wallpaper.module.CustomizationSections;
+import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInteractor;
 import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewSectionController;
+import com.android.wallpaper.picker.customization.ui.section.WallpaperQuickSwitchSectionController;
 import com.android.wallpaper.util.DisplayUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import kotlinx.coroutines.GlobalScope;
 
 /** {@link CustomizationSections} for the customization picker. */
 public final class DefaultCustomizationSections implements CustomizationSections {
@@ -59,7 +63,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
             CustomizationSectionNavigationController sectionNavigationController,
             @Nullable Bundle savedInstanceState,
             CurrentWallpaperInfoFactory wallpaperInfoFactory,
-            DisplayUtils displayUtils) {
+            DisplayUtils displayUtils,
+            WallpaperInteractor wallpaperInteractor) {
         List<CustomizationSectionController<?>> sectionControllers = new ArrayList<>();
 
         // Wallpaper section.
@@ -75,6 +80,14 @@ public final class DefaultCustomizationSections implements CustomizationSections
         // Theme color section.
         sectionControllers.add(new ColorSectionController(
                 activity, wallpaperColorsViewModel, lifecycleOwner, savedInstanceState));
+
+        // Wallpaper quick switch section.
+        sectionControllers.add(
+                new WallpaperQuickSwitchSectionController(
+                        wallpaperInteractor,
+                        lifecycleOwner,
+                        GlobalScope.INSTANCE,
+                        sectionNavigationController));
 
         switch (screen) {
             case LOCK_SCREEN:

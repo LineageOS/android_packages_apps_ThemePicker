@@ -122,6 +122,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
         return super<WallpaperPicker2Injector>.getSnapshotRestorers(context).toMutableMap().apply {
             this[KEY_QUICK_AFFORDANCE_SNAPSHOT_RESTORER] =
                 getKeyguardQuickAffordanceSnapshotRestorer(context)
+            this[KEY_WALLPAPER_SNAPSHOT_RESTORER] = getWallpaperSnapshotRestorer(context)
         }
     }
 
@@ -179,7 +180,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
             }
     }
 
-    protected fun getKeyguardQuickAffordanceSnapshotRestorer(
+    private fun getKeyguardQuickAffordanceSnapshotRestorer(
         context: Context
     ): KeyguardQuickAffordanceSnapshotRestorer {
         return keyguardQuickAffordanceSnapshotRestorer
@@ -194,12 +195,13 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
         @JvmStatic
         private val KEY_QUICK_AFFORDANCE_SNAPSHOT_RESTORER =
             WallpaperPicker2Injector.MIN_SNAPSHOT_RESTORER_KEY
+        @JvmStatic
+        private val KEY_WALLPAPER_SNAPSHOT_RESTORER = KEY_QUICK_AFFORDANCE_SNAPSHOT_RESTORER + 1
 
         /**
          * When this injector is overridden, this is the minimal value that should be used by
          * restorers returns in [getSnapshotRestorers].
          */
-        @JvmStatic
-        protected val MIN_SNAPSHOT_RESTORER_KEY = KEY_QUICK_AFFORDANCE_SNAPSHOT_RESTORER + 1
+        @JvmStatic protected val MIN_SNAPSHOT_RESTORER_KEY = KEY_WALLPAPER_SNAPSHOT_RESTORER + 1
     }
 }
