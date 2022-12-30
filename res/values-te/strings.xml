@@ -69,7 +69,7 @@
     <string name="set_theme_wallpaper_dialog_message" msgid="2179661027350908003">"వాల్‌పేపర్ శైలిని సెట్ చేయండి"</string>
     <string name="use_style_instead_title" msgid="1578754995763917502">"బదులుగా <xliff:g id="ID_1">%1$s</xliff:g>ని ఉపయోగించాలా?"</string>
     <string name="use_style_instead_body" msgid="3051937045807471496">"మీరు ఎంచుకున్న భాగాలు <xliff:g id="ID_1">%1$s</xliff:g> శైలికి సరిపోతాయి. బదులుగా మీరు <xliff:g id="ID_2">%1$s</xliff:g>ని ఉపయోగించాలనుకుంటున్నారా?"</string>
-    <string name="use_style_button" msgid="1754493078383627019">"<xliff:g id="ID_1">%1$s</xliff:g>ని ఉపయోగించు"</string>
+    <string name="use_style_button" msgid="1754493078383627019">"<xliff:g id="ID_1">%1$s</xliff:g>ని ఉపయోగించండి"</string>
     <string name="no_thanks" msgid="7286616980115687627">"వద్దు, ధన్యవాదం"</string>
     <string name="clock_preview_content_description" msgid="5460561185905717460">"<xliff:g id="ID_1">%1$s</xliff:g> గడియార ప్రివ్యూ"</string>
     <string name="something_went_wrong" msgid="529840112449799117">"అయ్యో, ఏదో తప్పు జరిగింది."</string>
@@ -94,7 +94,8 @@
     <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"ఎడమవైపు బటన్"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"కుడివైపు బటన్"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"ఏదీ లేదు"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="307756993596011884">"అదనపు సెటప్ అవసరం"</string>
+    <!-- no translation found for keyguard_affordance_enablement_dialog_title (3389730825561696493) -->
+    <skip />
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g>ను తెరవండి"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"<xliff:g id="APPNAME">%1$s</xliff:g> యాప్‌ను షార్ట్‌కట్‌గా జోడించడానికి, వీటిని నిర్ధారించుకోండి"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"పూర్తయింది"</string>

@@ -94,7 +94,8 @@
     <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"왼쪽 버튼"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"오른쪽 버튼"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"없음"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="307756993596011884">"추가 설정 필요"</string>
+    <!-- no translation found for keyguard_affordance_enablement_dialog_title (3389730825561696493) -->
+    <skip />
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g> 열기"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"<xliff:g id="APPNAME">%1$s</xliff:g> 앱을 바로가기로 추가하려면 다음을 확인하세요."</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"완료"</string>
