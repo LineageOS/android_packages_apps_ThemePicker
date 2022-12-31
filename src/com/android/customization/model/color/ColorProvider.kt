@@ -288,7 +288,7 @@ class ColorProvider(context: Context, stubPackageName: String) :
 
                     if (
                         style == Style.MONOCHROMATIC &&
-                            !InjectorProvider.getInjector().flags.isMonochromaticFlagEnabled()
+                            !InjectorProvider.getInjector().getFlags().isMonochromaticFlagEnabled()
                     ) {
                         continue
                     }
