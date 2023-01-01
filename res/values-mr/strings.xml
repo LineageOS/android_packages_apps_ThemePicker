@@ -94,7 +94,8 @@
     <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"डावीकडील बटण"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"उजवीकडील बटण"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"काहीही नाही"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="307756993596011884">"अतिरिक्त सेटअप आवश्यक आहे"</string>
+    <!-- no translation found for keyguard_affordance_enablement_dialog_title (3389730825561696493) -->
+    <skip />
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g> उघडा"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"<xliff:g id="APPNAME">%1$s</xliff:g> हे अ‍ॅप शॉर्टकट म्हणून जोडण्यासाठी, पुढील गोष्टींची खात्री करा"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"पूर्ण झाले"</string>
