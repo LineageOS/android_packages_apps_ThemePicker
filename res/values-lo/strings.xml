@@ -94,8 +94,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"ປຸ່ມຊ້າຍ"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"ປຸ່ມຂວາ"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"ບໍ່ມີ"</string>
-    <!-- no translation found for keyguard_affordance_enablement_dialog_title (3389730825561696493) -->
-    <skip />
+    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"ເພື່ອເລືອກ `<xliff:g id="APPNAME">%1$s</xliff:g>` ກະລຸນາກວດສອບສິ່ງຕໍ່ໄປນີ້"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"ເປີດ <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"ເພື່ອເພີ່ມແອັບ <xliff:g id="APPNAME">%1$s</xliff:g> ເປັນທາງລັດ, ກະລຸນາກວດສອບໃຫ້ແນ່ໃຈວ່າ"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"ແລ້ວໆ"</string>
