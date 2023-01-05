@@ -285,6 +285,12 @@
     <!-- Title of a section of color selection option that obtains colors automatically from the
         wallpaper instead of a set color [CHAR LIMIT=15] -->
     <string name="adaptive_color_title">Dynamic</string>
+    <!--
+    Title for a screen where the user can configure the system colors by selecting from a list of
+    color options.
+    [CHAR LIMIT=32].
+    -->
+    <string name="color_picker_title">System Colors</string>
 
     <!--
     Name of the slot on the "start" side of the bottom of the lock screen, where lock screen

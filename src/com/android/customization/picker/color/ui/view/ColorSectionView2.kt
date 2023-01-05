@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.customization.picker.color
+package com.android.customization.picker.color.ui.view
 
 import android.content.Context
 import android.util.AttributeSet
@@ -49,7 +49,7 @@ class ColorSectionView2(context: Context, attrs: AttributeSet?) : SectionView(co
                 val item = items[position]
                 val itemView =
                     LayoutInflater.from(context)
-                        .inflate(R.layout.color_option_section, optionContainer, false)
+                        .inflate(R.layout.color_option_no_background, optionContainer, false)
                 item.bindThumbnailTile(itemView.findViewById(R.id.option_tile))
                 if (item.isActive(manager)) {
                     val optionSelectedView = itemView.findViewById<ImageView>(R.id.option_selected)
@@ -62,7 +62,7 @@ class ColorSectionView2(context: Context, attrs: AttributeSet?) : SectionView(co
         // add overflow option
         val itemView =
             LayoutInflater.from(context)
-                .inflate(R.layout.color_option_section_overflow, optionContainer, false)
+                .inflate(R.layout.color_option_overflow_no_background, optionContainer, false)
         itemView.setOnClickListener { overflowOnClick?.invoke() }
         optionContainer.addView(itemView)
     }
