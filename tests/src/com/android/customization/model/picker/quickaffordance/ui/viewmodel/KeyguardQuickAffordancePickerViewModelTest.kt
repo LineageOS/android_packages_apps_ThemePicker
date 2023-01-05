@@ -30,10 +30,12 @@ import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQui
 import com.android.systemui.shared.customization.data.content.CustomizationProviderClient
 import com.android.systemui.shared.customization.data.content.FakeCustomizationProviderClient
 import com.android.systemui.shared.keyguard.shared.model.KeyguardQuickAffordanceSlots
+import com.android.wallpaper.module.InjectorProvider
 import com.android.wallpaper.picker.undo.data.repository.UndoRepository
 import com.android.wallpaper.picker.undo.domain.interactor.UndoInteractor
 import com.android.wallpaper.testing.FAKE_RESTORERS
 import com.android.wallpaper.testing.TestCurrentWallpaperInfoFactory
+import com.android.wallpaper.testing.TestInjector
 import com.android.wallpaper.testing.collectLastValue
 import com.google.common.truth.Truth.assertThat
 import com.google.common.truth.Truth.assertWithMessage
@@ -65,6 +67,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
 
     @Before
     fun setUp() {
+        InjectorProvider.setInjector(TestInjector())
         context = InstrumentationRegistry.getInstrumentation().targetContext
         val testDispatcher = StandardTestDispatcher()
         testScope = TestScope(testDispatcher)
