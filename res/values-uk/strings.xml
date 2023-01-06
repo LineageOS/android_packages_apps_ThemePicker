@@ -94,7 +94,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"Ліва кнопка"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"Права кнопка"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Немає"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="307756993596011884">"Потрібне додаткове налаштування"</string>
+    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"Щоб вибрати додаток <xliff:g id="APPNAME">%1$s</xliff:g>, виконайте наведені нижче дії"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Відкрити <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Щоб додати можливість швидкого ввімкнення додатка <xliff:g id="APPNAME">%1$s</xliff:g>, переконайтеся, що виконано вимоги нижче."</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Готово"</string>

@@ -94,7 +94,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"მარცხენა ღილაკი"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"მარჯვენა ღილაკი"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"არცერთი"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="307756993596011884">"საჭიროა დამატებითი დაყენება"</string>
+    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"„<xliff:g id="APPNAME">%1$s</xliff:g>“-ის ასარჩევად შეამოწმეთ შემდეგი"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g>-ის გახსნა"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"<xliff:g id="APPNAME">%1$s</xliff:g> აპი რომ მალსახმობის სახით დაამატოთ, დარწმუნდით, რომ"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"მზადაა"</string>

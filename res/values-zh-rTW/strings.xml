@@ -94,7 +94,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"左側按鈕"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"右側按鈕"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"無"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="307756993596011884">"需要進行額外設定"</string>
+    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"必須完成以下事項才能選取「<xliff:g id="APPNAME">%1$s</xliff:g>」"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"開啟「<xliff:g id="APPNAME">%1$s</xliff:g>」"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"如要將「<xliff:g id="APPNAME">%1$s</xliff:g>」應用程式新增為捷徑，必須滿足以下條件"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"完成"</string>

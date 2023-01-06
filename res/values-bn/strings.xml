@@ -94,7 +94,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"বাঁদিকের বোতাম"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"ডানদিকের বোতাম"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"কোনওটিই নয়"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="307756993596011884">"অতিরিক্ত সেট-আপ করতে হবে"</string>
+    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"`<xliff:g id="APPNAME">%1$s</xliff:g>` বেছে নিতে, এগুলি চেক করুন"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g> খুলুন"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"শর্টকাট হিসেবে <xliff:g id="APPNAME">%1$s</xliff:g> অ্যাপ যোগ করতে, এইসব বিষয় নিশ্চিত করতে হবে"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"হয়ে গেছে"</string>
