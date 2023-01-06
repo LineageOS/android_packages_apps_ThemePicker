@@ -39,6 +39,7 @@ object KeyguardQuickAffordancePreviewBinder {
         previewView: CardView,
         viewModel: KeyguardQuickAffordancePickerViewModel,
         lifecycleOwner: LifecycleOwner,
+        offsetToStart: Boolean,
     ) {
         val binding =
             ScreenPreviewBinder.bind(
@@ -46,6 +47,7 @@ object KeyguardQuickAffordancePreviewBinder {
                 previewView = previewView,
                 viewModel = viewModel.preview,
                 lifecycleOwner = lifecycleOwner,
+                offsetToStart = offsetToStart,
             )
 
         previewView.contentDescription =

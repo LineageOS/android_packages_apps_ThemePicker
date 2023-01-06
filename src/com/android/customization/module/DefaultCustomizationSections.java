@@ -26,6 +26,7 @@ import com.android.wallpaper.model.WorkspaceViewModel;
 import com.android.wallpaper.module.CurrentWallpaperInfoFactory;
 import com.android.wallpaper.module.CustomizationSections;
 import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewSectionController;
+import com.android.wallpaper.util.DisplayUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +58,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
             WallpaperPreviewNavigator wallpaperPreviewNavigator,
             CustomizationSectionNavigationController sectionNavigationController,
             @Nullable Bundle savedInstanceState,
-            CurrentWallpaperInfoFactory wallpaperInfoFactory) {
+            CurrentWallpaperInfoFactory wallpaperInfoFactory,
+            DisplayUtils displayUtils) {
         List<CustomizationSectionController<?>> sectionControllers = new ArrayList<>();
 
         // Wallpaper section.
@@ -67,7 +69,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
                         lifecycleOwner,
                         screen,
                         wallpaperInfoFactory,
-                        wallpaperColorsViewModel));
+                        wallpaperColorsViewModel,
+                        displayUtils));
 
         // Theme color section.
         sectionControllers.add(new ColorSectionController(
@@ -115,14 +118,15 @@ public final class DefaultCustomizationSections implements CustomizationSections
             PermissionRequester permissionRequester,
             WallpaperPreviewNavigator wallpaperPreviewNavigator,
             CustomizationSectionNavigationController sectionNavigationController,
-            @Nullable Bundle savedInstanceState) {
+            @Nullable Bundle savedInstanceState,
+            DisplayUtils displayUtils) {
         List<CustomizationSectionController<?>> sectionControllers = new ArrayList<>();
 
         // Wallpaper section.
         sectionControllers.add(new WallpaperSectionController(
                 activity, lifecycleOwner, permissionRequester, wallpaperColorsViewModel,
                 workspaceViewModel, sectionNavigationController, wallpaperPreviewNavigator,
-                savedInstanceState));
+                savedInstanceState, displayUtils));
 
         // Theme color section.
         sectionControllers.add(new ColorSectionController(
