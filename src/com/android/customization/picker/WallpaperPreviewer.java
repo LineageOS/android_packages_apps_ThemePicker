@@ -154,14 +154,16 @@ public class WallpaperPreviewer implements LifecycleObserver {
                         .loadPreviewImage(mActivity,
                                 renderInImageWallpaperSurface ? homeImageWallpaper : mHomePreview,
                                 ResourceUtils.getColorAttr(
-                                        mActivity, android.R.attr.colorSecondary));
+                                        mActivity, android.R.attr.colorSecondary),
+                                /* offsetToStart= */ true);
                 if (mWallpaper instanceof LiveWallpaperInfo) {
                     mWallpaper.getThumbAsset(mActivity.getApplicationContext())
                             .loadPreviewImage(
                                     mActivity,
                                     homeImageWallpaper,
                                     ResourceUtils.getColorAttr(
-                                            mActivity, android.R.attr.colorSecondary));
+                                            mActivity, android.R.attr.colorSecondary),
+                                    /* offsetToStart= */ true);
                     setUpLiveWallpaperPreview(mWallpaper);
                 } else {
                     // Ensure live wallpaper connection is disconnected.
