@@ -94,7 +94,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"Levo dugme"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"Desno dugme"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Ništa"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="307756993596011884">"Potrebno je dodatno podešavanje"</string>
+    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"Da biste izabrali „<xliff:g id="APPNAME">%1$s</xliff:g>“, proverite sledeće"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Otvorite: <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Da biste dodali aplikaciju <xliff:g id="APPNAME">%1$s</xliff:g> kao prečicu, uverite se"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Gotovo"</string>

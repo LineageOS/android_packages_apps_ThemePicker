@@ -74,6 +74,8 @@ class KeyguardQuickAffordancePickerFragment : AppbarFragment() {
             previewView = view.requireViewById(R.id.preview),
             viewModel = viewModel,
             lifecycleOwner = this,
+            offsetToStart =
+                injector.getDisplayUtils(requireActivity()).isOnWallpaperDisplay(requireActivity())
         )
         KeyguardQuickAffordancePickerBinder.bind(
             view = view,
