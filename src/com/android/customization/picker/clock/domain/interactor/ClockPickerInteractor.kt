@@ -17,19 +17,15 @@
 
 package com.android.customization.picker.clock.domain.interactor
 
-import com.android.wallpaper.picker.undo.domain.interactor.SnapshotRestorer
-import com.android.wallpaper.picker.undo.shared.model.RestorableSnapshot
+import com.android.customization.picker.clock.data.repository.ClockPickerRepository
+import com.android.customization.picker.clock.shared.model.ClockMetadataModel
+import kotlinx.coroutines.flow.Flow
 
-/** Handles state restoration for clocks. */
-class ClocksSnapshotRestorer : SnapshotRestorer {
-    override suspend fun setUpSnapshotRestorer(
-        updater: (RestorableSnapshot) -> Unit,
-    ): RestorableSnapshot {
-        // TODO(b/262924055): implement as part of the clock settings screen.
-        return RestorableSnapshot(mapOf())
-    }
+/**
+ * Interactor for accessing application clock settings, as well as selecting and configuring custom
+ * clocks.
+ */
+class ClockPickerInteractor(private val repository: ClockPickerRepository) {
 
-    override suspend fun restoreToSnapshot(snapshot: RestorableSnapshot) {
-        // TODO(b/262924055): implement as part of the clock settings screen.
-    }
+    val selectedClock: Flow<ClockMetadataModel?> = repository.selectedClock
 }
