@@ -16,10 +16,15 @@
 package com.android.customization.module
 
 import android.app.Activity
+import android.app.NotificationManager
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.UserHandle
+import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.android.customization.model.theme.OverlayManagerCompat
@@ -29,8 +34,18 @@ import com.android.customization.picker.quickaffordance.data.repository.Keyguard
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordanceSnapshotRestorer
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel
+import com.android.systemui.plugins.Plugin
+import com.android.systemui.plugins.PluginManager
+import com.android.systemui.shared.clocks.ClockRegistry
+import com.android.systemui.shared.clocks.DefaultClockProvider
 import com.android.systemui.shared.customization.data.content.CustomizationProviderClient
 import com.android.systemui.shared.customization.data.content.CustomizationProviderClientImpl
+import com.android.systemui.shared.plugins.PluginActionManager
+import com.android.systemui.shared.plugins.PluginEnabler
+import com.android.systemui.shared.plugins.PluginInstance
+import com.android.systemui.shared.plugins.PluginManagerImpl
+import com.android.systemui.shared.plugins.PluginPrefs
+import com.android.systemui.shared.system.UncaughtExceptionPreHandlerManager_Factory
 import com.android.wallpaper.model.LiveWallpaperInfo
 import com.android.wallpaper.model.WallpaperInfo
 import com.android.wallpaper.module.CustomizationSections
@@ -43,6 +58,7 @@ import com.android.wallpaper.picker.ImagePreviewFragment
 import com.android.wallpaper.picker.LivePreviewFragment
 import com.android.wallpaper.picker.PreviewFragment
 import com.android.wallpaper.picker.undo.domain.interactor.SnapshotRestorer
+import java.util.concurrent.Executors
 import kotlinx.coroutines.Dispatchers.IO
 
 open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInjector {
@@ -58,6 +74,8 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     private var fragmentFactory: FragmentFactory? = null
     private var keyguardQuickAffordanceSnapshotRestorer: KeyguardQuickAffordanceSnapshotRestorer? =
         null
+    private var clockRegistry: ClockRegistry? = null
+    private var pluginManager: PluginManager? = null
 
     override fun getCustomizationSections(activity: Activity): CustomizationSections {
         return customizationSections
@@ -188,6 +206,80 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                     getKeyguardQuickAffordancePickerProviderClient(context)
                 )
                 .also { keyguardQuickAffordanceSnapshotRestorer = it }
+    }
+
+    override fun getClockRegistry(context: Context): ClockRegistry {
+        return clockRegistry
+            ?: ClockRegistry(
+                    context,
+                    getPluginManager(context),
+                    Handler.getMain(),
+                    isEnabled = true,
+                    userHandle = UserHandle.USER_SYSTEM,
+                    DefaultClockProvider(context, LayoutInflater.from(context), context.resources)
+                )
+                .also { clockRegistry = it }
+    }
+
+    override fun getPluginManager(context: Context): PluginManager {
+        return pluginManager ?: createPluginManager(context).also { pluginManager = it }
+    }
+
+    private fun createPluginManager(context: Context): PluginManager {
+        val privilegedPlugins = listOf<String>()
+        val isDebugDevice = true
+
+        val instanceFactory =
+            PluginInstance.Factory(
+                this::class.java.classLoader,
+                PluginInstance.InstanceFactory<Plugin>(),
+                PluginInstance.VersionChecker(),
+                privilegedPlugins,
+                isDebugDevice,
+            )
+
+        /*
+         * let SystemUI handle plugin, in this class assume plugins are enabled
+         */
+        val pluginEnabler =
+            object : PluginEnabler {
+                override fun setEnabled(component: ComponentName) = Unit
+
+                override fun setDisabled(
+                    component: ComponentName,
+                    @PluginEnabler.DisableReason reason: Int
+                ) = Unit
+
+                override fun isEnabled(component: ComponentName): Boolean {
+                    return true
+                }
+
+                @PluginEnabler.DisableReason
+                override fun getDisableReason(componentName: ComponentName): Int {
+                    return PluginEnabler.ENABLED
+                }
+            }
+
+        val pluginActionManager =
+            PluginActionManager.Factory(
+                context,
+                context.packageManager,
+                context.mainExecutor,
+                Executors.newSingleThreadExecutor(),
+                context.getSystemService(NotificationManager::class.java),
+                pluginEnabler,
+                privilegedPlugins,
+                instanceFactory,
+            )
+        return PluginManagerImpl(
+            context,
+            pluginActionManager,
+            isDebugDevice,
+            UncaughtExceptionPreHandlerManager_Factory.create().get(),
+            pluginEnabler,
+            PluginPrefs(context),
+            listOf(),
+        )
     }
 
     companion object {

@@ -33,6 +33,9 @@
     <!-- The content description of clock entry. [CHAR LIMIT=NONE] -->
     <string name="clock_picker_entry_content_description">Change a custom clock</string>
 
+    <!-- Title of a section of the customization picker where the user can configure Clock face. [CHAR LIMIT=15] -->
+    <string name="clock_settings_title">Clock Settings</string>
+
     <!-- Title of a section of the customization picker where the user can select a Grid size for
         the home screen. [CHAR LIMIT=15] -->
     <string name="grid_title">App grid</string>
