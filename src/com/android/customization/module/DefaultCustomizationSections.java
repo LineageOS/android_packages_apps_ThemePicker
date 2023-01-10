@@ -83,7 +83,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
         sectionControllers.add(
                 new WallpaperQuickSwitchSectionController(
                         wallpaperQuickSwitchViewModel,
-                        lifecycleOwner));
+                        lifecycleOwner,
+                        sectionNavigationController));
 
         switch (screen) {
             case LOCK_SCREEN:
