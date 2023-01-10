@@ -12,22 +12,17 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
-package com.android.customization.picker.clock.data.repository
+package com.android.customization.picker.clock.ui.viewmodel
 
-import com.android.customization.picker.clock.shared.ClockSize
-import com.android.customization.picker.clock.shared.model.ClockMetadataModel
-import kotlinx.coroutines.flow.Flow
+/** View model for the tabs on the clock settings screen. */
+class ClockSettingsTabViewModel(
+    /** User-visible name for the tab. */
+    val name: String,
 
-/**
- * Repository for accessing application clock settings, as well as selecting and configuring custom
- * clocks.
- */
-interface ClockPickerRepository {
-    val selectedClock: Flow<ClockMetadataModel?>
+    /** Whether this is the currently-selected tab in the picker. */
+    val isSelected: Boolean,
 
-    val selectedClockSize: Flow<ClockSize>
-
-    fun setClockSize(size: ClockSize)
-}
+    /** Notifies that the tab has been clicked by the user. */
+    val onClicked: (() -> Unit)?,
+)

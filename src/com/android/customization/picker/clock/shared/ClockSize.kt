@@ -14,20 +14,9 @@
  * limitations under the License.
  *
  */
-package com.android.customization.picker.clock.data.repository
+package com.android.customization.picker.clock.shared
 
-import com.android.customization.picker.clock.shared.ClockSize
-import com.android.customization.picker.clock.shared.model.ClockMetadataModel
-import kotlinx.coroutines.flow.Flow
-
-/**
- * Repository for accessing application clock settings, as well as selecting and configuring custom
- * clocks.
- */
-interface ClockPickerRepository {
-    val selectedClock: Flow<ClockMetadataModel?>
-
-    val selectedClockSize: Flow<ClockSize>
-
-    fun setClockSize(size: ClockSize)
+enum class ClockSize {
+    DYNAMIC,
+    LARGE,
 }
