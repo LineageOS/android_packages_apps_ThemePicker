@@ -19,7 +19,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"వాల్‌పేపర్ &amp; స్టయిల్"</string>
     <string name="theme_title" msgid="2144932106319405101">"శైలి"</string>
-    <string name="clock_title" msgid="2126046720254613991">"గడియారం"</string>
+    <string name="clock_title" msgid="1974314575211361352">"అనుకూల గడియారం"</string>
+    <string name="clock_description" msgid="3563839327378948">"అనుకూల గడియారాన్ని ఎంచుకోండి"</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"అనుకూల గడియారాన్ని మార్చండి"</string>
     <string name="grid_title" msgid="1688173478777254123">"యాప్ గ్రిడ్"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"వర్తింపజేయి"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"ఎడిట్ చేయడానికి నొక్కండి"</string>
@@ -54,7 +56,7 @@
     <string name="custom_theme" msgid="1618351922263478163">"అనుకూలం"</string>
     <string name="custom_theme_title" msgid="2192300350332693631">"అనుకూల <xliff:g id="ID_1">%1$d</xliff:g>"</string>
     <string name="custom_theme_fragment_title" msgid="6615547284702040280">"అనుకూల శైలి"</string>
-    <string name="custom_theme_delete" msgid="4744494663184126202">"తొలగించు"</string>
+    <string name="custom_theme_delete" msgid="4744494663184126202">"తొలగించండి"</string>
     <string name="font_component_title" msgid="8800340833695292049">"ఫాంట్‌ను ఎంచుకోండి"</string>
     <string name="icon_component_title" msgid="5779787138399083903">"చిహ్నాలను ఎంచుకోండి"</string>
     <string name="color_component_title" msgid="1194089273921078816">"రంగును ఎంచుకోండి"</string>
@@ -62,12 +64,12 @@
     <string name="name_component_title" msgid="532425087968663437">"మీ శైలికి పేరు పెట్టండి"</string>
     <string name="icon_component_label" msgid="2625784884001407944">"<xliff:g id="ID_1">%1$d</xliff:g> చిహ్నాలు"</string>
     <string name="delete_custom_theme_confirmation" msgid="4452137183628769394">"అనుకూల శైలిని తొలగించాలా?"</string>
-    <string name="delete_custom_theme_button" msgid="5102462988130208824">"తొలగించు"</string>
-    <string name="cancel" msgid="4651030493668562067">"రద్దు చేయి"</string>
+    <string name="delete_custom_theme_button" msgid="5102462988130208824">"తొలగించండి"</string>
+    <string name="cancel" msgid="4651030493668562067">"రద్దు చేయండి"</string>
     <string name="set_theme_wallpaper_dialog_message" msgid="2179661027350908003">"వాల్‌పేపర్ శైలిని సెట్ చేయండి"</string>
     <string name="use_style_instead_title" msgid="1578754995763917502">"బదులుగా <xliff:g id="ID_1">%1$s</xliff:g>ని ఉపయోగించాలా?"</string>
     <string name="use_style_instead_body" msgid="3051937045807471496">"మీరు ఎంచుకున్న భాగాలు <xliff:g id="ID_1">%1$s</xliff:g> శైలికి సరిపోతాయి. బదులుగా మీరు <xliff:g id="ID_2">%1$s</xliff:g>ని ఉపయోగించాలనుకుంటున్నారా?"</string>
-    <string name="use_style_button" msgid="1754493078383627019">"<xliff:g id="ID_1">%1$s</xliff:g>ని ఉపయోగించు"</string>
+    <string name="use_style_button" msgid="1754493078383627019">"<xliff:g id="ID_1">%1$s</xliff:g>ని ఉపయోగించండి"</string>
     <string name="no_thanks" msgid="7286616980115687627">"వద్దు, ధన్యవాదం"</string>
     <string name="clock_preview_content_description" msgid="5460561185905717460">"<xliff:g id="ID_1">%1$s</xliff:g> గడియార ప్రివ్యూ"</string>
     <string name="something_went_wrong" msgid="529840112449799117">"అయ్యో, ఏదో తప్పు జరిగింది."</string>
@@ -89,4 +91,15 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"ప్రాథమిక రంగులు"</string>
     <string name="color_changed" msgid="7029571720331641235">"రంగు మార్చబడింది"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"డైనమిక్"</string>
+    <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"ఎడమవైపు బటన్"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"కుడివైపు బటన్"</string>
+    <string name="keyguard_affordance_none" msgid="1751643933430782312">"ఏదీ లేదు"</string>
+    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"`<xliff:g id="APPNAME">%1$s</xliff:g>` యాప్‌ను ఎంచుకోవడానికి దిగువ ఉన్న సూచనలను చూడండి."</string>
+    <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g>ను తెరవండి"</string>
+    <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"<xliff:g id="APPNAME">%1$s</xliff:g> యాప్‌ను షార్ట్‌కట్‌గా జోడించడానికి, వీటిని నిర్ధారించుకోండి"</string>
+    <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"పూర్తయింది"</string>
+    <string name="keyguard_quick_affordance_title" msgid="4242813186995735584">"షార్ట్‌కట్‌లు"</string>
+    <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"షార్ట్‌కట్‌లు"</string>
+    <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
+    <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"ఏదీ ఎంచుకోలేదు"</string>
 </resources>

@@ -19,7 +19,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"ਵਾਲਪੇਪਰ ਅਤੇ ਸਟਾਈਲ"</string>
     <string name="theme_title" msgid="2144932106319405101">"ਸ਼ੈਲੀ"</string>
-    <string name="clock_title" msgid="2126046720254613991">"ਘੜੀ"</string>
+    <string name="clock_title" msgid="1974314575211361352">"ਵਿਉਂਤੀ ਘੜੀ"</string>
+    <string name="clock_description" msgid="3563839327378948">"ਵਿਉਂਤੀ ਘੜੀ ਚੁਣੋ"</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"ਵਿਉਂਤੀ ਘੜੀ ਬਦਲੋ"</string>
     <string name="grid_title" msgid="1688173478777254123">"ਐਪ ਗ੍ਰਿਡ"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"ਲਾਗੂ ਕਰੋ"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"ਸੰਪਾਦਨ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ"</string>
@@ -89,4 +91,15 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"ਮੂਲ ਰੰਗ"</string>
     <string name="color_changed" msgid="7029571720331641235">"ਰੰਗ ਬਦਲਿਆ ਗਿਆ"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"ਪਰਿਵਰਤਨਸ਼ੀਲ"</string>
+    <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"ਖੱਬਾ ਬਟਨ"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"ਸੱਜਾ ਬਟਨ"</string>
+    <string name="keyguard_affordance_none" msgid="1751643933430782312">"ਕੋਈ ਨਹੀਂ"</string>
+    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"`<xliff:g id="APPNAME">%1$s</xliff:g>` ਨੂੰ ਚੁਣਨ ਲਈ, ਹੇਠਾਂ ਦਿੱਤੀਆਂ ਹਿਦਾਇਤਾਂ ਦੀ ਪਾਲਣਾ ਕਰੋ"</string>
+    <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g> ਖੋਲ੍ਹੋ"</string>
+    <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"<xliff:g id="APPNAME">%1$s</xliff:g> ਐਪ ਨੂੰ ਸ਼ਾਰਟਕੱਟ ਵਜੋਂ ਸ਼ਾਮਲ ਕਰਨ ਲਈ, ਪੱਕਾ ਕਰੋ ਕਿ"</string>
+    <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"ਹੋ ਗਿਆ"</string>
+    <string name="keyguard_quick_affordance_title" msgid="4242813186995735584">"ਸ਼ਾਰਟਕੱਟ"</string>
+    <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"ਸ਼ਾਰਟਕੱਟ"</string>
+    <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
+    <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"ਕੋਈ ਨਹੀਂ"</string>
 </resources>

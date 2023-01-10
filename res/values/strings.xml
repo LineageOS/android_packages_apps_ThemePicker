@@ -24,7 +24,14 @@
 
     <!-- Title of a section of the customization picker where the user can select a Clock face.
         [CHAR LIMIT=15] -->
-    <string name="clock_title">Clock</string>
+    <string name="clock_title">Custom Clock</string>
+
+    <!-- Description of a section of the customization picker where the user can select a Clock
+        face. [CHAR LIMIT=15] -->
+    <string name="clock_description">Pick a custom clock</string>
+
+    <!-- The content description of clock entry. [CHAR LIMIT=NONE] -->
+    <string name="clock_picker_entry_content_description">Change a custom clock</string>
 
     <!-- Title of a section of the customization picker where the user can select a Grid size for
         the home screen. [CHAR LIMIT=15] -->
@@ -260,4 +267,81 @@
     <!-- Title of a section of color selection option that obtains colors automatically from the
         wallpaper instead of a set color [CHAR LIMIT=15] -->
     <string name="adaptive_color_title">Dynamic</string>
+
+    <!--
+    Name of the slot on the "start" side of the bottom of the lock screen, where quick affordance
+    buttons can be added to the lock screen. In left-to-right languages, this is the left-hand side
+    button. In right-to-left languages, this is the right-hand side button. [CHAR LIMIT=16].
+    -->
+    <string name="keyguard_slot_name_bottom_start">Left button</string>
+
+    <!--
+    Name of the slot on the "end" side of the bottom of the lock screen, where quick affordance
+    buttons can be added to the lock screen. In left-to-right languages, this is the right-hand side
+    button. In right-to-left languages, this is the left-hand side button. [CHAR LIMIT=16].
+    -->
+    <string name="keyguard_slot_name_bottom_end">Right button</string>
+
+    <!--
+    Name for an option to have no quick affordance selected for one of the sides of the lock
+    screen. We show this as an option in a settings experience, where users get to choose which
+    quick affordances (or buttons) are available on their device's lock screen. [CHAR LIMIT=10].
+    -->
+    <string name="keyguard_affordance_none">None</string>
+
+    <!--
+    Title for a popup dialog shown when the user attempts to select an option that is not currently
+    enabled. The dialog contains a list of instructions that the user needs to take in order to
+    enable the option before it can be selected again. [CHAR LIMIT=NONE].
+    -->
+    <string name="keyguard_affordance_enablement_dialog_title">To select `<xliff:g id="appName" example="Wallet">%1$s</xliff:g>` check the following</string>
+
+    <!--
+    Template for an action that opens a specific app. [CHAR LIMIT=16]
+    -->
+    <string name="keyguard_affordance_enablement_dialog_action_template">Open <xliff:g id="appName" example="Wallet">%1$s</xliff:g></string>
+
+    <!--
+    Template for a message shown right before a list of instructions that tell the user what to do
+    in order to enable a shortcut to a specific app. [CHAR LIMIT=NONE]
+    -->
+    <string name="keyguard_affordance_enablement_dialog_message">To add the <xliff:g id="appName" example="Wallet">%1$s</xliff:g> app as a shortcut, make sure</string>
+
+    <!--
+    Label for button in a dialog shown to the user with a list of instructions that the user should
+    follow in order to make a piece of functionality available as a lock screen quick affordance.
+    [CHAR LIMIT=10].
+    -->
+    <string name="keyguard_affordance_enablement_dialog_dismiss_button">Done</string>
+
+    <!--
+    Title for a screen where the user can configure the lock screen shortcut buttons that appear on
+    the device without unlocking.
+    [CHAR LIMIT=32].
+    -->
+    <string name="keyguard_quick_affordance_title">Shortcuts</string>
+
+    <!--
+    Label for a menu item on a settings screen that helps the user open a new screen where they can
+    configure the lock screen shortcut buttons that appear on the device without unlocking.
+    [CHAR LIMIT=16].
+    -->
+    <string name="keyguard_quick_affordance_section_title">Shortcuts</string>
+
+    <!--
+    Template for text that shows the names of two currently-selected lock screen shortcuts on the
+    lock screen. For example, it may say "Camera, Wallet", if the first selected shortcut opens the
+    camera app and the second one opens the tap-to-pay wallet experience.
+    [CHAR LIMIT=60].
+    -->
+    <string name="keyguard_quick_affordance_two_selected_template"><xliff:g id="first">%1$s</xliff:g>, <xliff:g id="second">%2$s</xliff:g></string>
+
+    <!--
+    Placeholder text that shows when no lock screen shortcuts are currently selected on the lock
+    screen. When selected, "None" is replaced by another string that shows what is currently
+    selected. For example, it may say "Camera, Wallet", if the first selected shortcut opens the
+    camera app and the second one opens the tap-to-pay wallet experience.
+    [CHAR LIMIT=60].
+    -->
+    <string name="keyguard_quick_affordance_none_selected">None</string>
 </resources>

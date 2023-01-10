@@ -19,7 +19,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"વૉલપેપર અને સ્ટાઇલ"</string>
     <string name="theme_title" msgid="2144932106319405101">"શૈલી"</string>
-    <string name="clock_title" msgid="2126046720254613991">"ઘડિયાળ"</string>
+    <string name="clock_title" msgid="1974314575211361352">"કસ્ટમ ઘડિયાળ"</string>
+    <string name="clock_description" msgid="3563839327378948">"કસ્ટમ ઘડિયાળ ચૂંટો"</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"કસ્ટમ ઘડિયાળ બદલો"</string>
     <string name="grid_title" msgid="1688173478777254123">"ઍપ ગ્રિડ"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"લાગુ કરો"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"ફેરફાર કરવા માટે ટૅપ કરો"</string>
@@ -89,4 +91,15 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"મૂળભૂત રંગો"</string>
     <string name="color_changed" msgid="7029571720331641235">"રંગ બદલ્યો છે"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"ડાઇનૅમિક"</string>
+    <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"ડાબી બાજુનું બટન"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"જમણી બાજુનું બટન"</string>
+    <string name="keyguard_affordance_none" msgid="1751643933430782312">"એકપણ નહીં"</string>
+    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"`<xliff:g id="APPNAME">%1$s</xliff:g>`ને પસંદ કરવા માટે, નીચેની બાબત ચેક કરો"</string>
+    <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g> ખોલો"</string>
+    <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"<xliff:g id="APPNAME">%1$s</xliff:g> ઍપને શૉર્ટકટ તરીકે ઉમેરવા માટે, આ બાબતોની ખાતરી કરો"</string>
+    <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"થઈ ગયું"</string>
+    <string name="keyguard_quick_affordance_title" msgid="4242813186995735584">"શૉર્ટકટ"</string>
+    <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"શૉર્ટકટ"</string>
+    <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
+    <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"એકપણ નહીં"</string>
 </resources>

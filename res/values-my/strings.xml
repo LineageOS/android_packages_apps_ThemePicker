@@ -19,7 +19,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"နောက်ခံနှင့် ပုံစံ"</string>
     <string name="theme_title" msgid="2144932106319405101">"ပုံစံ"</string>
-    <string name="clock_title" msgid="2126046720254613991">"နာရီ"</string>
+    <string name="clock_title" msgid="1974314575211361352">"စိတ်ကြိုက်နာရီ"</string>
+    <string name="clock_description" msgid="3563839327378948">"စိတ်ကြိုက်နာရီရွေးပါ"</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"စိတ်ကြိုက်နာရီ ပြောင်းနိုင်သည်"</string>
     <string name="grid_title" msgid="1688173478777254123">"အက်ပ်ဇယား"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"အသုံးပြုရန်"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"တည်းဖြတ်ရန် တို့ပါ"</string>
@@ -78,15 +80,26 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"စိတ်ကြိုက်အရောင်"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"စိတ်ကြိုက်ပုံသဏ္ဌာန်"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"စိတ်ကြိုက်ပုံစံအမည်"</string>
-    <string name="mode_title" msgid="2394873501427436055">"မှောင်သည့် အပြင်အဆင်"</string>
+    <string name="mode_title" msgid="2394873501427436055">"အမှောင်နောက်ခံ"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"‘ဘက်ထရီ အားထိန်း’ ကြောင့် ယာယီပိတ်ထားသည်"</string>
     <string name="mode_changed" msgid="2243581369395418584">"အပြင်အဆင် ပြောင်းလိုက်ပါပြီ"</string>
     <string name="themed_icon_title" msgid="7312460430471956558">"အပြင်အဆင်သုံး သင်္ကေတများ"</string>
-    <string name="beta_title" msgid="8703819523760746458">"စမ်းသပ်ဆော့ဖ်ဝဲ"</string>
+    <string name="beta_title" msgid="8703819523760746458">"စမ်းသပ်"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"အက်ပ်ဇယား ပြောင်းရန်"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"နောက်ခံအရောင်များ"</string>
     <string name="wallpaper_color_title" msgid="5687965239180986458">"နောက်ခံအရောင်"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"အခြေခံအရောင်များ"</string>
     <string name="color_changed" msgid="7029571720331641235">"အရောင် ပြောင်းလိုက်ပါပြီ"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"ပြောင်းနိုင်သော"</string>
+    <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"ဘယ်ခလုတ်"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"ညာခလုတ်"</string>
+    <string name="keyguard_affordance_none" msgid="1751643933430782312">"မရှိ"</string>
+    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"`<xliff:g id="APPNAME">%1$s</xliff:g>` ရွေးချယ်ရန် အောက်ပါတို့ကို ကြည့်ပါ"</string>
+    <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g> ဖွင့်ရန်"</string>
+    <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"<xliff:g id="APPNAME">%1$s</xliff:g> အက်ပ်ကို ဖြတ်လမ်းလင့်ခ်အဖြစ် ထည့်ရန် အောက်ပါတို့နှင့်ကိုက်ညီရမည်"</string>
+    <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"ပြီးပြီ"</string>
+    <string name="keyguard_quick_affordance_title" msgid="4242813186995735584">"ဖြတ်လမ်းလင့်ခ်"</string>
+    <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"ဖြတ်လမ်းလင့်ခ်"</string>
+    <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>၊ <xliff:g id="SECOND">%2$s</xliff:g>"</string>
+    <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"မရှိ"</string>
 </resources>

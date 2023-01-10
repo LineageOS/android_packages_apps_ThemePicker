@@ -24,4 +24,5 @@
     <string name="rainbow_color_name_blue" msgid="3473176664458856892">"ສີຟ້າ"</string>
     <string name="rainbow_color_name_purple" msgid="2704722524588084868">"ສີມ່ວງ"</string>
     <string name="rainbow_color_name_magenta" msgid="7248703626077785569">"ສີແດງມ່ວງ"</string>
+    <string name="monochromatic_name" msgid="2554823570460886176">"ສີດຽວ"</string>
 </resources>

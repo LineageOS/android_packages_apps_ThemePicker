@@ -19,7 +19,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"Оформлення та стиль"</string>
     <string name="theme_title" msgid="2144932106319405101">"Стиль"</string>
-    <string name="clock_title" msgid="2126046720254613991">"Годинник"</string>
+    <string name="clock_title" msgid="1974314575211361352">"Свій циферблат"</string>
+    <string name="clock_description" msgid="3563839327378948">"Виберіть свій циферблат"</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Змініть свій циферблат"</string>
     <string name="grid_title" msgid="1688173478777254123">"Сітка додатків"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Застосувати"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Торкніться, щоб змінити"</string>
@@ -89,4 +91,15 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"Основні кольори"</string>
     <string name="color_changed" msgid="7029571720331641235">"Колір змінено"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Динамічний"</string>
+    <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"Ліва кнопка"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"Права кнопка"</string>
+    <string name="keyguard_affordance_none" msgid="1751643933430782312">"Немає"</string>
+    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"Щоб вибрати додаток <xliff:g id="APPNAME">%1$s</xliff:g>, виконайте наведені нижче дії"</string>
+    <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Відкрити <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
+    <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Щоб додати можливість швидкого ввімкнення додатка <xliff:g id="APPNAME">%1$s</xliff:g>, переконайтеся, що виконано вимоги нижче."</string>
+    <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Готово"</string>
+    <string name="keyguard_quick_affordance_title" msgid="4242813186995735584">"Ярлики"</string>
+    <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"Ярлики"</string>
+    <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
+    <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"Немає"</string>
 </resources>

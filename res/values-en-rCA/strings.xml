@@ -19,7 +19,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"Wallpaper and style"</string>
     <string name="theme_title" msgid="2144932106319405101">"Style"</string>
-    <string name="clock_title" msgid="2126046720254613991">"Clock"</string>
+    <string name="clock_title" msgid="1974314575211361352">"Custom clock"</string>
+    <string name="clock_description" msgid="3563839327378948">"Pick a custom clock"</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Change a custom clock"</string>
     <string name="grid_title" msgid="1688173478777254123">"App grid"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Apply"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Tap to edit"</string>
@@ -89,4 +91,26 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"Basic colours"</string>
     <string name="color_changed" msgid="7029571720331641235">"Colour changed"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Dynamic"</string>
+    <!-- no translation found for keyguard_slot_name_bottom_start (6717374042663171860) -->
+    <skip />
+    <!-- no translation found for keyguard_slot_name_bottom_end (7636885379738905151) -->
+    <skip />
+    <!-- no translation found for keyguard_affordance_none (1751643933430782312) -->
+    <skip />
+    <!-- no translation found for keyguard_affordance_enablement_dialog_title (3389730825561696493) -->
+    <skip />
+    <!-- no translation found for keyguard_affordance_enablement_dialog_action_template (8117011931337357438) -->
+    <skip />
+    <!-- no translation found for keyguard_affordance_enablement_dialog_message (6136286758939253570) -->
+    <skip />
+    <!-- no translation found for keyguard_affordance_enablement_dialog_dismiss_button (629754625264422508) -->
+    <skip />
+    <!-- no translation found for keyguard_quick_affordance_title (4242813186995735584) -->
+    <skip />
+    <!-- no translation found for keyguard_quick_affordance_section_title (2806304242671717309) -->
+    <skip />
+    <!-- no translation found for keyguard_quick_affordance_two_selected_template (1757099194522296363) -->
+    <skip />
+    <!-- no translation found for keyguard_quick_affordance_none_selected (8494127020144112003) -->
+    <skip />
 </resources>

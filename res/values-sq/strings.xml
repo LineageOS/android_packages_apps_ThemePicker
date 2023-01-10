@@ -19,7 +19,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"Imazhi i sfondit dhe stili"</string>
     <string name="theme_title" msgid="2144932106319405101">"Stili"</string>
-    <string name="clock_title" msgid="2126046720254613991">"Ora"</string>
+    <string name="clock_title" msgid="1974314575211361352">"Orë e personalizuar"</string>
+    <string name="clock_description" msgid="3563839327378948">"Orë e personalizuar"</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Ndrysho orën e personalizuar"</string>
     <string name="grid_title" msgid="1688173478777254123">"Rrjeta e aplikacioneve"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Zbato"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Trokit për të modifikuar"</string>
@@ -89,4 +91,15 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"Ngjyra bazë"</string>
     <string name="color_changed" msgid="7029571720331641235">"Ngjyra ka ndryshuar"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Dinamike"</string>
+    <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"Butoni i majtë"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"Butoni i djathtë"</string>
+    <string name="keyguard_affordance_none" msgid="1751643933430782312">"Asnjë"</string>
+    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"Për të zgjedhur \"<xliff:g id="APPNAME">%1$s</xliff:g>\", kontrollo si më poshtë"</string>
+    <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Hap \"<xliff:g id="APPNAME">%1$s</xliff:g>\""</string>
+    <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Për të shtuar aplikacionin \"<xliff:g id="APPNAME">%1$s</xliff:g>\" si një shkurtore, sigurohu që"</string>
+    <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"U krye"</string>
+    <string name="keyguard_quick_affordance_title" msgid="4242813186995735584">"Shkurtoret"</string>
+    <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"Shkurtoret"</string>
+    <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
+    <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"Asnjë"</string>
 </resources>
