@@ -13,12 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.customization.model.clock
+package com.android.customization.picker.clock.ui.section
 
 import android.content.Context
 import android.view.LayoutInflater
+import androidx.lifecycle.LifecycleOwner
 import com.android.customization.picker.clock.ClockCustomDemoFragment
 import com.android.customization.picker.clock.ClockSectionView
+import com.android.customization.picker.clock.ui.binder.ClockSectionViewBinder
+import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
 import com.android.systemui.shared.customization.data.content.CustomizationProviderClient
 import com.android.systemui.shared.customization.data.content.CustomizationProviderContract as Contract
 import com.android.wallpaper.R
@@ -30,6 +33,8 @@ import kotlinx.coroutines.runBlocking
 class ClockSectionController(
     private val navigationController: CustomizationSectionNavigationController,
     private val customizationProviderClient: CustomizationProviderClient,
+    private val viewModel: ClockSectionViewModel,
+    private val lifecycleOwner: LifecycleOwner,
 ) : CustomizationSectionController<ClockSectionView?> {
     override fun isAvailable(context: Context?): Boolean {
         return runBlocking { customizationProviderClient.queryFlags() }
@@ -44,7 +49,11 @@ class ClockSectionController(
                     R.layout.clock_section_view,
                     null,
                 ) as ClockSectionView
-        view.setOnClickListener { navigationController.navigateTo(ClockCustomDemoFragment()) }
+        ClockSectionViewBinder.bind(
+            view = view,
+            viewModel = viewModel,
+            lifecycleOwner = lifecycleOwner
+        ) { navigationController.navigateTo(ClockCustomDemoFragment()) }
         return view
     }
 }
