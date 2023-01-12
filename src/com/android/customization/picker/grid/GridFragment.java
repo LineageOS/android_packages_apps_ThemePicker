@@ -160,7 +160,7 @@ public class GridFragment extends AppbarFragment {
                 getActivity(), view.findViewById(R.id.wallpaper_preview_image), wallpaperSurface);
         // Loads current Wallpaper.
         CurrentWallpaperInfoFactory factory = InjectorProvider.getInjector()
-                .getCurrentWallpaperFactory(getContext().getApplicationContext());
+                .getCurrentWallpaperInfoFactory(getContext().getApplicationContext());
         factory.createCurrentWallpaperInfos((homeWallpaper, lockWallpaper, presentationMode) -> {
             mHomeWallpaper = homeWallpaper;
             wallpaperPreviewer.setWallpaper(mHomeWallpaper, /* listener= */ null);

@@ -28,6 +28,14 @@ filegroup {
 }
 
 filegroup {
+    name: "ThemePicker_src_overrides",
+    srcs: [
+        "src_override/**/*.java",
+        "src_override/**/*.kt",
+    ],
+}
+
+filegroup {
     name: "ThemePicker_Manifest",
     srcs: [
         "AndroidManifest.xml",
@@ -46,20 +54,33 @@ genrule {
         + "$(location soong_zip) -o $(out) -C $$RES_DIR -D $$RES_DIR"
 }
 
-//
-// Build app code.
-//
-android_app {
-    name: "ThemePicker",
+genrule {
+    name: "ThemePicker_res_overrides",
+    tools: ["soong_zip"],
+    srcs: [
+        "res_override/**/*",
+    ],
+    out: ["ThemePicker_res_overrides.zip"],
+    cmd: "INPUTS=($(in)) && "
+        + "RES_DIR=$$(dirname $$(dirname $${INPUTS[0]})) && "
+        + "$(location soong_zip) -o $(out) -C $$RES_DIR -D $$RES_DIR"
+}
+
+java_defaults {
+    name: "ThemePicker_defaults",
 
     static_libs: [
         "guava",
         "monet",
-	"renderscript_toolkit",
+	    "renderscript_toolkit",
         "wallpaper-common-deps",
         "SettingsLibSettingsTheme",
         "SystemUI-statsd",
         "styleprotoslite",
+        "androidx.lifecycle_lifecycle-runtime-ktx",
+        "androidx.lifecycle_lifecycle-viewmodel-ktx",
+        "androidx.recyclerview_recyclerview",
+        "SystemUICustomizationLib",
     ],
 
     jni_libs: [
@@ -69,17 +90,12 @@ android_app {
     srcs: [
         ":WallpaperPicker2_srcs",
         ":ThemePicker_srcs",
-        "src_override/**/*.java",
-        "src_override/**/*.kt",
-    ],
-
-    resource_dirs: [
-        "res_override",
+        ":ThemePicker_src_overrides",
     ],
 
     use_embedded_native_libs: true,
 
-    resource_zips: [":WallpaperPicker2_res", ":ThemePicker_res"],
+    resource_zips: [":WallpaperPicker2_res", ":ThemePicker_res", ":ThemePicker_res_overrides"],
 
     optimize: {
         enabled: false,
@@ -89,6 +105,15 @@ android_app {
 
     privileged: true,
     system_ext_specific: true,
+}
+
+//
+// Build app code.
+//
+android_app {
+    name: "ThemePicker",
+    defaults: ["ThemePicker_defaults"],
+
     platform_apis: true,
     manifest: "AndroidManifest.xml",
     additional_manifests: [":WallpaperPicker2_Manifest"],
