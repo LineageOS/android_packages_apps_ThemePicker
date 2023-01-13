@@ -38,6 +38,9 @@ data class KeyguardQuickAffordanceViewModel(
 
     /** Notifies that the quick affordance has been clicked by the user. */
     val onClicked: (() -> Unit)?,
+
+    /** Notifies that the quick affordance has been long-clicked by the user. */
+    val onLongClicked: (() -> Unit)?,
 ) {
     companion object {
         @SuppressLint("UseCompatLoadingForDrawables")
@@ -56,6 +59,7 @@ data class KeyguardQuickAffordanceViewModel(
                     } else {
                         onSelected
                     },
+                onLongClicked = null,
                 isEnabled = true,
             )
         }

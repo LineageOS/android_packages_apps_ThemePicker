@@ -74,6 +74,15 @@ class AffordancesAdapter : RecyclerView.Adapter<AffordancesAdapter.ViewHolder>()
                 null
             }
         )
+        holder.itemView.onLongClickListener =
+            if (item.onLongClicked != null) {
+                View.OnLongClickListener {
+                    item.onLongClicked.invoke()
+                    true
+                }
+            } else {
+                null
+            }
         holder.iconContainerView.setBackgroundResource(
             if (item.isSelected) {
                 R.drawable.keyguard_quick_affordance_icon_container_background_selected
