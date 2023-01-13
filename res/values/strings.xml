@@ -276,14 +276,14 @@
     buttons can be added to the lock screen. In left-to-right languages, this is the left-hand side
     button. In right-to-left languages, this is the right-hand side button. [CHAR LIMIT=16].
     -->
-    <string name="keyguard_slot_name_bottom_start">Left button</string>
+    <string name="keyguard_slot_name_bottom_start">Left</string>
 
     <!--
     Name of the slot on the "end" side of the bottom of the lock screen, where quick affordance
     buttons can be added to the lock screen. In left-to-right languages, this is the right-hand side
     button. In right-to-left languages, this is the left-hand side button. [CHAR LIMIT=16].
     -->
-    <string name="keyguard_slot_name_bottom_end">Right button</string>
+    <string name="keyguard_slot_name_bottom_end">Right</string>
 
     <!--
     Name for an option to have no quick affordance selected for one of the sides of the lock
