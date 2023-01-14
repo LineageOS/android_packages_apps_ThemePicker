@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.AbstractSavedStateViewModelFactory;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -14,6 +15,8 @@ import com.android.customization.model.grid.GridSectionController;
 import com.android.customization.model.mode.DarkModeSectionController;
 import com.android.customization.model.themedicon.ThemedIconSectionController;
 import com.android.customization.model.themedicon.ThemedIconSwitchProvider;
+import com.android.customization.picker.notifications.ui.section.NotificationSectionController;
+import com.android.customization.picker.notifications.ui.viewmodel.NotificationSectionViewModel;
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor;
 import com.android.customization.picker.quickaffordance.ui.section.KeyguardQuickAffordanceSectionController;
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel;
@@ -40,14 +43,17 @@ public final class DefaultCustomizationSections implements CustomizationSections
     private final KeyguardQuickAffordancePickerInteractor mKeyguardQuickAffordancePickerInteractor;
     private final KeyguardQuickAffordancePickerViewModel.Factory
             mKeyguardQuickAffordancePickerViewModelFactory;
+    private final AbstractSavedStateViewModelFactory mNotificationSectionViewModelFactory;
 
     public DefaultCustomizationSections(
             KeyguardQuickAffordancePickerInteractor keyguardQuickAffordancePickerInteractor,
             KeyguardQuickAffordancePickerViewModel.Factory
-                    keyguardQuickAffordancePickerViewModelFactory) {
+                    keyguardQuickAffordancePickerViewModelFactory,
+            AbstractSavedStateViewModelFactory notificationSectionViewModelFactory) {
         mKeyguardQuickAffordancePickerInteractor = keyguardQuickAffordancePickerInteractor;
         mKeyguardQuickAffordancePickerViewModelFactory =
                 keyguardQuickAffordancePickerViewModelFactory;
+        mNotificationSectionViewModelFactory = notificationSectionViewModelFactory;
     }
 
     @Override
@@ -83,6 +89,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
         // Wallpaper quick switch section.
         sectionControllers.add(
                 new WallpaperQuickSwitchSectionController(
+                        screen,
                         wallpaperQuickSwitchViewModel,
                         lifecycleOwner,
                         sectionNavigationController));
@@ -98,6 +105,15 @@ public final class DefaultCustomizationSections implements CustomizationSections
                                         activity,
                                         mKeyguardQuickAffordancePickerViewModelFactory)
                                         .get(KeyguardQuickAffordancePickerViewModel.class),
+                                lifecycleOwner));
+
+                // Notifications section.
+                sectionControllers.add(
+                        new NotificationSectionController(
+                                new ViewModelProvider(
+                                        activity,
+                                        mNotificationSectionViewModelFactory)
+                                        .get(NotificationSectionViewModel.class),
                                 lifecycleOwner));
                 break;
 
