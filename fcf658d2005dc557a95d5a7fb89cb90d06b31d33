@@ -16,6 +16,24 @@
       "message": "This seems to break upgrades from lineage-19.1 and cause weird behaviour even on new 20 builds.",
       "revId": "fcf658d2005dc557a95d5a7fb89cb90d06b31d33",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3fc67d2_17504104",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28232
+      },
+      "writtenOn": "2023-01-14T17:11:40Z",
+      "side": 1,
+      "message": "Could you elaborate a bit more on how it breaks upgrades and what weird behavior on 20 builds?\n\nThe expected behavior is that there\u0027s a button to ask for storage permissions and granting them will restore behavior.\n\nI haven\u0027t faced any issues on my FP3 and FP4.",
+      "parentUuid": "2ed58e08_8d48e881",
+      "revId": "fcf658d2005dc557a95d5a7fb89cb90d06b31d33",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ],
   "submitRequirementResults": []
