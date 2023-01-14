@@ -35,6 +35,7 @@ import com.android.wallpaper.module.InjectorProvider
 import com.android.wallpaper.picker.undo.data.repository.UndoRepository
 import com.android.wallpaper.picker.undo.domain.interactor.UndoInteractor
 import com.android.wallpaper.testing.FAKE_RESTORERS
+import com.android.wallpaper.testing.FakeSnapshotStore
 import com.android.wallpaper.testing.TestCurrentWallpaperInfoFactory
 import com.android.wallpaper.testing.TestInjector
 import com.android.wallpaper.testing.collectLastValue
@@ -90,7 +91,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
                             interactor = quickAffordanceInteractor,
                             client = client,
                         )
-                        .apply { runBlocking { setUpSnapshotRestorer {} } }
+                        .apply { runBlocking { setUpSnapshotRestorer(FakeSnapshotStore()) } }
                 },
             )
         val undoInteractor =
