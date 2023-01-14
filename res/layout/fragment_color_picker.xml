@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (C) 2022 The Android Open Source Project
+  ~ Copyright (C) 2023 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -15,7 +15,9 @@
   ~
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -61,10 +63,9 @@
             >
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@id/slot_tabs"
-                android:layout_width="wrap_content"
+                android:id="@+id/color_type_tabs"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:clipToPadding="false"
                 android:paddingHorizontal="16dp" />
 
@@ -93,12 +94,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@id/affordances"
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/color_section_view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clipToPadding="false"
-                android:paddingHorizontal="16dp" />
+                android:layout_marginTop="@dimen/color_options_container_top_margin"
+                android:clipChildren="false"
+                android:clipToPadding="false"/>
 
             <!--
             This is just an invisible placeholder put in place so that the parent keeps its height
@@ -110,7 +112,7 @@
             It's critical for any TextViews inside the included layout to have text.
             -->
             <include
-                layout="@layout/keyguard_quick_affordance"
+                layout="@layout/color_option"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="invisible" />
