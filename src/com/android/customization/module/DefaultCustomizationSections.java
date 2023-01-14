@@ -83,6 +83,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
         // Wallpaper quick switch section.
         sectionControllers.add(
                 new WallpaperQuickSwitchSectionController(
+                        screen,
                         wallpaperQuickSwitchViewModel,
                         lifecycleOwner,
                         sectionNavigationController));
