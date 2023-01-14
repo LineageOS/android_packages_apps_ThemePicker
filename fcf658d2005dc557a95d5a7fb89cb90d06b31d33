@@ -1,4 +1,22 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ed58e08_8d48e881",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2023-01-14T01:18:29Z",
+      "side": 1,
+      "message": "This seems to break upgrades from lineage-19.1 and cause weird behaviour even on new 20 builds.",
+      "revId": "fcf658d2005dc557a95d5a7fb89cb90d06b31d33",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ],
   "submitRequirementResults": []
 }
