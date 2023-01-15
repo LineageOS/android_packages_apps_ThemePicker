@@ -15,7 +15,6 @@
  */
 package com.android.customization.module
 
-import android.app.Activity
 import android.app.NotificationManager
 import android.content.ComponentName
 import android.content.Context
@@ -25,11 +24,15 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.UserHandle
 import android.view.LayoutInflater
+import androidx.activity.ComponentActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.android.customization.model.theme.OverlayManagerCompat
 import com.android.customization.model.theme.ThemeBundleProvider
 import com.android.customization.model.theme.ThemeManager
+import com.android.customization.picker.notifications.data.repository.NotificationsRepository
+import com.android.customization.picker.notifications.domain.interactor.NotificationsInteractor
+import com.android.customization.picker.notifications.ui.viewmodel.NotificationSectionViewModel
 import com.android.customization.picker.quickaffordance.data.repository.KeyguardQuickAffordancePickerRepository
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordanceSnapshotRestorer
@@ -59,7 +62,8 @@ import com.android.wallpaper.picker.LivePreviewFragment
 import com.android.wallpaper.picker.PreviewFragment
 import com.android.wallpaper.picker.undo.domain.interactor.SnapshotRestorer
 import java.util.concurrent.Executors
-import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 
 open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInjector {
     private var customizationSections: CustomizationSections? = null
@@ -76,12 +80,18 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
         null
     private var clockRegistry: ClockRegistry? = null
     private var pluginManager: PluginManager? = null
+    private var notificationsInteractor: NotificationsInteractor? = null
 
-    override fun getCustomizationSections(activity: Activity): CustomizationSections {
+    override fun getCustomizationSections(activity: ComponentActivity): CustomizationSections {
         return customizationSections
             ?: DefaultCustomizationSections(
                     getKeyguardQuickAffordancePickerInteractor(activity),
-                    getKeyguardQuickAffordancePickerViewModelFactory(activity)
+                    getKeyguardQuickAffordancePickerViewModelFactory(activity),
+                    NotificationSectionViewModel.newFactory(
+                        owner = activity,
+                        defaultArgs = null,
+                        interactor = getNotificationsInteractor(activity),
+                    ),
                 )
                 .also { customizationSections = it }
     }
@@ -175,7 +185,9 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                     getKeyguardQuickAffordancePickerInteractor(context),
                     getUndoInteractor(context),
                     getCurrentWallpaperInfoFactory(context),
-                )
+                ) { intent ->
+                    context.startActivity(intent)
+                }
                 .also { keyguardQuickAffordancePickerViewModelFactory = it }
     }
 
@@ -184,7 +196,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     ): KeyguardQuickAffordancePickerInteractor {
         val client = getKeyguardQuickAffordancePickerProviderClient(context)
         return KeyguardQuickAffordancePickerInteractor(
-            KeyguardQuickAffordancePickerRepository(client, IO),
+            KeyguardQuickAffordancePickerRepository(client, Dispatchers.IO),
             client
         ) { getKeyguardQuickAffordanceSnapshotRestorer(context) }
     }
@@ -193,7 +205,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
         context: Context
     ): CustomizationProviderClient {
         return customizationProviderClient
-            ?: CustomizationProviderClientImpl(context, IO).also {
+            ?: CustomizationProviderClientImpl(context, Dispatchers.IO).also {
                 customizationProviderClient = it
             }
     }
@@ -281,6 +293,21 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
             PluginPrefs(context),
             listOf(),
         )
+    }
+
+    protected fun getNotificationsInteractor(
+        context: Context,
+    ): NotificationsInteractor {
+        return notificationsInteractor
+            ?: NotificationsInteractor(
+                    repository =
+                        NotificationsRepository(
+                            scope = GlobalScope,
+                            backgroundDispatcher = Dispatchers.IO,
+                            secureSettingsRepository = getSecureSettingsRepository(context),
+                        )
+                )
+                .also { notificationsInteractor = it }
     }
 
     companion object {

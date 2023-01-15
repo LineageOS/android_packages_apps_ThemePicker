@@ -18,6 +18,7 @@
 package com.android.customization.model.picker.quickaffordance.ui.viewmodel
 
 import android.content.Context
+import android.content.Intent
 import androidx.test.filters.SmallTest
 import androidx.test.platform.app.InstrumentationRegistry
 import com.android.customization.picker.quickaffordance.data.repository.KeyguardQuickAffordancePickerRepository
@@ -34,6 +35,7 @@ import com.android.wallpaper.module.InjectorProvider
 import com.android.wallpaper.picker.undo.data.repository.UndoRepository
 import com.android.wallpaper.picker.undo.domain.interactor.UndoInteractor
 import com.android.wallpaper.testing.FAKE_RESTORERS
+import com.android.wallpaper.testing.FakeSnapshotStore
 import com.android.wallpaper.testing.TestCurrentWallpaperInfoFactory
 import com.android.wallpaper.testing.TestInjector
 import com.android.wallpaper.testing.collectLastValue
@@ -65,6 +67,8 @@ class KeyguardQuickAffordancePickerViewModelTest {
     private lateinit var client: FakeCustomizationProviderClient
     private lateinit var quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor
 
+    private var latestStartedActivityIntent: Intent? = null
+
     @Before
     fun setUp() {
         InjectorProvider.setInjector(TestInjector())
@@ -87,7 +91,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
                             interactor = quickAffordanceInteractor,
                             client = client,
                         )
-                        .apply { runBlocking { setUpSnapshotRestorer {} } }
+                        .apply { runBlocking { setUpSnapshotRestorer(FakeSnapshotStore()) } }
                 },
             )
         val undoInteractor =
@@ -102,6 +106,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
                     quickAffordanceInteractor = quickAffordanceInteractor,
                     undoInteractor = undoInteractor,
                     wallpaperInfoFactory = TestCurrentWallpaperInfoFactory(context),
+                    activityStarter = { intent -> latestStartedActivityIntent = intent },
                 )
                 .create(KeyguardQuickAffordancePickerViewModel::class.java)
     }
@@ -270,6 +275,30 @@ class KeyguardQuickAffordancePickerViewModelTest {
             // dialog to be shown:
             underTest.onDialogDismissed()
             assertThat(dialog()).isNull()
+        }
+
+    @Test
+    fun `Start settings activity when long-pressing an affordance`() =
+        testScope.runTest {
+            val quickAffordances = collectLastValue(underTest.quickAffordances)
+
+            // Lets add a configurable affordance to the picker:
+            val configureIntent = Intent("some.action")
+            val affordanceIndex =
+                client.addAffordance(
+                    CustomizationProviderClient.Affordance(
+                        id = "affordance",
+                        name = "affordance",
+                        iconResourceId = 1,
+                        isEnabled = true,
+                        configureIntent = configureIntent,
+                    )
+                )
+
+            // Lets try to long-click the affordance:
+            quickAffordances()?.get(affordanceIndex + 1)?.onLongClicked?.invoke()
+
+            assertThat(latestStartedActivityIntent).isEqualTo(configureIntent)
         }
 
     @Test

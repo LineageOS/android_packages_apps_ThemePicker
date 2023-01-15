@@ -276,14 +276,14 @@
     buttons can be added to the lock screen. In left-to-right languages, this is the left-hand side
     button. In right-to-left languages, this is the right-hand side button. [CHAR LIMIT=16].
     -->
-    <string name="keyguard_slot_name_bottom_start">Left button</string>
+    <string name="keyguard_slot_name_bottom_start">Left</string>
 
     <!--
     Name of the slot on the "end" side of the bottom of the lock screen, where quick affordance
     buttons can be added to the lock screen. In left-to-right languages, this is the right-hand side
     button. In right-to-left languages, this is the left-hand side button. [CHAR LIMIT=16].
     -->
-    <string name="keyguard_slot_name_bottom_end">Right button</string>
+    <string name="keyguard_slot_name_bottom_end">Right</string>
 
     <!--
     Name for an option to have no quick affordance selected for one of the sides of the lock
@@ -347,4 +347,30 @@
     [CHAR LIMIT=60].
     -->
     <string name="keyguard_quick_affordance_none_selected">None</string>
+
+    <!--
+    Title for a section in a list of sections in the settings app that allows the user to modify
+    how notifications behave whilst the device is locked.
+
+    [CHAR LIMIT=32].
+    -->
+    <string name="notifications_section_title">Notifications</string>
+
+    <!--
+    Summary for a setting that lets the user toggle between showing or hiding notifications on their
+    device's lock screen. This one is shown when the user is allowing notifications to show on their
+    device's lock screen.
+
+    [CHAR LIMIT=64].
+    -->
+    <string name="show_notifications_on_lock_screen">Show notifications on the lock screen</string>
+
+    <!--
+    Summary for a setting that lets the user toggle between showing or hiding notifications on their
+    device's lock screen. This one is shown when the user is not allowing notifications to show on
+    their device's lock screen.
+
+    [CHAR LIMIT=64].
+    -->
+    <string name="hide_notifications_on_lock_screen">Hide notifications on the lock screen</string>
 </resources>

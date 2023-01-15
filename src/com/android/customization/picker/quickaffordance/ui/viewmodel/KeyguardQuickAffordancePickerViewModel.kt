@@ -54,6 +54,7 @@ private constructor(
     private val quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor,
     undoInteractor: UndoInteractor,
     private val wallpaperInfoFactory: CurrentWallpaperInfoFactory,
+    activityStarter: (Intent) -> Unit,
 ) : ViewModel() {
 
     @SuppressLint("StaticFieldLeak") private val applicationContext = context.applicationContext
@@ -129,6 +130,7 @@ private constructor(
                                         contentDescription = affordanceModel.name,
                                         isSelected = true,
                                         onClicked = null,
+                                        onLongClicked = null,
                                         isEnabled = affordanceModel.isEnabled,
                                     )
                                 },
@@ -200,6 +202,12 @@ private constructor(
                                             affordance.enablementActionComponentName,
                                     )
                                 }
+                            },
+                        onLongClicked =
+                            if (affordance.configureIntent != null) {
+                                { activityStarter(affordance.configureIntent) }
+                            } else {
+                                null
                             },
                         isEnabled = affordance.isEnabled,
                     )
@@ -374,6 +382,7 @@ private constructor(
         private val quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor,
         private val undoInteractor: UndoInteractor,
         private val wallpaperInfoFactory: CurrentWallpaperInfoFactory,
+        private val activityStarter: (Intent) -> Unit,
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             @Suppress("UNCHECKED_CAST")
@@ -382,6 +391,7 @@ private constructor(
                 quickAffordanceInteractor = quickAffordanceInteractor,
                 undoInteractor = undoInteractor,
                 wallpaperInfoFactory = wallpaperInfoFactory,
+                activityStarter = activityStarter,
             )
                 as T
         }
