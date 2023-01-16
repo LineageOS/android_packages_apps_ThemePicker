@@ -27,9 +27,15 @@ import kotlinx.coroutines.flow.Flow
  * clocks.
  */
 class ClockPickerInteractor(private val repository: ClockPickerRepository) {
-    val selectedClock: Flow<ClockMetadataModel?> = repository.selectedClock
+    val allClocks: Array<ClockMetadataModel> = repository.allClocks
+
+    val selectedClock: Flow<ClockMetadataModel> = repository.selectedClock
 
     val selectedClockSize: Flow<ClockSize> = repository.selectedClockSize
+
+    fun setSelectedClock(clockId: String) {
+        repository.setSelectedClock(clockId)
+    }
 
     fun setClockSize(size: ClockSize) {
         repository.setClockSize(size)
