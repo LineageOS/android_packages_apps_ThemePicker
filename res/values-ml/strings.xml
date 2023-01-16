@@ -22,6 +22,7 @@
     <string name="clock_title" msgid="1974314575211361352">"കസ്റ്റം ക്ലോക്ക്"</string>
     <string name="clock_description" msgid="3563839327378948">"കസ്റ്റം ക്ലോക്ക് തിരഞ്ഞെടുക്കൂ"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"ഇഷ്‌ടാനുസൃത  ക്ലോക്ക് മാറ്റൂ"</string>
+    <string name="clock_settings_title" msgid="2940654205471453913">"ക്ലോക്ക് സെറ്റിംഗ്"</string>
     <string name="grid_title" msgid="1688173478777254123">"ആപ്പ് ഗ്രിഡ്"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"പ്രയോഗിക്കുക"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"എഡിറ്റ് ചെയ്യാൻ ടാപ്പ് ചെയ്യുക"</string>
@@ -91,8 +92,10 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"അടിസ്ഥാന നിറങ്ങൾ"</string>
     <string name="color_changed" msgid="7029571720331641235">"നിറം മാറ്റി"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"ഡൈനാമിക്"</string>
-    <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"ഇടതുവശത്തെ ബട്ടൺ"</string>
-    <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"വലതുവശത്തെ ബട്ടൺ"</string>
+    <!-- no translation found for keyguard_slot_name_bottom_start (4755278855965391938) -->
+    <skip />
+    <!-- no translation found for keyguard_slot_name_bottom_end (360781114168682042) -->
+    <skip />
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"ഒന്നുമില്ല"</string>
     <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"`<xliff:g id="APPNAME">%1$s</xliff:g>` തിരഞ്ഞെടുക്കാൻ, ഇനിപ്പറയുന്നവ പരിശോധിക്കുക"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g> തുറക്കുക"</string>
@@ -102,4 +105,10 @@
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"കുറുക്കുവഴികൾ"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"ഒന്നുമില്ല"</string>
+    <!-- no translation found for notifications_section_title (4283049750376871538) -->
+    <skip />
+    <!-- no translation found for show_notifications_on_lock_screen (4157744243084646720) -->
+    <skip />
+    <!-- no translation found for hide_notifications_on_lock_screen (7413548956484779174) -->
+    <skip />
 </resources>
