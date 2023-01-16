@@ -62,8 +62,9 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@id/slot_tabs"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:clipToPadding="false"
                 android:paddingHorizontal="16dp" />
 

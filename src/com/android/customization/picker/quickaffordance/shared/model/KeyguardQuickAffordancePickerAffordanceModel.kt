@@ -17,6 +17,7 @@
 
 package com.android.customization.picker.quickaffordance.shared.model
 
+import android.content.Intent
 import androidx.annotation.DrawableRes
 
 /** Models a quick affordance. */
@@ -42,4 +43,6 @@ data class KeyguardQuickAffordancePickerAffordanceModel(
      * user to a destination where they can re-enable it.
      */
     val enablementActionComponentName: String?,
+    /** Optional [Intent] to use to start an activity to configure this affordance. */
+    val configureIntent: Intent?,
 )
