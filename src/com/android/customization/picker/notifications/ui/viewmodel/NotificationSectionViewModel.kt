@@ -17,14 +17,11 @@
 
 package com.android.customization.picker.notifications.ui.viewmodel
 
-import android.os.Bundle
 import androidx.annotation.StringRes
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.AbstractSavedStateViewModelFactory
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.savedstate.SavedStateRegistryOwner
 import com.android.customization.picker.notifications.domain.interactor.NotificationsInteractor
 import com.android.wallpaper.R
 import kotlinx.coroutines.flow.Flow
@@ -57,25 +54,15 @@ constructor(
         viewModelScope.launch { interactor.toggleShowNotificationsOnLockScreenEnabled() }
     }
 
-    companion object {
-        @JvmStatic
-        fun newFactory(
-            owner: SavedStateRegistryOwner,
-            defaultArgs: Bundle? = null,
-            interactor: NotificationsInteractor,
-        ): AbstractSavedStateViewModelFactory =
-            object : AbstractSavedStateViewModelFactory(owner, defaultArgs) {
-                @Suppress("UNCHECKED_CAST")
-                override fun <T : ViewModel> create(
-                    key: String,
-                    modelClass: Class<T>,
-                    handle: SavedStateHandle,
-                ): T {
-                    return NotificationSectionViewModel(
-                        interactor = interactor,
-                    )
-                        as T
-                }
-            }
+    class Factory(
+        private val interactor: NotificationsInteractor,
+    ) : ViewModelProvider.Factory {
+        @Suppress("UNCHECKED_CAST")
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return NotificationSectionViewModel(
+                interactor = interactor,
+            )
+                as T
+        }
     }
 }
