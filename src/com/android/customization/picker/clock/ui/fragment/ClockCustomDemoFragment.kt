@@ -1,4 +1,4 @@
-package com.android.customization.picker.clock
+package com.android.customization.picker.clock.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -13,43 +13,23 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.setPadding
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.customization.module.ThemePickerInjector
 import com.android.internal.annotations.VisibleForTesting
 import com.android.systemui.plugins.ClockMetadata
-import com.android.systemui.plugins.ClockProviderPlugin
-import com.android.systemui.plugins.PluginListener
-import com.android.systemui.plugins.PluginManager
 import com.android.systemui.shared.clocks.ClockRegistry
 import com.android.wallpaper.R
 import com.android.wallpaper.module.InjectorProvider
 import com.android.wallpaper.picker.AppbarFragment
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ClockCustomDemoFragment : AppbarFragment() {
-    @VisibleForTesting lateinit var clockRegistry: ClockRegistry
     @VisibleForTesting lateinit var recyclerView: RecyclerView
-    lateinit var pluginManager: PluginManager
-    @VisibleForTesting
-    val pluginListener =
-        object : PluginListener<ClockProviderPlugin> {
-            override fun onPluginConnected(plugin: ClockProviderPlugin, context: Context) {
-                val listInUse = clockRegistry.getClocks().filter { "NOT_IN_USE" !in it.clockId }
-                recyclerView.adapter =
-                    ClockRecyclerAdapter(listInUse, context) {
-                        clockRegistry.currentClockId = it.clockId
-                        Toast.makeText(context, "${it.name} selected", Toast.LENGTH_SHORT).show()
-                    }
-            }
-        }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        val injector = InjectorProvider.getInjector() as ThemePickerInjector
-        pluginManager = injector.getPluginManager(context)
-        clockRegistry = injector.getClockRegistry(context)
-        pluginManager.addPluginListener(pluginListener, ClockProviderPlugin::class.java, true)
-    }
+    @VisibleForTesting lateinit var clockRegistry: ClockRegistry
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,6 +38,20 @@ class ClockCustomDemoFragment : AppbarFragment() {
     ): View {
         val view = inflater.inflate(R.layout.fragment_clock_custom_picker_demo, container, false)
         setUpToolbar(view)
+        lifecycleScope.launch {
+            clockRegistry =
+                withContext(Dispatchers.IO) {
+                    (InjectorProvider.getInjector() as ThemePickerInjector)
+                        .getClockRegistryProvider(requireContext())
+                        .get()
+                }
+            val listInUse = clockRegistry.getClocks().filter { "NOT_IN_USE" !in it.clockId }
+            recyclerView.adapter =
+                ClockRecyclerAdapter(listInUse, requireContext()) {
+                    clockRegistry.currentClockId = it.clockId
+                    Toast.makeText(context, "${it.name} selected", Toast.LENGTH_SHORT).show()
+                }
+        }
         return view
     }
 
