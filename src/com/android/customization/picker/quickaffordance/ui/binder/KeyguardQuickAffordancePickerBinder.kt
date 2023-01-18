@@ -17,11 +17,9 @@
 
 package com.android.customization.picker.quickaffordance.ui.binder
 
-import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.graphics.Rect
-import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.ViewCompat
 import androidx.lifecycle.Lifecycle
@@ -34,6 +32,8 @@ import com.android.customization.picker.quickaffordance.ui.adapter.AffordancesAd
 import com.android.customization.picker.quickaffordance.ui.adapter.SlotTabAdapter
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel
 import com.android.wallpaper.R
+import com.android.wallpaper.picker.common.dialog.ui.viewbinder.DialogViewBinder
+import com.android.wallpaper.picker.common.dialog.ui.viewmodel.DialogViewModel
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -98,25 +98,14 @@ object KeyguardQuickAffordancePickerBinder {
 
     private fun showDialog(
         context: Context,
-        request: KeyguardQuickAffordancePickerViewModel.DialogViewModel,
+        request: DialogViewModel,
         onDismissed: () -> Unit,
     ): Dialog {
-        val view: View =
-            LayoutInflater.from(context)
-                .inflate(
-                    R.layout.keyguard_quick_affordance_enablement_dialog,
-                    null,
-                )
-        KeyguardQuickAffordanceEnablementDialogBinder.bind(
-            view = view,
+        return DialogViewBinder.show(
+            context = context,
             viewModel = request,
             onDismissed = onDismissed,
         )
-
-        return AlertDialog.Builder(context, R.style.LightDialogTheme)
-            .setView(view)
-            .setOnDismissListener { onDismissed() }
-            .show()
     }
 
     private class ItemSpacing : RecyclerView.ItemDecoration() {

@@ -32,6 +32,8 @@ import com.android.systemui.shared.customization.data.content.CustomizationProvi
 import com.android.systemui.shared.customization.data.content.FakeCustomizationProviderClient
 import com.android.systemui.shared.keyguard.shared.model.KeyguardQuickAffordanceSlots
 import com.android.wallpaper.module.InjectorProvider
+import com.android.wallpaper.picker.common.icon.ui.viewmodel.Icon
+import com.android.wallpaper.picker.common.text.ui.viewmodel.Text
 import com.android.wallpaper.picker.undo.data.repository.UndoRepository
 import com.android.wallpaper.picker.undo.domain.interactor.UndoInteractor
 import com.android.wallpaper.testing.FAKE_RESTORERS
@@ -264,11 +266,14 @@ class KeyguardQuickAffordancePickerViewModelTest {
             quickAffordances()?.get(affordanceIndex + 1)?.onClicked?.invoke()
 
             // We expect there to be a dialog that should be shown:
-            assertThat(dialog()?.icon).isEqualTo(FakeCustomizationProviderClient.ICON_1)
-            assertThat(dialog()?.instructions).isEqualTo(enablementInstructions)
-            assertThat(dialog()?.actionText).isEqualTo(enablementActionText)
-            assertThat(dialog()?.intent?.`package`).isEqualTo(packageName)
-            assertThat(dialog()?.intent?.action).isEqualTo(action)
+            assertThat(dialog()?.icon)
+                .isEqualTo(Icon.Loaded(FakeCustomizationProviderClient.ICON_1, null))
+            assertThat(dialog()?.title).isEqualTo(Text.Loaded("disabled"))
+            assertThat(dialog()?.message)
+                .isEqualTo(Text.Loaded(enablementInstructions.joinToString("\n")))
+            assertThat(dialog()?.buttons?.size).isEqualTo(1)
+            assertThat(dialog()?.buttons?.first()?.text)
+                .isEqualTo(Text.Loaded(enablementActionText))
 
             // Once we report that the dialog has been dismissed by the user, we expect there to be
             // no
