@@ -81,15 +81,14 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     private var clockRegistry: ClockRegistry? = null
     private var pluginManager: PluginManager? = null
     private var notificationsInteractor: NotificationsInteractor? = null
+    private var notificationSectionViewModelFactory: NotificationSectionViewModel.Factory? = null
 
     override fun getCustomizationSections(activity: ComponentActivity): CustomizationSections {
         return customizationSections
             ?: DefaultCustomizationSections(
                     getKeyguardQuickAffordancePickerInteractor(activity),
                     getKeyguardQuickAffordancePickerViewModelFactory(activity),
-                    NotificationSectionViewModel.newFactory(
-                        owner = activity,
-                        defaultArgs = null,
+                    NotificationSectionViewModel.Factory(
                         interactor = getNotificationsInteractor(activity),
                     ),
                 )
@@ -189,6 +188,16 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                     context.startActivity(intent)
                 }
                 .also { keyguardQuickAffordancePickerViewModelFactory = it }
+    }
+
+    fun getNotificationSectionViewModelFactory(
+        context: Context,
+    ): NotificationSectionViewModel.Factory {
+        return notificationSectionViewModelFactory
+            ?: NotificationSectionViewModel.Factory(
+                    interactor = getNotificationsInteractor(context),
+                )
+                .also { notificationSectionViewModelFactory = it }
     }
 
     private fun getKeyguardQuickAffordancePickerInteractorImpl(

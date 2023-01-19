@@ -22,6 +22,8 @@
     <string name="clock_title" msgid="1974314575211361352">"பிரத்தியேகக் கடிகாரம்"</string>
     <string name="clock_description" msgid="3563839327378948">"பிரத்தியேகக் கடிகாரத்தைத் தேர்வுசெய்க"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"பிரத்தியேகக் கடிகாரத்தை மாற்றும்"</string>
+    <!-- no translation found for clock_settings_title (2940654205471453913) -->
+    <skip />
     <string name="grid_title" msgid="1688173478777254123">"ஆப்ஸ் கட்டம்"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"பயன்படுத்து"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"\'தீமைத்\' திருத்த தட்டவும்"</string>
@@ -91,8 +93,10 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"அடிப்படை வண்ணங்கள்"</string>
     <string name="color_changed" msgid="7029571720331641235">"வண்ணம் மாற்றப்பட்டது"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"டைனமிக்"</string>
-    <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"இடது பட்டன்"</string>
-    <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"வலது பட்டன்"</string>
+    <!-- no translation found for keyguard_slot_name_bottom_start (4755278855965391938) -->
+    <skip />
+    <!-- no translation found for keyguard_slot_name_bottom_end (360781114168682042) -->
+    <skip />
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"ஏதுமில்லை"</string>
     <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"`<xliff:g id="APPNAME">%1$s</xliff:g>` ஆப்ஸைத் தேர்ந்தெடுக்க பின்வருபவற்றைச் சரிபார்க்கவும்"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g> ஐத் திறக்கும்"</string>
@@ -102,4 +106,10 @@
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"ஷார்ட்கட்கள்"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"ஏதுமில்லை"</string>
+    <!-- no translation found for notifications_section_title (4283049750376871538) -->
+    <skip />
+    <!-- no translation found for show_notifications_on_lock_screen (4157744243084646720) -->
+    <skip />
+    <!-- no translation found for hide_notifications_on_lock_screen (7413548956484779174) -->
+    <skip />
 </resources>
