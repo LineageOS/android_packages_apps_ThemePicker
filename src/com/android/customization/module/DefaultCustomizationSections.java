@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.AbstractSavedStateViewModelFactory;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -43,13 +42,13 @@ public final class DefaultCustomizationSections implements CustomizationSections
     private final KeyguardQuickAffordancePickerInteractor mKeyguardQuickAffordancePickerInteractor;
     private final KeyguardQuickAffordancePickerViewModel.Factory
             mKeyguardQuickAffordancePickerViewModelFactory;
-    private final AbstractSavedStateViewModelFactory mNotificationSectionViewModelFactory;
+    private final NotificationSectionViewModel.Factory mNotificationSectionViewModelFactory;
 
     public DefaultCustomizationSections(
             KeyguardQuickAffordancePickerInteractor keyguardQuickAffordancePickerInteractor,
             KeyguardQuickAffordancePickerViewModel.Factory
                     keyguardQuickAffordancePickerViewModelFactory,
-            AbstractSavedStateViewModelFactory notificationSectionViewModelFactory) {
+            NotificationSectionViewModel.Factory notificationSectionViewModelFactory) {
         mKeyguardQuickAffordancePickerInteractor = keyguardQuickAffordancePickerInteractor;
         mKeyguardQuickAffordancePickerViewModelFactory =
                 keyguardQuickAffordancePickerViewModelFactory;
