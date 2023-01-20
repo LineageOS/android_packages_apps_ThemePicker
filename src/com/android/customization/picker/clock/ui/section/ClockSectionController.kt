@@ -22,24 +22,21 @@ import com.android.customization.picker.clock.ClockCustomDemoFragment
 import com.android.customization.picker.clock.ClockSectionView
 import com.android.customization.picker.clock.ui.binder.ClockSectionViewBinder
 import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
-import com.android.systemui.shared.customization.data.content.CustomizationProviderClient
-import com.android.systemui.shared.customization.data.content.CustomizationProviderContract as Contract
 import com.android.wallpaper.R
+import com.android.wallpaper.config.BaseFlags
 import com.android.wallpaper.model.CustomizationSectionController
 import com.android.wallpaper.model.CustomizationSectionController.CustomizationSectionNavigationController
-import kotlinx.coroutines.runBlocking
 
 /** A [CustomizationSectionController] for clock customization. */
 class ClockSectionController(
     private val navigationController: CustomizationSectionNavigationController,
-    private val customizationProviderClient: CustomizationProviderClient,
     private val viewModel: ClockSectionViewModel,
     private val lifecycleOwner: LifecycleOwner,
+    private val flag: BaseFlags,
 ) : CustomizationSectionController<ClockSectionView?> {
+
     override fun isAvailable(context: Context?): Boolean {
-        return runBlocking { customizationProviderClient.queryFlags() }
-            .firstOrNull { it.name == Contract.FlagsTable.FLAG_NAME_CUSTOM_CLOCKS_ENABLED }
-            ?.value == true
+        return flag.isCustomClocksEnabled(context!!)
     }
 
     override fun createView(context: Context): ClockSectionView {

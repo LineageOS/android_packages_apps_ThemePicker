@@ -32,6 +32,11 @@ import com.android.systemui.shared.keyguard.shared.model.KeyguardQuickAffordance
 import com.android.systemui.shared.quickaffordance.shared.model.KeyguardQuickAffordancePreviewConstants
 import com.android.wallpaper.R
 import com.android.wallpaper.module.CurrentWallpaperInfoFactory
+import com.android.wallpaper.picker.common.button.ui.viewmodel.ButtonStyle
+import com.android.wallpaper.picker.common.button.ui.viewmodel.ButtonViewModel
+import com.android.wallpaper.picker.common.dialog.ui.viewmodel.DialogViewModel
+import com.android.wallpaper.picker.common.icon.ui.viewmodel.Icon
+import com.android.wallpaper.picker.common.text.ui.viewmodel.Text
 import com.android.wallpaper.picker.customization.ui.viewmodel.ScreenPreviewViewModel
 import com.android.wallpaper.picker.undo.domain.interactor.UndoInteractor
 import com.android.wallpaper.picker.undo.ui.viewmodel.UndoViewModel
@@ -262,14 +267,40 @@ private constructor(
     ) {
         _dialog.value =
             DialogViewModel(
-                icon = icon,
-                name = name,
-                instructions = instructions,
-                actionText = actionText
-                        ?: applicationContext.getString(
-                            R.string.keyguard_affordance_enablement_dialog_dismiss_button
+                icon =
+                    Icon.Loaded(
+                        drawable = icon,
+                        contentDescription = null,
+                    ),
+                title = Text.Loaded(name),
+                message =
+                    Text.Loaded(
+                        buildString {
+                            instructions.forEachIndexed { index, instruction ->
+                                if (index > 0) {
+                                    append('\n')
+                                }
+
+                                append(instruction)
+                            }
+                        }
+                    ),
+                buttons =
+                    listOf(
+                        ButtonViewModel(
+                            text = actionText?.let { Text.Loaded(actionText) }
+                                    ?: Text.Resource(
+                                        R.string
+                                            .keyguard_affordance_enablement_dialog_dismiss_button,
+                                    ),
+                            style = ButtonStyle.Primary,
+                            onClicked = {
+                                actionComponentName.toIntent()?.let { intent ->
+                                    applicationContext.startActivity(intent)
+                                }
+                            }
                         ),
-                intent = actionComponentName.toIntent(),
+                    ),
             )
     }
 
@@ -325,27 +356,6 @@ private constructor(
             }
         }
     }
-
-    /** Encapsulates a request to show a dialog. */
-    data class DialogViewModel(
-        /** An icon to show. */
-        val icon: Drawable,
-
-        /** Name of the affordance. */
-        val name: String,
-
-        /** The set of instructions to show below the header. */
-        val instructions: List<String>,
-
-        /** Label for the dialog button. */
-        val actionText: String,
-
-        /**
-         * Optional [Intent] to use to start an activity when the dialog button is clicked. If
-         * `null`, the dialog should be dismissed.
-         */
-        val intent: Intent?,
-    )
 
     private fun toDescriptionText(
         context: Context,
