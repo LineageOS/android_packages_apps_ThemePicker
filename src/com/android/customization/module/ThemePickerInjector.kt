@@ -30,6 +30,9 @@ import androidx.fragment.app.FragmentActivity
 import com.android.customization.model.theme.OverlayManagerCompat
 import com.android.customization.model.theme.ThemeBundleProvider
 import com.android.customization.model.theme.ThemeManager
+import com.android.customization.picker.clock.data.repository.ClockPickerRepositoryImpl
+import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
+import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
 import com.android.customization.picker.notifications.data.repository.NotificationsRepository
 import com.android.customization.picker.notifications.domain.interactor.NotificationsInteractor
 import com.android.customization.picker.notifications.ui.viewmodel.NotificationSectionViewModel
@@ -79,6 +82,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     private var keyguardQuickAffordanceSnapshotRestorer: KeyguardQuickAffordanceSnapshotRestorer? =
         null
     private var clockRegistry: ClockRegistry? = null
+    private var clockSectionViewModel: ClockSectionViewModel? = null
     private var pluginManager: PluginManager? = null
     private var notificationsInteractor: NotificationsInteractor? = null
     private var notificationSectionViewModelFactory: NotificationSectionViewModel.Factory? = null
@@ -241,6 +245,14 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                     DefaultClockProvider(context, LayoutInflater.from(context), context.resources)
                 )
                 .also { clockRegistry = it }
+    }
+
+    override fun getClockSectionViewModel(context: Context): ClockSectionViewModel {
+        return clockSectionViewModel
+            ?: ClockSectionViewModel(
+                    ClockPickerInteractor(ClockPickerRepositoryImpl(getClockRegistry(context)))
+                )
+                .also { clockSectionViewModel = it }
     }
 
     override fun getPluginManager(context: Context): PluginManager {

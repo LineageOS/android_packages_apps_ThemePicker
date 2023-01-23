@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentActivity
 import com.android.customization.model.theme.OverlayManagerCompat
 import com.android.customization.model.theme.ThemeBundleProvider
 import com.android.customization.model.theme.ThemeManager
+import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
 import com.android.systemui.plugins.PluginManager
 import com.android.systemui.shared.clocks.ClockRegistry
@@ -40,6 +41,8 @@ interface CustomizationInjector : Injector {
     ): KeyguardQuickAffordancePickerInteractor
 
     fun getClockRegistry(context: Context): ClockRegistry
+
+    fun getClockSectionViewModel(context: Context): ClockSectionViewModel
 
     fun getPluginManager(context: Context): PluginManager
 }
