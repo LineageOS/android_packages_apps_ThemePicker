@@ -74,6 +74,16 @@ object KeyguardQuickAffordancePickerBinder {
                 launch {
                     viewModel.quickAffordances.collect { affordances ->
                         affordancesAdapter.setItems(affordances)
+
+                        // Scroll the view to show the first selected affordance.
+                        val selectedPosition = affordances.indexOfFirst { it.isSelected }
+                        if (selectedPosition != -1) {
+                            // We use "post" because we need to give the adapter item a pass to
+                            // update the view.
+                            affordancesView.post {
+                                affordancesView.smoothScrollToPosition(selectedPosition)
+                            }
+                        }
                     }
                 }
 
