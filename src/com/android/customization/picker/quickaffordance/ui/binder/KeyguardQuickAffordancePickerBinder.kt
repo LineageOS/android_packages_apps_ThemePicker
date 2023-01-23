@@ -128,7 +128,7 @@ object KeyguardQuickAffordancePickerBinder {
         }
 
         companion object {
-            private const val ITEM_SPACING_DP = 8
+            private const val ITEM_SPACING_DP = 12
         }
     }
 }
