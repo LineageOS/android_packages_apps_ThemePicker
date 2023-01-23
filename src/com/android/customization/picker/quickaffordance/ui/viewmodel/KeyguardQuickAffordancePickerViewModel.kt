@@ -38,8 +38,6 @@ import com.android.wallpaper.picker.common.dialog.ui.viewmodel.DialogViewModel
 import com.android.wallpaper.picker.common.icon.ui.viewmodel.Icon
 import com.android.wallpaper.picker.common.text.ui.viewmodel.Text
 import com.android.wallpaper.picker.customization.ui.viewmodel.ScreenPreviewViewModel
-import com.android.wallpaper.picker.undo.domain.interactor.UndoInteractor
-import com.android.wallpaper.picker.undo.ui.viewmodel.UndoViewModel
 import com.android.wallpaper.util.PreviewUtils
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -57,7 +55,6 @@ class KeyguardQuickAffordancePickerViewModel
 private constructor(
     context: Context,
     private val quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor,
-    undoInteractor: UndoInteractor,
     private val wallpaperInfoFactory: CurrentWallpaperInfoFactory,
     activityStarter: (Intent) -> Unit,
 ) : ViewModel() {
@@ -92,11 +89,6 @@ private constructor(
                     )
                 }
             },
-        )
-
-    val undo: UndoViewModel =
-        UndoViewModel(
-            interactor = undoInteractor,
         )
 
     private val _selectedSlotId = MutableStateFlow<String?>(null)
@@ -390,7 +382,6 @@ private constructor(
     class Factory(
         private val context: Context,
         private val quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor,
-        private val undoInteractor: UndoInteractor,
         private val wallpaperInfoFactory: CurrentWallpaperInfoFactory,
         private val activityStarter: (Intent) -> Unit,
     ) : ViewModelProvider.Factory {
@@ -399,7 +390,6 @@ private constructor(
             return KeyguardQuickAffordancePickerViewModel(
                 context = context,
                 quickAffordanceInteractor = quickAffordanceInteractor,
-                undoInteractor = undoInteractor,
                 wallpaperInfoFactory = wallpaperInfoFactory,
                 activityStarter = activityStarter,
             )
