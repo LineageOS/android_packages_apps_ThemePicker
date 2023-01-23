@@ -22,8 +22,7 @@
     <string name="clock_title" msgid="1974314575211361352">"خلفية شاشة ساعة مخصّصة"</string>
     <string name="clock_description" msgid="3563839327378948">"اختيار خلفية شاشة ساعة مخصّصة"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"تغيير خلفية شاشة ساعة مخصّصة"</string>
-    <!-- no translation found for clock_settings_title (2940654205471453913) -->
-    <skip />
+    <string name="clock_settings_title" msgid="2940654205471453913">"إعدادات الساعة"</string>
     <string name="grid_title" msgid="1688173478777254123">"شبكة التطبيقات"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"تطبيق"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"انقُر للتعديل."</string>
