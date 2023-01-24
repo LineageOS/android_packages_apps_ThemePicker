@@ -54,12 +54,12 @@ object KeyguardQuickAffordancePickerBinder {
         slotTabView.adapter = slotTabAdapter
         slotTabView.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
-        slotTabView.addItemDecoration(ItemSpacing())
+        slotTabView.addItemDecoration(ItemSpacing(SLOT_TAB_ITEM_SPACING_DP))
         val affordancesAdapter = AffordancesAdapter()
         affordancesView.adapter = affordancesAdapter
         affordancesView.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
-        affordancesView.addItemDecoration(ItemSpacing())
+        affordancesView.addItemDecoration(ItemSpacing(AFFORDANCE_ITEM_SPACING_DP))
 
         var dialog: Dialog? = null
 
@@ -74,6 +74,16 @@ object KeyguardQuickAffordancePickerBinder {
                 launch {
                     viewModel.quickAffordances.collect { affordances ->
                         affordancesAdapter.setItems(affordances)
+
+                        // Scroll the view to show the first selected affordance.
+                        val selectedPosition = affordances.indexOfFirst { it.isSelected }
+                        if (selectedPosition != -1) {
+                            // We use "post" because we need to give the adapter item a pass to
+                            // update the view.
+                            affordancesView.post {
+                                affordancesView.smoothScrollToPosition(selectedPosition)
+                            }
+                        }
                     }
                 }
 
@@ -108,27 +118,29 @@ object KeyguardQuickAffordancePickerBinder {
         )
     }
 
-    private class ItemSpacing : RecyclerView.ItemDecoration() {
+    private class ItemSpacing(
+        private val itemSpacingDp: Int,
+    ) : RecyclerView.ItemDecoration() {
         override fun getItemOffsets(outRect: Rect, itemPosition: Int, parent: RecyclerView) {
             val addSpacingToStart = itemPosition > 0
             val addSpacingToEnd = itemPosition < (parent.adapter?.itemCount ?: 0) - 1
             val isRtl = parent.layoutManager?.layoutDirection == ViewCompat.LAYOUT_DIRECTION_RTL
             val density = parent.context.resources.displayMetrics.density
+            val halfItemSpacingPx = itemSpacingDp.toPx(density) / 2
             if (!isRtl) {
-                outRect.left = if (addSpacingToStart) ITEM_SPACING_DP.toPx(density) else 0
-                outRect.right = if (addSpacingToEnd) ITEM_SPACING_DP.toPx(density) else 0
+                outRect.left = if (addSpacingToStart) halfItemSpacingPx else 0
+                outRect.right = if (addSpacingToEnd) halfItemSpacingPx else 0
             } else {
-                outRect.left = if (addSpacingToEnd) ITEM_SPACING_DP.toPx(density) else 0
-                outRect.right = if (addSpacingToStart) ITEM_SPACING_DP.toPx(density) else 0
+                outRect.left = if (addSpacingToEnd) halfItemSpacingPx else 0
+                outRect.right = if (addSpacingToStart) halfItemSpacingPx else 0
             }
         }
 
         private fun Int.toPx(density: Float): Int {
             return (this * density).toInt()
         }
-
-        companion object {
-            private const val ITEM_SPACING_DP = 8
-        }
     }
+
+    private const val SLOT_TAB_ITEM_SPACING_DP = 12
+    private const val AFFORDANCE_ITEM_SPACING_DP = 8
 }
