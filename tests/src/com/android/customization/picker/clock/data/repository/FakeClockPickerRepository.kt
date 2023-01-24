@@ -12,17 +12,14 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
 package com.android.customization.picker.clock.data.repository
 
 import com.android.customization.picker.clock.shared.model.ClockMetadataModel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 
-/**
- * Repository for accessing application clock settings, as well as selecting and configuring custom
- * clocks.
- */
-interface ClockPickerRepository {
-    val selectedClock: Flow<ClockMetadataModel?>
+class FakeClockPickerRepository : ClockPickerRepository {
+
+    override val selectedClock: Flow<ClockMetadataModel?> = MutableStateFlow(null)
 }
