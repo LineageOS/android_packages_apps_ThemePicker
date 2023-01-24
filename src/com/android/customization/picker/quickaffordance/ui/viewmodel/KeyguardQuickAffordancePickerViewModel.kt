@@ -80,6 +80,10 @@ private constructor(
                         KeyguardQuickAffordancePreviewConstants.KEY_INITIALLY_SELECTED_SLOT_ID,
                         selectedSlotId.value,
                     )
+                    putBoolean(
+                        KeyguardQuickAffordancePreviewConstants.KEY_HIGHLIGHT_QUICK_AFFORDANCES,
+                        true,
+                    )
                 }
             },
             wallpaperInfoProvider = {
