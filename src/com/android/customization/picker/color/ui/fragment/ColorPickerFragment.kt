@@ -19,6 +19,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import com.android.customization.module.ThemePickerInjector
@@ -27,8 +28,16 @@ import com.android.wallpaper.R
 import com.android.wallpaper.model.WallpaperColorsViewModel
 import com.android.wallpaper.module.InjectorProvider
 import com.android.wallpaper.picker.AppbarFragment
+import com.android.wallpaper.picker.customization.ui.binder.ScreenPreviewBinder
+import com.android.wallpaper.picker.customization.ui.viewmodel.ScreenPreviewViewModel
+import com.android.wallpaper.util.DisplayUtils
+import com.android.wallpaper.util.PreviewUtils
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.suspendCancellableCoroutine
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class ColorPickerFragment : AppbarFragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,6 +51,10 @@ class ColorPickerFragment : AppbarFragment() {
             )
         setUpToolbar(view)
         val injector = InjectorProvider.getInjector() as ThemePickerInjector
+        val lockScreenView: CardView = view.requireViewById(R.id.lock_preview)
+        val homeScreenView: CardView = view.requireViewById(R.id.home_preview)
+        val wallpaperInfoFactory = injector.getCurrentWallpaperInfoFactory(requireContext())
+        val displayUtils: DisplayUtils = injector.getDisplayUtils(requireContext())
         val wcViewModel = ViewModelProvider(requireActivity())[WallpaperColorsViewModel::class.java]
         ColorPickerBinder.bind(
             view = view,
@@ -55,6 +68,68 @@ class ColorPickerFragment : AppbarFragment() {
                     )
                     .get(),
             lifecycleOwner = this,
+        )
+        ScreenPreviewBinder.bind(
+            activity = requireActivity(),
+            previewView = lockScreenView,
+            viewModel =
+                ScreenPreviewViewModel(
+                    previewUtils =
+                        PreviewUtils(
+                            context = requireContext(),
+                            authority =
+                                requireContext()
+                                    .getString(
+                                        R.string.lock_screen_preview_provider_authority,
+                                    ),
+                        ),
+                    wallpaperInfoProvider = {
+                        suspendCancellableCoroutine { continuation ->
+                            wallpaperInfoFactory.createCurrentWallpaperInfos(
+                                { homeWallpaper, lockWallpaper, _ ->
+                                    continuation.resume(lockWallpaper ?: homeWallpaper, null)
+                                },
+                                /* forceRefresh= */ true,
+                            )
+                        }
+                    },
+                    onWallpaperColorChanged = { colors ->
+                        wcViewModel.setLockWallpaperColors(colors)
+                    },
+                ),
+            lifecycleOwner = this,
+            offsetToStart = displayUtils.isOnWallpaperDisplay(requireActivity()),
+        )
+        ScreenPreviewBinder.bind(
+            activity = requireActivity(),
+            previewView = homeScreenView,
+            viewModel =
+                ScreenPreviewViewModel(
+                    previewUtils =
+                        PreviewUtils(
+                            context = requireContext(),
+                            authorityMetadataKey =
+                                requireContext()
+                                    .getString(
+                                        R.string.grid_control_metadata_name,
+                                    ),
+                        ),
+                    wallpaperInfoProvider = {
+                        suspendCancellableCoroutine { continuation ->
+                            wallpaperInfoFactory.createCurrentWallpaperInfos(
+                                { homeWallpaper, lockWallpaper, _ ->
+                                    continuation.resume(homeWallpaper ?: lockWallpaper, null)
+                                },
+                                /* forceRefresh= */ true,
+                            )
+                        }
+                    },
+                    onWallpaperColorChanged = { colors ->
+                        wcViewModel.setLockWallpaperColors(colors)
+                    },
+                ),
+            lifecycleOwner = this,
+            offsetToStart = displayUtils.isOnWallpaperDisplay(requireActivity()),
         )
         return view
     }
