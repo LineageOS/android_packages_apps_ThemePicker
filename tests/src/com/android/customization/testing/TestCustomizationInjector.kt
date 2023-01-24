@@ -1,9 +1,6 @@
 package com.android.customization.testing
 
 import android.content.Context
-import android.os.Handler
-import android.os.UserHandle
-import android.view.LayoutInflater
 import androidx.fragment.app.FragmentActivity
 import com.android.customization.model.theme.OverlayManagerCompat
 import com.android.customization.model.theme.ThemeBundleProvider
@@ -11,12 +8,14 @@ import com.android.customization.model.theme.ThemeManager
 import com.android.customization.module.CustomizationInjector
 import com.android.customization.module.CustomizationPreferences
 import com.android.customization.module.ThemesUserEventLogger
+import com.android.customization.picker.clock.data.repository.ClockRegistryProvider
+import com.android.customization.picker.clock.data.repository.FakeClockPickerRepository
+import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
+import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
 import com.android.customization.picker.quickaffordance.data.repository.KeyguardQuickAffordancePickerRepository
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordanceSnapshotRestorer
-import com.android.systemui.plugins.PluginManager
 import com.android.systemui.shared.clocks.ClockRegistry
-import com.android.systemui.shared.clocks.DefaultClockProvider
 import com.android.systemui.shared.customization.data.content.CustomizationProviderClient
 import com.android.systemui.shared.customization.data.content.CustomizationProviderClientImpl
 import com.android.wallpaper.config.BaseFlags
@@ -25,7 +24,6 @@ import com.android.wallpaper.module.PackageStatusNotifier
 import com.android.wallpaper.module.UserEventLogger
 import com.android.wallpaper.picker.undo.domain.interactor.SnapshotRestorer
 import com.android.wallpaper.testing.TestInjector
-import java.util.HashMap
 import kotlinx.coroutines.Dispatchers.IO
 
 /** Test implementation of the dependency injector. */
@@ -41,8 +39,9 @@ class TestCustomizationInjector : TestInjector(), CustomizationInjector {
     private var customizationProviderClient: CustomizationProviderClient? = null
     private var keyguardQuickAffordanceSnapshotRestorer: KeyguardQuickAffordanceSnapshotRestorer? =
         null
-    private var clockRegistry: ClockRegistry? = null
-    private var pluginManager: PluginManager? = null
+    private var clockRegistryProvider: ClockRegistryProvider? = null
+    private var clockPickerInteractor: ClockPickerInteractor? = null
+    private var clockSectionViewModel: ClockSectionViewModel? = null
 
     override fun getCustomizationPreferences(context: Context): CustomizationPreferences {
         return customizationPreferences
@@ -128,21 +127,29 @@ class TestCustomizationInjector : TestInjector(), CustomizationInjector {
                 .also { keyguardQuickAffordanceSnapshotRestorer = it }
     }
 
-    override fun getClockRegistry(context: Context): ClockRegistry {
-        return clockRegistry
-            ?: ClockRegistry(
-                    context,
-                    getPluginManager(context),
-                    Handler.getMain(),
-                    isEnabled = true,
-                    userHandle = UserHandle.USER_SYSTEM,
-                    DefaultClockProvider(context, LayoutInflater.from(context), context.resources)
-                )
-                .also { clockRegistry = it }
+    override fun getClockRegistryProvider(context: Context): ClockRegistryProvider {
+        return clockRegistryProvider
+            ?: ClockRegistryProvider(context).also { clockRegistryProvider = it }
     }
 
-    override fun getPluginManager(context: Context): PluginManager {
-        return pluginManager ?: TestPluginManager().also { pluginManager = it }
+    override fun getClockPickerInteractor(
+        context: Context,
+        clockRegistry: ClockRegistry
+    ): ClockPickerInteractor {
+        return clockPickerInteractor
+            ?: ClockPickerInteractor(FakeClockPickerRepository()).also {
+                clockPickerInteractor = it
+            }
+    }
+
+    override fun getClockSectionViewModel(
+        context: Context,
+        clockRegistry: ClockRegistry
+    ): ClockSectionViewModel {
+        return clockSectionViewModel
+            ?: ClockSectionViewModel(getClockPickerInteractor(context, clockRegistry)).also {
+                clockSectionViewModel = it
+            }
     }
 
     companion object {

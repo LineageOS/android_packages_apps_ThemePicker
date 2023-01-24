@@ -1,4 +1,4 @@
-package com.android.customization.picker.clock
+package com.android.customization.picker.clock.ui.fragment
 
 import android.os.Handler
 import android.os.UserHandle
@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.systemui.plugins.ClockId
 import com.android.systemui.plugins.ClockMetadata
 import com.android.systemui.plugins.ClockProvider
-import com.android.systemui.plugins.ClockProviderPlugin
 import com.android.systemui.plugins.PluginManager
 import com.android.systemui.shared.clocks.ClockRegistry
 import org.junit.Assert
@@ -32,7 +31,6 @@ class ClockCustomDemoFragmentTest {
     private lateinit var registry: ClockRegistry
     @Mock private lateinit var mockPluginManager: PluginManager
     @Mock private lateinit var mockHandler: Handler
-    @Mock private lateinit var fakePlugin: ClockProviderPlugin
     @Mock private lateinit var defaultClockProvider: ClockProvider
 
     private var settingValue: String = ""
@@ -74,7 +72,6 @@ class ClockCustomDemoFragmentTest {
         mClockCustomDemoFragment!!.recyclerView = RecyclerView(mActivity)
         mClockCustomDemoFragment!!.recyclerView.layoutManager =
             LinearLayoutManager(mActivity, RecyclerView.VERTICAL, false)
-        mClockCustomDemoFragment!!.pluginListener.onPluginConnected(fakePlugin, mActivity)
     }
 
     @Test
