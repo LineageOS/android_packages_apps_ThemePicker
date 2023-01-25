@@ -14,12 +14,16 @@ import com.android.customization.model.grid.GridSectionController;
 import com.android.customization.model.mode.DarkModeSectionController;
 import com.android.customization.model.themedicon.ThemedIconSectionController;
 import com.android.customization.model.themedicon.ThemedIconSwitchProvider;
+import com.android.customization.picker.clock.data.repository.ClockRegistryProvider;
 import com.android.customization.picker.notifications.ui.section.NotificationSectionController;
 import com.android.customization.picker.notifications.ui.viewmodel.NotificationSectionViewModel;
+import com.android.customization.picker.preview.ui.section.PreviewWithClockCarouselSectionController;
+import com.android.customization.picker.preview.ui.section.PreviewWithClockCarouselSectionController.ClockCarouselViewModelProvider;
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor;
 import com.android.customization.picker.quickaffordance.ui.section.KeyguardQuickAffordanceSectionController;
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel;
 import com.android.customization.picker.settings.ui.section.MoreSettingsSectionController;
+import com.android.wallpaper.config.BaseFlags;
 import com.android.wallpaper.model.CustomizationSectionController;
 import com.android.wallpaper.model.CustomizationSectionController.CustomizationSectionNavigationController;
 import com.android.wallpaper.model.PermissionRequester;
@@ -45,16 +49,26 @@ public final class DefaultCustomizationSections implements CustomizationSections
     private final KeyguardQuickAffordancePickerViewModel.Factory
             mKeyguardQuickAffordancePickerViewModelFactory;
     private final NotificationSectionViewModel.Factory mNotificationSectionViewModelFactory;
+    private final BaseFlags mFlags;
+    private final ClockRegistryProvider mClockRegistryProvider;
+    private final PreviewWithClockCarouselSectionController.ClockCarouselViewModelProvider
+            mClockCarouselViewModelProvider;
 
     public DefaultCustomizationSections(
             KeyguardQuickAffordancePickerInteractor keyguardQuickAffordancePickerInteractor,
             KeyguardQuickAffordancePickerViewModel.Factory
                     keyguardQuickAffordancePickerViewModelFactory,
-            NotificationSectionViewModel.Factory notificationSectionViewModelFactory) {
+            NotificationSectionViewModel.Factory notificationSectionViewModelFactory,
+            BaseFlags flags,
+            ClockRegistryProvider clockRegistryProvider,
+            ClockCarouselViewModelProvider clockCarouselViewModelProvider) {
         mKeyguardQuickAffordancePickerInteractor = keyguardQuickAffordancePickerInteractor;
         mKeyguardQuickAffordancePickerViewModelFactory =
                 keyguardQuickAffordancePickerViewModelFactory;
         mNotificationSectionViewModelFactory = notificationSectionViewModelFactory;
+        mFlags = flags;
+        mClockRegistryProvider = clockRegistryProvider;
+        mClockCarouselViewModelProvider = clockCarouselViewModelProvider;
     }
 
     @Override
@@ -75,13 +89,23 @@ public final class DefaultCustomizationSections implements CustomizationSections
 
         // Wallpaper section.
         sectionControllers.add(
-                new ScreenPreviewSectionController(
+                mFlags.isCustomClocksEnabled(activity)
+                        ? new PreviewWithClockCarouselSectionController(
                         activity,
                         lifecycleOwner,
                         screen,
                         wallpaperInfoFactory,
                         wallpaperColorsViewModel,
-                        displayUtils));
+                        displayUtils,
+                        mClockRegistryProvider,
+                        mClockCarouselViewModelProvider)
+                        : new ScreenPreviewSectionController(
+                                activity,
+                                lifecycleOwner,
+                                screen,
+                                wallpaperInfoFactory,
+                                wallpaperColorsViewModel,
+                                displayUtils));
 
         sectionControllers.add(
                 new ConnectedSectionController(

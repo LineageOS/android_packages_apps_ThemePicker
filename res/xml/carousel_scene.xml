@@ -40,8 +40,8 @@
     <ConstraintSet android:id="@+id/previous">
         <Constraint
             android:id="@+id/item_view_0"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/clock_carousel_item_small_size"
+            android:layout_height="@dimen/clock_carousel_item_small_size"
             motion:layout_constraintEnd_toStartOf="@id/guideline_start"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintBottom_toBottomOf="parent"
@@ -56,12 +56,12 @@
             motion:layout_constraintEnd_toEndOf="@id/guideline_end"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp" />
+            android:layout_marginStart="@dimen/clock_carousel_item_margin"
+            android:layout_marginEnd="@dimen/clock_carousel_item_margin" />
         <Constraint
             android:id="@+id/item_view_2"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/clock_carousel_item_small_size"
+            android:layout_height="@dimen/clock_carousel_item_small_size"
             motion:layout_constraintStart_toStartOf="@id/guideline_end"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintBottom_toBottomOf="parent"
@@ -71,8 +71,8 @@
     <ConstraintSet android:id="@+id/start">
         <Constraint
             android:id="@+id/item_view_1"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/clock_carousel_item_small_size"
+            android:layout_height="@dimen/clock_carousel_item_small_size"
             motion:layout_constraintEnd_toStartOf="@id/guideline_start"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintBottom_toBottomOf="parent"
@@ -87,12 +87,12 @@
             motion:layout_constraintEnd_toEndOf="@id/guideline_end"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp" />
+            android:layout_marginStart="@dimen/clock_carousel_item_margin"
+            android:layout_marginEnd="@dimen/clock_carousel_item_margin" />
         <Constraint
             android:id="@+id/item_view_3"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/clock_carousel_item_small_size"
+            android:layout_height="@dimen/clock_carousel_item_small_size"
             motion:layout_constraintStart_toStartOf="@id/guideline_end"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintBottom_toBottomOf="parent"
@@ -102,8 +102,8 @@
     <ConstraintSet android:id="@+id/next">
         <Constraint
             android:id="@+id/item_view_2"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/clock_carousel_item_small_size"
+            android:layout_height="@dimen/clock_carousel_item_small_size"
             motion:layout_constraintEnd_toStartOf="@id/guideline_start"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintBottom_toBottomOf="parent"
@@ -118,12 +118,12 @@
             motion:layout_constraintEnd_toEndOf="@id/guideline_end"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp" />
+            android:layout_marginStart="@dimen/clock_carousel_item_margin"
+            android:layout_marginEnd="@dimen/clock_carousel_item_margin" />
         <Constraint
             android:id="@+id/item_view_4"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/clock_carousel_item_small_size"
+            android:layout_height="@dimen/clock_carousel_item_small_size"
             motion:layout_constraintStart_toStartOf="@id/guideline_end"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintBottom_toBottomOf="parent"
