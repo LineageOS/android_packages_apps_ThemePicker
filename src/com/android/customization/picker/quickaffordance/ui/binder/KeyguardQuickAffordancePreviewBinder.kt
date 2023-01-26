@@ -48,6 +48,7 @@ object KeyguardQuickAffordancePreviewBinder {
                 viewModel = viewModel.preview,
                 lifecycleOwner = lifecycleOwner,
                 offsetToStart = offsetToStart,
+                dimWallpaper = true,
             )
 
         previewView.contentDescription =
