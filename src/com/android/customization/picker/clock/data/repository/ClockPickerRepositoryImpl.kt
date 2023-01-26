@@ -17,11 +17,14 @@
 package com.android.customization.picker.clock.data.repository
 
 import android.util.Log
+import com.android.customization.picker.clock.shared.ClockSize
 import com.android.customization.picker.clock.shared.model.ClockMetadataModel
 import com.android.systemui.plugins.ClockMetadata
 import com.android.systemui.shared.clocks.ClockRegistry
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.callbackFlow
 
 /** Implementation of [ClockPickerRepository], using [ClockRegistry]. */
@@ -45,6 +48,14 @@ class ClockPickerRepositoryImpl(registry: ClockRegistry) : ClockPickerRepository
         registry.registerClockChangeListener(listener)
         send()
         awaitClose { registry.unregisterClockChangeListener(listener) }
+    }
+
+    // TODO(b/262924055): Use the shared system UI component to query the clock size
+    private val _selectedClockSize = MutableStateFlow(ClockSize.DYNAMIC)
+    override val selectedClockSize: Flow<ClockSize> = _selectedClockSize.asStateFlow()
+
+    override fun setClockSize(size: ClockSize) {
+        _selectedClockSize.value = size
     }
 
     private fun ClockMetadata.toModel(): ClockMetadataModel {
