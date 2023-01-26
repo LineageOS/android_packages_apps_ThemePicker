@@ -31,8 +31,11 @@ import com.android.wallpaper.model.WallpaperColorsViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.suspendCancellableCoroutine
 
 // TODO (b/262924623): refactor to remove dependency on ColorCustomizationManager & ColorOption
+// TODO (b/268203200): Create test for ColorPickerRepositoryImpl
 class ColorPickerRepositoryImpl(
     context: Context,
     wallpaperColorsViewModel: WallpaperColorsViewModel,
@@ -48,31 +51,48 @@ class ColorPickerRepositoryImpl(
     /** List of wallpaper and preset color options on the device, categorized by Color Type */
     override val colorOptions: Flow<Map<ColorType, List<ColorOptionModel>>> =
         combine(homeWallpaperColors, lockWallpaperColors) { homeColors, lockColors ->
-            colorManager.setWallpaperColors(homeColors, lockColors)
-            val wallpaperColorOptions: MutableList<ColorOptionModel> = mutableListOf()
-            val presetColorOptions: MutableList<ColorOptionModel> = mutableListOf()
-            colorManager.fetchOptions(
-                object : CustomizationManager.OptionsFetchedListener<ColorOption?> {
-                    override fun onOptionsLoaded(options: MutableList<ColorOption?>?) {
-                        options?.forEach { option ->
-                            when (option) {
-                                is ColorSeedOption -> wallpaperColorOptions.add(option.toModel())
-                                is ColorBundle -> presetColorOptions.add(option.toModel())
+                homeColors to lockColors
+            }
+            .map { (homeColors, lockColors) ->
+                suspendCancellableCoroutine { continuation ->
+                    colorManager.setWallpaperColors(homeColors, lockColors)
+                    colorManager.fetchOptions(
+                        object : CustomizationManager.OptionsFetchedListener<ColorOption?> {
+                            override fun onOptionsLoaded(options: MutableList<ColorOption?>?) {
+                                val wallpaperColorOptions: MutableList<ColorOptionModel> =
+                                    mutableListOf()
+                                val presetColorOptions: MutableList<ColorOptionModel> =
+                                    mutableListOf()
+                                options?.forEach { option ->
+                                    when (option) {
+                                        is ColorSeedOption ->
+                                            wallpaperColorOptions.add(option.toModel())
+                                        is ColorBundle -> presetColorOptions.add(option.toModel())
+                                    }
+                                }
+                                continuation.resumeWith(
+                                    Result.success(
+                                        mapOf(
+                                            ColorType.WALLPAPER_COLOR to wallpaperColorOptions,
+                                            ColorType.BASIC_COLOR to presetColorOptions
+                                        )
+                                    )
+                                )
                             }
-                        }
-                    }
 
-                    override fun onError(throwable: Throwable?) {
-                        Log.e("ColorPickerRepository", "Error loading theme bundles", throwable)
-                    }
-                },
-                /* reload= */ false
-            )
-            mapOf(
-                ColorType.WALLPAPER_COLOR to wallpaperColorOptions,
-                ColorType.BASIC_COLOR to presetColorOptions
-            )
-        }
+                            override fun onError(throwable: Throwable?) {
+                                Log.e(TAG, "Error loading theme bundles", throwable)
+                                continuation.resumeWith(
+                                    Result.failure(
+                                        throwable ?: Throwable("Error loading theme bundles")
+                                    )
+                                )
+                            }
+                        },
+                        /* reload= */ false
+                    )
+                }
+            }
 
     override fun select(colorOptionModel: ColorOptionModel) {
         val colorOption: ColorOption = colorOptionModel.colorOption
@@ -82,7 +102,7 @@ class ColorPickerRepositoryImpl(
                 override fun onSuccess() = Unit
 
                 override fun onError(throwable: Throwable?) {
-                    Log.w("ColorPickerRepository", "Apply theme with error", throwable)
+                    Log.w(TAG, "Apply theme with error", throwable)
                 }
             }
         )
@@ -93,5 +113,9 @@ class ColorPickerRepositoryImpl(
             colorOption = this,
             isSelected = isActive(colorManager),
         )
+    }
+
+    companion object {
+        private const val TAG = "ColorPickerRepositoryImpl"
     }
 }

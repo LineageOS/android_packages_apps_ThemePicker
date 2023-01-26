@@ -412,4 +412,12 @@
     [CHAR LIMIT=64].
     -->
     <string name="more_settings_section_description">Text on lock screen, Now Playing, and more</string>
+
+    <!--
+    Label for button that lets the user navigate to a full-screen experience of selecting
+    system colors.
+
+    [CHAR LIMIT=128].
+    -->
+    <string name="more_colors">More Colors</string>
 </resources>
