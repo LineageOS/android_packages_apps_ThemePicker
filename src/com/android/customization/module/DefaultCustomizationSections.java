@@ -19,6 +19,7 @@ import com.android.customization.picker.notifications.ui.viewmodel.NotificationS
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor;
 import com.android.customization.picker.quickaffordance.ui.section.KeyguardQuickAffordanceSectionController;
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel;
+import com.android.customization.picker.settings.ui.section.MoreSettingsSectionController;
 import com.android.wallpaper.model.CustomizationSectionController;
 import com.android.wallpaper.model.CustomizationSectionController.CustomizationSectionNavigationController;
 import com.android.wallpaper.model.PermissionRequester;
@@ -114,6 +115,9 @@ public final class DefaultCustomizationSections implements CustomizationSections
                                         mNotificationSectionViewModelFactory)
                                         .get(NotificationSectionViewModel.class),
                                 lifecycleOwner));
+
+                // More settings section.
+                sectionControllers.add(new MoreSettingsSectionController());
                 break;
 
             case HOME_SCREEN:
