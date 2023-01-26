@@ -23,6 +23,16 @@
     <string name="clock_description" msgid="3563839327378948">"ਵਿਉਂਤੀ ਘੜੀ ਚੁਣੋ"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"ਵਿਉਂਤੀ ਘੜੀ ਬਦਲੋ"</string>
     <string name="clock_settings_title" msgid="2940654205471453913">"ਘੜੀ ਦੀਆਂ ਸੈਟਿੰਗਾਂ"</string>
+    <!-- no translation found for clock_color (8081608867289156163) -->
+    <skip />
+    <!-- no translation found for clock_size (5028923902364418263) -->
+    <skip />
+    <!-- no translation found for clock_size_dynamic (1023930312455061642) -->
+    <skip />
+    <!-- no translation found for clock_size_dynamic_description (2776620745774561662) -->
+    <skip />
+    <!-- no translation found for clock_size_large (3143248715744138979) -->
+    <skip />
     <string name="grid_title" msgid="1688173478777254123">"ਐਪ ਗ੍ਰਿਡ"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"ਲਾਗੂ ਕਰੋ"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"ਸੰਪਾਦਨ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ"</string>
@@ -92,9 +102,9 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"ਮੂਲ ਰੰਗ"</string>
     <string name="color_changed" msgid="7029571720331641235">"ਰੰਗ ਬਦਲਿਆ ਗਿਆ"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"ਪਰਿਵਰਤਨਸ਼ੀਲ"</string>
-    <!-- no translation found for keyguard_slot_name_bottom_start (4755278855965391938) -->
+    <!-- no translation found for keyguard_slot_name_bottom_start (8747677880200629719) -->
     <skip />
-    <!-- no translation found for keyguard_slot_name_bottom_end (360781114168682042) -->
+    <!-- no translation found for keyguard_slot_name_bottom_end (2525487375680217083) -->
     <skip />
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"ਕੋਈ ਨਹੀਂ"</string>
     <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"`<xliff:g id="APPNAME">%1$s</xliff:g>` ਨੂੰ ਚੁਣਨ ਲਈ, ਹੇਠਾਂ ਦਿੱਤੀਆਂ ਹਿਦਾਇਤਾਂ ਦੀ ਪਾਲਣਾ ਕਰੋ"</string>
@@ -105,10 +115,7 @@
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"ਸ਼ਾਰਟਕੱਟ"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"ਕੋਈ ਨਹੀਂ"</string>
-    <!-- no translation found for notifications_section_title (4283049750376871538) -->
-    <skip />
-    <!-- no translation found for show_notifications_on_lock_screen (4157744243084646720) -->
-    <skip />
-    <!-- no translation found for hide_notifications_on_lock_screen (7413548956484779174) -->
-    <skip />
+    <string name="notifications_section_title" msgid="4283049750376871538">"ਸੂਚਨਾਵਾਂ"</string>
+    <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"ਲਾਕ ਸਕ੍ਰੀਨ \'ਤੇ ਸੂਚਨਾਵਾਂ ਦਿਖਾਓ"</string>
+    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"ਲਾਕ ਸਕ੍ਰੀਨ \'ਤੇ ਸੂਚਨਾਵਾਂ ਲੁਕਾਓ"</string>
 </resources>
