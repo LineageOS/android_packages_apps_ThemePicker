@@ -23,6 +23,16 @@
     <string name="clock_description" msgid="3563839327378948">"কাষ্টম ঘড়ী বাছক"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"কাষ্টম ঘড়ী সলনি কৰক"</string>
     <string name="clock_settings_title" msgid="2940654205471453913">"ঘড়ীৰ ছেটিং"</string>
+    <!-- no translation found for clock_color (8081608867289156163) -->
+    <skip />
+    <!-- no translation found for clock_size (5028923902364418263) -->
+    <skip />
+    <!-- no translation found for clock_size_dynamic (1023930312455061642) -->
+    <skip />
+    <!-- no translation found for clock_size_dynamic_description (2776620745774561662) -->
+    <skip />
+    <!-- no translation found for clock_size_large (3143248715744138979) -->
+    <skip />
     <string name="grid_title" msgid="1688173478777254123">"এপৰ গ্ৰিড"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"প্ৰয়োগ কৰক"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"সম্পাদনা কৰিবলৈ টিপক"</string>
@@ -92,9 +102,9 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"প্ৰাথমিক ৰং"</string>
     <string name="color_changed" msgid="7029571720331641235">"ৰং সলনি কৰা হৈছে"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"ডাইনামিক"</string>
-    <!-- no translation found for keyguard_slot_name_bottom_start (4755278855965391938) -->
+    <!-- no translation found for keyguard_slot_name_bottom_start (8747677880200629719) -->
     <skip />
-    <!-- no translation found for keyguard_slot_name_bottom_end (360781114168682042) -->
+    <!-- no translation found for keyguard_slot_name_bottom_end (2525487375680217083) -->
     <skip />
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"নাই"</string>
     <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"`<xliff:g id="APPNAME">%1$s</xliff:g>` বাছনি কৰিবলৈ এয়া পৰীক্ষা কৰক"</string>
@@ -105,10 +115,7 @@
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"শ্বৰ্টকাট"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"নাই"</string>
-    <!-- no translation found for notifications_section_title (4283049750376871538) -->
-    <skip />
-    <!-- no translation found for show_notifications_on_lock_screen (4157744243084646720) -->
-    <skip />
-    <!-- no translation found for hide_notifications_on_lock_screen (7413548956484779174) -->
-    <skip />
+    <string name="notifications_section_title" msgid="4283049750376871538">"জাননী"</string>
+    <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"বন্ধ স্ক্ৰীনত জাননী দেখুৱাওক"</string>
+    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"বন্ধ স্ক্ৰীনত জাননী লুকুৱাওক"</string>
 </resources>
