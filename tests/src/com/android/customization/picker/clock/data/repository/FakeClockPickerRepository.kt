@@ -15,11 +15,20 @@
  */
 package com.android.customization.picker.clock.data.repository
 
+import com.android.customization.picker.clock.shared.ClockSize
 import com.android.customization.picker.clock.shared.model.ClockMetadataModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class FakeClockPickerRepository : ClockPickerRepository {
 
     override val selectedClock: Flow<ClockMetadataModel?> = MutableStateFlow(null)
+
+    private val _selectedClockSize = MutableStateFlow(ClockSize.LARGE)
+    override val selectedClockSize: Flow<ClockSize> = _selectedClockSize.asStateFlow()
+
+    override fun setClockSize(size: ClockSize) {
+        _selectedClockSize.value = size
+    }
 }

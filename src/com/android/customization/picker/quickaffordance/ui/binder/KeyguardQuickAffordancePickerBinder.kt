@@ -19,15 +19,14 @@ package com.android.customization.picker.quickaffordance.ui.binder
 
 import android.app.Dialog
 import android.content.Context
-import android.graphics.Rect
 import android.view.View
-import androidx.core.view.ViewCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.customization.picker.common.ui.view.ItemSpacing
 import com.android.customization.picker.quickaffordance.ui.adapter.AffordancesAdapter
 import com.android.customization.picker.quickaffordance.ui.adapter.SlotTabAdapter
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel
@@ -54,12 +53,12 @@ object KeyguardQuickAffordancePickerBinder {
         slotTabView.adapter = slotTabAdapter
         slotTabView.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
-        slotTabView.addItemDecoration(ItemSpacing(SLOT_TAB_ITEM_SPACING_DP))
+        slotTabView.addItemDecoration(ItemSpacing(ItemSpacing.TAB_ITEM_SPACING_DP))
         val affordancesAdapter = AffordancesAdapter()
         affordancesView.adapter = affordancesAdapter
         affordancesView.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
-        affordancesView.addItemDecoration(ItemSpacing(AFFORDANCE_ITEM_SPACING_DP))
+        affordancesView.addItemDecoration(ItemSpacing(ItemSpacing.AFFORDANCE_ITEM_SPACING_DP))
 
         var dialog: Dialog? = null
 
@@ -117,30 +116,4 @@ object KeyguardQuickAffordancePickerBinder {
             onDismissed = onDismissed,
         )
     }
-
-    private class ItemSpacing(
-        private val itemSpacingDp: Int,
-    ) : RecyclerView.ItemDecoration() {
-        override fun getItemOffsets(outRect: Rect, itemPosition: Int, parent: RecyclerView) {
-            val addSpacingToStart = itemPosition > 0
-            val addSpacingToEnd = itemPosition < (parent.adapter?.itemCount ?: 0) - 1
-            val isRtl = parent.layoutManager?.layoutDirection == ViewCompat.LAYOUT_DIRECTION_RTL
-            val density = parent.context.resources.displayMetrics.density
-            val halfItemSpacingPx = itemSpacingDp.toPx(density) / 2
-            if (!isRtl) {
-                outRect.left = if (addSpacingToStart) halfItemSpacingPx else 0
-                outRect.right = if (addSpacingToEnd) halfItemSpacingPx else 0
-            } else {
-                outRect.left = if (addSpacingToEnd) halfItemSpacingPx else 0
-                outRect.right = if (addSpacingToStart) halfItemSpacingPx else 0
-            }
-        }
-
-        private fun Int.toPx(density: Float): Int {
-            return (this * density).toInt()
-        }
-    }
-
-    private const val SLOT_TAB_ITEM_SPACING_DP = 12
-    private const val AFFORDANCE_ITEM_SPACING_DP = 8
 }
