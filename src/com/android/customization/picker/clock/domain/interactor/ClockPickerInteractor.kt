@@ -18,6 +18,7 @@
 package com.android.customization.picker.clock.domain.interactor
 
 import com.android.customization.picker.clock.data.repository.ClockPickerRepository
+import com.android.customization.picker.clock.shared.ClockSize
 import com.android.customization.picker.clock.shared.model.ClockMetadataModel
 import kotlinx.coroutines.flow.Flow
 
@@ -26,6 +27,11 @@ import kotlinx.coroutines.flow.Flow
  * clocks.
  */
 class ClockPickerInteractor(private val repository: ClockPickerRepository) {
-
     val selectedClock: Flow<ClockMetadataModel?> = repository.selectedClock
+
+    val selectedClockSize: Flow<ClockSize> = repository.selectedClockSize
+
+    fun setClockSize(size: ClockSize) {
+        repository.setClockSize(size)
+    }
 }

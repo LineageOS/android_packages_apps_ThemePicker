@@ -36,6 +36,21 @@
     <!-- Title of a section of the customization picker where the user can configure Clock face. [CHAR LIMIT=15] -->
     <string name="clock_settings_title">Clock Settings</string>
 
+    <!-- Title of a tab to change the clock color. [CHAR LIMIT=15] -->
+    <string name="clock_color">Color</string>
+
+    <!-- Title of a tab to change the clock size. [CHAR LIMIT=15] -->
+    <string name="clock_size">Size</string>
+
+    <!-- Title of a radio button to apply clock size dynamic. [CHAR LIMIT=15] -->
+    <string name="clock_size_dynamic">Dynamic</string>
+
+    <!-- Description of a radio button to apply clock size dynamic. [CHAR LIMIT=NONE] -->
+    <string name="clock_size_dynamic_description">Clock size changes according to lock screen content</string>
+
+    <!-- Title of a radio button to apply clock size large. [CHAR LIMIT=15] -->
+    <string name="clock_size_large">Large</string>
+
     <!-- Title of a section of the customization picker where the user can select a Grid size for
         the home screen. [CHAR LIMIT=15] -->
     <string name="grid_title">App grid</string>
