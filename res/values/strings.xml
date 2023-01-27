@@ -388,4 +388,22 @@
     [CHAR LIMIT=64].
     -->
     <string name="hide_notifications_on_lock_screen">Hide notifications on the lock screen</string>
+
+    <!--
+    Title for a section in a list of sections in the settings app that allows the user to access
+    additional settings related to lock screen behaviour.
+
+    [CHAR LIMIT=32].
+    -->
+    <string name="more_settings_section_title">More options</string>
+
+    <!--
+    Summary for a setting that lets the user access additional settings related to lock screen
+    behaviour. Please note that "Now Playing" is an entity; it's a name of an existing feature
+    that allows users to see the song that the device is picking up through its microphone on
+    the lock screen; therefore, it should not be translated literally.
+
+    [CHAR LIMIT=64].
+    -->
+    <string name="more_settings_section_description">Text on lock screen, Now Playing, and more</string>
 </resources>
