@@ -23,6 +23,16 @@
     <string name="clock_description" msgid="3563839327378948">"ເລືອກໂມງກຳນົດເອງ"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"ປ່ຽນໂມງກຳນົດເອງ"</string>
     <string name="clock_settings_title" msgid="2940654205471453913">"ການຕັ້ງຄ່າໂມງ"</string>
+    <!-- no translation found for clock_color (8081608867289156163) -->
+    <skip />
+    <!-- no translation found for clock_size (5028923902364418263) -->
+    <skip />
+    <!-- no translation found for clock_size_dynamic (1023930312455061642) -->
+    <skip />
+    <!-- no translation found for clock_size_dynamic_description (2776620745774561662) -->
+    <skip />
+    <!-- no translation found for clock_size_large (3143248715744138979) -->
+    <skip />
     <string name="grid_title" msgid="1688173478777254123">"ຕາຕະລາງແອັບ"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"ນຳໃຊ້"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"ແຕະເພື່ອແກ້ໄຂ"</string>
@@ -92,8 +102,10 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"ສີພື້ນຖານ"</string>
     <string name="color_changed" msgid="7029571720331641235">"ປ່ຽນສີແລ້ວ"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"ໄດນາມິກ"</string>
-    <string name="keyguard_slot_name_bottom_start" msgid="4755278855965391938">"ຊ້າຍ"</string>
-    <string name="keyguard_slot_name_bottom_end" msgid="360781114168682042">"ຂວາ"</string>
+    <!-- no translation found for keyguard_slot_name_bottom_start (8747677880200629719) -->
+    <skip />
+    <!-- no translation found for keyguard_slot_name_bottom_end (2525487375680217083) -->
+    <skip />
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"ບໍ່ມີ"</string>
     <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"ເພື່ອເລືອກ `<xliff:g id="APPNAME">%1$s</xliff:g>` ກະລຸນາກວດສອບສິ່ງຕໍ່ໄປນີ້"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"ເປີດ <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
