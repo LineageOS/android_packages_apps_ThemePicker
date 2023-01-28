@@ -23,6 +23,16 @@
     <string name="clock_description" msgid="3563839327378948">"حسب ضرورت گھڑی چنیں"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"حسب ضرورت گھڑی کو تبدیل کریں"</string>
     <string name="clock_settings_title" msgid="2940654205471453913">"گھڑی کی ترتیبات"</string>
+    <!-- no translation found for clock_color (8081608867289156163) -->
+    <skip />
+    <!-- no translation found for clock_size (5028923902364418263) -->
+    <skip />
+    <!-- no translation found for clock_size_dynamic (1023930312455061642) -->
+    <skip />
+    <!-- no translation found for clock_size_dynamic_description (2776620745774561662) -->
+    <skip />
+    <!-- no translation found for clock_size_large (3143248715744138979) -->
+    <skip />
     <string name="grid_title" msgid="1688173478777254123">"ایپ گرڈ"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"لاگو کریں"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"ترمیم کرنے کے لیے تھپتھپائيں"</string>
@@ -92,8 +102,8 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"بنیادی رنگ"</string>
     <string name="color_changed" msgid="7029571720331641235">"رنگ کو تبدیل کر دیا گیا"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"ڈائنیمک"</string>
-    <string name="keyguard_slot_name_bottom_start" msgid="4755278855965391938">"بائیں"</string>
-    <string name="keyguard_slot_name_bottom_end" msgid="360781114168682042">"دائیں"</string>
+    <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"دائیں جانب کا شارٹ کٹ"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"بائیں جانب کا شارٹ کٹ"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"کوئی نہیں"</string>
     <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"`<xliff:g id="APPNAME">%1$s</xliff:g>` کو منتخب کرنے کے لیے درج ذیل کو چیک کریں"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g> کھولیں"</string>
