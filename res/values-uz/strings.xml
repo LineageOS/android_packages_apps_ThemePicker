@@ -23,16 +23,11 @@
     <string name="clock_description" msgid="3563839327378948">"Maxsus soat tanlash"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Maxsus soatni almashtirish"</string>
     <string name="clock_settings_title" msgid="2940654205471453913">"Soat sozlamalari"</string>
-    <!-- no translation found for clock_color (8081608867289156163) -->
-    <skip />
-    <!-- no translation found for clock_size (5028923902364418263) -->
-    <skip />
-    <!-- no translation found for clock_size_dynamic (1023930312455061642) -->
-    <skip />
-    <!-- no translation found for clock_size_dynamic_description (2776620745774561662) -->
-    <skip />
-    <!-- no translation found for clock_size_large (3143248715744138979) -->
-    <skip />
+    <string name="clock_color" msgid="8081608867289156163">"Rang"</string>
+    <string name="clock_size" msgid="5028923902364418263">"Hajmi"</string>
+    <string name="clock_size_dynamic" msgid="1023930312455061642">"Dinamik"</string>
+    <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Soat hajmi ekran qulfidagi kontent asosida oʻzgaradi"</string>
+    <string name="clock_size_large" msgid="3143248715744138979">"Yirik"</string>
     <string name="grid_title" msgid="1688173478777254123">"Ilovalar jadvali"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Tatbiq etish"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Tahrirlash uchun tegining"</string>
@@ -116,4 +111,8 @@
     <string name="notifications_section_title" msgid="4283049750376871538">"Bildirishnomalar"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Ekran qulfida bildirishnomalarni chiqarish"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Ekran qulfida bildirishnomalarni berkitish"</string>
+    <!-- no translation found for more_settings_section_title (8524741850115625404) -->
+    <skip />
+    <!-- no translation found for more_settings_section_description (8787768566854880683) -->
+    <skip />
 </resources>
