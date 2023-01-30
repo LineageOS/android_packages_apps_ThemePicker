@@ -23,12 +23,31 @@ import kotlinx.coroutines.flow.asStateFlow
 
 class FakeClockPickerRepository : ClockPickerRepository {
 
-    override val selectedClock: Flow<ClockMetadataModel?> = MutableStateFlow(null)
+    override val allClocks: Array<ClockMetadataModel> = fakeClocks
+
+    private val _selectedClock = MutableStateFlow(fakeClocks[0])
+    override val selectedClock: Flow<ClockMetadataModel> = _selectedClock.asStateFlow()
 
     private val _selectedClockSize = MutableStateFlow(ClockSize.LARGE)
     override val selectedClockSize: Flow<ClockSize> = _selectedClockSize.asStateFlow()
 
+    override fun setSelectedClock(clockId: String) {
+        val clock = fakeClocks.find { it.clockId == clockId }
+        checkNotNull(clock)
+        _selectedClock.value = clock
+    }
+
     override fun setClockSize(size: ClockSize) {
         _selectedClockSize.value = size
+    }
+
+    companion object {
+        val fakeClocks =
+            arrayOf(
+                ClockMetadataModel("clock0", "clock0"),
+                ClockMetadataModel("clock1", "clock1"),
+                ClockMetadataModel("clock2", "clock2"),
+                ClockMetadataModel("clock3", "clock3"),
+            )
     }
 }
