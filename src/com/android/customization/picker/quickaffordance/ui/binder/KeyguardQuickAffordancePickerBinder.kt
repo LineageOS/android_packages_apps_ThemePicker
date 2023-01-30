@@ -27,16 +27,20 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.customization.picker.common.ui.view.ItemSpacing
-import com.android.customization.picker.quickaffordance.ui.adapter.AffordancesAdapter
 import com.android.customization.picker.quickaffordance.ui.adapter.SlotTabAdapter
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel
 import com.android.wallpaper.R
 import com.android.wallpaper.picker.common.dialog.ui.viewbinder.DialogViewBinder
 import com.android.wallpaper.picker.common.dialog.ui.viewmodel.DialogViewModel
+import com.android.wallpaper.picker.option.ui.adapter.OptionItemAdapter
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalCoroutinesApi::class)
 object KeyguardQuickAffordancePickerBinder {
 
     /** Binds view with view-model for a lock screen quick affordance picker experience. */
@@ -54,7 +58,11 @@ object KeyguardQuickAffordancePickerBinder {
         slotTabView.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
         slotTabView.addItemDecoration(ItemSpacing(ItemSpacing.TAB_ITEM_SPACING_DP))
-        val affordancesAdapter = AffordancesAdapter()
+        val affordancesAdapter =
+            OptionItemAdapter(
+                layoutResourceId = R.layout.keyguard_quick_affordance,
+                lifecycleOwner = lifecycleOwner,
+            )
         affordancesView.adapter = affordancesAdapter
         affordancesView.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
@@ -73,17 +81,27 @@ object KeyguardQuickAffordancePickerBinder {
                 launch {
                     viewModel.quickAffordances.collect { affordances ->
                         affordancesAdapter.setItems(affordances)
+                    }
+                }
 
-                        // Scroll the view to show the first selected affordance.
-                        val selectedPosition = affordances.indexOfFirst { it.isSelected }
-                        if (selectedPosition != -1) {
-                            // We use "post" because we need to give the adapter item a pass to
-                            // update the view.
-                            affordancesView.post {
-                                affordancesView.smoothScrollToPosition(selectedPosition)
+                launch {
+                    viewModel.quickAffordances
+                        .flatMapLatest { affordances ->
+                            combine(affordances.map { affordance -> affordance.isSelected }) {
+                                selectedFlags ->
+                                selectedFlags.indexOfFirst { it }
                             }
                         }
-                    }
+                        .collect { selectedPosition ->
+                            // Scroll the view to show the first selected affordance.
+                            if (selectedPosition != -1) {
+                                // We use "post" because we need to give the adapter item a pass to
+                                // update the view.
+                                affordancesView.post {
+                                    affordancesView.smoothScrollToPosition(selectedPosition)
+                                }
+                            }
+                        }
                 }
 
                 launch {

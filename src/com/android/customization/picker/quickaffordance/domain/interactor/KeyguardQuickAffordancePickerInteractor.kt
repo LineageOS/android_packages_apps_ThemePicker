@@ -63,16 +63,6 @@ class KeyguardQuickAffordancePickerInteractor(
         snapshotRestorer.get().storeSnapshot()
     }
 
-    /** Unselects an affordance with the given ID from the slot with the given ID. */
-    suspend fun unselect(slotId: String, affordanceId: String) {
-        client.deleteSelection(
-            slotId = slotId,
-            affordanceId = affordanceId,
-        )
-
-        snapshotRestorer.get().storeSnapshot()
-    }
-
     /** Unselects all affordances from the slot with the given ID. */
     suspend fun unselectAll(slotId: String) {
         client.deleteAllSelections(
