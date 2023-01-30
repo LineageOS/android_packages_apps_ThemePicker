@@ -102,10 +102,8 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"প্রাথমিক রঙ"</string>
     <string name="color_changed" msgid="7029571720331641235">"রঙ পরিবর্তন করা হয়েছে"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"ডায়নামিক"</string>
-    <!-- no translation found for keyguard_slot_name_bottom_start (8747677880200629719) -->
-    <skip />
-    <!-- no translation found for keyguard_slot_name_bottom_end (2525487375680217083) -->
-    <skip />
+    <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"বাঁদিকের শর্টকাট"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"ডানদিকের শর্টকাট"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"কোনওটিই নয়"</string>
     <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"`<xliff:g id="APPNAME">%1$s</xliff:g>` বেছে নিতে, এগুলি চেক করুন"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g> খুলুন"</string>
@@ -118,4 +116,8 @@
     <string name="notifications_section_title" msgid="4283049750376871538">"বিজ্ঞপ্তি"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"লক স্ক্রিনে বিজ্ঞপ্তি দেখান"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"লক স্ক্রিনে বিজ্ঞপ্তি লুকান"</string>
+    <!-- no translation found for more_settings_section_title (8524741850115625404) -->
+    <skip />
+    <!-- no translation found for more_settings_section_description (8787768566854880683) -->
+    <skip />
 </resources>

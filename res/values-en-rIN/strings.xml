@@ -23,16 +23,11 @@
     <string name="clock_description" msgid="3563839327378948">"Pick a custom clock"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Change a custom clock"</string>
     <string name="clock_settings_title" msgid="2940654205471453913">"Clock settings"</string>
-    <!-- no translation found for clock_color (8081608867289156163) -->
-    <skip />
-    <!-- no translation found for clock_size (5028923902364418263) -->
-    <skip />
-    <!-- no translation found for clock_size_dynamic (1023930312455061642) -->
-    <skip />
-    <!-- no translation found for clock_size_dynamic_description (2776620745774561662) -->
-    <skip />
-    <!-- no translation found for clock_size_large (3143248715744138979) -->
-    <skip />
+    <string name="clock_color" msgid="8081608867289156163">"Colour"</string>
+    <string name="clock_size" msgid="5028923902364418263">"Size"</string>
+    <string name="clock_size_dynamic" msgid="1023930312455061642">"Dynamic"</string>
+    <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Clock size changes according to lock screen content"</string>
+    <string name="clock_size_large" msgid="3143248715744138979">"Large"</string>
     <string name="grid_title" msgid="1688173478777254123">"App grid"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Apply"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Tap to edit"</string>
@@ -116,4 +111,8 @@
     <string name="notifications_section_title" msgid="4283049750376871538">"Notifications"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Show notifications on the lock screen"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Hide notifications on the lock screen"</string>
+    <!-- no translation found for more_settings_section_title (8524741850115625404) -->
+    <skip />
+    <!-- no translation found for more_settings_section_description (8787768566854880683) -->
+    <skip />
 </resources>
