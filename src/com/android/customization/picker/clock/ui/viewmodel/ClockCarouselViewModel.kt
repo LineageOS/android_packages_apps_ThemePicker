@@ -12,7 +12,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
 package com.android.customization.picker.clock.ui.viewmodel
 
@@ -20,8 +19,12 @@ import com.android.customization.picker.clock.domain.interactor.ClockPickerInter
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-/** View model for the clock section view on the lockscreen customization surface. */
-class ClockSectionViewModel(interactor: ClockPickerInteractor) {
+class ClockCarouselViewModel(private val interactor: ClockPickerInteractor) {
+    val selectedClockId: Flow<String> = interactor.selectedClock.map { it.clockId }
 
-    val selectedClockName: Flow<String> = interactor.selectedClock.map { it.name }
+    val allClockIds: Array<String> = interactor.allClocks.map { it.clockId }.toTypedArray()
+
+    fun setSelectedClock(clockId: String) {
+        interactor.setSelectedClock(clockId)
+    }
 }

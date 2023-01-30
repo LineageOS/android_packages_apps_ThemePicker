@@ -16,7 +16,6 @@
  */
 package com.android.customization.picker.clock.data.repository
 
-import android.util.Log
 import com.android.customization.picker.clock.shared.ClockSize
 import com.android.customization.picker.clock.shared.model.ClockMetadataModel
 import com.android.systemui.plugins.ClockMetadata
@@ -28,19 +27,24 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.callbackFlow
 
 /** Implementation of [ClockPickerRepository], using [ClockRegistry]. */
-class ClockPickerRepositoryImpl(registry: ClockRegistry) : ClockPickerRepository {
+class ClockPickerRepositoryImpl(private val registry: ClockRegistry) : ClockPickerRepository {
+
+    override val allClocks: Array<ClockMetadataModel> =
+        registry
+            .getClocks()
+            .filter { "NOT_IN_USE" !in it.clockId }
+            .map { it.toModel() }
+            .toTypedArray()
 
     /** The currently-selected clock. */
-    override val selectedClock: Flow<ClockMetadataModel?> = callbackFlow {
+    override val selectedClock: Flow<ClockMetadataModel> = callbackFlow {
         fun send() {
             val model =
                 registry
                     .getClocks()
                     .find { clockMetadata -> clockMetadata.clockId == registry.currentClockId }
                     ?.toModel()
-            if (model == null) {
-                Log.e(TAG, "Currently selected clock ID is not one of the available clocks.")
-            }
+            checkNotNull(model)
             trySend(model)
         }
 
@@ -48,6 +52,10 @@ class ClockPickerRepositoryImpl(registry: ClockRegistry) : ClockPickerRepository
         registry.registerClockChangeListener(listener)
         send()
         awaitClose { registry.unregisterClockChangeListener(listener) }
+    }
+
+    override fun setSelectedClock(clockId: String) {
+        registry.currentClockId = clockId
     }
 
     // TODO(b/262924055): Use the shared system UI component to query the clock size
@@ -60,9 +68,5 @@ class ClockPickerRepositoryImpl(registry: ClockRegistry) : ClockPickerRepository
 
     private fun ClockMetadata.toModel(): ClockMetadataModel {
         return ClockMetadataModel(clockId = clockId, name = name)
-    }
-
-    companion object {
-        private const val TAG = "ClockPickerRepositoryImpl"
     }
 }
