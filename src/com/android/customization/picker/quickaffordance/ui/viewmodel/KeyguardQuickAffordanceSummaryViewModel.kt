@@ -17,10 +17,11 @@
 
 package com.android.customization.picker.quickaffordance.ui.viewmodel
 
-import android.graphics.drawable.Drawable
+import com.android.wallpaper.picker.common.icon.ui.viewmodel.Icon
+import com.android.wallpaper.picker.common.text.ui.viewmodel.Text
 
 data class KeyguardQuickAffordanceSummaryViewModel(
-    val description: String,
-    val icon1: Drawable?,
-    val icon2: Drawable?,
+    val description: Text,
+    val icon1: Icon?,
+    val icon2: Icon?,
 )
