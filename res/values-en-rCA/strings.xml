@@ -24,6 +24,16 @@
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Change a custom clock"</string>
     <!-- no translation found for clock_settings_title (2940654205471453913) -->
     <skip />
+    <!-- no translation found for clock_color (8081608867289156163) -->
+    <skip />
+    <!-- no translation found for clock_size (5028923902364418263) -->
+    <skip />
+    <!-- no translation found for clock_size_dynamic (1023930312455061642) -->
+    <skip />
+    <!-- no translation found for clock_size_dynamic_description (2776620745774561662) -->
+    <skip />
+    <!-- no translation found for clock_size_large (3143248715744138979) -->
+    <skip />
     <string name="grid_title" msgid="1688173478777254123">"App grid"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Apply"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Tap to edit"</string>
@@ -93,9 +103,9 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"Basic colours"</string>
     <string name="color_changed" msgid="7029571720331641235">"Colour changed"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Dynamic"</string>
-    <!-- no translation found for keyguard_slot_name_bottom_start (4755278855965391938) -->
+    <!-- no translation found for keyguard_slot_name_bottom_start (8747677880200629719) -->
     <skip />
-    <!-- no translation found for keyguard_slot_name_bottom_end (360781114168682042) -->
+    <!-- no translation found for keyguard_slot_name_bottom_end (2525487375680217083) -->
     <skip />
     <!-- no translation found for keyguard_affordance_none (1751643933430782312) -->
     <skip />
