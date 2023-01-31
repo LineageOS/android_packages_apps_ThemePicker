@@ -29,6 +29,9 @@ import com.android.customization.picker.clock.data.repository.ClockPickerReposit
 import com.android.customization.picker.clock.data.repository.ClockRegistryProvider
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
+import com.android.customization.picker.color.data.repository.ColorPickerRepositoryImpl
+import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
+import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
 import com.android.customization.picker.notifications.data.repository.NotificationsRepository
 import com.android.customization.picker.notifications.domain.interactor.NotificationsInteractor
 import com.android.customization.picker.notifications.ui.viewmodel.NotificationSectionViewModel
@@ -40,6 +43,7 @@ import com.android.systemui.shared.clocks.ClockRegistry
 import com.android.systemui.shared.customization.data.content.CustomizationProviderClient
 import com.android.systemui.shared.customization.data.content.CustomizationProviderClientImpl
 import com.android.wallpaper.model.LiveWallpaperInfo
+import com.android.wallpaper.model.WallpaperColorsViewModel
 import com.android.wallpaper.model.WallpaperInfo
 import com.android.wallpaper.module.CustomizationSections
 import com.android.wallpaper.module.FragmentFactory
@@ -72,6 +76,8 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     private var clockSectionViewModel: ClockSectionViewModel? = null
     private var notificationsInteractor: NotificationsInteractor? = null
     private var notificationSectionViewModelFactory: NotificationSectionViewModel.Factory? = null
+    private var colorPickerInteractor: ColorPickerInteractor? = null
+    private var colorPickerViewModelFactory: ColorPickerViewModel.Factory? = null
 
     override fun getCustomizationSections(activity: ComponentActivity): CustomizationSections {
         return customizationSections
@@ -257,6 +263,27 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                         )
                 )
                 .also { notificationsInteractor = it }
+    }
+
+    override fun getColorPickerInteractor(
+        context: Context,
+        wallpaperColorsViewModel: WallpaperColorsViewModel,
+    ): ColorPickerInteractor {
+        return colorPickerInteractor
+            ?: ColorPickerInteractor(ColorPickerRepositoryImpl(context, wallpaperColorsViewModel))
+                .also { colorPickerInteractor = it }
+    }
+
+    override fun getColorPickerViewModelFactory(
+        context: Context,
+        wallpaperColorsViewModel: WallpaperColorsViewModel,
+    ): ColorPickerViewModel.Factory {
+        return colorPickerViewModelFactory
+            ?: ColorPickerViewModel.Factory(
+                    context,
+                    getColorPickerInteractor(context, wallpaperColorsViewModel),
+                )
+                .also { colorPickerViewModelFactory = it }
     }
 
     companion object {
