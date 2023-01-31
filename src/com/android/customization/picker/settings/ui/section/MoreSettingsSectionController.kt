@@ -28,17 +28,17 @@ import com.android.wallpaper.model.CustomizationSectionController
 
 class MoreSettingsSectionController : CustomizationSectionController<MoreSettingsSectionView> {
 
-    override fun isAvailable(context: Context?): Boolean {
+    override fun isAvailable(context: Context): Boolean {
         return true
     }
 
     @SuppressLint("InflateParams") // We're okay not providing a parent view.
-    override fun createView(context: Context?): MoreSettingsSectionView {
+    override fun createView(context: Context): MoreSettingsSectionView {
         return LayoutInflater.from(context)
             .inflate(R.layout.more_settings_section_view, null)
             .apply {
                 setOnClickListener {
-                    context?.startActivity(Intent(Settings.ACTION_LOCKSCREEN_SETTINGS))
+                    context.startActivity(Intent(Settings.ACTION_LOCKSCREEN_SETTINGS))
                 }
             } as MoreSettingsSectionView
     }

@@ -16,36 +16,30 @@
 -->
 <com.android.customization.picker.color.ColorSectionView2
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/color_section_option_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/section_bottom_padding"
-    android:paddingHorizontal="@dimen/section_horizontal_padding"
-    android:orientation="vertical">
+    android:layout_marginBottom="@dimen/section_bottom_padding"
+    android:layout_marginHorizontal="@dimen/section_horizontal_padding"
+    android:orientation="horizontal"
+    android:background="@drawable/top_connected_section_background"
+    android:paddingVertical="24dp"
+    android:paddingHorizontal="24dp"
+    android:weightSum="@integer/color_section_num_columns">
 
-    <LinearLayout
-        android:id="@+id/color_section_option_container"
-        android:layout_width="match_parent"
+    <!--
+        This is just an invisible placeholder put in place so that the parent keeps its height
+        stable as the RecyclerView updates from 0 items to N items. Keeping it stable allows the
+        layout logic to keep the size of the preview container stable as well, which bodes well
+        for setting up the SurfaceView for remote rendering without changing its size after the
+        content is loaded into the RecyclerView.
+
+        It's critical for any TextViews inside the included layout to have text.
+        -->
+    <include
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/color_section_background"
-        android:paddingVertical="24dp"
-        android:paddingHorizontal="24dp"
-        android:weightSum="@integer/color_section_num_columns">
-
-        <!--
-            This is just an invisible placeholder put in place so that the parent keeps its height
-            stable as the RecyclerView updates from 0 items to N items. Keeping it stable allows the
-            layout logic to keep the size of the preview container stable as well, which bodes well
-            for setting up the SurfaceView for remote rendering without changing its size after the
-            content is loaded into the RecyclerView.
-
-            It's critical for any TextViews inside the included layout to have text.
-            -->
-        <include
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            layout="@layout/color_option_section_overflow"
-            android:visibility="invisible"
-            android:layout_weight="1"/>
-    </LinearLayout>
+        layout="@layout/color_option_section_overflow"
+        android:visibility="invisible"
+        android:layout_weight="1"/>
 </com.android.customization.picker.color.ColorSectionView2>
