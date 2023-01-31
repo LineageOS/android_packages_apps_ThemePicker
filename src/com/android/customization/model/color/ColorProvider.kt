@@ -220,12 +220,22 @@ class ColorProvider(context: Context, stubPackageName: String) :
      */
     @ColorInt
     private fun ColorScheme.getLightColorPreview(): IntArray {
-        return intArrayOf(
-            setAlphaComponent(this.accent1.s100, ALPHA_MASK),
-            setAlphaComponent(this.accent1.s100, ALPHA_MASK),
-            ColorStateList.valueOf(this.accent3.s500).withLStar(85f).colors[0],
-            setAlphaComponent(this.accent1.s500, ALPHA_MASK)
-        )
+        return when (this.style) {
+            Style.EXPRESSIVE ->
+                intArrayOf(
+                    setAlphaComponent(this.accent1.s100, ALPHA_MASK),
+                    setAlphaComponent(this.accent1.s100, ALPHA_MASK),
+                    ColorStateList.valueOf(this.neutral2.s500).withLStar(80f).colors[0],
+                    setAlphaComponent(this.accent2.s500, ALPHA_MASK)
+                )
+            else ->
+                intArrayOf(
+                    setAlphaComponent(this.accent1.s100, ALPHA_MASK),
+                    setAlphaComponent(this.accent1.s100, ALPHA_MASK),
+                    ColorStateList.valueOf(this.accent3.s500).withLStar(85f).colors[0],
+                    setAlphaComponent(this.accent1.s500, ALPHA_MASK)
+                )
+        }
     }
 
     /**
@@ -234,12 +244,7 @@ class ColorProvider(context: Context, stubPackageName: String) :
      */
     @ColorInt
     private fun ColorScheme.getDarkColorPreview(): IntArray {
-        return intArrayOf(
-            setAlphaComponent(this.accent1.s100, ALPHA_MASK),
-            setAlphaComponent(this.accent1.s100, ALPHA_MASK),
-            ColorStateList.valueOf(this.accent3.s500).withLStar(85f).colors[0],
-            setAlphaComponent(this.accent1.s500, ALPHA_MASK)
-        )
+        return getLightColorPreview()
     }
 
     private fun ColorScheme.getPresetColorPreview(seed: Int): IntArray {
