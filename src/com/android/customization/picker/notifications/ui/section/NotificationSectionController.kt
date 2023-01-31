@@ -33,12 +33,12 @@ class NotificationSectionController(
     private val lifecycleOwner: LifecycleOwner,
 ) : CustomizationSectionController<NotificationSectionView> {
 
-    override fun isAvailable(context: Context?): Boolean {
+    override fun isAvailable(context: Context): Boolean {
         return true
     }
 
     @SuppressLint("InflateParams") // We don't care that the parent is null.
-    override fun createView(context: Context?): NotificationSectionView {
+    override fun createView(context: Context): NotificationSectionView {
         val view =
             LayoutInflater.from(context)
                 .inflate(
