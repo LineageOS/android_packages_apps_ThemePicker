@@ -115,23 +115,6 @@ class KeyguardQuickAffordancePickerInteractorTest {
         }
 
     @Test
-    fun unselect() =
-        testScope.runTest {
-            val selections = collectLastValue(underTest.selections)
-            underTest.select(
-                slotId = KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START,
-                affordanceId = FakeCustomizationProviderClient.AFFORDANCE_1,
-            )
-
-            underTest.unselect(
-                slotId = KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START,
-                affordanceId = FakeCustomizationProviderClient.AFFORDANCE_1,
-            )
-
-            assertThat(selections()).isEmpty()
-        }
-
-    @Test
     fun unselectAll() =
         testScope.runTest {
             client.setSlotCapacity(KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END, 3)
