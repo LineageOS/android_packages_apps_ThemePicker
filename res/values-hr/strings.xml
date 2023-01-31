@@ -116,4 +116,8 @@
     <string name="notifications_section_title" msgid="4283049750376871538">"Obavijesti"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Prikaz obavijesti na zaključanom zaslonu"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Skrivanje obavijesti na zaključanom zaslonu"</string>
+    <!-- no translation found for more_settings_section_title (8524741850115625404) -->
+    <skip />
+    <!-- no translation found for more_settings_section_description (8787768566854880683) -->
+    <skip />
 </resources>
