@@ -6,9 +6,9 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.systemui.plugins.ClockId
 import com.android.systemui.plugins.ClockMetadata
 import com.android.systemui.plugins.ClockProvider
+import com.android.systemui.plugins.ClockSettings
 import com.android.systemui.plugins.PluginManager
 import com.android.systemui.shared.clocks.ClockRegistry
 import org.junit.Assert
@@ -33,7 +33,7 @@ class ClockCustomDemoFragmentTest {
     @Mock private lateinit var mockHandler: Handler
     @Mock private lateinit var defaultClockProvider: ClockProvider
 
-    private var settingValue: String = ""
+    private var settingValue: ClockSettings? = null
 
     @Before
     fun setUp() {
@@ -52,7 +52,7 @@ class ClockCustomDemoFragmentTest {
                     userHandle = UserHandle.USER_ALL,
                     defaultClockProvider = defaultClockProvider
                 ) {
-                override var currentClockId: ClockId
+                override var settings: ClockSettings?
                     get() = settingValue
                     set(value) {
                         settingValue = value
@@ -91,6 +91,6 @@ class ClockCustomDemoFragmentTest {
             .findViewHolderForAdapterPosition(testPosition)
             ?.itemView
             ?.performClick()
-        Assert.assertEquals("CLOCK_1", settingValue)
+        Assert.assertEquals("CLOCK_1", settingValue?.clockId)
     }
 }
