@@ -23,8 +23,11 @@ import com.android.customization.model.theme.ThemeManager
 import com.android.customization.picker.clock.data.repository.ClockRegistryProvider
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
+import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
+import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
 import com.android.systemui.shared.clocks.ClockRegistry
+import com.android.wallpaper.model.WallpaperColorsViewModel
 import com.android.wallpaper.module.Injector
 
 interface CustomizationInjector : Injector {
@@ -52,4 +55,14 @@ interface CustomizationInjector : Injector {
         context: Context,
         clockRegistry: ClockRegistry
     ): ClockSectionViewModel
+
+    fun getColorPickerInteractor(
+        context: Context,
+        wallpaperColorsViewModel: WallpaperColorsViewModel,
+    ): ColorPickerInteractor
+
+    fun getColorPickerViewModelFactory(
+        context: Context,
+        wallpaperColorsViewModel: WallpaperColorsViewModel,
+    ): ColorPickerViewModel.Factory
 }

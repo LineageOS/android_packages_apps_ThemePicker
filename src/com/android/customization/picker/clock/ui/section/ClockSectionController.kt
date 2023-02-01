@@ -39,9 +39,9 @@ class ClockSectionController(
     private val lifecycleOwner: LifecycleOwner,
     private val flag: BaseFlags,
     private val clockRegistryProvider: ClockRegistryProvider,
-) : CustomizationSectionController<ClockSectionView?> {
+) : CustomizationSectionController<ClockSectionView> {
 
-    override fun isAvailable(context: Context?): Boolean {
+    override fun isAvailable(context: Context): Boolean {
         return flag.isCustomClocksEnabled(context!!)
     }
 

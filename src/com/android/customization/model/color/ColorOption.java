@@ -182,7 +182,8 @@ public abstract class ColorOption implements CustomizationOption<ColorOption> {
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
-    protected CharSequence getContentDescription(Context context) {
+    /** */
+    public CharSequence getContentDescription(Context context) {
         if (mContentDescription == null) {
             CharSequence defaultName = context.getString(R.string.default_theme_title);
             if (isDefault()) {

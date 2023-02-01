@@ -174,13 +174,13 @@ public class ColorSectionController implements CustomizationSectionController<Co
         // TODO(b/202145216): Use just 2 views when tapping either button on top.
         mTabLayout.setViewPager(mColorSectionViewPager);
 
-        mWallpaperColorsViewModel.getHomeWallpaperColors().observe(mLifecycleOwner,
+        mWallpaperColorsViewModel.getHomeWallpaperColorsLiveData().observe(mLifecycleOwner,
                 homeColors -> {
                     mHomeWallpaperColors = homeColors;
                     mHomeWallpaperColorsReady = true;
                     maybeLoadColors();
                 });
-        mWallpaperColorsViewModel.getLockWallpaperColors().observe(mLifecycleOwner,
+        mWallpaperColorsViewModel.getLockWallpaperColorsLiveData().observe(mLifecycleOwner,
                 lockColors -> {
                     mLockWallpaperColors = lockColors;
                     mLockWallpaperColorsReady = true;
