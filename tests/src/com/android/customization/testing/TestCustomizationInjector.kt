@@ -12,6 +12,9 @@ import com.android.customization.picker.clock.data.repository.ClockRegistryProvi
 import com.android.customization.picker.clock.data.repository.FakeClockPickerRepository
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
+import com.android.customization.picker.color.data.repository.ColorPickerRepositoryImpl
+import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
+import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
 import com.android.customization.picker.quickaffordance.data.repository.KeyguardQuickAffordancePickerRepository
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordanceSnapshotRestorer
@@ -19,6 +22,7 @@ import com.android.systemui.shared.clocks.ClockRegistry
 import com.android.systemui.shared.customization.data.content.CustomizationProviderClient
 import com.android.systemui.shared.customization.data.content.CustomizationProviderClientImpl
 import com.android.wallpaper.config.BaseFlags
+import com.android.wallpaper.model.WallpaperColorsViewModel
 import com.android.wallpaper.module.DrawableLayerResolver
 import com.android.wallpaper.module.PackageStatusNotifier
 import com.android.wallpaper.module.UserEventLogger
@@ -42,6 +46,8 @@ class TestCustomizationInjector : TestInjector(), CustomizationInjector {
     private var clockRegistryProvider: ClockRegistryProvider? = null
     private var clockPickerInteractor: ClockPickerInteractor? = null
     private var clockSectionViewModel: ClockSectionViewModel? = null
+    private var colorPickerInteractor: ColorPickerInteractor? = null
+    private var colorPickerViewModelFactory: ColorPickerViewModel.Factory? = null
 
     override fun getCustomizationPreferences(context: Context): CustomizationPreferences {
         return customizationPreferences
@@ -150,6 +156,27 @@ class TestCustomizationInjector : TestInjector(), CustomizationInjector {
             ?: ClockSectionViewModel(getClockPickerInteractor(context, clockRegistry)).also {
                 clockSectionViewModel = it
             }
+    }
+
+    override fun getColorPickerInteractor(
+        context: Context,
+        wallpaperColorsViewModel: WallpaperColorsViewModel,
+    ): ColorPickerInteractor {
+        return colorPickerInteractor
+            ?: ColorPickerInteractor(ColorPickerRepositoryImpl(context, wallpaperColorsViewModel))
+                .also { colorPickerInteractor = it }
+    }
+
+    override fun getColorPickerViewModelFactory(
+        context: Context,
+        wallpaperColorsViewModel: WallpaperColorsViewModel,
+    ): ColorPickerViewModel.Factory {
+        return colorPickerViewModelFactory
+            ?: ColorPickerViewModel.Factory(
+                    context,
+                    getColorPickerInteractor(context, wallpaperColorsViewModel),
+                )
+                .also { colorPickerViewModelFactory = it }
     }
 
     companion object {
