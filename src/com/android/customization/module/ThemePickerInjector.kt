@@ -235,9 +235,14 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
         clockRegistry: ClockRegistry,
     ): ClockPickerInteractor {
         return clockPickerInteractor
-            ?: ClockPickerInteractor(ClockPickerRepositoryImpl(clockRegistry)).also {
-                clockPickerInteractor = it
-            }
+            ?: ClockPickerInteractor(
+                    ClockPickerRepositoryImpl(
+                        registry = clockRegistry,
+                        scope = GlobalScope,
+                        backgroundDispatcher = Dispatchers.IO,
+                    )
+                )
+                .also { clockPickerInteractor = it }
     }
 
     override fun getClockSectionViewModel(
