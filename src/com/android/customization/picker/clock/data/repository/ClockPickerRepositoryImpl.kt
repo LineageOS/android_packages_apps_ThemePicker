@@ -16,18 +16,28 @@
  */
 package com.android.customization.picker.clock.data.repository
 
+import android.util.Log
 import com.android.customization.picker.clock.shared.ClockSize
 import com.android.customization.picker.clock.shared.model.ClockMetadataModel
 import com.android.systemui.plugins.ClockMetadata
 import com.android.systemui.shared.clocks.ClockRegistry
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /** Implementation of [ClockPickerRepository], using [ClockRegistry]. */
-class ClockPickerRepositoryImpl(private val registry: ClockRegistry) : ClockPickerRepository {
+class ClockPickerRepositoryImpl(
+    private val registry: ClockRegistry,
+    private val scope: CoroutineScope,
+    private val backgroundDispatcher: CoroutineDispatcher,
+) : ClockPickerRepository {
 
     override val allClocks: Array<ClockMetadataModel> =
         registry
@@ -37,22 +47,31 @@ class ClockPickerRepositoryImpl(private val registry: ClockRegistry) : ClockPick
             .toTypedArray()
 
     /** The currently-selected clock. */
-    override val selectedClock: Flow<ClockMetadataModel> = callbackFlow {
-        fun send() {
-            val model =
-                registry
-                    .getClocks()
-                    .find { clockMetadata -> clockMetadata.clockId == registry.currentClockId }
-                    ?.toModel()
-            checkNotNull(model)
-            trySend(model)
-        }
+    override val selectedClock: Flow<ClockMetadataModel> =
+        callbackFlow {
+                suspend fun send() {
+                    val currentClockId =
+                        withContext(backgroundDispatcher) { registry.currentClockId }
+                    val model =
+                        registry
+                            .getClocks()
+                            .find { clockMetadata -> clockMetadata.clockId == currentClockId }
+                            ?.toModel()
+                    if (model == null) {
+                        Log.w(
+                            TAG,
+                            "Clock with ID \"$currentClockId\" not found!",
+                        )
+                    }
+                    trySend(model)
+                }
 
-        val listener = ClockRegistry.ClockChangeListener { send() }
-        registry.registerClockChangeListener(listener)
-        send()
-        awaitClose { registry.unregisterClockChangeListener(listener) }
-    }
+                val listener = ClockRegistry.ClockChangeListener { scope.launch { send() } }
+                registry.registerClockChangeListener(listener)
+                send()
+                awaitClose { registry.unregisterClockChangeListener(listener) }
+            }
+            .mapNotNull { it }
 
     override fun setSelectedClock(clockId: String) {
         registry.currentClockId = clockId
@@ -68,5 +87,9 @@ class ClockPickerRepositoryImpl(private val registry: ClockRegistry) : ClockPick
 
     private fun ClockMetadata.toModel(): ClockMetadataModel {
         return ClockMetadataModel(clockId = clockId, name = name)
+    }
+
+    companion object {
+        private const val TAG = "ClockPickerRepositoryImpl"
     }
 }
