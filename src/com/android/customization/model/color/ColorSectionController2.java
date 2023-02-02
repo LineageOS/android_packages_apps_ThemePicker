@@ -36,8 +36,8 @@ import com.android.customization.model.CustomizationManager;
 import com.android.customization.model.theme.OverlayManagerCompat;
 import com.android.customization.module.CustomizationInjector;
 import com.android.customization.module.ThemesUserEventLogger;
-import com.android.customization.picker.color.ColorPickerFragment;
-import com.android.customization.picker.color.ColorSectionView2;
+import com.android.customization.picker.color.ui.fragment.ColorPickerFragment;
+import com.android.customization.picker.color.ui.view.ColorSectionView2;
 import com.android.wallpaper.R;
 import com.android.wallpaper.model.CustomizationSectionController;
 import com.android.wallpaper.model.WallpaperColorsViewModel;
@@ -51,6 +51,8 @@ import java.util.List;
 
 /**
  * Color section view's controller for the logic of color customization.
+ *
+ * TODO (b/262924584): Convert ColorSectionController2 into Kotlin & use new architecture
  */
 public class ColorSectionController2 implements CustomizationSectionController<ColorSectionView2> {
 
@@ -97,13 +99,13 @@ public class ColorSectionController2 implements CustomizationSectionController<C
         mColorSectionView = (ColorSectionView2) LayoutInflater.from(context).inflate(
                 R.layout.color_section_view2, /* root= */ null);
 
-        mWallpaperColorsViewModel.getHomeWallpaperColors().observe(mLifecycleOwner,
+        mWallpaperColorsViewModel.getHomeWallpaperColorsLiveData().observe(mLifecycleOwner,
                 homeColors -> {
                     mHomeWallpaperColors = homeColors;
                     mHomeWallpaperColorsReady = true;
                     maybeLoadColors();
                 });
-        mWallpaperColorsViewModel.getLockWallpaperColors().observe(mLifecycleOwner,
+        mWallpaperColorsViewModel.getLockWallpaperColorsLiveData().observe(mLifecycleOwner,
                 lockColors -> {
                     mLockWallpaperColors = lockColors;
                     mLockWallpaperColorsReady = true;
