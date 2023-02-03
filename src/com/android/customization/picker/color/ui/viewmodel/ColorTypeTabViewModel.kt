@@ -18,7 +18,7 @@
 package com.android.customization.picker.color.ui.viewmodel
 
 /** Models UI state for a single color type in a picker experience. */
-data class ColorTypeViewModel(
+data class ColorTypeTabViewModel(
     /** User-visible name for the color type. */
     val name: String,
 

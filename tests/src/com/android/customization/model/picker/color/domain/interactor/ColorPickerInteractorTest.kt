@@ -72,11 +72,11 @@ class ColorPickerInteractorTest {
         val wallpaperColorOptionModelAfter = colorOptions()?.get(ColorType.WALLPAPER_COLOR)?.get(2)
         assertThat(wallpaperColorOptionModelAfter?.isSelected).isTrue()
 
-        val presetColorOptionModelBefore = colorOptions()?.get(ColorType.BASIC_COLOR)?.get(1)
+        val presetColorOptionModelBefore = colorOptions()?.get(ColorType.PRESET_COLOR)?.get(1)
         assertThat(presetColorOptionModelBefore?.isSelected).isFalse()
 
         presetColorOptionModelBefore?.let { underTest.select(colorOptionModel = it) }
-        val presetColorOptionModelAfter = colorOptions()?.get(ColorType.BASIC_COLOR)?.get(1)
+        val presetColorOptionModelAfter = colorOptions()?.get(ColorType.PRESET_COLOR)?.get(1)
         assertThat(presetColorOptionModelAfter?.isSelected).isTrue()
     }
 

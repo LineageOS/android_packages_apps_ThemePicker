@@ -43,13 +43,13 @@ private constructor(
     private val interactor: ColorPickerInteractor,
 ) : ViewModel() {
 
-    private val selectedColorTypeId = MutableStateFlow<ColorType?>(null)
+    private val selectedColorTypeTabId = MutableStateFlow<ColorType?>(null)
 
-    /** View-models for each color type. */
-    val colorTypes: Flow<Map<ColorType, ColorTypeViewModel>> =
+    /** View-models for each color tab. */
+    val colorTypeTabs: Flow<Map<ColorType, ColorTypeTabViewModel>> =
         combine(
             interactor.colorOptions,
-            selectedColorTypeId,
+            selectedColorTypeTabId,
         ) { colorOptions, selectedColorTypeIdOrNull ->
             colorOptions.keys
                 .mapIndexed { index, colorType ->
@@ -57,24 +57,35 @@ private constructor(
                         (selectedColorTypeIdOrNull == null && index == 0) ||
                             selectedColorTypeIdOrNull == colorType
                     colorType to
-                        ColorTypeViewModel(
+                        ColorTypeTabViewModel(
                             name =
                                 when (colorType) {
                                     ColorType.WALLPAPER_COLOR ->
                                         context.resources.getString(R.string.wallpaper_color_tab)
-                                    ColorType.BASIC_COLOR ->
-                                        context.resources.getString(R.string.preset_color_tab)
+                                    ColorType.PRESET_COLOR ->
+                                        context.resources.getString(R.string.preset_color_tab_2)
                                 },
                             isSelected = isSelected,
                             onClick =
                                 if (isSelected) {
                                     null
                                 } else {
-                                    { this.selectedColorTypeId.value = colorType }
+                                    { this.selectedColorTypeTabId.value = colorType }
                                 },
                         )
                 }
                 .toMap()
+        }
+
+    /** View-models for each color tab subheader */
+    val colorTypeTabSubheader: Flow<String> =
+        selectedColorTypeTabId.map { selectedColorTypeIdOrNull ->
+            when (selectedColorTypeIdOrNull ?: ColorType.WALLPAPER_COLOR) {
+                ColorType.WALLPAPER_COLOR ->
+                    context.resources.getString(R.string.wallpaper_color_subheader)
+                ColorType.PRESET_COLOR ->
+                    context.resources.getString(R.string.preset_color_subheader)
+            }
         }
 
     /** The list of all color options mapped by their color type */
@@ -129,7 +140,7 @@ private constructor(
                                     )
                                 }
                             }
-                            ColorType.BASIC_COLOR -> {
+                            ColorType.PRESET_COLOR -> {
                                 colorOptionEntry.value.map { colorOptionModel ->
                                     val colorBundle: ColorBundle =
                                         colorOptionModel.colorOption as ColorBundle
@@ -186,8 +197,9 @@ private constructor(
 
     /** The list of all available color options for the selected Color Type. */
     val colorOptions: Flow<List<OptionItemViewModel<ColorOptionIconViewModel>>> =
-        combine(allColorOptions, selectedColorTypeId) { allColorOptions, selectedColorTypeIdOrNull
-            ->
+        combine(allColorOptions, selectedColorTypeTabId) {
+            allColorOptions: Map<ColorType, List<OptionItemViewModel<ColorOptionIconViewModel>>>,
+            selectedColorTypeIdOrNull ->
             val selectedColorTypeId = selectedColorTypeIdOrNull ?: ColorType.WALLPAPER_COLOR
             allColorOptions[selectedColorTypeId]!!
         }
@@ -196,7 +208,7 @@ private constructor(
     val colorSectionOptions: Flow<List<OptionItemViewModel<ColorOptionIconViewModel>>> =
         allColorOptions.map { allColorOptions ->
             val wallpaperOptions = allColorOptions[ColorType.WALLPAPER_COLOR]
-            val presetOptions = allColorOptions[ColorType.BASIC_COLOR]
+            val presetOptions = allColorOptions[ColorType.PRESET_COLOR]
             val subOptions =
                 wallpaperOptions!!.subList(0, min(COLOR_SECTION_OPTION_SIZE, wallpaperOptions.size))
             // Add additional options based on preset colors if size of wallpaper color options is
