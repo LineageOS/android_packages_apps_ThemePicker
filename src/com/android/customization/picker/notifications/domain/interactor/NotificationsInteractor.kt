@@ -19,19 +19,34 @@ package com.android.customization.picker.notifications.domain.interactor
 
 import com.android.customization.picker.notifications.data.repository.NotificationsRepository
 import com.android.customization.picker.notifications.shared.model.NotificationSettingsModel
+import javax.inject.Provider
 import kotlinx.coroutines.flow.Flow
 
 /** Encapsulates business logic for interacting with notifications. */
 class NotificationsInteractor(
     private val repository: NotificationsRepository,
+    private val snapshotRestorer: Provider<NotificationsSnapshotRestorer>,
 ) {
     /** The current state of the notification setting. */
     val settings: Flow<NotificationSettingsModel> = repository.settings
 
     /** Toggles the setting to show or hide notifications on the lock screen. */
     suspend fun toggleShowNotificationsOnLockScreenEnabled() {
-        repository.setShowNotificationsOnLockScreenEnabled(
-            isEnabled = !repository.isShowNotificationsOnLockScreenEnabled(),
+        val currentModel = repository.getSettings()
+        setSettings(
+            currentModel.copy(
+                isShowNotificationsOnLockScreenEnabled =
+                    !currentModel.isShowNotificationsOnLockScreenEnabled,
+            )
         )
+    }
+
+    suspend fun setSettings(model: NotificationSettingsModel) {
+        repository.setSettings(model)
+        snapshotRestorer.get().storeSnapshot(model)
+    }
+
+    suspend fun getSettings(): NotificationSettingsModel {
+        return repository.getSettings()
     }
 }
