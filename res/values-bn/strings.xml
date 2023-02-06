@@ -23,16 +23,11 @@
     <string name="clock_description" msgid="3563839327378948">"কাস্টম ঘড়ি বেছে নিন"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"কাস্টম ঘড়ি পরিবর্তন করুন"</string>
     <string name="clock_settings_title" msgid="2940654205471453913">"ঘড়ির \'সেটিংস\'"</string>
-    <!-- no translation found for clock_color (8081608867289156163) -->
-    <skip />
-    <!-- no translation found for clock_size (5028923902364418263) -->
-    <skip />
-    <!-- no translation found for clock_size_dynamic (1023930312455061642) -->
-    <skip />
-    <!-- no translation found for clock_size_dynamic_description (2776620745774561662) -->
-    <skip />
-    <!-- no translation found for clock_size_large (3143248715744138979) -->
-    <skip />
+    <string name="clock_color" msgid="8081608867289156163">"রঙ"</string>
+    <string name="clock_size" msgid="5028923902364418263">"সাইজ"</string>
+    <string name="clock_size_dynamic" msgid="1023930312455061642">"ডায়নামিক"</string>
+    <string name="clock_size_dynamic_description" msgid="2776620745774561662">"লক স্ক্রিনের কন্টেন্ট অনুযায়ী ঘড়ির সাইজ পরিবর্তন হয়"</string>
+    <string name="clock_size_large" msgid="3143248715744138979">"বড়"</string>
     <string name="grid_title" msgid="1688173478777254123">"অ্যাপ গ্রিড"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"প্রয়োগ করুন"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"এডিট করতে ট্যাপ করুন"</string>
@@ -102,6 +97,8 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"প্রাথমিক রঙ"</string>
     <string name="color_changed" msgid="7029571720331641235">"রঙ পরিবর্তন করা হয়েছে"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"ডায়নামিক"</string>
+    <!-- no translation found for color_picker_title (9150524788313065978) -->
+    <skip />
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"বাঁদিকের শর্টকাট"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"ডানদিকের শর্টকাট"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"কোনওটিই নয়"</string>
@@ -116,8 +113,6 @@
     <string name="notifications_section_title" msgid="4283049750376871538">"বিজ্ঞপ্তি"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"লক স্ক্রিনে বিজ্ঞপ্তি দেখান"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"লক স্ক্রিনে বিজ্ঞপ্তি লুকান"</string>
-    <!-- no translation found for more_settings_section_title (8524741850115625404) -->
-    <skip />
-    <!-- no translation found for more_settings_section_description (8787768566854880683) -->
-    <skip />
+    <string name="more_settings_section_title" msgid="8524741850115625404">"আরও বিকল্প"</string>
+    <string name="more_settings_section_description" msgid="8787768566854880683">"লক স্ক্রিনে টেক্সট, এখন চলছে এবং আরও অনেক কিছু"</string>
 </resources>

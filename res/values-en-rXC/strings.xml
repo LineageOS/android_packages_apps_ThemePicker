@@ -97,6 +97,7 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‎‎‎‎‎‏‏‏‏‏‏‏‏‏‎‏‎‏‎‏‏‎‏‏‏‏‏‎‎‎‎‎‎‏‎‏‏‎‏‎‎‎‏‏‎‏‏‎‎‎‏‏‎‎‎‎‎‏‏‎‎‎‎‏‏‏‎‏‏‏‎‏‎‎‎‏‎‎Basic colors‎‏‎‎‏‎"</string>
     <string name="color_changed" msgid="7029571720331641235">"‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‎‎‎‎‎‏‏‏‏‏‏‏‏‏‏‏‏‎‎‎‎‏‏‎‎‎‏‏‏‎‎‎‎‎‏‏‏‎‎‎‏‏‏‏‎‎‎‏‎‎‎‎‎‏‎‏‏‏‏‏‏‏‏‏‎‎‎‎‎‏‏‎‎‏‎‎‏‏‎Color changed‎‏‎‎‏‎"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‎‎‎‎‎‏‏‏‏‏‏‏‏‎‏‏‎‎‏‎‏‎‎‎‏‏‎‎‎‎‏‏‏‎‏‏‎‏‏‏‏‏‎‏‎‏‏‎‏‎‎‎‏‎‏‏‎‏‎‏‏‏‏‎‎‎‏‏‏‎‎‎‏‏‎‏‎Dynamic‎‏‎‎‏‎"</string>
+    <string name="color_picker_title" msgid="9150524788313065978">"‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‎‎‎‎‎‏‏‏‏‏‏‏‏‏‏‏‏‏‏‏‏‎‏‏‏‏‏‏‎‏‎‎‏‏‎‎‎‏‏‏‎‏‎‎‎‎‎‎‏‏‏‎‏‏‏‏‎‎‏‏‏‎‏‎‎‎‏‎‎‏‏‏‏‏‏‎‏‎‎System Colors‎‏‎‎‏‎"</string>
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‎‎‎‎‎‏‏‏‏‏‏‏‏‏‏‏‏‏‏‎‎‏‎‏‏‎‎‏‎‏‏‏‏‏‏‏‏‎‏‎‏‎‏‏‏‏‎‏‎‏‎‎‏‎‏‏‏‎‎‏‏‎‏‎‎‎‏‏‎‏‏‏‎‏‎‏‏‏‎Left shortcut‎‏‎‎‏‎"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‎‎‎‎‎‏‏‏‏‏‏‏‏‏‎‏‎‎‎‏‏‎‎‎‎‏‏‎‎‎‏‎‏‎‏‎‏‎‏‏‎‎‎‏‏‎‎‏‏‏‎‎‎‎‎‏‎‎‏‏‏‎‎‎‏‏‏‏‏‏‏‏‏‏‎‏‏‎Right shortcut‎‏‎‎‏‎"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‎‎‎‎‎‏‏‏‏‏‏‏‏‎‏‏‏‎‎‎‎‏‎‎‏‏‏‏‎‎‎‏‎‏‏‎‏‏‏‎‎‎‎‎‎‏‏‏‏‎‎‏‎‎‎‏‏‏‎‎‎‎‎‏‏‎‎‏‎‏‏‎‏‎‎‎‎None‎‏‎‎‏‎"</string>
@@ -111,8 +112,6 @@
     <string name="notifications_section_title" msgid="4283049750376871538">"‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‎‎‎‎‎‏‏‏‏‏‏‏‏‏‎‏‏‏‎‏‏‎‏‏‏‎‎‎‎‎‏‏‏‎‎‏‏‎‎‎‎‏‏‏‎‎‎‏‎‏‏‏‎‏‎‎‎‏‎‎‏‏‏‏‏‎‏‏‎‎‏‏‏‎‎‏‎‎Notifications‎‏‎‎‏‎"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‎‎‎‎‎‏‏‏‏‏‏‏‏‏‎‏‏‏‎‎‏‏‎‏‏‎‎‏‏‎‏‎‎‎‏‏‎‎‏‎‏‏‏‎‎‎‏‎‎‎‎‏‏‏‏‏‏‏‏‎‎‎‏‎‏‏‎‎‏‎‏‎‎‎‎‎‎‎Show notifications on the lock screen‎‏‎‎‏‎"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‎‎‎‎‎‏‏‏‏‏‏‏‏‏‏‏‏‎‎‏‏‎‏‏‏‎‎‎‏‎‎‎‏‏‎‏‏‏‎‏‏‏‏‏‏‏‎‏‎‎‏‏‎‎‎‎‏‏‏‏‏‎‎‎‏‏‏‏‎‎‏‎‏‎‎‏‏‎‎Hide notifications on the lock screen‎‏‎‎‏‎"</string>
-    <!-- no translation found for more_settings_section_title (8524741850115625404) -->
-    <skip />
-    <!-- no translation found for more_settings_section_description (8787768566854880683) -->
-    <skip />
+    <string name="more_settings_section_title" msgid="8524741850115625404">"‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‎‎‎‎‎‏‏‏‏‏‏‏‏‏‏‏‏‏‎‏‏‎‎‏‎‎‏‏‎‏‏‏‏‏‎‏‏‏‏‎‎‎‏‎‏‏‏‏‏‏‎‎‏‎‎‎‎‎‏‏‎‎‎‏‎‏‎‎‎‏‏‎‏‏‏‏‎‎‎More options‎‏‎‎‏‎"</string>
+    <string name="more_settings_section_description" msgid="8787768566854880683">"‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‎‎‎‎‎‏‏‏‏‏‏‏‏‏‏‏‏‏‏‎‎‏‏‏‏‏‎‏‎‎‎‏‏‎‏‏‎‎‏‏‏‏‎‎‏‏‏‎‏‏‎‎‏‏‏‎‏‏‏‎‏‎‏‎‎‎‏‏‎‏‏‎‏‎‏‎‏‏‎Text on lock screen, Now Playing, and more‎‏‎‎‏‎"</string>
 </resources>

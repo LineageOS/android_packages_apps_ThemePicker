@@ -23,16 +23,11 @@
     <string name="clock_description" msgid="3563839327378948">"అనుకూల గడియారాన్ని ఎంచుకోండి"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"అనుకూల గడియారాన్ని మార్చండి"</string>
     <string name="clock_settings_title" msgid="2940654205471453913">"గడియారం సెట్టింగ్‌లు"</string>
-    <!-- no translation found for clock_color (8081608867289156163) -->
-    <skip />
-    <!-- no translation found for clock_size (5028923902364418263) -->
-    <skip />
-    <!-- no translation found for clock_size_dynamic (1023930312455061642) -->
-    <skip />
-    <!-- no translation found for clock_size_dynamic_description (2776620745774561662) -->
-    <skip />
-    <!-- no translation found for clock_size_large (3143248715744138979) -->
-    <skip />
+    <string name="clock_color" msgid="8081608867289156163">"రంగు"</string>
+    <string name="clock_size" msgid="5028923902364418263">"సైజ్"</string>
+    <string name="clock_size_dynamic" msgid="1023930312455061642">"డైనమిక్"</string>
+    <string name="clock_size_dynamic_description" msgid="2776620745774561662">"లాక్ స్క్రీన్ కంటెంట్ ప్రకారం గడియారం సైజ్ మారుతుంది"</string>
+    <string name="clock_size_large" msgid="3143248715744138979">"పెద్దది"</string>
     <string name="grid_title" msgid="1688173478777254123">"యాప్ గ్రిడ్"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"వర్తింపజేయి"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"ఎడిట్ చేయడానికి నొక్కండి"</string>
@@ -102,6 +97,7 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"ప్రాథమిక రంగులు"</string>
     <string name="color_changed" msgid="7029571720331641235">"రంగు మార్చబడింది"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"డైనమిక్"</string>
+    <string name="color_picker_title" msgid="9150524788313065978">"సిస్టమ్ రంగులు"</string>
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"ఎడమ షార్ట్‌కట్"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"కుడి షార్ట్‌కట్"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"ఏదీ లేదు"</string>
@@ -116,8 +112,6 @@
     <string name="notifications_section_title" msgid="4283049750376871538">"నోటిఫికేషన్‌లు"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"లాక్ స్క్రీన్‌లో నోటిఫికేషన్‌లను చూపండి"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"లాక్ స్క్రీన్‌లో నోటిఫికేషన్‌లను దాచండి"</string>
-    <!-- no translation found for more_settings_section_title (8524741850115625404) -->
-    <skip />
-    <!-- no translation found for more_settings_section_description (8787768566854880683) -->
-    <skip />
+    <string name="more_settings_section_title" msgid="8524741850115625404">"మరిన్ని ఆప్షన్‌లు"</string>
+    <string name="more_settings_section_description" msgid="8787768566854880683">"లాక్ స్క్రీన్, Now Playing, మరిన్ని కోసం టెక్స్ట్ మెసేజ్ పంపండి"</string>
 </resources>

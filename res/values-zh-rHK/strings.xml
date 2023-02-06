@@ -23,16 +23,11 @@
     <string name="clock_description" msgid="3563839327378948">"揀選自訂時鐘"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"變更自訂時鐘"</string>
     <string name="clock_settings_title" msgid="2940654205471453913">"時鐘設定"</string>
-    <!-- no translation found for clock_color (8081608867289156163) -->
-    <skip />
-    <!-- no translation found for clock_size (5028923902364418263) -->
-    <skip />
-    <!-- no translation found for clock_size_dynamic (1023930312455061642) -->
-    <skip />
-    <!-- no translation found for clock_size_dynamic_description (2776620745774561662) -->
-    <skip />
-    <!-- no translation found for clock_size_large (3143248715744138979) -->
-    <skip />
+    <string name="clock_color" msgid="8081608867289156163">"顏色"</string>
+    <string name="clock_size" msgid="5028923902364418263">"大小"</string>
+    <string name="clock_size_dynamic" msgid="1023930312455061642">"動態"</string>
+    <string name="clock_size_dynamic_description" msgid="2776620745774561662">"時鐘按上鎖畫面內容變更大小"</string>
+    <string name="clock_size_large" msgid="3143248715744138979">"大"</string>
     <string name="grid_title" msgid="1688173478777254123">"應用程式網格"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"套用"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"輕按即可編輯"</string>
@@ -102,6 +97,8 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"基本顏色"</string>
     <string name="color_changed" msgid="7029571720331641235">"已經變咗顏色"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"動態"</string>
+    <!-- no translation found for color_picker_title (9150524788313065978) -->
+    <skip />
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"向左捷徑"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"向右捷徑"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"無"</string>
@@ -116,8 +113,6 @@
     <string name="notifications_section_title" msgid="4283049750376871538">"通知"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"在上鎖畫面顯示通知"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"在上鎖畫面隱藏通知"</string>
-    <!-- no translation found for more_settings_section_title (8524741850115625404) -->
-    <skip />
-    <!-- no translation found for more_settings_section_description (8787768566854880683) -->
-    <skip />
+    <string name="more_settings_section_title" msgid="8524741850115625404">"更多選項"</string>
+    <string name="more_settings_section_description" msgid="8787768566854880683">"在上鎖畫面發短訊、使用「歌曲識別」功能等"</string>
 </resources>
