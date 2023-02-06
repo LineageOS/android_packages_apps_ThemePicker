@@ -15,6 +15,7 @@
  */
 package com.android.customization.module
 
+import android.app.UiModeManager
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -22,6 +23,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import com.android.customization.model.mode.DarkModeSnapshotRestorer
 import com.android.customization.model.theme.OverlayManagerCompat
 import com.android.customization.model.theme.ThemeBundleProvider
 import com.android.customization.model.theme.ThemeManager
@@ -86,6 +88,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     private var notificationSectionViewModelFactory: NotificationSectionViewModel.Factory? = null
     private var colorPickerInteractor: ColorPickerInteractor? = null
     private var colorPickerViewModelFactory: ColorPickerViewModel.Factory? = null
+    private var darkModeSnapshotRestorer: DarkModeSnapshotRestorer? = null
 
     override fun getCustomizationSections(activity: ComponentActivity): CustomizationSections {
         return customizationSections
@@ -112,7 +115,8 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                                 registry = registry,
                             )
                         }
-                    }
+                    },
+                    getDarkModeSnapshotRestorer(activity),
                 )
                 .also { customizationSections = it }
     }
@@ -173,6 +177,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                 getKeyguardQuickAffordanceSnapshotRestorer(context)
             this[KEY_WALLPAPER_SNAPSHOT_RESTORER] = getWallpaperSnapshotRestorer(context)
             this[KEY_NOTIFICATIONS_SNAPSHOT_RESTORER] = getNotificationsSnapshotRestorer(context)
+            this[KEY_DARK_MODE_SNAPSHOT_RESTORER] = getDarkModeSnapshotRestorer(context)
         }
     }
 
@@ -348,6 +353,18 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                 .also { colorPickerViewModelFactory = it }
     }
 
+    protected fun getDarkModeSnapshotRestorer(
+        context: Context,
+    ): DarkModeSnapshotRestorer {
+        return darkModeSnapshotRestorer
+            ?: DarkModeSnapshotRestorer(
+                    context = context,
+                    manager = context.getSystemService(Context.UI_MODE_SERVICE) as UiModeManager,
+                    backgroundDispatcher = Dispatchers.IO,
+                )
+                .also { darkModeSnapshotRestorer = it }
+    }
+
     companion object {
         @JvmStatic
         private val KEY_QUICK_AFFORDANCE_SNAPSHOT_RESTORER =
@@ -356,11 +373,13 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
         private val KEY_WALLPAPER_SNAPSHOT_RESTORER = KEY_QUICK_AFFORDANCE_SNAPSHOT_RESTORER + 1
         @JvmStatic
         private val KEY_NOTIFICATIONS_SNAPSHOT_RESTORER = KEY_WALLPAPER_SNAPSHOT_RESTORER + 1
+        @JvmStatic
+        private val KEY_DARK_MODE_SNAPSHOT_RESTORER = KEY_NOTIFICATIONS_SNAPSHOT_RESTORER + 1
 
         /**
          * When this injector is overridden, this is the minimal value that should be used by
          * restorers returns in [getSnapshotRestorers].
          */
-        @JvmStatic protected val MIN_SNAPSHOT_RESTORER_KEY = KEY_NOTIFICATIONS_SNAPSHOT_RESTORER + 1
+        @JvmStatic protected val MIN_SNAPSHOT_RESTORER_KEY = KEY_DARK_MODE_SNAPSHOT_RESTORER + 1
     }
 }
