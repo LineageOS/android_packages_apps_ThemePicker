@@ -22,6 +22,7 @@ import com.android.customization.model.theme.ThemeBundleProvider
 import com.android.customization.model.theme.ThemeManager
 import com.android.customization.picker.clock.data.repository.ClockRegistryProvider
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
+import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
 import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
@@ -37,23 +38,23 @@ interface CustomizationInjector : Injector {
         provider: ThemeBundleProvider,
         activity: FragmentActivity,
         overlayManagerCompat: OverlayManagerCompat,
-        logger: ThemesUserEventLogger
+        logger: ThemesUserEventLogger,
     ): ThemeManager
 
     fun getKeyguardQuickAffordancePickerInteractor(
-        context: Context
+        context: Context,
     ): KeyguardQuickAffordancePickerInteractor
 
     fun getClockRegistryProvider(context: Context): ClockRegistryProvider
 
     fun getClockPickerInteractor(
         context: Context,
-        clockRegistry: ClockRegistry
+        clockRegistry: ClockRegistry,
     ): ClockPickerInteractor
 
     fun getClockSectionViewModel(
         context: Context,
-        clockRegistry: ClockRegistry
+        clockRegistry: ClockRegistry,
     ): ClockSectionViewModel
 
     fun getColorPickerInteractor(
@@ -65,4 +66,9 @@ interface CustomizationInjector : Injector {
         context: Context,
         wallpaperColorsViewModel: WallpaperColorsViewModel,
     ): ColorPickerViewModel.Factory
+
+    fun getClockCarouselViewModel(
+        context: Context,
+        clockRegistry: ClockRegistry,
+    ): ClockCarouselViewModel
 }

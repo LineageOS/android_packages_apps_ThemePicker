@@ -16,6 +16,7 @@
 package com.android.customization.picker.clock.ui.binder
 
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
@@ -25,12 +26,22 @@ import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewMode
 import kotlinx.coroutines.launch
 
 object ClockCarouselViewBinder {
+    /**
+     * The binding is used by the view where there is an action executed from another view, e.g.
+     * toggling show/hide of the view that the binder is holding.
+     */
+    interface Binding {
+        fun show()
+        fun hide()
+    }
+
+    @JvmStatic
     fun bind(
         view: ClockCarouselView,
         viewModel: ClockCarouselViewModel,
         clockViewFactory: (clockId: String) -> View,
         lifecycleOwner: LifecycleOwner,
-    ) {
+    ): Binding {
         view.setUpImageCarouselView(
             clockIds = viewModel.allClockIds,
             onGetClockPreview = clockViewFactory,
@@ -39,6 +50,15 @@ object ClockCarouselViewBinder {
         lifecycleOwner.lifecycleScope.launch {
             lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch { viewModel.selectedClockId.collect { view.setSelectedClockId(it) } }
+            }
+        }
+        return object : Binding {
+            override fun show() {
+                view.isVisible = true
+            }
+
+            override fun hide() {
+                view.isVisible = false
             }
         }
     }
