@@ -28,6 +28,7 @@ import com.android.customization.model.theme.ThemeManager
 import com.android.customization.picker.clock.data.repository.ClockPickerRepositoryImpl
 import com.android.customization.picker.clock.data.repository.ClockRegistryProvider
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
+import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
 import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
 import com.android.customization.picker.color.data.repository.ColorPickerRepositoryImpl
@@ -36,7 +37,8 @@ import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
 import com.android.customization.picker.notifications.data.repository.NotificationsRepository
 import com.android.customization.picker.notifications.domain.interactor.NotificationsInteractor
 import com.android.customization.picker.notifications.ui.viewmodel.NotificationSectionViewModel
-import com.android.customization.picker.preview.ui.section.PreviewWithClockCarouselSectionController
+import com.android.customization.picker.preview.ui.section.PreviewWithClockCarouselSectionController.ClockCarouselViewModelProvider
+import com.android.customization.picker.preview.ui.section.PreviewWithClockCarouselSectionController.ClockViewFactoryProvider
 import com.android.customization.picker.quickaffordance.data.repository.KeyguardQuickAffordancePickerRepository
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordanceSnapshotRestorer
@@ -77,6 +79,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     private var clockPickerInteractor: ClockPickerInteractor? = null
     private var clockSectionViewModel: ClockSectionViewModel? = null
     private var clockCarouselViewModel: ClockCarouselViewModel? = null
+    private var clockViewFactory: ClockViewFactory? = null
     private var notificationsInteractor: NotificationsInteractor? = null
     private var notificationSectionViewModelFactory: NotificationSectionViewModel.Factory? = null
     private var colorPickerInteractor: ColorPickerInteractor? = null
@@ -92,12 +95,19 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                     ),
                     getFlags(),
                     getClockRegistryProvider(activity),
-                    object :
-                        PreviewWithClockCarouselSectionController.ClockCarouselViewModelProvider {
+                    object : ClockCarouselViewModelProvider {
                         override fun get(registry: ClockRegistry): ClockCarouselViewModel {
                             return getClockCarouselViewModel(
                                 context = activity,
                                 clockRegistry = registry,
+                            )
+                        }
+                    },
+                    object : ClockViewFactoryProvider {
+                        override fun get(registry: ClockRegistry): ClockViewFactory {
+                            return getClockViewFactory(
+                                context = activity,
+                                registry = registry,
                             )
                         }
                     }
@@ -277,6 +287,14 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
             ?: ClockCarouselViewModel(getClockPickerInteractor(context, clockRegistry)).also {
                 clockCarouselViewModel = it
             }
+    }
+
+    override fun getClockViewFactory(
+        context: Context,
+        registry: ClockRegistry,
+    ): ClockViewFactory {
+        return clockViewFactory
+            ?: ClockViewFactory(context, registry).also { clockViewFactory = it }
     }
 
     protected fun getNotificationsInteractor(
