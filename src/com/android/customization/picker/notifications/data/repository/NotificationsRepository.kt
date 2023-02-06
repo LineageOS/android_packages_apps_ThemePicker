@@ -51,22 +51,24 @@ class NotificationsRepository(
                 replay = 1,
             )
 
-    /** Updates the setting to show or hide notifications on the lock screen. */
-    suspend fun setShowNotificationsOnLockScreenEnabled(isEnabled: Boolean) {
-        withContext(backgroundDispatcher) {
-            secureSettingsRepository.set(
-                name = Settings.Secure.LOCK_SCREEN_SHOW_NOTIFICATIONS,
-                value = if (isEnabled) 1 else 0,
+    suspend fun getSettings(): NotificationSettingsModel {
+        return withContext(backgroundDispatcher) {
+            NotificationSettingsModel(
+                isShowNotificationsOnLockScreenEnabled =
+                    secureSettingsRepository.get(
+                        name = Settings.Secure.LOCK_SCREEN_SHOW_NOTIFICATIONS,
+                        defaultValue = 0,
+                    ) == 1
             )
         }
     }
 
-    suspend fun isShowNotificationsOnLockScreenEnabled(): Boolean {
-        return withContext(backgroundDispatcher) {
-            secureSettingsRepository.get(
+    suspend fun setSettings(model: NotificationSettingsModel) {
+        withContext(backgroundDispatcher) {
+            secureSettingsRepository.set(
                 name = Settings.Secure.LOCK_SCREEN_SHOW_NOTIFICATIONS,
-                defaultValue = 0,
-            ) == 1
+                value = if (model.isShowNotificationsOnLockScreenEnabled) 1 else 0,
+            )
         }
     }
 }

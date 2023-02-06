@@ -79,18 +79,16 @@ class NotificationsRepositoryTest {
         }
 
     @Test
-    fun setShowNotificationsOnLockScreenEnabled() =
+    fun setSettings() =
         testScope.runTest {
             val settings = collectLastValue(underTest.settings)
 
-            underTest.setShowNotificationsOnLockScreenEnabled(isEnabled = true)
-            assertThat(settings())
-                .isEqualTo(NotificationSettingsModel(isShowNotificationsOnLockScreenEnabled = true))
+            val model1 = NotificationSettingsModel(isShowNotificationsOnLockScreenEnabled = true)
+            underTest.setSettings(model1)
+            assertThat(settings()).isEqualTo(model1)
 
-            underTest.setShowNotificationsOnLockScreenEnabled(isEnabled = false)
-            assertThat(settings())
-                .isEqualTo(
-                    NotificationSettingsModel(isShowNotificationsOnLockScreenEnabled = false)
-                )
+            val model2 = NotificationSettingsModel(isShowNotificationsOnLockScreenEnabled = false)
+            underTest.setSettings(model2)
+            assertThat(settings()).isEqualTo(model2)
         }
 }
