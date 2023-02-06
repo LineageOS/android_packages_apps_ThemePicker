@@ -23,16 +23,11 @@
     <string name="clock_description" msgid="3563839327378948">"कस्टम घडी छान्नु…"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"कुनै कस्टम घडी परिवर्तन गर्नुहोस्"</string>
     <string name="clock_settings_title" msgid="2940654205471453913">"घडीका सेटिङ"</string>
-    <!-- no translation found for clock_color (8081608867289156163) -->
-    <skip />
-    <!-- no translation found for clock_size (5028923902364418263) -->
-    <skip />
-    <!-- no translation found for clock_size_dynamic (1023930312455061642) -->
-    <skip />
-    <!-- no translation found for clock_size_dynamic_description (2776620745774561662) -->
-    <skip />
-    <!-- no translation found for clock_size_large (3143248715744138979) -->
-    <skip />
+    <string name="clock_color" msgid="8081608867289156163">"रङ"</string>
+    <string name="clock_size" msgid="5028923902364418263">"आकार"</string>
+    <string name="clock_size_dynamic" msgid="1023930312455061642">"गतिशील"</string>
+    <string name="clock_size_dynamic_description" msgid="2776620745774561662">"घडीको आकार लक स्क्रिनको सामग्रीका आधारमा परिवर्तन हुन्छ"</string>
+    <string name="clock_size_large" msgid="3143248715744138979">"ठुलो"</string>
     <string name="grid_title" msgid="1688173478777254123">"एप ग्रिड"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"लागू गर्नुहोस्"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"सम्पादन गर्न ट्याप गर्नुहोस्"</string>
@@ -102,10 +97,10 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"आधारभूत रङहरू"</string>
     <string name="color_changed" msgid="7029571720331641235">"रङ बदलियो"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"गतिशील"</string>
-    <!-- no translation found for keyguard_slot_name_bottom_start (8747677880200629719) -->
+    <!-- no translation found for color_picker_title (9150524788313065978) -->
     <skip />
-    <!-- no translation found for keyguard_slot_name_bottom_end (2525487375680217083) -->
-    <skip />
+    <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"बायाँको सर्टकट"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"दायाँको सर्टकट"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"कुनै पनि होइन"</string>
     <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"\"<xliff:g id="APPNAME">%1$s</xliff:g>\" चयन गर्न तल दिइएका निर्देशनहरू पालना गर्नुहोस्"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g> खोल्नुहोस्"</string>
@@ -118,4 +113,6 @@
     <string name="notifications_section_title" msgid="4283049750376871538">"सूचनाहरू"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"लक स्क्रिनमा सूचनाहरू देखाइऊन्"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"लक स्क्रिनमा सूचनाहरू लुकाइऊन्"</string>
+    <string name="more_settings_section_title" msgid="8524741850115625404">"थप विकल्पहरू"</string>
+    <string name="more_settings_section_description" msgid="8787768566854880683">"लक स्क्रिनमा टेक्स्ट देखिने सुविधा, Now Playing र थप सुविधाहरू"</string>
 </resources>

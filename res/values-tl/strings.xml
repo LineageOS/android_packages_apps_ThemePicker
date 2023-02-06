@@ -23,16 +23,11 @@
     <string name="clock_description" msgid="3563839327378948">"Pumili ng custom na orasan"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Magbago ng custom na orasan"</string>
     <string name="clock_settings_title" msgid="2940654205471453913">"Clock Settings"</string>
-    <!-- no translation found for clock_color (8081608867289156163) -->
-    <skip />
-    <!-- no translation found for clock_size (5028923902364418263) -->
-    <skip />
-    <!-- no translation found for clock_size_dynamic (1023930312455061642) -->
-    <skip />
-    <!-- no translation found for clock_size_dynamic_description (2776620745774561662) -->
-    <skip />
-    <!-- no translation found for clock_size_large (3143248715744138979) -->
-    <skip />
+    <string name="clock_color" msgid="8081608867289156163">"Kulay"</string>
+    <string name="clock_size" msgid="5028923902364418263">"Laki"</string>
+    <string name="clock_size_dynamic" msgid="1023930312455061642">"Dynamic"</string>
+    <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Mga pagbabago sa laki ng orasan ayon sa content ng lock screen"</string>
+    <string name="clock_size_large" msgid="3143248715744138979">"Malaki"</string>
     <string name="grid_title" msgid="1688173478777254123">"Grid ng app"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Ilapat"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"I-tap para ma-edit"</string>
@@ -102,6 +97,7 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"Mga basic na kulay"</string>
     <string name="color_changed" msgid="7029571720331641235">"Pinalitan ang kulay"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Dynamic"</string>
+    <string name="color_picker_title" msgid="9150524788313065978">"Mga Kulay ng System"</string>
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Kaliwang shortcut"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Kanang shortcut"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Wala"</string>
@@ -116,4 +112,6 @@
     <string name="notifications_section_title" msgid="4283049750376871538">"Mga Notification"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Ipakita ang mga notification sa lock screen"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Itago ang mga notification sa lock screen"</string>
+    <string name="more_settings_section_title" msgid="8524741850115625404">"Higit pang opsyon"</string>
+    <string name="more_settings_section_description" msgid="8787768566854880683">"Text sa lock screen, Nagpi-play Ngayon, at higit pa"</string>
 </resources>

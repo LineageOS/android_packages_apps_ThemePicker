@@ -23,16 +23,11 @@
     <string name="clock_description" msgid="3563839327378948">"कस्टम क्लॉक निवडा"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"कस्टम क्लॉक बदला"</string>
     <string name="clock_settings_title" msgid="2940654205471453913">"क्लॉक सेटिंग्ज"</string>
-    <!-- no translation found for clock_color (8081608867289156163) -->
-    <skip />
-    <!-- no translation found for clock_size (5028923902364418263) -->
-    <skip />
-    <!-- no translation found for clock_size_dynamic (1023930312455061642) -->
-    <skip />
-    <!-- no translation found for clock_size_dynamic_description (2776620745774561662) -->
-    <skip />
-    <!-- no translation found for clock_size_large (3143248715744138979) -->
-    <skip />
+    <string name="clock_color" msgid="8081608867289156163">"रंग"</string>
+    <string name="clock_size" msgid="5028923902364418263">"आकार"</string>
+    <string name="clock_size_dynamic" msgid="1023930312455061642">"डायनॅमिक"</string>
+    <string name="clock_size_dynamic_description" msgid="2776620745774561662">"लॉक स्‍क्रीनवरील आशयानुसार घड्याळाचा आकार बदलेल"</string>
+    <string name="clock_size_large" msgid="3143248715744138979">"मोठा"</string>
     <string name="grid_title" msgid="1688173478777254123">"ॲप ग्रिड"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"लागू करा"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"संपादित करण्‍यासाठी टॅप करा"</string>
@@ -102,10 +97,10 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"डीफॉल्ट रंग"</string>
     <string name="color_changed" msgid="7029571720331641235">"रंग बदलला आहे"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"सतत बदलणारे"</string>
-    <!-- no translation found for keyguard_slot_name_bottom_start (8747677880200629719) -->
+    <!-- no translation found for color_picker_title (9150524788313065978) -->
     <skip />
-    <!-- no translation found for keyguard_slot_name_bottom_end (2525487375680217083) -->
-    <skip />
+    <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"डावा शॉर्टकट"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"उजवा शॉर्टकट"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"काहीही नाही"</string>
     <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"`<xliff:g id="APPNAME">%1$s</xliff:g>` निवडण्यासाठी पुढील गोष्टी तपासा"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g> उघडा"</string>
@@ -118,4 +113,6 @@
     <string name="notifications_section_title" msgid="4283049750376871538">"सूचना"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"लॉक स्‍क्रीनवर सूचना दाखवा"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"लॉक स्‍क्रीनवर सूचना लपवा"</string>
+    <string name="more_settings_section_title" msgid="8524741850115625404">"अधिक पर्याय"</string>
+    <string name="more_settings_section_description" msgid="8787768566854880683">"लॉक स्‍क्रीन, Now Playing आणि आणखी बरेच काही यासंबंधित मजकूर"</string>
 </resources>
