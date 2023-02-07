@@ -24,24 +24,36 @@
         android:id="@+id/section_header_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <include layout="@layout/section_header" />
     </FrameLayout>
 
-    <com.android.wallpaper.picker.DisplayAspectRatioFrameLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:paddingTop="36dp"
         android:paddingBottom="40dp">
 
-        <include
-            android:id="@+id/preview"
-            layout="@layout/wallpaper_preview_card"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"/>
-    </com.android.wallpaper.picker.DisplayAspectRatioFrameLayout>
+        <com.android.wallpaper.picker.DisplayAspectRatioFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include
+                android:id="@+id/lock_preview"
+                layout="@layout/wallpaper_preview_card"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center" />
+
+        </com.android.wallpaper.picker.DisplayAspectRatioFrameLayout>
+
+        <com.android.customization.picker.clock.ui.view.ClockCarouselView
+            android:id="@+id/clock_carousel_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:visibility="gone" />
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:paddingHorizontal="16dp"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal" />
 
             <!--
             This is just an invisible placeholder put in place so that the parent keeps its height
