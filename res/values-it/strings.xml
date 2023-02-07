@@ -23,16 +23,11 @@
     <string name="clock_description" msgid="3563839327378948">"Scegli un orologio personalizzato"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Modifica un orologio personalizzato"</string>
     <string name="clock_settings_title" msgid="2940654205471453913">"Impos. Orologio"</string>
-    <!-- no translation found for clock_color (8081608867289156163) -->
-    <skip />
-    <!-- no translation found for clock_size (5028923902364418263) -->
-    <skip />
-    <!-- no translation found for clock_size_dynamic (1023930312455061642) -->
-    <skip />
-    <!-- no translation found for clock_size_dynamic_description (2776620745774561662) -->
-    <skip />
-    <!-- no translation found for clock_size_large (3143248715744138979) -->
-    <skip />
+    <string name="clock_color" msgid="8081608867289156163">"Colore"</string>
+    <string name="clock_size" msgid="5028923902364418263">"Dimensioni"</string>
+    <string name="clock_size_dynamic" msgid="1023930312455061642">"Dinamiche"</string>
+    <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Le dimensioni dell\'orologio cambiano in base ai contenuti della schermata di blocco"</string>
+    <string name="clock_size_large" msgid="3143248715744138979">"Grandi"</string>
     <string name="grid_title" msgid="1688173478777254123">"Griglia di app"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Applica"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Tocca per modificare"</string>
@@ -102,6 +97,7 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"Colori di base"</string>
     <string name="color_changed" msgid="7029571720331641235">"Colore modificato"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Dinamica"</string>
+    <string name="color_picker_title" msgid="9150524788313065978">"Colori sistema"</string>
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Scorciatoia sinistra"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Scorciatoia destra"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Nessuno"</string>
@@ -116,4 +112,6 @@
     <string name="notifications_section_title" msgid="4283049750376871538">"Notifiche"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Mostra le notifiche sulla schermata di blocco"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Nascondi le notifiche sulla schermata di blocco"</string>
+    <string name="more_settings_section_title" msgid="8524741850115625404">"Altre opzioni"</string>
+    <string name="more_settings_section_description" msgid="8787768566854880683">"Testo su schermata di blocco, Now Playing e altro ancora"</string>
 </resources>

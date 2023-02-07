@@ -23,16 +23,11 @@
     <string name="clock_description" msgid="3563839327378948">"选择自定义钟面"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"更改自定义钟面"</string>
     <string name="clock_settings_title" msgid="2940654205471453913">"表盘设置"</string>
-    <!-- no translation found for clock_color (8081608867289156163) -->
-    <skip />
-    <!-- no translation found for clock_size (5028923902364418263) -->
-    <skip />
-    <!-- no translation found for clock_size_dynamic (1023930312455061642) -->
-    <skip />
-    <!-- no translation found for clock_size_dynamic_description (2776620745774561662) -->
-    <skip />
-    <!-- no translation found for clock_size_large (3143248715744138979) -->
-    <skip />
+    <string name="clock_color" msgid="8081608867289156163">"颜色"</string>
+    <string name="clock_size" msgid="5028923902364418263">"大小"</string>
+    <string name="clock_size_dynamic" msgid="1023930312455061642">"动态"</string>
+    <string name="clock_size_dynamic_description" msgid="2776620745774561662">"时钟大小会依据锁定屏幕上的内容而变化"</string>
+    <string name="clock_size_large" msgid="3143248715744138979">"大"</string>
     <string name="grid_title" msgid="1688173478777254123">"应用网格"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"应用"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"点按即可修改"</string>
@@ -102,10 +97,10 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"基本颜色"</string>
     <string name="color_changed" msgid="7029571720331641235">"颜色已更改"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"动态"</string>
-    <!-- no translation found for keyguard_slot_name_bottom_start (8747677880200629719) -->
+    <!-- no translation found for color_picker_title (9150524788313065978) -->
     <skip />
-    <!-- no translation found for keyguard_slot_name_bottom_end (2525487375680217083) -->
-    <skip />
+    <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"向左快捷方式"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"向右快捷方式"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"无"</string>
     <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"若要选择“<xliff:g id="APPNAME">%1$s</xliff:g>”，请确认满足已以下条件："</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"打开<xliff:g id="APPNAME">%1$s</xliff:g>"</string>
@@ -118,4 +113,6 @@
     <string name="notifications_section_title" msgid="4283049750376871538">"通知"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"在锁定的屏幕上显示通知"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"在锁定的屏幕上不显示通知"</string>
+    <string name="more_settings_section_title" msgid="8524741850115625404">"更多选项"</string>
+    <string name="more_settings_section_description" msgid="8787768566854880683">"在锁定屏幕上添加文字、闻曲知音和其他设置"</string>
 </resources>
