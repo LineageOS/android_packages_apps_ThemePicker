@@ -19,6 +19,7 @@ import com.android.customization.picker.notifications.ui.section.NotificationSec
 import com.android.customization.picker.notifications.ui.viewmodel.NotificationSectionViewModel;
 import com.android.customization.picker.preview.ui.section.PreviewWithClockCarouselSectionController;
 import com.android.customization.picker.preview.ui.section.PreviewWithClockCarouselSectionController.ClockCarouselViewModelProvider;
+import com.android.customization.picker.preview.ui.section.PreviewWithClockCarouselSectionController.ClockViewFactoryProvider;
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor;
 import com.android.customization.picker.quickaffordance.ui.section.KeyguardQuickAffordanceSectionController;
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel;
@@ -53,6 +54,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
     private final ClockRegistryProvider mClockRegistryProvider;
     private final PreviewWithClockCarouselSectionController.ClockCarouselViewModelProvider
             mClockCarouselViewModelProvider;
+    private final PreviewWithClockCarouselSectionController.ClockViewFactoryProvider
+            mClockViewFactoryProvider;
 
     public DefaultCustomizationSections(
             KeyguardQuickAffordancePickerInteractor keyguardQuickAffordancePickerInteractor,
@@ -61,7 +64,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
             NotificationSectionViewModel.Factory notificationSectionViewModelFactory,
             BaseFlags flags,
             ClockRegistryProvider clockRegistryProvider,
-            ClockCarouselViewModelProvider clockCarouselViewModelProvider) {
+            ClockCarouselViewModelProvider clockCarouselViewModelProvider,
+            ClockViewFactoryProvider clockViewFactoryProvider) {
         mKeyguardQuickAffordancePickerInteractor = keyguardQuickAffordancePickerInteractor;
         mKeyguardQuickAffordancePickerViewModelFactory =
                 keyguardQuickAffordancePickerViewModelFactory;
@@ -69,6 +73,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
         mFlags = flags;
         mClockRegistryProvider = clockRegistryProvider;
         mClockCarouselViewModelProvider = clockCarouselViewModelProvider;
+        mClockViewFactoryProvider = clockViewFactoryProvider;
     }
 
     @Override
@@ -98,7 +103,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
                         wallpaperColorsViewModel,
                         displayUtils,
                         mClockRegistryProvider,
-                        mClockCarouselViewModelProvider)
+                        mClockCarouselViewModelProvider,
+                        mClockViewFactoryProvider)
                         : new ScreenPreviewSectionController(
                                 activity,
                                 lifecycleOwner,

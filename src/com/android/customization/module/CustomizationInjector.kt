@@ -22,6 +22,7 @@ import com.android.customization.model.theme.ThemeBundleProvider
 import com.android.customization.model.theme.ThemeManager
 import com.android.customization.picker.clock.data.repository.ClockRegistryProvider
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
+import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
 import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
@@ -71,4 +72,9 @@ interface CustomizationInjector : Injector {
         context: Context,
         clockRegistry: ClockRegistry,
     ): ClockCarouselViewModel
+
+    fun getClockViewFactory(
+        context: Context,
+        registry: ClockRegistry,
+    ): ClockViewFactory
 }
