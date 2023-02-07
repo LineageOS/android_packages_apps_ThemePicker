@@ -37,7 +37,7 @@ class ClockCarouselView(
     private lateinit var adapter: ClockCarouselAdapter
 
     init {
-        val view = LayoutInflater.from(context).inflate(R.layout.clock_carousel_view, this)
+        val view = LayoutInflater.from(context).inflate(R.layout.clock_carousel, this)
         carousel = view.requireViewById(R.id.carousel)
     }
 
