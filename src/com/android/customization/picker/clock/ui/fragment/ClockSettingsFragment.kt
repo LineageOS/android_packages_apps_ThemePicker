@@ -24,7 +24,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.lifecycle.lifecycleScope
 import com.android.customization.module.ThemePickerInjector
+import com.android.customization.picker.clock.ui.binder.ClockCarouselViewBinder
 import com.android.customization.picker.clock.ui.binder.ClockSettingsBinder
+import com.android.customization.picker.clock.ui.view.ClockCarouselView
 import com.android.customization.picker.clock.ui.viewmodel.ClockSettingsViewModel
 import com.android.wallpaper.R
 import com.android.wallpaper.model.WallpaperColorsViewModel
@@ -107,14 +109,23 @@ class ClockSettingsFragment : AppbarFragment() {
             )
             .show()
 
+        val carouselView: ClockCarouselView = view.requireViewById(R.id.clock_carousel_view)
         lifecycleScope.launch {
-            val clockRegistry =
+            val registry =
                 withContext(Dispatchers.IO) { injector.getClockRegistryProvider(context).get() }
+            val clockViewFactory = injector.getClockViewFactory(context, registry)
+            ClockCarouselViewBinder.bind(
+                    view = carouselView,
+                    viewModel = injector.getClockCarouselViewModel(context, registry),
+                    clockViewFactory = { clockId -> clockViewFactory.getView(clockId) },
+                    lifecycleOwner = this@ClockSettingsFragment,
+                )
+                .show()
             ClockSettingsBinder.bind(
                 view,
                 ClockSettingsViewModel(
                     context,
-                    injector.getClockPickerInteractor(context, clockRegistry)
+                    injector.getClockPickerInteractor(context, registry)
                 ),
                 this@ClockSettingsFragment,
             )
