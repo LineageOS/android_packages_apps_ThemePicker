@@ -97,6 +97,7 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"Asosiy ranglar"</string>
     <string name="color_changed" msgid="7029571720331641235">"Rang oʻzgartirildi"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Dinamik"</string>
+    <string name="color_picker_title" msgid="9150524788313065978">"Tizim ranglari"</string>
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Chap yorliq"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Oʻng yorliq"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Hech biri"</string>
@@ -111,8 +112,6 @@
     <string name="notifications_section_title" msgid="4283049750376871538">"Bildirishnomalar"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Ekran qulfida bildirishnomalarni chiqarish"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Ekran qulfida bildirishnomalarni berkitish"</string>
-    <!-- no translation found for more_settings_section_title (8524741850115625404) -->
-    <skip />
-    <!-- no translation found for more_settings_section_description (8787768566854880683) -->
-    <skip />
+    <string name="more_settings_section_title" msgid="8524741850115625404">"Boshqa parametrlar"</string>
+    <string name="more_settings_section_description" msgid="8787768566854880683">"Ekran qulfidagi matn, Bu qaysi musiqa va boshqalar"</string>
 </resources>
