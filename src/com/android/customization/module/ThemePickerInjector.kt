@@ -27,6 +27,10 @@ import com.android.customization.model.mode.DarkModeSnapshotRestorer
 import com.android.customization.model.theme.OverlayManagerCompat
 import com.android.customization.model.theme.ThemeBundleProvider
 import com.android.customization.model.theme.ThemeManager
+import com.android.customization.model.themedicon.ThemedIconSwitchProvider
+import com.android.customization.model.themedicon.data.repository.ThemeIconRepository
+import com.android.customization.model.themedicon.domain.interactor.ThemedIconInteractor
+import com.android.customization.model.themedicon.domain.interactor.ThemedIconSnapshotRestorer
 import com.android.customization.picker.clock.data.repository.ClockPickerRepositoryImpl
 import com.android.customization.picker.clock.data.repository.ClockRegistryProvider
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
@@ -89,6 +93,8 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     private var colorPickerInteractor: ColorPickerInteractor? = null
     private var colorPickerViewModelFactory: ColorPickerViewModel.Factory? = null
     private var darkModeSnapshotRestorer: DarkModeSnapshotRestorer? = null
+    private var themedIconSnapshotRestorer: ThemedIconSnapshotRestorer? = null
+    private var themedIconInteractor: ThemedIconInteractor? = null
 
     override fun getCustomizationSections(activity: ComponentActivity): CustomizationSections {
         return customizationSections
@@ -117,6 +123,8 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                         }
                     },
                     getDarkModeSnapshotRestorer(activity),
+                    getThemedIconSnapshotRestorer(activity),
+                    getThemedIconInteractor(),
                 )
                 .also { customizationSections = it }
     }
@@ -178,6 +186,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
             this[KEY_WALLPAPER_SNAPSHOT_RESTORER] = getWallpaperSnapshotRestorer(context)
             this[KEY_NOTIFICATIONS_SNAPSHOT_RESTORER] = getNotificationsSnapshotRestorer(context)
             this[KEY_DARK_MODE_SNAPSHOT_RESTORER] = getDarkModeSnapshotRestorer(context)
+            this[KEY_THEMED_ICON_SNAPSHOT_RESTORER] = getThemedIconSnapshotRestorer(context)
         }
     }
 
@@ -365,6 +374,29 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                 .also { darkModeSnapshotRestorer = it }
     }
 
+    protected fun getThemedIconSnapshotRestorer(
+        context: Context,
+    ): ThemedIconSnapshotRestorer {
+        val optionProvider = ThemedIconSwitchProvider.getInstance(context)
+        return themedIconSnapshotRestorer
+            ?: ThemedIconSnapshotRestorer(
+                    isActivated = { optionProvider.isThemedIconEnabled },
+                    setActivated = { isActivated ->
+                        optionProvider.isThemedIconEnabled = isActivated
+                    },
+                    interactor = getThemedIconInteractor(),
+                )
+                .also { themedIconSnapshotRestorer = it }
+    }
+
+    protected fun getThemedIconInteractor(): ThemedIconInteractor {
+        return themedIconInteractor
+            ?: ThemedIconInteractor(
+                    repository = ThemeIconRepository(),
+                )
+                .also { themedIconInteractor = it }
+    }
+
     companion object {
         @JvmStatic
         private val KEY_QUICK_AFFORDANCE_SNAPSHOT_RESTORER =
@@ -375,11 +407,13 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
         private val KEY_NOTIFICATIONS_SNAPSHOT_RESTORER = KEY_WALLPAPER_SNAPSHOT_RESTORER + 1
         @JvmStatic
         private val KEY_DARK_MODE_SNAPSHOT_RESTORER = KEY_NOTIFICATIONS_SNAPSHOT_RESTORER + 1
+        @JvmStatic
+        private val KEY_THEMED_ICON_SNAPSHOT_RESTORER = KEY_DARK_MODE_SNAPSHOT_RESTORER + 1
 
         /**
          * When this injector is overridden, this is the minimal value that should be used by
          * restorers returns in [getSnapshotRestorers].
          */
-        @JvmStatic protected val MIN_SNAPSHOT_RESTORER_KEY = KEY_DARK_MODE_SNAPSHOT_RESTORER + 1
+        @JvmStatic protected val MIN_SNAPSHOT_RESTORER_KEY = KEY_THEMED_ICON_SNAPSHOT_RESTORER + 1
     }
 }
