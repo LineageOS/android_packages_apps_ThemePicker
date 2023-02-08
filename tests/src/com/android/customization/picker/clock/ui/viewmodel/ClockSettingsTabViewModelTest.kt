@@ -44,6 +44,17 @@ class ClockSettingsViewModelTest {
     }
 
     @Test
+    fun setClockColor() = runTest {
+        val observedClockColorOptions = collectLastValue(underTest.colorOptions)
+        assertThat(observedClockColorOptions()!![0].isSelected).isTrue()
+        assertThat(observedClockColorOptions()!![0].onClick).isNull()
+
+        observedClockColorOptions()!![1].onClick?.invoke()
+        assertThat(observedClockColorOptions()!![1].isSelected).isTrue()
+        assertThat(observedClockColorOptions()!![1].onClick).isNull()
+    }
+
+    @Test
     fun setClockSize() = runTest {
         val observedClockSize = collectLastValue(underTest.selectedClockSize)
         underTest.setClockSize(ClockSize.DYNAMIC)
