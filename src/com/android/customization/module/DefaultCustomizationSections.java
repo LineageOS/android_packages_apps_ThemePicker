@@ -12,6 +12,7 @@ import com.android.customization.model.color.ColorSectionController2;
 import com.android.customization.model.grid.GridOptionsManager;
 import com.android.customization.model.grid.GridSectionController;
 import com.android.customization.model.mode.DarkModeSectionController;
+import com.android.customization.model.mode.DarkModeSnapshotRestorer;
 import com.android.customization.model.themedicon.ThemedIconSectionController;
 import com.android.customization.model.themedicon.ThemedIconSwitchProvider;
 import com.android.customization.picker.clock.data.repository.ClockRegistryProvider;
@@ -56,6 +57,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
             mClockCarouselViewModelProvider;
     private final PreviewWithClockCarouselSectionController.ClockViewFactoryProvider
             mClockViewFactoryProvider;
+    private final DarkModeSnapshotRestorer mDarkModeSnapshotRestorer;
 
     public DefaultCustomizationSections(
             KeyguardQuickAffordancePickerInteractor keyguardQuickAffordancePickerInteractor,
@@ -65,7 +67,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
             BaseFlags flags,
             ClockRegistryProvider clockRegistryProvider,
             ClockCarouselViewModelProvider clockCarouselViewModelProvider,
-            ClockViewFactoryProvider clockViewFactoryProvider) {
+            ClockViewFactoryProvider clockViewFactoryProvider,
+            DarkModeSnapshotRestorer darkModeSnapshotRestorer) {
         mKeyguardQuickAffordancePickerInteractor = keyguardQuickAffordancePickerInteractor;
         mKeyguardQuickAffordancePickerViewModelFactory =
                 keyguardQuickAffordancePickerViewModelFactory;
@@ -74,6 +77,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
         mClockRegistryProvider = clockRegistryProvider;
         mClockCarouselViewModelProvider = clockCarouselViewModelProvider;
         mClockViewFactoryProvider = clockViewFactoryProvider;
+        mDarkModeSnapshotRestorer = darkModeSnapshotRestorer;
     }
 
     @Override
@@ -157,8 +161,10 @@ public final class DefaultCustomizationSections implements CustomizationSections
 
             case HOME_SCREEN:
                 // Dark/Light theme section.
-                sectionControllers.add(new DarkModeSectionController(activity,
-                        lifecycleOwner.getLifecycle()));
+                sectionControllers.add(new DarkModeSectionController(
+                        activity,
+                        lifecycleOwner.getLifecycle(),
+                        mDarkModeSnapshotRestorer));
 
                 // Themed app icon section.
                 sectionControllers.add(new ThemedIconSectionController(
@@ -198,8 +204,10 @@ public final class DefaultCustomizationSections implements CustomizationSections
                 activity, wallpaperColorsViewModel, lifecycleOwner, savedInstanceState));
 
         // Dark/Light theme section.
-        sectionControllers.add(new DarkModeSectionController(activity,
-                lifecycleOwner.getLifecycle()));
+        sectionControllers.add(new DarkModeSectionController(
+                activity,
+                lifecycleOwner.getLifecycle(),
+                mDarkModeSnapshotRestorer));
 
         // Themed app icon section.
         sectionControllers.add(new ThemedIconSectionController(
