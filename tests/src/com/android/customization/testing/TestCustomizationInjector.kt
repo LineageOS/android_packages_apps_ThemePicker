@@ -11,6 +11,7 @@ import com.android.customization.module.ThemesUserEventLogger
 import com.android.customization.picker.clock.data.repository.ClockRegistryProvider
 import com.android.customization.picker.clock.data.repository.FakeClockPickerRepository
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
+import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
 import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
 import com.android.customization.picker.color.data.repository.ColorPickerRepositoryImpl
@@ -47,6 +48,7 @@ class TestCustomizationInjector : TestInjector(), CustomizationInjector {
     private var clockRegistryProvider: ClockRegistryProvider? = null
     private var clockPickerInteractor: ClockPickerInteractor? = null
     private var clockSectionViewModel: ClockSectionViewModel? = null
+    private var clockViewFactory: ClockViewFactory? = null
     private var colorPickerInteractor: ColorPickerInteractor? = null
     private var colorPickerViewModelFactory: ColorPickerViewModel.Factory? = null
     private var clockCarouselViewModel: ClockCarouselViewModel? = null
@@ -189,6 +191,11 @@ class TestCustomizationInjector : TestInjector(), CustomizationInjector {
             ?: ClockCarouselViewModel(getClockPickerInteractor(context, clockRegistry)).also {
                 clockCarouselViewModel = it
             }
+    }
+
+    override fun getClockViewFactory(context: Context, registry: ClockRegistry): ClockViewFactory {
+        return clockViewFactory
+            ?: ClockViewFactory(context, registry).also { clockViewFactory = it }
     }
 
     companion object {
