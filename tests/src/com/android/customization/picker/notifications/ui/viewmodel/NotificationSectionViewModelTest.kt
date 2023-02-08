@@ -20,13 +20,16 @@ package com.android.customization.picker.notifications.ui.viewmodel
 import androidx.test.filters.SmallTest
 import com.android.customization.picker.notifications.data.repository.NotificationsRepository
 import com.android.customization.picker.notifications.domain.interactor.NotificationsInteractor
+import com.android.customization.picker.notifications.domain.interactor.NotificationsSnapshotRestorer
 import com.android.wallpaper.testing.FakeSecureSettingsRepository
+import com.android.wallpaper.testing.FakeSnapshotStore
 import com.android.wallpaper.testing.collectLastValue
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestScope
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
@@ -44,23 +47,32 @@ class NotificationSectionViewModelTest {
     private lateinit var underTest: NotificationSectionViewModel
 
     private lateinit var testScope: TestScope
+    private lateinit var interactor: NotificationsInteractor
 
     @Before
     fun setUp() {
-        val testDispatcher = StandardTestDispatcher()
+        val testDispatcher = UnconfinedTestDispatcher()
         Dispatchers.setMain(testDispatcher)
         testScope = TestScope(testDispatcher)
+        interactor =
+            NotificationsInteractor(
+                repository =
+                    NotificationsRepository(
+                        scope = testScope.backgroundScope,
+                        backgroundDispatcher = testDispatcher,
+                        secureSettingsRepository = FakeSecureSettingsRepository(),
+                    ),
+                snapshotRestorer = {
+                    NotificationsSnapshotRestorer(
+                            interactor = interactor,
+                        )
+                        .apply { runBlocking { setUpSnapshotRestorer(FakeSnapshotStore()) } }
+                },
+            )
+
         underTest =
             NotificationSectionViewModel(
-                interactor =
-                    NotificationsInteractor(
-                        repository =
-                            NotificationsRepository(
-                                scope = testScope.backgroundScope,
-                                backgroundDispatcher = testDispatcher,
-                                secureSettingsRepository = FakeSecureSettingsRepository(),
-                            )
-                    )
+                interactor = interactor,
             )
     }
 
