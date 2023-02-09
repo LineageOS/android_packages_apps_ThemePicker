@@ -20,6 +20,7 @@ package com.android.customization.picker.preview.ui.section
 import android.app.Activity
 import android.content.Context
 import android.view.ViewStub
+import androidx.core.view.isGone
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.android.customization.picker.clock.data.repository.ClockRegistryProvider
@@ -67,6 +68,7 @@ class PreviewWithClockCarouselSectionController(
         val carouselViewStub: ViewStub = view.requireViewById(R.id.clock_carousel_view_stub)
         carouselViewStub.layoutResource = R.layout.clock_carousel_view
         val carouselView: ClockCarouselView = carouselViewStub.inflate() as ClockCarouselView
+        carouselView.isGone = true
         lifecycleOwner.lifecycleScope.launch {
             val registry = withContext(Dispatchers.IO) { clockRegistryProvider.get() }
             val clockViewFactory = clockViewFactoryProvider.get(registry)

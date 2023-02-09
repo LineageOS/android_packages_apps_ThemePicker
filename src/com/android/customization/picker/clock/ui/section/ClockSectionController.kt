@@ -22,7 +22,7 @@ import androidx.lifecycle.lifecycleScope
 import com.android.customization.module.ThemePickerInjector
 import com.android.customization.picker.clock.data.repository.ClockRegistryProvider
 import com.android.customization.picker.clock.ui.binder.ClockSectionViewBinder
-import com.android.customization.picker.clock.ui.fragment.ClockCustomDemoFragment
+import com.android.customization.picker.clock.ui.fragment.ClockSettingsFragment
 import com.android.customization.picker.clock.ui.view.ClockSectionView
 import com.android.wallpaper.R
 import com.android.wallpaper.config.BaseFlags
@@ -60,7 +60,7 @@ class ClockSectionController(
                     (InjectorProvider.getInjector() as ThemePickerInjector)
                         .getClockSectionViewModel(context, registry),
                 lifecycleOwner = lifecycleOwner
-            ) { navigationController.navigateTo(ClockCustomDemoFragment()) }
+            ) { navigationController.navigateTo(ClockSettingsFragment()) }
         }
         return view
     }
