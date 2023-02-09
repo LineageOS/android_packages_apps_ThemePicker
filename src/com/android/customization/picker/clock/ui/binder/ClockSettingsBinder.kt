@@ -16,6 +16,7 @@
 package com.android.customization.picker.clock.ui.binder
 
 import android.view.View
+import android.widget.SeekBar
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
@@ -41,21 +42,10 @@ object ClockSettingsBinder {
         lifecycleOwner: LifecycleOwner,
     ) {
         val tabView: RecyclerView = view.requireViewById(R.id.tabs)
-        val colorOptionContainer = view.requireViewById<View>(R.id.color_picker_container)
-        val sizeOptions =
-            view.requireViewById<ClockSizeRadioButtonGroup>(R.id.clock_size_radio_button_group)
-
         val tabAdapter = ClockSettingsTabAdapter()
         tabView.adapter = tabAdapter
         tabView.layoutManager = LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
         tabView.addItemDecoration(ItemSpacing(ItemSpacing.TAB_ITEM_SPACING_DP))
-
-        sizeOptions.onRadioButtonClickListener =
-            object : ClockSizeRadioButtonGroup.OnRadioButtonClickListener {
-                override fun onClick(size: ClockSize) {
-                    viewModel.setClockSize(size)
-                }
-            }
 
         val colorOptionContainerView: RecyclerView = view.requireViewById(R.id.color_options)
         val colorOptionAdapter = ColorOptionAdapter()
@@ -64,6 +54,30 @@ object ClockSettingsBinder {
             LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
         colorOptionContainerView.addItemDecoration(ItemSpacing(ItemSpacing.ITEM_SPACING_DP))
 
+        val slider: SeekBar = view.requireViewById(R.id.slider)
+        slider.setOnSeekBarChangeListener(
+            object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(p0: SeekBar?, progress: Int, fromUser: Boolean) {
+                    if (fromUser) {
+                        viewModel.onSliderProgressChanged(progress)
+                    }
+                }
+
+                override fun onStartTrackingTouch(p0: SeekBar?) = Unit
+                override fun onStopTrackingTouch(p0: SeekBar?) = Unit
+            }
+        )
+
+        val sizeOptions =
+            view.requireViewById<ClockSizeRadioButtonGroup>(R.id.clock_size_radio_button_group)
+        sizeOptions.onRadioButtonClickListener =
+            object : ClockSizeRadioButtonGroup.OnRadioButtonClickListener {
+                override fun onClick(size: ClockSize) {
+                    viewModel.setClockSize(size)
+                }
+            }
+
+        val colorOptionContainer = view.requireViewById<View>(R.id.color_picker_container)
         lifecycleOwner.lifecycleScope.launch {
             lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch { viewModel.tabs.collect { tabAdapter.setItems(it) } }
@@ -101,6 +115,18 @@ object ClockSettingsBinder {
                                 sizeOptions.radioButtonLarge.isChecked = true
                             }
                         }
+                    }
+                }
+
+                launch {
+                    viewModel.sliderProgress.collect { progress ->
+                        progress?.let { slider.setProgress(progress, false) }
+                    }
+                }
+
+                launch {
+                    viewModel.isSliderEnabled.collect { isEnabled ->
+                        slider.isInvisible = !isEnabled
                     }
                 }
             }
