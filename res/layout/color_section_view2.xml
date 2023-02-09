@@ -14,18 +14,14 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<com.android.customization.picker.color.ui.view.ColorSectionView2
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/color_section_option_container"
+<com.android.customization.picker.color.ui.view.ColorSectionView2 xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/section_bottom_padding"
     android:layout_marginHorizontal="@dimen/section_horizontal_padding"
-    android:orientation="horizontal"
-    android:background="@drawable/top_connected_section_background"
-    android:paddingVertical="24dp"
-    android:paddingHorizontal="24dp"
-    android:weightSum="@integer/color_section_num_columns">
+    android:orientation="vertical"
+    android:background="@drawable/top_connected_section_background">
 
     <!--
         This is just an invisible placeholder put in place so that the parent keeps its height
@@ -36,10 +32,36 @@
 
         It's critical for any TextViews inside the included layout to have text.
         -->
-    <include
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/color_section_option_container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/color_option_overflow_no_background"
-        android:visibility="invisible"
-        android:layout_weight="1"/>
+        android:orientation="horizontal"
+        android:paddingVertical="24dp"
+        android:paddingHorizontal="24dp"
+        android:weightSum="@integer/color_section_num_columns">
+        <include
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            layout="@layout/color_option_overflow_no_background"
+            android:visibility="invisible"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/more_colors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:minHeight="48dp"
+        android:gravity="center"
+        android:drawablePadding="12dp"
+        android:drawableStart="@drawable/ic_nav_color"
+        android:drawableTint="@color/text_color_primary"
+        android:text="@string/more_colors"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+        android:textColor="@color/text_color_primary"
+        android:visibility="gone"
+        tools:ignore="UseCompatTextViewDrawableXml" />
 </com.android.customization.picker.color.ui.view.ColorSectionView2>
