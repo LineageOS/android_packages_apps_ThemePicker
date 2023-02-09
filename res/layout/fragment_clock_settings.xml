@@ -19,11 +19,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
     <FrameLayout
         android:id="@+id/section_header_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <include layout="@layout/section_header" />
     </FrameLayout>
 
@@ -95,15 +95,34 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@id/affordances"
+            <FrameLayout
+                android:id="@+id/color_options_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clipToPadding="false"
-                android:paddingHorizontal="16dp"
-                android:visibility="gone"/>
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/color_options"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:paddingHorizontal="16dp" />
+
+                <!--
+                This is just an invisible placeholder put in place so that the parent keeps its
+                height stable as the RecyclerView updates from 0 items to N items. Keeping it stable
+                allows the layout logic to keep the size of the preview container stable as well,
+                which bodes well for setting up the SurfaceView for remote rendering without
+                changing its size after the content is loaded into the RecyclerView.
+                -->
+                <include
+                    layout="@layout/color_option_with_background"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible" />
+            </FrameLayout>
 
             <com.android.customization.picker.clock.ui.view.ClockSizeRadioButtonGroup
                 android:id="@+id/clock_size_radio_button_group"

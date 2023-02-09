@@ -66,7 +66,7 @@ object KeyguardQuickAffordancePickerBinder {
         affordancesView.adapter = affordancesAdapter
         affordancesView.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
-        affordancesView.addItemDecoration(ItemSpacing(ItemSpacing.AFFORDANCE_ITEM_SPACING_DP))
+        affordancesView.addItemDecoration(ItemSpacing(ItemSpacing.ITEM_SPACING_DP))
 
         var dialog: Dialog? = null
 

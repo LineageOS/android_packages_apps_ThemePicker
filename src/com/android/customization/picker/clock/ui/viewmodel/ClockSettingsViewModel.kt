@@ -16,8 +16,10 @@
 package com.android.customization.picker.clock.ui.viewmodel
 
 import android.content.Context
+import android.graphics.Color
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.shared.ClockSize
+import com.android.customization.picker.color.ui.viewmodel.ColorOptionViewModel
 import com.android.wallpaper.R
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -32,6 +34,47 @@ class ClockSettingsViewModel(val context: Context, val interactor: ClockPickerIn
         COLOR,
         SIZE,
     }
+
+    val colorOptions: Flow<List<ColorOptionViewModel>> =
+        interactor.selectedClockColor.map { selectedColor ->
+            buildList {
+                // TODO (b/241966062) Change design of the placeholder for default theme color
+                add(
+                    ColorOptionViewModel(
+                        color0 = Color.TRANSPARENT,
+                        color1 = Color.TRANSPARENT,
+                        color2 = Color.TRANSPARENT,
+                        color3 = Color.TRANSPARENT,
+                        contentDescription = "description",
+                        isSelected = selectedColor == null,
+                        onClick =
+                            if (selectedColor == null) {
+                                null
+                            } else {
+                                { interactor.setClockColor(null) }
+                            },
+                    )
+                )
+                COLOR_LIST.forEach { color ->
+                    add(
+                        ColorOptionViewModel(
+                            color0 = color,
+                            color1 = color,
+                            color2 = color,
+                            color3 = color,
+                            contentDescription = "description",
+                            isSelected = selectedColor == color,
+                            onClick =
+                                if (selectedColor == color) {
+                                    null
+                                } else {
+                                    { interactor.setClockColor(color) }
+                                },
+                        )
+                    )
+                }
+            }
+        }
 
     val selectedClockSize: Flow<ClockSize> = interactor.selectedClockSize
 
@@ -66,4 +109,10 @@ class ClockSettingsViewModel(val context: Context, val interactor: ClockPickerIn
                 ),
             )
         }
+
+    companion object {
+        // TODO (b/241966062) The color integers here are temporary for dev purposes. We need to
+        //                    finalize the overridden colors.
+        val COLOR_LIST = listOf(-2563329, -8775, -1777665, -5442872)
+    }
 }

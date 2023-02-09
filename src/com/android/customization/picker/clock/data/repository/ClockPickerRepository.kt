@@ -33,5 +33,7 @@ interface ClockPickerRepository {
 
     fun setSelectedClock(clockId: String)
 
+    fun setClockColor(color: Int?)
+
     fun setClockSize(size: ClockSize)
 }
