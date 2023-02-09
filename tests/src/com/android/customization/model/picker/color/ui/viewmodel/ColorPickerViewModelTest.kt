@@ -59,6 +59,19 @@ class ColorPickerViewModelTest {
     }
 
     @Test
+    fun `Select a color section color`() = runTest {
+        val colorSectionOptions = collectLastValue(underTest.colorSectionOptions)
+
+        assertColorOptionUiState(colorOptions = colorSectionOptions(), selectedColorOptionIndex = 0)
+
+        colorSectionOptions()?.get(2)?.onClick?.invoke()
+        assertColorOptionUiState(colorOptions = colorSectionOptions(), selectedColorOptionIndex = 2)
+
+        colorSectionOptions()?.get(4)?.onClick?.invoke()
+        assertColorOptionUiState(colorOptions = colorSectionOptions(), selectedColorOptionIndex = 4)
+    }
+
+    @Test
     fun `Select a preset color`() = runTest {
         val colorTypes = collectLastValue(underTest.colorTypes)
         val colorOptions = collectLastValue(underTest.colorOptions)
@@ -128,7 +141,20 @@ class ColorPickerViewModelTest {
             colorTypeId = ColorType.BASIC_COLOR,
             isSelected = "Basic colors" == selectedColorTypeText,
         )
+        assertColorOptionUiState(colorOptions, selectedColorOptionIndex)
+    }
 
+    /**
+     * Asserts the picker section UI state is what is expected.
+     *
+     * @param colorOptions The observed color options
+     * @param selectedColorOptionIndex The index of the color option that's expected to be selected,
+     * -1 stands for no color option should be selected
+     */
+    private fun assertColorOptionUiState(
+        colorOptions: List<ColorOptionViewModel>?,
+        selectedColorOptionIndex: Int,
+    ) {
         var foundSelectedColorOption = false
         assertThat(colorOptions).isNotNull()
         if (colorOptions != null) {

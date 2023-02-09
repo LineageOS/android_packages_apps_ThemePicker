@@ -136,13 +136,33 @@ class FakeColorPickerRepository(context: Context) : ColorPickerRepository {
 
     override fun select(colorOptionModel: ColorOptionModel) {
         val colorOptions = _colorOptions.value
-        colorOptions[ColorType.WALLPAPER_COLOR]?.forEach {
-            it.isSelected = (it.testEquals(colorOptionModel))
+        val wallpaperColorOptions = colorOptions[ColorType.WALLPAPER_COLOR]!!
+        val newWallpaperColorOptions = buildList {
+            wallpaperColorOptions.forEach { option ->
+                add(
+                    ColorOptionModel(
+                        colorOption = option.colorOption,
+                        isSelected = option.testEquals(colorOptionModel),
+                    )
+                )
+            }
         }
-        colorOptions[ColorType.BASIC_COLOR]?.forEach {
-            it.isSelected = (it.testEquals(colorOptionModel))
+        val basicColorOptions = colorOptions[ColorType.BASIC_COLOR]!!
+        val newBasicColorOptions = buildList {
+            basicColorOptions.forEach { option ->
+                add(
+                    ColorOptionModel(
+                        colorOption = option.colorOption,
+                        isSelected = option.testEquals(colorOptionModel),
+                    )
+                )
+            }
         }
-        _colorOptions.value = colorOptions
+        _colorOptions.value =
+            mapOf(
+                ColorType.WALLPAPER_COLOR to newWallpaperColorOptions,
+                ColorType.BASIC_COLOR to newBasicColorOptions
+            )
     }
 
     private fun ColorOptionModel.testEquals(other: Any?): Boolean {
