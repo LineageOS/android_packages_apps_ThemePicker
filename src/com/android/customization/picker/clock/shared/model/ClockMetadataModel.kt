@@ -21,4 +21,5 @@ package com.android.customization.picker.clock.shared.model
 data class ClockMetadataModel(
     val clockId: String,
     val name: String,
+    val color: Int?,
 )
