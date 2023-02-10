@@ -1,13 +1,10 @@
 package com.android.customization.picker.clock.ui.fragment
 
-import android.os.Handler
-import android.os.UserHandle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.systemui.plugins.ClockMetadata
-import com.android.systemui.plugins.ClockProvider
 import com.android.systemui.plugins.ClockSettings
 import com.android.systemui.plugins.PluginManager
 import com.android.systemui.shared.clocks.ClockRegistry
@@ -16,7 +13,8 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito
+import org.mockito.Mockito.verify
+import org.mockito.Mockito.`when` as whenever
 import org.mockito.MockitoAnnotations
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
@@ -28,10 +26,8 @@ import org.robolectric.annotation.Config
 class ClockCustomDemoFragmentTest {
     private lateinit var mActivity: AppCompatActivity
     private var mClockCustomDemoFragment: ClockCustomDemoFragment? = null
-    private lateinit var registry: ClockRegistry
+    @Mock private lateinit var registry: ClockRegistry
     @Mock private lateinit var mockPluginManager: PluginManager
-    @Mock private lateinit var mockHandler: Handler
-    @Mock private lateinit var defaultClockProvider: ClockProvider
 
     private var settingValue: ClockSettings? = null
 
@@ -40,33 +36,14 @@ class ClockCustomDemoFragmentTest {
         MockitoAnnotations.initMocks(this)
         mActivity = Robolectric.buildActivity(AppCompatActivity::class.java).get()
         mClockCustomDemoFragment = ClockCustomDemoFragment()
-        Mockito.`when`(defaultClockProvider.getClocks())
-            .thenReturn(listOf(ClockMetadata("DEFAULT", "Default Clock")))
-        registry =
-            object :
-                ClockRegistry(
-                    mActivity,
-                    mockPluginManager,
-                    mockHandler,
-                    isEnabled = true,
-                    userHandle = UserHandle.USER_ALL,
-                    defaultClockProvider = defaultClockProvider
-                ) {
-                override var settings: ClockSettings?
-                    get() = settingValue
-                    set(value) {
-                        settingValue = value
-                    }
-
-                override fun getClocks(): List<ClockMetadata> {
-                    return defaultClockProvider.getClocks() +
-                        listOf(
-                            ClockMetadata("CLOCK_1", "Clock 1"),
-                            ClockMetadata("CLOCK_2", "Clock 2"),
-                            ClockMetadata("CLOCK_NOT_IN_USE", "Clock not in use")
-                        )
-                }
-            }
+        whenever(registry.getClocks())
+            .thenReturn(
+                listOf(
+                    ClockMetadata("CLOCK_1", "Clock 1"),
+                    ClockMetadata("CLOCK_2", "Clock 2"),
+                    ClockMetadata("CLOCK_NOT_IN_USE", "Clock not in use")
+                )
+            )
 
         mClockCustomDemoFragment!!.clockRegistry = registry
         mClockCustomDemoFragment!!.recyclerView = RecyclerView(mActivity)
@@ -91,6 +68,6 @@ class ClockCustomDemoFragmentTest {
             .findViewHolderForAdapterPosition(testPosition)
             ?.itemView
             ?.performClick()
-        Assert.assertEquals("CLOCK_1", settingValue?.clockId)
+        verify(registry).currentClockId = "CLOCK_1"
     }
 }
