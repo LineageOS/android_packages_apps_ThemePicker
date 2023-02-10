@@ -114,4 +114,6 @@
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"లాక్ స్క్రీన్‌లో నోటిఫికేషన్‌లను దాచండి"</string>
     <string name="more_settings_section_title" msgid="8524741850115625404">"మరిన్ని ఆప్షన్‌లు"</string>
     <string name="more_settings_section_description" msgid="8787768566854880683">"లాక్ స్క్రీన్, Now Playing, మరిన్ని కోసం టెక్స్ట్ మెసేజ్ పంపండి"</string>
+    <!-- no translation found for more_colors (3191071655353004591) -->
+    <skip />
 </resources>

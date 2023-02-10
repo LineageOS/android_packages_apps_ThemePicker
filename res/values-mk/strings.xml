@@ -114,4 +114,6 @@
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Сокривај известувања на заклучен екран"</string>
     <string name="more_settings_section_title" msgid="8524741850115625404">"Повеќе опции"</string>
     <string name="more_settings_section_description" msgid="8787768566854880683">"Текст на заклучен екран, Now Playing и друго"</string>
+    <!-- no translation found for more_colors (3191071655353004591) -->
+    <skip />
 </resources>
