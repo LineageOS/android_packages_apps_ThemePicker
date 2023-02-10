@@ -8,7 +8,6 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.android.customization.model.color.ColorSectionController;
-import com.android.customization.model.color.ColorSectionController2;
 import com.android.customization.model.grid.GridOptionsManager;
 import com.android.customization.model.grid.GridSectionController;
 import com.android.customization.model.mode.DarkModeSectionController;
@@ -18,6 +17,8 @@ import com.android.customization.model.themedicon.ThemedIconSwitchProvider;
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconInteractor;
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconSnapshotRestorer;
 import com.android.customization.picker.clock.data.repository.ClockRegistryProvider;
+import com.android.customization.picker.color.ui.section.ColorSectionController2;
+import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel;
 import com.android.customization.picker.notifications.ui.section.NotificationSectionController;
 import com.android.customization.picker.notifications.ui.viewmodel.NotificationSectionViewModel;
 import com.android.customization.picker.preview.ui.section.PreviewWithClockCarouselSectionController;
@@ -48,6 +49,7 @@ import java.util.List;
 /** {@link CustomizationSections} for the customization picker. */
 public final class DefaultCustomizationSections implements CustomizationSections {
 
+    private final ColorPickerViewModel.Factory mColorPickerViewModelFactory;
     private final KeyguardQuickAffordancePickerInteractor mKeyguardQuickAffordancePickerInteractor;
     private final KeyguardQuickAffordancePickerViewModel.Factory
             mKeyguardQuickAffordancePickerViewModelFactory;
@@ -63,6 +65,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
     private final ThemedIconInteractor mThemedIconInteractor;
 
     public DefaultCustomizationSections(
+            ColorPickerViewModel.Factory colorPickerViewModelFactory,
             KeyguardQuickAffordancePickerInteractor keyguardQuickAffordancePickerInteractor,
             KeyguardQuickAffordancePickerViewModel.Factory
                     keyguardQuickAffordancePickerViewModelFactory,
@@ -74,6 +77,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
             DarkModeSnapshotRestorer darkModeSnapshotRestorer,
             ThemedIconSnapshotRestorer themedIconSnapshotRestorer,
             ThemedIconInteractor themedIconInteractor) {
+        mColorPickerViewModelFactory = colorPickerViewModelFactory;
         mKeyguardQuickAffordancePickerInteractor = keyguardQuickAffordancePickerInteractor;
         mKeyguardQuickAffordancePickerViewModelFactory =
                 keyguardQuickAffordancePickerViewModelFactory;
@@ -127,10 +131,12 @@ public final class DefaultCustomizationSections implements CustomizationSections
                 new ConnectedSectionController(
                         // Theme color section.
                         new ColorSectionController2(
-                                activity,
-                                wallpaperColorsViewModel,
-                                lifecycleOwner,
-                                sectionNavigationController),
+                                sectionNavigationController,
+                                new ViewModelProvider(
+                                        activity,
+                                        mColorPickerViewModelFactory)
+                                        .get(ColorPickerViewModel.class),
+                                lifecycleOwner),
                         // Wallpaper quick switch section.
                         new WallpaperQuickSwitchSectionController(
                                 screen,
