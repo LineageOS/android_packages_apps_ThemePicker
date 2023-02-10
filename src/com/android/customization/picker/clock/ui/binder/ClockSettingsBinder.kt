@@ -41,7 +41,7 @@ object ClockSettingsBinder {
         lifecycleOwner: LifecycleOwner,
     ) {
         val tabView: RecyclerView = view.requireViewById(R.id.tabs)
-        val colorOptionContainer = view.requireViewById<View>(R.id.color_options_container)
+        val colorOptionContainer = view.requireViewById<View>(R.id.color_picker_container)
         val sizeOptions =
             view.requireViewById<ClockSizeRadioButtonGroup>(R.id.clock_size_radio_button_group)
 
