@@ -30,6 +30,7 @@ import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
 import com.android.systemui.shared.clocks.ClockRegistry
 import com.android.wallpaper.R
+import com.android.wallpaper.model.CustomizationSectionController
 import com.android.wallpaper.model.WallpaperColorsViewModel
 import com.android.wallpaper.module.CurrentWallpaperInfoFactory
 import com.android.wallpaper.module.CustomizationSections
@@ -44,15 +45,16 @@ import kotlinx.coroutines.withContext
 /** Controls the screen preview section. */
 @OptIn(ExperimentalCoroutinesApi::class)
 class PreviewWithClockCarouselSectionController(
-    private val activity: Activity,
+    activity: Activity,
     private val lifecycleOwner: LifecycleOwner,
     private val initialScreen: CustomizationSections.Screen,
-    private val wallpaperInfoFactory: CurrentWallpaperInfoFactory,
-    private val colorViewModel: WallpaperColorsViewModel,
-    private val displayUtils: DisplayUtils,
+    wallpaperInfoFactory: CurrentWallpaperInfoFactory,
+    colorViewModel: WallpaperColorsViewModel,
+    displayUtils: DisplayUtils,
     private val clockRegistryProvider: ClockRegistryProvider,
     private val clockCarouselViewModelProvider: ClockCarouselViewModelProvider,
     private val clockViewFactoryProvider: ClockViewFactoryProvider,
+    navigator: CustomizationSectionController.CustomizationSectionNavigationController,
 ) :
     ScreenPreviewSectionController(
         activity,
@@ -61,6 +63,7 @@ class PreviewWithClockCarouselSectionController(
         wallpaperInfoFactory,
         colorViewModel,
         displayUtils,
+        navigator,
     ) {
     private var clockCarouselBinding: ClockCarouselViewBinder.Binding? = null
     override fun createView(context: Context): ScreenPreviewView {
