@@ -23,6 +23,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.ViewModelProvider
 import com.android.customization.model.mode.DarkModeSnapshotRestorer
 import com.android.customization.model.theme.OverlayManagerCompat
 import com.android.customization.model.theme.ThemeBundleProvider
@@ -99,6 +100,11 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     override fun getCustomizationSections(activity: ComponentActivity): CustomizationSections {
         return customizationSections
             ?: DefaultCustomizationSections(
+                    getColorPickerViewModelFactory(
+                        context = activity,
+                        wallpaperColorsViewModel =
+                            ViewModelProvider(activity)[WallpaperColorsViewModel::class.java],
+                    ),
                     getKeyguardQuickAffordancePickerInteractor(activity),
                     getKeyguardQuickAffordancePickerViewModelFactory(activity),
                     NotificationSectionViewModel.Factory(

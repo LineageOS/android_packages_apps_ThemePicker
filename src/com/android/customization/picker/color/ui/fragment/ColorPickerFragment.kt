@@ -37,6 +37,12 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class ColorPickerFragment : AppbarFragment() {
+    companion object {
+        @JvmStatic
+        fun newInstance(): ColorPickerFragment {
+            return ColorPickerFragment()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
