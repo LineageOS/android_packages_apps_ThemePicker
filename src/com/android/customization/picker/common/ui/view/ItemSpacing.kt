@@ -44,6 +44,6 @@ class ItemSpacing(
 
     companion object {
         const val TAB_ITEM_SPACING_DP = 12
-        const val AFFORDANCE_ITEM_SPACING_DP = 8
+        const val ITEM_SPACING_DP = 8
     }
 }

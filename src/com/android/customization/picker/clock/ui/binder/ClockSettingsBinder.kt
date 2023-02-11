@@ -28,6 +28,7 @@ import com.android.customization.picker.clock.shared.ClockSize
 import com.android.customization.picker.clock.ui.adapter.ClockSettingsTabAdapter
 import com.android.customization.picker.clock.ui.view.ClockSizeRadioButtonGroup
 import com.android.customization.picker.clock.ui.viewmodel.ClockSettingsViewModel
+import com.android.customization.picker.color.ui.adapter.ColorOptionAdapter
 import com.android.customization.picker.common.ui.view.ItemSpacing
 import com.android.wallpaper.R
 import kotlinx.coroutines.launch
@@ -40,6 +41,7 @@ object ClockSettingsBinder {
         lifecycleOwner: LifecycleOwner,
     ) {
         val tabView: RecyclerView = view.requireViewById(R.id.tabs)
+        val colorOptionContainer = view.requireViewById<View>(R.id.color_picker_container)
         val sizeOptions =
             view.requireViewById<ClockSizeRadioButtonGroup>(R.id.clock_size_radio_button_group)
 
@@ -55,6 +57,13 @@ object ClockSettingsBinder {
                 }
             }
 
+        val colorOptionContainerView: RecyclerView = view.requireViewById(R.id.color_options)
+        val colorOptionAdapter = ColorOptionAdapter()
+        colorOptionContainerView.adapter = colorOptionAdapter
+        colorOptionContainerView.layoutManager =
+            LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
+        colorOptionContainerView.addItemDecoration(ItemSpacing(ItemSpacing.ITEM_SPACING_DP))
+
         lifecycleOwner.lifecycleScope.launch {
             lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch { viewModel.tabs.collect { tabAdapter.setItems(it) } }
@@ -63,12 +72,20 @@ object ClockSettingsBinder {
                     viewModel.selectedTabPosition.collect { tab ->
                         when (tab) {
                             ClockSettingsViewModel.Tab.COLOR -> {
+                                colorOptionContainer.isVisible = true
                                 sizeOptions.isInvisible = true
                             }
                             ClockSettingsViewModel.Tab.SIZE -> {
+                                colorOptionContainer.isInvisible = true
                                 sizeOptions.isVisible = true
                             }
                         }
+                    }
+                }
+
+                launch {
+                    viewModel.colorOptions.collect { colorOptions ->
+                        colorOptionAdapter.setItems(colorOptions)
                     }
                 }
 
