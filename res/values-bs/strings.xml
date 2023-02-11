@@ -97,7 +97,7 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"Osnovne boje"</string>
     <string name="color_changed" msgid="7029571720331641235">"Boja je promijenjena"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Dinamički"</string>
-    <string name="color_picker_title" msgid="9150524788313065978">"Boje sustava"</string>
+    <string name="color_picker_title" msgid="9150524788313065978">"Boje sistema"</string>
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Prečica lijevo"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Prečica desno"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Ništa"</string>
@@ -114,4 +114,6 @@
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Sakrivanje obavještenja na zaključanom ekranu"</string>
     <string name="more_settings_section_title" msgid="8524741850115625404">"Više opcija"</string>
     <string name="more_settings_section_description" msgid="8787768566854880683">"Tekst na zaključanom ekranu, Trenutno se reproducira i drugo"</string>
+    <!-- no translation found for more_colors (3191071655353004591) -->
+    <skip />
 </resources>

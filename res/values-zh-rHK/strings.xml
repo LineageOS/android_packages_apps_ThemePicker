@@ -97,8 +97,7 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"基本顏色"</string>
     <string name="color_changed" msgid="7029571720331641235">"已經變咗顏色"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"動態"</string>
-    <!-- no translation found for color_picker_title (9150524788313065978) -->
-    <skip />
+    <string name="color_picker_title" msgid="9150524788313065978">"系統顏色"</string>
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"向左捷徑"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"向右捷徑"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"無"</string>
@@ -115,4 +114,6 @@
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"在上鎖畫面隱藏通知"</string>
     <string name="more_settings_section_title" msgid="8524741850115625404">"更多選項"</string>
     <string name="more_settings_section_description" msgid="8787768566854880683">"在上鎖畫面發短訊、使用「歌曲識別」功能等"</string>
+    <!-- no translation found for more_colors (3191071655353004591) -->
+    <skip />
 </resources>
