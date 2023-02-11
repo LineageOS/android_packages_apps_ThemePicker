@@ -114,4 +114,6 @@
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Skrivanje obavijesti na zaključanom zaslonu"</string>
     <string name="more_settings_section_title" msgid="8524741850115625404">"Više opcija"</string>
     <string name="more_settings_section_description" msgid="8787768566854880683">"Tekst na zaključanom zaslonu, Upravo svira i još mnogo toga"</string>
+    <!-- no translation found for more_colors (3191071655353004591) -->
+    <skip />
 </resources>
