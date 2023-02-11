@@ -97,8 +97,7 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"डीफॉल्ट रंग"</string>
     <string name="color_changed" msgid="7029571720331641235">"रंग बदलला आहे"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"सतत बदलणारे"</string>
-    <!-- no translation found for color_picker_title (9150524788313065978) -->
-    <skip />
+    <string name="color_picker_title" msgid="9150524788313065978">"सिस्टीमचे रंग"</string>
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"डावा शॉर्टकट"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"उजवा शॉर्टकट"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"काहीही नाही"</string>
@@ -115,4 +114,6 @@
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"लॉक स्‍क्रीनवर सूचना लपवा"</string>
     <string name="more_settings_section_title" msgid="8524741850115625404">"अधिक पर्याय"</string>
     <string name="more_settings_section_description" msgid="8787768566854880683">"लॉक स्‍क्रीन, Now Playing आणि आणखी बरेच काही यासंबंधित मजकूर"</string>
+    <!-- no translation found for more_colors (3191071655353004591) -->
+    <skip />
 </resources>

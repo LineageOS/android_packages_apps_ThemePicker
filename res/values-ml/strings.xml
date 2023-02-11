@@ -114,4 +114,6 @@
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"ലോക്ക് സ്ക്രീനിൽ അറിയിപ്പുകൾ മറയ്ക്കുക"</string>
     <string name="more_settings_section_title" msgid="8524741850115625404">"കൂടുതൽ ഓപ്‌ഷനുകൾ"</string>
     <string name="more_settings_section_description" msgid="8787768566854880683">"ലോക്ക് സ്ക്രീനിൽ ടെക്സ്റ്റിംഗ്, \'ഇപ്പോൾ കേൾക്കുന്നത്\' തുടങ്ങിയവ"</string>
+    <!-- no translation found for more_colors (3191071655353004591) -->
+    <skip />
 </resources>
