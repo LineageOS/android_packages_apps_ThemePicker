@@ -20,21 +20,30 @@ import com.android.customization.picker.clock.shared.model.ClockMetadataModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
 
 class FakeClockPickerRepository : ClockPickerRepository {
 
     override val allClocks: Array<ClockMetadataModel> = fakeClocks
 
-    private val _selectedClock = MutableStateFlow(fakeClocks[0])
-    override val selectedClock: Flow<ClockMetadataModel> = _selectedClock.asStateFlow()
+    private val _selectedClockId = MutableStateFlow(fakeClocks[0].clockId)
+    private val _clockColor = MutableStateFlow<Int?>(null)
+    override val selectedClock: Flow<ClockMetadataModel> =
+        combine(_selectedClockId, _clockColor) { selectedClockId, clockColor ->
+            val selectedClock = allClocks.find { clock -> clock.clockId == selectedClockId }
+            checkNotNull(selectedClock)
+            ClockMetadataModel(selectedClock.clockId, selectedClock.name, clockColor)
+        }
 
     private val _selectedClockSize = MutableStateFlow(ClockSize.LARGE)
     override val selectedClockSize: Flow<ClockSize> = _selectedClockSize.asStateFlow()
 
     override fun setSelectedClock(clockId: String) {
-        val clock = fakeClocks.find { it.clockId == clockId }
-        checkNotNull(clock)
-        _selectedClock.value = clock
+        _selectedClockId.value = clockId
+    }
+
+    override fun setClockColor(color: Int?) {
+        _clockColor.value = color
     }
 
     override fun setClockSize(size: ClockSize) {
@@ -44,10 +53,10 @@ class FakeClockPickerRepository : ClockPickerRepository {
     companion object {
         val fakeClocks =
             arrayOf(
-                ClockMetadataModel("clock0", "clock0"),
-                ClockMetadataModel("clock1", "clock1"),
-                ClockMetadataModel("clock2", "clock2"),
-                ClockMetadataModel("clock3", "clock3"),
+                ClockMetadataModel("clock0", "clock0", null),
+                ClockMetadataModel("clock1", "clock1", null),
+                ClockMetadataModel("clock2", "clock2", null),
+                ClockMetadataModel("clock3", "clock3", null),
             )
     }
 }

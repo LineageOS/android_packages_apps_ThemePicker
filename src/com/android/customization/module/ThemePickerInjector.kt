@@ -285,7 +285,13 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
 
     override fun getClockRegistryProvider(context: Context): ClockRegistryProvider {
         return clockRegistryProvider
-            ?: ClockRegistryProvider(context).also { clockRegistryProvider = it }
+            ?: ClockRegistryProvider(
+                    context = context,
+                    coroutineScope = GlobalScope,
+                    mainDispatcher = Dispatchers.Main,
+                    backgroundDispatcher = Dispatchers.IO,
+                )
+                .also { clockRegistryProvider = it }
     }
 
     override fun getClockPickerInteractor(
