@@ -118,14 +118,16 @@ public final class DefaultCustomizationSections implements CustomizationSections
                         displayUtils,
                         mClockRegistryProvider,
                         mClockCarouselViewModelProvider,
-                        mClockViewFactoryProvider)
+                        mClockViewFactoryProvider,
+                        sectionNavigationController)
                         : new ScreenPreviewSectionController(
                                 activity,
                                 lifecycleOwner,
                                 screen,
                                 wallpaperInfoFactory,
                                 wallpaperColorsViewModel,
-                                displayUtils));
+                                displayUtils,
+                                sectionNavigationController));
 
         sectionControllers.add(
                 new ConnectedSectionController(

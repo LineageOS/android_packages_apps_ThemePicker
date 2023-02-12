@@ -97,8 +97,7 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"Imibala eyisisekelo"</string>
     <string name="color_changed" msgid="7029571720331641235">"Umbala ushintshiwe"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Okuguqukayo"</string>
-    <!-- no translation found for color_picker_title (9150524788313065978) -->
-    <skip />
+    <string name="color_picker_title" msgid="9150524788313065978">"Imibala Yesistimu"</string>
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Isinqamuleli sangakwesokunxele"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Isinqamuleli sangakwesokudla"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Lutho"</string>
@@ -115,4 +114,6 @@
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Fihla izaziso esikrinini sokukhiya"</string>
     <string name="more_settings_section_title" msgid="8524741850115625404">"Okunye ongakhetha kukho"</string>
     <string name="more_settings_section_description" msgid="8787768566854880683">"Umbhalo esikrinini sokukhiya, Okudlala Manje, nokuningi"</string>
+    <!-- no translation found for more_colors (3191071655353004591) -->
+    <skip />
 </resources>

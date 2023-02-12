@@ -18,8 +18,6 @@ package com.android.customization.picker.clock.data.repository
 import android.app.NotificationManager
 import android.content.ComponentName
 import android.content.Context
-import android.os.Handler
-import android.os.UserHandle
 import android.view.LayoutInflater
 import com.android.systemui.plugins.ClockProviderPlugin
 import com.android.systemui.plugins.Plugin
@@ -34,6 +32,8 @@ import com.android.systemui.shared.plugins.PluginManagerImpl
 import com.android.systemui.shared.plugins.PluginPrefs
 import com.android.systemui.shared.system.UncaughtExceptionPreHandlerManager_Factory
 import java.util.concurrent.Executors
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.suspendCancellableCoroutine
 
 /**
@@ -42,17 +42,23 @@ import kotlinx.coroutines.suspendCancellableCoroutine
  */
 class ClockRegistryProvider(
     private val context: Context,
+    private val coroutineScope: CoroutineScope,
+    private val mainDispatcher: CoroutineDispatcher,
+    private val backgroundDispatcher: CoroutineDispatcher,
 ) {
     private val pluginManager: PluginManager by lazy { createPluginManager(context) }
     private val clockRegistry: ClockRegistry by lazy {
         ClockRegistry(
-            context,
-            pluginManager,
-            Handler.getMain(),
-            isEnabled = true,
-            userHandle = UserHandle.USER_SYSTEM,
-            DefaultClockProvider(context, LayoutInflater.from(context), context.resources)
-        )
+                context,
+                pluginManager,
+                coroutineScope,
+                mainDispatcher,
+                backgroundDispatcher,
+                isEnabled = true,
+                handleAllUsers = false,
+                DefaultClockProvider(context, LayoutInflater.from(context), context.resources)
+            )
+            .apply { registerListeners() }
     }
 
     suspend fun get(): ClockRegistry {
