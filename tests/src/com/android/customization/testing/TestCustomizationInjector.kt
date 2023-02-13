@@ -14,6 +14,7 @@ import com.android.customization.picker.clock.domain.interactor.ClockPickerInter
 import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
 import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
+import com.android.customization.picker.clock.ui.viewmodel.ClockSettingsViewModel
 import com.android.customization.picker.color.data.repository.ColorPickerRepositoryImpl
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
@@ -53,6 +54,7 @@ class TestCustomizationInjector : TestInjector(), CustomizationInjector {
     private var colorPickerInteractor: ColorPickerInteractor? = null
     private var colorPickerViewModelFactory: ColorPickerViewModel.Factory? = null
     private var clockCarouselViewModel: ClockCarouselViewModel? = null
+    private var clockSettingsViewModelFactory: ClockSettingsViewModel.Factory? = null
 
     override fun getCustomizationPreferences(context: Context): CustomizationPreferences {
         return customizationPreferences
@@ -200,6 +202,18 @@ class TestCustomizationInjector : TestInjector(), CustomizationInjector {
     override fun getClockViewFactory(context: Context, registry: ClockRegistry): ClockViewFactory {
         return clockViewFactory
             ?: ClockViewFactory(context, registry).also { clockViewFactory = it }
+    }
+
+    override fun getClockSettingsViewModelFactory(
+        context: Context,
+        registry: ClockRegistry
+    ): ClockSettingsViewModel.Factory {
+        return clockSettingsViewModelFactory
+            ?: ClockSettingsViewModel.Factory(
+                    context,
+                    getClockPickerInteractor(context, registry),
+                )
+                .also { clockSettingsViewModelFactory = it }
     }
 
     companion object {
