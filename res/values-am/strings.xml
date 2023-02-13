@@ -97,8 +97,7 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"መሰረታዊ ቀለሞች"</string>
     <string name="color_changed" msgid="7029571720331641235">"ቀለም ተቀይሯል"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"ተለዋዋጭ"</string>
-    <!-- no translation found for color_picker_title (9150524788313065978) -->
-    <skip />
+    <string name="color_picker_title" msgid="9150524788313065978">"የሥርዓት ቀለሞች"</string>
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"የግራ አቋራጭ"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"የቀኝ አቋራጭ"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"ምንም"</string>
@@ -115,4 +114,6 @@
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"በማያ ገጽ ቁልፉ ላይ ማሳወቂያዎችን ደብቅ"</string>
     <string name="more_settings_section_title" msgid="8524741850115625404">"ተጨማሪ አማራጮች"</string>
     <string name="more_settings_section_description" msgid="8787768566854880683">"ጽሑፍ በማያ ገጽ ቁልፍ፣ አሁን በመጫወት ላይ እና ሌሎችም"</string>
+    <!-- no translation found for more_colors (3191071655353004591) -->
+    <skip />
 </resources>

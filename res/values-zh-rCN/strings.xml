@@ -97,8 +97,7 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"基本颜色"</string>
     <string name="color_changed" msgid="7029571720331641235">"颜色已更改"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"动态"</string>
-    <!-- no translation found for color_picker_title (9150524788313065978) -->
-    <skip />
+    <string name="color_picker_title" msgid="9150524788313065978">"系统颜色"</string>
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"向左快捷方式"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"向右快捷方式"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"无"</string>
@@ -115,4 +114,6 @@
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"在锁定的屏幕上不显示通知"</string>
     <string name="more_settings_section_title" msgid="8524741850115625404">"更多选项"</string>
     <string name="more_settings_section_description" msgid="8787768566854880683">"在锁定屏幕上添加文字、闻曲知音和其他设置"</string>
+    <!-- no translation found for more_colors (3191071655353004591) -->
+    <skip />
 </resources>
