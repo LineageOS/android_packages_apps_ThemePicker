@@ -33,7 +33,7 @@
     <!-- The content description of clock entry. [CHAR LIMIT=NONE] -->
     <string name="clock_picker_entry_content_description">Change a custom clock</string>
 
-    <!-- Title of a section of the customization picker where the user can configure Clock face. [CHAR LIMIT=15] -->
+    <!-- Title of a section of the customization picker where the user can configure Clock face. [CHAR LIMIT=19] -->
     <string name="clock_settings_title">Clock Settings</string>
 
     <!-- Title of a tab to change the clock color. [CHAR LIMIT=15] -->
