@@ -15,6 +15,7 @@
  */
 package com.android.customization.module
 
+import android.app.Activity
 import android.content.Context
 import androidx.fragment.app.FragmentActivity
 import com.android.customization.model.theme.OverlayManagerCompat
@@ -75,7 +76,7 @@ interface CustomizationInjector : Injector {
     ): ClockCarouselViewModel
 
     fun getClockViewFactory(
-        context: Context,
+        activity: Activity,
         registry: ClockRegistry,
     ): ClockViewFactory
 
