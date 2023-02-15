@@ -66,7 +66,12 @@ class ClockPickerRepositoryImpl(
                     trySend(model)
                 }
 
-                val listener = ClockRegistry.ClockChangeListener { scope.launch { send() } }
+                val listener =
+                    object : ClockRegistry.ClockChangeListener {
+                        override fun onCurrentClockChanged() {
+                            scope.launch { send() }
+                        }
+                    }
                 registry.registerClockChangeListener(listener)
                 send()
                 awaitClose { registry.unregisterClockChangeListener(listener) }
