@@ -27,7 +27,6 @@ import com.android.customization.module.ThemePickerInjector
 import com.android.customization.picker.clock.ui.binder.ClockCarouselViewBinder
 import com.android.customization.picker.clock.ui.binder.ClockSettingsBinder
 import com.android.customization.picker.clock.ui.view.ClockCarouselView
-import com.android.customization.picker.clock.ui.viewmodel.ClockSettingsViewModel
 import com.android.systemui.shared.clocks.shared.model.ClockPreviewConstants
 import com.android.wallpaper.R
 import com.android.wallpaper.model.WallpaperColorsViewModel
@@ -131,10 +130,14 @@ class ClockSettingsFragment : AppbarFragment() {
                 .show()
             ClockSettingsBinder.bind(
                 view,
-                ClockSettingsViewModel(
-                    context,
-                    injector.getClockPickerInteractor(context, registry)
-                ),
+                ViewModelProvider(
+                        requireActivity(),
+                        injector.getClockSettingsViewModelFactory(
+                            context = context,
+                            registry = registry,
+                        ),
+                    )
+                    .get(),
                 this@ClockSettingsFragment,
             )
         }

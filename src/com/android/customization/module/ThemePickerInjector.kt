@@ -38,6 +38,7 @@ import com.android.customization.picker.clock.domain.interactor.ClockPickerInter
 import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
 import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
+import com.android.customization.picker.clock.ui.viewmodel.ClockSettingsViewModel
 import com.android.customization.picker.color.data.repository.ColorPickerRepositoryImpl
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
@@ -96,6 +97,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     private var darkModeSnapshotRestorer: DarkModeSnapshotRestorer? = null
     private var themedIconSnapshotRestorer: ThemedIconSnapshotRestorer? = null
     private var themedIconInteractor: ThemedIconInteractor? = null
+    private var clockSettingsViewModelFactory: ClockSettingsViewModel.Factory? = null
 
     override fun getCustomizationSections(activity: ComponentActivity): CustomizationSections {
         return customizationSections
@@ -407,6 +409,18 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                     repository = ThemeIconRepository(),
                 )
                 .also { themedIconInteractor = it }
+    }
+
+    override fun getClockSettingsViewModelFactory(
+        context: Context,
+        registry: ClockRegistry,
+    ): ClockSettingsViewModel.Factory {
+        return clockSettingsViewModelFactory
+            ?: ClockSettingsViewModel.Factory(
+                    context,
+                    getClockPickerInteractor(context, registry),
+                )
+                .also { clockSettingsViewModelFactory = it }
     }
 
     companion object {
