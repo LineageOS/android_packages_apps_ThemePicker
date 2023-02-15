@@ -303,10 +303,11 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
         return clockPickerInteractor
             ?: ClockPickerInteractor(
                     ClockPickerRepositoryImpl(
+                        secureSettingsRepository = getSecureSettingsRepository(context),
                         registry = clockRegistry,
                         scope = GlobalScope,
                         backgroundDispatcher = Dispatchers.IO,
-                    )
+                    ),
                 )
                 .also { clockPickerInteractor = it }
     }

@@ -44,7 +44,7 @@ class ClockPickerInteractor(private val repository: ClockPickerRepository) {
         repository.setClockColor(color)
     }
 
-    fun setClockSize(size: ClockSize) {
+    suspend fun setClockSize(size: ClockSize) {
         repository.setClockSize(size)
     }
 }
