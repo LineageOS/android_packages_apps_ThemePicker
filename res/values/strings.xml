@@ -33,7 +33,7 @@
     <!-- The content description of clock entry. [CHAR LIMIT=NONE] -->
     <string name="clock_picker_entry_content_description">Change a custom clock</string>
 
-    <!-- Title of a section of the customization picker where the user can configure Clock face. [CHAR LIMIT=15] -->
+    <!-- Title of a section of the customization picker where the user can configure Clock face. [CHAR LIMIT=19] -->
     <string name="clock_settings_title">Clock Settings</string>
 
     <!-- Title of a tab to change the clock color. [CHAR LIMIT=15] -->
@@ -420,4 +420,22 @@
     [CHAR LIMIT=128].
     -->
     <string name="more_colors">More Colors</string>
+
+    <!--
+    Accessibility string for a button that allows the user to select the default color for their
+    lock screen clock on the device. This is shown next to other buttons that allow the user to
+    select from a set of custom colors.
+
+    [CHAR LIMIT=NONE].
+    -->
+    <string name="content_description_default_color_option">Default color option</string>
+
+    <!--
+    Accessibility string for a button that allows the user to select a custom color for their lock
+    screen clock on the device. This is shown next to other such buttons that allow the user to
+    select from a set of custom colors.
+
+    [CHAR LIMIT=NONE].
+    -->
+    <string name="content_description_color_option">Color option <xliff:g name="color_number" example="1">%1$d</xliff:g></string>
 </resources>
