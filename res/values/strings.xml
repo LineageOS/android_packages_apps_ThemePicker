@@ -51,6 +51,9 @@
     <!-- Title of a radio button to apply clock size large. [CHAR LIMIT=15] -->
     <string name="clock_size_large">Large</string>
 
+    <!-- Title of a radio button to apply clock size small. [CHAR LIMIT=15] -->
+    <string name="clock_size_small">Small</string>
+
     <!-- Title of a section of the customization picker where the user can select a Grid size for
         the home screen. [CHAR LIMIT=15] -->
     <string name="grid_title">App grid</string>
