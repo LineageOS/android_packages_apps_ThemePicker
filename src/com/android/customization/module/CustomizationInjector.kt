@@ -25,6 +25,7 @@ import com.android.customization.picker.clock.domain.interactor.ClockPickerInter
 import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
 import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
+import com.android.customization.picker.clock.ui.viewmodel.ClockSettingsViewModel
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
@@ -77,4 +78,9 @@ interface CustomizationInjector : Injector {
         context: Context,
         registry: ClockRegistry,
     ): ClockViewFactory
+
+    fun getClockSettingsViewModelFactory(
+        context: Context,
+        registry: ClockRegistry,
+    ): ClockSettingsViewModel.Factory
 }
