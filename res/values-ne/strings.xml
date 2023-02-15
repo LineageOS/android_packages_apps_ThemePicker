@@ -97,7 +97,7 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"आधारभूत रङहरू"</string>
     <string name="color_changed" msgid="7029571720331641235">"रङ बदलियो"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"गतिशील"</string>
-    <string name="color_picker_title" msgid="9150524788313065978">"डिफल्ट रङ"</string>
+    <string name="color_picker_title" msgid="9150524788313065978">"सिस्टमका रङहरू"</string>
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"बायाँको सर्टकट"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"दायाँको सर्टकट"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"कुनै पनि होइन"</string>
@@ -114,6 +114,9 @@
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"लक स्क्रिनमा सूचनाहरू लुकाइऊन्"</string>
     <string name="more_settings_section_title" msgid="8524741850115625404">"थप विकल्पहरू"</string>
     <string name="more_settings_section_description" msgid="8787768566854880683">"लक स्क्रिनमा टेक्स्ट देखिने सुविधा, Now Playing र थप सुविधाहरू"</string>
-    <!-- no translation found for more_colors (3191071655353004591) -->
+    <string name="more_colors" msgid="3191071655353004591">"थप रङहरू"</string>
+    <!-- no translation found for content_description_default_color_option (7011899327541080695) -->
+    <skip />
+    <!-- no translation found for content_description_color_option (4169813692012119578) -->
     <skip />
 </resources>
