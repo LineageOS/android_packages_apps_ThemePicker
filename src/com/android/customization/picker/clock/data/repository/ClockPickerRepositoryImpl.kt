@@ -16,24 +16,29 @@
  */
 package com.android.customization.picker.clock.data.repository
 
+import android.provider.Settings
 import android.util.Log
 import com.android.customization.picker.clock.shared.ClockSize
 import com.android.customization.picker.clock.shared.model.ClockMetadataModel
 import com.android.systemui.plugins.ClockMetadata
 import com.android.systemui.shared.clocks.ClockRegistry
+import com.android.wallpaper.settings.data.repository.SecureSettingsRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 /** Implementation of [ClockPickerRepository], using [ClockRegistry]. */
 class ClockPickerRepositoryImpl(
+    private val secureSettingsRepository: SecureSettingsRepository,
     private val registry: ClockRegistry,
     private val scope: CoroutineScope,
     private val backgroundDispatcher: CoroutineDispatcher,
@@ -86,12 +91,26 @@ class ClockPickerRepositoryImpl(
         registry.seedColor = color
     }
 
-    // TODO(b/262924055): Use the shared system UI component to query the clock size
-    private val _selectedClockSize = MutableStateFlow(ClockSize.DYNAMIC)
-    override val selectedClockSize: Flow<ClockSize> = _selectedClockSize.asStateFlow()
+    override val selectedClockSize: SharedFlow<ClockSize> =
+        secureSettingsRepository
+            .intSetting(
+                name = Settings.Secure.LOCKSCREEN_USE_DOUBLE_LINE_CLOCK,
+            )
+            .map { setting -> setting == 1 }
+            .map { isDynamic -> if (isDynamic) ClockSize.DYNAMIC else ClockSize.SMALL }
+            .shareIn(
+                scope = scope,
+                started = SharingStarted.WhileSubscribed(),
+                replay = 1,
+            )
 
-    override fun setClockSize(size: ClockSize) {
-        _selectedClockSize.value = size
+    override suspend fun setClockSize(size: ClockSize) {
+        withContext(backgroundDispatcher) {
+            secureSettingsRepository.set(
+                name = Settings.Secure.LOCKSCREEN_USE_DOUBLE_LINE_CLOCK,
+                value = if (size == ClockSize.DYNAMIC) 1 else 0,
+            )
+        }
     }
 
     private fun ClockMetadata.toModel(color: Int?): ClockMetadataModel {

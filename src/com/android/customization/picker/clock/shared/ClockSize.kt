@@ -18,5 +18,5 @@ package com.android.customization.picker.clock.shared
 
 enum class ClockSize {
     DYNAMIC,
-    LARGE,
+    SMALL,
 }

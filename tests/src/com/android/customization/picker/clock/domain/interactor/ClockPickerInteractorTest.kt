@@ -42,7 +42,7 @@ class ClockPickerInteractorTest {
         underTest.setClockSize(ClockSize.DYNAMIC)
         Truth.assertThat(observedClockSize()).isEqualTo(ClockSize.DYNAMIC)
 
-        underTest.setClockSize(ClockSize.LARGE)
-        Truth.assertThat(observedClockSize()).isEqualTo(ClockSize.LARGE)
+        underTest.setClockSize(ClockSize.SMALL)
+        Truth.assertThat(observedClockSize()).isEqualTo(ClockSize.SMALL)
     }
 }
