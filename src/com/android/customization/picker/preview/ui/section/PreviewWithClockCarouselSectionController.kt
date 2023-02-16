@@ -23,12 +23,10 @@ import android.view.ViewStub
 import androidx.core.view.isGone
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import com.android.customization.picker.clock.data.repository.ClockRegistryProvider
 import com.android.customization.picker.clock.ui.binder.ClockCarouselViewBinder
 import com.android.customization.picker.clock.ui.view.ClockCarouselView
 import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
-import com.android.systemui.shared.clocks.ClockRegistry
 import com.android.wallpaper.R
 import com.android.wallpaper.model.CustomizationSectionController
 import com.android.wallpaper.model.WallpaperColorsViewModel
@@ -37,13 +35,9 @@ import com.android.wallpaper.module.CustomizationSections
 import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewSectionController
 import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewView
 import com.android.wallpaper.util.DisplayUtils
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 /** Controls the screen preview section. */
-@OptIn(ExperimentalCoroutinesApi::class)
 class PreviewWithClockCarouselSectionController(
     activity: Activity,
     private val lifecycleOwner: LifecycleOwner,
@@ -51,9 +45,8 @@ class PreviewWithClockCarouselSectionController(
     wallpaperInfoFactory: CurrentWallpaperInfoFactory,
     colorViewModel: WallpaperColorsViewModel,
     displayUtils: DisplayUtils,
-    private val clockRegistryProvider: ClockRegistryProvider,
-    private val clockCarouselViewModelProvider: ClockCarouselViewModelProvider,
-    private val clockViewFactoryProvider: ClockViewFactoryProvider,
+    private val clockCarouselViewModel: ClockCarouselViewModel,
+    private val clockViewFactory: ClockViewFactory,
     navigator: CustomizationSectionController.CustomizationSectionNavigationController,
 ) :
     ScreenPreviewSectionController(
@@ -77,12 +70,10 @@ class PreviewWithClockCarouselSectionController(
         val carouselView: ClockCarouselView = carouselViewStub.inflate() as ClockCarouselView
         carouselView.isGone = true
         lifecycleOwner.lifecycleScope.launch {
-            val registry = withContext(Dispatchers.IO) { clockRegistryProvider.get() }
-            val clockViewFactory = clockViewFactoryProvider.get(registry)
             clockCarouselBinding =
                 ClockCarouselViewBinder.bind(
                     view = carouselView,
-                    viewModel = clockCarouselViewModelProvider.get(registry),
+                    viewModel = clockCarouselViewModel,
                     clockViewFactory = { clockId -> clockViewFactory.getView(clockId) },
                     lifecycleOwner = lifecycleOwner,
                 )
@@ -100,13 +91,5 @@ class PreviewWithClockCarouselSectionController(
         } else {
             clockCarouselBinding?.hide()
         }
-    }
-
-    interface ClockCarouselViewModelProvider {
-        fun get(registry: ClockRegistry): ClockCarouselViewModel
-    }
-
-    interface ClockViewFactoryProvider {
-        fun get(registry: ClockRegistry): ClockViewFactory
     }
 }

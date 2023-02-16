@@ -44,8 +44,7 @@ class ClockCarouselViewModelTest {
     fun setUp() {
         val testDispatcher = StandardTestDispatcher()
         Dispatchers.setMain(testDispatcher)
-        underTest =
-            ClockCarouselViewModel(ClockPickerInteractor(FakeClockPickerRepository()))
+        underTest = ClockCarouselViewModel(ClockPickerInteractor(FakeClockPickerRepository()))
     }
 
     @After
