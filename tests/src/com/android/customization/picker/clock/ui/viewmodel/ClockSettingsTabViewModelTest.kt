@@ -97,8 +97,8 @@ class ClockSettingsViewModelTest {
         underTest.setClockSize(ClockSize.DYNAMIC)
         assertThat(observedClockSize()).isEqualTo(ClockSize.DYNAMIC)
 
-        underTest.setClockSize(ClockSize.LARGE)
-        assertThat(observedClockSize()).isEqualTo(ClockSize.LARGE)
+        underTest.setClockSize(ClockSize.SMALL)
+        assertThat(observedClockSize()).isEqualTo(ClockSize.SMALL)
     }
 
     @Test

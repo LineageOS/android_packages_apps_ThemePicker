@@ -116,4 +116,8 @@
     <string name="more_settings_section_description" msgid="8787768566854880683">"「在螢幕鎖定畫面上顯示特定文字」、「聽聲辨曲」和其他設定"</string>
     <!-- no translation found for more_colors (3191071655353004591) -->
     <skip />
+    <!-- no translation found for content_description_default_color_option (7011899327541080695) -->
+    <skip />
+    <!-- no translation found for content_description_color_option (4169813692012119578) -->
+    <skip />
 </resources>

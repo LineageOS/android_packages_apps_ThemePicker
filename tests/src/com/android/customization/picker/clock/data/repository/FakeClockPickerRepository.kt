@@ -35,7 +35,7 @@ class FakeClockPickerRepository : ClockPickerRepository {
             ClockMetadataModel(selectedClock.clockId, selectedClock.name, clockColor)
         }
 
-    private val _selectedClockSize = MutableStateFlow(ClockSize.LARGE)
+    private val _selectedClockSize = MutableStateFlow(ClockSize.SMALL)
     override val selectedClockSize: Flow<ClockSize> = _selectedClockSize.asStateFlow()
 
     override fun setSelectedClock(clockId: String) {
@@ -46,7 +46,7 @@ class FakeClockPickerRepository : ClockPickerRepository {
         _clockColor.value = color
     }
 
-    override fun setClockSize(size: ClockSize) {
+    override suspend fun setClockSize(size: ClockSize) {
         _selectedClockSize.value = size
     }
 
