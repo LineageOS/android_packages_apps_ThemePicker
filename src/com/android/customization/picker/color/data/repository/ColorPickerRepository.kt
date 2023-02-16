@@ -25,7 +25,15 @@ import kotlinx.coroutines.flow.Flow
  * system color.
  */
 interface ColorPickerRepository {
+    /**
+     * The newly selected color option for overwriting the current active option during an
+     * optimistic update, the value is null when no overwriting is needed
+     */
+    val activeColorOption: Flow<ColorOptionModel?>
+
+    /** List of wallpaper and preset color options on the device, categorized by Color Type */
     val colorOptions: Flow<Map<ColorType, List<ColorOptionModel>>>
 
+    /** Selects a color option with optimistic update */
     fun select(colorOptionModel: ColorOptionModel)
 }
