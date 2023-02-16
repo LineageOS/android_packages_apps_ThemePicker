@@ -60,8 +60,7 @@
         android:layout_marginHorizontal="24dp"
         android:layout_marginBottom="28dp"
         android:background="@drawable/picker_fragment_background"
-        android:paddingTop="22dp"
-        android:paddingBottom="62dp">
+        android:paddingTop="22dp">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -123,6 +122,11 @@
                 android:visibility="invisible" />
 
         </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/dark_mode_toggle_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

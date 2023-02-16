@@ -378,7 +378,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                 .also { colorPickerViewModelFactory = it }
     }
 
-    protected fun getDarkModeSnapshotRestorer(
+    fun getDarkModeSnapshotRestorer(
         context: Context,
     ): DarkModeSnapshotRestorer {
         return darkModeSnapshotRestorer
