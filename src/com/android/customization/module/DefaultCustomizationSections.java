@@ -174,12 +174,6 @@ public final class DefaultCustomizationSections implements CustomizationSections
                 break;
 
             case HOME_SCREEN:
-                // Dark/Light theme section.
-                sectionControllers.add(new DarkModeSectionController(
-                        activity,
-                        lifecycleOwner.getLifecycle(),
-                        mDarkModeSnapshotRestorer));
-
                 // Themed app icon section.
                 sectionControllers.add(
                         new ThemedIconSectionController(
