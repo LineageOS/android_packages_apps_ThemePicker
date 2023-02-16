@@ -120,7 +120,7 @@ class ClockSettingsFragment : AppbarFragment() {
         lifecycleScope.launch {
             val registry =
                 withContext(Dispatchers.IO) { injector.getClockRegistryProvider(context).get() }
-            val clockViewFactory = injector.getClockViewFactory(context, registry)
+            val clockViewFactory = injector.getClockViewFactory(activity, registry)
             ClockCarouselViewBinder.bind(
                     view = carouselView,
                     viewModel = injector.getClockCarouselViewModel(context, registry),

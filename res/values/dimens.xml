@@ -153,7 +153,7 @@
     <!-- Width of a single selectable item in the lock screen quick affordance picker. -->
     <dimen name="keyguard_quick_affordance_picker_item_width">74dp</dimen>
 
-    <dimen name="clock_carousel_item_small_size">100dp</dimen>
-    <dimen name="clock_carousel_item_large_size">120dp</dimen>
-    <dimen name="clock_carousel_item_margin">32dp</dimen>
+    <dimen name="clock_carousel_item_width">190dp</dimen>
+    <dimen name="clock_carousel_item_height">380dp</dimen>
+    <dimen name="clock_carousel_item_margin">16dp</dimen>
 </resources>

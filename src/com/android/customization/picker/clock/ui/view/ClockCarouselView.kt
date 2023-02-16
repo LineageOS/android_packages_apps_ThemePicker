@@ -22,6 +22,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.constraintlayout.helper.widget.Carousel
+import androidx.core.view.get
 import com.android.wallpaper.R
 
 class ClockCarouselView(
@@ -67,13 +68,14 @@ class ClockCarouselView(
         }
 
         override fun populate(view: View?, index: Int) {
-            val viewGroup = view as ViewGroup
-            viewGroup.removeAllViews()
+            val viewRoot = view as ViewGroup
+            val clockHostView = viewRoot[0] as ViewGroup
+            clockHostView.removeAllViews()
             val clockView = onGetClockPreview(clockIds[index])
             // The clock view might still be attached to an existing parent. Detach before adding to
             // another parent.
             (clockView.parent as? ViewGroup)?.removeView(clockView)
-            viewGroup.addView(clockView)
+            clockHostView.addView(clockView)
         }
 
         override fun onNewItem(index: Int) {
