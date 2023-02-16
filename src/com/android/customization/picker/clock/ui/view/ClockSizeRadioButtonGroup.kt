@@ -35,7 +35,7 @@ class ClockSizeRadioButtonGroup(
     }
 
     val radioButtonDynamic: RadioButton
-    val radioButtonLarge: RadioButton
+    val radioButtonSmall: RadioButton
     var onRadioButtonClickListener: OnRadioButtonClickListener? = null
 
     init {
@@ -43,8 +43,8 @@ class ClockSizeRadioButtonGroup(
         radioButtonDynamic = requireViewById(R.id.radio_button_dynamic)
         val buttonDynamic = requireViewById<View>(R.id.button_container_dynamic)
         buttonDynamic.setOnClickListener { onRadioButtonClickListener?.onClick(ClockSize.DYNAMIC) }
-        radioButtonLarge = requireViewById(R.id.radio_button_large)
-        val buttonLarge = requireViewById<View>(R.id.button_container_large)
-        buttonLarge.setOnClickListener { onRadioButtonClickListener?.onClick(ClockSize.LARGE) }
+        radioButtonSmall = requireViewById(R.id.radio_button_large)
+        val buttonLarge = requireViewById<View>(R.id.button_container_small)
+        buttonLarge.setOnClickListener { onRadioButtonClickListener?.onClick(ClockSize.SMALL) }
     }
 }

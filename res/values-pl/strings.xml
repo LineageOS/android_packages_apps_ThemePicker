@@ -114,6 +114,9 @@
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Ukrywaj powiadomienia na ekranie blokady"</string>
     <string name="more_settings_section_title" msgid="8524741850115625404">"Więcej opcji"</string>
     <string name="more_settings_section_description" msgid="8787768566854880683">"SMS-y na ekranie blokady, Co jest grane i inne funkcje"</string>
-    <!-- no translation found for more_colors (3191071655353004591) -->
+    <string name="more_colors" msgid="3191071655353004591">"Więcej kolorów"</string>
+    <!-- no translation found for content_description_default_color_option (7011899327541080695) -->
+    <skip />
+    <!-- no translation found for content_description_color_option (4169813692012119578) -->
     <skip />
 </resources>

@@ -38,6 +38,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 /** View model for the clock settings screen. */
 class ClockSettingsViewModel
@@ -189,7 +190,7 @@ private constructor(context: Context, private val interactor: ClockPickerInterac
     val selectedClockSize: Flow<ClockSize> = interactor.selectedClockSize
 
     fun setClockSize(size: ClockSize) {
-        interactor.setClockSize(size)
+        viewModelScope.launch { interactor.setClockSize(size) }
     }
 
     private val _selectedTabPosition = MutableStateFlow(Tab.COLOR)

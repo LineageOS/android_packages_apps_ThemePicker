@@ -108,11 +108,11 @@ object ClockSettingsBinder {
                         when (size) {
                             ClockSize.DYNAMIC -> {
                                 sizeOptions.radioButtonDynamic.isChecked = true
-                                sizeOptions.radioButtonLarge.isChecked = false
+                                sizeOptions.radioButtonSmall.isChecked = false
                             }
-                            ClockSize.LARGE -> {
+                            ClockSize.SMALL -> {
                                 sizeOptions.radioButtonDynamic.isChecked = false
-                                sizeOptions.radioButtonLarge.isChecked = true
+                                sizeOptions.radioButtonSmall.isChecked = true
                             }
                         }
                     }
