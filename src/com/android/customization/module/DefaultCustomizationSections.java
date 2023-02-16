@@ -189,8 +189,12 @@ public final class DefaultCustomizationSections implements CustomizationSections
                                 mThemedIconSnapshotRestorer));
 
                 // App grid section.
-                sectionControllers.add(new GridSectionController(
-                        GridOptionsManager.getInstance(activity), sectionNavigationController));
+                sectionControllers.add(
+                        new GridSectionController(
+                                GridOptionsManager.getInstance(activity),
+                                sectionNavigationController,
+                                lifecycleOwner,
+                                /* isRevampedUiEnabled= */ true));
                 break;
         }
 
@@ -240,8 +244,12 @@ public final class DefaultCustomizationSections implements CustomizationSections
                 mThemedIconSnapshotRestorer));
 
         // App grid section.
-        sectionControllers.add(new GridSectionController(
-                GridOptionsManager.getInstance(activity), sectionNavigationController));
+        sectionControllers.add(
+                new GridSectionController(
+                        GridOptionsManager.getInstance(activity),
+                        sectionNavigationController,
+                        lifecycleOwner,
+                        /* isRevampedUiEnabled= */ false));
 
         return sectionControllers;
     }
