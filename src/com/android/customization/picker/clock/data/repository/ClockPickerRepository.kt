@@ -35,5 +35,5 @@ interface ClockPickerRepository {
 
     fun setClockColor(color: Int?)
 
-    fun setClockSize(size: ClockSize)
+    suspend fun setClockSize(size: ClockSize)
 }
