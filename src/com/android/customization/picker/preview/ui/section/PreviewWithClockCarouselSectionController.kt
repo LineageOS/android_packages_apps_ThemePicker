@@ -65,7 +65,11 @@ class PreviewWithClockCarouselSectionController(
         displayUtils,
         navigator,
     ) {
+
     private var clockCarouselBinding: ClockCarouselViewBinder.Binding? = null
+
+    override val hideLockScreenClockPreview = true
+
     override fun createView(context: Context): ScreenPreviewView {
         val view = super.createView(context)
         val carouselViewStub: ViewStub = view.requireViewById(R.id.clock_carousel_view_stub)
