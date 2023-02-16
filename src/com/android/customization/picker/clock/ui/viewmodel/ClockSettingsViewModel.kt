@@ -232,7 +232,7 @@ private constructor(context: Context, private val interactor: ClockPickerInterac
                 arrayOf(144f, 0.65f, 0.74f).toFloatArray(),
             )
 
-        val COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS: Long = 100
+        const val COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS: Long = 100
 
         fun getSelectedColorPosition(selectedColorHsl: FloatArray): Int {
             return COLOR_LIST_HSL.withIndex().minBy { abs(it.value[0] - selectedColorHsl[0]) }.index

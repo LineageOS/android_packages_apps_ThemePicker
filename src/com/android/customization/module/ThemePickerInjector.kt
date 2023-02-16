@@ -307,7 +307,6 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                         secureSettingsRepository = getSecureSettingsRepository(context),
                         registry = clockRegistry,
                         scope = GlobalScope,
-                        backgroundDispatcher = Dispatchers.IO,
                     ),
                 )
                 .also { clockPickerInteractor = it }
@@ -328,9 +327,8 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
         clockRegistry: ClockRegistry
     ): ClockCarouselViewModel {
         return clockCarouselViewModel
-            ?: ClockCarouselViewModel(getClockPickerInteractor(context, clockRegistry)).also {
-                clockCarouselViewModel = it
-            }
+            ?: ClockCarouselViewModel(getClockPickerInteractor(context, clockRegistry))
+                .also { clockCarouselViewModel = it }
     }
 
     override fun getClockViewFactory(
