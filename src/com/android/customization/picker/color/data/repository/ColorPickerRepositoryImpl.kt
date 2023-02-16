@@ -29,7 +29,9 @@ import com.android.customization.picker.color.shared.model.ColorOptionModel
 import com.android.customization.picker.color.shared.model.ColorType
 import com.android.wallpaper.model.WallpaperColorsViewModel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -48,12 +50,17 @@ class ColorPickerRepositoryImpl(
     private val colorManager: ColorCustomizationManager =
         ColorCustomizationManager.getInstance(context, OverlayManagerCompat(context))
 
-    /** List of wallpaper and preset color options on the device, categorized by Color Type */
+    private val _activeColorOption = MutableStateFlow<ColorOptionModel?>(null)
+    override val activeColorOption: StateFlow<ColorOptionModel?> = _activeColorOption.asStateFlow()
+
     override val colorOptions: Flow<Map<ColorType, List<ColorOptionModel>>> =
-        combine(homeWallpaperColors, lockWallpaperColors) { homeColors, lockColors ->
-                homeColors to lockColors
+        combine(activeColorOption, homeWallpaperColors, lockWallpaperColors) {
+                activeOption,
+                homeColors,
+                lockColors ->
+                Triple(activeOption, homeColors, lockColors)
             }
-            .map { (homeColors, lockColors) ->
+            .map { (activeOption, homeColors, lockColors) ->
                 suspendCancellableCoroutine { continuation ->
                     colorManager.setWallpaperColors(homeColors, lockColors)
                     colorManager.fetchOptions(
@@ -66,8 +73,9 @@ class ColorPickerRepositoryImpl(
                                 options?.forEach { option ->
                                     when (option) {
                                         is ColorSeedOption ->
-                                            wallpaperColorOptions.add(option.toModel())
-                                        is ColorBundle -> presetColorOptions.add(option.toModel())
+                                            wallpaperColorOptions.add(option.toModel(activeOption))
+                                        is ColorBundle ->
+                                            presetColorOptions.add(option.toModel(activeOption))
                                     }
                                 }
                                 continuation.resumeWith(
@@ -95,23 +103,32 @@ class ColorPickerRepositoryImpl(
             }
 
     override fun select(colorOptionModel: ColorOptionModel) {
+        _activeColorOption.value = colorOptionModel
         val colorOption: ColorOption = colorOptionModel.colorOption
         colorManager.apply(
             colorOption,
             object : CustomizationManager.Callback {
-                override fun onSuccess() = Unit
+                override fun onSuccess() {
+                    _activeColorOption.value = null
+                }
 
                 override fun onError(throwable: Throwable?) {
+                    _activeColorOption.value = null
                     Log.w(TAG, "Apply theme with error", throwable)
                 }
             }
         )
     }
 
-    private fun ColorOption.toModel(): ColorOptionModel {
+    private fun ColorOption.toModel(activeColorOption: ColorOptionModel?): ColorOptionModel {
         return ColorOptionModel(
             colorOption = this,
-            isSelected = isActive(colorManager),
+            isSelected =
+                if (activeColorOption != null) {
+                    isEquivalent(activeColorOption.colorOption)
+                } else {
+                    isActive(colorManager)
+                },
         )
     }
 
