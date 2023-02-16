@@ -19,59 +19,79 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/motion_container"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     app:layoutDescription="@xml/carousel_scene">
 
-    <FrameLayout
+    <com.android.wallpaper.picker.DisplayAspectRatioFrameLayout
         android:id="@+id/item_view_0"
-        android:layout_width="@dimen/clock_carousel_item_small_size"
-        android:layout_height="@dimen/clock_carousel_item_small_size"
-        android:layout_marginEnd="16dp"
-        android:scaleType="centerCrop"
+        android:layout_width="@dimen/clock_carousel_item_width"
+        android:layout_height="@dimen/clock_carousel_item_height"
+        android:layout_marginEnd="@dimen/clock_carousel_item_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/item_view_1"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center" />
+    </com.android.wallpaper.picker.DisplayAspectRatioFrameLayout>
 
-    <FrameLayout
+    <com.android.wallpaper.picker.DisplayAspectRatioFrameLayout
         android:id="@+id/item_view_1"
-        android:layout_width="@dimen/clock_carousel_item_small_size"
-        android:layout_height="@dimen/clock_carousel_item_small_size"
-        android:layout_marginEnd="16dp"
-        android:scaleType="centerCrop"
+        android:layout_width="@dimen/clock_carousel_item_width"
+        android:layout_height="@dimen/clock_carousel_item_height"
+        android:layout_marginEnd="@dimen/clock_carousel_item_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/item_view_2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center" />
+    </com.android.wallpaper.picker.DisplayAspectRatioFrameLayout>
 
-    <FrameLayout
+    <com.android.wallpaper.picker.DisplayAspectRatioFrameLayout
         android:id="@+id/item_view_2"
-        android:layout_width="@dimen/clock_carousel_item_large_size"
-        android:layout_height="@dimen/clock_carousel_item_large_size"
-        android:scaleType="centerCrop"
+        android:layout_width="@dimen/clock_carousel_item_width"
+        android:layout_height="@dimen/clock_carousel_item_height"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center" />
+    </com.android.wallpaper.picker.DisplayAspectRatioFrameLayout>
 
-    <FrameLayout
+    <com.android.wallpaper.picker.DisplayAspectRatioFrameLayout
         android:id="@+id/item_view_3"
-        android:layout_width="@dimen/clock_carousel_item_small_size"
-        android:layout_height="@dimen/clock_carousel_item_small_size"
-        android:layout_marginStart="16dp"
-        android:scaleType="centerCrop"
+        android:layout_width="@dimen/clock_carousel_item_width"
+        android:layout_height="@dimen/clock_carousel_item_height"
+        android:layout_marginStart="@dimen/clock_carousel_item_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/item_view_2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center" />
+    </com.android.wallpaper.picker.DisplayAspectRatioFrameLayout>
 
-    <FrameLayout
+    <com.android.wallpaper.picker.DisplayAspectRatioFrameLayout
         android:id="@+id/item_view_4"
-        android:layout_width="@dimen/clock_carousel_item_small_size"
-        android:layout_height="@dimen/clock_carousel_item_small_size"
-        android:layout_marginStart="16dp"
-        android:scaleType="centerCrop"
+        android:layout_width="@dimen/clock_carousel_item_width"
+        android:layout_height="@dimen/clock_carousel_item_height"
+        android:layout_marginStart="@dimen/clock_carousel_item_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/item_view_3"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center" />
+    </com.android.wallpaper.picker.DisplayAspectRatioFrameLayout>
 
     <androidx.constraintlayout.helper.widget.Carousel
         android:id="@+id/carousel"
