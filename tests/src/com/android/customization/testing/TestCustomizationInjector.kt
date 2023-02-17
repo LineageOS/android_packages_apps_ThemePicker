@@ -1,5 +1,6 @@
 package com.android.customization.testing
 
+import android.app.Activity
 import android.content.Context
 import androidx.fragment.app.FragmentActivity
 import com.android.customization.model.theme.OverlayManagerCompat
@@ -199,9 +200,12 @@ class TestCustomizationInjector : TestInjector(), CustomizationInjector {
             }
     }
 
-    override fun getClockViewFactory(context: Context, registry: ClockRegistry): ClockViewFactory {
+    override fun getClockViewFactory(
+        activity: Activity,
+        registry: ClockRegistry
+    ): ClockViewFactory {
         return clockViewFactory
-            ?: ClockViewFactory(context, registry).also { clockViewFactory = it }
+            ?: ClockViewFactory(activity, registry).also { clockViewFactory = it }
     }
 
     override fun getClockSettingsViewModelFactory(
