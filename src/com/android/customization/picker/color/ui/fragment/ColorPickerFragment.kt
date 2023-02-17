@@ -19,9 +19,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
+import com.android.customization.model.mode.DarkModeSectionController
 import com.android.customization.module.ThemePickerInjector
 import com.android.customization.picker.color.ui.binder.ColorPickerBinder
 import com.android.wallpaper.R
@@ -137,6 +139,17 @@ class ColorPickerFragment : AppbarFragment() {
             lifecycleOwner = this,
             offsetToStart = displayUtils.isOnWallpaperDisplay(requireActivity()),
         )
+        val darkModeToggleContainerView: FrameLayout =
+            view.requireViewById(R.id.dark_mode_toggle_container)
+        val darkModeSectionView =
+            DarkModeSectionController(
+                    context,
+                    lifecycle,
+                    injector.getDarkModeSnapshotRestorer(requireContext())
+                )
+                .createView(requireContext())
+        darkModeSectionView.background = null
+        darkModeToggleContainerView.addView(darkModeSectionView)
         return view
     }
 

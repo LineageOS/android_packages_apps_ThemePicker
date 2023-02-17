@@ -15,6 +15,7 @@
  */
 package com.android.customization.module
 
+import android.app.Activity
 import android.app.UiModeManager
 import android.content.Context
 import android.content.Intent
@@ -125,7 +126,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                     object : ClockViewFactoryProvider {
                         override fun get(registry: ClockRegistry): ClockViewFactory {
                             return getClockViewFactory(
-                                context = activity,
+                                activity = activity,
                                 registry = registry,
                             )
                         }
@@ -333,11 +334,11 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     }
 
     override fun getClockViewFactory(
-        context: Context,
+        activity: Activity,
         registry: ClockRegistry,
     ): ClockViewFactory {
         return clockViewFactory
-            ?: ClockViewFactory(context, registry).also { clockViewFactory = it }
+            ?: ClockViewFactory(activity, registry).also { clockViewFactory = it }
     }
 
     protected fun getNotificationsInteractor(
@@ -377,7 +378,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                 .also { colorPickerViewModelFactory = it }
     }
 
-    protected fun getDarkModeSnapshotRestorer(
+    fun getDarkModeSnapshotRestorer(
         context: Context,
     ): DarkModeSnapshotRestorer {
         return darkModeSnapshotRestorer
