@@ -24,10 +24,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.lifecycle.lifecycleScope
 import com.android.customization.module.ThemePickerInjector
-import com.android.customization.picker.clock.ui.binder.ClockCarouselViewBinder
 import com.android.customization.picker.clock.ui.binder.ClockSettingsBinder
-import com.android.customization.picker.clock.ui.view.ClockCarouselView
-import com.android.systemui.shared.clocks.shared.model.ClockPreviewConstants
 import com.android.wallpaper.R
 import com.android.wallpaper.model.WallpaperColorsViewModel
 import com.android.wallpaper.module.InjectorProvider
@@ -103,31 +100,15 @@ class ClockSettingsFragment : AppbarFragment() {
                         onWallpaperColorChanged = { colors ->
                             colorViewModel.setLockWallpaperColors(colors)
                         },
-                        initialExtrasProvider = {
-                            Bundle().apply {
-                                // Hide the clock from the system UI rendered preview so we can
-                                // place the carousel on top of it.
-                                putBoolean(ClockPreviewConstants.KEY_HIDE_CLOCK, true)
-                            }
-                        },
                     ),
                 lifecycleOwner = this,
                 offsetToStart = displayUtils.isOnWallpaperDisplay(activity),
             )
             .show()
 
-        val carouselView: ClockCarouselView = view.requireViewById(R.id.clock_carousel_view)
         lifecycleScope.launch {
             val registry =
                 withContext(Dispatchers.IO) { injector.getClockRegistryProvider(context).get() }
-            val clockViewFactory = injector.getClockViewFactory(activity, registry)
-            ClockCarouselViewBinder.bind(
-                    view = carouselView,
-                    viewModel = injector.getClockCarouselViewModel(context, registry),
-                    clockViewFactory = { clockId -> clockViewFactory.getView(clockId) },
-                    lifecycleOwner = this@ClockSettingsFragment,
-                )
-                .show()
             ClockSettingsBinder.bind(
                 view,
                 ViewModelProvider(
