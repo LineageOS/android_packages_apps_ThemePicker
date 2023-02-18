@@ -27,33 +27,22 @@
         <include layout="@layout/section_header" />
     </FrameLayout>
 
-    <FrameLayout
+    <com.android.wallpaper.picker.DisplayAspectRatioFrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:paddingTop="36dp"
         android:paddingBottom="40dp">
 
-        <com.android.wallpaper.picker.DisplayAspectRatioFrameLayout
+        <include
+            android:id="@+id/lock_preview"
+            layout="@layout/wallpaper_preview_card"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_gravity="center" />
 
-            <include
-                android:id="@+id/lock_preview"
-                layout="@layout/wallpaper_preview_card"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center" />
+    </com.android.wallpaper.picker.DisplayAspectRatioFrameLayout>
 
-        </com.android.wallpaper.picker.DisplayAspectRatioFrameLayout>
-
-        <com.android.customization.picker.clock.ui.view.ClockCarouselView
-            android:id="@+id/clock_carousel_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:visibility="gone" />
-    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
