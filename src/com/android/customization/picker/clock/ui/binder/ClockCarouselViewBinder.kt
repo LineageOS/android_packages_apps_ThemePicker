@@ -23,6 +23,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.android.customization.picker.clock.ui.view.ClockCarouselView
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 object ClockCarouselViewBinder {
@@ -42,14 +43,22 @@ object ClockCarouselViewBinder {
         clockViewFactory: (clockId: String) -> View,
         lifecycleOwner: LifecycleOwner,
     ): Binding {
-        view.setUpImageCarouselView(
-            clockIds = viewModel.allClockIds,
-            onGetClockPreview = clockViewFactory,
-            onClockSelected = { clockId -> viewModel.setSelectedClock(clockId) }
-        )
         lifecycleOwner.lifecycleScope.launch {
             lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch { viewModel.selectedClockId.collect { view.setSelectedClockId(it) } }
+                launch {
+                    viewModel.allClockIds.collect { allClockIds ->
+                        view.setUpClockCarouselView(
+                            clockIds = allClockIds,
+                            onGetClockPreview = clockViewFactory,
+                            onClockSelected = { clockId -> viewModel.setSelectedClock(clockId) },
+                        )
+                    }
+                }
+                launch {
+                    viewModel.selectedIndex.collect { selectedIndex ->
+                        view.setSelectedClockIndex(selectedIndex)
+                    }
+                }
             }
         }
         return object : Binding {

@@ -42,23 +42,24 @@ class ClockCarouselView(
         carousel = view.requireViewById(R.id.carousel)
     }
 
-    fun setUpImageCarouselView(
-        clockIds: Array<String>,
+    fun setUpClockCarouselView(
+        clockIds: List<String>,
         onGetClockPreview: (clockId: String) -> View,
         onClockSelected: (clockId: String) -> Unit,
     ) {
         adapter = ClockCarouselAdapter(clockIds, onGetClockPreview, onClockSelected)
         carousel.setAdapter(adapter)
+        carousel.refresh()
     }
 
-    fun setSelectedClockId(
-        selectedClockId: String,
+    fun setSelectedClockIndex(
+        index: Int,
     ) {
-        carousel.jumpToIndex(adapter.clockIds.indexOf(selectedClockId))
+        carousel.jumpToIndex(index)
     }
 
     class ClockCarouselAdapter(
-        val clockIds: Array<String>,
+        val clockIds: List<String>,
         val onGetClockPreview: (clockId: String) -> View,
         val onClockSelected: (clockId: String) -> Unit,
     ) : Carousel.Adapter {
