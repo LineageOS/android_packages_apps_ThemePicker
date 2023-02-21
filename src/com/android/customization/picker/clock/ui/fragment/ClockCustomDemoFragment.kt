@@ -13,7 +13,6 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.setPadding
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.customization.module.ThemePickerInjector
@@ -23,9 +22,6 @@ import com.android.systemui.shared.clocks.ClockRegistry
 import com.android.wallpaper.R
 import com.android.wallpaper.module.InjectorProvider
 import com.android.wallpaper.picker.AppbarFragment
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class ClockCustomDemoFragment : AppbarFragment() {
     @VisibleForTesting lateinit var recyclerView: RecyclerView
@@ -38,27 +34,20 @@ class ClockCustomDemoFragment : AppbarFragment() {
     ): View {
         val view = inflater.inflate(R.layout.fragment_clock_custom_picker_demo, container, false)
         setUpToolbar(view)
-        lifecycleScope.launch {
-            clockRegistry =
-                withContext(Dispatchers.IO) {
-                    (InjectorProvider.getInjector() as ThemePickerInjector)
-                        .getClockRegistryProvider(requireContext())
-                        .get()
-                }
-            val listInUse = clockRegistry.getClocks().filter { "NOT_IN_USE" !in it.clockId }
-            recyclerView.adapter =
-                ClockRecyclerAdapter(listInUse, requireContext()) {
-                    clockRegistry.currentClockId = it.clockId
-                    Toast.makeText(context, "${it.name} selected", Toast.LENGTH_SHORT).show()
-                }
-        }
-        return view
-    }
+        clockRegistry =
+            (InjectorProvider.getInjector() as ThemePickerInjector).getClockRegistry(
+                requireContext()
+            )
+        val listInUse = clockRegistry.getClocks().filter { "NOT_IN_USE" !in it.clockId }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recyclerView = view.requireViewById(R.id.clock_preview_card_list_demo)
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-        super.onViewCreated(view, savedInstanceState)
+        recyclerView.adapter =
+            ClockRecyclerAdapter(listInUse, requireContext()) {
+                clockRegistry.currentClockId = it.clockId
+                Toast.makeText(context, "${it.name} selected", Toast.LENGTH_SHORT).show()
+            }
+        return view
     }
 
     override fun getDefaultTitle(): CharSequence {

@@ -19,26 +19,22 @@ import android.content.Context
 import android.view.LayoutInflater
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import com.android.customization.module.ThemePickerInjector
-import com.android.customization.picker.clock.data.repository.ClockRegistryProvider
 import com.android.customization.picker.clock.ui.binder.ClockSectionViewBinder
 import com.android.customization.picker.clock.ui.fragment.ClockSettingsFragment
 import com.android.customization.picker.clock.ui.view.ClockSectionView
+import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
 import com.android.wallpaper.R
 import com.android.wallpaper.config.BaseFlags
 import com.android.wallpaper.model.CustomizationSectionController
 import com.android.wallpaper.model.CustomizationSectionController.CustomizationSectionNavigationController
-import com.android.wallpaper.module.InjectorProvider
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 /** A [CustomizationSectionController] for clock customization. */
 class ClockSectionController(
     private val navigationController: CustomizationSectionNavigationController,
     private val lifecycleOwner: LifecycleOwner,
     private val flag: BaseFlags,
-    private val clockRegistryProvider: ClockRegistryProvider,
+    private val viewModel: ClockSectionViewModel,
 ) : CustomizationSectionController<ClockSectionView> {
 
     override fun isAvailable(context: Context): Boolean {
@@ -53,12 +49,9 @@ class ClockSectionController(
                     null,
                 ) as ClockSectionView
         lifecycleOwner.lifecycleScope.launch {
-            val registry = withContext(Dispatchers.IO) { clockRegistryProvider.get() }
             ClockSectionViewBinder.bind(
                 view = view,
-                viewModel =
-                    (InjectorProvider.getInjector() as ThemePickerInjector)
-                        .getClockSectionViewModel(context, registry),
+                viewModel = viewModel,
                 lifecycleOwner = lifecycleOwner
             ) { navigationController.navigateTo(ClockSettingsFragment()) }
         }

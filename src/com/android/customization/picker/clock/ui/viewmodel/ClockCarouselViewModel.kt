@@ -16,12 +16,10 @@
 package com.android.customization.picker.clock.ui.viewmodel
 
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.mapNotNull
@@ -32,12 +30,11 @@ class ClockCarouselViewModel(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val allClockIds: Flow<List<String>> =
-        interactor.allClocks
-            .mapLatest { clockArray ->
-                // Delay to avoid the case that the full list of clocks is not initiated.
-                delay(CLOCKS_EVENT_UPDATE_DELAY_MILLIS)
-                clockArray.map { it.clockId }
-            }
+        interactor.allClocks.mapLatest { clockArray ->
+            // Delay to avoid the case that the full list of clocks is not initiated.
+            delay(CLOCKS_EVENT_UPDATE_DELAY_MILLIS)
+            clockArray.map { it.clockId }
+        }
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val selectedIndex: Flow<Int> =
