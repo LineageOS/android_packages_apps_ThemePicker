@@ -195,9 +195,8 @@ class TestCustomizationInjector : TestInjector(), CustomizationInjector {
         clockRegistry: ClockRegistry
     ): ClockCarouselViewModel {
         return clockCarouselViewModel
-            ?: ClockCarouselViewModel(getClockPickerInteractor(context, clockRegistry)).also {
-                clockCarouselViewModel = it
-            }
+            ?: ClockCarouselViewModel(getClockPickerInteractor(context, clockRegistry))
+                .also { clockCarouselViewModel = it }
     }
 
     override fun getClockViewFactory(

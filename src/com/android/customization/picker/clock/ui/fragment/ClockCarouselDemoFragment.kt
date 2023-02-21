@@ -49,10 +49,9 @@ class ClockCarouselDemoFragment : AppbarFragment() {
                 }
             ClockCarouselViewBinder.bind(
                 view = carouselView,
-                viewModel =
-                    ClockCarouselViewModel(
-                        injector.getClockPickerInteractor(requireContext(), registry)
-                    ),
+                viewModel = ClockCarouselViewModel(
+                    injector.getClockPickerInteractor(requireContext(), registry),
+                ),
                 clockViewFactory = { clockId ->
                     registry.createExampleClock(clockId)?.largeClock?.view!!
                 },
