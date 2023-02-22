@@ -28,6 +28,7 @@
     <string name="clock_size_dynamic" msgid="1023930312455061642">"Dynamique"</string>
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"La taille de l\'horloge varie en fonction du contenu de l\'écran de verrouillage"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Grande"</string>
+    <string name="clock_size_small" msgid="2280449912094164133">"Petite"</string>
     <string name="grid_title" msgid="1688173478777254123">"Grille d\'applis"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Appliquer"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Toucher pour modifier"</string>
@@ -114,10 +115,7 @@
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Masquez les notifications sur l\'écran de verrouillage"</string>
     <string name="more_settings_section_title" msgid="8524741850115625404">"Plus d\'options"</string>
     <string name="more_settings_section_description" msgid="8787768566854880683">"Texte sur l\'écran de verrouillage, En cours de lecture, etc."</string>
-    <!-- no translation found for more_colors (3191071655353004591) -->
-    <skip />
-    <!-- no translation found for content_description_default_color_option (7011899327541080695) -->
-    <skip />
-    <!-- no translation found for content_description_color_option (4169813692012119578) -->
-    <skip />
+    <string name="more_colors" msgid="3191071655353004591">"Plus de couleurs"</string>
+    <string name="content_description_default_color_option" msgid="7011899327541080695">"Option de couleur par défaut"</string>
+    <string name="content_description_color_option" msgid="4169813692012119578">"Option de couleur <xliff:g id="ID_1">%1$d</xliff:g>"</string>
 </resources>
