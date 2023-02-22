@@ -23,6 +23,7 @@ import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.advanceTimeBy
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
@@ -53,10 +54,9 @@ class ClockCarouselViewModelTest {
 
     @Test
     fun setSelectedClock() = runTest {
-        val observedSelectedClock = collectLastValue(underTest.selectedClockId)
-
+        val observedSelectedIndex = collectLastValue(underTest.selectedIndex)
+        advanceTimeBy(ClockCarouselViewModel.CLOCKS_EVENT_UPDATE_DELAY_MILLIS)
         underTest.setSelectedClock(FakeClockPickerRepository.fakeClocks[2].clockId)
-        assertThat(observedSelectedClock())
-            .isEqualTo(FakeClockPickerRepository.fakeClocks[2].clockId)
+        assertThat(observedSelectedIndex()).isEqualTo(2)
     }
 }
