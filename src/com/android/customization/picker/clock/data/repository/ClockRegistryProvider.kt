@@ -19,9 +19,7 @@ import android.app.NotificationManager
 import android.content.ComponentName
 import android.content.Context
 import android.view.LayoutInflater
-import com.android.systemui.plugins.ClockProviderPlugin
 import com.android.systemui.plugins.Plugin
-import com.android.systemui.plugins.PluginListener
 import com.android.systemui.plugins.PluginManager
 import com.android.systemui.shared.clocks.ClockRegistry
 import com.android.systemui.shared.clocks.DefaultClockProvider
@@ -34,7 +32,6 @@ import com.android.systemui.shared.system.UncaughtExceptionPreHandlerManager_Fac
 import java.util.concurrent.Executors
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.suspendCancellableCoroutine
 
 /**
  * Provide the [ClockRegistry] singleton. Note that we need to make sure that the [PluginManager]
@@ -61,25 +58,8 @@ class ClockRegistryProvider(
             .apply { registerListeners() }
     }
 
-    suspend fun get(): ClockRegistry {
-        return suspendCancellableCoroutine { continuation ->
-            val pluginListener =
-                object : PluginListener<ClockProviderPlugin> {
-                    var hasConnected = false
-                    override fun onPluginConnected(
-                        plugin: ClockProviderPlugin?,
-                        pluginContext: Context?
-                    ) {
-                        if (!hasConnected) {
-                            pluginManager.removePluginListener(this)
-                            hasConnected = true
-                            continuation.resumeWith(Result.success(clockRegistry))
-                        }
-                    }
-                }
-            pluginManager.addPluginListener(pluginListener, ClockProviderPlugin::class.java, true)
-            continuation.invokeOnCancellation { pluginManager.removePluginListener(pluginListener) }
-        }
+    fun get(): ClockRegistry {
+        return clockRegistry
     }
 
     private fun createPluginManager(context: Context): PluginManager {
