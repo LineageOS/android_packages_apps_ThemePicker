@@ -22,7 +22,6 @@ import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
-import androidx.lifecycle.lifecycleScope
 import com.android.customization.module.ThemePickerInjector
 import com.android.customization.picker.clock.ui.binder.ClockSettingsBinder
 import com.android.wallpaper.R
@@ -32,11 +31,8 @@ import com.android.wallpaper.picker.AppbarFragment
 import com.android.wallpaper.picker.customization.ui.binder.ScreenPreviewBinder
 import com.android.wallpaper.picker.customization.ui.viewmodel.ScreenPreviewViewModel
 import com.android.wallpaper.util.PreviewUtils
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
-import kotlinx.coroutines.withContext
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class ClockSettingsFragment : AppbarFragment() {
@@ -106,22 +102,15 @@ class ClockSettingsFragment : AppbarFragment() {
             )
             .show()
 
-        lifecycleScope.launch {
-            val registry =
-                withContext(Dispatchers.IO) { injector.getClockRegistryProvider(context).get() }
-            ClockSettingsBinder.bind(
-                view,
-                ViewModelProvider(
-                        requireActivity(),
-                        injector.getClockSettingsViewModelFactory(
-                            context = context,
-                            registry = registry,
-                        ),
-                    )
-                    .get(),
-                this@ClockSettingsFragment,
-            )
-        }
+        ClockSettingsBinder.bind(
+            view,
+            ViewModelProvider(
+                    requireActivity(),
+                    injector.getClockSettingsViewModelFactory(context),
+                )
+                .get(),
+            this@ClockSettingsFragment,
+        )
 
         return view
     }

@@ -52,8 +52,6 @@ import com.android.customization.picker.notifications.data.repository.Notificati
 import com.android.customization.picker.notifications.domain.interactor.NotificationsInteractor
 import com.android.customization.picker.notifications.domain.interactor.NotificationsSnapshotRestorer
 import com.android.customization.picker.notifications.ui.viewmodel.NotificationSectionViewModel
-import com.android.customization.picker.preview.ui.section.PreviewWithClockCarouselSectionController.ClockCarouselViewModelProvider
-import com.android.customization.picker.preview.ui.section.PreviewWithClockCarouselSectionController.ClockViewFactoryProvider
 import com.android.customization.picker.quickaffordance.data.repository.KeyguardQuickAffordancePickerRepository
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordanceSnapshotRestorer
@@ -93,7 +91,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     private var keyguardQuickAffordanceSnapshotRestorer: KeyguardQuickAffordanceSnapshotRestorer? =
         null
     private var notificationsSnapshotRestorer: NotificationsSnapshotRestorer? = null
-    private var clockRegistryProvider: ClockRegistryProvider? = null
+    private var clockRegistry: ClockRegistry? = null
     private var clockPickerInteractor: ClockPickerInteractor? = null
     private var clockSectionViewModel: ClockSectionViewModel? = null
     private var clockCarouselViewModel: ClockCarouselViewModel? = null
@@ -124,23 +122,8 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                         interactor = getNotificationsInteractor(activity),
                     ),
                     getFlags(),
-                    getClockRegistryProvider(activity),
-                    object : ClockCarouselViewModelProvider {
-                        override fun get(registry: ClockRegistry): ClockCarouselViewModel {
-                            return getClockCarouselViewModel(
-                                context = activity,
-                                clockRegistry = registry,
-                            )
-                        }
-                    },
-                    object : ClockViewFactoryProvider {
-                        override fun get(registry: ClockRegistry): ClockViewFactory {
-                            return getClockViewFactory(
-                                activity = activity,
-                                registry = registry,
-                            )
-                        }
-                    },
+                    getClockCarouselViewModel(activity),
+                    getClockViewFactory(activity),
                     getDarkModeSnapshotRestorer(activity),
                     getThemedIconSnapshotRestorer(activity),
                     getThemedIconInteractor(),
@@ -297,59 +280,49 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                 .also { notificationsSnapshotRestorer = it }
     }
 
-    override fun getClockRegistryProvider(context: Context): ClockRegistryProvider {
-        return clockRegistryProvider
+    override fun getClockRegistry(context: Context): ClockRegistry {
+        return clockRegistry
             ?: ClockRegistryProvider(
                     context = context,
                     coroutineScope = GlobalScope,
                     mainDispatcher = Dispatchers.Main,
                     backgroundDispatcher = Dispatchers.IO,
                 )
-                .also { clockRegistryProvider = it }
+                .get()
+                .also { clockRegistry = it }
     }
 
     override fun getClockPickerInteractor(
         context: Context,
-        clockRegistry: ClockRegistry,
     ): ClockPickerInteractor {
         return clockPickerInteractor
             ?: ClockPickerInteractor(
                     ClockPickerRepositoryImpl(
                         secureSettingsRepository = getSecureSettingsRepository(context),
-                        registry = clockRegistry,
+                        registry = getClockRegistry(context),
                         scope = GlobalScope,
-                        backgroundDispatcher = Dispatchers.IO,
                     ),
                 )
                 .also { clockPickerInteractor = it }
     }
 
-    override fun getClockSectionViewModel(
-        context: Context,
-        clockRegistry: ClockRegistry,
-    ): ClockSectionViewModel {
+    override fun getClockSectionViewModel(context: Context): ClockSectionViewModel {
         return clockSectionViewModel
-            ?: ClockSectionViewModel(getClockPickerInteractor(context, clockRegistry)).also {
+            ?: ClockSectionViewModel(getClockPickerInteractor(context)).also {
                 clockSectionViewModel = it
             }
     }
 
-    override fun getClockCarouselViewModel(
-        context: Context,
-        clockRegistry: ClockRegistry
-    ): ClockCarouselViewModel {
+    override fun getClockCarouselViewModel(context: Context): ClockCarouselViewModel {
         return clockCarouselViewModel
-            ?: ClockCarouselViewModel(getClockPickerInteractor(context, clockRegistry)).also {
+            ?: ClockCarouselViewModel(getClockPickerInteractor(context)).also {
                 clockCarouselViewModel = it
             }
     }
 
-    override fun getClockViewFactory(
-        activity: Activity,
-        registry: ClockRegistry,
-    ): ClockViewFactory {
+    override fun getClockViewFactory(activity: Activity): ClockViewFactory {
         return clockViewFactory
-            ?: ClockViewFactory(activity, registry).also { clockViewFactory = it }
+            ?: ClockViewFactory(activity, getClockRegistry(activity)).also { clockViewFactory = it }
     }
 
     protected fun getNotificationsInteractor(
@@ -426,12 +399,11 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
 
     override fun getClockSettingsViewModelFactory(
         context: Context,
-        registry: ClockRegistry,
     ): ClockSettingsViewModel.Factory {
         return clockSettingsViewModelFactory
             ?: ClockSettingsViewModel.Factory(
                     context,
-                    getClockPickerInteractor(context, registry),
+                    getClockPickerInteractor(context),
                 )
                 .also { clockSettingsViewModelFactory = it }
     }

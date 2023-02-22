@@ -16,14 +16,13 @@ import com.android.customization.model.themedicon.ThemedIconSectionController;
 import com.android.customization.model.themedicon.ThemedIconSwitchProvider;
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconInteractor;
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconSnapshotRestorer;
-import com.android.customization.picker.clock.data.repository.ClockRegistryProvider;
+import com.android.customization.picker.clock.ui.view.ClockViewFactory;
+import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel;
 import com.android.customization.picker.color.ui.section.ColorSectionController2;
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel;
 import com.android.customization.picker.notifications.ui.section.NotificationSectionController;
 import com.android.customization.picker.notifications.ui.viewmodel.NotificationSectionViewModel;
 import com.android.customization.picker.preview.ui.section.PreviewWithClockCarouselSectionController;
-import com.android.customization.picker.preview.ui.section.PreviewWithClockCarouselSectionController.ClockCarouselViewModelProvider;
-import com.android.customization.picker.preview.ui.section.PreviewWithClockCarouselSectionController.ClockViewFactoryProvider;
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor;
 import com.android.customization.picker.quickaffordance.ui.section.KeyguardQuickAffordanceSectionController;
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel;
@@ -55,11 +54,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
             mKeyguardQuickAffordancePickerViewModelFactory;
     private final NotificationSectionViewModel.Factory mNotificationSectionViewModelFactory;
     private final BaseFlags mFlags;
-    private final ClockRegistryProvider mClockRegistryProvider;
-    private final PreviewWithClockCarouselSectionController.ClockCarouselViewModelProvider
-            mClockCarouselViewModelProvider;
-    private final PreviewWithClockCarouselSectionController.ClockViewFactoryProvider
-            mClockViewFactoryProvider;
+    private final ClockCarouselViewModel mClockCarouselViewModel;
+    private final ClockViewFactory mClockViewFactory;
     private final DarkModeSnapshotRestorer mDarkModeSnapshotRestorer;
     private final ThemedIconSnapshotRestorer mThemedIconSnapshotRestorer;
     private final ThemedIconInteractor mThemedIconInteractor;
@@ -71,9 +67,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
                     keyguardQuickAffordancePickerViewModelFactory,
             NotificationSectionViewModel.Factory notificationSectionViewModelFactory,
             BaseFlags flags,
-            ClockRegistryProvider clockRegistryProvider,
-            ClockCarouselViewModelProvider clockCarouselViewModelProvider,
-            ClockViewFactoryProvider clockViewFactoryProvider,
+            ClockCarouselViewModel clockCarouselViewModel,
+            ClockViewFactory clockViewFactory,
             DarkModeSnapshotRestorer darkModeSnapshotRestorer,
             ThemedIconSnapshotRestorer themedIconSnapshotRestorer,
             ThemedIconInteractor themedIconInteractor) {
@@ -83,9 +78,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
                 keyguardQuickAffordancePickerViewModelFactory;
         mNotificationSectionViewModelFactory = notificationSectionViewModelFactory;
         mFlags = flags;
-        mClockRegistryProvider = clockRegistryProvider;
-        mClockCarouselViewModelProvider = clockCarouselViewModelProvider;
-        mClockViewFactoryProvider = clockViewFactoryProvider;
+        mClockCarouselViewModel = clockCarouselViewModel;
+        mClockViewFactory = clockViewFactory;
         mDarkModeSnapshotRestorer = darkModeSnapshotRestorer;
         mThemedIconSnapshotRestorer = themedIconSnapshotRestorer;
         mThemedIconInteractor = themedIconInteractor;
@@ -116,9 +110,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
                         wallpaperInfoFactory,
                         wallpaperColorsViewModel,
                         displayUtils,
-                        mClockRegistryProvider,
-                        mClockCarouselViewModelProvider,
-                        mClockViewFactoryProvider,
+                        mClockCarouselViewModel,
+                        mClockViewFactory,
                         sectionNavigationController)
                         : new ScreenPreviewSectionController(
                                 activity,
