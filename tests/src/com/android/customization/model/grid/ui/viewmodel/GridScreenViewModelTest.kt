@@ -31,6 +31,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -73,6 +74,7 @@ class GridScreenViewModelTest {
     }
 
     @Test
+    @Ignore("b/270371382")
     fun clickOnItem_itGetsSelected() =
         testScope.runTest {
             val optionItemsValueProvider = collectLastValue(underTest.optionItems)

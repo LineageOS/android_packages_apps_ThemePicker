@@ -111,12 +111,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="100dp" />
+        app:layout_constraintGuide_begin="@dimen/clock_carousel_guideline_margin" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="100dp" />
+        app:layout_constraintGuide_end="@dimen/clock_carousel_guideline_margin" />
 </androidx.constraintlayout.motion.widget.MotionLayout>

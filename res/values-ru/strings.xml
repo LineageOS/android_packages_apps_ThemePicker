@@ -28,6 +28,7 @@
     <string name="clock_size_dynamic" msgid="1023930312455061642">"Динамичный"</string>
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Размер часов меняется в зависимости от контента на заблокированном экране"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Большой"</string>
+    <string name="clock_size_small" msgid="2280449912094164133">"Маленький"</string>
     <string name="grid_title" msgid="1688173478777254123">"Сетка приложений"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Применить"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Нажмите, чтобы изменить"</string>
@@ -114,10 +115,7 @@
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Скрывать уведомления на заблокированном экране"</string>
     <string name="more_settings_section_title" msgid="8524741850115625404">"Дополнительные настройки"</string>
     <string name="more_settings_section_description" msgid="8787768566854880683">"Текст на заблок. экране, функция \"Что сейчас играет?\" и др."</string>
-    <!-- no translation found for more_colors (3191071655353004591) -->
-    <skip />
-    <!-- no translation found for content_description_default_color_option (7011899327541080695) -->
-    <skip />
-    <!-- no translation found for content_description_color_option (4169813692012119578) -->
-    <skip />
+    <string name="more_colors" msgid="3191071655353004591">"Ещё цвета"</string>
+    <string name="content_description_default_color_option" msgid="7011899327541080695">"Цвет по умолчанию"</string>
+    <string name="content_description_color_option" msgid="4169813692012119578">"Цвет: <xliff:g id="ID_1">%1$d</xliff:g>"</string>
 </resources>
