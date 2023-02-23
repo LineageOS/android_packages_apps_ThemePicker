@@ -158,7 +158,7 @@ class TestCustomizationInjector : TestInjector(), CustomizationInjector {
 
     override fun getClockSectionViewModel(context: Context): ClockSectionViewModel {
         return clockSectionViewModel
-            ?: ClockSectionViewModel(getClockPickerInteractor(context)).also {
+            ?: ClockSectionViewModel(context, getClockPickerInteractor(context)).also {
                 clockSectionViewModel = it
             }
     }
