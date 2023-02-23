@@ -28,6 +28,7 @@
     <string name="clock_size_dynamic" msgid="1023930312455061642">"Dynamické"</string>
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Veľkosť hodín sa mení podľa obsahu na uzamknutej obrazovke"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Veľké"</string>
+    <string name="clock_size_small" msgid="2280449912094164133">"Malé"</string>
     <string name="grid_title" msgid="1688173478777254123">"Mriežka aplik."</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Použiť"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Klepnutím upravte"</string>
@@ -115,8 +116,6 @@
     <string name="more_settings_section_title" msgid="8524741850115625404">"Ďalšie možnosti"</string>
     <string name="more_settings_section_description" msgid="8787768566854880683">"Text na uzamknutej obrazovke, Čo to hrá a ďalšie nastavenia"</string>
     <string name="more_colors" msgid="3191071655353004591">"Ďalšie farby"</string>
-    <!-- no translation found for content_description_default_color_option (7011899327541080695) -->
-    <skip />
-    <!-- no translation found for content_description_color_option (4169813692012119578) -->
-    <skip />
+    <string name="content_description_default_color_option" msgid="7011899327541080695">"Predvolená farba"</string>
+    <string name="content_description_color_option" msgid="4169813692012119578">"Farba: <xliff:g id="ID_1">%1$d</xliff:g>"</string>
 </resources>
