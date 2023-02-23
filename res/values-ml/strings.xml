@@ -28,6 +28,7 @@
     <string name="clock_size_dynamic" msgid="1023930312455061642">"ഡൈനാമിക്"</string>
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"ലോക്ക് സ്‌ക്രീൻ ഉള്ളടക്കത്തിനനുസരിച്ച് ക്ലോക്കിന്റെ വലുപ്പം മാറുന്നു"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"വലുത്"</string>
+    <string name="clock_size_small" msgid="2280449912094164133">"ചെറുത്"</string>
     <string name="grid_title" msgid="1688173478777254123">"ആപ്പ് ഗ്രിഡ്"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"പ്രയോഗിക്കുക"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"എഡിറ്റ് ചെയ്യാൻ ടാപ്പ് ചെയ്യുക"</string>
@@ -115,8 +116,6 @@
     <string name="more_settings_section_title" msgid="8524741850115625404">"കൂടുതൽ ഓപ്‌ഷനുകൾ"</string>
     <string name="more_settings_section_description" msgid="8787768566854880683">"ലോക്ക് സ്ക്രീനിൽ ടെക്സ്റ്റിംഗ്, \'ഇപ്പോൾ കേൾക്കുന്നത്\' തുടങ്ങിയവ"</string>
     <string name="more_colors" msgid="3191071655353004591">"കൂടുതൽ നിറങ്ങൾ"</string>
-    <!-- no translation found for content_description_default_color_option (7011899327541080695) -->
-    <skip />
-    <!-- no translation found for content_description_color_option (4169813692012119578) -->
-    <skip />
+    <string name="content_description_default_color_option" msgid="7011899327541080695">"ഡിഫോൾട്ട് വർണ്ണ ഓപ്‌ഷൻ"</string>
+    <string name="content_description_color_option" msgid="4169813692012119578">"വർണ്ണ ഓപ്‌ഷൻ <xliff:g id="ID_1">%1$d</xliff:g>"</string>
 </resources>

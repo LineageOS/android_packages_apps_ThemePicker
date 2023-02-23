@@ -28,6 +28,8 @@
     <string name="clock_size_dynamic" msgid="1023930312455061642">"டைனமிக்"</string>
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"பூட்டுத் திரையில் உள்ள உள்ளடக்கத்தைப் பொறுத்து கடிகாரத்தின் அளவு மாறுபடும்"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"பெரியது"</string>
+    <!-- no translation found for clock_size_small (2280449912094164133) -->
+    <skip />
     <string name="grid_title" msgid="1688173478777254123">"ஆப்ஸ் கட்டம்"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"பயன்படுத்து"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"\'தீமைத்\' திருத்த தட்டவும்"</string>
@@ -114,10 +116,7 @@
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"பூட்டுத் திரையில் அறிவிப்புகளைக் காட்டாது"</string>
     <string name="more_settings_section_title" msgid="8524741850115625404">"மேலும் விருப்பங்கள்"</string>
     <string name="more_settings_section_description" msgid="8787768566854880683">"பூட்டுத் திரையில் உரை, பாடல் விவரம் மற்றும் பல"</string>
-    <!-- no translation found for more_colors (3191071655353004591) -->
-    <skip />
-    <!-- no translation found for content_description_default_color_option (7011899327541080695) -->
-    <skip />
-    <!-- no translation found for content_description_color_option (4169813692012119578) -->
-    <skip />
+    <string name="more_colors" msgid="3191071655353004591">"கூடுதல் வண்ணங்கள்"</string>
+    <string name="content_description_default_color_option" msgid="7011899327541080695">"இயல்பு வண்ண விருப்பம்"</string>
+    <string name="content_description_color_option" msgid="4169813692012119578">"வண்ண விருப்பம் <xliff:g id="ID_1">%1$d</xliff:g>"</string>
 </resources>
