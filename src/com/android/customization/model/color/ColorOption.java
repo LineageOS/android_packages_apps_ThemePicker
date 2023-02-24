@@ -107,9 +107,6 @@ public abstract class ColorOption implements CustomizationOption<ColorOption> {
         if (other == null) {
             return false;
         }
-        if (mStyle != other.getStyle()) {
-            return false;
-        }
         if (mIsDefault) {
             return other.isDefault() || TextUtils.isEmpty(other.getSerializedPackages())
                     || EMPTY_JSON.equals(other.getSerializedPackages());
