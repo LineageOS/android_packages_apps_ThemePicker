@@ -34,4 +34,7 @@ interface ColorPickerRepository {
 
     /** Returns the current selected color option based on system settings */
     fun getCurrentColorOption(): ColorOptionModel
+
+    /** Returns the current selected color source based on system settings */
+    fun getCurrentColorSource(): String?
 }
