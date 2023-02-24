@@ -27,7 +27,6 @@ import com.android.customization.model.mode.DarkModeSectionController
 import com.android.customization.module.ThemePickerInjector
 import com.android.customization.picker.color.ui.binder.ColorPickerBinder
 import com.android.wallpaper.R
-import com.android.wallpaper.model.WallpaperColorsViewModel
 import com.android.wallpaper.module.InjectorProvider
 import com.android.wallpaper.picker.AppbarFragment
 import com.android.wallpaper.picker.customization.ui.binder.ScreenPreviewBinder
@@ -63,7 +62,7 @@ class ColorPickerFragment : AppbarFragment() {
         val homeScreenView: CardView = view.requireViewById(R.id.home_preview)
         val wallpaperInfoFactory = injector.getCurrentWallpaperInfoFactory(requireContext())
         val displayUtils: DisplayUtils = injector.getDisplayUtils(requireContext())
-        val wcViewModel = ViewModelProvider(requireActivity())[WallpaperColorsViewModel::class.java]
+        val wcViewModel = injector.getWallpaperColorsViewModel()
         ColorPickerBinder.bind(
             view = view,
             viewModel =

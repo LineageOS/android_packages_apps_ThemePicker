@@ -18,6 +18,7 @@ import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
 import com.android.customization.picker.clock.ui.viewmodel.ClockSettingsViewModel
 import com.android.customization.picker.color.data.repository.ColorPickerRepositoryImpl
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
+import com.android.customization.picker.color.domain.interactor.ColorPickerSnapshotRestorer
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
 import com.android.customization.picker.quickaffordance.data.repository.KeyguardQuickAffordancePickerRepository
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
@@ -54,6 +55,7 @@ class TestCustomizationInjector : TestInjector(), CustomizationInjector {
     private var clockViewFactory: ClockViewFactory? = null
     private var colorPickerInteractor: ColorPickerInteractor? = null
     private var colorPickerViewModelFactory: ColorPickerViewModel.Factory? = null
+    private var colorPickerSnapshotRestorer: ColorPickerSnapshotRestorer? = null
     private var clockCarouselViewModel: ClockCarouselViewModel? = null
     private var clockSettingsViewModelFactory: ClockSettingsViewModel.Factory? = null
 
@@ -118,6 +120,8 @@ class TestCustomizationInjector : TestInjector(), CustomizationInjector {
         val restorers: MutableMap<Int, SnapshotRestorer> = HashMap()
         restorers[KEY_QUICK_AFFORDANCE_SNAPSHOT_RESTORER] =
             getKeyguardQuickAffordanceSnapshotRestorer(context)
+        restorers[KEY_COLOR_PICKER_SNAPSHOT_RESTORER] =
+            getColorPickerSnapshotRestorer(context, getWallpaperColorsViewModel())
         return restorers
     }
 
@@ -168,7 +172,12 @@ class TestCustomizationInjector : TestInjector(), CustomizationInjector {
         wallpaperColorsViewModel: WallpaperColorsViewModel,
     ): ColorPickerInteractor {
         return colorPickerInteractor
-            ?: ColorPickerInteractor(ColorPickerRepositoryImpl(context, wallpaperColorsViewModel))
+            ?: ColorPickerInteractor(
+                    repository = ColorPickerRepositoryImpl(context, wallpaperColorsViewModel),
+                    snapshotRestorer = {
+                        getColorPickerSnapshotRestorer(context, wallpaperColorsViewModel)
+                    },
+                )
                 .also { colorPickerInteractor = it }
     }
 
@@ -182,6 +191,17 @@ class TestCustomizationInjector : TestInjector(), CustomizationInjector {
                     getColorPickerInteractor(context, wallpaperColorsViewModel),
                 )
                 .also { colorPickerViewModelFactory = it }
+    }
+
+    private fun getColorPickerSnapshotRestorer(
+        context: Context,
+        wallpaperColorsViewModel: WallpaperColorsViewModel
+    ): ColorPickerSnapshotRestorer {
+        return colorPickerSnapshotRestorer
+            ?: ColorPickerSnapshotRestorer(
+                    getColorPickerInteractor(context, wallpaperColorsViewModel)
+                )
+                .also { colorPickerSnapshotRestorer = it }
     }
 
     override fun getClockCarouselViewModel(context: Context): ClockCarouselViewModel {
@@ -209,5 +229,7 @@ class TestCustomizationInjector : TestInjector(), CustomizationInjector {
 
     companion object {
         private const val KEY_QUICK_AFFORDANCE_SNAPSHOT_RESTORER = 1
+        private const val KEY_COLOR_PICKER_SNAPSHOT_RESTORER =
+            KEY_QUICK_AFFORDANCE_SNAPSHOT_RESTORER + 1
     }
 }
