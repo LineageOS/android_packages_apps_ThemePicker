@@ -21,15 +21,24 @@ import androidx.test.filters.SmallTest
 import androidx.test.platform.app.InstrumentationRegistry
 import com.android.customization.picker.color.data.repository.FakeColorPickerRepository
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
+import com.android.customization.picker.color.domain.interactor.ColorPickerSnapshotRestorer
 import com.android.customization.picker.color.shared.model.ColorType
 import com.android.customization.picker.color.ui.viewmodel.ColorOptionViewModel
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
 import com.android.customization.picker.color.ui.viewmodel.ColorTypeViewModel
+import com.android.wallpaper.testing.FakeSnapshotStore
 import com.android.wallpaper.testing.collectLastValue
 import com.google.common.truth.Truth.assertThat
 import com.google.common.truth.Truth.assertWithMessage
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.TestScope
+import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -40,80 +49,111 @@ import org.junit.runners.JUnit4
 @RunWith(JUnit4::class)
 class ColorPickerViewModelTest {
     private lateinit var underTest: ColorPickerViewModel
+    private lateinit var repository: FakeColorPickerRepository
+    private lateinit var interactor: ColorPickerInteractor
+    private lateinit var store: FakeSnapshotStore
 
     private lateinit var context: Context
+    private lateinit var testScope: TestScope
 
     @Before
     fun setUp() {
         context = InstrumentationRegistry.getInstrumentation().targetContext
+        val testDispatcher = StandardTestDispatcher()
+        testScope = TestScope(testDispatcher)
+        Dispatchers.setMain(testDispatcher)
+        repository = FakeColorPickerRepository(context = context)
+        store = FakeSnapshotStore()
+
+        interactor =
+            ColorPickerInteractor(
+                repository = repository,
+                snapshotRestorer = {
+                    ColorPickerSnapshotRestorer(interactor = interactor).apply {
+                        runBlocking { setUpSnapshotRestorer(store = store) }
+                    }
+                },
+            )
 
         underTest =
-            ColorPickerViewModel.Factory(
-                    context = context,
-                    interactor =
-                        ColorPickerInteractor(
-                            repository = FakeColorPickerRepository(context = context),
-                        ),
-                )
+            ColorPickerViewModel.Factory(context = context, interactor = interactor)
                 .create(ColorPickerViewModel::class.java)
+
+        repository.setOptions(4, 4, ColorType.WALLPAPER_COLOR, 0)
+    }
+
+    @After
+    fun tearDown() {
+        Dispatchers.resetMain()
     }
 
     @Test
-    fun `Select a color section color`() = runTest {
-        val colorSectionOptions = collectLastValue(underTest.colorSectionOptions)
+    fun `Select a color section color`() =
+        testScope.runTest {
+            val colorSectionOptions = collectLastValue(underTest.colorSectionOptions)
 
-        assertColorOptionUiState(colorOptions = colorSectionOptions(), selectedColorOptionIndex = 0)
+            assertColorOptionUiState(
+                colorOptions = colorSectionOptions(),
+                selectedColorOptionIndex = 0
+            )
 
-        colorSectionOptions()?.get(2)?.onClick?.invoke()
-        assertColorOptionUiState(colorOptions = colorSectionOptions(), selectedColorOptionIndex = 2)
+            colorSectionOptions()?.get(2)?.onClick?.invoke()
+            assertColorOptionUiState(
+                colorOptions = colorSectionOptions(),
+                selectedColorOptionIndex = 2
+            )
 
-        colorSectionOptions()?.get(4)?.onClick?.invoke()
-        assertColorOptionUiState(colorOptions = colorSectionOptions(), selectedColorOptionIndex = 4)
-    }
+            colorSectionOptions()?.get(4)?.onClick?.invoke()
+            assertColorOptionUiState(
+                colorOptions = colorSectionOptions(),
+                selectedColorOptionIndex = 4
+            )
+        }
 
     @Test
-    fun `Select a preset color`() = runTest {
-        val colorTypes = collectLastValue(underTest.colorTypes)
-        val colorOptions = collectLastValue(underTest.colorOptions)
+    fun `Select a preset color`() =
+        testScope.runTest {
+            val colorTypes = collectLastValue(underTest.colorTypes)
+            val colorOptions = collectLastValue(underTest.colorOptions)
 
-        // Initially, the wallpaper color tab should be selected
-        assertPickerUiState(
-            colorTypes = colorTypes(),
-            colorOptions = colorOptions(),
-            selectedColorTypeText = "Wallpaper colors",
-            selectedColorOptionIndex = 0
-        )
+            // Initially, the wallpaper color tab should be selected
+            assertPickerUiState(
+                colorTypes = colorTypes(),
+                colorOptions = colorOptions(),
+                selectedColorTypeText = "Wallpaper colors",
+                selectedColorOptionIndex = 0
+            )
 
-        // Select "Basic colors" tab
-        colorTypes()?.get(ColorType.BASIC_COLOR)?.onClick?.invoke()
-        assertPickerUiState(
-            colorTypes = colorTypes(),
-            colorOptions = colorOptions(),
-            selectedColorTypeText = "Basic colors",
-            selectedColorOptionIndex = -1
-        )
+            // Select "Basic colors" tab
+            colorTypes()?.get(ColorType.BASIC_COLOR)?.onClick?.invoke()
+            assertPickerUiState(
+                colorTypes = colorTypes(),
+                colorOptions = colorOptions(),
+                selectedColorTypeText = "Basic colors",
+                selectedColorOptionIndex = -1
+            )
 
-        // Select a color option
-        colorOptions()?.get(2)?.onClick?.invoke()
+            // Select a color option
+            colorOptions()?.get(2)?.onClick?.invoke()
 
-        // Check original option is no longer selected
-        colorTypes()?.get(ColorType.WALLPAPER_COLOR)?.onClick?.invoke()
-        assertPickerUiState(
-            colorTypes = colorTypes(),
-            colorOptions = colorOptions(),
-            selectedColorTypeText = "Wallpaper colors",
-            selectedColorOptionIndex = -1
-        )
+            // Check original option is no longer selected
+            colorTypes()?.get(ColorType.WALLPAPER_COLOR)?.onClick?.invoke()
+            assertPickerUiState(
+                colorTypes = colorTypes(),
+                colorOptions = colorOptions(),
+                selectedColorTypeText = "Wallpaper colors",
+                selectedColorOptionIndex = -1
+            )
 
-        // Check new option is selected
-        colorTypes()?.get(ColorType.BASIC_COLOR)?.onClick?.invoke()
-        assertPickerUiState(
-            colorTypes = colorTypes(),
-            colorOptions = colorOptions(),
-            selectedColorTypeText = "Basic colors",
-            selectedColorOptionIndex = 2
-        )
-    }
+            // Check new option is selected
+            colorTypes()?.get(ColorType.BASIC_COLOR)?.onClick?.invoke()
+            assertPickerUiState(
+                colorTypes = colorTypes(),
+                colorOptions = colorOptions(),
+                selectedColorTypeText = "Basic colors",
+                selectedColorOptionIndex = 2
+            )
+        }
 
     /**
      * Asserts the entire picker UI state is what is expected. This includes the color type tabs and
