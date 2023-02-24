@@ -19,7 +19,6 @@ package com.android.customization.picker.color.ui.viewmodel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
 import com.android.customization.model.color.ColorBundle
 import com.android.customization.model.color.ColorSeedOption
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
@@ -31,7 +30,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
 
 /** Models UI state for a color picker experience. */
 class ColorPickerViewModel
@@ -92,7 +90,7 @@ private constructor(
                         if (colorOptionModel.isSelected) {
                             null
                         } else {
-                            { viewModelScope.launch { interactor.select(colorOptionModel) } }
+                            { interactor.select(colorOptionModel) }
                         }
                 )
             }
@@ -117,7 +115,7 @@ private constructor(
                         if (colorOptionModel.isSelected) {
                             null
                         } else {
-                            { viewModelScope.launch { interactor.select(colorOptionModel) } }
+                            { interactor.select(colorOptionModel) }
                         },
                 )
             }
