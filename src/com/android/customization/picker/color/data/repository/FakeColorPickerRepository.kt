@@ -26,81 +26,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class FakeColorPickerRepository(private val context: Context) : ColorPickerRepository {
+class FakeColorPickerRepository(context: Context) : ColorPickerRepository {
+    override val activeColorOption: StateFlow<ColorOptionModel?> =
+        MutableStateFlow<ColorOptionModel?>(null)
 
-    private lateinit var selectedColorOption: ColorOptionModel
-
-    private val _colorOptions =
-        MutableStateFlow(
-            mapOf<ColorType, List<ColorOptionModel>>(
-                ColorType.WALLPAPER_COLOR to listOf(),
-                ColorType.BASIC_COLOR to listOf()
-            )
-        )
-    override val colorOptions: StateFlow<Map<ColorType, List<ColorOptionModel>>> =
-        _colorOptions.asStateFlow()
-
-    init {
-        setOptions(4, 4, ColorType.WALLPAPER_COLOR, 0)
-    }
-
-    fun setOptions(
-        numWallpaperOptions: Int,
-        numPresetOptions: Int,
-        selectedColorOptionType: ColorType,
-        selectedColorOptionIndex: Int
-    ) {
-        _colorOptions.value =
-            mapOf(
-                ColorType.WALLPAPER_COLOR to
-                    buildList {
-                        repeat(times = numWallpaperOptions) { index ->
-                            val isSelected =
-                                selectedColorOptionType == ColorType.WALLPAPER_COLOR &&
-                                    selectedColorOptionIndex == index
-                            val colorOption =
-                                ColorOptionModel(
-                                    colorOption = buildWallpaperOption(index),
-                                    isSelected = isSelected,
-                                )
-                            if (isSelected) {
-                                selectedColorOption = colorOption
-                            }
-                            add(colorOption)
-                        }
-                    },
-                ColorType.BASIC_COLOR to
-                    buildList {
-                        repeat(times = numPresetOptions) { index ->
-                            val isSelected =
-                                selectedColorOptionType == ColorType.BASIC_COLOR &&
-                                    selectedColorOptionIndex == index
-                            val colorOption =
-                                ColorOptionModel(
-                                    colorOption = buildPresetOption(index),
-                                    isSelected =
-                                        selectedColorOptionType == ColorType.BASIC_COLOR &&
-                                            selectedColorOptionIndex == index,
-                                )
-                            if (isSelected) {
-                                selectedColorOption = colorOption
-                            }
-                            add(colorOption)
-                        }
-                    }
-            )
-    }
-
-    private fun buildPresetOption(index: Int): ColorBundle {
-        return ColorBundle.Builder()
-            .addOverlayPackage("TEST_PACKAGE_TYPE", "preset_color")
-            .addOverlayPackage("TEST_PACKAGE_INDEX", "$index")
-            .setIndex(index)
-            .build(context)
-    }
-
-    private fun buildWallpaperOption(index: Int): ColorSeedOption {
-        return ColorSeedOption.Builder()
+    private val colorSeedOption0: ColorSeedOption =
+        ColorSeedOption.Builder()
             .setLightColors(
                 intArrayOf(
                     Color.TRANSPARENT,
@@ -117,13 +48,96 @@ class FakeColorPickerRepository(private val context: Context) : ColorPickerRepos
                     Color.TRANSPARENT
                 )
             )
-            .addOverlayPackage("TEST_PACKAGE_TYPE", "wallpaper_color")
-            .addOverlayPackage("TEST_PACKAGE_INDEX", "$index")
-            .setIndex(index)
+            .setIndex(0)
             .build()
-    }
+    private val colorSeedOption1: ColorSeedOption =
+        ColorSeedOption.Builder()
+            .setLightColors(
+                intArrayOf(
+                    Color.TRANSPARENT,
+                    Color.TRANSPARENT,
+                    Color.TRANSPARENT,
+                    Color.TRANSPARENT
+                )
+            )
+            .setDarkColors(
+                intArrayOf(
+                    Color.TRANSPARENT,
+                    Color.TRANSPARENT,
+                    Color.TRANSPARENT,
+                    Color.TRANSPARENT
+                )
+            )
+            .setIndex(1)
+            .build()
+    private val colorSeedOption2: ColorSeedOption =
+        ColorSeedOption.Builder()
+            .setLightColors(
+                intArrayOf(
+                    Color.TRANSPARENT,
+                    Color.TRANSPARENT,
+                    Color.TRANSPARENT,
+                    Color.TRANSPARENT
+                )
+            )
+            .setDarkColors(
+                intArrayOf(
+                    Color.TRANSPARENT,
+                    Color.TRANSPARENT,
+                    Color.TRANSPARENT,
+                    Color.TRANSPARENT
+                )
+            )
+            .setIndex(2)
+            .build()
+    private val colorSeedOption3: ColorSeedOption =
+        ColorSeedOption.Builder()
+            .setLightColors(
+                intArrayOf(
+                    Color.TRANSPARENT,
+                    Color.TRANSPARENT,
+                    Color.TRANSPARENT,
+                    Color.TRANSPARENT
+                )
+            )
+            .setDarkColors(
+                intArrayOf(
+                    Color.TRANSPARENT,
+                    Color.TRANSPARENT,
+                    Color.TRANSPARENT,
+                    Color.TRANSPARENT
+                )
+            )
+            .setIndex(3)
+            .build()
+    private val colorBundle0: ColorBundle = ColorBundle.Builder().setIndex(0).build(context)
+    private val colorBundle1: ColorBundle = ColorBundle.Builder().setIndex(1).build(context)
+    private val colorBundle2: ColorBundle = ColorBundle.Builder().setIndex(2).build(context)
+    private val colorBundle3: ColorBundle = ColorBundle.Builder().setIndex(3).build(context)
 
-    override suspend fun select(colorOptionModel: ColorOptionModel) {
+    private val _colorOptions =
+        MutableStateFlow(
+            mapOf(
+                ColorType.WALLPAPER_COLOR to
+                    listOf(
+                        ColorOptionModel(colorOption = colorSeedOption0, isSelected = true),
+                        ColorOptionModel(colorOption = colorSeedOption1, isSelected = false),
+                        ColorOptionModel(colorOption = colorSeedOption2, isSelected = false),
+                        ColorOptionModel(colorOption = colorSeedOption3, isSelected = false)
+                    ),
+                ColorType.BASIC_COLOR to
+                    listOf(
+                        ColorOptionModel(colorOption = colorBundle0, isSelected = false),
+                        ColorOptionModel(colorOption = colorBundle1, isSelected = false),
+                        ColorOptionModel(colorOption = colorBundle2, isSelected = false),
+                        ColorOptionModel(colorOption = colorBundle3, isSelected = false)
+                    )
+            )
+        )
+    override val colorOptions: StateFlow<Map<ColorType, List<ColorOptionModel>>> =
+        _colorOptions.asStateFlow()
+
+    override fun select(colorOptionModel: ColorOptionModel) {
         val colorOptions = _colorOptions.value
         val wallpaperColorOptions = colorOptions[ColorType.WALLPAPER_COLOR]!!
         val newWallpaperColorOptions = buildList {
@@ -153,8 +167,6 @@ class FakeColorPickerRepository(private val context: Context) : ColorPickerRepos
                 ColorType.BASIC_COLOR to newBasicColorOptions
             )
     }
-
-    override fun getCurrentColorOption(): ColorOptionModel = selectedColorOption
 
     private fun ColorOptionModel.testEquals(other: Any?): Boolean {
         if (other == null) {
