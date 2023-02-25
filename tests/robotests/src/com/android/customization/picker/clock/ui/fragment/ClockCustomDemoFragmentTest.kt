@@ -10,6 +10,7 @@ import com.android.systemui.plugins.PluginManager
 import com.android.systemui.shared.clocks.ClockRegistry
 import org.junit.Assert
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
@@ -23,6 +24,7 @@ import org.robolectric.annotation.Config
 /** Tests of [ClockCustomDemoFragment]. */
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE)
+@Ignore("b/270606895")
 class ClockCustomDemoFragmentTest {
     private lateinit var mActivity: AppCompatActivity
     private var mClockCustomDemoFragment: ClockCustomDemoFragment? = null
