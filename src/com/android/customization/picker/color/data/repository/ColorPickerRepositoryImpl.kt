@@ -27,11 +27,10 @@ import com.android.customization.model.color.ColorSeedOption
 import com.android.customization.model.theme.OverlayManagerCompat
 import com.android.customization.picker.color.shared.model.ColorOptionModel
 import com.android.customization.picker.color.shared.model.ColorType
+import com.android.systemui.monet.Style
 import com.android.wallpaper.model.WallpaperColorsViewModel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -50,17 +49,11 @@ class ColorPickerRepositoryImpl(
     private val colorManager: ColorCustomizationManager =
         ColorCustomizationManager.getInstance(context, OverlayManagerCompat(context))
 
-    private val _activeColorOption = MutableStateFlow<ColorOptionModel?>(null)
-    override val activeColorOption: StateFlow<ColorOptionModel?> = _activeColorOption.asStateFlow()
-
     override val colorOptions: Flow<Map<ColorType, List<ColorOptionModel>>> =
-        combine(activeColorOption, homeWallpaperColors, lockWallpaperColors) {
-                activeOption,
-                homeColors,
-                lockColors ->
-                Triple(activeOption, homeColors, lockColors)
+        combine(homeWallpaperColors, lockWallpaperColors) { homeColors, lockColors ->
+                homeColors to lockColors
             }
-            .map { (activeOption, homeColors, lockColors) ->
+            .map { (homeColors, lockColors) ->
                 suspendCancellableCoroutine { continuation ->
                     colorManager.setWallpaperColors(homeColors, lockColors)
                     colorManager.fetchOptions(
@@ -73,9 +66,8 @@ class ColorPickerRepositoryImpl(
                                 options?.forEach { option ->
                                     when (option) {
                                         is ColorSeedOption ->
-                                            wallpaperColorOptions.add(option.toModel(activeOption))
-                                        is ColorBundle ->
-                                            presetColorOptions.add(option.toModel(activeOption))
+                                            wallpaperColorOptions.add(option.toModel())
+                                        is ColorBundle -> presetColorOptions.add(option.toModel())
                                     }
                                 }
                                 continuation.resumeWith(
@@ -102,33 +94,46 @@ class ColorPickerRepositoryImpl(
                 }
             }
 
-    override fun select(colorOptionModel: ColorOptionModel) {
-        _activeColorOption.value = colorOptionModel
-        val colorOption: ColorOption = colorOptionModel.colorOption
-        colorManager.apply(
-            colorOption,
-            object : CustomizationManager.Callback {
-                override fun onSuccess() {
-                    _activeColorOption.value = null
-                }
+    override suspend fun select(colorOptionModel: ColorOptionModel) =
+        suspendCancellableCoroutine { continuation ->
+            colorManager.apply(
+                colorOptionModel.colorOption,
+                object : CustomizationManager.Callback {
+                    override fun onSuccess() {
+                        continuation.resumeWith(Result.success(Unit))
+                    }
 
-                override fun onError(throwable: Throwable?) {
-                    _activeColorOption.value = null
-                    Log.w(TAG, "Apply theme with error", throwable)
+                    override fun onError(throwable: Throwable?) {
+                        Log.w(TAG, "Apply theme with error", throwable)
+                        continuation.resumeWith(
+                            Result.failure(throwable ?: Throwable("Error loading theme bundles"))
+                        )
+                    }
                 }
-            }
+            )
+        }
+
+    override fun getCurrentColorOption(): ColorOptionModel {
+        val overlays = colorManager.currentOverlays
+        val styleOrNull = colorManager.currentStyle
+        val style = styleOrNull?.let { Style.valueOf(it) } ?: Style.TONAL_SPOT
+        val colorOptionBuilder =
+        // Does not matter whether ColorSeedOption or ColorBundle builder is used here
+        // because to apply the color, one just needs a generic ColorOption
+        ColorSeedOption.Builder().setSource(colorManager.currentColorSource).setStyle(style)
+        for (overlay in overlays) {
+            colorOptionBuilder.addOverlayPackage(overlay.key, overlay.value)
+        }
+        return ColorOptionModel(
+            colorOption = colorOptionBuilder.build(),
+            isSelected = false,
         )
     }
 
-    private fun ColorOption.toModel(activeColorOption: ColorOptionModel?): ColorOptionModel {
+    private fun ColorOption.toModel(): ColorOptionModel {
         return ColorOptionModel(
             colorOption = this,
-            isSelected =
-                if (activeColorOption != null) {
-                    isEquivalent(activeColorOption.colorOption)
-                } else {
-                    isActive(colorManager)
-                },
+            isSelected = isActive(colorManager),
         )
     }
 
