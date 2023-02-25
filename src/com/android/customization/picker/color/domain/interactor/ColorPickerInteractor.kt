@@ -16,17 +16,57 @@
  */
 package com.android.customization.picker.color.domain.interactor
 
+import androidx.annotation.VisibleForTesting
 import com.android.customization.picker.color.data.repository.ColorPickerRepository
 import com.android.customization.picker.color.shared.model.ColorOptionModel
+import javax.inject.Provider
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.combine
 
 /** Single entry-point for all application state and business logic related to system color. */
 class ColorPickerInteractor(
     private val repository: ColorPickerRepository,
+    private val snapshotRestorer: Provider<ColorPickerSnapshotRestorer>,
 ) {
-    /** List of wallpaper and preset color options on the device, categorized by Color Type */
-    val colorOptions = repository.colorOptions
+    /**
+     * The newly selected color option for overwriting the current active option during an
+     * optimistic update, the value is set to null when update fails
+     */
+    @VisibleForTesting private val activeColorOption = MutableStateFlow<ColorOptionModel?>(null)
 
-    fun select(colorOptionModel: ColorOptionModel) {
-        repository.select(colorOptionModel)
+    /** List of wallpaper and preset color options on the device, categorized by Color Type */
+    val colorOptions =
+        combine(repository.colorOptions, activeColorOption) { colorOptions, activeOption ->
+            colorOptions
+                .map { colorTypeEntry ->
+                    colorTypeEntry.key to
+                        colorTypeEntry.value.map { colorOptionModel ->
+                            val isSelected =
+                                if (activeOption != null) {
+                                    colorOptionModel.colorOption.isEquivalent(
+                                        activeOption.colorOption
+                                    )
+                                } else {
+                                    colorOptionModel.isSelected
+                                }
+                            ColorOptionModel(
+                                colorOption = colorOptionModel.colorOption,
+                                isSelected = isSelected
+                            )
+                        }
+                }
+                .toMap()
+        }
+
+    suspend fun select(colorOptionModel: ColorOptionModel) {
+        activeColorOption.value = colorOptionModel
+        try {
+            repository.select(colorOptionModel)
+            snapshotRestorer.get().storeSnapshot(colorOptionModel)
+        } catch (e: Exception) {
+            activeColorOption.value = null
+        }
     }
+
+    fun getCurrentColorOption(): ColorOptionModel = repository.getCurrentColorOption()
 }
