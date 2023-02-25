@@ -13,5 +13,8 @@ android_robolectric_test {
         "androidx.test.core",
         "androidx.test.runner",
     ],
+
+    upstream: true,
+
     instrumentation_for: "ThemePicker",
 }
