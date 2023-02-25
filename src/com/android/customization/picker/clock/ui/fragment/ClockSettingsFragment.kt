@@ -25,7 +25,6 @@ import androidx.lifecycle.get
 import com.android.customization.module.ThemePickerInjector
 import com.android.customization.picker.clock.ui.binder.ClockSettingsBinder
 import com.android.wallpaper.R
-import com.android.wallpaper.model.WallpaperColorsViewModel
 import com.android.wallpaper.module.InjectorProvider
 import com.android.wallpaper.picker.AppbarFragment
 import com.android.wallpaper.picker.customization.ui.binder.ScreenPreviewBinder
@@ -63,7 +62,7 @@ class ClockSettingsFragment : AppbarFragment() {
         val injector = InjectorProvider.getInjector() as ThemePickerInjector
 
         val lockScreenView: CardView = view.requireViewById(R.id.lock_preview)
-        val colorViewModel = ViewModelProvider(activity)[WallpaperColorsViewModel::class.java]
+        val colorViewModel = injector.getWallpaperColorsViewModel()
         val displayUtils = injector.getDisplayUtils(context)
         ScreenPreviewBinder.bind(
                 activity = activity,

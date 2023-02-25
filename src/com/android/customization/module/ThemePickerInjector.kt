@@ -47,6 +47,7 @@ import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
 import com.android.customization.picker.clock.ui.viewmodel.ClockSettingsViewModel
 import com.android.customization.picker.color.data.repository.ColorPickerRepositoryImpl
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
+import com.android.customization.picker.color.domain.interactor.ColorPickerSnapshotRestorer
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
 import com.android.customization.picker.notifications.data.repository.NotificationsRepository
 import com.android.customization.picker.notifications.domain.interactor.NotificationsInteractor
@@ -100,6 +101,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     private var notificationSectionViewModelFactory: NotificationSectionViewModel.Factory? = null
     private var colorPickerInteractor: ColorPickerInteractor? = null
     private var colorPickerViewModelFactory: ColorPickerViewModel.Factory? = null
+    private var colorPickerSnapshotRestorer: ColorPickerSnapshotRestorer? = null
     private var darkModeSnapshotRestorer: DarkModeSnapshotRestorer? = null
     private var themedIconSnapshotRestorer: ThemedIconSnapshotRestorer? = null
     private var themedIconInteractor: ThemedIconInteractor? = null
@@ -113,8 +115,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
             ?: DefaultCustomizationSections(
                     getColorPickerViewModelFactory(
                         context = activity,
-                        wallpaperColorsViewModel =
-                            ViewModelProvider(activity)[WallpaperColorsViewModel::class.java],
+                        wallpaperColorsViewModel = getWallpaperColorsViewModel(),
                     ),
                     getKeyguardQuickAffordancePickerInteractor(activity),
                     getKeyguardQuickAffordancePickerViewModelFactory(activity),
@@ -190,6 +191,8 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
             this[KEY_DARK_MODE_SNAPSHOT_RESTORER] = getDarkModeSnapshotRestorer(context)
             this[KEY_THEMED_ICON_SNAPSHOT_RESTORER] = getThemedIconSnapshotRestorer(context)
             this[KEY_APP_GRID_SNAPSHOT_RESTORER] = getGridSnapshotRestorer(context)
+            this[KEY_COLOR_PICKER_SNAPSHOT_RESTORER] =
+                getColorPickerSnapshotRestorer(context, getWallpaperColorsViewModel())
         }
     }
 
@@ -346,7 +349,12 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
         wallpaperColorsViewModel: WallpaperColorsViewModel,
     ): ColorPickerInteractor {
         return colorPickerInteractor
-            ?: ColorPickerInteractor(ColorPickerRepositoryImpl(context, wallpaperColorsViewModel))
+            ?: ColorPickerInteractor(
+                    repository = ColorPickerRepositoryImpl(context, wallpaperColorsViewModel),
+                    snapshotRestorer = {
+                        getColorPickerSnapshotRestorer(context, wallpaperColorsViewModel)
+                    }
+                )
                 .also { colorPickerInteractor = it }
     }
 
@@ -360,6 +368,17 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                     getColorPickerInteractor(context, wallpaperColorsViewModel),
                 )
                 .also { colorPickerViewModelFactory = it }
+    }
+
+    private fun getColorPickerSnapshotRestorer(
+        context: Context,
+        wallpaperColorsViewModel: WallpaperColorsViewModel,
+    ): ColorPickerSnapshotRestorer {
+        return colorPickerSnapshotRestorer
+            ?: ColorPickerSnapshotRestorer(
+                    getColorPickerInteractor(context, wallpaperColorsViewModel)
+                )
+                .also { colorPickerSnapshotRestorer = it }
     }
 
     fun getDarkModeSnapshotRestorer(
@@ -460,6 +479,8 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
         private val KEY_THEMED_ICON_SNAPSHOT_RESTORER = KEY_DARK_MODE_SNAPSHOT_RESTORER + 1
         @JvmStatic
         private val KEY_APP_GRID_SNAPSHOT_RESTORER = KEY_THEMED_ICON_SNAPSHOT_RESTORER + 1
+        @JvmStatic
+        private val KEY_COLOR_PICKER_SNAPSHOT_RESTORER = KEY_APP_GRID_SNAPSHOT_RESTORER + 1
 
         /**
          * When this injector is overridden, this is the minimal value that should be used by
@@ -467,6 +488,6 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
          *
          * It should always be greater than the biggest restorer key.
          */
-        @JvmStatic protected val MIN_SNAPSHOT_RESTORER_KEY = KEY_APP_GRID_SNAPSHOT_RESTORER + 1
+        @JvmStatic protected val MIN_SNAPSHOT_RESTORER_KEY = KEY_COLOR_PICKER_SNAPSHOT_RESTORER + 1
     }
 }
