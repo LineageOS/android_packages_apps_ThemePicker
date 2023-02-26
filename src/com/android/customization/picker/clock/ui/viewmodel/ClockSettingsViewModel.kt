@@ -194,9 +194,9 @@ private constructor(context: Context, private val interactor: ClockPickerInterac
     }
 
     private val _selectedTabPosition = MutableStateFlow(Tab.COLOR)
-    val selectedTabPosition: StateFlow<Tab> = _selectedTabPosition.asStateFlow()
+    val selectedTab: StateFlow<Tab> = _selectedTabPosition.asStateFlow()
     val tabs: Flow<List<ClockSettingsTabViewModel>> =
-        selectedTabPosition.map {
+        selectedTab.map {
             listOf(
                 ClockSettingsTabViewModel(
                     name = context.resources.getString(R.string.clock_color),
