@@ -210,7 +210,7 @@ public class ColorCustomizationManager implements CustomizationManager<ColorOpti
      * or {@link ColorOptionsProvider#COLOR_SOURCE_PRESET}.
      */
     @ColorSource
-    public String getCurrentColorSource() {
+    public @Nullable String getCurrentColorSource() {
         if (mCurrentSource == null) {
             parseSettings(getStoredOverlays());
         }
@@ -221,7 +221,7 @@ public class ColorCustomizationManager implements CustomizationManager<ColorOpti
      * @return The style of the currently applied color. One of enum values in
      * {@link com.android.systemui.monet.Style}.
      */
-    public String getCurrentStyle() {
+    public @Nullable String getCurrentStyle() {
         if (mCurrentStyle == null) {
             parseSettings(getStoredOverlays());
         }
