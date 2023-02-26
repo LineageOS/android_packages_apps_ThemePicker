@@ -19,8 +19,8 @@ package com.android.customization.picker.preview.ui.section
 
 import android.app.Activity
 import android.content.Context
+import android.view.ViewGroup
 import android.view.ViewStub
-import androidx.core.view.isGone
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.android.customization.picker.clock.ui.binder.ClockCarouselViewBinder
@@ -67,12 +67,17 @@ class PreviewWithClockCarouselSectionController(
         val view = super.createView(context)
         val carouselViewStub: ViewStub = view.requireViewById(R.id.clock_carousel_view_stub)
         carouselViewStub.layoutResource = R.layout.clock_carousel_view
-        val carouselView: ClockCarouselView = carouselViewStub.inflate() as ClockCarouselView
-        carouselView.isGone = true
+        val carouselView = carouselViewStub.inflate() as ClockCarouselView
+
+        // TODO (b/270716937) We should handle the single clock case in the clock carousel itself
+        val singleClockViewStub: ViewStub = view.requireViewById(R.id.single_clock_view_stub)
+        singleClockViewStub.layoutResource = R.layout.single_clock_view
+        val singleClockView = singleClockViewStub.inflate() as ViewGroup
         lifecycleOwner.lifecycleScope.launch {
             clockCarouselBinding =
                 ClockCarouselViewBinder.bind(
                     view = carouselView,
+                    singleClockView = singleClockView,
                     viewModel = clockCarouselViewModel,
                     clockViewFactory = { clockId -> clockViewFactory.getView(clockId) },
                     lifecycleOwner = lifecycleOwner,
