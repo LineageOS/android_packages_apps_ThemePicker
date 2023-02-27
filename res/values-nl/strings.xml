@@ -19,7 +19,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"Achtergrond en stijl"</string>
     <string name="theme_title" msgid="2144932106319405101">"Stijl"</string>
-    <string name="clock_title" msgid="2126046720254613991">"Klok"</string>
+    <string name="clock_title" msgid="1974314575211361352">"Aangepaste klok"</string>
+    <string name="clock_description" msgid="3563839327378948">"Klok kiezen"</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Aangepaste klok wijzigen"</string>
     <string name="grid_title" msgid="1688173478777254123">"App-raster"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Toepassen"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Tik om te bewerken"</string>
@@ -89,4 +91,15 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"Basiskleuren"</string>
     <string name="color_changed" msgid="7029571720331641235">"Kleur gewijzigd"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Dynamisch"</string>
+    <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"Linkerknop"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"Rechterknop"</string>
+    <string name="keyguard_affordance_none" msgid="1751643933430782312">"Geen"</string>
+    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"Check het volgende als je <xliff:g id="APPNAME">%1$s</xliff:g> wilt selecteren"</string>
+    <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g> openen"</string>
+    <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Zorg voor het volgende om de <xliff:g id="APPNAME">%1$s</xliff:g>-app toe te voegen als snelkoppeling:"</string>
+    <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Klaar"</string>
+    <string name="keyguard_quick_affordance_title" msgid="4242813186995735584">"Snelkoppelingen"</string>
+    <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"Snelkoppelingen"</string>
+    <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
+    <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"Geen"</string>
 </resources>

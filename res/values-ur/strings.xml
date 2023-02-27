@@ -19,7 +19,9 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name" msgid="1647136562008520313">"وال پیپر اور طرز"</string>
     <string name="theme_title" msgid="2144932106319405101">"طرز"</string>
-    <string name="clock_title" msgid="2126046720254613991">"گھڑی"</string>
+    <string name="clock_title" msgid="1974314575211361352">"حسب ضرورت گھڑی"</string>
+    <string name="clock_description" msgid="3563839327378948">"حسب ضرورت گھڑی چنیں"</string>
+    <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"حسب ضرورت گھڑی کو تبدیل کریں"</string>
     <string name="grid_title" msgid="1688173478777254123">"ایپ گرڈ"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"لاگو کریں"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"ترمیم کرنے کے لیے تھپتھپائيں"</string>
@@ -89,4 +91,15 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"بنیادی رنگ"</string>
     <string name="color_changed" msgid="7029571720331641235">"رنگ کو تبدیل کر دیا گیا"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"ڈائنیمک"</string>
+    <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"دایاں بٹن"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"بایاں بٹن"</string>
+    <string name="keyguard_affordance_none" msgid="1751643933430782312">"کوئی نہیں"</string>
+    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"`<xliff:g id="APPNAME">%1$s</xliff:g>` کو منتخب کرنے کے لیے درج ذیل کو چیک کریں"</string>
+    <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g> کھولیں"</string>
+    <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"<xliff:g id="APPNAME">%1$s</xliff:g> ایپ کو شارٹ کٹ کے طور پر شامل کرنے کے لیے درج ذیل کو یقینی بنائیں"</string>
+    <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"ہو گیا"</string>
+    <string name="keyguard_quick_affordance_title" msgid="4242813186995735584">"شارٹ کٹس"</string>
+    <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"شارٹ کٹس"</string>
+    <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>، <xliff:g id="SECOND">%2$s</xliff:g>"</string>
+    <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"کوئی نہیں"</string>
 </resources>
