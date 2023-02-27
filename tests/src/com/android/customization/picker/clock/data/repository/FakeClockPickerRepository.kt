@@ -15,6 +15,7 @@
  */
 package com.android.customization.picker.clock.data.repository
 
+import com.android.customization.picker.clock.data.repository.FakeClockPickerRepository.Companion.fakeClocks
 import com.android.customization.picker.clock.shared.ClockSize
 import com.android.customization.picker.clock.shared.model.ClockMetadataModel
 import kotlinx.coroutines.flow.Flow
@@ -22,9 +23,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 
-class FakeClockPickerRepository : ClockPickerRepository {
-    override val allClocks: Flow<List<ClockMetadataModel>> =
-        MutableStateFlow(fakeClocks).asStateFlow()
+/** By default [FakeClockPickerRepository] uses [fakeClocks]. */
+open class FakeClockPickerRepository(private val clocks: List<ClockMetadataModel> = fakeClocks) :
+    ClockPickerRepository {
+    override val allClocks: Flow<List<ClockMetadataModel>> = MutableStateFlow(clocks).asStateFlow()
 
     private val selectedClockId = MutableStateFlow(fakeClocks[0].clockId)
     private val clockColor = MutableStateFlow<Int?>(null)
