@@ -83,7 +83,7 @@ object ClockSettingsBinder {
                 launch { viewModel.tabs.collect { tabAdapter.setItems(it) } }
 
                 launch {
-                    viewModel.selectedTabPosition.collect { tab ->
+                    viewModel.selectedTab.collect { tab ->
                         when (tab) {
                             ClockSettingsViewModel.Tab.COLOR -> {
                                 colorOptionContainer.isVisible = true
