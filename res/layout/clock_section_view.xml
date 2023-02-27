@@ -33,14 +33,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/clock_settings_title"
+            android:text="@string/clock_color_and_size_title"
             style="@style/SectionTitleTextStyle" />
 
         <TextView
-            android:id="@+id/selected_clock_text"
+            android:id="@+id/selected_clock_color_and_size"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/clock_description"
             style="@style/SectionSubtitleTextStyle"/>
     </LinearLayout>
 
