@@ -72,7 +72,7 @@
     <string name="use_style_button" msgid="1754493078383627019">"Usar <xliff:g id="ID_1">%1$s</xliff:g>"</string>
     <string name="no_thanks" msgid="7286616980115687627">"Non, grazas"</string>
     <string name="clock_preview_content_description" msgid="5460561185905717460">"Vista previa do reloxo <xliff:g id="ID_1">%1$s</xliff:g>"</string>
-    <string name="something_went_wrong" msgid="529840112449799117">"Ai! Produciuse un erro."</string>
+    <string name="something_went_wrong" msgid="529840112449799117">"Ai, produciuse un erro."</string>
     <string name="theme_preview_icons_section_title" msgid="7064768910744000643">"Cores/iconas"</string>
     <string name="style_info_description" msgid="2612473574431003251">"Vista previa de tipo de letra, iconas, forma da aplicación e cor"</string>
     <string name="accessibility_custom_font_title" msgid="966867359157303705">"Tipo de letra personalizado"</string>
