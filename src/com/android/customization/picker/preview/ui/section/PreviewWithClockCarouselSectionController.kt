@@ -76,7 +76,7 @@ class PreviewWithClockCarouselSectionController(
         lifecycleOwner.lifecycleScope.launch {
             clockCarouselBinding =
                 ClockCarouselViewBinder.bind(
-                    view = carouselView,
+                    carouselView = carouselView,
                     singleClockView = singleClockView,
                     viewModel = clockCarouselViewModel,
                     clockViewFactory = { clockId -> clockViewFactory.getView(clockId) },
