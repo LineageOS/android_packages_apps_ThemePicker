@@ -21,8 +21,8 @@ import android.view.View
 import android.widget.TextView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
 import com.android.wallpaper.R
 import kotlinx.coroutines.flow.collectLatest
@@ -37,14 +37,17 @@ object ClockSectionViewBinder {
     ) {
         view.setOnClickListener { onClicked() }
 
-        val selectedClockTextView: TextView = view.requireViewById(R.id.selected_clock_text)
+        val selectedClockColorAndSize: TextView =
+            view.requireViewById(R.id.selected_clock_color_and_size)
 
         lifecycleOwner.lifecycleScope.launch {
-            viewModel.selectedClockName
-                .flowWithLifecycle(lifecycleOwner.lifecycle, Lifecycle.State.STARTED)
-                .collectLatest { selectedClockName ->
-                    selectedClockTextView.text = selectedClockName
+            lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    viewModel.selectedClockColorAndSizeText.collectLatest {
+                        selectedClockColorAndSize.text = it
+                    }
                 }
+            }
         }
     }
 }

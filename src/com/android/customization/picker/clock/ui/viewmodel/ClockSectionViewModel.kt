@@ -16,12 +16,31 @@
  */
 package com.android.customization.picker.clock.ui.viewmodel
 
+import android.content.Context
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
+import com.android.customization.picker.clock.shared.ClockSize
+import com.android.wallpaper.R
+import java.util.Locale
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 /** View model for the clock section view on the lockscreen customization surface. */
-class ClockSectionViewModel(interactor: ClockPickerInteractor) {
-
-    val selectedClockName: Flow<String> = interactor.selectedClock.map { it.name }
+class ClockSectionViewModel(context: Context, interactor: ClockPickerInteractor) {
+    val appContext: Context = context.applicationContext
+    val selectedClockColorAndSizeText: Flow<String> =
+        interactor.selectedClockSize.map { selectedClockSize ->
+            // TODO (b/241966062) Finalize the colors and their names
+            val colorText = "Violet"
+            val sizeText =
+                when (selectedClockSize) {
+                    ClockSize.SMALL -> appContext.getString(R.string.clock_size_small)
+                    ClockSize.DYNAMIC -> appContext.getString(R.string.clock_size_dynamic)
+                }
+            appContext
+                .getString(R.string.clock_color_and_size_description, colorText, sizeText)
+                .lowercase()
+                .replaceFirstChar {
+                    if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+                }
+        }
 }
