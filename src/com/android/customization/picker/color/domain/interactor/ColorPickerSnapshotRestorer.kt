@@ -55,7 +55,8 @@ class ColorPickerSnapshotRestorer(
                     TAG,
                     """ Original packages does not match snapshot packages to restore to. The 
                         | current implementation doesn't support undo, only a reset back to the 
-                        | original color option.""".trimMargin(),
+                        | original color option."""
+                        .trimMargin(),
                 )
             }
 

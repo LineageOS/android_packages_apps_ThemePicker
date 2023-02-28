@@ -249,7 +249,9 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
         return KeyguardQuickAffordancePickerInteractor(
             KeyguardQuickAffordancePickerRepository(client, Dispatchers.IO),
             client
-        ) { getKeyguardQuickAffordanceSnapshotRestorer(context) }
+        ) {
+            getKeyguardQuickAffordanceSnapshotRestorer(context)
+        }
     }
 
     protected fun getKeyguardQuickAffordancePickerProviderClient(

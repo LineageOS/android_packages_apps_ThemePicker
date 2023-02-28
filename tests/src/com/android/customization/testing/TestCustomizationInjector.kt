@@ -109,7 +109,9 @@ class TestCustomizationInjector : TestInjector(), CustomizationInjector {
         return KeyguardQuickAffordancePickerInteractor(
             KeyguardQuickAffordancePickerRepository(client, Dispatchers.IO),
             client
-        ) { getKeyguardQuickAffordanceSnapshotRestorer(context) }
+        ) {
+            getKeyguardQuickAffordanceSnapshotRestorer(context)
+        }
     }
 
     override fun getFlags(): BaseFlags {

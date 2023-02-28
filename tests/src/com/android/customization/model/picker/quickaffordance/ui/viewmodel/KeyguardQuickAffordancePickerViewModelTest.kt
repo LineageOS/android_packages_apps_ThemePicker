@@ -462,7 +462,8 @@ class KeyguardQuickAffordancePickerViewModelTest {
      *
      * @param slots The observed slot view-models, keyed by slot ID
      * @param expectedAffordanceNameBySlotId The expected name of the selected affordance for each
-     * slot ID or `null` if it's expected for there to be no affordance for that slot in the preview
+     *   slot ID or `null` if it's expected for there to be no affordance for that slot in the
+     *   preview
      */
     private fun assertPreviewUiState(
         slots: Map<String, KeyguardQuickAffordanceSlotViewModel>?,
