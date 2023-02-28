@@ -40,7 +40,7 @@ object ClockCarouselViewBinder {
 
     @JvmStatic
     fun bind(
-        view: ClockCarouselView,
+        carouselView: ClockCarouselView,
         singleClockView: ViewGroup,
         viewModel: ClockCarouselViewModel,
         clockViewFactory: (clockId: String) -> View,
@@ -50,11 +50,11 @@ object ClockCarouselViewBinder {
             singleClockView.requireViewById<FrameLayout>(R.id.single_clock_host_view)
         lifecycleOwner.lifecycleScope.launch {
             lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch { viewModel.isCarouselVisible.collect { view.isVisible = it } }
+                launch { viewModel.isCarouselVisible.collect { carouselView.isVisible = it } }
 
                 launch {
                     viewModel.allClockIds.collect { allClockIds ->
-                        view.setUpClockCarouselView(
+                        carouselView.setUpClockCarouselView(
                             clockIds = allClockIds,
                             onGetClockPreview = clockViewFactory,
                             onClockSelected = { clockId -> viewModel.setSelectedClock(clockId) },
@@ -64,11 +64,13 @@ object ClockCarouselViewBinder {
 
                 launch {
                     viewModel.selectedIndex.collect { selectedIndex ->
-                        view.setSelectedClockIndex(selectedIndex)
+                        carouselView.setSelectedClockIndex(selectedIndex)
                     }
                 }
 
-                launch { viewModel.isSingleClockViewVisible.collect { view.isVisible = it } }
+                launch {
+                    viewModel.isSingleClockViewVisible.collect { singleClockView.isVisible = it }
+                }
 
                 launch {
                     viewModel.clockId.collect { clockId ->
