@@ -42,6 +42,8 @@ class ClockCarouselViewModel(
             allClocks.map { it.clockId }
         }
 
+    val seedColor: Flow<Int?> = interactor.seedColor
+
     private val shouldShowCarousel = MutableStateFlow(false)
     val isCarouselVisible: Flow<Boolean> =
         combine(allClockIds.map { it.size > 1 }.distinctUntilChanged(), shouldShowCarousel) {

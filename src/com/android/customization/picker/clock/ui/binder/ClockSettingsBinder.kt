@@ -16,6 +16,8 @@
 package com.android.customization.picker.clock.ui.binder
 
 import android.view.View
+import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.SeekBar
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
@@ -28,10 +30,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.customization.picker.clock.shared.ClockSize
 import com.android.customization.picker.clock.ui.adapter.ClockSettingsTabAdapter
 import com.android.customization.picker.clock.ui.view.ClockSizeRadioButtonGroup
+import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockSettingsViewModel
 import com.android.customization.picker.color.ui.adapter.ColorOptionAdapter
 import com.android.customization.picker.common.ui.view.ItemSpacing
 import com.android.wallpaper.R
+import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.launch
 
 /** Bind between the clock settings screen and its view model. */
@@ -39,8 +43,11 @@ object ClockSettingsBinder {
     fun bind(
         view: View,
         viewModel: ClockSettingsViewModel,
+        clockViewFactory: ClockViewFactory,
         lifecycleOwner: LifecycleOwner,
     ) {
+        val clockHostView: FrameLayout = view.requireViewById(R.id.clock_host_view)
+
         val tabView: RecyclerView = view.requireViewById(R.id.tabs)
         val tabAdapter = ClockSettingsTabAdapter()
         tabView.adapter = tabAdapter
@@ -82,6 +89,25 @@ object ClockSettingsBinder {
         val colorOptionContainer = view.requireViewById<View>(R.id.color_picker_container)
         lifecycleOwner.lifecycleScope.launch {
             lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    viewModel.selectedClockId
+                        .mapNotNull { it }
+                        .collect { clockId ->
+                            val clockView = clockViewFactory.getView(clockId)
+                            (clockView.parent as? ViewGroup)?.removeView(clockView)
+                            clockHostView.removeAllViews()
+                            clockHostView.addView(clockView)
+                        }
+                }
+
+                launch {
+                    viewModel.seedColor.collect { seedColor ->
+                        viewModel.selectedClockId.value?.let { selectedClockId ->
+                            clockViewFactory.updateColor(selectedClockId, seedColor)
+                        }
+                    }
+                }
+
                 launch { viewModel.tabs.collect { tabAdapter.setItems(it) } }
 
                 launch {

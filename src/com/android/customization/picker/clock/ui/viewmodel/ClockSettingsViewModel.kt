@@ -57,6 +57,11 @@ private constructor(
         SIZE,
     }
 
+    val selectedClockId: StateFlow<String?> =
+        clockPickerInteractor.selectedClockId
+            .distinctUntilChanged()
+            .stateIn(viewModelScope, SharingStarted.Eagerly, null)
+
     val selectedColor: StateFlow<Int?> =
         clockPickerInteractor.selectedColor.stateIn(viewModelScope, SharingStarted.Eagerly, null)
 

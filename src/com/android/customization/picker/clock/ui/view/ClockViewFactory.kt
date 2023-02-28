@@ -17,6 +17,7 @@ package com.android.customization.picker.clock.ui.view
 
 import android.app.Activity
 import android.view.View
+import androidx.annotation.ColorInt
 import com.android.systemui.plugins.ClockController
 import com.android.systemui.shared.clocks.ClockRegistry
 import com.android.wallpaper.R
@@ -30,6 +31,16 @@ class ClockViewFactory(
 
     fun getView(clockId: String): View {
         return (clockControllers[clockId] ?: initClockController(clockId)).largeClock.view
+    }
+
+    fun updateColorForAllClocks(@ColorInt seedColor: Int?) {
+        clockControllers.values.forEach { it.events.onSeedColorChanged(seedColor = seedColor) }
+    }
+
+    fun updateColor(clockId: String, @ColorInt seedColor: Int?) {
+        return (clockControllers[clockId] ?: initClockController(clockId))
+            .events
+            .onSeedColorChanged(seedColor)
     }
 
     private fun initClockController(clockId: String): ClockController {
