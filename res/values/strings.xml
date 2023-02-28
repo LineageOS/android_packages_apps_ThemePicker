@@ -36,6 +36,12 @@
     <!-- Title of a section of the customization picker where the user can configure Clock face. [CHAR LIMIT=19] -->
     <string name="clock_settings_title">Clock Settings</string>
 
+    <!-- Title of a section of the customization picker where the user can configure clock color and size. [CHAR LIMIT=20] -->
+    <string name="clock_color_and_size_title">Clock color &amp; size</string>
+
+    <!-- Description of a section of the customization picker where the user can configure clock color and size, e.g. Violet, small. [CHAR LIMIT=NONE] -->
+    <string name="clock_color_and_size_description"><xliff:g name="color">%1$s</xliff:g>, <xliff:g name="size">%2$s</xliff:g></string>
+
     <!-- Title of a tab to change the clock color. [CHAR LIMIT=15] -->
     <string name="clock_color">Color</string>
 
