@@ -14,65 +14,80 @@
      limitations under the License.
 -->
 <!-- Content description is set programmatically on the parent FrameLayout -->
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/icon_container"
-    android:layout_width="@dimen/option_tile_width"
-    android:layout_height="@dimen/option_tile_width"
-    android:importantForAccessibility="yes">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+    <FrameLayout
+        android:id="@+id/icon_container"
+        android:layout_width="@dimen/option_tile_width"
+        android:layout_height="@dimen/option_tile_width"
+        android:importantForAccessibility="yes">
 
-    <ImageView
-        android:id="@id/selection_border"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/option_item_border"
-        android:alpha="0"
-        android:importantForAccessibility="no" />
+        <ImageView
+            android:id="@id/selection_border"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/option_item_border"
+            android:alpha="0"
+            android:importantForAccessibility="no" />
 
-    <ImageView
-        android:id="@id/background"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/option_item_background"
-        android:importantForAccessibility="no" />
+        <ImageView
+            android:id="@id/background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/option_item_background"
+            android:importantForAccessibility="no" />
 
-    <ImageView
-        android:id="@+id/color_preview_0"
-        android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/color_preview_0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/color_seed_chip_margin"
+            android:layout_marginBottom="@dimen/color_seed_chip_margin"
+            android:src="@drawable/color_chip_seed_filled0"
+            android:importantForAccessibility="no"/>
+
+        <ImageView
+            android:id="@+id/color_preview_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/color_seed_chip_margin"
+            android:layout_marginBottom="@dimen/color_seed_chip_margin"
+            android:src="@drawable/color_chip_seed_filled2"
+            android:importantForAccessibility="no"/>
+
+        <ImageView
+            android:id="@+id/color_preview_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/color_seed_chip_margin"
+            android:layout_marginTop="@dimen/color_seed_chip_margin"
+            android:src="@drawable/color_chip_seed_filled1"
+            android:importantForAccessibility="no"/>
+
+        <ImageView
+            android:id="@+id/color_preview_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/color_seed_chip_margin"
+            android:layout_marginTop="@dimen/color_seed_chip_margin"
+            android:src="@drawable/color_chip_seed_filled3"
+            android:importantForAccessibility="no" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/option_title"
+        android:layout_width="@dimen/option_tile_width"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginRight="@dimen/color_seed_chip_margin"
-        android:layout_marginBottom="@dimen/color_seed_chip_margin"
-        android:src="@drawable/color_chip_seed_filled0"
-        android:importantForAccessibility="no"/>
+        android:layout_marginTop="@dimen/option_bottom_margin"
+        android:textColor="@color/text_color_primary"
+        android:visibility="gone"
+        android:gravity="center" />
+</LinearLayout>
 
-    <ImageView
-        android:id="@+id/color_preview_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/color_seed_chip_margin"
-        android:layout_marginBottom="@dimen/color_seed_chip_margin"
-        android:src="@drawable/color_chip_seed_filled2"
-        android:importantForAccessibility="no"/>
-
-    <ImageView
-        android:id="@+id/color_preview_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginRight="@dimen/color_seed_chip_margin"
-        android:layout_marginTop="@dimen/color_seed_chip_margin"
-        android:src="@drawable/color_chip_seed_filled1"
-        android:importantForAccessibility="no"/>
-
-    <ImageView
-        android:id="@+id/color_preview_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/color_seed_chip_margin"
-        android:layout_marginTop="@dimen/color_seed_chip_margin"
-        android:src="@drawable/color_chip_seed_filled3"
-        android:importantForAccessibility="no"/>
-</FrameLayout>

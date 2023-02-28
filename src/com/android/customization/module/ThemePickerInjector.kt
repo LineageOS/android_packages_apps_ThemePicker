@@ -418,11 +418,16 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
 
     override fun getClockSettingsViewModelFactory(
         context: Context,
+        wallpaperColorsViewModel: WallpaperColorsViewModel,
     ): ClockSettingsViewModel.Factory {
         return clockSettingsViewModelFactory
             ?: ClockSettingsViewModel.Factory(
                     context,
                     getClockPickerInteractor(context),
+                    getColorPickerInteractor(
+                        context,
+                        wallpaperColorsViewModel,
+                    ),
                 )
                 .also { clockSettingsViewModelFactory = it }
     }

@@ -23,6 +23,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.android.customization.picker.color.ui.viewmodel.ColorOptionViewModel
 import com.android.wallpaper.R
@@ -35,10 +37,12 @@ import com.android.wallpaper.R
 class ColorOptionAdapter : RecyclerView.Adapter<ColorOptionAdapter.ViewHolder>() {
 
     private val items = mutableListOf<ColorOptionViewModel>()
+    private var isTitleVisible = false
 
     fun setItems(items: List<ColorOptionViewModel>) {
         this.items.clear()
         this.items.addAll(items)
+        isTitleVisible = items.any { item -> item.title != null }
         notifyDataSetChanged()
     }
 
@@ -49,6 +53,7 @@ class ColorOptionAdapter : RecyclerView.Adapter<ColorOptionAdapter.ViewHolder>()
         val color1View: ImageView = itemView.requireViewById(R.id.color_preview_1)
         val color2View: ImageView = itemView.requireViewById(R.id.color_preview_2)
         val color3View: ImageView = itemView.requireViewById(R.id.color_preview_3)
+        val optionTitleView: TextView = itemView.requireViewById(R.id.option_title)
     }
 
     override fun getItemCount(): Int {
@@ -92,5 +97,7 @@ class ColorOptionAdapter : RecyclerView.Adapter<ColorOptionAdapter.ViewHolder>()
         holder.color2View.drawable.colorFilter = BlendModeColorFilter(item.color2, BlendMode.SRC)
         holder.color3View.drawable.colorFilter = BlendModeColorFilter(item.color3, BlendMode.SRC)
         holder.itemView.contentDescription = item.contentDescription
+        holder.optionTitleView.isVisible = isTitleVisible
+        holder.optionTitleView.text = item.title
     }
 }
