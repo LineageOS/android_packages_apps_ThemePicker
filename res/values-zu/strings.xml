@@ -28,8 +28,7 @@
     <string name="clock_size_dynamic" msgid="1023930312455061642">"Okuguqukayo"</string>
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Usayizi wewashi uyashintsha ngokuya ngokuqukethwe kokukhiya isikrini"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Obukhulu"</string>
-    <!-- no translation found for clock_size_small (2280449912094164133) -->
-    <skip />
+    <string name="clock_size_small" msgid="2280449912094164133">"Esincane"</string>
     <string name="grid_title" msgid="1688173478777254123">"Igridi ye-app"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Faka"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Thepha ukuze uhlele"</string>
