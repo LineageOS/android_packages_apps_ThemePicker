@@ -16,13 +16,15 @@
 package com.android.customization.picker.clock.ui.viewmodel
 
 import android.content.Context
-import android.graphics.Color
 import androidx.core.graphics.ColorUtils
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.android.customization.model.color.ColorSeedOption
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.shared.ClockSize
+import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
+import com.android.customization.picker.color.shared.model.ColorType
 import com.android.customization.picker.color.ui.viewmodel.ColorOptionViewModel
 import com.android.wallpaper.R
 import kotlin.math.abs
@@ -34,6 +36,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.shareIn
@@ -42,7 +45,11 @@ import kotlinx.coroutines.launch
 
 /** View model for the clock settings screen. */
 class ClockSettingsViewModel
-private constructor(context: Context, private val interactor: ClockPickerInteractor) : ViewModel() {
+private constructor(
+    context: Context,
+    private val clockPickerInteractor: ClockPickerInteractor,
+    private val colorPickerInteractor: ColorPickerInteractor,
+) : ViewModel() {
 
     enum class Tab {
         COLOR,
@@ -58,7 +65,7 @@ private constructor(context: Context, private val interactor: ClockPickerInterac
      * level of the system theme color.
      */
     private val saturationLevel: Flow<Float?> =
-        interactor.selectedClockColor
+        clockPickerInteractor.selectedClockColor
             .map { selectedColor ->
                 if (selectedColor == null) {
                     null
@@ -95,38 +102,48 @@ private constructor(context: Context, private val interactor: ClockPickerInterac
         selectedOption?.let { option ->
             ColorUtils.colorToHSL(option.color0, helperColorHsl)
             helperColorHsl[1] = saturation
-            interactor.setClockColor(ColorUtils.HSLToColor(helperColorHsl))
+            clockPickerInteractor.setClockColor(ColorUtils.HSLToColor(helperColorHsl))
         }
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val colorOptions: StateFlow<List<ColorOptionViewModel>> =
-        interactor.selectedClockColor
-            .mapLatest { selectedColor ->
+        combine(
+                colorPickerInteractor.colorOptions,
+                clockPickerInteractor.selectedClockColor,
+                ::Pair,
+            )
+            .mapLatest { (colorOptions, selectedColor) ->
                 // Use mapLatest and delay(100) here to prevent too many selectedClockColor update
                 // events from ClockRegistry upstream, caused by sliding the saturation level bar.
                 delay(COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS)
                 buildList {
-                    // TODO (b/241966062) Change design of the placeholder for default theme color
-                    add(
-                        ColorOptionViewModel(
-                            color0 = Color.TRANSPARENT,
-                            color1 = Color.TRANSPARENT,
-                            color2 = Color.TRANSPARENT,
-                            color3 = Color.TRANSPARENT,
-                            contentDescription =
-                                context.getString(
-                                    R.string.content_description_color_option,
-                                ),
-                            isSelected = selectedColor == null,
-                            onClick =
-                                if (selectedColor == null) {
-                                    null
-                                } else {
-                                    { interactor.setClockColor(null) }
-                                },
+                    val defaultThemeColor =
+                        colorOptions[ColorType.WALLPAPER_COLOR]?.find { it.isSelected }
+                            ?: colorOptions[ColorType.BASIC_COLOR]?.find { it.isSelected }
+                    if (defaultThemeColor != null) {
+                        val colorSeedOption: ColorSeedOption =
+                            defaultThemeColor.colorOption as ColorSeedOption
+                        val colors = colorSeedOption.previewInfo.resolveColors(context.resources)
+                        add(
+                            ColorOptionViewModel(
+                                color0 = colors[0],
+                                color1 = colors[1],
+                                color2 = colors[2],
+                                color3 = colors[3],
+                                contentDescription =
+                                    colorSeedOption.getContentDescription(context).toString(),
+                                title = context.getString(R.string.default_theme_title),
+                                isSelected = selectedColor == null,
+                                onClick =
+                                    if (selectedColor == null) {
+                                        null
+                                    } else {
+                                        { clockPickerInteractor.setClockColor(null) }
+                                    },
+                            )
                         )
-                    )
+                    }
 
                     if (selectedColor != null) {
                         ColorUtils.colorToHSL(selectedColor, helperColorHsl)
@@ -174,7 +191,7 @@ private constructor(context: Context, private val interactor: ClockPickerInterac
                                     if (isSelected) {
                                         null
                                     } else {
-                                        { interactor.setClockColor(colorToSet) }
+                                        { clockPickerInteractor.setClockColor(colorToSet) }
                                     },
                             )
                         )
@@ -187,10 +204,10 @@ private constructor(context: Context, private val interactor: ClockPickerInterac
                 initialValue = emptyList(),
             )
 
-    val selectedClockSize: Flow<ClockSize> = interactor.selectedClockSize
+    val selectedClockSize: Flow<ClockSize> = clockPickerInteractor.selectedClockSize
 
     fun setClockSize(size: ClockSize) {
-        viewModelScope.launch { interactor.setClockSize(size) }
+        viewModelScope.launch { clockPickerInteractor.setClockSize(size) }
     }
 
     private val _selectedTabPosition = MutableStateFlow(Tab.COLOR)
@@ -241,13 +258,15 @@ private constructor(context: Context, private val interactor: ClockPickerInterac
 
     class Factory(
         private val context: Context,
-        private val interactor: ClockPickerInteractor,
+        private val clockPickerInteractor: ClockPickerInteractor,
+        private val colorPickerInteractor: ColorPickerInteractor,
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             @Suppress("UNCHECKED_CAST")
             return ClockSettingsViewModel(
                 context = context,
-                interactor = interactor,
+                clockPickerInteractor = clockPickerInteractor,
+                colorPickerInteractor = colorPickerInteractor,
             )
                 as T
         }
