@@ -6,11 +6,16 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.android.customization.picker.clock.data.repository.FakeClockPickerRepository
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.shared.ClockSize
+import com.android.customization.picker.color.data.repository.FakeColorPickerRepository
+import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
+import com.android.customization.picker.color.domain.interactor.ColorPickerSnapshotRestorer
+import com.android.wallpaper.testing.FakeSnapshotStore
 import com.android.wallpaper.testing.collectLastValue
 import com.google.common.collect.Range
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.advanceTimeBy
 import kotlinx.coroutines.test.resetMain
@@ -28,7 +33,8 @@ import org.junit.runners.JUnit4
 class ClockSettingsViewModelTest {
 
     private lateinit var underTest: ClockSettingsViewModel
-
+    private lateinit var colorPickerInteractor: ColorPickerInteractor
+    private lateinit var store: FakeSnapshotStore
     private lateinit var context: Context
 
     @Before
@@ -36,10 +42,20 @@ class ClockSettingsViewModelTest {
         val testDispatcher = StandardTestDispatcher()
         Dispatchers.setMain(testDispatcher)
         context = InstrumentationRegistry.getInstrumentation().targetContext
+        colorPickerInteractor =
+            ColorPickerInteractor(
+                repository = FakeColorPickerRepository(context = context),
+                snapshotRestorer = {
+                    ColorPickerSnapshotRestorer(interactor = colorPickerInteractor).apply {
+                        runBlocking { setUpSnapshotRestorer(store = store) }
+                    }
+                },
+            )
         underTest =
             ClockSettingsViewModel.Factory(
                     context = context,
-                    interactor = ClockPickerInteractor(FakeClockPickerRepository()),
+                    clockPickerInteractor = ClockPickerInteractor(FakeClockPickerRepository()),
+                    colorPickerInteractor = colorPickerInteractor,
                 )
                 .create(ClockSettingsViewModel::class.java)
     }
