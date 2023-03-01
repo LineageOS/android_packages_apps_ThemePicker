@@ -163,7 +163,7 @@ class ColorPickerViewModelTest {
      * @param colorOptions The observed color options
      * @param selectedColorTypeText The text of the color type that's expected to be selected
      * @param selectedColorOptionIndex The index of the color option that's expected to be selected,
-     * -1 stands for no color option should be selected
+     *   -1 stands for no color option should be selected
      */
     private fun assertPickerUiState(
         colorTypes: Map<ColorType, ColorTypeViewModel>?,
@@ -189,7 +189,7 @@ class ColorPickerViewModelTest {
      *
      * @param colorOptions The observed color options
      * @param selectedColorOptionIndex The index of the color option that's expected to be selected,
-     * -1 stands for no color option should be selected
+     *   -1 stands for no color option should be selected
      */
     private fun assertColorOptionUiState(
         colorOptions: List<ColorOptionViewModel>?,
