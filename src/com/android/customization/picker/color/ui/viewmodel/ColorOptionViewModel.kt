@@ -30,6 +30,9 @@ data class ColorOptionViewModel(
     /** A content description for the color. */
     val contentDescription: String,
 
+    /** Nullable option title. Null by default. */
+    val title: String? = null,
+
     /** Whether this color is selected. */
     val isSelected: Boolean,
 
