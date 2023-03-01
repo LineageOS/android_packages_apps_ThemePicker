@@ -6,6 +6,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.android.customization.picker.clock.data.repository.FakeClockPickerRepository
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.shared.ClockSize
+import com.android.customization.picker.clock.shared.model.ClockMetadataModel
 import com.android.customization.picker.color.data.repository.FakeColorPickerRepository
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
 import com.android.customization.picker.color.domain.interactor.ColorPickerSnapshotRestorer
@@ -31,10 +32,10 @@ import org.junit.runners.JUnit4
 @RunWith(JUnit4::class)
 class ClockSettingsViewModelTest {
 
-    private lateinit var underTest: ClockSettingsViewModel
-    private lateinit var colorPickerInteractor: ColorPickerInteractor
-    private lateinit var store: FakeSnapshotStore
     private lateinit var context: Context
+    private lateinit var colorPickerInteractor: ColorPickerInteractor
+    private lateinit var underTest: ClockSettingsViewModel
+    private lateinit var colorMap: Map<String, ClockColorViewModel>
 
     @Before
     fun setUp() {
@@ -46,7 +47,7 @@ class ClockSettingsViewModelTest {
                 repository = FakeColorPickerRepository(context = context),
                 snapshotRestorer = {
                     ColorPickerSnapshotRestorer(interactor = colorPickerInteractor).apply {
-                        runBlocking { setUpSnapshotRestorer(store = store) }
+                        runBlocking { setUpSnapshotRestorer(store = FakeSnapshotStore()) }
                     }
                 },
             )
@@ -57,6 +58,7 @@ class ClockSettingsViewModelTest {
                     colorPickerInteractor = colorPickerInteractor,
                 )
                 .create(ClockSettingsViewModel::class.java)
+        colorMap = ClockColorViewModel.getPresetColorMap(context.resources)
     }
 
     @After
@@ -80,6 +82,8 @@ class ClockSettingsViewModelTest {
     @Test
     fun setSelectedColor() = runTest {
         val observedClockColorOptions = collectLastValue(underTest.colorOptions)
+        val observedSliderProgress = collectLastValue(underTest.sliderProgress)
+        val observedSeedColor = collectLastValue(underTest.seedColor)
         // Advance COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS since there is a delay from colorOptions
         advanceTimeBy(ClockSettingsViewModel.COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS)
         assertThat(observedClockColorOptions()!![0].isSelected).isTrue()
@@ -90,6 +94,18 @@ class ClockSettingsViewModelTest {
         advanceTimeBy(ClockSettingsViewModel.COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS)
         assertThat(observedClockColorOptions()!![1].isSelected).isTrue()
         assertThat(observedClockColorOptions()!![1].onClick).isNull()
+        assertThat(observedSliderProgress())
+            .isEqualTo(ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS)
+        val expectedSelectedColorModel = colorMap.values.first() // RED
+        assertThat(observedSeedColor())
+            .isEqualTo(
+                ClockSettingsViewModel.blendColorWithTone(
+                    expectedSelectedColorModel.color,
+                    expectedSelectedColorModel.getColorTone(
+                        ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS
+                    ),
+                )
+            )
     }
 
     @Test
@@ -97,12 +113,14 @@ class ClockSettingsViewModelTest {
         val observedClockColorOptions = collectLastValue(underTest.colorOptions)
         val observedIsSliderEnabled = collectLastValue(underTest.isSliderEnabled)
         val observedSliderProgress = collectLastValue(underTest.sliderProgress)
+        val observedSeedColor = collectLastValue(underTest.seedColor)
         // Advance COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS since there is a delay from colorOptions
         advanceTimeBy(ClockSettingsViewModel.COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS)
         assertThat(observedClockColorOptions()!![0].isSelected).isTrue()
         assertThat(observedIsSliderEnabled()).isFalse()
 
         observedClockColorOptions()!![1].onClick?.invoke()
+
         // Advance COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS since there is a delay from colorOptions
         advanceTimeBy(ClockSettingsViewModel.COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS)
         assertThat(observedIsSliderEnabled()).isTrue()
@@ -112,6 +130,14 @@ class ClockSettingsViewModelTest {
         val targetProgress2 = 55
         underTest.onSliderProgressStop(targetProgress2)
         assertThat(observedSliderProgress()).isEqualTo(targetProgress2)
+        val expectedSelectedColorModel = colorMap.values.first() // RED
+        assertThat(observedSeedColor())
+            .isEqualTo(
+                ClockSettingsViewModel.blendColorWithTone(
+                    expectedSelectedColorModel.color,
+                    expectedSelectedColorModel.getColorTone(targetProgress2),
+                )
+            )
     }
 
     @Test

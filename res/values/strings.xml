@@ -45,6 +45,33 @@
     <!-- Title of a tab to change the clock color. [CHAR LIMIT=15] -->
     <string name="clock_color">Color</string>
 
+    <!-- Title of a clock color red option that will appear in the description of the custom clock section. [CHAR LIMIT=15] -->
+    <string name="clock_color_red">Red</string>
+
+    <!-- Title of a clock color orange option that will appear in the description of the custom clock section. [CHAR LIMIT=15] -->
+    <string name="clock_color_orange">Orange</string>
+
+    <!-- Title of a clock color yellow option that will appear in the description of the custom clock section. [CHAR LIMIT=15] -->
+    <string name="clock_color_yellow">Yellow</string>
+
+    <!-- Title of a clock color green option that will appear in the description of the custom clock section. [CHAR LIMIT=15] -->
+    <string name="clock_color_green">Green</string>
+
+    <!-- Title of a clock color blue option that will appear in the description of the custom clock section. [CHAR LIMIT=15] -->
+    <string name="clock_color_blue">Blue</string>
+
+    <!-- Title of a clock color indigo option that will appear in the description of the custom clock section. [CHAR LIMIT=15] -->
+    <string name="clock_color_indigo">Indigo</string>
+
+    <!-- Title of a clock color violet option that will appear in the description of the custom clock section. [CHAR LIMIT=15] -->
+    <string name="clock_color_violet">Violet</string>
+
+    <!-- Title of a clock color grey option that will appear in the description of the custom clock section. [CHAR LIMIT=15] -->
+    <string name="clock_color_gray">Grey</string>
+
+    <!-- Title of a clock color teal option that will appear in the description of the custom clock section. [CHAR LIMIT=15] -->
+    <string name="clock_color_teal">Teal</string>
+
     <!-- Title of a tab to change the clock size. [CHAR LIMIT=15] -->
     <string name="clock_size">Size</string>
 

@@ -17,6 +17,8 @@
 
 package com.android.customization.picker.clock.domain.interactor
 
+import androidx.annotation.ColorInt
+import androidx.annotation.IntRange
 import com.android.customization.picker.clock.data.repository.ClockPickerRepository
 import com.android.customization.picker.clock.shared.ClockSize
 import com.android.customization.picker.clock.shared.model.ClockMetadataModel
@@ -35,10 +37,11 @@ class ClockPickerInteractor(private val repository: ClockPickerRepository) {
     val selectedClockId: Flow<String> =
         repository.selectedClock.map { clock -> clock.clockId }.distinctUntilChanged()
 
-    val selectedColor: Flow<Int?> =
-        repository.selectedClock.map { clock -> clock.selectedColor }.distinctUntilChanged()
+    val selectedColorId: Flow<String?> =
+        repository.selectedClock.map { clock -> clock.selectedColorId }.distinctUntilChanged()
 
-    val colorTone: Flow<Int> = repository.selectedClock.map { clock -> clock.colorTone }
+    val colorToneProgress: Flow<Int> =
+        repository.selectedClock.map { clock -> clock.colorToneProgress }
 
     val seedColor: Flow<Int?> = repository.selectedClock.map { clock -> clock.seedColor }
 
@@ -48,8 +51,12 @@ class ClockPickerInteractor(private val repository: ClockPickerRepository) {
         repository.setSelectedClock(clockId)
     }
 
-    fun setClockColor(selectedColor: Int?, colorTone: Int, seedColor: Int?) {
-        repository.setClockColor(selectedColor, colorTone, seedColor)
+    fun setClockColor(
+        selectedColorId: String?,
+        @IntRange(from = 0, to = 100) colorToneProgress: Int,
+        @ColorInt seedColor: Int?,
+    ) {
+        repository.setClockColor(selectedColorId, colorToneProgress, seedColor)
     }
 
     suspend fun setClockSize(size: ClockSize) {
