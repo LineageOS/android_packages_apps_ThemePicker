@@ -34,8 +34,8 @@ class GridInteractor(
     private val snapshotRestorer: Provider<GridSnapshotRestorer>,
 ) {
     val options: Flow<GridOptionItemsModel> =
-    // this upstream flow tells us each time the options are changed.
-    repository.optionChanges
+        // this upstream flow tells us each time the options are changed.
+        repository.optionChanges
             // when we start, we pretend the options _just_ changed. This way, we load something as
             // soon as possible into the flow so it's ready by the time the first observer starts to
             // observe.
