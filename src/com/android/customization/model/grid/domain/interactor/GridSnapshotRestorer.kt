@@ -45,7 +45,8 @@ class GridSnapshotRestorer(
                     TAG,
                     """Original snapshot name was ${optionToRestore.name} but we're being told to
                         | restore to $optionNameFromSnapshot. The current implementation doesn't
-                        | support undo, only a reset back to the original grid option.""".trimMargin(),
+                        | support undo, only a reset back to the original grid option."""
+                        .trimMargin(),
                 )
             }
 
