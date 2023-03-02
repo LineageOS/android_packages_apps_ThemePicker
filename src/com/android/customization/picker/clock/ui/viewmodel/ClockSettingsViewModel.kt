@@ -181,6 +181,10 @@ private constructor(
                 initialValue = emptyList(),
             )
 
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val selectedColorOptionPosition: Flow<Int> =
+        colorOptions.mapLatest { it.indexOfFirst { colorOption -> colorOption.isSelected } }
+
     private fun ColorSeedOption.toColorOptionViewModel(
         context: Context,
         selectedColorId: String?,

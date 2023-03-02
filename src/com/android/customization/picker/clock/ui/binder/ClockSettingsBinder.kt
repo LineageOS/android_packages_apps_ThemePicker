@@ -132,6 +132,18 @@ object ClockSettingsBinder {
                 }
 
                 launch {
+                    viewModel.selectedColorOptionPosition.collect { selectedPosition ->
+                        if (selectedPosition != -1) {
+                            // We use "post" because we need to give the adapter item a pass to
+                            // update the view.
+                            colorOptionContainerView.post {
+                                colorOptionContainerView.smoothScrollToPosition(selectedPosition)
+                            }
+                        }
+                    }
+                }
+
+                launch {
                     viewModel.selectedClockSize.collect { size ->
                         when (size) {
                             ClockSize.DYNAMIC -> {

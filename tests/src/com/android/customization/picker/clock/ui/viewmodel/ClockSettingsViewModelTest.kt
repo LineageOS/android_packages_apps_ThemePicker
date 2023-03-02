@@ -82,18 +82,22 @@ class ClockSettingsViewModelTest {
     @Test
     fun setSelectedColor() = runTest {
         val observedClockColorOptions = collectLastValue(underTest.colorOptions)
+        val observedSelectedColorOptionPosition =
+            collectLastValue(underTest.selectedColorOptionPosition)
         val observedSliderProgress = collectLastValue(underTest.sliderProgress)
         val observedSeedColor = collectLastValue(underTest.seedColor)
         // Advance COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS since there is a delay from colorOptions
         advanceTimeBy(ClockSettingsViewModel.COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS)
         assertThat(observedClockColorOptions()!![0].isSelected).isTrue()
         assertThat(observedClockColorOptions()!![0].onClick).isNull()
+        assertThat(observedSelectedColorOptionPosition()).isEqualTo(0)
 
         observedClockColorOptions()!![1].onClick?.invoke()
         // Advance COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS since there is a delay from colorOptions
         advanceTimeBy(ClockSettingsViewModel.COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS)
         assertThat(observedClockColorOptions()!![1].isSelected).isTrue()
         assertThat(observedClockColorOptions()!![1].onClick).isNull()
+        assertThat(observedSelectedColorOptionPosition()).isEqualTo(1)
         assertThat(observedSliderProgress())
             .isEqualTo(ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS)
         val expectedSelectedColorModel = colorMap.values.first() // RED
