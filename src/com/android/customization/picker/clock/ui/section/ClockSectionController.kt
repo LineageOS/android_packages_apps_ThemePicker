@@ -53,7 +53,9 @@ class ClockSectionController(
                 view = view,
                 viewModel = viewModel,
                 lifecycleOwner = lifecycleOwner
-            ) { navigationController.navigateTo(ClockSettingsFragment()) }
+            ) {
+                navigationController.navigateTo(ClockSettingsFragment())
+            }
         }
         return view
     }
