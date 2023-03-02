@@ -118,9 +118,9 @@ class ColorPickerRepositoryImpl(
         val styleOrNull = colorManager.currentStyle
         val style = styleOrNull?.let { Style.valueOf(it) } ?: Style.TONAL_SPOT
         val colorOptionBuilder =
-        // Does not matter whether ColorSeedOption or ColorBundle builder is used here
-        // because to apply the color, one just needs a generic ColorOption
-        ColorSeedOption.Builder().setSource(colorManager.currentColorSource).setStyle(style)
+            // Does not matter whether ColorSeedOption or ColorBundle builder is used here
+            // because to apply the color, one just needs a generic ColorOption
+            ColorSeedOption.Builder().setSource(colorManager.currentColorSource).setStyle(style)
         for (overlay in overlays) {
             colorOptionBuilder.addOverlayPackage(overlay.key, overlay.value)
         }
