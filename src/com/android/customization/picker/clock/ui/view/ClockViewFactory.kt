@@ -22,12 +22,14 @@ import com.android.systemui.plugins.ClockController
 import com.android.systemui.shared.clocks.ClockRegistry
 import com.android.wallpaper.R
 import com.android.wallpaper.util.ScreenSizeCalculator
+import com.android.wallpaper.util.TimeUtils.TimeTicker
 
 class ClockViewFactory(
     private val activity: Activity,
     private val registry: ClockRegistry,
 ) {
     private val clockControllers: HashMap<String, ClockController> = HashMap()
+    private var ticker: TimeTicker? = null
 
     fun getView(clockId: String): View {
         return (clockControllers[clockId] ?: initClockController(clockId)).largeClock.view
@@ -41,6 +43,17 @@ class ClockViewFactory(
         return (clockControllers[clockId] ?: initClockController(clockId))
             .events
             .onSeedColorChanged(seedColor)
+    }
+
+    fun registerTimeTicker() {
+        ticker =
+            TimeTicker.registerNewReceiver(activity.applicationContext) {
+                clockControllers.values.forEach { it.largeClock.events.onTimeTick() }
+            }
+    }
+
+    fun unregisterTimeTicker() {
+        activity.applicationContext.unregisterReceiver(ticker)
     }
 
     private fun initClockController(clockId: String): ClockController {

@@ -88,6 +88,15 @@ object ClockCarouselViewBinder {
                 }
             }
         }
+
+        lifecycleOwner.lifecycleScope.launch {
+            lifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                clockViewFactory.registerTimeTicker()
+            }
+            // When paused
+            clockViewFactory.unregisterTimeTicker()
+        }
+
         return object : Binding {
             override fun show() {
                 viewModel.showClockCarousel(true)
