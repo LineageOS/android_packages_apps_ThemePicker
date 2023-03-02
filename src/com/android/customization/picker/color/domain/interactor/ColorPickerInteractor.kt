@@ -16,12 +16,10 @@
  */
 package com.android.customization.picker.color.domain.interactor
 
-import androidx.annotation.VisibleForTesting
 import com.android.customization.picker.color.data.repository.ColorPickerRepository
 import com.android.customization.picker.color.shared.model.ColorOptionModel
 import javax.inject.Provider
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.combine
 
 /** Single entry-point for all application state and business logic related to system color. */
 class ColorPickerInteractor(
@@ -32,31 +30,10 @@ class ColorPickerInteractor(
      * The newly selected color option for overwriting the current active option during an
      * optimistic update, the value is set to null when update fails
      */
-    @VisibleForTesting private val activeColorOption = MutableStateFlow<ColorOptionModel?>(null)
+    val activeColorOption = MutableStateFlow<ColorOptionModel?>(null)
 
     /** List of wallpaper and preset color options on the device, categorized by Color Type */
-    val colorOptions =
-        combine(repository.colorOptions, activeColorOption) { colorOptions, activeOption ->
-            colorOptions
-                .map { colorTypeEntry ->
-                    colorTypeEntry.key to
-                        colorTypeEntry.value.map { colorOptionModel ->
-                            val isSelected =
-                                if (activeOption != null) {
-                                    colorOptionModel.colorOption.isEquivalent(
-                                        activeOption.colorOption
-                                    )
-                                } else {
-                                    colorOptionModel.isSelected
-                                }
-                            ColorOptionModel(
-                                colorOption = colorOptionModel.colorOption,
-                                isSelected = isSelected
-                            )
-                        }
-                }
-                .toMap()
-        }
+    val colorOptions = repository.colorOptions
 
     suspend fun select(colorOptionModel: ColorOptionModel) {
         activeColorOption.value = colorOptionModel
