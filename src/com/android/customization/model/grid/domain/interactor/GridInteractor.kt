@@ -24,6 +24,9 @@ import javax.inject.Provider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.shareIn
@@ -34,22 +37,30 @@ class GridInteractor(
     private val snapshotRestorer: Provider<GridSnapshotRestorer>,
 ) {
     val options: Flow<GridOptionItemsModel> =
-        // this upstream flow tells us each time the options are changed.
-        repository.optionChanges
-            // when we start, we pretend the options _just_ changed. This way, we load something as
-            // soon as possible into the flow so it's ready by the time the first observer starts to
-            // observe.
-            .onStart { emit(Unit) }
-            // each time the options changed, we load them.
-            .map { reload() }
-            // we place the loaded options in a SharedFlow so downstream observers all
-            // share the same flow and don't trigger a new one each time they want to start
-            // observing.
-            .shareIn(
-                scope = applicationScope,
-                started = SharingStarted.WhileSubscribed(),
-                replay = 1,
-            )
+        flow { emit(repository.isAvailable()) }
+            .flatMapLatest { isAvailable ->
+                if (isAvailable) {
+                    // this upstream flow tells us each time the options are changed.
+                    repository
+                        .getOptionChanges()
+                        // when we start, we pretend the options _just_ changed. This way, we load
+                        // something as soon as possible into the flow so it's ready by the time the
+                        // first observer starts to observe.
+                        .onStart { emit(Unit) }
+                        // each time the options changed, we load them.
+                        .map { reload() }
+                        // we place the loaded options in a SharedFlow so downstream observers all
+                        // share the same flow and don't trigger a new one each time they want to
+                        // start observing.
+                        .shareIn(
+                            scope = applicationScope,
+                            started = SharingStarted.WhileSubscribed(),
+                            replay = 1,
+                        )
+                } else {
+                    emptyFlow()
+                }
+            }
 
     suspend fun setSelectedOption(model: GridOptionItemModel) {
         model.onSelected.invoke()

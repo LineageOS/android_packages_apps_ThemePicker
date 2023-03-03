@@ -96,7 +96,7 @@ public class GridSectionController implements CustomizationSectionController<Gri
 
     @Override
     public void release() {
-        if (mIsRevampedUiEnabled) {
+        if (mIsRevampedUiEnabled && mGridOptionsManager.isAvailable()) {
             mGridOptionsManager.getOptionChangeObservable(/* handler= */ null).removeObserver(
                     mOptionChangeObserver
             );
