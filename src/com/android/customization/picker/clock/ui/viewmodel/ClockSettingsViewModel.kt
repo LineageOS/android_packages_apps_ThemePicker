@@ -20,6 +20,7 @@ import androidx.core.graphics.ColorUtils
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.android.customization.model.color.ColorBundle
 import com.android.customization.model.color.ColorSeedOption
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.shared.ClockSize
@@ -118,31 +119,23 @@ private constructor(
                 // events from ClockRegistry upstream, caused by sliding the saturation level bar.
                 delay(COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS)
                 buildList {
-                    val defaultThemeColor =
-                        colorOptions[ColorType.WALLPAPER_COLOR]?.find { it.isSelected }
-                            ?: colorOptions[ColorType.BASIC_COLOR]?.find { it.isSelected }
-                    if (defaultThemeColor != null) {
-                        val colorSeedOption: ColorSeedOption =
-                            defaultThemeColor.colorOption as ColorSeedOption
-                        val colors = colorSeedOption.previewInfo.resolveColors(context.resources)
-                        add(
-                            ColorOptionViewModel(
-                                color0 = colors[0],
-                                color1 = colors[1],
-                                color2 = colors[2],
-                                color3 = colors[3],
-                                contentDescription =
-                                    colorSeedOption.getContentDescription(context).toString(),
-                                title = context.getString(R.string.default_theme_title),
-                                isSelected = selectedColor == null,
-                                onClick =
-                                    if (selectedColor == null) {
-                                        null
-                                    } else {
-                                        { clockPickerInteractor.setClockColor(null) }
-                                    },
+                    val defaultThemeColorOptionViewModel =
+                        (colorOptions[ColorType.WALLPAPER_COLOR]
+                                ?.find { it.isSelected }
+                                ?.colorOption as? ColorSeedOption)
+                            ?.toColorOptionViewModel(
+                                context,
+                                selectedColor,
                             )
-                        )
+                            ?: (colorOptions[ColorType.BASIC_COLOR]
+                                    ?.find { it.isSelected }
+                                    ?.colorOption as? ColorBundle)
+                                ?.toColorOptionViewModel(
+                                    context,
+                                    selectedColor,
+                                )
+                    if (defaultThemeColorOptionViewModel != null) {
+                        add(defaultThemeColorOptionViewModel)
                     }
 
                     if (selectedColor != null) {
@@ -203,6 +196,51 @@ private constructor(
                 started = SharingStarted.WhileSubscribed(),
                 initialValue = emptyList(),
             )
+
+    private fun ColorSeedOption.toColorOptionViewModel(
+        context: Context,
+        selectedColor: Int?,
+    ): ColorOptionViewModel {
+        val colors = previewInfo.resolveColors(context.resources)
+        return ColorOptionViewModel(
+            color0 = colors[0],
+            color1 = colors[1],
+            color2 = colors[2],
+            color3 = colors[3],
+            contentDescription = getContentDescription(context).toString(),
+            title = context.getString(R.string.default_theme_title),
+            isSelected = selectedColor == null,
+            onClick =
+                if (selectedColor == null) {
+                    null
+                } else {
+                    { clockPickerInteractor.setClockColor(null) }
+                },
+        )
+    }
+
+    private fun ColorBundle.toColorOptionViewModel(
+        context: Context,
+        selectedColor: Int?
+    ): ColorOptionViewModel {
+        val primaryColor = previewInfo.resolvePrimaryColor(context.resources)
+        val secondaryColor = previewInfo.resolveSecondaryColor(context.resources)
+        return ColorOptionViewModel(
+            color0 = primaryColor,
+            color1 = secondaryColor,
+            color2 = primaryColor,
+            color3 = secondaryColor,
+            contentDescription = getContentDescription(context).toString(),
+            title = context.getString(R.string.default_theme_title),
+            isSelected = selectedColor == null,
+            onClick =
+                if (selectedColor == null) {
+                    null
+                } else {
+                    { clockPickerInteractor.setClockColor(null) }
+                },
+        )
+    }
 
     val selectedClockSize: Flow<ClockSize> = clockPickerInteractor.selectedClockSize
 
