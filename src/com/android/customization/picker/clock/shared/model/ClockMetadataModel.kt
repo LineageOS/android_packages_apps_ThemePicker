@@ -24,11 +24,11 @@ import androidx.annotation.IntRange
 data class ClockMetadataModel(
     val clockId: String,
     val name: String,
-    @ColorInt val selectedColor: Int?,
-    @IntRange(from = 0, to = 100) val colorTone: Int,
+    val selectedColorId: String?,
+    @IntRange(from = 0, to = 100) val colorToneProgress: Int,
     @ColorInt val seedColor: Int?,
 ) {
     companion object {
-        const val DEFAULT_COLOR_TONE = 50
+        const val DEFAULT_COLOR_TONE_PROGRESS = 75
     }
 }

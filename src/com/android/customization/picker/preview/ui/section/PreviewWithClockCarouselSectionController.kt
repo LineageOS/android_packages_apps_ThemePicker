@@ -79,7 +79,7 @@ class PreviewWithClockCarouselSectionController(
                     carouselView = carouselView,
                     singleClockView = singleClockView,
                     viewModel = clockCarouselViewModel,
-                    clockViewFactory = { clockId -> clockViewFactory.getView(clockId) },
+                    clockViewFactory = clockViewFactory,
                     lifecycleOwner = lifecycleOwner,
                 )
             onScreenSwitched(
