@@ -55,8 +55,8 @@ class ClockCarouselViewModel(
     val selectedIndex: Flow<Int> =
         allClockIds
             .flatMapLatest { allClockIds ->
-                interactor.selectedClock.map { selectedClock ->
-                    val index = allClockIds.indexOf(selectedClock.clockId)
+                interactor.selectedClockId.map { selectedClockId ->
+                    val index = allClockIds.indexOf(selectedClockId)
                     if (index >= 0) {
                         index
                     } else {

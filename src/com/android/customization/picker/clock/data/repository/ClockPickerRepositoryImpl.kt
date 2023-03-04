@@ -17,6 +17,8 @@
 package com.android.customization.picker.clock.data.repository
 
 import android.provider.Settings
+import androidx.annotation.ColorInt
+import androidx.annotation.IntRange
 import com.android.customization.picker.clock.shared.ClockSize
 import com.android.customization.picker.clock.shared.model.ClockMetadataModel
 import com.android.systemui.plugins.ClockMetadata
@@ -34,6 +36,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.flow.shareIn
+import org.json.JSONObject
 
 /** Implementation of [ClockPickerRepository], using [ClockRegistry]. */
 class ClockPickerRepositoryImpl(
@@ -50,7 +53,7 @@ class ClockPickerRepositoryImpl(
                         registry
                             .getClocks()
                             .filter { "NOT_IN_USE" !in it.clockId }
-                            .map { it.toModel(null) }
+                            .map { it.toModel() }
                     trySend(allClocks)
                 }
 
@@ -72,18 +75,22 @@ class ClockPickerRepositoryImpl(
                 allClocks
             }
 
-    /** The currently-selected clock. */
+    /** The currently-selected clock. This also emits the clock color information. */
     override val selectedClock: Flow<ClockMetadataModel> =
         callbackFlow {
                 fun send() {
                     val currentClockId = registry.currentClockId
-                    // It is possible that the model can be null since the full clock list is not
-                    // initiated.
+                    val metadata = registry.settings?.metadata
                     val model =
                         registry
                             .getClocks()
                             .find { clockMetadata -> clockMetadata.clockId == currentClockId }
-                            ?.toModel(registry.seedColor)
+                            ?.toModel(
+                                selectedColor = metadata?.getSelectedColor(),
+                                colorTone = metadata?.getColorTone()
+                                        ?: ClockMetadataModel.DEFAULT_COLOR_TONE,
+                                seedColor = registry.seedColor
+                            )
                     trySend(model)
                 }
 
@@ -104,11 +111,26 @@ class ClockPickerRepositoryImpl(
             .mapNotNull { it }
 
     override fun setSelectedClock(clockId: String) {
-        registry.currentClockId = clockId
+        registry.mutateSetting { oldSettings ->
+            val newSettings = oldSettings.copy(clockId = clockId)
+            newSettings.metadata = oldSettings.metadata
+            newSettings
+        }
     }
 
-    override fun setClockColor(color: Int?) {
-        registry.seedColor = color
+    override fun setClockColor(
+        @ColorInt selectedColor: Int?,
+        @IntRange(from = 0, to = 100) colorTone: Int,
+        @ColorInt seedColor: Int?,
+    ) {
+        registry.mutateSetting { oldSettings ->
+            val newSettings = oldSettings.copy(seedColor = seedColor)
+            newSettings.metadata =
+                oldSettings.metadata
+                    .put(KEY_METADATA_SELECTED_COLOR, selectedColor)
+                    .put(KEY_METADATA_COLOR_TONE, colorTone)
+            newSettings
+        }
     }
 
     override val selectedClockSize: SharedFlow<ClockSize> =
@@ -131,7 +153,38 @@ class ClockPickerRepositoryImpl(
         )
     }
 
-    private fun ClockMetadata.toModel(color: Int?): ClockMetadataModel {
-        return ClockMetadataModel(clockId = clockId, name = name, color = color)
+    private fun JSONObject.getSelectedColor(): Int? {
+        return if (this.isNull(KEY_METADATA_SELECTED_COLOR)) {
+            null
+        } else {
+            this.getInt(KEY_METADATA_SELECTED_COLOR)
+        }
+    }
+
+    private fun JSONObject.getColorTone(): Int {
+        return this.optInt(KEY_METADATA_COLOR_TONE, ClockMetadataModel.DEFAULT_COLOR_TONE)
+    }
+
+    /** By default, [ClockMetadataModel] has no color information unless specified. */
+    private fun ClockMetadata.toModel(
+        @ColorInt selectedColor: Int? = null,
+        @IntRange(from = 0, to = 100) colorTone: Int = 0,
+        @ColorInt seedColor: Int? = null,
+    ): ClockMetadataModel {
+        return ClockMetadataModel(
+            clockId = clockId,
+            name = name,
+            selectedColor = selectedColor,
+            colorTone = colorTone,
+            seedColor = seedColor,
+        )
+    }
+
+    companion object {
+        // The selected color in the color option list
+        private const val KEY_METADATA_SELECTED_COLOR = "metadataSelectedColor"
+
+        // The color tone to apply to the selected color
+        private const val KEY_METADATA_COLOR_TONE = "metadataColorTone"
     }
 }
