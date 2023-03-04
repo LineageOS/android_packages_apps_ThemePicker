@@ -24,6 +24,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import com.android.customization.module.ThemePickerInjector
 import com.android.customization.picker.clock.ui.binder.ClockSettingsBinder
+import com.android.systemui.shared.clocks.shared.model.ClockPreviewConstants
 import com.android.wallpaper.R
 import com.android.wallpaper.module.InjectorProvider
 import com.android.wallpaper.picker.AppbarFragment
@@ -95,6 +96,16 @@ class ClockSettingsFragment : AppbarFragment() {
                         onWallpaperColorChanged = { colors ->
                             colorViewModel.setLockWallpaperColors(colors)
                         },
+                        initialExtrasProvider = {
+                            Bundle().apply {
+                                // Hide the clock from the system UI rendered preview so we can
+                                // place the carousel on top of it.
+                                putBoolean(
+                                    ClockPreviewConstants.KEY_HIDE_CLOCK,
+                                    true,
+                                )
+                            }
+                        },
                     ),
                 lifecycleOwner = this,
                 offsetToStart = displayUtils.isOnWallpaperDisplay(activity),
@@ -111,6 +122,7 @@ class ClockSettingsFragment : AppbarFragment() {
                     ),
                 )
                 .get(),
+            injector.getClockViewFactory(activity),
             this@ClockSettingsFragment,
         )
 

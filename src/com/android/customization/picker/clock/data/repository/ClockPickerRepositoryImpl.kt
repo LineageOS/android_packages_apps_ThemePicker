@@ -86,9 +86,9 @@ class ClockPickerRepositoryImpl(
                             .getClocks()
                             .find { clockMetadata -> clockMetadata.clockId == currentClockId }
                             ?.toModel(
-                                selectedColor = metadata?.getSelectedColor(),
+                                selectedColorId = metadata?.getSelectedColorId(),
                                 colorTone = metadata?.getColorTone()
-                                        ?: ClockMetadataModel.DEFAULT_COLOR_TONE,
+                                        ?: ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS,
                                 seedColor = registry.seedColor
                             )
                     trySend(model)
@@ -119,16 +119,16 @@ class ClockPickerRepositoryImpl(
     }
 
     override fun setClockColor(
-        @ColorInt selectedColor: Int?,
-        @IntRange(from = 0, to = 100) colorTone: Int,
+        selectedColorId: String?,
+        @IntRange(from = 0, to = 100) colorToneProgress: Int,
         @ColorInt seedColor: Int?,
     ) {
         registry.mutateSetting { oldSettings ->
             val newSettings = oldSettings.copy(seedColor = seedColor)
             newSettings.metadata =
                 oldSettings.metadata
-                    .put(KEY_METADATA_SELECTED_COLOR, selectedColor)
-                    .put(KEY_METADATA_COLOR_TONE, colorTone)
+                    .put(KEY_METADATA_SELECTED_COLOR_ID, selectedColorId)
+                    .put(KEY_METADATA_COLOR_TONE_PROGRESS, colorToneProgress)
             newSettings
         }
     }
@@ -153,38 +153,41 @@ class ClockPickerRepositoryImpl(
         )
     }
 
-    private fun JSONObject.getSelectedColor(): Int? {
-        return if (this.isNull(KEY_METADATA_SELECTED_COLOR)) {
+    private fun JSONObject.getSelectedColorId(): String? {
+        return if (this.isNull(KEY_METADATA_SELECTED_COLOR_ID)) {
             null
         } else {
-            this.getInt(KEY_METADATA_SELECTED_COLOR)
+            this.getString(KEY_METADATA_SELECTED_COLOR_ID)
         }
     }
 
     private fun JSONObject.getColorTone(): Int {
-        return this.optInt(KEY_METADATA_COLOR_TONE, ClockMetadataModel.DEFAULT_COLOR_TONE)
+        return this.optInt(
+            KEY_METADATA_COLOR_TONE_PROGRESS,
+            ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS
+        )
     }
 
     /** By default, [ClockMetadataModel] has no color information unless specified. */
     private fun ClockMetadata.toModel(
-        @ColorInt selectedColor: Int? = null,
+        selectedColorId: String? = null,
         @IntRange(from = 0, to = 100) colorTone: Int = 0,
         @ColorInt seedColor: Int? = null,
     ): ClockMetadataModel {
         return ClockMetadataModel(
             clockId = clockId,
             name = name,
-            selectedColor = selectedColor,
-            colorTone = colorTone,
+            selectedColorId = selectedColorId,
+            colorToneProgress = colorTone,
             seedColor = seedColor,
         )
     }
 
     companion object {
         // The selected color in the color option list
-        private const val KEY_METADATA_SELECTED_COLOR = "metadataSelectedColor"
+        private const val KEY_METADATA_SELECTED_COLOR_ID = "metadataSelectedColorId"
 
         // The color tone to apply to the selected color
-        private const val KEY_METADATA_COLOR_TONE = "metadataColorTone"
+        private const val KEY_METADATA_COLOR_TONE_PROGRESS = "metadataColorToneProgress"
     }
 }
