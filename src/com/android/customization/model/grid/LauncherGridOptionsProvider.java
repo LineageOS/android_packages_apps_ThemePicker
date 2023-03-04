@@ -126,6 +126,7 @@ public class LauncherGridOptionsProvider {
 
     /**
      * Returns an observable that receives a new value each time that the grid options are changed.
+     * Do not call if {@link #areGridsAvailable()} returns false
      */
     public LiveData<Object> getOptionChangeObservable(
             @Nullable Handler handler) {
