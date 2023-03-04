@@ -46,7 +46,7 @@ class ClockCarouselViewModelTest {
                     "clock0",
                     "clock0",
                     null,
-                    ClockMetadataModel.DEFAULT_COLOR_TONE,
+                    ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS,
                     null,
                 ),
             )

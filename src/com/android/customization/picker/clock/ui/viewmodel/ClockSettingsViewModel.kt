@@ -57,13 +57,22 @@ private constructor(
         SIZE,
     }
 
-    val selectedColor: StateFlow<Int?> =
-        clockPickerInteractor.selectedColor.stateIn(viewModelScope, SharingStarted.Eagerly, null)
+    val colorMap = ClockColorViewModel.getPresetColorMap(context.resources)
 
-    private val sliderProgressColorTone = MutableStateFlow(ClockMetadataModel.DEFAULT_COLOR_TONE)
+    val selectedClockId: StateFlow<String?> =
+        clockPickerInteractor.selectedClockId
+            .distinctUntilChanged()
+            .stateIn(viewModelScope, SharingStarted.Eagerly, null)
+
+    val selectedColorId: StateFlow<String?> =
+        clockPickerInteractor.selectedColorId.stateIn(viewModelScope, SharingStarted.Eagerly, null)
+
+    private val sliderColorToneProgress =
+        MutableStateFlow(ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS)
     val isSliderEnabled: Flow<Boolean> =
-        clockPickerInteractor.selectedColor.map { it != null }.distinctUntilChanged()
-    val sliderProgress: Flow<Int> = merge(clockPickerInteractor.colorTone, sliderProgressColorTone)
+        clockPickerInteractor.selectedColorId.map { it != null }.distinctUntilChanged()
+    val sliderProgress: Flow<Int> =
+        merge(clockPickerInteractor.colorToneProgress, sliderColorToneProgress)
 
     private val _seedColor: MutableStateFlow<Int?> = MutableStateFlow(null)
     val seedColor: Flow<Int?> = merge(clockPickerInteractor.seedColor, _seedColor)
@@ -71,29 +80,37 @@ private constructor(
     /**
      * The slider color tone updates are quick. Do not set color tone and the blended color to the
      * settings until [onSliderProgressStop] is called. Update to a locally cached temporary
-     * [sliderProgressColorTone] and [_seedColor] instead.
+     * [sliderColorToneProgress] and [_seedColor] instead.
      */
     fun onSliderProgressChanged(progress: Int) {
-        sliderProgressColorTone.value = progress
-        val color = selectedColor.value
-        if (color != null) {
-            _seedColor.value = blendColorWithTone(color, progress)
-        }
+        sliderColorToneProgress.value = progress
+        val selectedColorId = selectedColorId.value ?: return
+        val clockColorViewModel = colorMap[selectedColorId] ?: return
+        _seedColor.value =
+            blendColorWithTone(
+                color = clockColorViewModel.color,
+                colorTone = clockColorViewModel.getColorTone(progress),
+            )
     }
 
     fun onSliderProgressStop(progress: Int) {
-        val color = selectedColor.value ?: return
+        val selectedColorId = selectedColorId.value ?: return
+        val clockColorViewModel = colorMap[selectedColorId] ?: return
         clockPickerInteractor.setClockColor(
-            selectedColor = color,
-            colorTone = progress,
-            seedColor = blendColorWithTone(color = color, colorTone = progress)
+            selectedColorId = selectedColorId,
+            colorToneProgress = progress,
+            seedColor =
+                blendColorWithTone(
+                    color = clockColorViewModel.color,
+                    colorTone = clockColorViewModel.getColorTone(progress),
+                )
         )
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val colorOptions: StateFlow<List<ColorOptionViewModel>> =
-        combine(colorPickerInteractor.colorOptions, clockPickerInteractor.selectedColor, ::Pair)
-            .mapLatest { (colorOptions, selectedColor) ->
+        combine(colorPickerInteractor.colorOptions, clockPickerInteractor.selectedColorId, ::Pair)
+            .mapLatest { (colorOptions, selectedColorId) ->
                 // Use mapLatest and delay(100) here to prevent too many selectedClockColor update
                 // events from ClockRegistry upstream, caused by sliding the saturation level bar.
                 delay(COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS)
@@ -104,35 +121,30 @@ private constructor(
                                 ?.colorOption as? ColorSeedOption)
                             ?.toColorOptionViewModel(
                                 context,
-                                selectedColor,
+                                selectedColorId,
                             )
                             ?: (colorOptions[ColorType.BASIC_COLOR]
                                     ?.find { it.isSelected }
                                     ?.colorOption as? ColorBundle)
                                 ?.toColorOptionViewModel(
                                     context,
-                                    selectedColor,
+                                    selectedColorId,
                                 )
                     if (defaultThemeColorOptionViewModel != null) {
                         add(defaultThemeColorOptionViewModel)
                     }
 
-                    val selectedColorPosition =
-                        if (selectedColor != null) {
-                            COLOR_SET_LIST.indexOf(selectedColor)
-                        } else {
-                            -1
-                        }
+                    val selectedColorPosition = colorMap.keys.indexOf(selectedColorId)
 
-                    COLOR_SET_LIST.forEachIndexed { index, color ->
+                    colorMap.values.forEachIndexed { index, colorModel ->
                         val isSelected = selectedColorPosition == index
-                        val colorTone = ClockMetadataModel.DEFAULT_COLOR_TONE
+                        val colorToneProgress = ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS
                         add(
                             ColorOptionViewModel(
-                                color0 = color,
-                                color1 = color,
-                                color2 = color,
-                                color3 = color,
+                                color0 = colorModel.color,
+                                color1 = colorModel.color,
+                                color2 = colorModel.color,
+                                color3 = colorModel.color,
                                 contentDescription =
                                     context.getString(
                                         R.string.content_description_color_option,
@@ -145,12 +157,15 @@ private constructor(
                                     } else {
                                         {
                                             clockPickerInteractor.setClockColor(
-                                                selectedColor = color,
-                                                colorTone = colorTone,
+                                                selectedColorId = colorModel.colorId,
+                                                colorToneProgress = colorToneProgress,
                                                 seedColor =
                                                     blendColorWithTone(
-                                                        color = color,
-                                                        colorTone = colorTone,
+                                                        color = colorModel.color,
+                                                        colorTone =
+                                                            colorModel.getColorTone(
+                                                                colorToneProgress,
+                                                            ),
                                                     ),
                                             )
                                         }
@@ -166,9 +181,13 @@ private constructor(
                 initialValue = emptyList(),
             )
 
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val selectedColorOptionPosition: Flow<Int> =
+        colorOptions.mapLatest { it.indexOfFirst { colorOption -> colorOption.isSelected } }
+
     private fun ColorSeedOption.toColorOptionViewModel(
         context: Context,
-        selectedColor: Int?,
+        selectedColorId: String?,
     ): ColorOptionViewModel {
         val colors = previewInfo.resolveColors(context.resources)
         return ColorOptionViewModel(
@@ -178,15 +197,15 @@ private constructor(
             color3 = colors[3],
             contentDescription = getContentDescription(context).toString(),
             title = context.getString(R.string.default_theme_title),
-            isSelected = selectedColor == null,
+            isSelected = selectedColorId == null,
             onClick =
-                if (selectedColor == null) {
+                if (selectedColorId == null) {
                     null
                 } else {
                     {
                         clockPickerInteractor.setClockColor(
-                            selectedColor = null,
-                            colorTone = ClockMetadataModel.DEFAULT_COLOR_TONE,
+                            selectedColorId = null,
+                            colorToneProgress = ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS,
                             seedColor = null,
                         )
                     }
@@ -196,7 +215,7 @@ private constructor(
 
     private fun ColorBundle.toColorOptionViewModel(
         context: Context,
-        selectedColor: Int?
+        selectedColorId: String?
     ): ColorOptionViewModel {
         val primaryColor = previewInfo.resolvePrimaryColor(context.resources)
         val secondaryColor = previewInfo.resolveSecondaryColor(context.resources)
@@ -207,15 +226,15 @@ private constructor(
             color3 = secondaryColor,
             contentDescription = getContentDescription(context).toString(),
             title = context.getString(R.string.default_theme_title),
-            isSelected = selectedColor == null,
+            isSelected = selectedColorId == null,
             onClick =
-                if (selectedColor == null) {
+                if (selectedColorId == null) {
                     null
                 } else {
                     {
                         clockPickerInteractor.setClockColor(
-                            selectedColor = null,
-                            colorTone = ClockMetadataModel.DEFAULT_COLOR_TONE,
+                            selectedColorId = null,
+                            colorToneProgress = ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS,
                             seedColor = null,
                         )
                     }
@@ -258,24 +277,12 @@ private constructor(
         }
 
     companion object {
-        // TODO (b/241966062) The color integers here are temporary for dev purposes. We need to
-        //                    finalize the overridden colors.
-        val COLOR_SET_LIST =
-            listOf(
-                -786432,
-                -3648768,
-                -9273600,
-                -16739840,
-                -9420289,
-                -6465837,
-                -5032719,
-            )
+        private val helperColorLab: DoubleArray by lazy { DoubleArray(3) }
 
-        fun blendColorWithTone(color: Int, colorTone: Int): Int {
-            val helperColorLab: DoubleArray by lazy { DoubleArray(3) }
+        fun blendColorWithTone(color: Int, colorTone: Double): Int {
             ColorUtils.colorToLAB(color, helperColorLab)
             return ColorUtils.LABToColor(
-                colorTone.toDouble(),
+                colorTone,
                 helperColorLab[1],
                 helperColorLab[2],
             )
