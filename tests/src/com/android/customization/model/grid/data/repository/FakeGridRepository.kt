@@ -32,13 +32,17 @@ import kotlinx.coroutines.flow.stateIn
 class FakeGridRepository(
     private val scope: CoroutineScope,
     initialOptionCount: Int,
+    var available: Boolean = true
 ) : GridRepository {
     private val _optionChanges =
         MutableSharedFlow<Unit>(
             replay = 1,
             onBufferOverflow = BufferOverflow.DROP_OLDEST,
         )
-    override val optionChanges: Flow<Unit> = _optionChanges.asSharedFlow()
+
+    override suspend fun isAvailable(): Boolean = available
+
+    override fun getOptionChanges(): Flow<Unit> = _optionChanges.asSharedFlow()
 
     private val selectedOptionIndex = MutableStateFlow(0)
     private var options: GridOptionItemsModel = createOptions(count = initialOptionCount)
