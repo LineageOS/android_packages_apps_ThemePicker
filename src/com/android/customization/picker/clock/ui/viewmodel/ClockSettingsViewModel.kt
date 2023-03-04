@@ -24,12 +24,11 @@ import com.android.customization.model.color.ColorBundle
 import com.android.customization.model.color.ColorSeedOption
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.shared.ClockSize
+import com.android.customization.picker.clock.shared.model.ClockMetadataModel
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
 import com.android.customization.picker.color.shared.model.ColorType
 import com.android.customization.picker.color.ui.viewmodel.ColorOptionViewModel
 import com.android.wallpaper.R
-import kotlin.math.abs
-import kotlin.math.roundToInt
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -38,9 +37,10 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
-import kotlinx.coroutines.flow.shareIn
+import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -57,63 +57,42 @@ private constructor(
         SIZE,
     }
 
-    private val helperColorHsl: FloatArray by lazy { FloatArray(3) }
+    val selectedColor: StateFlow<Int?> =
+        clockPickerInteractor.selectedColor.stateIn(viewModelScope, SharingStarted.Eagerly, null)
+
+    private val sliderProgressColorTone = MutableStateFlow(ClockMetadataModel.DEFAULT_COLOR_TONE)
+    val isSliderEnabled: Flow<Boolean> =
+        clockPickerInteractor.selectedColor.map { it != null }.distinctUntilChanged()
+    val sliderProgress: Flow<Int> = merge(clockPickerInteractor.colorTone, sliderProgressColorTone)
+
+    private val _seedColor: MutableStateFlow<Int?> = MutableStateFlow(null)
+    val seedColor: Flow<Int?> = merge(clockPickerInteractor.seedColor, _seedColor)
 
     /**
-     * Saturation level of the current selected color. Note that this can be null if the selected
-     * color is null, which means that the clock color respects the system theme color. In this
-     * case, the saturation level is no longer needed since we do not allow changing saturation
-     * level of the system theme color.
+     * The slider color tone updates are quick. Do not set color tone and the blended color to the
+     * settings until [onSliderProgressStop] is called. Update to a locally cached temporary
+     * [sliderProgressColorTone] and [_seedColor] instead.
      */
-    private val saturationLevel: Flow<Float?> =
-        clockPickerInteractor.selectedClockColor
-            .map { selectedColor ->
-                if (selectedColor == null) {
-                    null
-                } else {
-                    ColorUtils.colorToHSL(selectedColor, helperColorHsl)
-                    helperColorHsl[1]
-                }
-            }
-            .shareIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(),
-                replay = 1,
-            )
-
-    /**
-     * When the selected clock color is null, it means that the clock will respect the system theme
-     * color. And we no longer need the slider, which determines the saturation level of the clock's
-     * overridden color.
-     */
-    val isSliderEnabled: Flow<Boolean> = saturationLevel.map { it != null }
-
-    /**
-     * Slide progress from 0 to 100. Note that this can be null if the selected color is null, which
-     * means that the clock color respects the system theme color. In this case, the saturation
-     * level is no longer needed since we do not allow changing saturation level of the system theme
-     * color.
-     */
-    val sliderProgress: Flow<Int?> =
-        saturationLevel.map { saturation -> saturation?.let { (it * 100).roundToInt() } }
-
     fun onSliderProgressChanged(progress: Int) {
-        val saturation = progress / 100f
-        val selectedOption = colorOptions.value.find { option -> option.isSelected }
-        selectedOption?.let { option ->
-            ColorUtils.colorToHSL(option.color0, helperColorHsl)
-            helperColorHsl[1] = saturation
-            clockPickerInteractor.setClockColor(ColorUtils.HSLToColor(helperColorHsl))
+        sliderProgressColorTone.value = progress
+        val color = selectedColor.value
+        if (color != null) {
+            _seedColor.value = blendColorWithTone(color, progress)
         }
+    }
+
+    fun onSliderProgressStop(progress: Int) {
+        val color = selectedColor.value ?: return
+        clockPickerInteractor.setClockColor(
+            selectedColor = color,
+            colorTone = progress,
+            seedColor = blendColorWithTone(color = color, colorTone = progress)
+        )
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val colorOptions: StateFlow<List<ColorOptionViewModel>> =
-        combine(
-                colorPickerInteractor.colorOptions,
-                clockPickerInteractor.selectedClockColor,
-                ::Pair,
-            )
+        combine(colorPickerInteractor.colorOptions, clockPickerInteractor.selectedColor, ::Pair)
             .mapLatest { (colorOptions, selectedColor) ->
                 // Use mapLatest and delay(100) here to prevent too many selectedClockColor update
                 // events from ClockRegistry upstream, caused by sliding the saturation level bar.
@@ -138,36 +117,16 @@ private constructor(
                         add(defaultThemeColorOptionViewModel)
                     }
 
-                    if (selectedColor != null) {
-                        ColorUtils.colorToHSL(selectedColor, helperColorHsl)
-                    }
-
                     val selectedColorPosition =
                         if (selectedColor != null) {
-                            getSelectedColorPosition(helperColorHsl)
+                            COLOR_SET_LIST.indexOf(selectedColor)
                         } else {
                             -1
                         }
 
-                    COLOR_LIST_HSL.forEachIndexed { index, colorHSL ->
-                        val color = ColorUtils.HSLToColor(colorHSL)
+                    COLOR_SET_LIST.forEachIndexed { index, color ->
                         val isSelected = selectedColorPosition == index
-                        val colorToSet: Int by lazy {
-                            val saturation =
-                                if (selectedColor != null) {
-                                    helperColorHsl[1]
-                                } else {
-                                    colorHSL[1]
-                                }
-                            ColorUtils.HSLToColor(
-                                listOf(
-                                        colorHSL[0],
-                                        saturation,
-                                        colorHSL[2],
-                                    )
-                                    .toFloatArray()
-                            )
-                        }
+                        val colorTone = ClockMetadataModel.DEFAULT_COLOR_TONE
                         add(
                             ColorOptionViewModel(
                                 color0 = color,
@@ -184,7 +143,17 @@ private constructor(
                                     if (isSelected) {
                                         null
                                     } else {
-                                        { clockPickerInteractor.setClockColor(colorToSet) }
+                                        {
+                                            clockPickerInteractor.setClockColor(
+                                                selectedColor = color,
+                                                colorTone = colorTone,
+                                                seedColor =
+                                                    blendColorWithTone(
+                                                        color = color,
+                                                        colorTone = colorTone,
+                                                    ),
+                                            )
+                                        }
                                     },
                             )
                         )
@@ -214,7 +183,13 @@ private constructor(
                 if (selectedColor == null) {
                     null
                 } else {
-                    { clockPickerInteractor.setClockColor(null) }
+                    {
+                        clockPickerInteractor.setClockColor(
+                            selectedColor = null,
+                            colorTone = ClockMetadataModel.DEFAULT_COLOR_TONE,
+                            seedColor = null,
+                        )
+                    }
                 },
         )
     }
@@ -237,7 +212,13 @@ private constructor(
                 if (selectedColor == null) {
                     null
                 } else {
-                    { clockPickerInteractor.setClockColor(null) }
+                    {
+                        clockPickerInteractor.setClockColor(
+                            selectedColor = null,
+                            colorTone = ClockMetadataModel.DEFAULT_COLOR_TONE,
+                            seedColor = null,
+                        )
+                    }
                 },
         )
     }
@@ -279,19 +260,28 @@ private constructor(
     companion object {
         // TODO (b/241966062) The color integers here are temporary for dev purposes. We need to
         //                    finalize the overridden colors.
-        val COLOR_LIST_HSL =
+        val COLOR_SET_LIST =
             listOf(
-                arrayOf(225f, 0.65f, 0.74f).toFloatArray(),
-                arrayOf(30f, 0.65f, 0.74f).toFloatArray(),
-                arrayOf(249f, 0.65f, 0.74f).toFloatArray(),
-                arrayOf(144f, 0.65f, 0.74f).toFloatArray(),
+                -786432,
+                -3648768,
+                -9273600,
+                -16739840,
+                -9420289,
+                -6465837,
+                -5032719,
             )
 
-        const val COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS: Long = 100
-
-        fun getSelectedColorPosition(selectedColorHsl: FloatArray): Int {
-            return COLOR_LIST_HSL.withIndex().minBy { abs(it.value[0] - selectedColorHsl[0]) }.index
+        fun blendColorWithTone(color: Int, colorTone: Int): Int {
+            val helperColorLab: DoubleArray by lazy { DoubleArray(3) }
+            ColorUtils.colorToLAB(color, helperColorLab)
+            return ColorUtils.LABToColor(
+                colorTone.toDouble(),
+                helperColorLab[1],
+                helperColorLab[2],
+            )
         }
+
+        const val COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS: Long = 100
     }
 
     class Factory(

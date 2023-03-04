@@ -63,8 +63,10 @@ object ClockSettingsBinder {
                     }
                 }
 
-                override fun onStartTrackingTouch(p0: SeekBar?) = Unit
-                override fun onStopTrackingTouch(p0: SeekBar?) = Unit
+                override fun onStartTrackingTouch(seekBar: SeekBar?) = Unit
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                    seekBar?.progress?.let { viewModel.onSliderProgressStop(it) }
+                }
             }
         )
 
@@ -120,14 +122,12 @@ object ClockSettingsBinder {
 
                 launch {
                     viewModel.sliderProgress.collect { progress ->
-                        progress?.let { slider.setProgress(progress, false) }
+                        slider.setProgress(progress, true)
                     }
                 }
 
                 launch {
-                    viewModel.isSliderEnabled.collect { isEnabled ->
-                        slider.isInvisible = !isEnabled
-                    }
+                    viewModel.isSliderEnabled.collect { isEnabled -> slider.isEnabled = isEnabled }
                 }
             }
         }
