@@ -39,12 +39,12 @@ interface ClockPickerRepository {
      * Set clock color to the settings.
      *
      * @param selectedColor selected color in the color option list.
-     * @param colorTone color tone from 0 to 100 to apply to the selected color
+     * @param colorToneProgress color tone from 0 to 100 to apply to the selected color
      * @param seedColor the actual clock color after blending the selected color and color tone
      */
     fun setClockColor(
-        @ColorInt selectedColor: Int?,
-        @IntRange(from = 0, to = 100) colorTone: Int,
+        selectedColorId: String?,
+        @IntRange(from = 0, to = 100) colorToneProgress: Int,
         @ColorInt seedColor: Int?,
     )
 
