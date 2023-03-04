@@ -56,16 +56,18 @@ class ClockPickerInteractorTest {
 
     @Test
     fun setColor() = runTest {
-        val observedSelectedColor = collectLastValue(underTest.selectedColor)
-        val observedColorTone = collectLastValue(underTest.colorTone)
+        val observedSelectedColor = collectLastValue(underTest.selectedColorId)
+        val observedColorToneProgress = collectLastValue(underTest.colorToneProgress)
         val observedSeedColor = collectLastValue(underTest.seedColor)
         underTest.setClockColor(
-            FakeClockPickerRepository.clockColor,
-            FakeClockPickerRepository.clockColorTone,
-            FakeClockPickerRepository.clockColor,
+            FakeClockPickerRepository.CLOCK_COLOR_ID,
+            FakeClockPickerRepository.CLOCK_COLOR_TONE_PROGRESS,
+            FakeClockPickerRepository.SEED_COLOR,
         )
-        Truth.assertThat(observedSelectedColor()).isEqualTo(FakeClockPickerRepository.clockColor)
-        Truth.assertThat(observedColorTone()).isEqualTo(FakeClockPickerRepository.clockColorTone)
-        Truth.assertThat(observedSeedColor()).isEqualTo(FakeClockPickerRepository.clockColor)
+        Truth.assertThat(observedSelectedColor())
+            .isEqualTo(FakeClockPickerRepository.CLOCK_COLOR_ID)
+        Truth.assertThat(observedColorToneProgress())
+            .isEqualTo(FakeClockPickerRepository.CLOCK_COLOR_TONE_PROGRESS)
+        Truth.assertThat(observedSeedColor()).isEqualTo(FakeClockPickerRepository.SEED_COLOR)
     }
 }

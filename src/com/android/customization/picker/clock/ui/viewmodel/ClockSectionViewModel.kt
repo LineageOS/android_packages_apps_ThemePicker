@@ -22,15 +22,20 @@ import com.android.customization.picker.clock.shared.ClockSize
 import com.android.wallpaper.R
 import java.util.Locale
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 
 /** View model for the clock section view on the lockscreen customization surface. */
 class ClockSectionViewModel(context: Context, interactor: ClockPickerInteractor) {
     val appContext: Context = context.applicationContext
+    val clockColorMap: Map<String, ClockColorViewModel> =
+        ClockColorViewModel.getPresetColorMap(appContext.resources)
     val selectedClockColorAndSizeText: Flow<String> =
-        interactor.selectedClockSize.map { selectedClockSize ->
-            // TODO (b/241966062) Finalize the colors and their names
-            val colorText = "Violet"
+        combine(interactor.selectedColorId, interactor.selectedClockSize, ::Pair).map {
+            (selectedColorId, selectedClockSize) ->
+            val colorText =
+                clockColorMap[selectedColorId]?.colorName
+                    ?: context.getString(R.string.default_theme_title)
             val sizeText =
                 when (selectedClockSize) {
                     ClockSize.SMALL -> appContext.getString(R.string.clock_size_small)
