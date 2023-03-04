@@ -15,6 +15,7 @@
  */
 package com.android.customization.picker.clock.data.repository
 
+import android.graphics.Color
 import androidx.annotation.ColorInt
 import androidx.annotation.IntRange
 import com.android.customization.picker.clock.data.repository.FakeClockPickerRepository.Companion.fakeClocks
@@ -31,13 +32,13 @@ open class FakeClockPickerRepository(clocks: List<ClockMetadataModel> = fakeCloc
     override val allClocks: Flow<List<ClockMetadataModel>> = MutableStateFlow(clocks).asStateFlow()
 
     private val selectedClockId = MutableStateFlow(fakeClocks[0].clockId)
-    @ColorInt private val selectedColor = MutableStateFlow<Int?>(null)
-    private val colorTone = MutableStateFlow<Int>(ClockMetadataModel.DEFAULT_COLOR_TONE)
+    @ColorInt private val selectedColorId = MutableStateFlow<String?>(null)
+    private val colorTone = MutableStateFlow(ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS)
     @ColorInt private val seedColor = MutableStateFlow<Int?>(null)
     override val selectedClock: Flow<ClockMetadataModel> =
         combine(
             selectedClockId,
-            selectedColor,
+            selectedColorId,
             colorTone,
             seedColor,
         ) { selectedClockId, selectedColor, colorTone, seedColor ->
@@ -60,12 +61,12 @@ open class FakeClockPickerRepository(clocks: List<ClockMetadataModel> = fakeCloc
     }
 
     override fun setClockColor(
-        @ColorInt selectedColor: Int?,
-        @IntRange(from = 0, to = 100) colorTone: Int,
+        selectedColorId: String?,
+        @IntRange(from = 0, to = 100) colorToneProgress: Int,
         @ColorInt seedColor: Int?,
     ) {
-        this.selectedColor.value = selectedColor
-        this.colorTone.value = colorTone
+        this.selectedColorId.value = selectedColorId
+        this.colorTone.value = colorToneProgress
         this.seedColor.value = seedColor
     }
 
@@ -81,7 +82,8 @@ open class FakeClockPickerRepository(clocks: List<ClockMetadataModel> = fakeCloc
                 ClockMetadataModel("clock2", "clock2", null, 50, null),
                 ClockMetadataModel("clock3", "clock3", null, 50, null),
             )
-        val clockColor = 0
-        val clockColorTone = 87
+        const val CLOCK_COLOR_ID = "RED"
+        const val CLOCK_COLOR_TONE_PROGRESS = 87
+        const val SEED_COLOR = Color.RED
     }
 }
