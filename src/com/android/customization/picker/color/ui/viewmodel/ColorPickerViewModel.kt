@@ -74,76 +74,99 @@ private constructor(
                 .toMap()
         }
 
-    /** The list of all available wallpaper colors */
-    private val wallpaperColorOptions: Flow<List<ColorOptionViewModel>> =
+    /** The list of all color options mapped by their color type */
+    private val allColorOptions: Flow<Map<ColorType, List<ColorOptionViewModel>>> =
         interactor.colorOptions.map { colorOptions ->
-            colorOptions[ColorType.WALLPAPER_COLOR]!!.map { colorOptionModel ->
-                val colorSeedOption: ColorSeedOption =
-                    colorOptionModel.colorOption as ColorSeedOption
-                val colors = colorSeedOption.previewInfo.resolveColors(context.resources)
-                ColorOptionViewModel(
-                    color0 = colors[0],
-                    color1 = colors[1],
-                    color2 = colors[2],
-                    color3 = colors[3],
-                    contentDescription = colorSeedOption.getContentDescription(context).toString(),
-                    isSelected = colorOptionModel.isSelected,
-                    onClick =
-                        if (colorOptionModel.isSelected) {
-                            null
-                        } else {
-                            { viewModelScope.launch { interactor.select(colorOptionModel) } }
+            colorOptions
+                .map { colorOptionEntry ->
+                    colorOptionEntry.key to
+                        when (colorOptionEntry.key) {
+                            ColorType.WALLPAPER_COLOR -> {
+                                colorOptionEntry.value.map { colorOptionModel ->
+                                    val colorSeedOption: ColorSeedOption =
+                                        colorOptionModel.colorOption as ColorSeedOption
+                                    val colors =
+                                        colorSeedOption.previewInfo.resolveColors(context.resources)
+                                    ColorOptionViewModel(
+                                        color0 = colors[0],
+                                        color1 = colors[1],
+                                        color2 = colors[2],
+                                        color3 = colors[3],
+                                        contentDescription =
+                                            colorSeedOption
+                                                .getContentDescription(context)
+                                                .toString(),
+                                        isSelected = colorOptionModel.isSelected,
+                                        onClick =
+                                            if (colorOptionModel.isSelected) {
+                                                null
+                                            } else {
+                                                {
+                                                    viewModelScope.launch {
+                                                        interactor.select(colorOptionModel)
+                                                    }
+                                                }
+                                            }
+                                    )
+                                }
+                            }
+                            ColorType.BASIC_COLOR -> {
+                                colorOptionEntry.value.map { colorOptionModel ->
+                                    val colorBundle: ColorBundle =
+                                        colorOptionModel.colorOption as ColorBundle
+                                    val primaryColor =
+                                        colorBundle.previewInfo.resolvePrimaryColor(
+                                            context.resources
+                                        )
+                                    val secondaryColor =
+                                        colorBundle.previewInfo.resolveSecondaryColor(
+                                            context.resources
+                                        )
+                                    ColorOptionViewModel(
+                                        color0 = primaryColor,
+                                        color1 = secondaryColor,
+                                        color2 = primaryColor,
+                                        color3 = secondaryColor,
+                                        contentDescription =
+                                            colorBundle.getContentDescription(context).toString(),
+                                        isSelected = colorOptionModel.isSelected,
+                                        onClick =
+                                            if (colorOptionModel.isSelected) {
+                                                null
+                                            } else {
+                                                {
+                                                    viewModelScope.launch {
+                                                        interactor.select(colorOptionModel)
+                                                    }
+                                                }
+                                            },
+                                    )
+                                }
+                            }
                         }
-                )
-            }
-        }
-
-    /** The list of all available preset colors */
-    private val presetColorOptions: Flow<List<ColorOptionViewModel>> =
-        interactor.colorOptions.map { colorOptions ->
-            colorOptions[ColorType.BASIC_COLOR]!!.map { colorOptionModel ->
-                val colorBundle: ColorBundle = colorOptionModel.colorOption as ColorBundle
-                val primaryColor = colorBundle.previewInfo.resolvePrimaryColor(context.resources)
-                val secondaryColor =
-                    colorBundle.previewInfo.resolveSecondaryColor(context.resources)
-                ColorOptionViewModel(
-                    color0 = primaryColor,
-                    color1 = secondaryColor,
-                    color2 = primaryColor,
-                    color3 = secondaryColor,
-                    contentDescription = colorBundle.getContentDescription(context).toString(),
-                    isSelected = colorOptionModel.isSelected,
-                    onClick =
-                        if (colorOptionModel.isSelected) {
-                            null
-                        } else {
-                            { viewModelScope.launch { interactor.select(colorOptionModel) } }
-                        },
-                )
-            }
+                }
+                .toMap()
         }
 
     /** The list of all available color options for the selected Color Type. */
     val colorOptions: Flow<List<ColorOptionViewModel>> =
-        combine(wallpaperColorOptions, presetColorOptions, selectedColorTypeId) {
-            wallpaperOptions,
-            presetOptions,
-            selectedColorTypeIdOrNull ->
-            when (selectedColorTypeIdOrNull ?: ColorType.WALLPAPER_COLOR) {
-                ColorType.WALLPAPER_COLOR -> wallpaperOptions
-                ColorType.BASIC_COLOR -> presetOptions
-            }
+        combine(allColorOptions, selectedColorTypeId) { allColorOptions, selectedColorTypeIdOrNull
+            ->
+            val selectedColorTypeId = selectedColorTypeIdOrNull ?: ColorType.WALLPAPER_COLOR
+            allColorOptions[selectedColorTypeId]!!
         }
 
     /** The list of color options for the color section */
     val colorSectionOptions: Flow<List<ColorOptionViewModel>> =
-        combine(wallpaperColorOptions, presetColorOptions) { wallpaperOptions, presetOptions ->
+        allColorOptions.map { allColorOptions ->
+            val wallpaperOptions = allColorOptions[ColorType.WALLPAPER_COLOR]
+            val presetOptions = allColorOptions[ColorType.BASIC_COLOR]
             val subOptions =
-                wallpaperOptions.subList(0, min(COLOR_SECTION_OPTION_SIZE, wallpaperOptions.size))
+                wallpaperOptions!!.subList(0, min(COLOR_SECTION_OPTION_SIZE, wallpaperOptions.size))
             // Add additional options based on preset colors if size of wallpaper color options is
             // less than COLOR_SECTION_OPTION_SIZE
             val additionalSubOptions =
-                presetOptions.subList(
+                presetOptions!!.subList(
                     0,
                     min(
                         max(0, COLOR_SECTION_OPTION_SIZE - wallpaperOptions.size),
