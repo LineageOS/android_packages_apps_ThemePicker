@@ -37,6 +37,14 @@ class ClockPickerInteractorTest {
     }
 
     @Test
+    fun setSelectedClock() = runTest {
+        val observedSelectedClockId = collectLastValue(underTest.selectedClockId)
+        underTest.setSelectedClock(FakeClockPickerRepository.fakeClocks[1].clockId)
+        Truth.assertThat(observedSelectedClockId())
+            .isEqualTo(FakeClockPickerRepository.fakeClocks[1].clockId)
+    }
+
+    @Test
     fun setClockSize() = runTest {
         val observedClockSize = collectLastValue(underTest.selectedClockSize)
         underTest.setClockSize(ClockSize.DYNAMIC)
@@ -44,5 +52,20 @@ class ClockPickerInteractorTest {
 
         underTest.setClockSize(ClockSize.SMALL)
         Truth.assertThat(observedClockSize()).isEqualTo(ClockSize.SMALL)
+    }
+
+    @Test
+    fun setColor() = runTest {
+        val observedSelectedColor = collectLastValue(underTest.selectedColor)
+        val observedColorTone = collectLastValue(underTest.colorTone)
+        val observedSeedColor = collectLastValue(underTest.seedColor)
+        underTest.setClockColor(
+            FakeClockPickerRepository.clockColor,
+            FakeClockPickerRepository.clockColorTone,
+            FakeClockPickerRepository.clockColor,
+        )
+        Truth.assertThat(observedSelectedColor()).isEqualTo(FakeClockPickerRepository.clockColor)
+        Truth.assertThat(observedColorTone()).isEqualTo(FakeClockPickerRepository.clockColorTone)
+        Truth.assertThat(observedSeedColor()).isEqualTo(FakeClockPickerRepository.clockColor)
     }
 }
