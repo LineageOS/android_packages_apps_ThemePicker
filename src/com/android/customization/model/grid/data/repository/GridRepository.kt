@@ -35,7 +35,8 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
 
 interface GridRepository {
-    val optionChanges: Flow<Unit>
+    suspend fun isAvailable(): Boolean
+    fun getOptionChanges(): Flow<Unit>
     suspend fun getOptions(): GridOptionItemsModel
 }
 
@@ -45,7 +46,11 @@ class GridRepositoryImpl(
     private val backgroundDispatcher: CoroutineDispatcher,
 ) : GridRepository {
 
-    override val optionChanges: Flow<Unit> =
+    override suspend fun isAvailable(): Boolean {
+        return withContext(backgroundDispatcher) { manager.isAvailable }
+    }
+
+    override fun getOptionChanges(): Flow<Unit> =
         manager.getOptionChangeObservable(/* handler= */ null).asFlow().map {}
 
     private val selectedOption = MutableStateFlow<GridOption?>(null)

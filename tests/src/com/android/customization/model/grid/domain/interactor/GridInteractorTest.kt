@@ -135,4 +135,12 @@ class GridInteractorTest {
             // External updates do not record a new snapshot with the undo system.
             assertThat(store.retrieve()).isEqualTo(storedSnapshot)
         }
+
+    @Test
+    fun unavailableRepository_emptyOptions() =
+        testScope.runTest {
+            repository.available = false
+            val options = collectLastValue(underTest.options)
+            assertThat(options()).isNull()
+        }
 }
