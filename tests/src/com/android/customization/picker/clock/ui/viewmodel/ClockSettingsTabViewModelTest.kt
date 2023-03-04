@@ -11,7 +11,6 @@ import com.android.customization.picker.color.domain.interactor.ColorPickerInter
 import com.android.customization.picker.color.domain.interactor.ColorPickerSnapshotRestorer
 import com.android.wallpaper.testing.FakeSnapshotStore
 import com.android.wallpaper.testing.collectLastValue
-import com.google.common.collect.Range
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -66,7 +65,20 @@ class ClockSettingsViewModelTest {
     }
 
     @Test
-    fun setClockColor() = runTest {
+    fun clickOnColorSettingsTab() = runTest {
+        val tabs = collectLastValue(underTest.tabs)
+        assertThat(tabs()?.get(0)?.name).isEqualTo("Color")
+        assertThat(tabs()?.get(0)?.isSelected).isTrue()
+        assertThat(tabs()?.get(1)?.name).isEqualTo("Size")
+        assertThat(tabs()?.get(1)?.isSelected).isFalse()
+
+        tabs()?.get(1)?.onClicked?.invoke()
+        assertThat(tabs()?.get(0)?.isSelected).isFalse()
+        assertThat(tabs()?.get(1)?.isSelected).isTrue()
+    }
+
+    @Test
+    fun setSelectedColor() = runTest {
         val observedClockColorOptions = collectLastValue(underTest.colorOptions)
         // Advance COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS since there is a delay from colorOptions
         advanceTimeBy(ClockSettingsViewModel.COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS)
@@ -81,30 +93,25 @@ class ClockSettingsViewModelTest {
     }
 
     @Test
-    fun setClockSaturation() = runTest {
+    fun setColorTone() = runTest {
         val observedClockColorOptions = collectLastValue(underTest.colorOptions)
         val observedIsSliderEnabled = collectLastValue(underTest.isSliderEnabled)
         val observedSliderProgress = collectLastValue(underTest.sliderProgress)
         // Advance COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS since there is a delay from colorOptions
         advanceTimeBy(ClockSettingsViewModel.COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS)
+        assertThat(observedClockColorOptions()!![0].isSelected).isTrue()
         assertThat(observedIsSliderEnabled()).isFalse()
-        assertThat(observedSliderProgress()).isNull()
 
         observedClockColorOptions()!![1].onClick?.invoke()
         // Advance COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS since there is a delay from colorOptions
         advanceTimeBy(ClockSettingsViewModel.COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS)
         assertThat(observedIsSliderEnabled()).isTrue()
-        val targetProgress = 99
-        underTest.onSliderProgressChanged(targetProgress)
-        advanceTimeBy(ClockSettingsViewModel.COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS)
-        assertThat(observedClockColorOptions()!![1].isSelected).isTrue()
-        assertThat(observedSliderProgress())
-            .isIn(
-                Range.closed(
-                    targetProgress - 1,
-                    targetProgress + 1,
-                )
-            )
+        val targetProgress1 = 99
+        underTest.onSliderProgressChanged(targetProgress1)
+        assertThat(observedSliderProgress()).isEqualTo(targetProgress1)
+        val targetProgress2 = 55
+        underTest.onSliderProgressStop(targetProgress2)
+        assertThat(observedSliderProgress()).isEqualTo(targetProgress2)
     }
 
     @Test
@@ -115,18 +122,5 @@ class ClockSettingsViewModelTest {
 
         underTest.setClockSize(ClockSize.SMALL)
         assertThat(observedClockSize()).isEqualTo(ClockSize.SMALL)
-    }
-
-    @Test
-    fun `Click on a picker tab`() = runTest {
-        val tabs = collectLastValue(underTest.tabs)
-        assertThat(tabs()?.get(0)?.name).isEqualTo("Color")
-        assertThat(tabs()?.get(0)?.isSelected).isTrue()
-        assertThat(tabs()?.get(1)?.name).isEqualTo("Size")
-        assertThat(tabs()?.get(1)?.isSelected).isFalse()
-
-        tabs()?.get(1)?.onClicked?.invoke()
-        assertThat(tabs()?.get(0)?.isSelected).isFalse()
-        assertThat(tabs()?.get(1)?.isSelected).isTrue()
     }
 }
