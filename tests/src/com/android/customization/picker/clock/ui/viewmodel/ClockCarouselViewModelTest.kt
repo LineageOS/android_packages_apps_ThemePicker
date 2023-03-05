@@ -42,7 +42,13 @@ class ClockCarouselViewModelTest {
     private val repositoryWithSingleClock by lazy {
         FakeClockPickerRepository(
             listOf(
-                ClockMetadataModel("clock0", "clock0", null),
+                ClockMetadataModel(
+                    "clock0",
+                    "clock0",
+                    null,
+                    ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS,
+                    null,
+                ),
             )
         )
     }
