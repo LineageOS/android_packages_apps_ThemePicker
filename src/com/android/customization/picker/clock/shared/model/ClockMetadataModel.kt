@@ -17,9 +17,18 @@
 
 package com.android.customization.picker.clock.shared.model
 
+import androidx.annotation.ColorInt
+import androidx.annotation.IntRange
+
 /** Model for clock metadata. */
 data class ClockMetadataModel(
     val clockId: String,
     val name: String,
-    val color: Int?,
-)
+    val selectedColorId: String?,
+    @IntRange(from = 0, to = 100) val colorToneProgress: Int,
+    @ColorInt val seedColor: Int?,
+) {
+    companion object {
+        const val DEFAULT_COLOR_TONE_PROGRESS = 75
+    }
+}

@@ -16,6 +16,8 @@
  */
 package com.android.customization.picker.clock.data.repository
 
+import androidx.annotation.ColorInt
+import androidx.annotation.IntRange
 import com.android.customization.picker.clock.shared.ClockSize
 import com.android.customization.picker.clock.shared.model.ClockMetadataModel
 import kotlinx.coroutines.flow.Flow
@@ -33,7 +35,18 @@ interface ClockPickerRepository {
 
     fun setSelectedClock(clockId: String)
 
-    fun setClockColor(color: Int?)
+    /**
+     * Set clock color to the settings.
+     *
+     * @param selectedColor selected color in the color option list.
+     * @param colorToneProgress color tone from 0 to 100 to apply to the selected color
+     * @param seedColor the actual clock color after blending the selected color and color tone
+     */
+    fun setClockColor(
+        selectedColorId: String?,
+        @IntRange(from = 0, to = 100) colorToneProgress: Int,
+        @ColorInt seedColor: Int?,
+    )
 
     suspend fun setClockSize(size: ClockSize)
 }
