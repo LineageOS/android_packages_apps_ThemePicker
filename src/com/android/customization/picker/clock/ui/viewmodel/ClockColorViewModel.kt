@@ -19,7 +19,6 @@ package com.android.customization.picker.clock.ui.viewmodel
 import android.annotation.ColorInt
 import android.content.res.Resources
 import android.graphics.Color
-import androidx.core.content.res.getStringOrThrow
 import com.android.wallpaper.R
 
 /** The view model that defines custom clock colors. */
@@ -40,27 +39,26 @@ data class ClockColorViewModel(
         const val DEFAULT_COLOR_TONE_MAX = 100
 
         fun getPresetColorMap(resources: Resources): Map<String, ClockColorViewModel> {
-            val ids = resources.obtainTypedArray(R.array.clock_color_ids)
+            val ids = resources.getStringArray(R.array.clock_color_ids)
             val names = resources.obtainTypedArray(R.array.clock_color_names)
             val colors = resources.obtainTypedArray(R.array.clock_colors)
             val colorToneMinList = resources.obtainTypedArray(R.array.clock_color_tone_min)
             val colorToneMaxList = resources.obtainTypedArray(R.array.clock_color_tone_max)
             return buildList {
-                    for (i in 0 until ids.length()) {
+                    ids.indices.forEach { index ->
                         add(
                             ClockColorViewModel(
-                                ids.getStringOrThrow(i),
-                                names.getString(i),
-                                colors.getColor(i, Color.TRANSPARENT),
-                                colorToneMinList.getInt(i, DEFAULT_COLOR_TONE_MIN).toDouble(),
-                                colorToneMaxList.getInt(i, DEFAULT_COLOR_TONE_MAX).toDouble(),
+                                ids[index],
+                                names.getString(index),
+                                colors.getColor(index, Color.TRANSPARENT),
+                                colorToneMinList.getInt(index, DEFAULT_COLOR_TONE_MIN).toDouble(),
+                                colorToneMaxList.getInt(index, DEFAULT_COLOR_TONE_MAX).toDouble(),
                             )
                         )
                     }
                 }
                 .associateBy { it.colorId }
                 .also {
-                    ids.recycle()
                     names.recycle()
                     colors.recycle()
                     colorToneMinList.recycle()
