@@ -27,7 +27,7 @@ class ThemedIconSnapshotRestorer(
     private val interactor: ThemedIconInteractor,
 ) : SnapshotRestorer {
 
-    private lateinit var store: SnapshotStore
+    private var store: SnapshotStore = SnapshotStore.NOOP
 
     override suspend fun setUpSnapshotRestorer(store: SnapshotStore): RestorableSnapshot {
         this.store = store
