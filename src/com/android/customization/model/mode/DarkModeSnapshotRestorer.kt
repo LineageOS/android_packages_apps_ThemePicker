@@ -33,7 +33,7 @@ class DarkModeSnapshotRestorer : SnapshotRestorer {
     private val isActive: () -> Boolean
     private val setActive: suspend (Boolean) -> Unit
 
-    private lateinit var store: SnapshotStore
+    private var store: SnapshotStore = SnapshotStore.NOOP
 
     constructor(
         context: Context,

@@ -27,7 +27,7 @@ class NotificationsSnapshotRestorer(
     private val interactor: NotificationsInteractor,
 ) : SnapshotRestorer {
 
-    private lateinit var snapshotStore: SnapshotStore
+    private var snapshotStore: SnapshotStore = SnapshotStore.NOOP
 
     fun storeSnapshot(model: NotificationSettingsModel) {
         snapshotStore.store(snapshot(model))
