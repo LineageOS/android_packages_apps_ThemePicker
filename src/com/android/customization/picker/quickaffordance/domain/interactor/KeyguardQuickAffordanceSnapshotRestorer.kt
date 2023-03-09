@@ -28,7 +28,7 @@ class KeyguardQuickAffordanceSnapshotRestorer(
     private val client: CustomizationProviderClient,
 ) : SnapshotRestorer {
 
-    private lateinit var snapshotStore: SnapshotStore
+    private var snapshotStore: SnapshotStore = SnapshotStore.NOOP
 
     suspend fun storeSnapshot() {
         snapshotStore.store(snapshot())
