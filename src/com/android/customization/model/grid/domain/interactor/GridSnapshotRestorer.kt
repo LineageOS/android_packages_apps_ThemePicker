@@ -27,7 +27,7 @@ class GridSnapshotRestorer(
     private val interactor: GridInteractor,
 ) : SnapshotRestorer {
 
-    private lateinit var store: SnapshotStore
+    private var store: SnapshotStore = SnapshotStore.NOOP
     private var originalOption: GridOptionItemModel? = null
 
     override suspend fun setUpSnapshotRestorer(store: SnapshotStore): RestorableSnapshot {
