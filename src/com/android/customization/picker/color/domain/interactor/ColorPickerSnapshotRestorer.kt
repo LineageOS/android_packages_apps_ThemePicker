@@ -28,7 +28,7 @@ class ColorPickerSnapshotRestorer(
     private val interactor: ColorPickerInteractor,
 ) : SnapshotRestorer {
 
-    private lateinit var snapshotStore: SnapshotStore
+    private var snapshotStore: SnapshotStore = SnapshotStore.NOOP
     private var originalOption: ColorOptionModel? = null
 
     fun storeSnapshot(colorOptionModel: ColorOptionModel) {
