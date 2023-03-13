@@ -16,6 +16,7 @@
 package com.android.customization.picker.clock.ui.view
 
 import android.app.Activity
+import android.util.TypedValue
 import android.view.View
 import androidx.annotation.ColorInt
 import com.android.systemui.plugins.ClockController
@@ -60,6 +61,14 @@ class ClockViewFactory(
         val controller =
             registry.createExampleClock(clockId).also { it?.initialize(activity.resources, 0f, 0f) }
         checkNotNull(controller)
+
+        // Configure light/dark theme
+        val isLightTheme = TypedValue()
+        activity.theme.resolveAttribute(android.R.attr.isLightTheme, isLightTheme, true)
+        val isRegionDark = isLightTheme.data == 0
+        controller.largeClock.events.onRegionDarknessChanged(isRegionDark)
+
+        // Configure font size
         val screenSizeCalculator = ScreenSizeCalculator.getInstance()
         val screenSize = screenSizeCalculator.getScreenSize(activity.windowManager.defaultDisplay)
         val ratio =
