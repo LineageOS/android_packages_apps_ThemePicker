@@ -217,7 +217,7 @@ public class GridFragment extends AppbarFragment {
                 mLoading.hide();
                 mOptionsController = new OptionSelectorController<>(
                         mOptionsContainer, options, /* useGrid= */ false,
-                        CheckmarkStyle.CENTER_CHANGE_COLOR_WHEN_NOT_SELECTED);
+                        CheckmarkStyle.CENTER_CHANGE_COLOR_WHEN_NOT_SELECTED, 0);
                 mOptionsController.initOptions(mGridManager);
                 GridOption previouslySelectedOption = findEquivalent(options,
                         mGridOptionViewModel.getSelectedOption());

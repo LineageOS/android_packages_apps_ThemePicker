@@ -326,8 +326,10 @@ public class ColorSectionController implements CustomizationSectionController<Co
             subOptions = colorOptions;
         }
 
+        final int padding = container.getContext().getResources().getDimensionPixelSize(
+                R.dimen.section_horizontal_padding);
         OptionSelectorController<ColorOption> adaptiveController = new OptionSelectorController<>(
-                container, subOptions, /* useGrid= */ true, CENTER);
+                container, subOptions, /* useGrid= */ true, CENTER, padding);
         adaptiveController.initOptions(mColorManager);
         setUpColorOptionsController(adaptiveController);
     }
@@ -480,7 +482,7 @@ public class ColorSectionController implements CustomizationSectionController<Co
                     final int padding = itemView.getContext().getResources().getDimensionPixelSize(
                             R.dimen.section_horizontal_padding);
                     mContainer.setPageTransformer(new MarginPageTransformer(padding * 2));
-                    mContainer.setPadding(padding, /* top= */ 0, padding, /* bottom= */ 0);
+                    mContainer.setPadding(0, /* top= */ 0, 0, /* bottom= */ 0);
                 }
                 mPageIndicator = itemView.findViewById(R.id.color_page_indicator);
                 if (ColorProvider.themeStyleEnabled) {
