@@ -22,6 +22,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.android.customization.model.grid.data.repository.FakeGridRepository
 import com.android.customization.model.grid.domain.interactor.GridInteractor
 import com.android.customization.model.grid.domain.interactor.GridSnapshotRestorer
+import com.android.wallpaper.picker.common.icon.ui.viewmodel.Icon
 import com.android.wallpaper.picker.option.ui.viewmodel.OptionItemViewModel
 import com.android.wallpaper.testing.FakeSnapshotStore
 import com.android.wallpaper.testing.collectLastValue
@@ -94,13 +95,13 @@ class GridScreenViewModelTest {
             assertThat(getOnClick(optionItemsValue[1])).isNull()
         }
 
-    private fun TestScope.getSelectedIndex(optionItems: List<OptionItemViewModel>): Int {
+    private fun TestScope.getSelectedIndex(optionItems: List<OptionItemViewModel<Icon>>): Int {
         return optionItems.indexOfFirst { optionItem ->
             collectLastValue(optionItem.isSelected).invoke() == true
         }
     }
 
-    private fun TestScope.getOnClick(optionItem: OptionItemViewModel): (() -> Unit)? {
+    private fun TestScope.getOnClick(optionItem: OptionItemViewModel<Icon>): (() -> Unit)? {
         return collectLastValue(optionItem.onClicked).invoke()
     }
 }

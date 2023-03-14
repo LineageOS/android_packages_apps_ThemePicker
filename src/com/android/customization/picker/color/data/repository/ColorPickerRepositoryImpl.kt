@@ -124,14 +124,17 @@ class ColorPickerRepositoryImpl(
         for (overlay in overlays) {
             colorOptionBuilder.addOverlayPackage(overlay.key, overlay.value)
         }
+        val colorOption = colorOptionBuilder.build()
         return ColorOptionModel(
-            colorOption = colorOptionBuilder.build(),
+            key = "${colorOption.style}::${colorOption.serializedPackages}",
+            colorOption = colorOption,
             isSelected = false,
         )
     }
 
     private fun ColorOption.toModel(): ColorOptionModel {
         return ColorOptionModel(
+            key = "${this.style}::${this.serializedPackages}",
             colorOption = this,
             isSelected = isActive(colorManager),
         )
