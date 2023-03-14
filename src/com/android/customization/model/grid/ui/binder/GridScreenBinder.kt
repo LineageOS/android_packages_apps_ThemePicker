@@ -18,6 +18,7 @@
 package com.android.customization.model.grid.ui.binder
 
 import android.view.View
+import android.widget.ImageView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
@@ -27,6 +28,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.customization.model.grid.ui.viewmodel.GridScreenViewModel
 import com.android.customization.picker.common.ui.view.ItemSpacing
 import com.android.wallpaper.R
+import com.android.wallpaper.picker.common.icon.ui.viewbinder.IconViewBinder
+import com.android.wallpaper.picker.common.icon.ui.viewmodel.Icon
 import com.android.wallpaper.picker.option.ui.adapter.OptionItemAdapter
 import com.android.wallpaper.picker.option.ui.binder.OptionItemBinder
 import kotlinx.coroutines.CoroutineDispatcher
@@ -57,7 +60,11 @@ object GridScreenBinder {
                     OptionItemBinder.TintSpec(
                         selectedColor = view.context.getColor(R.color.text_color_primary),
                         unselectedColor = view.context.getColor(R.color.text_color_secondary),
-                    )
+                    ),
+                bindIcon = { foregroundView: View, gridIcon: Icon ->
+                    val imageView = foregroundView as? ImageView
+                    imageView?.let { IconViewBinder.bind(imageView, gridIcon) }
+                }
             )
         optionView.adapter = adapter
 

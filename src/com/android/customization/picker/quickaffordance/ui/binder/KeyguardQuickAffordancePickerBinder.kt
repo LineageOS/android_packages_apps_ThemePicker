@@ -20,6 +20,7 @@ package com.android.customization.picker.quickaffordance.ui.binder
 import android.app.Dialog
 import android.content.Context
 import android.view.View
+import android.widget.ImageView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
@@ -32,6 +33,8 @@ import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQui
 import com.android.wallpaper.R
 import com.android.wallpaper.picker.common.dialog.ui.viewbinder.DialogViewBinder
 import com.android.wallpaper.picker.common.dialog.ui.viewmodel.DialogViewModel
+import com.android.wallpaper.picker.common.icon.ui.viewbinder.IconViewBinder
+import com.android.wallpaper.picker.common.icon.ui.viewmodel.Icon
 import com.android.wallpaper.picker.option.ui.adapter.OptionItemAdapter
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.combine
@@ -62,6 +65,10 @@ object KeyguardQuickAffordancePickerBinder {
             OptionItemAdapter(
                 layoutResourceId = R.layout.keyguard_quick_affordance,
                 lifecycleOwner = lifecycleOwner,
+                bindIcon = { foregroundView: View, gridIcon: Icon ->
+                    val imageView = foregroundView as? ImageView
+                    imageView?.let { IconViewBinder.bind(imageView, gridIcon) }
+                }
             )
         affordancesView.adapter = affordancesAdapter
         affordancesView.layoutManager =

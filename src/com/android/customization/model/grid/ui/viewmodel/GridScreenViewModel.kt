@@ -43,12 +43,12 @@ class GridScreenViewModel(
     @SuppressLint("StaticFieldLeak") // We're not leaking this context as it is the app context.
     private val applicationContext = context.applicationContext
 
-    val optionItems: Flow<List<OptionItemViewModel>> =
+    val optionItems: Flow<List<OptionItemViewModel<Icon>>> =
         interactor.options.map { model -> toViewModel(model) }
 
     private fun toViewModel(
         model: GridOptionItemsModel,
-    ): List<OptionItemViewModel> {
+    ): List<OptionItemViewModel<Icon>> {
         val iconShapePath =
             applicationContext.resources.getString(
                 Resources.getSystem()
@@ -63,9 +63,9 @@ class GridScreenViewModel(
             is GridOptionItemsModel.Loaded ->
                 model.options.map { option ->
                     val text = Text.Loaded(option.name)
-                    OptionItemViewModel(
+                    OptionItemViewModel<Icon>(
                         key = flowOf("${option.cols}x${option.rows}"),
-                        icon =
+                        payload =
                             Icon.Loaded(
                                 drawable =
                                     GridTileDrawable(

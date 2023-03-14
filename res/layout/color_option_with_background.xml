@@ -14,6 +14,7 @@
      limitations under the License.
 -->
 <!-- Content description is set programmatically on the parent FrameLayout -->
+<!-- TODO (b/272109171): Remove after clock settings is refactored to use OptionItemAdapter -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"

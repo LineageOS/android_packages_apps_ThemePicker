@@ -17,6 +17,7 @@
 
 package com.android.customization.picker.quickaffordance.ui.viewmodel
 
+import com.android.wallpaper.picker.common.icon.ui.viewmodel.Icon
 import com.android.wallpaper.picker.option.ui.viewmodel.OptionItemViewModel
 
 /** Models UI state for a single lock screen quick affordance slot in a picker experience. */
@@ -32,7 +33,7 @@ data class KeyguardQuickAffordanceSlotViewModel(
      *
      * Useful for preview.
      */
-    val selectedQuickAffordances: List<OptionItemViewModel>,
+    val selectedQuickAffordances: List<OptionItemViewModel<Icon>>,
 
     /**
      * The maximum number of quick affordances that can be selected for this slot.
