@@ -18,6 +18,7 @@ package com.android.customization.picker.color.data.repository
 
 import android.content.Context
 import android.graphics.Color
+import android.text.TextUtils
 import com.android.customization.model.color.ColorBundle
 import com.android.customization.model.color.ColorSeedOption
 import com.android.customization.picker.color.shared.model.ColorOptionModel
@@ -60,6 +61,7 @@ class FakeColorPickerRepository(private val context: Context) : ColorPickerRepos
                                     selectedColorOptionIndex == index
                             val colorOption =
                                 ColorOptionModel(
+                                    key = "${ColorType.WALLPAPER_COLOR}::$index",
                                     colorOption = buildWallpaperOption(index),
                                     isSelected = isSelected,
                                 )
@@ -77,6 +79,7 @@ class FakeColorPickerRepository(private val context: Context) : ColorPickerRepos
                                     selectedColorOptionIndex == index
                             val colorOption =
                                 ColorOptionModel(
+                                    key = "${ColorType.BASIC_COLOR}::$index",
                                     colorOption = buildPresetOption(index),
                                     isSelected =
                                         selectedColorOptionType == ColorType.BASIC_COLOR &&
@@ -130,6 +133,7 @@ class FakeColorPickerRepository(private val context: Context) : ColorPickerRepos
             wallpaperColorOptions.forEach { option ->
                 add(
                     ColorOptionModel(
+                        key = option.key,
                         colorOption = option.colorOption,
                         isSelected = option.testEquals(colorOptionModel),
                     )
@@ -141,6 +145,7 @@ class FakeColorPickerRepository(private val context: Context) : ColorPickerRepos
             basicColorOptions.forEach { option ->
                 add(
                     ColorOptionModel(
+                        key = option.key,
                         colorOption = option.colorOption,
                         isSelected = option.testEquals(colorOptionModel),
                     )
@@ -161,10 +166,7 @@ class FakeColorPickerRepository(private val context: Context) : ColorPickerRepos
             return false
         }
         return if (other is ColorOptionModel) {
-            val thisColorOptionIsWallpaperColor = this.colorOption is ColorSeedOption
-            val otherColorOptionIsWallpaperColor = other.colorOption is ColorSeedOption
-            (thisColorOptionIsWallpaperColor == otherColorOptionIsWallpaperColor) &&
-                (this.colorOption.index == other.colorOption.index)
+            TextUtils.equals(this.key, other.key)
         } else {
             false
         }
