@@ -91,4 +91,15 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"基本顏色"</string>
     <string name="color_changed" msgid="7029571720331641235">"顏色已變更"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"動態"</string>
+    <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"左側按鈕"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"右側按鈕"</string>
+    <string name="keyguard_affordance_none" msgid="1751643933430782312">"無"</string>
+    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"必須完成以下事項才能選取「<xliff:g id="APPNAME">%1$s</xliff:g>」"</string>
+    <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"開啟「<xliff:g id="APPNAME">%1$s</xliff:g>」"</string>
+    <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"如要將「<xliff:g id="APPNAME">%1$s</xliff:g>」應用程式新增為捷徑，必須滿足以下條件"</string>
+    <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"完成"</string>
+    <string name="keyguard_quick_affordance_title" msgid="4242813186995735584">"捷徑"</string>
+    <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"捷徑"</string>
+    <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>、<xliff:g id="SECOND">%2$s</xliff:g>"</string>
+    <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"無"</string>
 </resources>
