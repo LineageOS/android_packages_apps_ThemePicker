@@ -24,4 +24,6 @@
     <string name="rainbow_color_name_blue" msgid="3473176664458856892">"Blue"</string>
     <string name="rainbow_color_name_purple" msgid="2704722524588084868">"Purple"</string>
     <string name="rainbow_color_name_magenta" msgid="7248703626077785569">"Magenta"</string>
+    <!-- no translation found for monochromatic_name (2554823570460886176) -->
+    <skip />
 </resources>

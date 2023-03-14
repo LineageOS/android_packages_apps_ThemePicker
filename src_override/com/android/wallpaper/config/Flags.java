@@ -16,5 +16,4 @@
 package com.android.wallpaper.config;
 
 public class Flags extends BaseFlags {
-    public static boolean enableClockCustomization = false;
 }

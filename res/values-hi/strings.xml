@@ -91,4 +91,15 @@
     <string name="preset_color_tab" msgid="3133391839341329314">"सामान्य रंग"</string>
     <string name="color_changed" msgid="7029571720331641235">"रंग बदल दिया गया है"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"डाइनैमिक"</string>
+    <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"बायां बटन"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"दायां बटन"</string>
+    <string name="keyguard_affordance_none" msgid="1751643933430782312">"कोई नहीं"</string>
+    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"`<xliff:g id="APPNAME">%1$s</xliff:g>` को चुनने के लिए, दिए गए निर्देशों का पालन करें"</string>
+    <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g> खोलें"</string>
+    <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"<xliff:g id="APPNAME">%1$s</xliff:g> ऐप्लिकेशन को शॉर्टकट के तौर पर जोड़ने के लिए, इन बातों का ध्यान रखें"</string>
+    <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"हो गया"</string>
+    <string name="keyguard_quick_affordance_title" msgid="4242813186995735584">"शॉर्टकट"</string>
+    <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"शॉर्टकट"</string>
+    <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
+    <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"कोई नहीं"</string>
 </resources>
