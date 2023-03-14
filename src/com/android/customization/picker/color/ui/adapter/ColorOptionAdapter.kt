@@ -32,7 +32,7 @@ import com.android.wallpaper.R
 /**
  * Adapts between color option items and views.
  *
- * TODO (b/262924623): Refactor color picker with animated option framework ag/21132368
+ * TODO (b/272109171): Remove after clock settings is refactored to use OptionItemAdapter
  */
 class ColorOptionAdapter : RecyclerView.Adapter<ColorOptionAdapter.ViewHolder>() {
 

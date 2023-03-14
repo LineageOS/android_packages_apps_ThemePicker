@@ -15,17 +15,13 @@
  *
  */
 
-package com.android.customization.picker.color.shared.model
+package com.android.customization.picker.color.ui.viewmodel
 
-import com.android.customization.model.color.ColorOption
+import android.annotation.ColorInt
 
-/** Models application state for a color option in a picker experience. */
-data class ColorOptionModel(
-    val key: String,
-
-    /** Colors for the color option. */
-    val colorOption: ColorOption,
-
-    /** Whether this color option is selected. */
-    var isSelected: Boolean,
+data class ColorOptionIconViewModel(
+    @ColorInt val color0: Int,
+    @ColorInt val color1: Int,
+    @ColorInt val color2: Int,
+    @ColorInt val color3: Int,
 )

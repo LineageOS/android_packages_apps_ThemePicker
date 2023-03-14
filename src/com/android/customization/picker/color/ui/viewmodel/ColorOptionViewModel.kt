@@ -19,7 +19,11 @@ package com.android.customization.picker.color.ui.viewmodel
 
 import android.annotation.ColorInt
 
-/** Models UI state for a color options in a picker experience. */
+/**
+ * Models UI state for a color options in a picker experience.
+ *
+ * TODO (b/272109171): Remove after clock settings is refactored to use OptionItemAdapter
+ */
 data class ColorOptionViewModel(
     /** Colors for the color option. */
     @ColorInt val color0: Int,
