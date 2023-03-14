@@ -147,9 +147,9 @@ private constructor(
                         isSelected = isSelected,
                         selectedQuickAffordances =
                             selectedAffordances.map { affordanceModel ->
-                                OptionItemViewModel(
+                                OptionItemViewModel<Icon>(
                                     key = flowOf("${slot.id}::${affordanceModel.id}"),
-                                    icon =
+                                    payload =
                                         Icon.Loaded(
                                             drawable =
                                                 getAffordanceIcon(affordanceModel.iconResourceId),
@@ -194,7 +194,7 @@ private constructor(
             )
 
     /** The list of all available quick affordances for the selected slot. */
-    val quickAffordances: Flow<List<OptionItemViewModel>> =
+    val quickAffordances: Flow<List<OptionItemViewModel<Icon>>> =
         quickAffordanceInteractor.affordances.map { affordances ->
             val isNoneSelected = selectedAffordanceIds.map { it.isEmpty() }
             listOf(
@@ -222,9 +222,9 @@ private constructor(
                     val affordanceIcon = getAffordanceIcon(affordance.iconResourceId)
                     val isSelectedFlow: Flow<Boolean> =
                         selectedAffordanceIds.map { it.contains(affordance.id) }
-                    OptionItemViewModel(
+                    OptionItemViewModel<Icon>(
                         key = selectedSlotId.map { slotId -> "$slotId::${affordance.id}" },
-                        icon = Icon.Loaded(drawable = affordanceIcon, contentDescription = null),
+                        payload = Icon.Loaded(drawable = affordanceIcon, contentDescription = null),
                         text = Text.Loaded(affordance.name),
                         isSelected = isSelectedFlow,
                         onClicked =
@@ -273,15 +273,15 @@ private constructor(
     val summary: Flow<KeyguardQuickAffordanceSummaryViewModel> =
         slots.map { slots ->
             val icon2 =
-                slots[KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END]
-                    ?.selectedQuickAffordances
-                    ?.firstOrNull()
-                    ?.icon
+                (slots[KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END]
+                        ?.selectedQuickAffordances
+                        ?.firstOrNull())
+                    ?.payload
             val icon1 =
-                slots[KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START]
-                    ?.selectedQuickAffordances
-                    ?.firstOrNull()
-                    ?.icon
+                (slots[KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START]
+                        ?.selectedQuickAffordances
+                        ?.firstOrNull())
+                    ?.payload
 
             KeyguardQuickAffordanceSummaryViewModel(
                 description = toDescriptionText(context, slots),
@@ -363,10 +363,10 @@ private constructor(
         slotId: Flow<String>,
         isSelected: Flow<Boolean>,
         onSelected: Flow<(() -> Unit)?>,
-    ): OptionItemViewModel {
-        return OptionItemViewModel(
+    ): OptionItemViewModel<Icon> {
+        return OptionItemViewModel<Icon>(
             key = slotId.map { "$it::none" },
-            icon = Icon.Resource(res = R.drawable.link_off, contentDescription = null),
+            payload = Icon.Resource(res = R.drawable.link_off, contentDescription = null),
             text = Text.Resource(res = R.string.keyguard_affordance_none),
             isSelected = isSelected,
             onClicked = onSelected,

@@ -17,10 +17,9 @@
 
 package com.android.customization.picker.color.ui.binder
 
-import android.graphics.BlendMode
-import android.graphics.BlendModeColorFilter
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.view.isVisible
@@ -28,9 +27,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.android.customization.picker.color.ui.viewmodel.ColorOptionViewModel
+import com.android.customization.picker.color.ui.viewmodel.ColorOptionIconViewModel
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
 import com.android.wallpaper.R
+import com.android.wallpaper.picker.option.ui.viewmodel.OptionItemViewModel
 import kotlinx.coroutines.launch
 
 object ColorSectionViewBinder {
@@ -63,8 +63,9 @@ object ColorSectionViewBinder {
                         setOptions(
                             options = colorOptions,
                             view = optionContainer,
+                            lifecycleOwner = lifecycleOwner,
                             addOverflowOption = !isConnectedHorizontallyToOtherSections,
-                            overflowOnClick = navigationOnClick
+                            overflowOnClick = navigationOnClick,
                         )
                     }
                 }
@@ -73,10 +74,11 @@ object ColorSectionViewBinder {
     }
 
     fun setOptions(
-        options: List<ColorOptionViewModel>,
+        options: List<OptionItemViewModel<ColorOptionIconViewModel>>,
         view: LinearLayout,
+        lifecycleOwner: LifecycleOwner,
         addOverflowOption: Boolean = false,
-        overflowOnClick: (View) -> Unit = {}
+        overflowOnClick: (View) -> Unit = {},
     ) {
         view.removeAllViews()
         // Color option slot size is the minimum between the color option size and the view column
@@ -92,26 +94,29 @@ object ColorSectionViewBinder {
             val itemView =
                 LayoutInflater.from(view.context)
                     .inflate(R.layout.color_option_no_background, view, false)
-
-            val color0View: ImageView = itemView.requireViewById(R.id.color_preview_0)
-            val color1View: ImageView = itemView.requireViewById(R.id.color_preview_1)
-            val color2View: ImageView = itemView.requireViewById(R.id.color_preview_2)
-            val color3View: ImageView = itemView.requireViewById(R.id.color_preview_3)
-            color0View.drawable.colorFilter = BlendModeColorFilter(item.color0, BlendMode.SRC)
-            color1View.drawable.colorFilter = BlendModeColorFilter(item.color1, BlendMode.SRC)
-            color2View.drawable.colorFilter = BlendModeColorFilter(item.color2, BlendMode.SRC)
-            color3View.drawable.colorFilter = BlendModeColorFilter(item.color3, BlendMode.SRC)
-
+            item.payload?.let { ColorOptionIconBinder.bind(itemView as ViewGroup, item.payload) }
             val optionSelectedView = itemView.findViewById<ImageView>(R.id.option_selected)
-            optionSelectedView.isVisible = item.isSelected
 
-            itemView.setOnClickListener(
-                if (item.onClick != null) {
-                    View.OnClickListener { item.onClick.invoke() }
-                } else {
-                    null
+            lifecycleOwner.lifecycleScope.launch {
+                lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    launch {
+                        item.isSelected.collect { isSelected ->
+                            optionSelectedView.isVisible = isSelected
+                        }
+                    }
+                    launch {
+                        item.onClicked.collect { onClicked ->
+                            itemView.setOnClickListener(
+                                if (onClicked != null) {
+                                    View.OnClickListener { onClicked.invoke() }
+                                } else {
+                                    null
+                                }
+                            )
+                        }
+                    }
                 }
-            )
+            }
             view.addView(itemView)
         }
         // add overflow option
