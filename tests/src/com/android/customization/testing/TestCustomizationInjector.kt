@@ -2,7 +2,10 @@ package com.android.customization.testing
 
 import android.app.Activity
 import android.content.Context
+import android.text.TextUtils
 import androidx.fragment.app.FragmentActivity
+import com.android.customization.model.color.ColorCustomizationManager
+import com.android.customization.model.color.ColorOptionsProvider
 import com.android.customization.model.theme.OverlayManagerCompat
 import com.android.customization.model.theme.ThemeBundleProvider
 import com.android.customization.model.theme.ThemeManager
@@ -16,6 +19,7 @@ import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
 import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
 import com.android.customization.picker.clock.ui.viewmodel.ClockSettingsViewModel
+import com.android.customization.picker.color.data.repository.ColorPickerRepository
 import com.android.customization.picker.color.data.repository.ColorPickerRepositoryImpl
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
 import com.android.customization.picker.color.domain.interactor.ColorPickerSnapshotRestorer
@@ -31,6 +35,9 @@ import com.android.wallpaper.model.WallpaperColorsViewModel
 import com.android.wallpaper.module.DrawableLayerResolver
 import com.android.wallpaper.module.PackageStatusNotifier
 import com.android.wallpaper.module.UserEventLogger
+import com.android.wallpaper.picker.customization.data.content.WallpaperClientImpl
+import com.android.wallpaper.picker.customization.data.repository.WallpaperRepository
+import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInteractor
 import com.android.wallpaper.picker.undo.domain.interactor.SnapshotRestorer
 import com.android.wallpaper.testing.TestInjector
 import kotlinx.coroutines.Dispatchers
@@ -43,6 +50,7 @@ class TestCustomizationInjector : TestInjector(), CustomizationInjector {
     private var packageStatusNotifier: PackageStatusNotifier? = null
     private var drawableLayerResolver: DrawableLayerResolver? = null
     private var userEventLogger: UserEventLogger? = null
+    private var wallpaperInteractor: WallpaperInteractor? = null
     private var keyguardQuickAffordancePickerInteractor: KeyguardQuickAffordancePickerInteractor? =
         null
     private var flags: BaseFlags? = null
@@ -53,9 +61,11 @@ class TestCustomizationInjector : TestInjector(), CustomizationInjector {
     private var clockPickerInteractor: ClockPickerInteractor? = null
     private var clockSectionViewModel: ClockSectionViewModel? = null
     private var clockViewFactory: ClockViewFactory? = null
+    private var colorPickerRepository: ColorPickerRepository? = null
     private var colorPickerInteractor: ColorPickerInteractor? = null
     private var colorPickerViewModelFactory: ColorPickerViewModel.Factory? = null
     private var colorPickerSnapshotRestorer: ColorPickerSnapshotRestorer? = null
+    private var colorCustomizationManager: ColorCustomizationManager? = null
     private var clockCarouselViewModel: ClockCarouselViewModel? = null
     private var clockSettingsViewModelFactory: ClockSettingsViewModel.Factory? = null
 
@@ -90,6 +100,25 @@ class TestCustomizationInjector : TestInjector(), CustomizationInjector {
 
     override fun getUserEventLogger(context: Context): UserEventLogger {
         return userEventLogger ?: TestThemesUserEventLogger().also { userEventLogger = it }
+    }
+
+    override fun getWallpaperInteractor(context: Context): WallpaperInteractor {
+        return wallpaperInteractor
+            ?: WallpaperInteractor(
+                    repository =
+                        WallpaperRepository(
+                            scope = GlobalScope,
+                            client = WallpaperClientImpl(context = context),
+                            backgroundDispatcher = Dispatchers.IO,
+                        ),
+                    shouldHandleReload = {
+                        TextUtils.equals(
+                            getColorCustomizationManager(context).currentColorSource,
+                            ColorOptionsProvider.COLOR_SOURCE_PRESET
+                        )
+                    }
+                )
+                .also { wallpaperInteractor = it }
     }
 
     override fun getKeyguardQuickAffordancePickerInteractor(
@@ -169,13 +198,24 @@ class TestCustomizationInjector : TestInjector(), CustomizationInjector {
             }
     }
 
+    private fun getColorPickerRepository(
+        context: Context,
+        wallpaperColorsViewModel: WallpaperColorsViewModel,
+    ): ColorPickerRepository {
+        return colorPickerRepository
+            ?: ColorPickerRepositoryImpl(
+                wallpaperColorsViewModel,
+                getColorCustomizationManager(context)
+            )
+    }
+
     override fun getColorPickerInteractor(
         context: Context,
         wallpaperColorsViewModel: WallpaperColorsViewModel,
     ): ColorPickerInteractor {
         return colorPickerInteractor
             ?: ColorPickerInteractor(
-                    repository = ColorPickerRepositoryImpl(context, wallpaperColorsViewModel),
+                    repository = getColorPickerRepository(context, wallpaperColorsViewModel),
                     snapshotRestorer = {
                         getColorPickerSnapshotRestorer(context, wallpaperColorsViewModel)
                     },
@@ -204,6 +244,13 @@ class TestCustomizationInjector : TestInjector(), CustomizationInjector {
                     getColorPickerInteractor(context, wallpaperColorsViewModel)
                 )
                 .also { colorPickerSnapshotRestorer = it }
+    }
+
+    private fun getColorCustomizationManager(context: Context): ColorCustomizationManager {
+        return colorCustomizationManager
+            ?: ColorCustomizationManager.getInstance(context, OverlayManagerCompat(context)).also {
+                colorCustomizationManager = it
+            }
     }
 
     override fun getClockCarouselViewModel(context: Context): ClockCarouselViewModel {
