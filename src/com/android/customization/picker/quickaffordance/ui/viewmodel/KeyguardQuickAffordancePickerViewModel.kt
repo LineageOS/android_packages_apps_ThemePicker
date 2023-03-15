@@ -148,7 +148,9 @@ private constructor(
                         selectedQuickAffordances =
                             selectedAffordances.map { affordanceModel ->
                                 OptionItemViewModel<Icon>(
-                                    key = flowOf("${slot.id}::${affordanceModel.id}"),
+                                    key =
+                                        MutableStateFlow("${slot.id}::${affordanceModel.id}")
+                                            as StateFlow<String>,
                                     payload =
                                         Icon.Loaded(
                                             drawable =
@@ -156,7 +158,7 @@ private constructor(
                                             contentDescription = null,
                                         ),
                                     text = Text.Loaded(affordanceModel.name),
-                                    isSelected = flowOf(true),
+                                    isSelected = MutableStateFlow(true) as StateFlow<Boolean>,
                                     onClicked = flowOf(null),
                                     onLongClicked = null,
                                     isEnabled = true,
@@ -196,7 +198,7 @@ private constructor(
     /** The list of all available quick affordances for the selected slot. */
     val quickAffordances: Flow<List<OptionItemViewModel<Icon>>> =
         quickAffordanceInteractor.affordances.map { affordances ->
-            val isNoneSelected = selectedAffordanceIds.map { it.isEmpty() }
+            val isNoneSelected = selectedAffordanceIds.map { it.isEmpty() }.stateIn(viewModelScope)
             listOf(
                 none(
                     slotId = selectedSlotId,
@@ -220,10 +222,15 @@ private constructor(
             ) +
                 affordances.map { affordance ->
                     val affordanceIcon = getAffordanceIcon(affordance.iconResourceId)
-                    val isSelectedFlow: Flow<Boolean> =
-                        selectedAffordanceIds.map { it.contains(affordance.id) }
+                    val isSelectedFlow: StateFlow<Boolean> =
+                        selectedAffordanceIds
+                            .map { it.contains(affordance.id) }
+                            .stateIn(viewModelScope)
                     OptionItemViewModel<Icon>(
-                        key = selectedSlotId.map { slotId -> "$slotId::${affordance.id}" },
+                        key =
+                            selectedSlotId
+                                .map { slotId -> "$slotId::${affordance.id}" }
+                                .stateIn(viewModelScope),
                         payload = Icon.Loaded(drawable = affordanceIcon, contentDescription = null),
                         text = Text.Loaded(affordance.name),
                         isSelected = isSelectedFlow,
@@ -359,13 +366,13 @@ private constructor(
 
     /** Returns a view-model for the special "None" option. */
     @SuppressLint("UseCompatLoadingForDrawables")
-    private fun none(
-        slotId: Flow<String>,
-        isSelected: Flow<Boolean>,
+    private suspend fun none(
+        slotId: StateFlow<String>,
+        isSelected: StateFlow<Boolean>,
         onSelected: Flow<(() -> Unit)?>,
     ): OptionItemViewModel<Icon> {
         return OptionItemViewModel<Icon>(
-            key = slotId.map { "$it::none" },
+            key = slotId.map { "$it::none" }.stateIn(viewModelScope),
             payload = Icon.Resource(res = R.drawable.link_off, contentDescription = null),
             text = Text.Resource(res = R.string.keyguard_affordance_none),
             isSelected = isSelected,
