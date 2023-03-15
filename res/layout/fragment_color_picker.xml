@@ -35,7 +35,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_marginHorizontal="24dp"
-        android:paddingTop="36dp"
+        android:paddingTop="20dp"
         android:paddingBottom="40dp"
         android:orientation="horizontal"
         android:gravity="center_vertical">
@@ -70,10 +70,11 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/color_type_tabs"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
-                android:paddingHorizontal="16dp" />
+                android:paddingHorizontal="16dp"
+                android:layout_gravity="center_horizontal"/>
 
             <!--
             This is just an invisible placeholder put in place so that the parent keeps its height
@@ -94,7 +95,20 @@
 
         <View
             android:layout_width="0dp"
-            android:layout_height="22dp" />
+            android:layout_height="6dp" />
+
+        <TextView
+            android:id="@+id/color_type_tab_subhead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color_secondary"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:paddingHorizontal="16dp"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="8dp" />
 
         <FrameLayout
             android:layout_width="match_parent"

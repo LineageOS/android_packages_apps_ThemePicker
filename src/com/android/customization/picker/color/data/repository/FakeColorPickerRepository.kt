@@ -36,7 +36,7 @@ class FakeColorPickerRepository(private val context: Context) : ColorPickerRepos
         MutableStateFlow(
             mapOf<ColorType, List<ColorOptionModel>>(
                 ColorType.WALLPAPER_COLOR to listOf(),
-                ColorType.BASIC_COLOR to listOf()
+                ColorType.PRESET_COLOR to listOf()
             )
         )
     override val colorOptions: StateFlow<Map<ColorType, List<ColorOptionModel>>> =
@@ -72,18 +72,18 @@ class FakeColorPickerRepository(private val context: Context) : ColorPickerRepos
                             add(colorOption)
                         }
                     },
-                ColorType.BASIC_COLOR to
+                ColorType.PRESET_COLOR to
                     buildList {
                         repeat(times = numPresetOptions) { index ->
                             val isSelected =
-                                selectedColorOptionType == ColorType.BASIC_COLOR &&
+                                selectedColorOptionType == ColorType.PRESET_COLOR &&
                                     selectedColorOptionIndex == index
                             val colorOption =
                                 ColorOptionModel(
-                                    key = "${ColorType.BASIC_COLOR}::$index",
+                                    key = "${ColorType.PRESET_COLOR}::$index",
                                     colorOption = buildPresetOption(index),
                                     isSelected =
-                                        selectedColorOptionType == ColorType.BASIC_COLOR &&
+                                        selectedColorOptionType == ColorType.PRESET_COLOR &&
                                             selectedColorOptionIndex == index,
                                 )
                             if (isSelected) {
@@ -141,7 +141,7 @@ class FakeColorPickerRepository(private val context: Context) : ColorPickerRepos
                 )
             }
         }
-        val basicColorOptions = colorOptions[ColorType.BASIC_COLOR]!!
+        val basicColorOptions = colorOptions[ColorType.PRESET_COLOR]!!
         val newBasicColorOptions = buildList {
             basicColorOptions.forEach { option ->
                 add(
@@ -156,7 +156,7 @@ class FakeColorPickerRepository(private val context: Context) : ColorPickerRepos
         _colorOptions.value =
             mapOf(
                 ColorType.WALLPAPER_COLOR to newWallpaperColorOptions,
-                ColorType.BASIC_COLOR to newBasicColorOptions
+                ColorType.PRESET_COLOR to newBasicColorOptions
             )
     }
 
