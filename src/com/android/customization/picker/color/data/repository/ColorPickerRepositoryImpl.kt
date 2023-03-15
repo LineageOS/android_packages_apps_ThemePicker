@@ -17,14 +17,12 @@
 package com.android.customization.picker.color.data.repository
 
 import android.app.WallpaperColors
-import android.content.Context
 import android.util.Log
 import com.android.customization.model.CustomizationManager
 import com.android.customization.model.color.ColorBundle
 import com.android.customization.model.color.ColorCustomizationManager
 import com.android.customization.model.color.ColorOption
 import com.android.customization.model.color.ColorSeedOption
-import com.android.customization.model.theme.OverlayManagerCompat
 import com.android.customization.picker.color.shared.model.ColorOptionModel
 import com.android.customization.picker.color.shared.model.ColorType
 import com.android.systemui.monet.Style
@@ -38,16 +36,14 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 // TODO (b/262924623): refactor to remove dependency on ColorCustomizationManager & ColorOption
 // TODO (b/268203200): Create test for ColorPickerRepositoryImpl
 class ColorPickerRepositoryImpl(
-    context: Context,
     wallpaperColorsViewModel: WallpaperColorsViewModel,
+    private val colorManager: ColorCustomizationManager,
 ) : ColorPickerRepository {
 
     private val homeWallpaperColors: StateFlow<WallpaperColors?> =
         wallpaperColorsViewModel.homeWallpaperColors
     private val lockWallpaperColors: StateFlow<WallpaperColors?> =
         wallpaperColorsViewModel.lockWallpaperColors
-    private val colorManager: ColorCustomizationManager =
-        ColorCustomizationManager.getInstance(context, OverlayManagerCompat(context))
 
     override val colorOptions: Flow<Map<ColorType, List<ColorOptionModel>>> =
         combine(homeWallpaperColors, lockWallpaperColors) { homeColors, lockColors ->
@@ -74,7 +70,7 @@ class ColorPickerRepositoryImpl(
                                     Result.success(
                                         mapOf(
                                             ColorType.WALLPAPER_COLOR to wallpaperColorOptions,
-                                            ColorType.BASIC_COLOR to presetColorOptions
+                                            ColorType.PRESET_COLOR to presetColorOptions
                                         )
                                     )
                                 )
@@ -130,6 +126,10 @@ class ColorPickerRepositoryImpl(
             colorOption = colorOption,
             isSelected = false,
         )
+    }
+
+    override fun getCurrentColorSource(): String? {
+        return colorManager.currentColorSource
     }
 
     private fun ColorOption.toModel(): ColorOptionModel {

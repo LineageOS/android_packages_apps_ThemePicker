@@ -123,7 +123,7 @@ private constructor(
                                 context,
                                 selectedColorId,
                             )
-                            ?: (colorOptions[ColorType.BASIC_COLOR]
+                            ?: (colorOptions[ColorType.PRESET_COLOR]
                                     ?.find { it.isSelected }
                                     ?.colorOption as? ColorBundle)
                                 ?.toColorOptionViewModel(

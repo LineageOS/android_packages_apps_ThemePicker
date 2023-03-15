@@ -15,16 +15,10 @@
  *
  */
 
-package com.android.customization.picker.color.ui.viewmodel
+package com.android.customization.model.grid.ui.viewmodel
 
-/** Models UI state for a single color type in a picker experience. */
-data class ColorTypeViewModel(
-    /** User-visible name for the color type. */
-    val name: String,
-
-    /** Whether this is the currently-selected color type in the picker. */
-    val isSelected: Boolean,
-
-    /** Notifies that the color type has been clicked by the user. */
-    val onClick: (() -> Unit)?,
+data class GridIconViewModel(
+    val columns: Int,
+    val rows: Int,
+    val path: String,
 )
