@@ -31,9 +31,10 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 /** Models UI state for a color picker experience. */
@@ -91,15 +92,19 @@ private constructor(
                                         colorOptionModel.colorOption as ColorSeedOption
                                     val colors =
                                         colorSeedOption.previewInfo.resolveColors(context.resources)
-                                    val isSelectedFlow: Flow<Boolean> =
-                                        interactor.activeColorOption.map {
-                                            it?.colorOption?.isEquivalent(
-                                                colorOptionModel.colorOption
-                                            )
-                                                ?: colorOptionModel.isSelected
-                                        }
+                                    val isSelectedFlow: StateFlow<Boolean> =
+                                        interactor.activeColorOption
+                                            .map {
+                                                it?.colorOption?.isEquivalent(
+                                                    colorOptionModel.colorOption
+                                                )
+                                                    ?: colorOptionModel.isSelected
+                                            }
+                                            .stateIn(viewModelScope)
                                     OptionItemViewModel<ColorOptionIconViewModel>(
-                                        key = flowOf(colorOptionModel.key),
+                                        key =
+                                            MutableStateFlow(colorOptionModel.key)
+                                                as StateFlow<String>,
                                         payload =
                                             ColorOptionIconViewModel(
                                                 colors[0],
@@ -141,15 +146,19 @@ private constructor(
                                         colorBundle.previewInfo.resolveSecondaryColor(
                                             context.resources
                                         )
-                                    val isSelectedFlow: Flow<Boolean> =
-                                        interactor.activeColorOption.map {
-                                            it?.colorOption?.isEquivalent(
-                                                colorOptionModel.colorOption
-                                            )
-                                                ?: colorOptionModel.isSelected
-                                        }
+                                    val isSelectedFlow: StateFlow<Boolean> =
+                                        interactor.activeColorOption
+                                            .map {
+                                                it?.colorOption?.isEquivalent(
+                                                    colorOptionModel.colorOption
+                                                )
+                                                    ?: colorOptionModel.isSelected
+                                            }
+                                            .stateIn(viewModelScope)
                                     OptionItemViewModel<ColorOptionIconViewModel>(
-                                        key = flowOf(colorOptionModel.key),
+                                        key =
+                                            MutableStateFlow(colorOptionModel.key)
+                                                as StateFlow<String>,
                                         payload =
                                             ColorOptionIconViewModel(
                                                 primaryColor,
