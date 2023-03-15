@@ -21,5 +21,5 @@ enum class ColorType {
     WALLPAPER_COLOR,
 
     /** Preset colors */
-    BASIC_COLOR,
+    PRESET_COLOR,
 }

@@ -70,7 +70,7 @@ class ColorPickerRepositoryImpl(
                                     Result.success(
                                         mapOf(
                                             ColorType.WALLPAPER_COLOR to wallpaperColorOptions,
-                                            ColorType.BASIC_COLOR to presetColorOptions
+                                            ColorType.PRESET_COLOR to presetColorOptions
                                         )
                                     )
                                 )
