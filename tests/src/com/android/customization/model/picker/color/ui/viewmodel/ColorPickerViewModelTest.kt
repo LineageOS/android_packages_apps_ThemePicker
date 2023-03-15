@@ -25,7 +25,7 @@ import com.android.customization.picker.color.domain.interactor.ColorPickerSnaps
 import com.android.customization.picker.color.shared.model.ColorType
 import com.android.customization.picker.color.ui.viewmodel.ColorOptionIconViewModel
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
-import com.android.customization.picker.color.ui.viewmodel.ColorTypeViewModel
+import com.android.customization.picker.color.ui.viewmodel.ColorTypeTabViewModel
 import com.android.wallpaper.picker.option.ui.viewmodel.OptionItemViewModel
 import com.android.wallpaper.testing.FakeSnapshotStore
 import com.android.wallpaper.testing.collectLastValue
@@ -114,7 +114,7 @@ class ColorPickerViewModelTest {
     @Test
     fun `Select a preset color`() =
         testScope.runTest {
-            val colorTypes = collectLastValue(underTest.colorTypes)
+            val colorTypes = collectLastValue(underTest.colorTypeTabs)
             val colorOptions = collectLastValue(underTest.colorOptions)
 
             // Initially, the wallpaper color tab should be selected
@@ -126,7 +126,7 @@ class ColorPickerViewModelTest {
             )
 
             // Select "Basic colors" tab
-            colorTypes()?.get(ColorType.BASIC_COLOR)?.onClick?.invoke()
+            colorTypes()?.get(ColorType.PRESET_COLOR)?.onClick?.invoke()
             assertPickerUiState(
                 colorTypes = colorTypes(),
                 colorOptions = colorOptions(),
@@ -147,7 +147,7 @@ class ColorPickerViewModelTest {
             )
 
             // Check new option is selected
-            colorTypes()?.get(ColorType.BASIC_COLOR)?.onClick?.invoke()
+            colorTypes()?.get(ColorType.PRESET_COLOR)?.onClick?.invoke()
             assertPickerUiState(
                 colorTypes = colorTypes(),
                 colorOptions = colorOptions(),
@@ -181,7 +181,7 @@ class ColorPickerViewModelTest {
      *   -1 stands for no color option should be selected
      */
     private fun TestScope.assertPickerUiState(
-        colorTypes: Map<ColorType, ColorTypeViewModel>?,
+        colorTypes: Map<ColorType, ColorTypeTabViewModel>?,
         colorOptions: List<OptionItemViewModel<ColorOptionIconViewModel>>?,
         selectedColorTypeText: String,
         selectedColorOptionIndex: Int,
@@ -193,7 +193,7 @@ class ColorPickerViewModelTest {
         )
         assertColorTypeTabUiState(
             colorTypes = colorTypes,
-            colorTypeId = ColorType.BASIC_COLOR,
+            colorTypeId = ColorType.PRESET_COLOR,
             isSelected = "Basic colors" == selectedColorTypeText,
         )
         assertColorOptionUiState(colorOptions, selectedColorOptionIndex)
@@ -251,7 +251,7 @@ class ColorPickerViewModelTest {
      * @param isSelected Whether that color type should be selected
      */
     private fun assertColorTypeTabUiState(
-        colorTypes: Map<ColorType, ColorTypeViewModel>?,
+        colorTypes: Map<ColorType, ColorTypeTabViewModel>?,
         colorTypeId: ColorType,
         isSelected: Boolean,
     ) {
