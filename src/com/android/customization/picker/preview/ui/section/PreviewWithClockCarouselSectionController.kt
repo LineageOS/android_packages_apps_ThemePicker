@@ -32,6 +32,7 @@ import com.android.wallpaper.model.CustomizationSectionController
 import com.android.wallpaper.model.WallpaperColorsViewModel
 import com.android.wallpaper.module.CurrentWallpaperInfoFactory
 import com.android.wallpaper.module.CustomizationSections
+import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInteractor
 import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewSectionController
 import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewView
 import com.android.wallpaper.util.DisplayUtils
@@ -48,6 +49,7 @@ class PreviewWithClockCarouselSectionController(
     private val clockCarouselViewModel: ClockCarouselViewModel,
     private val clockViewFactory: ClockViewFactory,
     navigator: CustomizationSectionController.CustomizationSectionNavigationController,
+    wallpaperInteractor: WallpaperInteractor,
 ) :
     ScreenPreviewSectionController(
         activity,
@@ -57,6 +59,7 @@ class PreviewWithClockCarouselSectionController(
         colorViewModel,
         displayUtils,
         navigator,
+        wallpaperInteractor,
     ) {
 
     private var clockCarouselBinding: ClockCarouselViewBinder.Binding? = null

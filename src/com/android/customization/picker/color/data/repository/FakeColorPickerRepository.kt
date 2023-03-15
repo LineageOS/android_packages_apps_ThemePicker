@@ -20,6 +20,7 @@ import android.content.Context
 import android.graphics.Color
 import android.text.TextUtils
 import com.android.customization.model.color.ColorBundle
+import com.android.customization.model.color.ColorOptionsProvider
 import com.android.customization.model.color.ColorSeedOption
 import com.android.customization.picker.color.shared.model.ColorOptionModel
 import com.android.customization.picker.color.shared.model.ColorType
@@ -160,6 +161,13 @@ class FakeColorPickerRepository(private val context: Context) : ColorPickerRepos
     }
 
     override fun getCurrentColorOption(): ColorOptionModel = selectedColorOption
+
+    override fun getCurrentColorSource(): String? =
+        when (selectedColorOption.colorOption) {
+            is ColorSeedOption -> ColorOptionsProvider.COLOR_SOURCE_HOME
+            is ColorBundle -> ColorOptionsProvider.COLOR_SOURCE_PRESET
+            else -> null
+        }
 
     private fun ColorOptionModel.testEquals(other: Any?): Boolean {
         if (other == null) {
