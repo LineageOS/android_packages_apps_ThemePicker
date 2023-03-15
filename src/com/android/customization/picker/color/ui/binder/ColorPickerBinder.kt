@@ -19,6 +19,7 @@ package com.android.customization.picker.color.ui.binder
 
 import android.graphics.Rect
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -26,10 +27,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.customization.picker.color.ui.adapter.ColorOptionAdapter
 import com.android.customization.picker.color.ui.adapter.ColorTypeTabAdapter
+import com.android.customization.picker.color.ui.viewmodel.ColorOptionIconViewModel
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
 import com.android.wallpaper.R
+import com.android.wallpaper.picker.option.ui.adapter.OptionItemAdapter
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -54,7 +56,15 @@ object ColorPickerBinder {
         colorTypeTabView.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
         colorTypeTabView.addItemDecoration(ItemSpacing())
-        val colorOptionAdapter = ColorOptionAdapter()
+        val colorOptionAdapter =
+            OptionItemAdapter(
+                layoutResourceId = R.layout.color_option_2,
+                lifecycleOwner = lifecycleOwner,
+                bindIcon = { foregroundView: View, colorIcon: ColorOptionIconViewModel ->
+                    val viewGroup = foregroundView as? ViewGroup
+                    viewGroup?.let { ColorOptionIconBinder.bind(viewGroup, colorIcon) }
+                }
+            )
         colorOptionContainerView.adapter = colorOptionAdapter
         colorOptionContainerView.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
