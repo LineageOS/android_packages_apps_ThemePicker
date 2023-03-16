@@ -53,7 +53,9 @@ class ClockRegistryProvider(
                 backgroundDispatcher,
                 isEnabled = true,
                 handleAllUsers = false,
-                DefaultClockProvider(context, LayoutInflater.from(context), context.resources)
+                DefaultClockProvider(context, LayoutInflater.from(context), context.resources),
+                keepAllLoaded = true,
+                subTag = "Picker",
             )
             .apply { registerListeners() }
     }
@@ -70,7 +72,7 @@ class ClockRegistryProvider(
             PluginInstance.Factory(
                 this::class.java.classLoader,
                 PluginInstance.InstanceFactory<Plugin>(),
-                PluginInstance.VersionChecker(),
+                PluginInstance.VersionCheckerImpl(),
                 privilegedPlugins,
                 isDebugDevice,
             )
