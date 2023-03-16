@@ -14,12 +14,17 @@
  * limitations under the License.
  *
  */
-package com.android.customization.picker.color.shared.model
 
-enum class ColorType {
-    /** Colors generated based on the current wallpaper */
-    WALLPAPER_COLOR,
+package com.android.customization.picker.color.ui.viewmodel
 
-    /** Preset colors */
-    PRESET_COLOR,
-}
+/** Models UI state for a single color type in a picker experience. */
+data class ColorTypeTabViewModel(
+    /** User-visible name for the color type. */
+    val name: String,
+
+    /** Whether this is the currently-selected color type in the picker. */
+    val isSelected: Boolean,
+
+    /** Notifies that the color type has been clicked by the user. */
+    val onClick: (() -> Unit)?,
+)

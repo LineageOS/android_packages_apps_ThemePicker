@@ -17,10 +17,9 @@
 
 package com.android.customization.picker.color.ui.binder
 
-import android.graphics.Rect
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.ViewCompat
+import android.widget.TextView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
@@ -30,8 +29,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.customization.picker.color.ui.adapter.ColorTypeTabAdapter
 import com.android.customization.picker.color.ui.viewmodel.ColorOptionIconViewModel
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
+import com.android.customization.picker.common.ui.view.ItemSpacing
 import com.android.wallpaper.R
 import com.android.wallpaper.picker.option.ui.adapter.OptionItemAdapter
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -49,13 +50,14 @@ object ColorPickerBinder {
         lifecycleOwner: LifecycleOwner,
     ) {
         val colorTypeTabView: RecyclerView = view.requireViewById(R.id.color_type_tabs)
+        val colorTypeTabSubheaderView: TextView = view.requireViewById(R.id.color_type_tab_subhead)
         val colorOptionContainerView: RecyclerView = view.requireViewById(R.id.color_options)
 
         val colorTypeTabAdapter = ColorTypeTabAdapter()
         colorTypeTabView.adapter = colorTypeTabAdapter
         colorTypeTabView.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
-        colorTypeTabView.addItemDecoration(ItemSpacing())
+        colorTypeTabView.addItemDecoration(ItemSpacing(ItemSpacing.TAB_ITEM_SPACING_DP))
         val colorOptionAdapter =
             OptionItemAdapter(
                 layoutResourceId = R.layout.color_option_2,
@@ -68,14 +70,20 @@ object ColorPickerBinder {
         colorOptionContainerView.adapter = colorOptionAdapter
         colorOptionContainerView.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
-        colorOptionContainerView.addItemDecoration(ItemSpacing())
+        colorOptionContainerView.addItemDecoration(ItemSpacing(ItemSpacing.ITEM_SPACING_DP))
 
         lifecycleOwner.lifecycleScope.launch {
             lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
-                    viewModel.colorTypes
+                    viewModel.colorTypeTabs
                         .map { colorTypeById -> colorTypeById.values }
                         .collect { colorTypes -> colorTypeTabAdapter.setItems(colorTypes.toList()) }
+                }
+
+                launch {
+                    viewModel.colorTypeTabSubheader.collect { subhead ->
+                        colorTypeTabSubheaderView.text = subhead
+                    }
                 }
 
                 launch {
@@ -84,31 +92,6 @@ object ColorPickerBinder {
                     }
                 }
             }
-        }
-    }
-
-    // TODO (b/262924623): Remove function and use common ItemSpacing after ag/20929223 is merged
-    private class ItemSpacing : RecyclerView.ItemDecoration() {
-        override fun getItemOffsets(outRect: Rect, itemPosition: Int, parent: RecyclerView) {
-            val addSpacingToStart = itemPosition > 0
-            val addSpacingToEnd = itemPosition < (parent.adapter?.itemCount ?: 0) - 1
-            val isRtl = parent.layoutManager?.layoutDirection == ViewCompat.LAYOUT_DIRECTION_RTL
-            val density = parent.context.resources.displayMetrics.density
-            if (!isRtl) {
-                outRect.left = if (addSpacingToStart) ITEM_SPACING_DP.toPx(density) else 0
-                outRect.right = if (addSpacingToEnd) ITEM_SPACING_DP.toPx(density) else 0
-            } else {
-                outRect.left = if (addSpacingToEnd) ITEM_SPACING_DP.toPx(density) else 0
-                outRect.right = if (addSpacingToStart) ITEM_SPACING_DP.toPx(density) else 0
-            }
-        }
-
-        private fun Int.toPx(density: Float): Int {
-            return (this * density).toInt()
-        }
-
-        companion object {
-            private const val ITEM_SPACING_DP = 8
         }
     }
 }

@@ -18,18 +18,20 @@ package com.android.customization.picker.clock.ui.view
 import android.app.Activity
 import android.view.View
 import androidx.annotation.ColorInt
+import androidx.lifecycle.LifecycleOwner
 import com.android.systemui.plugins.ClockController
 import com.android.systemui.shared.clocks.ClockRegistry
 import com.android.wallpaper.R
 import com.android.wallpaper.util.ScreenSizeCalculator
 import com.android.wallpaper.util.TimeUtils.TimeTicker
+import java.util.concurrent.ConcurrentHashMap
 
 class ClockViewFactory(
     private val activity: Activity,
     private val registry: ClockRegistry,
 ) {
+    private val timeTickListeners: ConcurrentHashMap<Int, TimeTicker> = ConcurrentHashMap()
     private val clockControllers: HashMap<String, ClockController> = HashMap()
-    private var ticker: TimeTicker? = null
 
     fun getView(clockId: String): View {
         return (clockControllers[clockId] ?: initClockController(clockId)).largeClock.view
@@ -45,15 +47,23 @@ class ClockViewFactory(
             .onSeedColorChanged(seedColor)
     }
 
-    fun registerTimeTicker() {
-        ticker =
+    fun registerTimeTicker(owner: LifecycleOwner) {
+        val hashCode = owner.hashCode()
+        if (timeTickListeners.keys.contains(hashCode)) {
+            return
+        }
+        timeTickListeners[hashCode] =
             TimeTicker.registerNewReceiver(activity.applicationContext) {
                 clockControllers.values.forEach { it.largeClock.events.onTimeTick() }
             }
     }
 
-    fun unregisterTimeTicker() {
-        activity.applicationContext.unregisterReceiver(ticker)
+    fun unregisterTimeTicker(owner: LifecycleOwner) {
+        val hashCode = owner.hashCode()
+        timeTickListeners[hashCode]?.let {
+            activity.applicationContext.unregisterReceiver(it)
+            timeTickListeners.remove(hashCode)
+        }
     }
 
     private fun initClockController(clockId: String): ClockController {

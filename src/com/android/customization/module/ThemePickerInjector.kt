@@ -21,10 +21,13 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.TextUtils
 import androidx.activity.ComponentActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
+import com.android.customization.model.color.ColorCustomizationManager
+import com.android.customization.model.color.ColorOptionsProvider
 import com.android.customization.model.grid.GridOptionsManager
 import com.android.customization.model.grid.data.repository.GridRepositoryImpl
 import com.android.customization.model.grid.domain.interactor.GridInteractor
@@ -72,6 +75,9 @@ import com.android.wallpaper.picker.CustomizationPickerActivity
 import com.android.wallpaper.picker.ImagePreviewFragment
 import com.android.wallpaper.picker.LivePreviewFragment
 import com.android.wallpaper.picker.PreviewFragment
+import com.android.wallpaper.picker.customization.data.content.WallpaperClientImpl
+import com.android.wallpaper.picker.customization.data.repository.WallpaperRepository
+import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInteractor
 import com.android.wallpaper.picker.undo.domain.interactor.SnapshotRestorer
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
@@ -82,6 +88,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     private var customizationSections: CustomizationSections? = null
     private var userEventLogger: UserEventLogger? = null
     private var prefs: WallpaperPreferences? = null
+    private var wallpaperInteractor: WallpaperInteractor? = null
     private var keyguardQuickAffordancePickerInteractor: KeyguardQuickAffordancePickerInteractor? =
         null
     private var keyguardQuickAffordancePickerViewModelFactory:
@@ -102,6 +109,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     private var colorPickerInteractor: ColorPickerInteractor? = null
     private var colorPickerViewModelFactory: ColorPickerViewModel.Factory? = null
     private var colorPickerSnapshotRestorer: ColorPickerSnapshotRestorer? = null
+    private var colorCustomizationManager: ColorCustomizationManager? = null
     private var darkModeSnapshotRestorer: DarkModeSnapshotRestorer? = null
     private var themedIconSnapshotRestorer: ThemedIconSnapshotRestorer? = null
     private var themedIconInteractor: ThemedIconInteractor? = null
@@ -207,6 +215,25 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
         logger: ThemesUserEventLogger
     ): ThemeManager {
         return ThemeManager(provider, activity, overlayManagerCompat, logger)
+    }
+
+    override fun getWallpaperInteractor(context: Context): WallpaperInteractor {
+        return wallpaperInteractor
+            ?: WallpaperInteractor(
+                    repository =
+                        WallpaperRepository(
+                            scope = GlobalScope,
+                            client = WallpaperClientImpl(context = context),
+                            backgroundDispatcher = Dispatchers.IO,
+                        ),
+                    shouldHandleReload = {
+                        TextUtils.equals(
+                            getColorCustomizationManager(context).currentColorSource,
+                            ColorOptionsProvider.COLOR_SOURCE_PRESET
+                        )
+                    }
+                )
+                .also { wallpaperInteractor = it }
     }
 
     override fun getKeyguardQuickAffordancePickerInteractor(
@@ -352,7 +379,11 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     ): ColorPickerInteractor {
         return colorPickerInteractor
             ?: ColorPickerInteractor(
-                    repository = ColorPickerRepositoryImpl(context, wallpaperColorsViewModel),
+                    repository =
+                        ColorPickerRepositoryImpl(
+                            wallpaperColorsViewModel,
+                            getColorCustomizationManager(context)
+                        ),
                     snapshotRestorer = {
                         getColorPickerSnapshotRestorer(context, wallpaperColorsViewModel)
                     }
@@ -381,6 +412,13 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                     getColorPickerInteractor(context, wallpaperColorsViewModel)
                 )
                 .also { colorPickerSnapshotRestorer = it }
+    }
+
+    private fun getColorCustomizationManager(context: Context): ColorCustomizationManager {
+        return colorCustomizationManager
+            ?: ColorCustomizationManager.getInstance(context, OverlayManagerCompat(context)).also {
+                colorCustomizationManager = it
+            }
     }
 
     fun getDarkModeSnapshotRestorer(

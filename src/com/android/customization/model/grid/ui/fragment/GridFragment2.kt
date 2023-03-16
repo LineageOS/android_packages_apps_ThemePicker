@@ -27,8 +27,10 @@ import com.android.customization.model.grid.ui.viewmodel.GridScreenViewModel
 import com.android.customization.module.ThemePickerInjector
 import com.android.wallpaper.R
 import com.android.wallpaper.module.CurrentWallpaperInfoFactory
+import com.android.wallpaper.module.CustomizationSections
 import com.android.wallpaper.module.InjectorProvider
 import com.android.wallpaper.picker.AppbarFragment
+import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInteractor
 import com.android.wallpaper.picker.customization.ui.binder.ScreenPreviewBinder
 import com.android.wallpaper.picker.customization.ui.viewmodel.ScreenPreviewViewModel
 import com.android.wallpaper.util.PreviewUtils
@@ -55,7 +57,12 @@ class GridFragment2 : AppbarFragment() {
         val injector = InjectorProvider.getInjector() as ThemePickerInjector
 
         val wallpaperInfoFactory = injector.getCurrentWallpaperInfoFactory(requireContext())
-        var screenPreviewBinding = bindScreenPreview(view, wallpaperInfoFactory)
+        var screenPreviewBinding =
+            bindScreenPreview(
+                view,
+                wallpaperInfoFactory,
+                injector.getWallpaperInteractor(requireContext())
+            )
 
         val viewModelFactory = injector.getGridScreenViewModelFactory(requireContext())
         GridScreenBinder.bind(
@@ -69,7 +76,12 @@ class GridFragment2 : AppbarFragment() {
             backgroundDispatcher = Dispatchers.IO,
             onOptionsChanged = {
                 screenPreviewBinding.destroy()
-                screenPreviewBinding = bindScreenPreview(view, wallpaperInfoFactory)
+                screenPreviewBinding =
+                    bindScreenPreview(
+                        view,
+                        wallpaperInfoFactory,
+                        injector.getWallpaperInteractor(requireContext())
+                    )
             }
         )
 
@@ -83,6 +95,7 @@ class GridFragment2 : AppbarFragment() {
     private fun bindScreenPreview(
         view: View,
         wallpaperInfoFactory: CurrentWallpaperInfoFactory,
+        wallpaperInteractor: WallpaperInteractor,
     ): ScreenPreviewBinder.Binding {
         return ScreenPreviewBinder.bind(
             activity = requireActivity(),
@@ -108,9 +121,12 @@ class GridFragment2 : AppbarFragment() {
                             )
                         }
                     },
+                    wallpaperInteractor = wallpaperInteractor,
                 ),
             lifecycleOwner = this,
             offsetToStart = false,
+            screen = CustomizationSections.Screen.HOME_SCREEN,
+            onPreviewDirty = { activity?.recreate() },
         )
     }
 }

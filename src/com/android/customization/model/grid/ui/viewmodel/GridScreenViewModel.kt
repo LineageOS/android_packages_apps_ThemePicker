@@ -26,12 +26,11 @@ import androidx.lifecycle.viewModelScope
 import com.android.customization.model.ResourceConstants
 import com.android.customization.model.grid.domain.interactor.GridInteractor
 import com.android.customization.model.grid.shared.model.GridOptionItemsModel
-import com.android.customization.widget.GridTileDrawable
-import com.android.wallpaper.picker.common.icon.ui.viewmodel.Icon
 import com.android.wallpaper.picker.common.text.ui.viewmodel.Text
 import com.android.wallpaper.picker.option.ui.viewmodel.OptionItemViewModel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -43,12 +42,12 @@ class GridScreenViewModel(
     @SuppressLint("StaticFieldLeak") // We're not leaking this context as it is the app context.
     private val applicationContext = context.applicationContext
 
-    val optionItems: Flow<List<OptionItemViewModel<Icon>>> =
+    val optionItems: Flow<List<OptionItemViewModel<GridIconViewModel>>> =
         interactor.options.map { model -> toViewModel(model) }
 
     private fun toViewModel(
         model: GridOptionItemsModel,
-    ): List<OptionItemViewModel<Icon>> {
+    ): List<OptionItemViewModel<GridIconViewModel>> {
         val iconShapePath =
             applicationContext.resources.getString(
                 Resources.getSystem()
@@ -63,17 +62,14 @@ class GridScreenViewModel(
             is GridOptionItemsModel.Loaded ->
                 model.options.map { option ->
                     val text = Text.Loaded(option.name)
-                    OptionItemViewModel<Icon>(
-                        key = flowOf("${option.cols}x${option.rows}"),
+                    OptionItemViewModel<GridIconViewModel>(
+                        key =
+                            MutableStateFlow("${option.cols}x${option.rows}") as StateFlow<String>,
                         payload =
-                            Icon.Loaded(
-                                drawable =
-                                    GridTileDrawable(
-                                        option.cols,
-                                        option.rows,
-                                        iconShapePath,
-                                    ),
-                                contentDescription = text
+                            GridIconViewModel(
+                                columns = option.cols,
+                                rows = option.rows,
+                                path = iconShapePath,
                             ),
                         text = text,
                         isSelected = option.isSelected,
