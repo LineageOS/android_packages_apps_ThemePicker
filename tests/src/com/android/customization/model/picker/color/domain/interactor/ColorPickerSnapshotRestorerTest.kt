@@ -70,9 +70,9 @@ class ColorPickerSnapshotRestorerTest {
         val initialSnapshot = underTest.setUpSnapshotRestorer(store = store)
         assertThat(initialSnapshot.args).isNotEmpty()
 
-        val colorOptionToSelect = colorOptions()?.get(ColorType.BASIC_COLOR)?.get(3)
+        val colorOptionToSelect = colorOptions()?.get(ColorType.PRESET_COLOR)?.get(3)
         colorOptionToSelect?.let { repository.select(it) }
-        assertState(colorOptions(), ColorType.BASIC_COLOR, 3)
+        assertState(colorOptions(), ColorType.PRESET_COLOR, 3)
 
         underTest.restoreToSnapshot(initialSnapshot)
         assertState(colorOptions(), ColorType.WALLPAPER_COLOR, 2)
@@ -86,11 +86,11 @@ class ColorPickerSnapshotRestorerTest {
         val initialSnapshot = underTest.setUpSnapshotRestorer(store = store)
         assertThat(initialSnapshot.args).isNotEmpty()
 
-        val colorOptionToSelect = colorOptions()?.get(ColorType.BASIC_COLOR)?.get(3)
+        val colorOptionToSelect = colorOptions()?.get(ColorType.PRESET_COLOR)?.get(3)
         colorOptionToSelect?.let { repository.select(it) }
-        assertState(colorOptions(), ColorType.BASIC_COLOR, 3)
+        assertState(colorOptions(), ColorType.PRESET_COLOR, 3)
 
-        val colorOptionToStore = colorOptions()?.get(ColorType.BASIC_COLOR)?.get(1)
+        val colorOptionToStore = colorOptions()?.get(ColorType.PRESET_COLOR)?.get(1)
         colorOptionToStore?.let { underTest.storeSnapshot(colorOptionToStore) }
 
         underTest.restoreToSnapshot(initialSnapshot)

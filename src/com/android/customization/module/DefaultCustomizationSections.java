@@ -36,6 +36,7 @@ import com.android.wallpaper.model.WallpaperPreviewNavigator;
 import com.android.wallpaper.model.WallpaperSectionController;
 import com.android.wallpaper.module.CurrentWallpaperInfoFactory;
 import com.android.wallpaper.module.CustomizationSections;
+import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInteractor;
 import com.android.wallpaper.picker.customization.ui.section.ConnectedSectionController;
 import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewSectionController;
 import com.android.wallpaper.picker.customization.ui.section.WallpaperQuickSwitchSectionController;
@@ -97,7 +98,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
             @Nullable Bundle savedInstanceState,
             CurrentWallpaperInfoFactory wallpaperInfoFactory,
             DisplayUtils displayUtils,
-            WallpaperQuickSwitchViewModel wallpaperQuickSwitchViewModel) {
+            WallpaperQuickSwitchViewModel wallpaperQuickSwitchViewModel,
+            WallpaperInteractor wallpaperInteractor) {
         List<CustomizationSectionController<?>> sectionControllers = new ArrayList<>();
 
         // Wallpaper section.
@@ -112,7 +114,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
                         displayUtils,
                         mClockCarouselViewModel,
                         mClockViewFactory,
-                        sectionNavigationController)
+                        sectionNavigationController,
+                        wallpaperInteractor)
                         : new ScreenPreviewSectionController(
                                 activity,
                                 lifecycleOwner,
@@ -120,7 +123,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
                                 wallpaperInfoFactory,
                                 wallpaperColorsViewModel,
                                 displayUtils,
-                                sectionNavigationController));
+                                sectionNavigationController,
+                                wallpaperInteractor));
 
         sectionControllers.add(
                 new ConnectedSectionController(
