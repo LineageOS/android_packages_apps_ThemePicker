@@ -114,7 +114,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
                         displayUtils,
                         mClockCarouselViewModel,
                         mClockViewFactory,
-                        sectionNavigationController,
+                        wallpaperPreviewNavigator,
                         wallpaperInteractor)
                         : new ScreenPreviewSectionController(
                                 activity,
@@ -123,7 +123,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
                                 wallpaperInfoFactory,
                                 wallpaperColorsViewModel,
                                 displayUtils,
-                                sectionNavigationController,
+                                wallpaperPreviewNavigator,
                                 wallpaperInteractor));
 
         sectionControllers.add(
