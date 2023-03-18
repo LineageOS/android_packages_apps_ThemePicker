@@ -95,7 +95,7 @@ public class CustomThemeComponentFragment extends CustomThemeStepFragment {
     private void setUpOptions() {
         mProvider.fetch(options -> {
             mOptionsController = new OptionSelectorController(
-                    mOptionsContainer, options, mUseGridLayout, CheckmarkStyle.NONE);
+                    mOptionsContainer, options, mUseGridLayout, CheckmarkStyle.NONE, 0);
 
             mOptionsController.addListener(selected -> {
                 mSelectedOption = (ThemeComponentOption) selected;
