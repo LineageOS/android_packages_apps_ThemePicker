@@ -16,6 +16,10 @@
   -->
 <resources>
     <array name="color_bundles">
+        <item>default</item>
+        <item>bundle1</item>
+        <item>bundle2</item>
+        <item>bundle3</item>
         <item>monochromatic</item>
         <item>rainbow1</item>
         <item>rainbow2</item>
@@ -24,5 +28,10 @@
         <item>rainbow5</item>
         <item>rainbow6</item>
         <item>rainbow7</item>
+        <item>fruits1</item>
+        <item>fruits2</item>
+        <item>fruits3</item>
+        <item>fruits4</item>
+        <item>fruits5</item>
     </array>
 </resources>
