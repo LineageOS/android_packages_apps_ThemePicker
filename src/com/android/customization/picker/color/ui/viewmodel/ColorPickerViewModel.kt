@@ -129,6 +129,7 @@ private constructor(
                                                     .getContentDescription(context)
                                                     .toString()
                                             ),
+                                        isTextUserVisible = false,
                                         isSelected = isSelectedFlow,
                                         onClicked =
                                             isSelectedFlow.map { isSelected ->
@@ -183,6 +184,7 @@ private constructor(
                                                     .getContentDescription(context)
                                                     .toString()
                                             ),
+                                        isTextUserVisible = false,
                                         isSelected = isSelectedFlow,
                                         onClicked =
                                             isSelectedFlow.map { isSelected ->
