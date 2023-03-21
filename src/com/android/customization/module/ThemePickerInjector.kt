@@ -224,6 +224,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                         WallpaperRepository(
                             scope = GlobalScope,
                             client = WallpaperClientImpl(context = context),
+                            wallpaperPreferences = getPreferences(context = context),
                             backgroundDispatcher = Dispatchers.IO,
                         ),
                     shouldHandleReload = {
