@@ -15,8 +15,7 @@
   ~ limitations under the License.
   -->
 <resources>
-<!--TODO(b/257218629)-->
-    <color name="color_secondary_monochromatic">#FFFF00</color>
+    <color name="color_secondary_monochromatic">#333333</color>
     <color name="color_secondary_rainbow1">#FFB2B5</color>
     <color name="color_secondary_rainbow2">#FFB868</color>
     <color name="color_secondary_rainbow3">#E9C44A</color>
