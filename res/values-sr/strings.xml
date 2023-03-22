@@ -23,7 +23,18 @@
     <string name="clock_description" msgid="3563839327378948">"Прилагођени сат"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Промените прилагођени сат"</string>
     <string name="clock_settings_title" msgid="2940654205471453913">"Подешавања сата"</string>
+    <string name="clock_color_and_size_title" msgid="7146791234905111351">"Боја и величина сата"</string>
+    <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>"</string>
     <string name="clock_color" msgid="8081608867289156163">"Боја"</string>
+    <string name="clock_color_red" msgid="3843504214807597810">"Црвена"</string>
+    <string name="clock_color_orange" msgid="4175805201144275804">"Наранџаста"</string>
+    <string name="clock_color_yellow" msgid="7391699163247349977">"Жута"</string>
+    <string name="clock_color_green" msgid="1991157556500156596">"Зелена"</string>
+    <string name="clock_color_blue" msgid="4037792003465759149">"Плава"</string>
+    <string name="clock_color_indigo" msgid="8910855386698452917">"Тамноплава"</string>
+    <string name="clock_color_violet" msgid="3454503847169375826">"Љубичаста"</string>
+    <string name="clock_color_gray" msgid="9221530636948859231">"Сива"</string>
+    <string name="clock_color_teal" msgid="7499223425741344251">"Тиркизна"</string>
     <string name="clock_size" msgid="5028923902364418263">"Величина"</string>
     <string name="clock_size_dynamic" msgid="1023930312455061642">"Динамички"</string>
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Величина сата се мења у складу са садржајем закључаног екрана"</string>
@@ -94,11 +105,14 @@
     <string name="beta_title" msgid="8703819523760746458">"Бета"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"Промените мрежу апликација"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"Боје позадине"</string>
+    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Иконе, текст и друго уклапају се са бојама позадине"</string>
     <string name="wallpaper_color_title" msgid="5687965239180986458">"Боја позадине"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"Основне боје"</string>
+    <string name="preset_color_tab_2" msgid="1444107326712562538">"Остале боје"</string>
+    <string name="preset_color_subheader" msgid="8230588536141279371">"Одаберите било коју боју за иконе, сат и друго"</string>
     <string name="color_changed" msgid="7029571720331641235">"Боја је промењена"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Динамички"</string>
-    <string name="color_picker_title" msgid="9150524788313065978">"Системске боје"</string>
+    <string name="color_picker_title" msgid="6666830057938082864">"Системске боје"</string>
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Лева пречица"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Десна пречица"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Ништа"</string>
