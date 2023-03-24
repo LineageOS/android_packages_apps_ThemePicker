@@ -105,18 +105,14 @@
     <string name="beta_title" msgid="8703819523760746458">"బీటా"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"యాప్ గ్రిడ్‌ను మార్చండి"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"వాల్‌పేపర్ రంగులు"</string>
-    <!-- no translation found for wallpaper_color_subheader (4044464573669965670) -->
-    <skip />
+    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"మీ వాల్‌పేపర్‌లో చిహ్నాలు, టెక్స్ట్, అలాగే మరిన్ని మ్యాచ్ అయ్యే రంగులు ఉన్నాయి"</string>
     <string name="wallpaper_color_title" msgid="5687965239180986458">"వాల్‌పేపర్ రంగు"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"ప్రాథమిక రంగులు"</string>
-    <!-- no translation found for preset_color_tab_2 (1444107326712562538) -->
-    <skip />
-    <!-- no translation found for preset_color_subheader (8230588536141279371) -->
-    <skip />
+    <string name="preset_color_tab_2" msgid="1444107326712562538">"ఇతర రంగులు"</string>
+    <string name="preset_color_subheader" msgid="8230588536141279371">"మీ చిహ్నాలు, గడియారం, అలాగే మరిన్నింటి కోసం ఏదైనా రంగును ఎంచుకోండి"</string>
     <string name="color_changed" msgid="7029571720331641235">"రంగు మార్చబడింది"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"డైనమిక్"</string>
-    <!-- no translation found for color_picker_title (6666830057938082864) -->
-    <skip />
+    <string name="color_picker_title" msgid="6666830057938082864">"సిస్టమ్ రంగులు"</string>
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"ఎడమ షార్ట్‌కట్"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"కుడి షార్ట్‌కట్"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"ఏదీ లేదు"</string>
