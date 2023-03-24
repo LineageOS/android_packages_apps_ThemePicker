@@ -258,7 +258,7 @@ public class ThemeFragment extends AppbarFragment {
         mThemeManager.fetchOptions(new OptionsFetchedListener<ThemeBundle>() {
             @Override
             public void onOptionsLoaded(List<ThemeBundle> options) {
-                mOptionsController = new OptionSelectorController<>(mOptionsContainer, options, 0);
+                mOptionsController = new OptionSelectorController<>(mOptionsContainer, options);
                 mOptionsController.initOptions(mThemeManager);
 
                 // Find out the selected theme option.
