@@ -82,6 +82,7 @@ public class GridFragment extends AppbarFragment {
     private final Callback mApplyGridCallback = new Callback() {
         @Override
         public void onSuccess() {
+            mGridManager.fetchOptions(unused -> {}, true);
             Toast.makeText(getContext(), R.string.applied_grid_msg, Toast.LENGTH_SHORT).show();
             getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             getActivity().finish();
