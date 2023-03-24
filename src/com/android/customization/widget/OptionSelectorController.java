@@ -85,19 +85,18 @@ public class OptionSelectorController<T extends CustomizationOption<T>> {
     private final boolean mUseGrid;
     @CheckmarkStyle
     private final int mCheckmarkStyle;
-    private final int mContainerInset;
 
     private final Set<OptionSelectedListener> mListeners = new HashSet<>();
     private RecyclerView.Adapter<TileViewHolder> mAdapter;
     private T mSelectedOption;
     private T mAppliedOption;
 
-    public OptionSelectorController(RecyclerView container, List<T> options, int containerInset) {
-        this(container, options, true, CheckmarkStyle.CORNER, containerInset);
+    public OptionSelectorController(RecyclerView container, List<T> options) {
+        this(container, options, true, CheckmarkStyle.CORNER);
     }
 
     public OptionSelectorController(RecyclerView container, List<T> options,
-            boolean useGrid, @CheckmarkStyle int checkmarkStyle, int containerInset) {
+            boolean useGrid, @CheckmarkStyle int checkmarkStyle) {
         mContainer = container;
         mOptions = options;
         mUseGrid = useGrid;
@@ -106,7 +105,6 @@ public class OptionSelectorController<T extends CustomizationOption<T>> {
         mContainer.getResources().getValue(R.dimen.linear_layout_horizontal_display_options_max,
                 typedValue, true);
         mLinearLayoutHorizontalDisplayOptionsMax = typedValue.getFloat();
-        mContainerInset = containerInset;
     }
 
     public void addListener(OptionSelectedListener listener) {
@@ -304,9 +302,6 @@ public class OptionSelectorController<T extends CustomizationOption<T>> {
             int numColumns = res.getInteger(R.integer.options_grid_num_columns);
             GridLayoutManager gridLayoutManager = new GridLayoutManager(mContainer.getContext(),
                     numColumns);
-            if (mContainerInset != 0) {
-                mContainer.setPadding(mContainerInset, 0, mContainerInset, 0);
-            }
             mContainer.setLayoutManager(gridLayoutManager);
         } else {
             final int padding = res.getDimensionPixelSize(
