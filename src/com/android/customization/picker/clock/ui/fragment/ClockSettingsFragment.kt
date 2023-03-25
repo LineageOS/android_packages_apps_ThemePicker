@@ -108,7 +108,7 @@ class ClockSettingsFragment : AppbarFragment() {
                         },
                     ),
                 lifecycleOwner = this,
-                offsetToStart = displayUtils.isOnWallpaperDisplay(activity),
+                offsetToStart = displayUtils.isSingleDisplayOrUnfoldedHorizontalHinge(activity),
             )
             .show()
 
