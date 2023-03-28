@@ -88,15 +88,20 @@ class ClockSettingsViewModelTest {
         val observedSeedColor = collectLastValue(underTest.seedColor)
         // Advance COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS since there is a delay from colorOptions
         advanceTimeBy(ClockSettingsViewModel.COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS)
-        assertThat(observedClockColorOptions()!![0].isSelected).isTrue()
-        assertThat(observedClockColorOptions()!![0].onClick).isNull()
+        val option0IsSelected = collectLastValue(observedClockColorOptions()!![0].isSelected)
+        val option0OnClicked = collectLastValue(observedClockColorOptions()!![0].onClicked)
+        assertThat(option0IsSelected()).isTrue()
+        assertThat(option0OnClicked()).isNull()
         assertThat(observedSelectedColorOptionPosition()).isEqualTo(0)
 
-        observedClockColorOptions()!![1].onClick?.invoke()
+        val option1OnClickedBefore = collectLastValue(observedClockColorOptions()!![1].onClicked)
+        option1OnClickedBefore()?.invoke()
         // Advance COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS since there is a delay from colorOptions
         advanceTimeBy(ClockSettingsViewModel.COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS)
-        assertThat(observedClockColorOptions()!![1].isSelected).isTrue()
-        assertThat(observedClockColorOptions()!![1].onClick).isNull()
+        val option1IsSelected = collectLastValue(observedClockColorOptions()!![1].isSelected)
+        val option1OnClickedAfter = collectLastValue(observedClockColorOptions()!![1].onClicked)
+        assertThat(option1IsSelected()).isTrue()
+        assertThat(option1OnClickedAfter()).isNull()
         assertThat(observedSelectedColorOptionPosition()).isEqualTo(1)
         assertThat(observedSliderProgress())
             .isEqualTo(ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS)
@@ -120,10 +125,12 @@ class ClockSettingsViewModelTest {
         val observedSeedColor = collectLastValue(underTest.seedColor)
         // Advance COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS since there is a delay from colorOptions
         advanceTimeBy(ClockSettingsViewModel.COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS)
-        assertThat(observedClockColorOptions()!![0].isSelected).isTrue()
+        val option0IsSelected = collectLastValue(observedClockColorOptions()!![0].isSelected)
+        assertThat(option0IsSelected()).isTrue()
         assertThat(observedIsSliderEnabled()).isFalse()
 
-        observedClockColorOptions()!![1].onClick?.invoke()
+        val option1OnClicked = collectLastValue(observedClockColorOptions()!![1].onClicked)
+        option1OnClicked()?.invoke()
 
         // Advance COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS since there is a delay from colorOptions
         advanceTimeBy(ClockSettingsViewModel.COLOR_OPTIONS_EVENT_UPDATE_DELAY_MILLIS)
