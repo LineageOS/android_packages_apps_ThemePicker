@@ -33,9 +33,20 @@ class ClockViewFactory(
 ) {
     private val timeTickListeners: ConcurrentHashMap<Int, TimeTicker> = ConcurrentHashMap()
     private val clockControllers: HashMap<String, ClockController> = HashMap()
+    private var ticker: TimeTicker? = null
+    fun getRatio(): Float {
+        val screenSizeCalculator = ScreenSizeCalculator.getInstance()
+        val screenSize = screenSizeCalculator.getScreenSize(activity.windowManager.defaultDisplay)
+        return activity.resources.getDimensionPixelSize(R.dimen.screen_preview_height).toFloat() /
+            screenSize.y.toFloat()
+    }
+
+    fun getController(clockId: String): ClockController {
+        return clockControllers[clockId] ?: initClockController(clockId)
+    }
 
     fun getView(clockId: String): View {
-        return (clockControllers[clockId] ?: initClockController(clockId)).largeClock.view
+        return getController(clockId).largeClock.view
     }
 
     fun updateColorForAllClocks(@ColorInt seedColor: Int?) {
@@ -79,14 +90,9 @@ class ClockViewFactory(
         controller.largeClock.events.onRegionDarknessChanged(isRegionDark)
 
         // Configure font size
-        val screenSizeCalculator = ScreenSizeCalculator.getInstance()
-        val screenSize = screenSizeCalculator.getScreenSize(activity.windowManager.defaultDisplay)
-        val ratio =
-            activity.resources.getDimensionPixelSize(R.dimen.screen_preview_height).toFloat() /
-                screenSize.y.toFloat()
         controller.largeClock.events.onFontSettingChanged(
             activity.resources.getDimensionPixelSize(R.dimen.large_clock_text_size).toFloat() *
-                ratio
+                getRatio()
         )
         clockControllers[clockId] = controller
         return controller
