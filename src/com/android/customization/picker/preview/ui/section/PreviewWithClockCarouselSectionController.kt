@@ -19,15 +19,19 @@ package com.android.customization.picker.preview.ui.section
 
 import android.app.Activity
 import android.content.Context
+import android.view.View
 import android.view.ViewGroup
 import android.view.ViewStub
+import androidx.core.view.isVisible
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.android.customization.picker.clock.ui.binder.ClockCarouselViewBinder
+import com.android.customization.picker.clock.ui.fragment.ClockSettingsFragment
 import com.android.customization.picker.clock.ui.view.ClockCarouselView
 import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
 import com.android.wallpaper.R
+import com.android.wallpaper.model.CustomizationSectionController.CustomizationSectionNavigationController
 import com.android.wallpaper.model.WallpaperColorsViewModel
 import com.android.wallpaper.model.WallpaperPreviewNavigator
 import com.android.wallpaper.module.CurrentWallpaperInfoFactory
@@ -49,6 +53,7 @@ class PreviewWithClockCarouselSectionController(
     private val clockCarouselViewModel: ClockCarouselViewModel,
     private val clockViewFactory: ClockViewFactory,
     wallpaperPreviewNavigator: WallpaperPreviewNavigator,
+    private val navigationController: CustomizationSectionNavigationController,
     wallpaperInteractor: WallpaperInteractor,
 ) :
     ScreenPreviewSectionController(
@@ -63,11 +68,21 @@ class PreviewWithClockCarouselSectionController(
     ) {
 
     private var clockCarouselBinding: ClockCarouselViewBinder.Binding? = null
+    private var clockColorAndSizeButton: View? = null
 
     override val hideLockScreenClockPreview = true
 
     override fun createView(context: Context): ScreenPreviewView {
         val view = super.createView(context)
+
+        val clockColorAndSizeButtonStub: ViewStub =
+            view.requireViewById(R.id.clock_color_and_size_button)
+        clockColorAndSizeButtonStub.layoutResource = R.layout.clock_color_and_size_button
+        clockColorAndSizeButton = clockColorAndSizeButtonStub.inflate() as View
+        clockColorAndSizeButton?.setOnClickListener {
+            navigationController.navigateTo(ClockSettingsFragment())
+        }
+
         val carouselViewStub: ViewStub = view.requireViewById(R.id.clock_carousel_view_stub)
         carouselViewStub.layoutResource = R.layout.clock_carousel_view
         val carouselView = carouselViewStub.inflate() as ClockCarouselView
@@ -94,6 +109,7 @@ class PreviewWithClockCarouselSectionController(
 
     override fun onScreenSwitched(isOnLockScreen: Boolean) {
         super.onScreenSwitched(isOnLockScreen)
+        clockColorAndSizeButton?.isVisible = isOnLockScreen
         if (isOnLockScreen) {
             clockCarouselBinding?.show()
         } else {
