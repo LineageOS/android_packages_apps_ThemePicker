@@ -105,18 +105,14 @@
     <string name="beta_title" msgid="8703819523760746458">"Beta"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"Cambiar cuadrícula de apps"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"Colores del fondo"</string>
-    <!-- no translation found for wallpaper_color_subheader (4044464573669965670) -->
-    <skip />
+    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Combina el color de íconos, texto y más con tu fondo"</string>
     <string name="wallpaper_color_title" msgid="5687965239180986458">"Color del fondo de pantalla"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"Colores básicos"</string>
-    <!-- no translation found for preset_color_tab_2 (1444107326712562538) -->
-    <skip />
-    <!-- no translation found for preset_color_subheader (8230588536141279371) -->
-    <skip />
+    <string name="preset_color_tab_2" msgid="1444107326712562538">"Otros colores"</string>
+    <string name="preset_color_subheader" msgid="8230588536141279371">"Elige un color para tus íconos, tu reloj y mucho más"</string>
     <string name="color_changed" msgid="7029571720331641235">"Se cambió el color"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Dinámico"</string>
-    <!-- no translation found for color_picker_title (6666830057938082864) -->
-    <skip />
+    <string name="color_picker_title" msgid="6666830057938082864">"Colores del sistema"</string>
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Atajo izquierdo"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Atajo derecho"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Ninguno"</string>

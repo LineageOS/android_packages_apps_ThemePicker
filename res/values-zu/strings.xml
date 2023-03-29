@@ -105,18 +105,14 @@
     <string name="beta_title" msgid="8703819523760746458">"I-beta"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"Shintsha igridi ye-app"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"Imibala yesithombe sangemuva"</string>
-    <!-- no translation found for wallpaper_color_subheader (4044464573669965670) -->
-    <skip />
+    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Izithonjana, umbhalo, neminye imibala efana nesithombe sakho sangemuva"</string>
     <string name="wallpaper_color_title" msgid="5687965239180986458">"Umbala wesithombe sangemuva"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"Imibala eyisisekelo"</string>
-    <!-- no translation found for preset_color_tab_2 (1444107326712562538) -->
-    <skip />
-    <!-- no translation found for preset_color_subheader (8230588536141279371) -->
-    <skip />
+    <string name="preset_color_tab_2" msgid="1444107326712562538">"Eminye imibala"</string>
+    <string name="preset_color_subheader" msgid="8230588536141279371">"Khetha umbala wezithonjana zakho, iwashi, nokuningi"</string>
     <string name="color_changed" msgid="7029571720331641235">"Umbala ushintshiwe"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Okuguqukayo"</string>
-    <!-- no translation found for color_picker_title (6666830057938082864) -->
-    <skip />
+    <string name="color_picker_title" msgid="6666830057938082864">"Imibala yesistimu"</string>
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Isinqamuleli sangakwesokunxele"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Isinqamuleli sangakwesokudla"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Lutho"</string>
