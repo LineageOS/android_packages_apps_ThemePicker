@@ -33,7 +33,8 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:clipChildren="false" />
     </com.android.wallpaper.picker.DisplayAspectRatioFrameLayout>
 
     <com.android.wallpaper.picker.DisplayAspectRatioFrameLayout
@@ -47,7 +48,8 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:clipChildren="false"/>
     </com.android.wallpaper.picker.DisplayAspectRatioFrameLayout>
 
     <com.android.wallpaper.picker.DisplayAspectRatioFrameLayout
@@ -62,7 +64,8 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:clipChildren="false"/>
     </com.android.wallpaper.picker.DisplayAspectRatioFrameLayout>
 
     <com.android.wallpaper.picker.DisplayAspectRatioFrameLayout
@@ -76,7 +79,8 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:clipChildren="false"/>
     </com.android.wallpaper.picker.DisplayAspectRatioFrameLayout>
 
     <com.android.wallpaper.picker.DisplayAspectRatioFrameLayout
@@ -90,7 +94,8 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:clipChildren="false" />
     </com.android.wallpaper.picker.DisplayAspectRatioFrameLayout>
 
     <androidx.constraintlayout.helper.widget.Carousel

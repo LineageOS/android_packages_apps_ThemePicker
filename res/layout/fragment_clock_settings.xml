@@ -57,11 +57,13 @@
         android:layout_marginBottom="28dp"
         android:background="@drawable/picker_fragment_background"
         android:paddingTop="22dp"
-        android:paddingBottom="62dp">
+        android:paddingBottom="36dp"
+        android:clipChildren="false">
 
         <FrameLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="22dp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/tabs"
@@ -90,25 +92,28 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="16dp">
+            android:clipChildren="false">
 
             <LinearLayout
                 android:id="@+id/color_picker_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:clipChildren="false">
 
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp">
+                    android:layout_marginBottom="16dp"
+                    android:clipChildren="false">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/color_options"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:clipToPadding="false"
-                        android:paddingHorizontal="16dp" />
+                        android:paddingHorizontal="16dp"
+                        android:clipChildren="false" />
 
                     <!--
                     This is just an invisible placeholder put in place so that the parent keeps its
@@ -118,7 +123,7 @@
                     without changing its size after the content is loaded into the RecyclerView.
                     -->
                     <include
-                        layout="@layout/color_option_with_background"
+                        layout="@layout/color_option_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:visibility="invisible" />
