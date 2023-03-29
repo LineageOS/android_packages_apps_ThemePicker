@@ -101,8 +101,14 @@ private constructor(
                                 colorOptionEntry.value.map { colorOptionModel ->
                                     val colorSeedOption: ColorSeedOption =
                                         colorOptionModel.colorOption as ColorSeedOption
-                                    val colors =
-                                        colorSeedOption.previewInfo.resolveColors(context.resources)
+                                    val lightThemeColors =
+                                        colorSeedOption.previewInfo.resolveColors(
+                                            /* darkTheme= */ false
+                                        )
+                                    val darkThemeColors =
+                                        colorSeedOption.previewInfo.resolveColors(
+                                            /* darkTheme= */ true
+                                        )
                                     val isSelectedFlow: StateFlow<Boolean> =
                                         interactor.activeColorOption
                                             .map {
@@ -118,10 +124,14 @@ private constructor(
                                                 as StateFlow<String>,
                                         payload =
                                             ColorOptionIconViewModel(
-                                                colors[0],
-                                                colors[1],
-                                                colors[2],
-                                                colors[3]
+                                                lightThemeColor0 = lightThemeColors[0],
+                                                lightThemeColor1 = lightThemeColors[1],
+                                                lightThemeColor2 = lightThemeColors[2],
+                                                lightThemeColor3 = lightThemeColors[3],
+                                                darkThemeColor0 = darkThemeColors[0],
+                                                darkThemeColor1 = darkThemeColors[1],
+                                                darkThemeColor2 = darkThemeColors[2],
+                                                darkThemeColor3 = darkThemeColors[3],
                                             ),
                                         text =
                                             Text.Loaded(
@@ -173,10 +183,14 @@ private constructor(
                                                 as StateFlow<String>,
                                         payload =
                                             ColorOptionIconViewModel(
-                                                primaryColor,
-                                                secondaryColor,
-                                                primaryColor,
-                                                secondaryColor
+                                                lightThemeColor0 = primaryColor,
+                                                lightThemeColor1 = secondaryColor,
+                                                lightThemeColor2 = primaryColor,
+                                                lightThemeColor3 = secondaryColor,
+                                                darkThemeColor0 = primaryColor,
+                                                darkThemeColor1 = secondaryColor,
+                                                darkThemeColor2 = primaryColor,
+                                                darkThemeColor3 = secondaryColor,
                                             ),
                                         text =
                                             Text.Loaded(

@@ -52,7 +52,7 @@ class ColorPickerRepositoryImpl(
             .map { (homeColors, lockColors) ->
                 suspendCancellableCoroutine { continuation ->
                     colorManager.setWallpaperColors(homeColors, lockColors)
-                    colorManager.fetchOptions(
+                    colorManager.fetchRevampedUIOptions(
                         object : CustomizationManager.OptionsFetchedListener<ColorOption?> {
                             override fun onOptionsLoaded(options: MutableList<ColorOption?>?) {
                                 val wallpaperColorOptions: MutableList<ColorOptionModel> =
