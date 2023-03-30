@@ -115,6 +115,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
                         mClockCarouselViewModel,
                         mClockViewFactory,
                         wallpaperPreviewNavigator,
+                        sectionNavigationController,
                         wallpaperInteractor)
                         : new ScreenPreviewSectionController(
                                 activity,
