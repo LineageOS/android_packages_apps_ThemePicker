@@ -38,6 +38,7 @@ import com.android.wallpaper.model.WallpaperInfo;
 import com.android.wallpaper.util.ResourceUtils;
 import com.android.wallpaper.util.ScreenSizeCalculator;
 import com.android.wallpaper.util.SizeCalculator;
+import com.android.wallpaper.util.VideoWallpaperUtils;
 import com.android.wallpaper.util.WallpaperConnection;
 import com.android.wallpaper.util.WallpaperConnection.WallpaperConnectionListener;
 import com.android.wallpaper.util.WallpaperSurfaceCallback;
@@ -53,6 +54,7 @@ public class WallpaperPreviewer implements LifecycleObserver {
     private final Activity mActivity;
     private final ImageView mHomePreview;
     private final SurfaceView mWallpaperSurface;
+    @Nullable private final View mFadeInScrim;
 
     private WallpaperSurfaceCallback mWallpaperSurfaceCallback;
     private WallpaperInfo mWallpaper;
@@ -67,11 +69,17 @@ public class WallpaperPreviewer implements LifecycleObserver {
 
     public WallpaperPreviewer(Lifecycle lifecycle, Activity activity, ImageView homePreview,
                               SurfaceView wallpaperSurface) {
+        this(lifecycle, activity, homePreview, wallpaperSurface, null);
+    }
+
+    public WallpaperPreviewer(Lifecycle lifecycle, Activity activity, ImageView homePreview,
+                              SurfaceView wallpaperSurface, @Nullable View fadeInScrim) {
         lifecycle.addObserver(this);
 
         mActivity = activity;
         mHomePreview = homePreview;
         mWallpaperSurface = wallpaperSurface;
+        mFadeInScrim = fadeInScrim;
         mWallpaperSurfaceCallback = new WallpaperSurfaceCallback(activity, mHomePreview,
                 mWallpaperSurface, this::setUpWallpaperPreview);
         mWallpaperSurface.setZOrderMediaOverlay(true);
@@ -139,6 +147,11 @@ public class WallpaperPreviewer implements LifecycleObserver {
                              @Nullable WallpaperColorsListener listener) {
         mWallpaper = wallpaperInfo;
         mWallpaperColorsListener = listener;
+        if (mFadeInScrim != null && VideoWallpaperUtils.needsFadeIn(wallpaperInfo)) {
+            mFadeInScrim.animate().cancel();
+            mFadeInScrim.setAlpha(1f);
+            mFadeInScrim.setVisibility(View.VISIBLE);
+        }
         setUpWallpaperPreview();
     }
 
@@ -207,6 +220,17 @@ public class WallpaperPreviewer implements LifecycleObserver {
                                 int displayId) {
                             if (mWallpaperColorsListener != null) {
                                 mWallpaperColorsListener.onWallpaperColorsChanged(colors);
+                            }
+                        }
+
+                        @Override
+                        public void onEngineShown() {
+                            if (mFadeInScrim != null && VideoWallpaperUtils.needsFadeIn(
+                                    homeWallpaper)) {
+                                mFadeInScrim.animate().alpha(0.0f)
+                                        .setDuration(VideoWallpaperUtils.TRANSITION_MILLIS)
+                                        .withEndAction(
+                                                () -> mFadeInScrim.setVisibility(View.INVISIBLE));
                             }
                         }
                     }, mWallpaperSurface);
