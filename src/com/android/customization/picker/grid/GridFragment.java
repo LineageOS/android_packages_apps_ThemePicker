@@ -158,7 +158,8 @@ public class GridFragment extends AppbarFragment {
 
         SurfaceView wallpaperSurface = view.findViewById(R.id.wallpaper_preview_surface);
         WallpaperPreviewer wallpaperPreviewer = new WallpaperPreviewer(getLifecycle(),
-                getActivity(), view.findViewById(R.id.wallpaper_preview_image), wallpaperSurface);
+                getActivity(), view.findViewById(R.id.wallpaper_preview_image), wallpaperSurface,
+                view.findViewById(R.id.grid_fadein_scrim));
         // Loads current Wallpaper.
         CurrentWallpaperInfoFactory factory = InjectorProvider.getInjector()
                 .getCurrentWallpaperInfoFactory(getContext().getApplicationContext());
