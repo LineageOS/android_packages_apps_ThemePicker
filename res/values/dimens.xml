@@ -164,4 +164,12 @@
     <dimen name="clock_carousel_scale" format="float">0.5</dimen>
     <!-- Alpha of the carousel items that are not selected and at the side -->
     <dimen name="clock_carousel_alpha" format="float">0.4</dimen>
+
+    <!-- Clock color and size button -->
+    <dimen name="clock_color_size_button_min_height">32dp</dimen>
+    <dimen name="clock_color_size_button_horizontal_padding">12dp</dimen>
+    <dimen name="clock_color_size_button_vertical_padding">6dp</dimen>
+    <dimen name="clock_color_size_button_corner_radius">16dp</dimen>
+    <dimen name="clock_color_size_button_icon_size">24dp</dimen>
+    <dimen name="clock_color_size_button_icon_margin_end">8dp</dimen>
 </resources>
