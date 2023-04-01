@@ -105,18 +105,14 @@
     <string name="beta_title" msgid="8703819523760746458">"베타"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"앱 그리드 변경"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"배경화면 색상"</string>
-    <!-- no translation found for wallpaper_color_subheader (4044464573669965670) -->
-    <skip />
+    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"아이콘, 텍스트 등의 색상이 배경화면과 일치합니다"</string>
     <string name="wallpaper_color_title" msgid="5687965239180986458">"배경화면 색상"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"기본 색상"</string>
-    <!-- no translation found for preset_color_tab_2 (1444107326712562538) -->
-    <skip />
-    <!-- no translation found for preset_color_subheader (8230588536141279371) -->
-    <skip />
+    <string name="preset_color_tab_2" msgid="1444107326712562538">"기타 색상"</string>
+    <string name="preset_color_subheader" msgid="8230588536141279371">"아이콘, 시계 등을 위한 색상을 선택하세요"</string>
     <string name="color_changed" msgid="7029571720331641235">"색상 변경됨"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"동적"</string>
-    <!-- no translation found for color_picker_title (6666830057938082864) -->
-    <skip />
+    <string name="color_picker_title" msgid="6666830057938082864">"시스템 색상"</string>
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"왼쪽 바로가기"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"오른쪽 바로가기"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"없음"</string>
