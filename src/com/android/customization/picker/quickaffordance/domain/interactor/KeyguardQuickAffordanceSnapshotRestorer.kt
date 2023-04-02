@@ -30,7 +30,9 @@ class KeyguardQuickAffordanceSnapshotRestorer(
     private lateinit var snapshotUpdater: (RestorableSnapshot) -> Unit
 
     suspend fun storeSnapshot() {
-        snapshotUpdater(snapshot())
+        if (this::snapshotUpdater.isInitialized) {
+            snapshotUpdater(snapshot())
+        }
     }
 
     override suspend fun setUpSnapshotRestorer(
