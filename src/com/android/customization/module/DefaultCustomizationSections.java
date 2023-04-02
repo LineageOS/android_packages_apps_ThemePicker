@@ -152,6 +152,17 @@ public final class DefaultCustomizationSections implements CustomizationSections
         sectionControllers.add(new GridSectionController(
                 GridOptionsManager.getInstance(activity), sectionNavigationController));
 
+        // Lock screen quick affordances section.
+        sectionControllers.add(
+                new KeyguardQuickAffordanceSectionController(
+                        sectionNavigationController,
+                        mKeyguardQuickAffordancePickerInteractor,
+                        new ViewModelProvider(
+                                activity,
+                                mKeyguardQuickAffordancePickerViewModelFactory)
+                                .get(KeyguardQuickAffordancePickerViewModel.class),
+                        lifecycleOwner));
+
         // Icon pack selection section.
         sectionControllers.add(new IconPackSectionController(
                 IconPackManager.getInstance(activity, new OverlayManagerCompat(activity)), sectionNavigationController));
