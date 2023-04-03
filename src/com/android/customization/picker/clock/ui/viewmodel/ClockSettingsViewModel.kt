@@ -53,6 +53,7 @@ private constructor(
     context: Context,
     private val clockPickerInteractor: ClockPickerInteractor,
     private val colorPickerInteractor: ColorPickerInteractor,
+    private val getIsReactiveToTone: (clockId: String?) -> Boolean,
 ) : ViewModel() {
 
     enum class Tab {
@@ -60,20 +61,27 @@ private constructor(
         SIZE,
     }
 
-    val colorMap = ClockColorViewModel.getPresetColorMap(context.resources)
+    private val colorMap = ClockColorViewModel.getPresetColorMap(context.resources)
 
     val selectedClockId: StateFlow<String?> =
         clockPickerInteractor.selectedClockId
             .distinctUntilChanged()
             .stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
-    val selectedColorId: StateFlow<String?> =
+    private val selectedColorId: StateFlow<String?> =
         clockPickerInteractor.selectedColorId.stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
     private val sliderColorToneProgress =
         MutableStateFlow(ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS)
     val isSliderEnabled: Flow<Boolean> =
-        clockPickerInteractor.selectedColorId.map { it != null }.distinctUntilChanged()
+        combine(selectedClockId, clockPickerInteractor.selectedColorId) { clockId, colorId ->
+                if (colorId == null) {
+                    false
+                } else {
+                    getIsReactiveToTone(clockId)
+                }
+            }
+            .distinctUntilChanged()
     val sliderProgress: Flow<Int> =
         merge(clockPickerInteractor.colorToneProgress, sliderColorToneProgress)
 
@@ -286,6 +294,7 @@ private constructor(
         private val context: Context,
         private val clockPickerInteractor: ClockPickerInteractor,
         private val colorPickerInteractor: ColorPickerInteractor,
+        private val getIsReactiveToTone: (clockId: String?) -> Boolean,
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             @Suppress("UNCHECKED_CAST")
@@ -293,6 +302,7 @@ private constructor(
                 context = context,
                 clockPickerInteractor = clockPickerInteractor,
                 colorPickerInteractor = colorPickerInteractor,
+                getIsReactiveToTone = getIsReactiveToTone,
             )
                 as T
         }
