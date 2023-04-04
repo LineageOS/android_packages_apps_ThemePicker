@@ -39,7 +39,7 @@
         android:layout_height="match_parent"
         android:importantForAccessibility="noHideDescendants" />
 
-    <View
+    <ImageView
         android:id="@+id/grid_fadein_scrim"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
