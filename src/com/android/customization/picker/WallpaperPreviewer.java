@@ -19,6 +19,8 @@ import android.app.Activity;
 import android.app.WallpaperColors;
 import android.content.Intent;
 import android.graphics.Rect;
+import android.graphics.RenderEffect;
+import android.graphics.Shader.TileMode;
 import android.service.wallpaper.WallpaperService;
 import android.view.Surface;
 import android.view.SurfaceView;
@@ -54,7 +56,7 @@ public class WallpaperPreviewer implements LifecycleObserver {
     private final Activity mActivity;
     private final ImageView mHomePreview;
     private final SurfaceView mWallpaperSurface;
-    @Nullable private final View mFadeInScrim;
+    @Nullable private final ImageView mFadeInScrim;
 
     private WallpaperSurfaceCallback mWallpaperSurfaceCallback;
     private WallpaperInfo mWallpaper;
@@ -73,7 +75,7 @@ public class WallpaperPreviewer implements LifecycleObserver {
     }
 
     public WallpaperPreviewer(Lifecycle lifecycle, Activity activity, ImageView homePreview,
-                              SurfaceView wallpaperSurface, @Nullable View fadeInScrim) {
+                              SurfaceView wallpaperSurface, @Nullable ImageView fadeInScrim) {
         lifecycle.addObserver(this);
 
         mActivity = activity;
@@ -170,10 +172,16 @@ public class WallpaperPreviewer implements LifecycleObserver {
                                         mActivity, android.R.attr.colorSecondary),
                                 /* offsetToStart= */ true);
                 if (mWallpaper instanceof LiveWallpaperInfo) {
+                    ImageView preview = homeImageWallpaper;
+                    if (VideoWallpaperUtils.needsFadeIn(mWallpaper) && mFadeInScrim != null) {
+                        preview = mFadeInScrim;
+                        preview.setRenderEffect(
+                                RenderEffect.createBlurEffect(150f, 150f, TileMode.CLAMP));
+                    }
                     mWallpaper.getThumbAsset(mActivity.getApplicationContext())
                             .loadPreviewImage(
                                     mActivity,
-                                    homeImageWallpaper,
+                                    preview,
                                     ResourceUtils.getColorAttr(
                                             mActivity, android.R.attr.colorSecondary),
                                     /* offsetToStart= */ true);
