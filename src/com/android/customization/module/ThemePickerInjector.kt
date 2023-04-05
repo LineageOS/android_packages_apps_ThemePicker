@@ -471,7 +471,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                         wallpaperColorsViewModel,
                     ),
                 ) { clockId ->
-                    clockId?.let { clockViewFactory.getController(clockId).events.isReactiveToTone }
+                    clockId?.let { clockViewFactory.getController(clockId).config.isReactiveToTone }
                         ?: false
                 }
                 .also { clockSettingsViewModelFactory = it }
