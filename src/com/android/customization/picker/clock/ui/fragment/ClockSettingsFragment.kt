@@ -115,10 +115,11 @@ class ClockSettingsFragment : AppbarFragment() {
         ClockSettingsBinder.bind(
             view,
             ViewModelProvider(
-                    requireActivity(),
+                    activity,
                     injector.getClockSettingsViewModelFactory(
                         context,
                         injector.getWallpaperColorsViewModel(),
+                        injector.getClockViewFactory(activity),
                     ),
                 )
                 .get(),
