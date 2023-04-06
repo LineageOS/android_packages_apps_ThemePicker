@@ -43,6 +43,9 @@ import kotlinx.coroutines.launch
 
 /** Bind between the clock settings screen and its view model. */
 object ClockSettingsBinder {
+    private const val SLIDER_ENABLED_ALPHA = 1f
+    private const val SLIDER_DISABLED_ALPHA = .3f
+
     fun bind(
         view: View,
         viewModel: ClockSettingsViewModel,
@@ -176,7 +179,11 @@ object ClockSettingsBinder {
                 }
 
                 launch {
-                    viewModel.isSliderEnabled.collect { isEnabled -> slider.isEnabled = isEnabled }
+                    viewModel.isSliderEnabled.collect { isEnabled ->
+                        slider.isEnabled = isEnabled
+                        slider.alpha =
+                            if (isEnabled) SLIDER_ENABLED_ALPHA else SLIDER_DISABLED_ALPHA
+                    }
                 }
             }
         }

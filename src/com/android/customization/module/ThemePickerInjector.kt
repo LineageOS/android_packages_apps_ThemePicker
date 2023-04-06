@@ -460,6 +460,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     override fun getClockSettingsViewModelFactory(
         context: Context,
         wallpaperColorsViewModel: WallpaperColorsViewModel,
+        clockViewFactory: ClockViewFactory,
     ): ClockSettingsViewModel.Factory {
         return clockSettingsViewModelFactory
             ?: ClockSettingsViewModel.Factory(
@@ -469,7 +470,10 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                         context,
                         wallpaperColorsViewModel,
                     ),
-                )
+                ) { clockId ->
+                    clockId?.let { clockViewFactory.getController(clockId).config.isReactiveToTone }
+                        ?: false
+                }
                 .also { clockSettingsViewModelFactory = it }
     }
 
