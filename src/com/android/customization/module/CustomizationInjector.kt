@@ -70,5 +70,6 @@ interface CustomizationInjector : Injector {
     fun getClockSettingsViewModelFactory(
         context: Context,
         wallpaperColorsViewModel: WallpaperColorsViewModel,
+        clockViewFactory: ClockViewFactory,
     ): ClockSettingsViewModel.Factory
 }
