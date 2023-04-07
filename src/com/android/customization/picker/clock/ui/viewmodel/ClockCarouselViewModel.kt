@@ -19,8 +19,6 @@ import com.android.customization.picker.clock.domain.interactor.ClockPickerInter
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
@@ -44,14 +42,7 @@ class ClockCarouselViewModel(
 
     val seedColor: Flow<Int?> = interactor.seedColor
 
-    private val shouldShowCarousel = MutableStateFlow(false)
-    val isCarouselVisible: Flow<Boolean> =
-        combine(allClockIds.map { it.size > 1 }.distinctUntilChanged(), shouldShowCarousel) {
-                hasMoreThanOneClock,
-                shouldShowCarousel ->
-                hasMoreThanOneClock && shouldShowCarousel
-            }
-            .distinctUntilChanged()
+    val isCarouselVisible: Flow<Boolean> = allClockIds.map { it.size > 1 }.distinctUntilChanged()
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val selectedIndex: Flow<Int> =
@@ -69,14 +60,8 @@ class ClockCarouselViewModel(
             .mapNotNull { it }
 
     // Handle the case when there is only one clock in the carousel
-    private val shouldShowSingleClock = MutableStateFlow(false)
     val isSingleClockViewVisible: Flow<Boolean> =
-        combine(allClockIds.map { it.size == 1 }.distinctUntilChanged(), shouldShowSingleClock) {
-                hasOneClock,
-                shouldShowSingleClock ->
-                hasOneClock && shouldShowSingleClock
-            }
-            .distinctUntilChanged()
+        allClockIds.map { it.size == 1 }.distinctUntilChanged()
 
     val clockId: Flow<String> =
         allClockIds
@@ -85,11 +70,6 @@ class ClockCarouselViewModel(
 
     fun setSelectedClock(clockId: String) {
         interactor.setSelectedClock(clockId)
-    }
-
-    fun showClockCarousel(shouldShow: Boolean) {
-        shouldShowCarousel.value = shouldShow
-        shouldShowSingleClock.value = shouldShow
     }
 
     companion object {
