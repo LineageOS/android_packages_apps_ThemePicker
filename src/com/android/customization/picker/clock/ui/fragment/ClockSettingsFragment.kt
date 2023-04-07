@@ -85,7 +85,7 @@ class ClockSettingsFragment : AppbarFragment() {
                                 .createCurrentWallpaperInfos(
                                     { homeWallpaper, lockWallpaper, _ ->
                                         continuation.resume(
-                                            homeWallpaper ?: lockWallpaper,
+                                            lockWallpaper ?: homeWallpaper,
                                             null,
                                         )
                                     },
