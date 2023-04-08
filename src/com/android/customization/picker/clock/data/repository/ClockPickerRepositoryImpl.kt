@@ -137,6 +137,7 @@ class ClockPickerRepositoryImpl(
         secureSettingsRepository
             .intSetting(
                 name = Settings.Secure.LOCKSCREEN_USE_DOUBLE_LINE_CLOCK,
+                defaultValue = DEFAULT_CLOCK_SIZE,
             )
             .map { setting -> setting == 1 }
             .map { isDynamic -> if (isDynamic) ClockSize.DYNAMIC else ClockSize.SMALL }
@@ -189,5 +190,8 @@ class ClockPickerRepositoryImpl(
 
         // The color tone to apply to the selected color
         private const val KEY_METADATA_COLOR_TONE_PROGRESS = "metadataColorToneProgress"
+
+        // The default clock size is 1, which means dynamic
+        private const val DEFAULT_CLOCK_SIZE = 1
     }
 }
