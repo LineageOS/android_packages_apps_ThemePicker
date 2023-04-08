@@ -66,51 +66,50 @@ class ClockSettingsFragment : AppbarFragment() {
         val colorViewModel = injector.getWallpaperColorsViewModel()
         val displayUtils = injector.getDisplayUtils(context)
         ScreenPreviewBinder.bind(
-                activity = activity,
-                previewView = lockScreenView,
-                viewModel =
-                    ScreenPreviewViewModel(
-                        previewUtils =
-                            PreviewUtils(
-                                context = context,
-                                authority =
-                                    resources.getString(
-                                        R.string.lock_screen_preview_provider_authority,
-                                    ),
-                            ),
-                        wallpaperInfoProvider = {
-                            suspendCancellableCoroutine { continuation ->
-                                injector
-                                    .getCurrentWallpaperInfoFactory(context)
-                                    .createCurrentWallpaperInfos(
-                                        { homeWallpaper, lockWallpaper, _ ->
-                                            continuation.resume(
-                                                homeWallpaper ?: lockWallpaper,
-                                                null,
-                                            )
-                                        },
-                                        /* forceRefresh= */ true,
-                                    )
-                            }
-                        },
-                        onWallpaperColorChanged = { colors ->
-                            colorViewModel.setLockWallpaperColors(colors)
-                        },
-                        initialExtrasProvider = {
-                            Bundle().apply {
-                                // Hide the clock from the system UI rendered preview so we can
-                                // place the carousel on top of it.
-                                putBoolean(
-                                    ClockPreviewConstants.KEY_HIDE_CLOCK,
-                                    true,
+            activity = activity,
+            previewView = lockScreenView,
+            viewModel =
+                ScreenPreviewViewModel(
+                    previewUtils =
+                        PreviewUtils(
+                            context = context,
+                            authority =
+                                resources.getString(
+                                    R.string.lock_screen_preview_provider_authority,
+                                ),
+                        ),
+                    wallpaperInfoProvider = {
+                        suspendCancellableCoroutine { continuation ->
+                            injector
+                                .getCurrentWallpaperInfoFactory(context)
+                                .createCurrentWallpaperInfos(
+                                    { homeWallpaper, lockWallpaper, _ ->
+                                        continuation.resume(
+                                            homeWallpaper ?: lockWallpaper,
+                                            null,
+                                        )
+                                    },
+                                    /* forceRefresh= */ true,
                                 )
-                            }
-                        },
-                    ),
-                lifecycleOwner = this,
-                offsetToStart = displayUtils.isSingleDisplayOrUnfoldedHorizontalHinge(activity),
-            )
-            .show()
+                        }
+                    },
+                    onWallpaperColorChanged = { colors ->
+                        colorViewModel.setLockWallpaperColors(colors)
+                    },
+                    initialExtrasProvider = {
+                        Bundle().apply {
+                            // Hide the clock from the system UI rendered preview so we can
+                            // place the carousel on top of it.
+                            putBoolean(
+                                ClockPreviewConstants.KEY_HIDE_CLOCK,
+                                true,
+                            )
+                        }
+                    },
+                ),
+            lifecycleOwner = this,
+            offsetToStart = displayUtils.isSingleDisplayOrUnfoldedHorizontalHinge(activity),
+        )
 
         ClockSettingsBinder.bind(
             view,

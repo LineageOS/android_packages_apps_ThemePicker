@@ -22,7 +22,6 @@ import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewStub
-import androidx.core.view.isVisible
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.android.customization.picker.clock.ui.binder.ClockCarouselViewBinder
@@ -46,7 +45,7 @@ import kotlinx.coroutines.launch
 class PreviewWithClockCarouselSectionController(
     activity: Activity,
     private val lifecycleOwner: LifecycleOwner,
-    private val initialScreen: CustomizationSections.Screen,
+    private val screen: CustomizationSections.Screen,
     wallpaperInfoFactory: CurrentWallpaperInfoFactory,
     colorViewModel: WallpaperColorsViewModel,
     displayUtils: DisplayUtils,
@@ -59,7 +58,7 @@ class PreviewWithClockCarouselSectionController(
     ScreenPreviewSectionController(
         activity,
         lifecycleOwner,
-        initialScreen,
+        screen,
         wallpaperInfoFactory,
         colorViewModel,
         displayUtils,
@@ -67,32 +66,31 @@ class PreviewWithClockCarouselSectionController(
         wallpaperInteractor,
     ) {
 
-    private var clockCarouselBinding: ClockCarouselViewBinder.Binding? = null
     private var clockColorAndSizeButton: View? = null
 
     override val hideLockScreenClockPreview = true
 
     override fun createView(context: Context): ScreenPreviewView {
         val view = super.createView(context)
+        if (screen == CustomizationSections.Screen.LOCK_SCREEN) {
+            val clockColorAndSizeButtonStub: ViewStub =
+                view.requireViewById(R.id.clock_color_and_size_button)
+            clockColorAndSizeButtonStub.layoutResource = R.layout.clock_color_and_size_button
+            clockColorAndSizeButton = clockColorAndSizeButtonStub.inflate() as View
+            clockColorAndSizeButton?.setOnClickListener {
+                navigationController.navigateTo(ClockSettingsFragment())
+            }
 
-        val clockColorAndSizeButtonStub: ViewStub =
-            view.requireViewById(R.id.clock_color_and_size_button)
-        clockColorAndSizeButtonStub.layoutResource = R.layout.clock_color_and_size_button
-        clockColorAndSizeButton = clockColorAndSizeButtonStub.inflate() as View
-        clockColorAndSizeButton?.setOnClickListener {
-            navigationController.navigateTo(ClockSettingsFragment())
-        }
+            val carouselViewStub: ViewStub = view.requireViewById(R.id.clock_carousel_view_stub)
+            carouselViewStub.layoutResource = R.layout.clock_carousel_view
+            val carouselView = carouselViewStub.inflate() as ClockCarouselView
 
-        val carouselViewStub: ViewStub = view.requireViewById(R.id.clock_carousel_view_stub)
-        carouselViewStub.layoutResource = R.layout.clock_carousel_view
-        val carouselView = carouselViewStub.inflate() as ClockCarouselView
-
-        // TODO (b/270716937) We should handle the single clock case in the clock carousel itself
-        val singleClockViewStub: ViewStub = view.requireViewById(R.id.single_clock_view_stub)
-        singleClockViewStub.layoutResource = R.layout.single_clock_view
-        val singleClockView = singleClockViewStub.inflate() as ViewGroup
-        lifecycleOwner.lifecycleScope.launch {
-            clockCarouselBinding =
+            // TODO (b/270716937) We should handle the single clock case in the clock carousel
+            // itself
+            val singleClockViewStub: ViewStub = view.requireViewById(R.id.single_clock_view_stub)
+            singleClockViewStub.layoutResource = R.layout.single_clock_view
+            val singleClockView = singleClockViewStub.inflate() as ViewGroup
+            lifecycleOwner.lifecycleScope.launch {
                 ClockCarouselViewBinder.bind(
                     carouselView = carouselView,
                     singleClockView = singleClockView,
@@ -100,20 +98,9 @@ class PreviewWithClockCarouselSectionController(
                     clockViewFactory = clockViewFactory,
                     lifecycleOwner = lifecycleOwner,
                 )
-            onScreenSwitched(
-                isOnLockScreen = initialScreen == CustomizationSections.Screen.LOCK_SCREEN
-            )
+            }
         }
-        return view
-    }
 
-    override fun onScreenSwitched(isOnLockScreen: Boolean) {
-        super.onScreenSwitched(isOnLockScreen)
-        clockColorAndSizeButton?.isVisible = isOnLockScreen
-        if (isOnLockScreen) {
-            clockCarouselBinding?.show()
-        } else {
-            clockCarouselBinding?.hide()
-        }
+        return view
     }
 }
