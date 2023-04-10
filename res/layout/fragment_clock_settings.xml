@@ -18,7 +18,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:clipChildren="false">
+
     <FrameLayout
         android:id="@+id/section_header_container"
         android:layout_width="match_parent"
@@ -31,13 +33,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:paddingTop="36dp"
+        android:paddingTop="20dp"
         android:paddingBottom="40dp">
 
         <include
             android:id="@+id/lock_preview"
             layout="@layout/wallpaper_preview_card"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center" />
 
@@ -47,7 +49,6 @@
             android:layout_height="match_parent"
             android:layout_gravity="center" />
     </com.android.wallpaper.picker.DisplayAspectRatioFrameLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -123,7 +124,7 @@
                     without changing its size after the content is loaded into the RecyclerView.
                     -->
                     <include
-                        layout="@layout/color_option_2"
+                        layout="@layout/clock_color_option"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:visibility="invisible" />
