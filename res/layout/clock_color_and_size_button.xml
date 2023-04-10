@@ -14,11 +14,13 @@
         android:layout_height="@dimen/clock_color_size_button_icon_size"
         android:src="@drawable/ic_settings"
         android:importantForAccessibility="no"
+        android:drawableTint="@color/text_color_primary"
         android:layout_marginEnd="@dimen/clock_color_size_button_icon_margin_end"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/color_accent_primary"
+        android:textColor="@color/text_color_primary"
         android:text="@string/clock_color_and_size_title" />
+
 </LinearLayout>
