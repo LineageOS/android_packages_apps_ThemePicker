@@ -22,7 +22,7 @@
     android:clickable="true"
     android:orientation="vertical"
     android:paddingHorizontal="@dimen/section_horizontal_padding"
-    android:paddingVertical="@dimen/section_vertical_padding">
+    android:paddingVertical="@dimen/section_padding">
 
     <LinearLayout
         android:layout_width="match_parent"
