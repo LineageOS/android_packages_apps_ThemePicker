@@ -21,6 +21,7 @@ import android.view.View
 import androidx.annotation.ColorInt
 import androidx.lifecycle.LifecycleOwner
 import com.android.systemui.plugins.ClockController
+import com.android.systemui.plugins.WeatherData
 import com.android.systemui.shared.clocks.ClockRegistry
 import com.android.wallpaper.R
 import com.android.wallpaper.util.ScreenSizeCalculator
@@ -94,7 +95,23 @@ class ClockViewFactory(
             activity.resources.getDimensionPixelSize(R.dimen.large_clock_text_size).toFloat() *
                 getRatio()
         )
+        // Use placeholder for weather clock preview in picker
+        controller.events.onWeatherDataChanged(
+            WeatherData(
+                description = DESCRIPTION_PLACEHODLER,
+                state = WEATHERICON_PLACEHOLDER,
+                temperature = TEMPERATURE_PLACEHOLDER,
+                useCelsius = USE_CELSIUS_PLACEHODLER,
+            )
+        )
         clockControllers[clockId] = controller
         return controller
+    }
+
+    companion object {
+        val DESCRIPTION_PLACEHODLER = ""
+        val TEMPERATURE_PLACEHOLDER = 58
+        val WEATHERICON_PLACEHOLDER = WeatherData.WeatherStateIcon.MOSTLY_SUNNY
+        val USE_CELSIUS_PLACEHODLER = false
     }
 }
