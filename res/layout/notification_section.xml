@@ -34,16 +34,10 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/notifications_section_title"
-            style="@style/SectionTitleTextStyle" />
-
-        <TextView
             android:id="@+id/subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/SectionSubtitleTextStyle"/>
+            style="@style/SectionTitleTextStyle"/>
     </LinearLayout>
 
     <Switch
