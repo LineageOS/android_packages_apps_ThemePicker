@@ -17,7 +17,6 @@ package com.android.customization.picker.clock.ui.view
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +35,8 @@ class ClockCarouselView(
         context,
         attrs,
     ) {
+
+    var isCarouselInTransition = false
 
     private val carousel: Carousel
     private val motionLayout: MotionLayout
@@ -70,7 +71,7 @@ class ClockCarouselView(
                     startId: Int,
                     endId: Int
                 ) {
-                    Log.d("mmpud", "onTransitionStarted")
+                    isCarouselInTransition = true
                     val scalingDownClockId = adapter.clockIds[carousel.currentIndex]
                     val scalingUpIdx =
                         if (endId == R.id.next) (carousel.currentIndex + 1) % adapter.count()
@@ -115,7 +116,9 @@ class ClockCarouselView(
                     hidingCardView?.alpha = getHidingAlpha(progress)
                 }
 
-                override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {}
+                override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
+                    isCarouselInTransition = false
+                }
 
                 override fun onTransitionTrigger(
                     motionLayout: MotionLayout?,
@@ -158,6 +161,8 @@ class ClockCarouselView(
 
             clockHostView.removeAllViews()
             val clockView = onGetClockController(clockIds[index]).largeClock.view
+            // Making sure the large clock tick to the correct time
+            onGetClockController(clockIds[index]).largeClock.events.onTimeTick()
             // The clock view might still be attached to an existing parent. Detach before adding to
             // another parent.
             (clockView.parent as? ViewGroup)?.removeView(clockView)
