@@ -47,7 +47,7 @@ object NotificationSectionBinder {
         lifecycleOwner.lifecycleScope.launch {
             lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
-                    viewModel.subtitleStringResourceId.collect {
+                    viewModel.titleStringResourceId.collect {
                         subtitle.text = view.context.getString(it)
                     }
                 }
