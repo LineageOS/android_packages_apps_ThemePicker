@@ -63,7 +63,7 @@ object ClockSettingsBinder {
         val colorOptionContainerView: RecyclerView = view.requireViewById(R.id.color_options)
         val colorOptionAdapter =
             OptionItemAdapter(
-                layoutResourceId = R.layout.color_option_2,
+                layoutResourceId = R.layout.clock_color_option,
                 lifecycleOwner = lifecycleOwner,
                 bindIcon = { foregroundView: View, colorIcon: ColorOptionIconViewModel ->
                     val viewGroup = foregroundView as? ViewGroup
