@@ -34,7 +34,7 @@ class ClockViewFactory(
 ) {
     private val timeTickListeners: ConcurrentHashMap<Int, TimeTicker> = ConcurrentHashMap()
     private val clockControllers: HashMap<String, ClockController> = HashMap()
-    private var ticker: TimeTicker? = null
+
     fun getRatio(): Float {
         val screenSizeCalculator = ScreenSizeCalculator.getInstance()
         val screenSize = screenSizeCalculator.getScreenSize(activity.windowManager.defaultDisplay)
@@ -61,14 +61,25 @@ class ClockViewFactory(
     }
 
     fun registerTimeTicker(owner: LifecycleOwner) {
+        registerTimeTicker(owner, null)
+    }
+
+    fun registerTimeTicker(owner: LifecycleOwner, shouldTimeTick: (() -> Boolean)?) {
         val hashCode = owner.hashCode()
         if (timeTickListeners.keys.contains(hashCode)) {
             return
         }
+
         timeTickListeners[hashCode] =
             TimeTicker.registerNewReceiver(activity.applicationContext) {
-                clockControllers.values.forEach { it.largeClock.events.onTimeTick() }
+                if (shouldTimeTick == null || shouldTimeTick()) {
+                    onTimeTick()
+                }
             }
+    }
+
+    private fun onTimeTick() {
+        clockControllers.values.forEach { it.largeClock.events.onTimeTick() }
     }
 
     fun unregisterTimeTicker(owner: LifecycleOwner) {
