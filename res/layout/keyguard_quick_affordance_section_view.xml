@@ -16,11 +16,11 @@
 -->
 <com.android.customization.picker.quickaffordance.ui.view.KeyguardQuickAffordanceSectionView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_width="match_parent"
     android:background="?selectableItemBackground"
     android:clickable="true"
-    android:paddingVertical="@dimen/section_top_padding"
+    android:paddingVertical="@dimen/option_section_vertical_padding"
     android:paddingHorizontal="@dimen/section_horizontal_padding"
     android:orientation="horizontal">
 
@@ -28,7 +28,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="center">
 
         <TextView
             android:layout_width="match_parent"
@@ -51,6 +52,7 @@
         android:importantForAccessibility="noHideDescendants"
         android:gravity="center"
         android:divider="@drawable/horizontal_divider_14dp"
+        android:layout_gravity="center"
         android:showDividers="middle">
 
         <ImageView
