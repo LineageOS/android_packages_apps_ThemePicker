@@ -60,6 +60,12 @@ class ClockViewFactory(
             .onSeedColorChanged(seedColor)
     }
 
+    fun updateTimeFormat(clockId: String) {
+        getController(clockId)
+            .events
+            .onTimeFormatChanged(android.text.format.DateFormat.is24HourFormat(activity))
+    }
+
     fun registerTimeTicker(owner: LifecycleOwner) {
         registerTimeTicker(owner, null)
     }
