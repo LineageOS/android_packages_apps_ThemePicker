@@ -59,6 +59,12 @@ object ClockCarouselViewBinder {
                 }
 
                 launch {
+                    viewModel.allClockIds.collect {
+                        it.forEach { clockId -> clockViewFactory.updateTimeFormat(clockId) }
+                    }
+                }
+
+                launch {
                     viewModel.selectedIndex.collect { selectedIndex ->
                         carouselView.setSelectedClockIndex(selectedIndex)
                     }
