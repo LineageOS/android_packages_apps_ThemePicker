@@ -28,14 +28,30 @@ object ColorOptionIconBinder {
     fun bind(
         view: ViewGroup,
         viewModel: ColorOptionIconViewModel,
+        darkTheme: Boolean,
     ) {
         val color0View: ImageView = view.requireViewById(R.id.color_preview_0)
         val color1View: ImageView = view.requireViewById(R.id.color_preview_1)
         val color2View: ImageView = view.requireViewById(R.id.color_preview_2)
         val color3View: ImageView = view.requireViewById(R.id.color_preview_3)
-        color0View.drawable.colorFilter = BlendModeColorFilter(viewModel.color0, BlendMode.SRC)
-        color1View.drawable.colorFilter = BlendModeColorFilter(viewModel.color1, BlendMode.SRC)
-        color2View.drawable.colorFilter = BlendModeColorFilter(viewModel.color2, BlendMode.SRC)
-        color3View.drawable.colorFilter = BlendModeColorFilter(viewModel.color3, BlendMode.SRC)
+        if (darkTheme) {
+            color0View.drawable.colorFilter =
+                BlendModeColorFilter(viewModel.darkThemeColor0, BlendMode.SRC)
+            color1View.drawable.colorFilter =
+                BlendModeColorFilter(viewModel.darkThemeColor1, BlendMode.SRC)
+            color2View.drawable.colorFilter =
+                BlendModeColorFilter(viewModel.darkThemeColor2, BlendMode.SRC)
+            color3View.drawable.colorFilter =
+                BlendModeColorFilter(viewModel.darkThemeColor3, BlendMode.SRC)
+        } else {
+            color0View.drawable.colorFilter =
+                BlendModeColorFilter(viewModel.lightThemeColor0, BlendMode.SRC)
+            color1View.drawable.colorFilter =
+                BlendModeColorFilter(viewModel.lightThemeColor1, BlendMode.SRC)
+            color2View.drawable.colorFilter =
+                BlendModeColorFilter(viewModel.lightThemeColor2, BlendMode.SRC)
+            color3View.drawable.colorFilter =
+                BlendModeColorFilter(viewModel.lightThemeColor3, BlendMode.SRC)
+        }
     }
 }

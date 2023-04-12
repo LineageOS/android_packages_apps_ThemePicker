@@ -87,7 +87,8 @@ class ColorProvider(context: Context, stubPackageName: String) :
         callback: OptionsFetchedListener<ColorOption>?,
         reload: Boolean,
         homeWallpaperColors: WallpaperColors?,
-        lockWallpaperColors: WallpaperColors?
+        lockWallpaperColors: WallpaperColors?,
+        shouldUseRevampedUi: Boolean
     ) {
         val wallpaperColorsChanged =
             this.homeWallpaperColors != homeWallpaperColors ||
@@ -103,7 +104,11 @@ class ColorProvider(context: Context, stubPackageName: String) :
                         loadPreset()
                     }
                     if (wallpaperColorsChanged || reload) {
-                        loadSeedColors(homeWallpaperColors, lockWallpaperColors)
+                        loadSeedColors(
+                            homeWallpaperColors,
+                            lockWallpaperColors,
+                            shouldUseRevampedUi
+                        )
                     }
                 } catch (e: Throwable) {
                     colorsAvailable = false
@@ -127,7 +132,8 @@ class ColorProvider(context: Context, stubPackageName: String) :
 
     private fun loadSeedColors(
         homeWallpaperColors: WallpaperColors?,
-        lockWallpaperColors: WallpaperColors?
+        lockWallpaperColors: WallpaperColors?,
+        shouldUseRevampedUi: Boolean,
     ) {
         if (homeWallpaperColors == null) return
 
@@ -147,7 +153,8 @@ class ColorProvider(context: Context, stubPackageName: String) :
                 colorsPerSource,
                 if (shouldLockColorsGoFirst) COLOR_SOURCE_LOCK else COLOR_SOURCE_HOME,
                 true,
-                bundles
+                bundles,
+                shouldUseRevampedUi
             )
             // Second half of the colors
             buildColorSeeds(
@@ -155,10 +162,18 @@ class ColorProvider(context: Context, stubPackageName: String) :
                 MAX_SEED_COLORS - bundles.size / styleSize,
                 if (shouldLockColorsGoFirst) COLOR_SOURCE_HOME else COLOR_SOURCE_LOCK,
                 false,
-                bundles
+                bundles,
+                shouldUseRevampedUi
             )
         } else {
-            buildColorSeeds(homeWallpaperColors, colorsPerSource, COLOR_SOURCE_HOME, true, bundles)
+            buildColorSeeds(
+                homeWallpaperColors,
+                colorsPerSource,
+                COLOR_SOURCE_HOME,
+                true,
+                bundles,
+                shouldUseRevampedUi
+            )
         }
 
         bundles.addAll(colorBundles?.filterNot { it is ColorSeedOption } ?: emptyList())
@@ -170,13 +185,14 @@ class ColorProvider(context: Context, stubPackageName: String) :
         maxColors: Int,
         source: String,
         containsDefault: Boolean,
-        bundles: MutableList<ColorOption>
+        bundles: MutableList<ColorOption>,
+        shouldUseRevampedUi: Boolean,
     ) {
         val seedColors = ColorScheme.getSeedColors(wallpaperColors)
         val defaultSeed = seedColors.first()
-        buildBundle(defaultSeed, 0, containsDefault, source, bundles)
+        buildBundle(defaultSeed, 0, containsDefault, source, bundles, shouldUseRevampedUi)
         for ((i, colorInt) in seedColors.drop(1).take(maxColors - 1).withIndex()) {
-            buildBundle(colorInt, i + 1, false, source, bundles)
+            buildBundle(colorInt, i + 1, false, source, bundles, shouldUseRevampedUi)
         }
     }
 
@@ -185,7 +201,8 @@ class ColorProvider(context: Context, stubPackageName: String) :
         i: Int,
         isDefault: Boolean,
         source: String,
-        bundles: MutableList<ColorOption>
+        bundles: MutableList<ColorOption>,
+        shouldUseRevampedUi: Boolean,
     ) {
         // TODO(b/202145216): Measure time cost in the loop.
         for (style in styleList) {
@@ -193,8 +210,14 @@ class ColorProvider(context: Context, stubPackageName: String) :
             val lightColorScheme = ColorScheme(colorInt, /* darkTheme= */ false, style)
             val darkColorScheme = ColorScheme(colorInt, /* darkTheme= */ true, style)
             builder
-                .setLightColors(lightColorScheme.getLightColorPreview())
-                .setDarkColors(darkColorScheme.getDarkColorPreview())
+                .setLightColors(
+                    if (shouldUseRevampedUi) lightColorScheme.getRevampedUILightColorPreview()
+                    else lightColorScheme.getLightColorPreview()
+                )
+                .setDarkColors(
+                    if (shouldUseRevampedUi) darkColorScheme.getRevampedUIDarkColorPreview()
+                    else darkColorScheme.getDarkColorPreview()
+                )
                 .addOverlayPackage(
                     OVERLAY_CATEGORY_SYSTEM_PALETTE,
                     if (isDefault) "" else toColorString(colorInt)
@@ -245,6 +268,30 @@ class ColorProvider(context: Context, stubPackageName: String) :
     @ColorInt
     private fun ColorScheme.getDarkColorPreview(): IntArray {
         return getLightColorPreview()
+    }
+
+    @ColorInt
+    private fun ColorScheme.getRevampedUILightColorPreview(): IntArray {
+        return intArrayOf(
+            setAlphaComponent(this.accent1.s600, ALPHA_MASK),
+            setAlphaComponent(this.accent1.s600, ALPHA_MASK),
+            setAlphaComponent(this.accent2.s100, ALPHA_MASK),
+            ColorStateList.valueOf(this.accent3.s500).withLStar(59f).colors[0],
+        )
+    }
+
+    /**
+     * Returns the color for the dark theme version of the preview of a ColorScheme based on this
+     * order: |-------| | 0 | 1 | |---+---| | 2 | 3 | |-------|
+     */
+    @ColorInt
+    private fun ColorScheme.getRevampedUIDarkColorPreview(): IntArray {
+        return intArrayOf(
+            setAlphaComponent(this.accent1.s200, ALPHA_MASK),
+            setAlphaComponent(this.accent1.s200, ALPHA_MASK),
+            setAlphaComponent(this.accent2.s700, ALPHA_MASK),
+            setAlphaComponent(this.accent3.s100, ALPHA_MASK),
+        )
     }
 
     private fun ColorScheme.getPresetColorPreview(seed: Int): IntArray {

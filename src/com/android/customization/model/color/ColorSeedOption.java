@@ -100,6 +100,7 @@ public class ColorSeedOption extends ColorOption {
         /**
          * Returns the colors to be applied corresponding with the current
          * configuration's UI mode.
+         * @param res resources to read to the UI mode configuration from
          * @return one of {@link #lightColors} or {@link #darkColors}
          */
         @ColorInt
@@ -107,6 +108,17 @@ public class ColorSeedOption extends ColorOption {
             boolean night = (res.getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK)
                     == Configuration.UI_MODE_NIGHT_YES;
             return night ? darkColors : lightColors;
+        }
+
+        /**
+         * Returns the preview colors based on whether dark theme or light theme colors are
+         * requested.
+         * @param darkTheme if true, returns dark theme colors, otherwise returns light theme colors
+         * @return one of {@link #lightColors} or {@link #darkColors}
+         */
+        @ColorInt
+        public int[] resolveColors(boolean darkTheme) {
+            return darkTheme ? darkColors : lightColors;
         }
     }
 
