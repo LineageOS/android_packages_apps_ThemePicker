@@ -412,14 +412,6 @@
     <string name="keyguard_quick_affordance_none_selected">None</string>
 
     <!--
-    Title for a section in a list of sections in the settings app that allows the user to modify
-    how notifications behave whilst the device is locked.
-
-    [CHAR LIMIT=32].
-    -->
-    <string name="notifications_section_title">Notifications</string>
-
-    <!--
     Summary for a setting that lets the user toggle between showing or hiding notifications on their
     device's lock screen. This one is shown when the user is allowing notifications to show on their
     device's lock screen.
@@ -443,7 +435,7 @@
 
     [CHAR LIMIT=32].
     -->
-    <string name="more_settings_section_title">More options</string>
+    <string name="more_settings_section_title">More lock screen options</string>
 
     <!--
     Summary for a setting that lets the user access additional settings related to lock screen
@@ -453,7 +445,7 @@
 
     [CHAR LIMIT=64].
     -->
-    <string name="more_settings_section_description">Text on lock screen, Now Playing, and more</string>
+    <string name="more_settings_section_description">Privacy, Now Playing, and more</string>
 
     <!--
     Label for button that lets the user navigate to a full-screen experience of selecting
