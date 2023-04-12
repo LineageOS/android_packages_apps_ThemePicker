@@ -17,6 +17,7 @@
 
 package com.android.customization.picker.color.ui.binder
 
+import android.content.res.Configuration
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -32,7 +33,6 @@ import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
 import com.android.customization.picker.common.ui.view.ItemSpacing
 import com.android.wallpaper.R
 import com.android.wallpaper.picker.option.ui.adapter.OptionItemAdapter
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -64,7 +64,10 @@ object ColorPickerBinder {
                 lifecycleOwner = lifecycleOwner,
                 bindIcon = { foregroundView: View, colorIcon: ColorOptionIconViewModel ->
                     val viewGroup = foregroundView as? ViewGroup
-                    viewGroup?.let { ColorOptionIconBinder.bind(viewGroup, colorIcon) }
+                    val night =
+                        (view.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK ==
+                            Configuration.UI_MODE_NIGHT_YES)
+                    viewGroup?.let { ColorOptionIconBinder.bind(viewGroup, colorIcon, night) }
                 }
             )
         colorOptionContainerView.adapter = colorOptionAdapter

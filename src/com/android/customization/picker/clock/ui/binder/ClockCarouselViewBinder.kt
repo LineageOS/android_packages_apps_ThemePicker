@@ -59,6 +59,12 @@ object ClockCarouselViewBinder {
                 }
 
                 launch {
+                    viewModel.allClockIds.collect {
+                        it.forEach { clockId -> clockViewFactory.updateTimeFormat(clockId) }
+                    }
+                }
+
+                launch {
                     viewModel.selectedIndex.collect { selectedIndex ->
                         carouselView.setSelectedClockIndex(selectedIndex)
                     }
@@ -89,7 +95,9 @@ object ClockCarouselViewBinder {
             LifecycleEventObserver { source, event ->
                 when (event) {
                     Lifecycle.Event.ON_RESUME -> {
-                        clockViewFactory.registerTimeTicker(source)
+                        clockViewFactory.registerTimeTicker(source) {
+                            !carouselView.isCarouselInTransition
+                        }
                     }
                     Lifecycle.Event.ON_PAUSE -> {
                         clockViewFactory.unregisterTimeTicker(source)

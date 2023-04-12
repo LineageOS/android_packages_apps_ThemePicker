@@ -94,6 +94,7 @@
             android:id="@+id/item_card_2"
             android:layout_width="@dimen/clock_carousel_item_card_width"
             android:layout_height="@dimen/clock_carousel_item_card_height"
+            android:alpha="0.0"
             android:layout_gravity="center"
             android:background="@drawable/carousel_item_card_background"/>
 

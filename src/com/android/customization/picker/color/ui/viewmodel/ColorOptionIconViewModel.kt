@@ -20,8 +20,12 @@ package com.android.customization.picker.color.ui.viewmodel
 import android.annotation.ColorInt
 
 data class ColorOptionIconViewModel(
-    @ColorInt val color0: Int,
-    @ColorInt val color1: Int,
-    @ColorInt val color2: Int,
-    @ColorInt val color3: Int,
+    @ColorInt val lightThemeColor0: Int,
+    @ColorInt val lightThemeColor1: Int,
+    @ColorInt val lightThemeColor2: Int,
+    @ColorInt val lightThemeColor3: Int,
+    @ColorInt val darkThemeColor0: Int,
+    @ColorInt val darkThemeColor1: Int,
+    @ColorInt val darkThemeColor2: Int,
+    @ColorInt val darkThemeColor3: Int,
 )
