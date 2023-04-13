@@ -35,9 +35,9 @@ constructor(
     private val interactor: NotificationsInteractor,
 ) : ViewModel() {
 
-    /** A string resource ID for the subtitle. */
+    /** A string resource ID for the title. */
     @StringRes
-    val subtitleStringResourceId: Flow<Int> =
+    val titleStringResourceId: Flow<Int> =
         interactor.settings.map { model ->
             when (model.isShowNotificationsOnLockScreenEnabled) {
                 true -> R.string.show_notifications_on_lock_screen

@@ -145,10 +145,14 @@ private constructor(
                             key = MutableStateFlow(colorModel.colorId) as StateFlow<String>,
                             payload =
                                 ColorOptionIconViewModel(
-                                    colorModel.color,
-                                    colorModel.color,
-                                    colorModel.color,
-                                    colorModel.color,
+                                    lightThemeColor0 = colorModel.color,
+                                    lightThemeColor1 = colorModel.color,
+                                    lightThemeColor2 = colorModel.color,
+                                    lightThemeColor3 = colorModel.color,
+                                    darkThemeColor0 = colorModel.color,
+                                    darkThemeColor1 = colorModel.color,
+                                    darkThemeColor2 = colorModel.color,
+                                    darkThemeColor3 = colorModel.color,
                                 ),
                             text =
                                 Text.Loaded(
@@ -200,8 +204,26 @@ private constructor(
         val optionItemPayload =
             when (colorOption) {
                 is ColorSeedOption -> {
-                    val colors = colorOption.previewInfo.resolveColors(context.resources)
-                    ColorOptionIconViewModel(colors[0], colors[1], colors[2], colors[3])
+                    val lightThemeColors =
+                        colorOption.previewInfo.resolveColors(
+                            /** darkTheme= */
+                            false
+                        )
+                    val darkThemeColors =
+                        colorOption.previewInfo.resolveColors(
+                            /** darkTheme= */
+                            true
+                        )
+                    ColorOptionIconViewModel(
+                        lightThemeColor0 = lightThemeColors[0],
+                        lightThemeColor1 = lightThemeColors[1],
+                        lightThemeColor2 = lightThemeColors[2],
+                        lightThemeColor3 = lightThemeColors[3],
+                        darkThemeColor0 = darkThemeColors[0],
+                        darkThemeColor1 = darkThemeColors[1],
+                        darkThemeColor2 = darkThemeColors[2],
+                        darkThemeColor3 = darkThemeColors[3],
+                    )
                 }
                 is ColorBundle -> {
                     val primaryColor =
@@ -209,10 +231,14 @@ private constructor(
                     val secondaryColor =
                         colorOption.previewInfo.resolveSecondaryColor(context.resources)
                     ColorOptionIconViewModel(
-                        primaryColor,
-                        secondaryColor,
-                        primaryColor,
-                        secondaryColor
+                        lightThemeColor0 = primaryColor,
+                        lightThemeColor1 = secondaryColor,
+                        lightThemeColor2 = primaryColor,
+                        lightThemeColor3 = secondaryColor,
+                        darkThemeColor0 = primaryColor,
+                        darkThemeColor1 = secondaryColor,
+                        darkThemeColor2 = primaryColor,
+                        darkThemeColor3 = secondaryColor,
                     )
                 }
                 else -> null
