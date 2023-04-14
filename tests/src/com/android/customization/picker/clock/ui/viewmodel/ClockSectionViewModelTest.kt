@@ -65,18 +65,18 @@ class ClockSectionViewModelTest {
 
     @Test
     fun setSelectedClock() = runTest {
-        val colorRed = clockColorMap.values.first()
+        val colorGrey = clockColorMap.values.first()
         val observedSelectedClockColorAndSizeText =
             collectLastValue(underTest.selectedClockColorAndSizeText)
         interactor.setClockColor(
-            colorRed.colorId,
+            colorGrey.colorId,
             ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS,
             ClockSettingsViewModel.blendColorWithTone(
-                colorRed.color,
-                colorRed.getColorTone(ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS),
+                colorGrey.color,
+                colorGrey.getColorTone(ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS),
             )
         )
         interactor.setClockSize(ClockSize.DYNAMIC)
-        assertThat(observedSelectedClockColorAndSizeText()).isEqualTo("Red, dynamic")
+        assertThat(observedSelectedClockColorAndSizeText()).isEqualTo("Grey, dynamic")
     }
 }
