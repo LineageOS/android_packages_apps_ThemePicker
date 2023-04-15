@@ -15,7 +15,8 @@
      limitations under the License.
 -->
 <resources>
-    <string-array name="clock_color_ids">
+    <string-array translatable="false" name="clock_color_ids">
+        <item>GRAY</item>
         <item>RED</item>
         <item>ORANGE</item>
         <item>YELLOW</item>
@@ -23,10 +24,10 @@
         <item>BLUE</item>
         <item>INDIGO</item>
         <item>VIOLET</item>
-        <item>GRAY</item>
         <item>TEAL</item>
     </string-array>
     <array name="clock_color_names">
+        <item>@string/clock_color_gray</item>
         <item>@string/clock_color_red</item>
         <item>@string/clock_color_orange</item>
         <item>@string/clock_color_yellow</item>
@@ -34,10 +35,10 @@
         <item>@string/clock_color_blue</item>
         <item>@string/clock_color_indigo</item>
         <item>@string/clock_color_violet</item>
-        <item>@string/clock_color_gray</item>
         <item>@string/clock_color_teal</item>
     </array>
     <array name="clock_colors">
+        <item>#B9B9B9</item>
         <item>#FFA3A7</item>
         <item>#F7AC69</item>
         <item>#FFC951</item>
@@ -45,10 +46,10 @@
         <item>#8EC8FF</item>
         <item>#B9AAFF</item>
         <item>#F6A2FF</item>
-        <item>#B9B9B9</item>
         <item>#40D9CF</item>
     </array>
     <array name="clock_color_tone_min">
+        <item>0</item>
         <item>20</item>
         <item>20</item>
         <item>50</item>
@@ -56,10 +57,10 @@
         <item>20</item>
         <item>10</item>
         <item>20</item>
-        <item>0</item>
         <item>20</item>
     </array>
     <array name="clock_color_tone_max">
+        <item>100</item>
         <item>95</item>
         <item>95</item>
         <item>95</item>
@@ -67,7 +68,6 @@
         <item>95</item>
         <item>95</item>
         <item>97</item>
-        <item>100</item>
         <item>99</item>
     </array>
 </resources>
