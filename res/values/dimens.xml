@@ -157,7 +157,6 @@
     <dimen name="keyguard_quick_affordance_icon_size">24dp</dimen>
 
     <dimen name="clock_carousel_item_width">190dp</dimen>
-    <dimen name="clock_carousel_item_height">380dp</dimen>
     <dimen name="clock_carousel_item_margin">16dp</dimen>
     <dimen name="clock_carousel_guideline_margin">140dp</dimen>
     <dimen name="clock_carousel_item_card_width">100dp</dimen>
