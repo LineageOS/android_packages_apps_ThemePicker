@@ -38,7 +38,7 @@ class ClockCarouselView(
 
     var isCarouselInTransition = false
 
-    private val carousel: Carousel
+    val carousel: Carousel
     private val motionLayout: MotionLayout
     private lateinit var adapter: ClockCarouselAdapter
     private lateinit var scalingUpClockController: ClockController
