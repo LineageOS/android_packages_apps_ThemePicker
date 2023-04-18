@@ -20,8 +20,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.android.customization.model.color.ColorBundle
-import com.android.customization.model.color.ColorSeedOption
+import com.android.customization.model.color.ColorOptionImpl
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
 import com.android.customization.picker.color.shared.model.ColorType
 import com.android.wallpaper.R
@@ -96,125 +95,52 @@ private constructor(
             colorOptions
                 .map { colorOptionEntry ->
                     colorOptionEntry.key to
-                        when (colorOptionEntry.key) {
-                            ColorType.WALLPAPER_COLOR -> {
-                                colorOptionEntry.value.map { colorOptionModel ->
-                                    val colorSeedOption: ColorSeedOption =
-                                        colorOptionModel.colorOption as ColorSeedOption
-                                    val lightThemeColors =
-                                        colorSeedOption.previewInfo.resolveColors(
-                                            /* darkTheme= */ false
-                                        )
-                                    val darkThemeColors =
-                                        colorSeedOption.previewInfo.resolveColors(
-                                            /* darkTheme= */ true
-                                        )
-                                    val isSelectedFlow: StateFlow<Boolean> =
-                                        interactor.activeColorOption
-                                            .map {
-                                                it?.colorOption?.isEquivalent(
-                                                    colorOptionModel.colorOption
-                                                )
-                                                    ?: colorOptionModel.isSelected
-                                            }
-                                            .stateIn(viewModelScope)
-                                    OptionItemViewModel<ColorOptionIconViewModel>(
-                                        key =
-                                            MutableStateFlow(colorOptionModel.key)
-                                                as StateFlow<String>,
-                                        payload =
-                                            ColorOptionIconViewModel(
-                                                lightThemeColor0 = lightThemeColors[0],
-                                                lightThemeColor1 = lightThemeColors[1],
-                                                lightThemeColor2 = lightThemeColors[2],
-                                                lightThemeColor3 = lightThemeColors[3],
-                                                darkThemeColor0 = darkThemeColors[0],
-                                                darkThemeColor1 = darkThemeColors[1],
-                                                darkThemeColor2 = darkThemeColors[2],
-                                                darkThemeColor3 = darkThemeColors[3],
-                                            ),
-                                        text =
-                                            Text.Loaded(
-                                                colorSeedOption
-                                                    .getContentDescription(context)
-                                                    .toString()
-                                            ),
-                                        isTextUserVisible = false,
-                                        isSelected = isSelectedFlow,
-                                        onClicked =
-                                            isSelectedFlow.map { isSelected ->
-                                                if (isSelected) {
-                                                    null
-                                                } else {
-                                                    {
-                                                        viewModelScope.launch {
-                                                            interactor.select(colorOptionModel)
-                                                        }
-                                                    }
+                        colorOptionEntry.value.map { colorOptionModel ->
+                            val colorOption: ColorOptionImpl =
+                                colorOptionModel.colorOption as ColorOptionImpl
+                            val lightThemeColors =
+                                colorOption.previewInfo.resolveColors(/* darkTheme= */ false)
+                            val darkThemeColors =
+                                colorOption.previewInfo.resolveColors(/* darkTheme= */ true)
+                            val isSelectedFlow: StateFlow<Boolean> =
+                                interactor.activeColorOption
+                                    .map {
+                                        it?.colorOption?.isEquivalent(colorOptionModel.colorOption)
+                                            ?: colorOptionModel.isSelected
+                                    }
+                                    .stateIn(viewModelScope)
+                            OptionItemViewModel<ColorOptionIconViewModel>(
+                                key = MutableStateFlow(colorOptionModel.key) as StateFlow<String>,
+                                payload =
+                                    ColorOptionIconViewModel(
+                                        lightThemeColor0 = lightThemeColors[0],
+                                        lightThemeColor1 = lightThemeColors[1],
+                                        lightThemeColor2 = lightThemeColors[2],
+                                        lightThemeColor3 = lightThemeColors[3],
+                                        darkThemeColor0 = darkThemeColors[0],
+                                        darkThemeColor1 = darkThemeColors[1],
+                                        darkThemeColor2 = darkThemeColors[2],
+                                        darkThemeColor3 = darkThemeColors[3],
+                                    ),
+                                text =
+                                    Text.Loaded(
+                                        colorOption.getContentDescription(context).toString()
+                                    ),
+                                isTextUserVisible = false,
+                                isSelected = isSelectedFlow,
+                                onClicked =
+                                    isSelectedFlow.map { isSelected ->
+                                        if (isSelected) {
+                                            null
+                                        } else {
+                                            {
+                                                viewModelScope.launch {
+                                                    interactor.select(colorOptionModel)
                                                 }
-                                            },
-                                    )
-                                }
-                            }
-                            ColorType.PRESET_COLOR -> {
-                                colorOptionEntry.value.map { colorOptionModel ->
-                                    val colorBundle: ColorBundle =
-                                        colorOptionModel.colorOption as ColorBundle
-                                    val primaryColor =
-                                        colorBundle.previewInfo.resolvePrimaryColor(
-                                            context.resources
-                                        )
-                                    val secondaryColor =
-                                        colorBundle.previewInfo.resolveSecondaryColor(
-                                            context.resources
-                                        )
-                                    val isSelectedFlow: StateFlow<Boolean> =
-                                        interactor.activeColorOption
-                                            .map {
-                                                it?.colorOption?.isEquivalent(
-                                                    colorOptionModel.colorOption
-                                                )
-                                                    ?: colorOptionModel.isSelected
                                             }
-                                            .stateIn(viewModelScope)
-                                    OptionItemViewModel<ColorOptionIconViewModel>(
-                                        key =
-                                            MutableStateFlow(colorOptionModel.key)
-                                                as StateFlow<String>,
-                                        payload =
-                                            ColorOptionIconViewModel(
-                                                lightThemeColor0 = primaryColor,
-                                                lightThemeColor1 = secondaryColor,
-                                                lightThemeColor2 = primaryColor,
-                                                lightThemeColor3 = secondaryColor,
-                                                darkThemeColor0 = primaryColor,
-                                                darkThemeColor1 = secondaryColor,
-                                                darkThemeColor2 = primaryColor,
-                                                darkThemeColor3 = secondaryColor,
-                                            ),
-                                        text =
-                                            Text.Loaded(
-                                                colorBundle
-                                                    .getContentDescription(context)
-                                                    .toString()
-                                            ),
-                                        isTextUserVisible = false,
-                                        isSelected = isSelectedFlow,
-                                        onClicked =
-                                            isSelectedFlow.map { isSelected ->
-                                                if (isSelected) {
-                                                    null
-                                                } else {
-                                                    {
-                                                        viewModelScope.launch {
-                                                            interactor.select(colorOptionModel)
-                                                        }
-                                                    }
-                                                }
-                                            },
-                                    )
-                                }
-                            }
+                                        }
+                                    },
+                            )
                         }
                 }
                 .toMap()
