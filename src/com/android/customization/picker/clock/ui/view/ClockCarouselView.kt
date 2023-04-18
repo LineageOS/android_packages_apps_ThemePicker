@@ -98,11 +98,11 @@ class ClockCarouselView(
                     endId: Int,
                     progress: Float
                 ) {
-                    scalingDownClockController.animations.onPickerCarouselSwiping(
+                    scalingDownClockController.largeClock.animations.onPickerCarouselSwiping(
                         1 - progress,
                         getPreviewRatio()
                     )
-                    scalingUpClockController.animations.onPickerCarouselSwiping(
+                    scalingUpClockController.largeClock.animations.onPickerCarouselSwiping(
                         progress,
                         getPreviewRatio()
                     )
@@ -173,6 +173,7 @@ class ClockCarouselView(
                 clockScaleView.scaleX = CLOCK_CAROUSEL_VIEW_SCALE
                 clockScaleView.scaleY = CLOCK_CAROUSEL_VIEW_SCALE
                 onGetClockController(clockIds[index])
+                    .largeClock
                     .animations
                     .onPickerCarouselSwiping(0F, getPreviewRatio())
             } else {
@@ -180,6 +181,7 @@ class ClockCarouselView(
                 clockScaleView.scaleX = 1f
                 clockScaleView.scaleY = 1f
                 onGetClockController(clockIds[index])
+                    .largeClock
                     .animations
                     .onPickerCarouselSwiping(1F, getPreviewRatio())
             }

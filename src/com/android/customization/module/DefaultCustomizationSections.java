@@ -40,7 +40,7 @@ import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInt
 import com.android.wallpaper.picker.customization.ui.section.ConnectedSectionController;
 import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewSectionController;
 import com.android.wallpaper.picker.customization.ui.section.WallpaperQuickSwitchSectionController;
-import com.android.wallpaper.picker.customization.ui.viewmodel.WallpaperQuickSwitchViewModel;
+import com.android.wallpaper.picker.customization.ui.viewmodel.CustomizationPickerViewModel;
 import com.android.wallpaper.util.DisplayUtils;
 
 import java.util.ArrayList;
@@ -98,7 +98,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
             @Nullable Bundle savedInstanceState,
             CurrentWallpaperInfoFactory wallpaperInfoFactory,
             DisplayUtils displayUtils,
-            WallpaperQuickSwitchViewModel wallpaperQuickSwitchViewModel,
+            CustomizationPickerViewModel customizationPickerViewModel,
             WallpaperInteractor wallpaperInteractor) {
         List<CustomizationSectionController<?>> sectionControllers = new ArrayList<>();
 
@@ -140,7 +140,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
                         // Wallpaper quick switch section.
                         new WallpaperQuickSwitchSectionController(
                                 screen,
-                                wallpaperQuickSwitchViewModel,
+                                customizationPickerViewModel.getWallpaperQuickSwitchViewModel(
+                                        screen),
                                 lifecycleOwner,
                                 sectionNavigationController),
                         /* reverseOrderWhenHorizontal= */ true));
