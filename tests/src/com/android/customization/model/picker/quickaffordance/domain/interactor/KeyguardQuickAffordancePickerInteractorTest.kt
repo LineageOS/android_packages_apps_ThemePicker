@@ -24,6 +24,7 @@ import com.android.customization.picker.quickaffordance.domain.interactor.Keygua
 import com.android.customization.picker.quickaffordance.shared.model.KeyguardQuickAffordancePickerSelectionModel
 import com.android.systemui.shared.customization.data.content.FakeCustomizationProviderClient
 import com.android.systemui.shared.keyguard.shared.model.KeyguardQuickAffordanceSlots
+import com.android.wallpaper.testing.FakeSnapshotStore
 import com.android.wallpaper.testing.collectLastValue
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.Dispatchers
@@ -69,7 +70,7 @@ class KeyguardQuickAffordancePickerInteractorTest {
                             interactor = underTest,
                             client = client,
                         )
-                        .apply { runBlocking { setUpSnapshotRestorer {} } }
+                        .apply { runBlocking { setUpSnapshotRestorer(FakeSnapshotStore()) } }
                 },
             )
     }
@@ -111,23 +112,6 @@ class KeyguardQuickAffordancePickerInteractorTest {
                         ),
                     )
                 )
-        }
-
-    @Test
-    fun unselect() =
-        testScope.runTest {
-            val selections = collectLastValue(underTest.selections)
-            underTest.select(
-                slotId = KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START,
-                affordanceId = FakeCustomizationProviderClient.AFFORDANCE_1,
-            )
-
-            underTest.unselect(
-                slotId = KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START,
-                affordanceId = FakeCustomizationProviderClient.AFFORDANCE_1,
-            )
-
-            assertThat(selections()).isEmpty()
         }
 
     @Test

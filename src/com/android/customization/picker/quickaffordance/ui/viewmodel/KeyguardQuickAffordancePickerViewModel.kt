@@ -32,17 +32,25 @@ import com.android.systemui.shared.keyguard.shared.model.KeyguardQuickAffordance
 import com.android.systemui.shared.quickaffordance.shared.model.KeyguardQuickAffordancePreviewConstants
 import com.android.wallpaper.R
 import com.android.wallpaper.module.CurrentWallpaperInfoFactory
+import com.android.wallpaper.picker.common.button.ui.viewmodel.ButtonStyle
+import com.android.wallpaper.picker.common.button.ui.viewmodel.ButtonViewModel
+import com.android.wallpaper.picker.common.dialog.ui.viewmodel.DialogViewModel
+import com.android.wallpaper.picker.common.icon.ui.viewmodel.Icon
+import com.android.wallpaper.picker.common.text.ui.viewmodel.Text
 import com.android.wallpaper.picker.customization.ui.viewmodel.ScreenPreviewViewModel
-import com.android.wallpaper.picker.undo.domain.interactor.UndoInteractor
-import com.android.wallpaper.picker.undo.ui.viewmodel.UndoViewModel
+import com.android.wallpaper.picker.option.ui.viewmodel.OptionItemViewModel
 import com.android.wallpaper.util.PreviewUtils
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.shareIn
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
 
@@ -52,8 +60,8 @@ class KeyguardQuickAffordancePickerViewModel
 private constructor(
     context: Context,
     private val quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor,
-    undoInteractor: UndoInteractor,
     private val wallpaperInfoFactory: CurrentWallpaperInfoFactory,
+    activityStarter: (Intent) -> Unit,
 ) : ViewModel() {
 
     @SuppressLint("StaticFieldLeak") private val applicationContext = context.applicationContext
@@ -74,6 +82,10 @@ private constructor(
                         KeyguardQuickAffordancePreviewConstants.KEY_INITIALLY_SELECTED_SLOT_ID,
                         selectedSlotId.value,
                     )
+                    putBoolean(
+                        KeyguardQuickAffordancePreviewConstants.KEY_HIGHLIGHT_QUICK_AFFORDANCES,
+                        true,
+                    )
                 }
             },
             wallpaperInfoProvider = {
@@ -88,13 +100,27 @@ private constructor(
             },
         )
 
-    val undo: UndoViewModel =
-        UndoViewModel(
-            interactor = undoInteractor,
-        )
-
+    /** A locally-selected slot, if the user ever switched from the original one. */
     private val _selectedSlotId = MutableStateFlow<String?>(null)
-    val selectedSlotId: StateFlow<String?> = _selectedSlotId.asStateFlow()
+    /** The ID of the selected slot. */
+    val selectedSlotId: StateFlow<String> =
+        combine(
+                quickAffordanceInteractor.slots,
+                _selectedSlotId,
+            ) { slots, selectedSlotIdOrNull ->
+                if (selectedSlotIdOrNull != null) {
+                    slots.first { slot -> slot.id == selectedSlotIdOrNull }
+                } else {
+                    // If we haven't yet selected a new slot locally, default to the first slot.
+                    slots[0]
+                }
+            }
+            .map { selectedSlot -> selectedSlot.id }
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(),
+                initialValue = "",
+            )
 
     /** View-models for each slot, keyed by slot ID. */
     val slots: Flow<Map<String, KeyguardQuickAffordanceSlotViewModel>> =
@@ -103,94 +129,132 @@ private constructor(
             quickAffordanceInteractor.affordances,
             quickAffordanceInteractor.selections,
             selectedSlotId,
-        ) { slots, affordances, selections, selectedSlotIdOrNull ->
-            slots
-                .mapIndexed { index, slot ->
-                    val selectedAffordanceIds =
-                        selections
-                            .filter { selection -> selection.slotId == slot.id }
-                            .map { selection -> selection.affordanceId }
-                            .toSet()
-                    val selectedAffordances =
-                        affordances.filter { affordance ->
-                            selectedAffordanceIds.contains(affordance.id)
-                        }
-                    val isSelected =
-                        (selectedSlotIdOrNull == null && index == 0) ||
-                            selectedSlotIdOrNull == slot.id
-                    slot.id to
-                        KeyguardQuickAffordanceSlotViewModel(
-                            name = getSlotName(slot.id),
-                            isSelected = isSelected,
-                            selectedQuickAffordances =
-                                selectedAffordances.map { affordanceModel ->
-                                    KeyguardQuickAffordanceViewModel(
-                                        icon = getAffordanceIcon(affordanceModel.iconResourceId),
-                                        contentDescription = affordanceModel.name,
-                                        isSelected = true,
-                                        onClicked = null,
-                                        isEnabled = affordanceModel.isEnabled,
-                                    )
-                                },
-                            maxSelectedQuickAffordances = slot.maxSelectedQuickAffordances,
-                            onClicked =
-                                if (isSelected) {
-                                    null
-                                } else {
-                                    { _selectedSlotId.tryEmit(slot.id) }
-                                },
-                        )
-                }
-                .toMap()
+        ) { slots, affordances, selections, selectedSlotId ->
+            slots.associate { slot ->
+                val selectedAffordanceIds =
+                    selections
+                        .filter { selection -> selection.slotId == slot.id }
+                        .map { selection -> selection.affordanceId }
+                        .toSet()
+                val selectedAffordances =
+                    affordances.filter { affordance ->
+                        selectedAffordanceIds.contains(affordance.id)
+                    }
+                val isSelected = selectedSlotId == slot.id
+                slot.id to
+                    KeyguardQuickAffordanceSlotViewModel(
+                        name = getSlotName(slot.id),
+                        isSelected = isSelected,
+                        selectedQuickAffordances =
+                            selectedAffordances.map { affordanceModel ->
+                                OptionItemViewModel<Icon>(
+                                    key =
+                                        MutableStateFlow("${slot.id}::${affordanceModel.id}")
+                                            as StateFlow<String>,
+                                    payload =
+                                        Icon.Loaded(
+                                            drawable =
+                                                getAffordanceIcon(affordanceModel.iconResourceId),
+                                            contentDescription = null,
+                                        ),
+                                    text = Text.Loaded(affordanceModel.name),
+                                    isSelected = MutableStateFlow(true) as StateFlow<Boolean>,
+                                    onClicked = flowOf(null),
+                                    onLongClicked = null,
+                                    isEnabled = true,
+                                )
+                            },
+                        maxSelectedQuickAffordances = slot.maxSelectedQuickAffordances,
+                        onClicked =
+                            if (isSelected) {
+                                null
+                            } else {
+                                { _selectedSlotId.tryEmit(slot.id) }
+                            },
+                    )
+            }
         }
 
-    /** The list of all available quick affordances for the selected slot. */
-    val quickAffordances: Flow<List<KeyguardQuickAffordanceViewModel>> =
+    /**
+     * The set of IDs of the currently-selected affordances. These change with user selection of new
+     * or different affordances in the currently-selected slot or when slot selection changes.
+     */
+    private val selectedAffordanceIds: Flow<Set<String>> =
         combine(
-            quickAffordanceInteractor.slots,
-            quickAffordanceInteractor.affordances,
-            quickAffordanceInteractor.selections,
-            selectedSlotId,
-        ) { slots, affordances, selections, selectedSlotIdOrNull ->
-            val selectedSlot =
-                selectedSlotIdOrNull?.let { slots.find { slot -> slot.id == it } } ?: slots.first()
-            val selectedAffordanceIds =
+                quickAffordanceInteractor.selections,
+                selectedSlotId,
+            ) { selections, selectedSlotId ->
                 selections
-                    .filter { selection -> selection.slotId == selectedSlot.id }
+                    .filter { selection -> selection.slotId == selectedSlotId }
                     .map { selection -> selection.affordanceId }
                     .toSet()
+            }
+            .shareIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(),
+                replay = 1,
+            )
+
+    /** The list of all available quick affordances for the selected slot. */
+    val quickAffordances: Flow<List<OptionItemViewModel<Icon>>> =
+        quickAffordanceInteractor.affordances.map { affordances ->
+            val isNoneSelected = selectedAffordanceIds.map { it.isEmpty() }.stateIn(viewModelScope)
             listOf(
                 none(
-                    slotId = selectedSlot.id,
-                    isSelected = selectedAffordanceIds.isEmpty(),
-                )
-            ) +
-                affordances.map { affordance ->
-                    val isSelected = selectedAffordanceIds.contains(affordance.id)
-                    val affordanceIcon = getAffordanceIcon(affordance.iconResourceId)
-                    KeyguardQuickAffordanceViewModel(
-                        icon = affordanceIcon,
-                        contentDescription = affordance.name,
-                        isSelected = isSelected,
-                        onClicked =
-                            if (affordance.isEnabled) {
+                    slotId = selectedSlotId,
+                    isSelected = isNoneSelected,
+                    onSelected =
+                        combine(
+                            isNoneSelected,
+                            selectedSlotId,
+                        ) { isSelected, selectedSlotId ->
+                            if (!isSelected) {
                                 {
                                     viewModelScope.launch {
-                                        if (isSelected) {
-                                            quickAffordanceInteractor.unselect(
-                                                slotId = selectedSlot.id,
-                                                affordanceId = affordance.id,
-                                            )
-                                        } else {
-                                            quickAffordanceInteractor.select(
-                                                slotId = selectedSlot.id,
-                                                affordanceId = affordance.id,
-                                            )
-                                        }
+                                        quickAffordanceInteractor.unselectAll(selectedSlotId)
                                     }
                                 }
                             } else {
-                                {
+                                null
+                            }
+                        }
+                )
+            ) +
+                affordances.map { affordance ->
+                    val affordanceIcon = getAffordanceIcon(affordance.iconResourceId)
+                    val isSelectedFlow: StateFlow<Boolean> =
+                        selectedAffordanceIds
+                            .map { it.contains(affordance.id) }
+                            .stateIn(viewModelScope)
+                    OptionItemViewModel<Icon>(
+                        key =
+                            selectedSlotId
+                                .map { slotId -> "$slotId::${affordance.id}" }
+                                .stateIn(viewModelScope),
+                        payload = Icon.Loaded(drawable = affordanceIcon, contentDescription = null),
+                        text = Text.Loaded(affordance.name),
+                        isSelected = isSelectedFlow,
+                        onClicked =
+                            if (affordance.isEnabled) {
+                                combine(
+                                    isSelectedFlow,
+                                    selectedSlotId,
+                                ) { isSelected, selectedSlotId ->
+                                    if (!isSelected) {
+                                        {
+                                            viewModelScope.launch {
+                                                quickAffordanceInteractor.select(
+                                                    slotId = selectedSlotId,
+                                                    affordanceId = affordance.id,
+                                                )
+                                            }
+                                        }
+                                    } else {
+                                        null
+                                    }
+                                }
+                            } else {
+                                flowOf {
                                     showEnablementDialog(
                                         icon = affordanceIcon,
                                         name = affordance.name,
@@ -201,6 +265,12 @@ private constructor(
                                     )
                                 }
                             },
+                        onLongClicked =
+                            if (affordance.configureIntent != null) {
+                                { activityStarter(affordance.configureIntent) }
+                            } else {
+                                null
+                            },
                         isEnabled = affordance.isEnabled,
                     )
                 }
@@ -210,21 +280,24 @@ private constructor(
     val summary: Flow<KeyguardQuickAffordanceSummaryViewModel> =
         slots.map { slots ->
             val icon2 =
-                slots[KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END]
-                    ?.selectedQuickAffordances
-                    ?.firstOrNull()
-                    ?.icon
+                (slots[KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END]
+                        ?.selectedQuickAffordances
+                        ?.firstOrNull())
+                    ?.payload
             val icon1 =
-                slots[KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START]
-                    ?.selectedQuickAffordances
-                    ?.firstOrNull()
-                    ?.icon
+                (slots[KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START]
+                        ?.selectedQuickAffordances
+                        ?.firstOrNull())
+                    ?.payload
 
             KeyguardQuickAffordanceSummaryViewModel(
                 description = toDescriptionText(context, slots),
                 icon1 = icon1
                         ?: if (icon2 == null) {
-                            context.getDrawable(R.drawable.link_off)
+                            Icon.Resource(
+                                res = R.drawable.link_off,
+                                contentDescription = null,
+                            )
                         } else {
                             null
                         },
@@ -254,28 +327,58 @@ private constructor(
     ) {
         _dialog.value =
             DialogViewModel(
-                icon = icon,
-                name = name,
-                instructions = instructions,
-                actionText = actionText
-                        ?: applicationContext.getString(
-                            R.string.keyguard_affordance_enablement_dialog_dismiss_button
+                icon =
+                    Icon.Loaded(
+                        drawable = icon,
+                        contentDescription = null,
+                    ),
+                title = Text.Loaded(name),
+                message =
+                    Text.Loaded(
+                        buildString {
+                            instructions.forEachIndexed { index, instruction ->
+                                if (index > 0) {
+                                    append('\n')
+                                }
+
+                                append(instruction)
+                            }
+                        }
+                    ),
+                buttons =
+                    listOf(
+                        ButtonViewModel(
+                            text = actionText?.let { Text.Loaded(actionText) }
+                                    ?: Text.Resource(
+                                        R.string
+                                            .keyguard_affordance_enablement_dialog_dismiss_button,
+                                    ),
+                            style = ButtonStyle.Primary,
+                            onClicked = {
+                                actionComponentName.toIntent()?.let { intent ->
+                                    applicationContext.startActivity(intent)
+                                }
+                            }
                         ),
-                intent = actionComponentName.toIntent(),
+                    ),
             )
     }
 
+    /** Returns a view-model for the special "None" option. */
     @SuppressLint("UseCompatLoadingForDrawables")
-    private fun none(
-        slotId: String,
-        isSelected: Boolean,
-    ): KeyguardQuickAffordanceViewModel {
-        return KeyguardQuickAffordanceViewModel.none(
-            context = applicationContext,
+    private suspend fun none(
+        slotId: StateFlow<String>,
+        isSelected: StateFlow<Boolean>,
+        onSelected: Flow<(() -> Unit)?>,
+    ): OptionItemViewModel<Icon> {
+        return OptionItemViewModel<Icon>(
+            key = slotId.map { "$it::none" }.stateIn(viewModelScope),
+            payload = Icon.Resource(res = R.drawable.link_off, contentDescription = null),
+            text = Text.Resource(res = R.string.keyguard_affordance_none),
             isSelected = isSelected,
-            onSelected = {
-                viewModelScope.launch { quickAffordanceInteractor.unselectAll(slotId) }
-            },
+            onClicked = onSelected,
+            onLongClicked = null,
+            isEnabled = true,
         )
     }
 
@@ -318,70 +421,50 @@ private constructor(
         }
     }
 
-    /** Encapsulates a request to show a dialog. */
-    data class DialogViewModel(
-        /** An icon to show. */
-        val icon: Drawable,
-
-        /** Name of the affordance. */
-        val name: String,
-
-        /** The set of instructions to show below the header. */
-        val instructions: List<String>,
-
-        /** Label for the dialog button. */
-        val actionText: String,
-
-        /**
-         * Optional [Intent] to use to start an activity when the dialog button is clicked. If
-         * `null`, the dialog should be dismissed.
-         */
-        val intent: Intent?,
-    )
-
     private fun toDescriptionText(
         context: Context,
         slots: Map<String, KeyguardQuickAffordanceSlotViewModel>,
-    ): String {
+    ): Text {
         val bottomStartAffordanceName =
             slots[KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START]
                 ?.selectedQuickAffordances
                 ?.firstOrNull()
-                ?.contentDescription
+                ?.text
         val bottomEndAffordanceName =
             slots[KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END]
                 ?.selectedQuickAffordances
                 ?.firstOrNull()
-                ?.contentDescription
+                ?.text
 
         return when {
-            !bottomStartAffordanceName.isNullOrEmpty() &&
-                !bottomEndAffordanceName.isNullOrEmpty() -> {
-                context.getString(
-                    R.string.keyguard_quick_affordance_two_selected_template,
-                    bottomStartAffordanceName,
-                    bottomEndAffordanceName,
+            bottomStartAffordanceName != null && bottomEndAffordanceName != null -> {
+                Text.Loaded(
+                    context.getString(
+                        R.string.keyguard_quick_affordance_two_selected_template,
+                        bottomStartAffordanceName.asString(context),
+                        bottomEndAffordanceName.asString(context),
+                    )
                 )
             }
-            !bottomStartAffordanceName.isNullOrEmpty() -> bottomStartAffordanceName
-            !bottomEndAffordanceName.isNullOrEmpty() -> bottomEndAffordanceName
-            else -> context.getString(R.string.keyguard_quick_affordance_none_selected)
+            bottomStartAffordanceName != null -> bottomStartAffordanceName
+            bottomEndAffordanceName != null -> bottomEndAffordanceName
+            else -> Text.Resource(R.string.keyguard_quick_affordance_none_selected)
         }
     }
 
     class Factory(
         private val context: Context,
         private val quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor,
-        private val undoInteractor: UndoInteractor,
         private val wallpaperInfoFactory: CurrentWallpaperInfoFactory,
+        private val activityStarter: (Intent) -> Unit,
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             @Suppress("UNCHECKED_CAST")
             return KeyguardQuickAffordancePickerViewModel(
                 context = context,
                 quickAffordanceInteractor = quickAffordanceInteractor,
-                undoInteractor = undoInteractor,
                 wallpaperInfoFactory = wallpaperInfoFactory,
+                activityStarter = activityStarter,
             )
                 as T
         }

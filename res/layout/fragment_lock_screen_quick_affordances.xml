@@ -18,7 +18,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:clipChildren="false">
 
     <FrameLayout
         android:id="@+id/section_header_container"
@@ -33,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:paddingTop="36dp"
+        android:paddingTop="20dp"
         android:paddingBottom="40dp">
 
         <include
@@ -51,9 +52,10 @@
         android:orientation="vertical"
         android:layout_marginHorizontal="24dp"
         android:layout_marginBottom="28dp"
-        android:background="@drawable/keyguard_quick_affordance_picker_background"
+        android:background="@drawable/picker_fragment_background"
         android:paddingTop="22dp"
-        android:paddingBottom="62dp">
+        android:paddingBottom="62dp"
+        android:clipChildren="false">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -62,8 +64,9 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@id/slot_tabs"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:clipToPadding="false"
                 android:paddingHorizontal="16dp" />
 
@@ -77,7 +80,7 @@
             It's critical for any TextViews inside the included layout to have text.
             -->
             <include
-                layout="@layout/keyguard_quick_affordance_slot_tab"
+                layout="@layout/picker_fragment_tab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="invisible" />
@@ -90,14 +93,17 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:clipChildren="false">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@id/affordances"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:clipToPadding="false"
-                android:paddingHorizontal="16dp" />
+                android:paddingHorizontal="16dp"
+                android:clipChildren="false" />
 
             <!--
             This is just an invisible placeholder put in place so that the parent keeps its height

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 The Android Open Source Project
+ * Copyright (C) 2023 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,12 +18,13 @@
 package com.android.customization.picker.clock.domain.interactor
 
 import com.android.wallpaper.picker.undo.domain.interactor.SnapshotRestorer
+import com.android.wallpaper.picker.undo.domain.interactor.SnapshotStore
 import com.android.wallpaper.picker.undo.shared.model.RestorableSnapshot
 
 /** Handles state restoration for clocks. */
 class ClocksSnapshotRestorer : SnapshotRestorer {
     override suspend fun setUpSnapshotRestorer(
-        updater: (RestorableSnapshot) -> Unit,
+        store: SnapshotStore,
     ): RestorableSnapshot {
         // TODO(b/262924055): implement as part of the clock settings screen.
         return RestorableSnapshot(mapOf())

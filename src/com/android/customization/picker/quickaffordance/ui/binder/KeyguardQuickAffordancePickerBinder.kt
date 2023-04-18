@@ -17,27 +17,33 @@
 
 package com.android.customization.picker.quickaffordance.ui.binder
 
-import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
-import android.graphics.Rect
-import android.view.LayoutInflater
 import android.view.View
-import androidx.core.view.ViewCompat
+import android.widget.ImageView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.customization.picker.quickaffordance.ui.adapter.AffordancesAdapter
+import com.android.customization.picker.common.ui.view.ItemSpacing
 import com.android.customization.picker.quickaffordance.ui.adapter.SlotTabAdapter
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel
 import com.android.wallpaper.R
+import com.android.wallpaper.picker.common.dialog.ui.viewbinder.DialogViewBinder
+import com.android.wallpaper.picker.common.dialog.ui.viewmodel.DialogViewModel
+import com.android.wallpaper.picker.common.icon.ui.viewbinder.IconViewBinder
+import com.android.wallpaper.picker.common.icon.ui.viewmodel.Icon
+import com.android.wallpaper.picker.option.ui.adapter.OptionItemAdapter
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalCoroutinesApi::class)
 object KeyguardQuickAffordancePickerBinder {
 
     /** Binds view with view-model for a lock screen quick affordance picker experience. */
@@ -54,12 +60,20 @@ object KeyguardQuickAffordancePickerBinder {
         slotTabView.adapter = slotTabAdapter
         slotTabView.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
-        slotTabView.addItemDecoration(ItemSpacing())
-        val affordancesAdapter = AffordancesAdapter()
+        slotTabView.addItemDecoration(ItemSpacing(ItemSpacing.TAB_ITEM_SPACING_DP))
+        val affordancesAdapter =
+            OptionItemAdapter(
+                layoutResourceId = R.layout.keyguard_quick_affordance,
+                lifecycleOwner = lifecycleOwner,
+                bindIcon = { foregroundView: View, gridIcon: Icon ->
+                    val imageView = foregroundView as? ImageView
+                    imageView?.let { IconViewBinder.bind(imageView, gridIcon) }
+                }
+            )
         affordancesView.adapter = affordancesAdapter
         affordancesView.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
-        affordancesView.addItemDecoration(ItemSpacing())
+        affordancesView.addItemDecoration(ItemSpacing(ItemSpacing.ITEM_SPACING_DP))
 
         var dialog: Dialog? = null
 
@@ -75,6 +89,26 @@ object KeyguardQuickAffordancePickerBinder {
                     viewModel.quickAffordances.collect { affordances ->
                         affordancesAdapter.setItems(affordances)
                     }
+                }
+
+                launch {
+                    viewModel.quickAffordances
+                        .flatMapLatest { affordances ->
+                            combine(affordances.map { affordance -> affordance.isSelected }) {
+                                selectedFlags ->
+                                selectedFlags.indexOfFirst { it }
+                            }
+                        }
+                        .collect { selectedPosition ->
+                            // Scroll the view to show the first selected affordance.
+                            if (selectedPosition != -1) {
+                                // We use "post" because we need to give the adapter item a pass to
+                                // update the view.
+                                affordancesView.post {
+                                    affordancesView.smoothScrollToPosition(selectedPosition)
+                                }
+                            }
+                        }
                 }
 
                 launch {
@@ -98,48 +132,13 @@ object KeyguardQuickAffordancePickerBinder {
 
     private fun showDialog(
         context: Context,
-        request: KeyguardQuickAffordancePickerViewModel.DialogViewModel,
+        request: DialogViewModel,
         onDismissed: () -> Unit,
     ): Dialog {
-        val view: View =
-            LayoutInflater.from(context)
-                .inflate(
-                    R.layout.keyguard_quick_affordance_enablement_dialog,
-                    null,
-                )
-        KeyguardQuickAffordanceEnablementDialogBinder.bind(
-            view = view,
+        return DialogViewBinder.show(
+            context = context,
             viewModel = request,
             onDismissed = onDismissed,
         )
-
-        return AlertDialog.Builder(context, R.style.LightDialogTheme)
-            .setView(view)
-            .setOnDismissListener { onDismissed() }
-            .show()
-    }
-
-    private class ItemSpacing : RecyclerView.ItemDecoration() {
-        override fun getItemOffsets(outRect: Rect, itemPosition: Int, parent: RecyclerView) {
-            val addSpacingToStart = itemPosition > 0
-            val addSpacingToEnd = itemPosition < (parent.adapter?.itemCount ?: 0) - 1
-            val isRtl = parent.layoutManager?.layoutDirection == ViewCompat.LAYOUT_DIRECTION_RTL
-            val density = parent.context.resources.displayMetrics.density
-            if (!isRtl) {
-                outRect.left = if (addSpacingToStart) ITEM_SPACING_DP.toPx(density) else 0
-                outRect.right = if (addSpacingToEnd) ITEM_SPACING_DP.toPx(density) else 0
-            } else {
-                outRect.left = if (addSpacingToEnd) ITEM_SPACING_DP.toPx(density) else 0
-                outRect.right = if (addSpacingToStart) ITEM_SPACING_DP.toPx(density) else 0
-            }
-        }
-
-        private fun Int.toPx(density: Float): Int {
-            return (this * density).toInt()
-        }
-
-        companion object {
-            private const val ITEM_SPACING_DP = 8
-        }
     }
 }

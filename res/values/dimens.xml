@@ -130,21 +130,38 @@
     <dimen name="beta_tag_background_width">46dp</dimen>
     <dimen name="beta_tag_background_height">24dp</dimen>
 
-    <!-- For the color option section -->
+    <!-- For the color picker section -->
+    <!-- Dimension for the original color picker section -->
     <dimen name="color_options_container_top_margin">24dp</dimen>
-
-    <!-- For the color page. -->
     <dimen name="color_page_indicator_margin_top">16dp</dimen>
-
+    <!-- Dimension for the original color chip resource -->
     <dimen name="component_color_chip_small_radius_default">29dp</dimen>
     <dimen name="component_color_chip_small_diameter_default">58dp</dimen>
     <dimen name="color_seed_chip_margin">14dp</dimen>
+    <!-- Dimension for the revamped UI color chip -->
+    <dimen name="component_color_overflow_small_radius_default">20dp</dimen>
+    <dimen name="component_color_overflow_small_diameter_default">40dp</dimen>
+    <dimen name="component_color_selected_small_radius_default">22dp</dimen>
+    <dimen name="component_color_selected_small_diameter_default">44dp</dimen>
+
+    <!-- For the color picker page. -->
+    <!-- Dimension for the revamped UI color chip -->
+    <dimen name="component_color_chip_small_radius_default2">24dp</dimen>
+    <dimen name="component_color_chip_small_diameter_default2">48dp</dimen>
+    <dimen name="color_seed_chip_margin2">11dp</dimen>
 
     <!-- Keyguard quick affordances -->
     <!-- Size for the container for the icon of a quick affordance for the lock screen in the picker experience. -->
     <dimen name="keyguard_quick_affordance_icon_container_size">74dp</dimen>
     <!-- Size for the icon of a quick affordance for the lock screen in the picker experience. -->
     <dimen name="keyguard_quick_affordance_icon_size">24dp</dimen>
-    <!-- Width of a single selectable item in the lock screen quick affordance picker. -->
-    <dimen name="keyguard_quick_affordance_picker_item_width">74dp</dimen>
+
+    <dimen name="clock_carousel_item_width">190dp</dimen>
+    <dimen name="clock_carousel_item_height">380dp</dimen>
+    <dimen name="clock_carousel_item_margin">16dp</dimen>
+    <dimen name="clock_carousel_guideline_margin">140dp</dimen>
+    <!-- Scale of the carousel items that are not selected and at the side -->
+    <dimen name="clock_carousel_scale" format="float">0.5</dimen>
+    <!-- Alpha of the carousel items that are not selected and at the side -->
+    <dimen name="clock_carousel_alpha" format="float">0.4</dimen>
 </resources>

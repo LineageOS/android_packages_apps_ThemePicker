@@ -83,6 +83,7 @@ class KeyguardQuickAffordancePickerRepository(
             enablementInstructions = enablementInstructions ?: emptyList(),
             enablementActionText = enablementActionText,
             enablementActionComponentName = enablementActionComponentName,
+            configureIntent = configureIntent,
         )
     }
 
