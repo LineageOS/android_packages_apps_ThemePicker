@@ -20,7 +20,7 @@
     android:layout_width="match_parent"
     android:background="?selectableItemBackground"
     android:clickable="true"
-    android:paddingVertical="@dimen/option_section_vertical_padding"
+    android:paddingBottom="@dimen/section_bottom_padding"
     android:paddingHorizontal="@dimen/section_horizontal_padding"
     android:orientation="horizontal">
 
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:layout_gravity="center">
+        android:layout_gravity="center_vertical">
 
         <TextView
             android:layout_width="match_parent"
