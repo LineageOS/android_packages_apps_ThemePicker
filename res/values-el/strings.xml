@@ -124,11 +124,10 @@
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"Συντομεύσεις"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"Καμία"</string>
-    <string name="notifications_section_title" msgid="4283049750376871538">"Ειδοποιήσεις"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Εμφάνιση ειδοποιήσεων στην οθόνη κλειδώματος"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Απόκρυψη ειδοποιήσεων στην οθόνη κλειδώματος"</string>
-    <string name="more_settings_section_title" msgid="8524741850115625404">"Περισσότερες επιλογές"</string>
-    <string name="more_settings_section_description" msgid="8787768566854880683">"Κείμενο στην οθόνη κλειδώματος, λειτουργία \"Ακούγεται τώρα\" κ.ά."</string>
+    <string name="more_settings_section_title" msgid="1331425454775815958">"Περισσότ. επιλογές οθόνης κλειδ."</string>
+    <string name="more_settings_section_description" msgid="1860115709122398325">"Απόρρητο, Ακούγεται τώρα κ.ά."</string>
     <string name="more_colors" msgid="3191071655353004591">"Περισσότερα χρώματα"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Επιλογή προεπιλεγμένου χρώματος"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Επιλογή χρώματος <xliff:g id="ID_1">%1$d</xliff:g>"</string>
