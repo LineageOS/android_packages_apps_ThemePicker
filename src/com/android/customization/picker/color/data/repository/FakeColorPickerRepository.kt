@@ -19,9 +19,8 @@ package com.android.customization.picker.color.data.repository
 import android.content.Context
 import android.graphics.Color
 import android.text.TextUtils
-import com.android.customization.model.color.ColorBundle
+import com.android.customization.model.color.ColorOptionImpl
 import com.android.customization.model.color.ColorOptionsProvider
-import com.android.customization.model.color.ColorSeedOption
 import com.android.customization.picker.color.shared.model.ColorOptionModel
 import com.android.customization.picker.color.shared.model.ColorType
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -82,9 +81,7 @@ class FakeColorPickerRepository(private val context: Context) : ColorPickerRepos
                                 ColorOptionModel(
                                     key = "${ColorType.PRESET_COLOR}::$index",
                                     colorOption = buildPresetOption(index),
-                                    isSelected =
-                                        selectedColorOptionType == ColorType.PRESET_COLOR &&
-                                            selectedColorOptionIndex == index,
+                                    isSelected = isSelected,
                                 )
                             if (isSelected) {
                                 selectedColorOption = colorOption
@@ -95,36 +92,36 @@ class FakeColorPickerRepository(private val context: Context) : ColorPickerRepos
             )
     }
 
-    private fun buildPresetOption(index: Int): ColorBundle {
-        return ColorBundle.Builder()
+    private fun buildPresetOption(index: Int): ColorOptionImpl {
+        val builder = ColorOptionImpl.Builder()
+        builder.lightColors =
+            intArrayOf(Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT)
+        builder.darkColors =
+            intArrayOf(Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT)
+        builder.index = index
+        builder.type = ColorType.PRESET_COLOR
+        builder.source = ColorOptionsProvider.COLOR_SOURCE_PRESET
+        builder.title = "Preset"
+        builder
             .addOverlayPackage("TEST_PACKAGE_TYPE", "preset_color")
             .addOverlayPackage("TEST_PACKAGE_INDEX", "$index")
-            .setIndex(index)
-            .build(context)
+        return builder.build()
     }
 
-    private fun buildWallpaperOption(index: Int): ColorSeedOption {
-        return ColorSeedOption.Builder()
-            .setLightColors(
-                intArrayOf(
-                    Color.TRANSPARENT,
-                    Color.TRANSPARENT,
-                    Color.TRANSPARENT,
-                    Color.TRANSPARENT
-                )
-            )
-            .setDarkColors(
-                intArrayOf(
-                    Color.TRANSPARENT,
-                    Color.TRANSPARENT,
-                    Color.TRANSPARENT,
-                    Color.TRANSPARENT
-                )
-            )
+    private fun buildWallpaperOption(index: Int): ColorOptionImpl {
+        val builder = ColorOptionImpl.Builder()
+        builder.lightColors =
+            intArrayOf(Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT)
+        builder.darkColors =
+            intArrayOf(Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT)
+        builder.index = index
+        builder.type = ColorType.WALLPAPER_COLOR
+        builder.source = ColorOptionsProvider.COLOR_SOURCE_HOME
+        builder.title = "Dynamic"
+        builder
             .addOverlayPackage("TEST_PACKAGE_TYPE", "wallpaper_color")
             .addOverlayPackage("TEST_PACKAGE_INDEX", "$index")
-            .setIndex(index)
-            .build()
+        return builder.build()
     }
 
     override suspend fun select(colorOptionModel: ColorOptionModel) {
@@ -163,9 +160,9 @@ class FakeColorPickerRepository(private val context: Context) : ColorPickerRepos
     override fun getCurrentColorOption(): ColorOptionModel = selectedColorOption
 
     override fun getCurrentColorSource(): String? =
-        when (selectedColorOption.colorOption) {
-            is ColorSeedOption -> ColorOptionsProvider.COLOR_SOURCE_HOME
-            is ColorBundle -> ColorOptionsProvider.COLOR_SOURCE_PRESET
+        when ((selectedColorOption.colorOption as ColorOptionImpl).type) {
+            ColorType.WALLPAPER_COLOR -> ColorOptionsProvider.COLOR_SOURCE_HOME
+            ColorType.PRESET_COLOR -> ColorOptionsProvider.COLOR_SOURCE_PRESET
             else -> null
         }
 
