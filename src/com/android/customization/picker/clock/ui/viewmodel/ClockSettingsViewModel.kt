@@ -20,8 +20,7 @@ import androidx.core.graphics.ColorUtils
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.android.customization.model.color.ColorBundle
-import com.android.customization.model.color.ColorSeedOption
+import com.android.customization.model.color.ColorOptionImpl
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.shared.ClockSize
 import com.android.customization.picker.clock.shared.model.ClockMetadataModel
@@ -201,52 +200,32 @@ private constructor(
     private suspend fun ColorOptionModel.toOptionItemViewModel(
         context: Context
     ): OptionItemViewModel<ColorOptionIconViewModel> {
-        val optionItemPayload =
-            when (colorOption) {
-                is ColorSeedOption -> {
-                    val lightThemeColors =
-                        colorOption.previewInfo.resolveColors(
-                            /** darkTheme= */
-                            false
-                        )
-                    val darkThemeColors =
-                        colorOption.previewInfo.resolveColors(
-                            /** darkTheme= */
-                            true
-                        )
-                    ColorOptionIconViewModel(
-                        lightThemeColor0 = lightThemeColors[0],
-                        lightThemeColor1 = lightThemeColors[1],
-                        lightThemeColor2 = lightThemeColors[2],
-                        lightThemeColor3 = lightThemeColors[3],
-                        darkThemeColor0 = darkThemeColors[0],
-                        darkThemeColor1 = darkThemeColors[1],
-                        darkThemeColor2 = darkThemeColors[2],
-                        darkThemeColor3 = darkThemeColors[3],
-                    )
-                }
-                is ColorBundle -> {
-                    val primaryColor =
-                        colorOption.previewInfo.resolvePrimaryColor(context.resources)
-                    val secondaryColor =
-                        colorOption.previewInfo.resolveSecondaryColor(context.resources)
-                    ColorOptionIconViewModel(
-                        lightThemeColor0 = primaryColor,
-                        lightThemeColor1 = secondaryColor,
-                        lightThemeColor2 = primaryColor,
-                        lightThemeColor3 = secondaryColor,
-                        darkThemeColor0 = primaryColor,
-                        darkThemeColor1 = secondaryColor,
-                        darkThemeColor2 = primaryColor,
-                        darkThemeColor3 = secondaryColor,
-                    )
-                }
-                else -> null
-            }
+        val lightThemeColors =
+            (colorOption as ColorOptionImpl)
+                .previewInfo
+                .resolveColors(
+                    /** darkTheme= */
+                    false
+                )
+        val darkThemeColors =
+            colorOption.previewInfo.resolveColors(
+                /** darkTheme= */
+                true
+            )
         val isSelectedFlow = selectedColorId.map { it == null }.stateIn(viewModelScope)
         return OptionItemViewModel<ColorOptionIconViewModel>(
             key = MutableStateFlow(key) as StateFlow<String>,
-            payload = optionItemPayload,
+            payload =
+                ColorOptionIconViewModel(
+                    lightThemeColor0 = lightThemeColors[0],
+                    lightThemeColor1 = lightThemeColors[1],
+                    lightThemeColor2 = lightThemeColors[2],
+                    lightThemeColor3 = lightThemeColors[3],
+                    darkThemeColor0 = darkThemeColors[0],
+                    darkThemeColor1 = darkThemeColors[1],
+                    darkThemeColor2 = darkThemeColors[2],
+                    darkThemeColor3 = darkThemeColors[3],
+                ),
             text = Text.Loaded(context.getString(R.string.default_theme_title)),
             isTextUserVisible = true,
             isSelected = isSelectedFlow,

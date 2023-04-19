@@ -19,10 +19,9 @@ package com.android.customization.picker.color.data.repository
 import android.app.WallpaperColors
 import android.util.Log
 import com.android.customization.model.CustomizationManager
-import com.android.customization.model.color.ColorBundle
 import com.android.customization.model.color.ColorCustomizationManager
 import com.android.customization.model.color.ColorOption
-import com.android.customization.model.color.ColorSeedOption
+import com.android.customization.model.color.ColorOptionImpl
 import com.android.customization.picker.color.shared.model.ColorOptionModel
 import com.android.customization.picker.color.shared.model.ColorType
 import com.android.systemui.monet.Style
@@ -60,10 +59,11 @@ class ColorPickerRepositoryImpl(
                                 val presetColorOptions: MutableList<ColorOptionModel> =
                                     mutableListOf()
                                 options?.forEach { option ->
-                                    when (option) {
-                                        is ColorSeedOption ->
+                                    when ((option as ColorOptionImpl).type) {
+                                        ColorType.WALLPAPER_COLOR ->
                                             wallpaperColorOptions.add(option.toModel())
-                                        is ColorBundle -> presetColorOptions.add(option.toModel())
+                                        ColorType.PRESET_COLOR ->
+                                            presetColorOptions.add(option.toModel())
                                     }
                                 }
                                 continuation.resumeWith(
@@ -113,16 +113,16 @@ class ColorPickerRepositoryImpl(
         val overlays = colorManager.currentOverlays
         val styleOrNull = colorManager.currentStyle
         val style = styleOrNull?.let { Style.valueOf(it) } ?: Style.TONAL_SPOT
-        val colorOptionBuilder =
-            // Does not matter whether ColorSeedOption or ColorBundle builder is used here
-            // because to apply the color, one just needs a generic ColorOption
-            ColorSeedOption.Builder().setSource(colorManager.currentColorSource).setStyle(style)
+        val source = colorManager.currentColorSource
+        val colorOptionBuilder = ColorOptionImpl.Builder()
+        colorOptionBuilder.source = source
+        colorOptionBuilder.style = style
         for (overlay in overlays) {
             colorOptionBuilder.addOverlayPackage(overlay.key, overlay.value)
         }
         val colorOption = colorOptionBuilder.build()
         return ColorOptionModel(
-            key = "${colorOption.style}::${colorOption.serializedPackages}",
+            key = "",
             colorOption = colorOption,
             isSelected = false,
         )
@@ -132,9 +132,9 @@ class ColorPickerRepositoryImpl(
         return colorManager.currentColorSource
     }
 
-    private fun ColorOption.toModel(): ColorOptionModel {
+    private fun ColorOptionImpl.toModel(): ColorOptionModel {
         return ColorOptionModel(
-            key = "${this.style}::${this.serializedPackages}",
+            key = "${this.type}::${this.style}::${this.serializedPackages}",
             colorOption = this,
             isSelected = isActive(colorManager),
         )
