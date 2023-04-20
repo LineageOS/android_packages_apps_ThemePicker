@@ -47,18 +47,14 @@ object ClockCarouselViewBinder {
 
                 launch {
                     viewModel.allClockIds.collect { allClockIds ->
-                        if (allClockIds.size > 1) {
-                            carouselView.setUpClockCarouselView(
-                                clockIds = allClockIds,
-                                onGetClockController = { clockId ->
-                                    clockViewFactory.getController(clockId)
-                                },
-                                onClockSelected = { clockId ->
-                                    viewModel.setSelectedClock(clockId)
-                                },
-                                getPreviewRatio = { clockViewFactory.getRatio() }
-                            )
-                        }
+                        carouselView.setUpClockCarouselView(
+                            clockIds = allClockIds,
+                            onGetClockController = { clockId ->
+                                clockViewFactory.getController(clockId)
+                            },
+                            onClockSelected = { clockId -> viewModel.setSelectedClock(clockId) },
+                            getPreviewRatio = { clockViewFactory.getRatio() }
+                        )
                     }
                 }
 
