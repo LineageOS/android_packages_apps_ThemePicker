@@ -53,10 +53,10 @@
             android:layout_height="0dp"
             android:adjustViewBounds="true"
             android:src="@drawable/color_chip_seed_filled0"
-            app:layout_constraintHeight_percent=".50"
+            app:layout_constraintHeight_percent=".505"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".50" />
+            app:layout_constraintWidth_percent=".505" />
 
         <ImageView
             android:id="@+id/color_preview_1"
@@ -64,10 +64,10 @@
             android:layout_height="0dp"
             android:adjustViewBounds="true"
             android:src="@drawable/color_chip_seed_filled2"
-            app:layout_constraintHeight_percent=".50"
-            app:layout_constraintLeft_toRightOf="@id/color_preview_0"
+            app:layout_constraintHeight_percent=".505"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".50" />
+            app:layout_constraintWidth_percent=".505" />
 
         <ImageView
             android:id="@+id/color_preview_2"
@@ -75,10 +75,10 @@
             android:layout_height="0dp"
             android:adjustViewBounds="true"
             android:src="@drawable/color_chip_seed_filled1"
-            app:layout_constraintHeight_percent=".50"
+            app:layout_constraintHeight_percent=".505"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/color_preview_0"
-            app:layout_constraintWidth_percent=".50" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintWidth_percent=".505" />
 
         <ImageView
             android:id="@+id/color_preview_3"
@@ -86,10 +86,10 @@
             android:layout_height="0dp"
             android:adjustViewBounds="true"
             android:src="@drawable/color_chip_seed_filled3"
-            app:layout_constraintHeight_percent=".50"
-            app:layout_constraintLeft_toRightOf="@id/color_preview_2"
-            app:layout_constraintTop_toBottomOf="@id/color_preview_1"
-            app:layout_constraintWidth_percent=".50" />
+            app:layout_constraintHeight_percent=".505"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintWidth_percent=".505" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
