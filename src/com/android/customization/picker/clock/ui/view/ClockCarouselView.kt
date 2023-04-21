@@ -59,6 +59,7 @@ class ClockCarouselView(
         onGetClockController: (clockId: String) -> ClockController,
         onClockSelected: (clockId: String) -> Unit,
         getPreviewRatio: () -> Float,
+        onClockTransitionCompleted: (startId: String, endId: String) -> Unit,
     ) {
         adapter =
             ClockCarouselAdapter(clockIds, onGetClockController, onClockSelected, getPreviewRatio)
@@ -66,17 +67,20 @@ class ClockCarouselView(
         carousel.refresh()
         motionLayout.setTransitionListener(
             object : MotionLayout.TransitionListener {
+                var scalingDownClockId = ""
+                var scalingUpClockId = ""
+
                 override fun onTransitionStarted(
                     motionLayout: MotionLayout?,
                     startId: Int,
                     endId: Int
                 ) {
                     isCarouselInTransition = true
-                    val scalingDownClockId = adapter.clockIds[carousel.currentIndex]
+                    scalingDownClockId = adapter.clockIds[carousel.currentIndex]
                     val scalingUpIdx =
                         if (endId == R.id.next) (carousel.currentIndex + 1) % adapter.count()
                         else (carousel.currentIndex - 1 + adapter.count()) % adapter.count()
-                    val scalingUpClockId = adapter.clockIds[scalingUpIdx]
+                    scalingUpClockId = adapter.clockIds[scalingUpIdx]
                     scalingDownClockController = adapter.onGetClockController(scalingDownClockId)
                     scalingUpClockController = adapter.onGetClockController(scalingUpClockId)
                     scalingDownClockView = motionLayout?.findViewById(R.id.clock_scale_view_2)
@@ -118,6 +122,7 @@ class ClockCarouselView(
 
                 override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
                     isCarouselInTransition = false
+                    onClockTransitionCompleted(scalingDownClockId, scalingUpClockId)
                 }
 
                 override fun onTransitionTrigger(

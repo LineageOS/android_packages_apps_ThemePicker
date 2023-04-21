@@ -38,6 +38,7 @@ object ClockCarouselViewBinder {
         viewModel: ClockCarouselViewModel,
         clockViewFactory: ClockViewFactory,
         lifecycleOwner: LifecycleOwner,
+        hideSmartspace: (Boolean) -> Unit,
     ) {
         val singleClockHostView =
             singleClockView.requireViewById<FrameLayout>(R.id.single_clock_host_view)
@@ -53,7 +54,19 @@ object ClockCarouselViewBinder {
                                 clockViewFactory.getController(clockId)
                             },
                             onClockSelected = { clockId -> viewModel.setSelectedClock(clockId) },
-                            getPreviewRatio = { clockViewFactory.getRatio() }
+                            getPreviewRatio = { clockViewFactory.getRatio() },
+                            onClockTransitionCompleted = { startId, endId ->
+                                if (startId != endId ) {
+                                    val hasCustomWeatherDataDisplay =
+                                            clockViewFactory
+                                                    .getController(endId)
+                                                    .largeClock
+                                                    .config
+                                                    .hasCustomWeatherDataDisplay
+
+                                    hideSmartspace(hasCustomWeatherDataDisplay)
+                                }
+                            },
                         )
                     }
                 }
