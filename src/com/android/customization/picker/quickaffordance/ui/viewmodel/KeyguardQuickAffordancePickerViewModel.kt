@@ -29,7 +29,7 @@ import androidx.lifecycle.viewModelScope
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
 import com.android.systemui.shared.customization.data.content.CustomizationProviderContract
 import com.android.systemui.shared.keyguard.shared.model.KeyguardQuickAffordanceSlots
-import com.android.systemui.shared.quickaffordance.shared.model.KeyguardQuickAffordancePreviewConstants
+import com.android.systemui.shared.quickaffordance.shared.model.KeyguardPreviewConstants
 import com.android.wallpaper.R
 import com.android.wallpaper.module.CurrentWallpaperInfoFactory
 import com.android.wallpaper.picker.common.button.ui.viewmodel.ButtonStyle
@@ -79,11 +79,11 @@ private constructor(
             initialExtrasProvider = {
                 Bundle().apply {
                     putString(
-                        KeyguardQuickAffordancePreviewConstants.KEY_INITIALLY_SELECTED_SLOT_ID,
+                        KeyguardPreviewConstants.KEY_INITIALLY_SELECTED_SLOT_ID,
                         selectedSlotId.value,
                     )
                     putBoolean(
-                        KeyguardQuickAffordancePreviewConstants.KEY_HIGHLIGHT_QUICK_AFFORDANCES,
+                        KeyguardPreviewConstants.KEY_HIGHLIGHT_QUICK_AFFORDANCES,
                         true,
                     )
                 }

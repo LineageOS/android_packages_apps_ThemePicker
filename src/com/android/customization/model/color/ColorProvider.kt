@@ -348,7 +348,7 @@ class ColorProvider(context: Context, stubPackageName: String) :
     private fun getRevampedUIPresetColorPreview(colorScheme: ColorScheme, seed: Int): IntArray {
         val colors =
             when (colorScheme.style) {
-                Style.FRUIT_SALAD -> intArrayOf(seed, colorScheme.accent1.s100)
+                Style.FRUIT_SALAD -> intArrayOf(seed, colorScheme.accent1.s200)
                 Style.TONAL_SPOT -> intArrayOf(colorScheme.accentColor, colorScheme.accentColor)
                 else -> intArrayOf(colorScheme.accent1.s100, colorScheme.accent1.s100)
             }
