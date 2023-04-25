@@ -142,7 +142,11 @@ object ClockSettingsBinder {
                                     (view.resources.configuration.uiMode and
                                         Configuration.UI_MODE_NIGHT_MASK ==
                                         Configuration.UI_MODE_NIGHT_YES)
-                                ColorOptionIconBinder.bind(item, payload, darkMode)
+                                ColorOptionIconBinder.bind(
+                                    item.requireViewById(R.id.foreground),
+                                    payload,
+                                    darkMode
+                                )
                                 OptionItemBinder.bind(
                                     view = item,
                                     viewModel = colorOptions[index],
