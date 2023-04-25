@@ -126,10 +126,8 @@
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"Ingen"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Vis varsler på låseskjermen"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Skjul varsler på låseskjermen"</string>
-    <!-- no translation found for more_settings_section_title (1331425454775815958) -->
-    <skip />
-    <!-- no translation found for more_settings_section_description (1860115709122398325) -->
-    <skip />
+    <string name="more_settings_section_title" msgid="1331425454775815958">"Flere låseskjermalternativer"</string>
+    <string name="more_settings_section_description" msgid="1860115709122398325">"Personvern, Spilles nå med mer"</string>
     <string name="more_colors" msgid="3191071655353004591">"Flere farger"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Standard fargealternativ"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Fargealternativ <xliff:g id="ID_1">%1$d</xliff:g>"</string>
