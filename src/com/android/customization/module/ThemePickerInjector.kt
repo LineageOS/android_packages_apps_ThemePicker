@@ -262,6 +262,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
             ?: KeyguardQuickAffordancePickerViewModel.Factory(
                     context,
                     getKeyguardQuickAffordancePickerInteractor(context),
+                    getWallpaperInteractor(context),
                     getCurrentWallpaperInfoFactory(context),
                 ) { intent ->
                     context.startActivity(intent)
