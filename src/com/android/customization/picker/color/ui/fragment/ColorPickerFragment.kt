@@ -27,6 +27,7 @@ import com.android.customization.model.mode.DarkModeSectionController
 import com.android.customization.module.ThemePickerInjector
 import com.android.customization.picker.color.ui.binder.ColorPickerBinder
 import com.android.wallpaper.R
+import com.android.wallpaper.module.CustomizationSections
 import com.android.wallpaper.module.InjectorProvider
 import com.android.wallpaper.picker.AppbarFragment
 import com.android.wallpaper.picker.customization.ui.binder.ScreenPreviewBinder
@@ -103,10 +104,13 @@ class ColorPickerFragment : AppbarFragment() {
                     onWallpaperColorChanged = { colors ->
                         wcViewModel.setLockWallpaperColors(colors)
                     },
+                    wallpaperInteractor = injector.getWallpaperInteractor(requireContext()),
+                    screen = CustomizationSections.Screen.LOCK_SCREEN,
                 ),
             lifecycleOwner = this,
             offsetToStart =
                 displayUtils.isSingleDisplayOrUnfoldedHorizontalHinge(requireActivity()),
+            onPreviewDirty = { activity?.recreate() },
         )
         ScreenPreviewBinder.bind(
             activity = requireActivity(),
@@ -135,10 +139,13 @@ class ColorPickerFragment : AppbarFragment() {
                     onWallpaperColorChanged = { colors ->
                         wcViewModel.setLockWallpaperColors(colors)
                     },
+                    wallpaperInteractor = injector.getWallpaperInteractor(requireContext()),
+                    screen = CustomizationSections.Screen.HOME_SCREEN,
                 ),
             lifecycleOwner = this,
             offsetToStart =
                 displayUtils.isSingleDisplayOrUnfoldedHorizontalHinge(requireActivity()),
+            onPreviewDirty = { activity?.recreate() },
         )
         val darkModeToggleContainerView: FrameLayout =
             view.requireViewById(R.id.dark_mode_toggle_container)
