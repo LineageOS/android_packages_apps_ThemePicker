@@ -20,7 +20,6 @@ package com.android.customization.picker.color.ui.binder
 import android.content.res.Configuration
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.view.isVisible
@@ -99,7 +98,11 @@ object ColorSectionViewBinder {
                 LayoutInflater.from(view.context)
                     .inflate(R.layout.color_option_no_background, view, false)
             item.payload?.let {
-                ColorOptionIconBinder.bind(itemView as ViewGroup, item.payload, night)
+                ColorOptionIconBinder.bind(
+                    itemView.requireViewById(R.id.option_tile),
+                    item.payload,
+                    night
+                )
             }
             val optionSelectedView = itemView.findViewById<ImageView>(R.id.option_selected)
 
