@@ -49,6 +49,7 @@ object KeyguardQuickAffordancePreviewBinder {
                 lifecycleOwner = lifecycleOwner,
                 offsetToStart = offsetToStart,
                 dimWallpaper = true,
+                onPreviewDirty = { activity.recreate() },
             )
 
         previewView.contentDescription =
@@ -62,9 +63,7 @@ object KeyguardQuickAffordancePreviewBinder {
                 .collect { slotId ->
                     binding.sendMessage(
                         KeyguardPreviewConstants.MESSAGE_ID_SLOT_SELECTED,
-                        Bundle().apply {
-                            putString(KeyguardPreviewConstants.KEY_SLOT_ID, slotId)
-                        },
+                        Bundle().apply { putString(KeyguardPreviewConstants.KEY_SLOT_ID, slotId) },
                     )
                 }
         }

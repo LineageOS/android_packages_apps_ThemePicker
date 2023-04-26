@@ -53,20 +53,18 @@ object ClockCarouselViewBinder {
                             onGetClockController = { clockId ->
                                 clockViewFactory.getController(clockId)
                             },
-                            onClockSelected = { clockId -> viewModel.setSelectedClock(clockId) },
-                            getPreviewRatio = { clockViewFactory.getRatio() },
-                            onClockTransitionCompleted = { startId, endId ->
-                                if (startId != endId ) {
-                                    val hasCustomWeatherDataDisplay =
-                                            clockViewFactory
-                                                    .getController(endId)
-                                                    .largeClock
-                                                    .config
-                                                    .hasCustomWeatherDataDisplay
+                            onClockSelected = { clockId ->
+                                viewModel.setSelectedClock(clockId)
+                                val hasCustomWeatherDataDisplay =
+                                    clockViewFactory
+                                        .getController(clockId)
+                                        .largeClock
+                                        .config
+                                        .hasCustomWeatherDataDisplay
 
-                                    hideSmartspace(hasCustomWeatherDataDisplay)
-                                }
+                                hideSmartspace(hasCustomWeatherDataDisplay)
                             },
+                            previewRatio = clockViewFactory.getRatio(),
                         )
                     }
                 }
