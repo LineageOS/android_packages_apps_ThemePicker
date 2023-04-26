@@ -80,11 +80,8 @@ import com.android.wallpaper.picker.customization.data.content.WallpaperClientIm
 import com.android.wallpaper.picker.customization.data.repository.WallpaperRepository
 import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInteractor
 import com.android.wallpaper.picker.undo.domain.interactor.SnapshotRestorer
-import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 
-@OptIn(DelicateCoroutinesApi::class)
 open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInjector {
     private var customizationSections: CustomizationSections? = null
     private var userEventLogger: UserEventLogger? = null
@@ -231,7 +228,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
             ?: WallpaperInteractor(
                     repository =
                         WallpaperRepository(
-                            scope = GlobalScope,
+                            scope = getApplicationCoroutineScope(),
                             client = WallpaperClientImpl(context = context),
                             wallpaperPreferences = getPreferences(context = context),
                             backgroundDispatcher = Dispatchers.IO,
@@ -292,7 +289,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
         }
     }
 
-    protected fun getKeyguardQuickAffordancePickerProviderClient(
+    private fun getKeyguardQuickAffordancePickerProviderClient(
         context: Context
     ): CustomizationProviderClient {
         return customizationProviderClient
@@ -327,7 +324,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
         return clockRegistry
             ?: ClockRegistryProvider(
                     context = context,
-                    coroutineScope = GlobalScope,
+                    coroutineScope = getApplicationCoroutineScope(),
                     mainDispatcher = Dispatchers.Main,
                     backgroundDispatcher = Dispatchers.IO,
                 )
@@ -343,7 +340,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                     ClockPickerRepositoryImpl(
                         secureSettingsRepository = getSecureSettingsRepository(context),
                         registry = getClockRegistry(context),
-                        scope = GlobalScope,
+                        scope = getApplicationCoroutineScope(),
                     ),
                 )
                 .also { clockPickerInteractor = it }
@@ -370,14 +367,14 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
             ?: ClockViewFactory(activity, getClockRegistry(activity)).also { clockViewFactory = it }
     }
 
-    protected fun getNotificationsInteractor(
+    private fun getNotificationsInteractor(
         context: Context,
     ): NotificationsInteractor {
         return notificationsInteractor
             ?: NotificationsInteractor(
                     repository =
                         NotificationsRepository(
-                            scope = GlobalScope,
+                            scope = getApplicationCoroutineScope(),
                             backgroundDispatcher = Dispatchers.IO,
                             secureSettingsRepository = getSecureSettingsRepository(context),
                         ),
@@ -505,10 +502,10 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     ): GridInteractor {
         return gridInteractor
             ?: GridInteractor(
-                    applicationScope = GlobalScope,
+                    applicationScope = getApplicationCoroutineScope(),
                     repository =
                         GridRepositoryImpl(
-                            applicationScope = GlobalScope,
+                            applicationScope = getApplicationCoroutineScope(),
                             manager = GridOptionsManager.getInstance(context),
                             backgroundDispatcher = Dispatchers.IO,
                         ),
