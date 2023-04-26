@@ -92,6 +92,22 @@ object ColorPickerBinder {
                 launch {
                     viewModel.colorOptions.collect { colorOptions ->
                         colorOptionAdapter.setItems(colorOptions)
+                        // the same recycler view is used for different color types tabs
+                        // the scroll state of each tab should be independent of others
+                        var indexToFocus = 0
+                        colorOptions.forEachIndexed { index, colorOption ->
+                            if (colorOption.isSelected.value) {
+                                indexToFocus = index
+                            }
+                        }
+                        val linearLayoutManager =
+                            object : LinearLayoutManager(view.context, HORIZONTAL, false) {
+                                override fun onLayoutCompleted(state: RecyclerView.State?) {
+                                    super.onLayoutCompleted(state)
+                                    scrollToPosition(indexToFocus)
+                                }
+                            }
+                        colorOptionContainerView.layoutManager = linearLayoutManager
                     }
                 }
             }
