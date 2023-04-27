@@ -67,21 +67,13 @@ class ClockViewFactory(
     }
 
     fun registerTimeTicker(owner: LifecycleOwner) {
-        registerTimeTicker(owner, null)
-    }
-
-    fun registerTimeTicker(owner: LifecycleOwner, shouldTimeTick: (() -> Boolean)?) {
         val hashCode = owner.hashCode()
         if (timeTickListeners.keys.contains(hashCode)) {
             return
         }
 
         timeTickListeners[hashCode] =
-            TimeTicker.registerNewReceiver(activity.applicationContext) {
-                if (shouldTimeTick == null || shouldTimeTick()) {
-                    onTimeTick()
-                }
-            }
+            TimeTicker.registerNewReceiver(activity.applicationContext) { onTimeTick() }
     }
 
     private fun onTimeTick() {
