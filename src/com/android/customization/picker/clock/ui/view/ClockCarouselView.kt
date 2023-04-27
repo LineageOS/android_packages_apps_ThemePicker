@@ -36,8 +36,6 @@ class ClockCarouselView(
         attrs,
     ) {
 
-    var isCarouselInTransition = false
-
     val carousel: Carousel
     private val motionLayout: MotionLayout
     private lateinit var adapter: ClockCarouselAdapter
@@ -72,7 +70,6 @@ class ClockCarouselView(
                     startId: Int,
                     endId: Int
                 ) {
-                    isCarouselInTransition = true
                     val scalingDownClockId = adapter.clockIds[carousel.currentIndex]
                     val scalingUpIdx =
                         if (endId == R.id.next) (carousel.currentIndex + 1) % adapter.count()
@@ -125,7 +122,6 @@ class ClockCarouselView(
                 }
 
                 override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
-                    isCarouselInTransition = false
                     setCardAnimationState(currentId == R.id.start)
                 }
 
@@ -197,8 +193,6 @@ class ClockCarouselView(
 
             clockHostView.removeAllViews()
             val clockView = onGetClockController(clockIds[index]).largeClock.view
-            // Making sure the large clock tick to the correct time
-            onGetClockController(clockIds[index]).largeClock.events.onTimeTick()
             // The clock view might still be attached to an existing parent. Detach before adding to
             // another parent.
             (clockView.parent as? ViewGroup)?.removeView(clockView)
