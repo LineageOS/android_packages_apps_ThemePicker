@@ -106,9 +106,7 @@ object ClockCarouselViewBinder {
             LifecycleEventObserver { source, event ->
                 when (event) {
                     Lifecycle.Event.ON_RESUME -> {
-                        clockViewFactory.registerTimeTicker(source) {
-                            !carouselView.isCarouselInTransition
-                        }
+                        clockViewFactory.registerTimeTicker(source)
                     }
                     Lifecycle.Event.ON_PAUSE -> {
                         clockViewFactory.unregisterTimeTicker(source)
