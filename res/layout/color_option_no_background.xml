@@ -34,63 +34,17 @@
         constraint percentage is sized to leave a padding for the outer selection outline,
         proportionate to 2dp for a 40dp color wheel
     -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.android.customization.picker.color.ui.view.ColorOptionIconView
         android:id="@+id/option_tile"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_gravity="center"
-        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.909">
-
-        <ImageView
-            android:id="@+id/color_preview_0"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:adjustViewBounds="true"
-            android:src="@drawable/color_chip_seed_filled0"
-            app:layout_constraintHeight_percent=".50"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".50" />
-
-        <ImageView
-            android:id="@+id/color_preview_1"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:adjustViewBounds="true"
-            android:src="@drawable/color_chip_seed_filled2"
-            app:layout_constraintHeight_percent=".50"
-            app:layout_constraintLeft_toRightOf="@id/color_preview_0"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".50" />
-
-        <ImageView
-            android:id="@+id/color_preview_2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:adjustViewBounds="true"
-            android:src="@drawable/color_chip_seed_filled1"
-            app:layout_constraintHeight_percent=".50"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/color_preview_0"
-            app:layout_constraintWidth_percent=".50" />
-
-        <ImageView
-            android:id="@+id/color_preview_3"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:adjustViewBounds="true"
-            android:src="@drawable/color_chip_seed_filled3"
-            app:layout_constraintHeight_percent=".50"
-            app:layout_constraintLeft_toRightOf="@id/color_preview_2"
-            app:layout_constraintTop_toBottomOf="@id/color_preview_1"
-            app:layout_constraintWidth_percent=".50" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintWidth_percent="0.909" />
 
     <ImageView
         android:id="@+id/option_selected"

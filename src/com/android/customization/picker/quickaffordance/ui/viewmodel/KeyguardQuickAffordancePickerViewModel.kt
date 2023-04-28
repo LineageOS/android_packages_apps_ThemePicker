@@ -29,14 +29,16 @@ import androidx.lifecycle.viewModelScope
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
 import com.android.systemui.shared.customization.data.content.CustomizationProviderContract
 import com.android.systemui.shared.keyguard.shared.model.KeyguardQuickAffordanceSlots
-import com.android.systemui.shared.quickaffordance.shared.model.KeyguardQuickAffordancePreviewConstants
+import com.android.systemui.shared.quickaffordance.shared.model.KeyguardPreviewConstants
 import com.android.wallpaper.R
 import com.android.wallpaper.module.CurrentWallpaperInfoFactory
+import com.android.wallpaper.module.CustomizationSections
 import com.android.wallpaper.picker.common.button.ui.viewmodel.ButtonStyle
 import com.android.wallpaper.picker.common.button.ui.viewmodel.ButtonViewModel
 import com.android.wallpaper.picker.common.dialog.ui.viewmodel.DialogViewModel
 import com.android.wallpaper.picker.common.icon.ui.viewmodel.Icon
 import com.android.wallpaper.picker.common.text.ui.viewmodel.Text
+import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInteractor
 import com.android.wallpaper.picker.customization.ui.viewmodel.ScreenPreviewViewModel
 import com.android.wallpaper.picker.option.ui.viewmodel.OptionItemViewModel
 import com.android.wallpaper.util.PreviewUtils
@@ -60,6 +62,7 @@ class KeyguardQuickAffordancePickerViewModel
 private constructor(
     context: Context,
     private val quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor,
+    private val wallpaperInteractor: WallpaperInteractor,
     private val wallpaperInfoFactory: CurrentWallpaperInfoFactory,
     activityStarter: (Intent) -> Unit,
 ) : ViewModel() {
@@ -79,11 +82,11 @@ private constructor(
             initialExtrasProvider = {
                 Bundle().apply {
                     putString(
-                        KeyguardQuickAffordancePreviewConstants.KEY_INITIALLY_SELECTED_SLOT_ID,
+                        KeyguardPreviewConstants.KEY_INITIALLY_SELECTED_SLOT_ID,
                         selectedSlotId.value,
                     )
                     putBoolean(
-                        KeyguardQuickAffordancePreviewConstants.KEY_HIGHLIGHT_QUICK_AFFORDANCES,
+                        KeyguardPreviewConstants.KEY_HIGHLIGHT_QUICK_AFFORDANCES,
                         true,
                     )
                 }
@@ -98,6 +101,8 @@ private constructor(
                     )
                 }
             },
+            wallpaperInteractor = wallpaperInteractor,
+            screen = CustomizationSections.Screen.LOCK_SCREEN,
         )
 
     /** A locally-selected slot, if the user ever switched from the original one. */
@@ -455,6 +460,7 @@ private constructor(
     class Factory(
         private val context: Context,
         private val quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor,
+        private val wallpaperInteractor: WallpaperInteractor,
         private val wallpaperInfoFactory: CurrentWallpaperInfoFactory,
         private val activityStarter: (Intent) -> Unit,
     ) : ViewModelProvider.Factory {
@@ -463,6 +469,7 @@ private constructor(
             return KeyguardQuickAffordancePickerViewModel(
                 context = context,
                 quickAffordanceInteractor = quickAffordanceInteractor,
+                wallpaperInteractor = wallpaperInteractor,
                 wallpaperInfoFactory = wallpaperInfoFactory,
                 activityStarter = activityStarter,
             )

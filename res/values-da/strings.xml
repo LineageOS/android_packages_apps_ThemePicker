@@ -124,11 +124,10 @@
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"Genveje"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"Ingen"</string>
-    <string name="notifications_section_title" msgid="4283049750376871538">"Notifikationer"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Vis notifikationer på låseskærmen"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Skjul notifikationer på låseskærmen"</string>
-    <string name="more_settings_section_title" msgid="8524741850115625404">"Flere valgmuligheder"</string>
-    <string name="more_settings_section_description" msgid="8787768566854880683">"Tekst på låseskærmen, Find sangen og meget mere"</string>
+    <string name="more_settings_section_title" msgid="1331425454775815958">"Flere muligheder for låseskærm"</string>
+    <string name="more_settings_section_description" msgid="1860115709122398325">"Privatliv, Find sangen m.m."</string>
     <string name="more_colors" msgid="3191071655353004591">"Flere farver"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Standardfarve"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Farvevalg <xliff:g id="ID_1">%1$d</xliff:g>"</string>

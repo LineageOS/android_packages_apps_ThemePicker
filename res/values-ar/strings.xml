@@ -124,11 +124,10 @@
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"الاختصارات"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"\"<xliff:g id="FIRST">%1$s</xliff:g>\" و\"<xliff:g id="SECOND">%2$s</xliff:g>\""</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"بدون اختصارات"</string>
-    <string name="notifications_section_title" msgid="4283049750376871538">"الإشعارات"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"إظهار الإشعارات على شاشة القفل"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"إخفاء الإشعارات على شاشة القفل"</string>
-    <string name="more_settings_section_title" msgid="8524741850115625404">"خيارات إضافية"</string>
-    <string name="more_settings_section_description" msgid="8787768566854880683">"النص على شاشة القفل و\"التعرف التلقائي على الموسيقى\" والمزيد"</string>
+    <string name="more_settings_section_title" msgid="1331425454775815958">"المزيد من خيارات شاشة القفل"</string>
+    <string name="more_settings_section_description" msgid="1860115709122398325">"الخصوصية وميزة \"التعرّف التلقائي على الموسيقى\" وغير ذلك"</string>
     <string name="more_colors" msgid="3191071655353004591">"المزيد من الألوان"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"خيار اللون التلقائي"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"خيار اللون <xliff:g id="ID_1">%1$d</xliff:g>"</string>

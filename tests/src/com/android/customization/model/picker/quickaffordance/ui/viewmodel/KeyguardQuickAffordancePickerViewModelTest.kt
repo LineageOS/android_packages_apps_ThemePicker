@@ -34,10 +34,14 @@ import com.android.wallpaper.R
 import com.android.wallpaper.module.InjectorProvider
 import com.android.wallpaper.picker.common.icon.ui.viewmodel.Icon
 import com.android.wallpaper.picker.common.text.ui.viewmodel.Text
+import com.android.wallpaper.picker.customization.data.repository.WallpaperRepository
+import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInteractor
 import com.android.wallpaper.picker.option.ui.viewmodel.OptionItemViewModel
 import com.android.wallpaper.testing.FakeSnapshotStore
+import com.android.wallpaper.testing.FakeWallpaperClient
 import com.android.wallpaper.testing.TestCurrentWallpaperInfoFactory
 import com.android.wallpaper.testing.TestInjector
+import com.android.wallpaper.testing.TestWallpaperPreferences
 import com.android.wallpaper.testing.collectLastValue
 import com.google.common.truth.Truth.assertThat
 import com.google.common.truth.Truth.assertWithMessage
@@ -66,6 +70,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
     private lateinit var testScope: TestScope
     private lateinit var client: FakeCustomizationProviderClient
     private lateinit var quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor
+    private lateinit var wallpaperInteractor: WallpaperInteractor
 
     private var latestStartedActivityIntent: Intent? = null
 
@@ -94,10 +99,21 @@ class KeyguardQuickAffordancePickerViewModelTest {
                         .apply { runBlocking { setUpSnapshotRestorer(FakeSnapshotStore()) } }
                 },
             )
+        wallpaperInteractor =
+            WallpaperInteractor(
+                repository =
+                    WallpaperRepository(
+                        scope = testScope.backgroundScope,
+                        client = FakeWallpaperClient(),
+                        wallpaperPreferences = TestWallpaperPreferences(),
+                        backgroundDispatcher = testDispatcher,
+                    ),
+            )
         underTest =
             KeyguardQuickAffordancePickerViewModel.Factory(
                     context = context,
                     quickAffordanceInteractor = quickAffordanceInteractor,
+                    wallpaperInteractor = wallpaperInteractor,
                     wallpaperInfoFactory = TestCurrentWallpaperInfoFactory(context),
                     activityStarter = { intent -> latestStartedActivityIntent = intent },
                 )

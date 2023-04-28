@@ -25,7 +25,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel
-import com.android.systemui.shared.quickaffordance.shared.model.KeyguardQuickAffordancePreviewConstants
+import com.android.systemui.shared.quickaffordance.shared.model.KeyguardPreviewConstants
 import com.android.wallpaper.R
 import com.android.wallpaper.picker.customization.ui.binder.ScreenPreviewBinder
 import kotlinx.coroutines.launch
@@ -49,6 +49,7 @@ object KeyguardQuickAffordancePreviewBinder {
                 lifecycleOwner = lifecycleOwner,
                 offsetToStart = offsetToStart,
                 dimWallpaper = true,
+                onPreviewDirty = { activity.recreate() },
             )
 
         previewView.contentDescription =
@@ -61,10 +62,8 @@ object KeyguardQuickAffordancePreviewBinder {
                 .flowWithLifecycle(lifecycleOwner.lifecycle, Lifecycle.State.STARTED)
                 .collect { slotId ->
                     binding.sendMessage(
-                        KeyguardQuickAffordancePreviewConstants.MESSAGE_ID_SLOT_SELECTED,
-                        Bundle().apply {
-                            putString(KeyguardQuickAffordancePreviewConstants.KEY_SLOT_ID, slotId)
-                        },
+                        KeyguardPreviewConstants.MESSAGE_ID_SLOT_SELECTED,
+                        Bundle().apply { putString(KeyguardPreviewConstants.KEY_SLOT_ID, slotId) },
                     )
                 }
         }

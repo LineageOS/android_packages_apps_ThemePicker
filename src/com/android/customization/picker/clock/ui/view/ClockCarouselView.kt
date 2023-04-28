@@ -38,11 +38,11 @@ class ClockCarouselView(
 
     var isCarouselInTransition = false
 
-    private val carousel: Carousel
+    val carousel: Carousel
     private val motionLayout: MotionLayout
     private lateinit var adapter: ClockCarouselAdapter
-    private lateinit var scalingUpClockController: ClockController
-    private lateinit var scalingDownClockController: ClockController
+    private var scalingUpClockController: ClockController? = null
+    private var scalingDownClockController: ClockController? = null
     private var scalingUpClockView: View? = null
     private var scalingDownClockView: View? = null
     private var showingCardView: View? = null
@@ -58,14 +58,15 @@ class ClockCarouselView(
         clockIds: List<String>,
         onGetClockController: (clockId: String) -> ClockController,
         onClockSelected: (clockId: String) -> Unit,
-        getPreviewRatio: () -> Float,
+        previewRatio: Float,
     ) {
         adapter =
-            ClockCarouselAdapter(clockIds, onGetClockController, onClockSelected, getPreviewRatio)
+            ClockCarouselAdapter(clockIds, onGetClockController, onClockSelected, previewRatio)
         carousel.setAdapter(adapter)
         carousel.refresh()
         motionLayout.setTransitionListener(
             object : MotionLayout.TransitionListener {
+
                 override fun onTransitionStarted(
                     motionLayout: MotionLayout?,
                     startId: Int,
@@ -90,6 +91,7 @@ class ClockCarouselView(
                         motionLayout?.findViewById(
                             if (endId == R.id.next) R.id.item_card_3 else R.id.item_card_1
                         )
+                    setCardAnimationState(true)
                 }
 
                 override fun onTransitionChange(
@@ -98,14 +100,20 @@ class ClockCarouselView(
                     endId: Int,
                     progress: Float
                 ) {
-                    scalingDownClockController.animations.onPickerCarouselSwiping(
-                        1 - progress,
-                        getPreviewRatio()
-                    )
-                    scalingUpClockController.animations.onPickerCarouselSwiping(
-                        progress,
-                        getPreviewRatio()
-                    )
+                    scalingDownClockController
+                        ?.largeClock
+                        ?.animations
+                        ?.onPickerCarouselSwiping(
+                            1 - progress,
+                            previewRatio,
+                        )
+                    scalingUpClockController
+                        ?.largeClock
+                        ?.animations
+                        ?.onPickerCarouselSwiping(
+                            progress,
+                            previewRatio,
+                        )
                     val scalingUpScale = getScalingUpScale(progress)
                     val scalingDownScale = getScalingDownScale(progress)
                     scalingUpClockView?.scaleX = scalingUpScale
@@ -118,6 +126,30 @@ class ClockCarouselView(
 
                 override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
                     isCarouselInTransition = false
+                    setCardAnimationState(currentId == R.id.start)
+                }
+
+                private fun setCardAnimationState(isStart: Boolean) {
+                    scalingDownClockView?.scaleX = if (isStart) 1f else CLOCK_CAROUSEL_VIEW_SCALE
+                    scalingDownClockView?.scaleY = if (isStart) 1f else CLOCK_CAROUSEL_VIEW_SCALE
+                    scalingUpClockView?.scaleX = if (isStart) CLOCK_CAROUSEL_VIEW_SCALE else 1f
+                    scalingUpClockView?.scaleY = if (isStart) CLOCK_CAROUSEL_VIEW_SCALE else 1f
+                    scalingDownClockController
+                        ?.largeClock
+                        ?.animations
+                        ?.onPickerCarouselSwiping(
+                            if (isStart) 1f else 0f,
+                            previewRatio,
+                        )
+                    scalingUpClockController
+                        ?.largeClock
+                        ?.animations
+                        ?.onPickerCarouselSwiping(
+                            if (isStart) 0f else 1f,
+                            previewRatio,
+                        )
+                    showingCardView?.alpha = if (isStart) 0f else 1f
+                    hidingCardView?.alpha = if (isStart) 1f else 0f
                 }
 
                 override fun onTransitionTrigger(
@@ -133,14 +165,18 @@ class ClockCarouselView(
     fun setSelectedClockIndex(
         index: Int,
     ) {
-        carousel.jumpToIndex(index)
+        // jumpToIndex to the same position can cause the views unnecessarily populate again.
+        // Only call jumpToIndex when the jump-to index is different from the current carousel.
+        if (index != carousel.currentIndex) {
+            carousel.jumpToIndex(index)
+        }
     }
 
     class ClockCarouselAdapter(
         val clockIds: List<String>,
         val onGetClockController: (clockId: String) -> ClockController,
         private val onClockSelected: (clockId: String) -> Unit,
-        val getPreviewRatio: () -> Float,
+        private val previewRatio: Float,
     ) : Carousel.Adapter {
 
         override fun count(): Int {
@@ -173,15 +209,17 @@ class ClockCarouselView(
                 clockScaleView.scaleX = CLOCK_CAROUSEL_VIEW_SCALE
                 clockScaleView.scaleY = CLOCK_CAROUSEL_VIEW_SCALE
                 onGetClockController(clockIds[index])
+                    .largeClock
                     .animations
-                    .onPickerCarouselSwiping(0F, getPreviewRatio())
+                    .onPickerCarouselSwiping(0F, previewRatio)
             } else {
                 cardView.alpha = 0f
                 clockScaleView.scaleX = 1f
                 clockScaleView.scaleY = 1f
                 onGetClockController(clockIds[index])
+                    .largeClock
                     .animations
-                    .onPickerCarouselSwiping(1F, getPreviewRatio())
+                    .onPickerCarouselSwiping(1F, previewRatio)
             }
         }
 

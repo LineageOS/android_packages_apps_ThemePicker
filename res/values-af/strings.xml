@@ -124,11 +124,10 @@
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"Kortpaaie"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"Geen"</string>
-    <string name="notifications_section_title" msgid="4283049750376871538">"Kennisgewings"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Wys kennisgewings op die sluitskerm"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Versteek kennisgewings op die sluitskerm"</string>
-    <string name="more_settings_section_title" msgid="8524741850115625404">"Meer opsies"</string>
-    <string name="more_settings_section_description" msgid="8787768566854880683">"Teks op sluitskerm, Wat Speel, en meer"</string>
+    <string name="more_settings_section_title" msgid="1331425454775815958">"Meer sluitskermopsies"</string>
+    <string name="more_settings_section_description" msgid="1860115709122398325">"Privaatheid, Wat Speel, en meer"</string>
     <string name="more_colors" msgid="3191071655353004591">"Nog kleure"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Verstekkleuropsie"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Kleuropsie <xliff:g id="ID_1">%1$d</xliff:g>"</string>

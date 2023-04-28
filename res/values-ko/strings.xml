@@ -124,11 +124,10 @@
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"단축키"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"없음"</string>
-    <string name="notifications_section_title" msgid="4283049750376871538">"알림"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"잠금 화면에 알림 표시"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"잠금 화면에서 알림 숨기기"</string>
-    <string name="more_settings_section_title" msgid="8524741850115625404">"옵션 더보기"</string>
-    <string name="more_settings_section_description" msgid="8787768566854880683">"잠금 화면에 표시되는 텍스트, Now Playing, 등"</string>
+    <string name="more_settings_section_title" msgid="1331425454775815958">"잠금 화면 옵션 더보기"</string>
+    <string name="more_settings_section_description" msgid="1860115709122398325">"개인 정보 보호, Now Playing 등"</string>
     <string name="more_colors" msgid="3191071655353004591">"색상 더보기"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"기본 색상 옵션"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"<xliff:g id="ID_1">%1$d</xliff:g> 색상 옵션"</string>

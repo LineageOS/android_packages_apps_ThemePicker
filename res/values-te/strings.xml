@@ -124,11 +124,10 @@
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"షార్ట్‌కట్‌లు"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"ఏదీ ఎంచుకోలేదు"</string>
-    <string name="notifications_section_title" msgid="4283049750376871538">"నోటిఫికేషన్‌లు"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"లాక్ స్క్రీన్‌లో నోటిఫికేషన్‌లను చూపండి"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"లాక్ స్క్రీన్‌లో నోటిఫికేషన్‌లను దాచండి"</string>
-    <string name="more_settings_section_title" msgid="8524741850115625404">"మరిన్ని ఆప్షన్‌లు"</string>
-    <string name="more_settings_section_description" msgid="8787768566854880683">"లాక్ స్క్రీన్, Now Playing, మరిన్ని కోసం టెక్స్ట్ మెసేజ్ పంపండి"</string>
+    <string name="more_settings_section_title" msgid="1331425454775815958">"మరిన్ని లాక్ స్క్రీన్ ఆప్షన్‌లు"</string>
+    <string name="more_settings_section_description" msgid="1860115709122398325">"గోప్యత, Now Playing, ఇంకా మరిన్ని"</string>
     <string name="more_colors" msgid="3191071655353004591">"మరిన్ని రంగులు"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"ఆటోమేటిక్ సెట్టింగ్ రంగు ఆప్షన్"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"రంగు ఆప్షన్ <xliff:g id="ID_1">%1$d</xliff:g>"</string>
