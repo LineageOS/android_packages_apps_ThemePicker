@@ -64,7 +64,7 @@ private constructor(
     private val quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor,
     private val wallpaperInteractor: WallpaperInteractor,
     private val wallpaperInfoFactory: CurrentWallpaperInfoFactory,
-    activityStarter: (Intent) -> Unit,
+    private val activityStarter: (Intent) -> Unit,
 ) : ViewModel() {
 
     @SuppressLint("StaticFieldLeak") private val applicationContext = context.applicationContext
@@ -361,7 +361,7 @@ private constructor(
                             style = ButtonStyle.Primary,
                             onClicked = {
                                 actionComponentName.toIntent()?.let { intent ->
-                                    applicationContext.startActivity(intent)
+                                    activityStarter(intent)
                                 }
                             }
                         ),

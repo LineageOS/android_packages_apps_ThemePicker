@@ -282,9 +282,14 @@ class KeyguardQuickAffordancePickerViewModelTest {
             assertThat(dialog()?.buttons?.first()?.text)
                 .isEqualTo(Text.Loaded(enablementActionText))
 
+            // When the button is clicked, we expect an intent of the given enablement action
+            // component name is launched.
+            dialog()?.buttons?.first()?.onClicked?.invoke()
+            assertThat(latestStartedActivityIntent?.`package`).isEqualTo(packageName)
+            assertThat(latestStartedActivityIntent?.action).isEqualTo(action)
+
             // Once we report that the dialog has been dismissed by the user, we expect there to be
-            // no
-            // dialog to be shown:
+            // no dialog to be shown:
             underTest.onDialogDismissed()
             assertThat(dialog()).isNull()
         }
