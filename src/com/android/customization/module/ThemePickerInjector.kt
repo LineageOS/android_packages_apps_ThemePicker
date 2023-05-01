@@ -357,7 +357,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
         interactor: ClockPickerInteractor,
     ): ClockCarouselViewModel.Factory {
         return clockCarouselViewModelFactory
-            ?: ClockCarouselViewModel.Factory(interactor).also {
+            ?: ClockCarouselViewModel.Factory(interactor, Dispatchers.IO).also {
                 clockCarouselViewModelFactory = it
             }
     }
