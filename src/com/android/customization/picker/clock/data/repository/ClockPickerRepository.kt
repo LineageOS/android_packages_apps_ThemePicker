@@ -33,7 +33,7 @@ interface ClockPickerRepository {
 
     val selectedClockSize: Flow<ClockSize>
 
-    fun setSelectedClock(clockId: String)
+    suspend fun setSelectedClock(clockId: String)
 
     /**
      * Set clock color to the settings.
