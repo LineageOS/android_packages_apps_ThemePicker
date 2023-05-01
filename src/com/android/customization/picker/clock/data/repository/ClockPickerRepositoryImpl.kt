@@ -110,7 +110,7 @@ class ClockPickerRepositoryImpl(
             }
             .mapNotNull { it }
 
-    override fun setSelectedClock(clockId: String) {
+    override suspend fun setSelectedClock(clockId: String) {
         registry.mutateSetting { oldSettings ->
             val newSettings = oldSettings.copy(clockId = clockId)
             newSettings.metadata = oldSettings.metadata
