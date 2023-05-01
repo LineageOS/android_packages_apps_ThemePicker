@@ -47,7 +47,7 @@ class ClockPickerInteractor(private val repository: ClockPickerRepository) {
 
     val selectedClockSize: Flow<ClockSize> = repository.selectedClockSize
 
-    fun setSelectedClock(clockId: String) {
+    suspend fun setSelectedClock(clockId: String) {
         repository.setSelectedClock(clockId)
     }
 
