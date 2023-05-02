@@ -39,7 +39,7 @@
     <string name="clock_size_dynamic" msgid="1023930312455061642">"Динамичнa"</string>
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Големината на часовникот се променува според содржините на заклучен екран"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Голема"</string>
-    <string name="clock_size_small" msgid="2280449912094164133">"Мал"</string>
+    <string name="clock_size_small" msgid="2280449912094164133">"Мала"</string>
     <string name="grid_title" msgid="1688173478777254123">"Мрежа"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Примени"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Допрете за да измените"</string>
@@ -127,7 +127,7 @@
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Прикажувај известувања на заклучен екран"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Сокривај известувања на заклучен екран"</string>
     <string name="more_settings_section_title" msgid="1331425454775815958">"Повеќе опции за заклучен екран"</string>
-    <string name="more_settings_section_description" msgid="1860115709122398325">"Приватност, Now Playing, и друго"</string>
+    <string name="more_settings_section_description" msgid="1860115709122398325">"Приватност, Now Playing и друго"</string>
     <string name="more_colors" msgid="3191071655353004591">"Повеќе бои"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Стандардна опција за боја"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Опција за <xliff:g id="ID_1">%1$d</xliff:g> боја"</string>
