@@ -7,6 +7,14 @@
           "exclude-annotation": "org.junit.Ignore"
         }
       ]
+    },
+    {
+      "name": "WallpaperPickerGoogleTests",
+      "options": [
+        {
+          "exclude-annotation": "org.junit.Ignore"
+        }
+      ]
     }
   ]
 }
