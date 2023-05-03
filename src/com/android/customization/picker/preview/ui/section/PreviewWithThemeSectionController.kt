@@ -20,6 +20,7 @@ package com.android.customization.picker.preview.ui.section
 import android.app.Activity
 import android.app.WallpaperManager
 import android.content.Context
+import android.os.Bundle
 import androidx.lifecycle.LifecycleOwner
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconInteractor
 import com.android.customization.picker.preview.ui.viewmodel.PreviewWithThemeViewModel
@@ -51,6 +52,7 @@ open class PreviewWithThemeSectionController(
     private val themedIconInteractor: ThemedIconInteractor,
     wallpaperManager: WallpaperManager,
     isTwoPaneAndSmallWidth: Boolean,
+    savedInstanceState: Bundle?,
 ) :
     ScreenPreviewSectionController(
         activity,
@@ -62,7 +64,8 @@ open class PreviewWithThemeSectionController(
         wallpaperPreviewNavigator,
         wallpaperInteractor,
         wallpaperManager,
-        isTwoPaneAndSmallWidth
+        isTwoPaneAndSmallWidth,
+        savedInstanceState,
     ) {
     override fun createScreenPreviewViewModel(context: Context): ScreenPreviewViewModel {
         return PreviewWithThemeViewModel(
