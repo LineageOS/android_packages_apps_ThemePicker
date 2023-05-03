@@ -39,7 +39,7 @@
     <string name="clock_size_dynamic" msgid="1023930312455061642">"Dinamică"</string>
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Dimensiunea ceasului se schimbă în funcție de conținutul ecranului de blocare"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Mare"</string>
-    <string name="clock_size_small" msgid="2280449912094164133">"Mic"</string>
+    <string name="clock_size_small" msgid="2280449912094164133">"Mică"</string>
     <string name="grid_title" msgid="1688173478777254123">"Grilă aplicații"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Aplică"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Atinge pentru a modifica"</string>
