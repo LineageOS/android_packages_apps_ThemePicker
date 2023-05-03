@@ -123,7 +123,7 @@
     <string name="keyguard_quick_affordance_title" msgid="4242813186995735584">"קיצורי דרך"</string>
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"קיצורי דרך"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
-    <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"ללא"</string>
+    <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"אין"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"הצגת ההתראות במסך הנעילה"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"הסתרת ההתראות במסך הנעילה"</string>
     <string name="more_settings_section_title" msgid="1331425454775815958">"עוד אפשרויות של מסך הנעילה"</string>

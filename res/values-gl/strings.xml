@@ -22,7 +22,7 @@
     <string name="clock_title" msgid="1974314575211361352">"Reloxo person."</string>
     <string name="clock_description" msgid="3563839327378948">"Elixe reloxo pers."</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Cambiar reloxo personalizado"</string>
-    <string name="clock_settings_title" msgid="2940654205471453913">"Config. reloxo"</string>
+    <string name="clock_settings_title" msgid="2940654205471453913">"Configuración do reloxo"</string>
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"Tamaño/cor do reloxo"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>"</string>
     <string name="clock_color" msgid="8081608867289156163">"Cor"</string>
@@ -124,9 +124,9 @@
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"Atallos"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"Ningún"</string>
-    <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Mostra as notificacións na pantalla de bloqueo"</string>
-    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Oculta as notificacións na pantalla de bloqueo"</string>
-    <string name="more_settings_section_title" msgid="1331425454775815958">"Máis opcións de pant. de bloqueo"</string>
+    <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Mostrar notificacións na pantalla de bloqueo"</string>
+    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Ocultar notificacións na pantalla de bloqueo"</string>
+    <string name="more_settings_section_title" msgid="1331425454775815958">"Máis opcións da pantalla de bloqueo"</string>
     <string name="more_settings_section_description" msgid="1860115709122398325">"Privacidade, Está soando e moito máis"</string>
     <string name="more_colors" msgid="3191071655353004591">"Máis cores"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Opción de cor predeterminada"</string>
