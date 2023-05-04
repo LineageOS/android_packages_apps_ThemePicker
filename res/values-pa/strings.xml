@@ -39,7 +39,7 @@
     <string name="clock_size_dynamic" msgid="1023930312455061642">"ਪਰਿਵਰਤਨਸ਼ੀਲ"</string>
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"ਘੜੀ ਦਾ ਆਕਾਰ ਲਾਕ ਸਕ੍ਰੀਨ ਦੀ ਸਮੱਗਰੀ ਮੁਤਾਬਕ ਬਦਲਦਾ ਹੈ"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"ਵੱਡਾ"</string>
-    <string name="clock_size_small" msgid="2280449912094164133">"ਛੋਟਾ ਕਰੋ"</string>
+    <string name="clock_size_small" msgid="2280449912094164133">"ਛੋਟਾ"</string>
     <string name="grid_title" msgid="1688173478777254123">"ਐਪ ਗ੍ਰਿਡ"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"ਲਾਗੂ ਕਰੋ"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"ਸੰਪਾਦਨ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ"</string>
@@ -127,7 +127,7 @@
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"ਲਾਕ ਸਕ੍ਰੀਨ \'ਤੇ ਸੂਚਨਾਵਾਂ ਦਿਖਾਓ"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"ਲਾਕ ਸਕ੍ਰੀਨ \'ਤੇ ਸੂਚਨਾਵਾਂ ਲੁਕਾਓ"</string>
     <string name="more_settings_section_title" msgid="1331425454775815958">"ਹੋਰ ਲਾਕ ਸਕ੍ਰੀਨ ਵਿਕਲਪ"</string>
-    <string name="more_settings_section_description" msgid="1860115709122398325">"ਪਰਦੇਦਾਰੀ, ਹੁਣੇ ਚੱਲ ਰਿਹਾ ਹੈ ਅਤੇ ਹੋਰ"</string>
+    <string name="more_settings_section_description" msgid="1860115709122398325">"ਪਰਦੇਦਾਰੀ, Now Playing ਅਤੇ ਹੋਰ"</string>
     <string name="more_colors" msgid="3191071655353004591">"ਹੋਰ ਰੰਗ"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"ਰੰਗ ਦਾ ਪੂਰਵ-ਨਿਰਧਾਰਿਤ ਵਿਕਲਪ"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"ਰੰਗ ਦਾ ਵਿਕਲਪ <xliff:g id="ID_1">%1$d</xliff:g>"</string>
