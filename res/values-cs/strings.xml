@@ -120,8 +120,8 @@
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Otevřít aplikaci <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Podmínky pro to, aby aplikaci <xliff:g id="APPNAME">%1$s</xliff:g> bylo možné přidat jako zkratku:"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Hotovo"</string>
-    <string name="keyguard_quick_affordance_title" msgid="4242813186995735584">"Zástupci"</string>
-    <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"Zástupci"</string>
+    <string name="keyguard_quick_affordance_title" msgid="4242813186995735584">"Zkratky"</string>
+    <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"Zkratky"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"Žádné"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Zobrazovat oznámení na obrazovce uzamčení"</string>
