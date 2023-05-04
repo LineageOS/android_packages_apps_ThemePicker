@@ -37,7 +37,7 @@
     <string name="clock_color_teal" msgid="7499223425741344251">"ティール"</string>
     <string name="clock_size" msgid="5028923902364418263">"サイズ"</string>
     <string name="clock_size_dynamic" msgid="1023930312455061642">"動的"</string>
-    <string name="clock_size_dynamic_description" msgid="2776620745774561662">"時計のサイズはロック画面の内容に応じて変わります"</string>
+    <string name="clock_size_dynamic_description" msgid="2776620745774561662">"時計のサイズがロック画面の状況に応じて変わります"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"大"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"小"</string>
     <string name="grid_title" msgid="1688173478777254123">"アプリグリッド"</string>
@@ -124,7 +124,7 @@
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"ショートカット"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>、<xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"なし"</string>
-    <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"ロック画面に通知を表示します"</string>
+    <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"ロック画面に通知を表示する"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"ロック画面では通知を非表示にします"</string>
     <string name="more_settings_section_title" msgid="1331425454775815958">"ロック画面の詳細オプション"</string>
     <string name="more_settings_section_description" msgid="1860115709122398325">"プライバシー、この曲なに？、その他"</string>
