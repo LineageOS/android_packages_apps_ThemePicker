@@ -117,14 +117,6 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     private var gridScreenViewModelFactory: GridScreenViewModel.Factory? = null
 
     override fun getCustomizationSections(activity: ComponentActivity): CustomizationSections {
-        val clockCarouselViewModel =
-            ViewModelProvider(
-                    activity,
-                    getClockCarouselViewModelFactory(
-                        getClockPickerInteractor(activity.applicationContext),
-                    ),
-                )
-                .get() as ClockCarouselViewModel
         return customizationSections
             ?: DefaultCustomizationSections(
                     getColorPickerViewModelFactory(
@@ -137,7 +129,9 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                         interactor = getNotificationsInteractor(activity),
                     ),
                     getFlags(),
-                    clockCarouselViewModel,
+                    getClockCarouselViewModelFactory(
+                        getClockPickerInteractor(activity.applicationContext),
+                    ),
                     getClockViewFactory(activity),
                     getDarkModeSnapshotRestorer(activity),
                     getThemedIconSnapshotRestorer(activity),
