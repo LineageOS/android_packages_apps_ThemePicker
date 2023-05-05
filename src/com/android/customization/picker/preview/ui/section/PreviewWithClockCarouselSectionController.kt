@@ -17,15 +17,17 @@
 
 package com.android.customization.picker.preview.ui.section
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.View.OnAttachStateChangeListener
 import android.view.ViewGroup
 import android.view.ViewStub
+import androidx.activity.ComponentActivity
 import androidx.constraintlayout.helper.widget.Carousel
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.lifecycle.lifecycleScope
 import com.android.customization.picker.clock.ui.binder.ClockCarouselViewBinder
 import com.android.customization.picker.clock.ui.fragment.ClockSettingsFragment
@@ -48,13 +50,13 @@ import kotlinx.coroutines.launch
 
 /** Controls the screen preview section. */
 class PreviewWithClockCarouselSectionController(
-    activity: Activity,
+    activity: ComponentActivity,
     private val lifecycleOwner: LifecycleOwner,
     private val screen: CustomizationSections.Screen,
     wallpaperInfoFactory: CurrentWallpaperInfoFactory,
     colorViewModel: WallpaperColorsViewModel,
     displayUtils: DisplayUtils,
-    private val clockCarouselViewModel: ClockCarouselViewModel,
+    clockCarouselViewModelFactory: ClockCarouselViewModel.Factory,
     private val clockViewFactory: ClockViewFactory,
     wallpaperPreviewNavigator: WallpaperPreviewNavigator,
     private val navigationController: CustomizationSectionNavigationController,
@@ -70,6 +72,13 @@ class PreviewWithClockCarouselSectionController(
         wallpaperPreviewNavigator,
         wallpaperInteractor,
     ) {
+
+    private val viewModel =
+        ViewModelProvider(
+                activity,
+                clockCarouselViewModelFactory,
+            )
+            .get() as ClockCarouselViewModel
 
     private var clockColorAndSizeButton: View? = null
 
@@ -111,7 +120,7 @@ class PreviewWithClockCarouselSectionController(
                                 ClockCarouselViewBinder.bind(
                                     carouselView = carouselView,
                                     singleClockView = singleClockView,
-                                    viewModel = clockCarouselViewModel,
+                                    viewModel = viewModel,
                                     clockViewFactory = clockViewFactory,
                                     lifecycleOwner = lifecycleOwner,
                                     hideSmartspace = ::hideSmartspace,
