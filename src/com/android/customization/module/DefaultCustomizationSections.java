@@ -55,7 +55,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
             mKeyguardQuickAffordancePickerViewModelFactory;
     private final NotificationSectionViewModel.Factory mNotificationSectionViewModelFactory;
     private final BaseFlags mFlags;
-    private final ClockCarouselViewModel mClockCarouselViewModel;
+    private final ClockCarouselViewModel.Factory mClockCarouselViewModelFactory;
     private final ClockViewFactory mClockViewFactory;
     private final DarkModeSnapshotRestorer mDarkModeSnapshotRestorer;
     private final ThemedIconSnapshotRestorer mThemedIconSnapshotRestorer;
@@ -68,7 +68,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
                     keyguardQuickAffordancePickerViewModelFactory,
             NotificationSectionViewModel.Factory notificationSectionViewModelFactory,
             BaseFlags flags,
-            ClockCarouselViewModel clockCarouselViewModel,
+            ClockCarouselViewModel.Factory clockCarouselViewModelFactory,
             ClockViewFactory clockViewFactory,
             DarkModeSnapshotRestorer darkModeSnapshotRestorer,
             ThemedIconSnapshotRestorer themedIconSnapshotRestorer,
@@ -79,7 +79,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
                 keyguardQuickAffordancePickerViewModelFactory;
         mNotificationSectionViewModelFactory = notificationSectionViewModelFactory;
         mFlags = flags;
-        mClockCarouselViewModel = clockCarouselViewModel;
+        mClockCarouselViewModelFactory = clockCarouselViewModelFactory;
         mClockViewFactory = clockViewFactory;
         mDarkModeSnapshotRestorer = darkModeSnapshotRestorer;
         mThemedIconSnapshotRestorer = themedIconSnapshotRestorer;
@@ -112,7 +112,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
                         wallpaperInfoFactory,
                         wallpaperColorsViewModel,
                         displayUtils,
-                        mClockCarouselViewModel,
+                        mClockCarouselViewModelFactory,
                         mClockViewFactory,
                         wallpaperPreviewNavigator,
                         sectionNavigationController,
