@@ -17,7 +17,6 @@
 
 <TextView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/text"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -28,7 +27,5 @@
     android:minHeight="36dp"
     android:gravity="center"
     android:background="@drawable/picker_fragment_tab_background"
-    android:text="Placeholder for stable size calculation, please do not remove."
     android:maxLines="1"
-    android:ellipsize="end"
-    tools:ignore="HardcodedText" />
+    android:ellipsize="end" />
