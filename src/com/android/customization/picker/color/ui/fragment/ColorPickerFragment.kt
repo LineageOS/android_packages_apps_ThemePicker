@@ -39,6 +39,8 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class ColorPickerFragment : AppbarFragment() {
+    private var binding: ColorPickerBinder.Binding? = null
+
     companion object {
         @JvmStatic
         fun newInstance(): ColorPickerFragment {
@@ -64,19 +66,24 @@ class ColorPickerFragment : AppbarFragment() {
         val wallpaperInfoFactory = injector.getCurrentWallpaperInfoFactory(requireContext())
         val displayUtils: DisplayUtils = injector.getDisplayUtils(requireContext())
         val wcViewModel = injector.getWallpaperColorsViewModel()
-        ColorPickerBinder.bind(
-            view = view,
-            viewModel =
-                ViewModelProvider(
-                        requireActivity(),
-                        injector.getColorPickerViewModelFactory(
-                            context = requireContext(),
-                            wallpaperColorsViewModel = wcViewModel,
-                        ),
-                    )
-                    .get(),
-            lifecycleOwner = this,
-        )
+
+        binding =
+            ColorPickerBinder.bind(
+                view = view,
+                viewModel =
+                    ViewModelProvider(
+                            requireActivity(),
+                            injector.getColorPickerViewModelFactory(
+                                context = requireContext(),
+                                wallpaperColorsViewModel = wcViewModel,
+                            ),
+                        )
+                        .get(),
+                lifecycleOwner = this,
+            )
+
+        savedInstanceState?.let { binding?.restoreInstanceState(it) }
+
         ScreenPreviewBinder.bind(
             activity = requireActivity(),
             previewView = lockScreenView,
@@ -159,6 +166,11 @@ class ColorPickerFragment : AppbarFragment() {
         darkModeSectionView.background = null
         darkModeToggleContainerView.addView(darkModeSectionView)
         return view
+    }
+
+    override fun onSaveInstanceState(savedInstanceState: Bundle) {
+        super.onSaveInstanceState(savedInstanceState)
+        binding?.saveInstanceState(savedInstanceState)
     }
 
     override fun getDefaultTitle(): CharSequence {
