@@ -18,6 +18,8 @@
 package com.android.customization.picker.color.ui.binder
 
 import android.content.res.Configuration
+import android.os.Bundle
+import android.os.Parcelable
 import android.view.View
 import android.widget.TextView
 import androidx.lifecycle.Lifecycle
@@ -48,7 +50,7 @@ object ColorPickerBinder {
         view: View,
         viewModel: ColorPickerViewModel,
         lifecycleOwner: LifecycleOwner,
-    ) {
+    ): Binding {
         val colorTypeTabView: RecyclerView = view.requireViewById(R.id.color_type_tabs)
         val colorTypeTabSubheaderView: TextView = view.requireViewById(R.id.color_type_tab_subhead)
         val colorOptionContainerView: RecyclerView = view.requireViewById(R.id.color_options)
@@ -94,23 +96,50 @@ object ColorPickerBinder {
                         colorOptionAdapter.setItems(colorOptions)
                         // the same recycler view is used for different color types tabs
                         // the scroll state of each tab should be independent of others
-                        var indexToFocus = 0
-                        colorOptions.forEachIndexed { index, colorOption ->
-                            if (colorOption.isSelected.value) {
-                                indexToFocus = index
+                        if (layoutManagerSavedState != null) {
+                            colorOptionContainerView.post {
+                                (colorOptionContainerView.layoutManager as LinearLayoutManager)
+                                    .onRestoreInstanceState(layoutManagerSavedState)
+                                layoutManagerSavedState = null
                             }
-                        }
-                        val linearLayoutManager =
-                            object : LinearLayoutManager(view.context, HORIZONTAL, false) {
-                                override fun onLayoutCompleted(state: RecyclerView.State?) {
-                                    super.onLayoutCompleted(state)
-                                    scrollToPosition(indexToFocus)
+                        } else {
+                            var indexToFocus = colorOptions.indexOfFirst { it.isSelected.value }
+                            indexToFocus = if (indexToFocus < 0) 0 else indexToFocus
+                            val linearLayoutManager =
+                                object : LinearLayoutManager(view.context, HORIZONTAL, false) {
+                                    override fun onLayoutCompleted(state: RecyclerView.State?) {
+                                        super.onLayoutCompleted(state)
+                                        // scrollToPosition seems to be inconsistently moving
+                                        // selected
+                                        // color to different positions
+                                        scrollToPositionWithOffset(indexToFocus, 0)
+                                    }
                                 }
-                            }
-                        colorOptionContainerView.layoutManager = linearLayoutManager
+                            colorOptionContainerView.layoutManager = linearLayoutManager
+                        }
                     }
                 }
             }
         }
+        return object : Binding {
+            override fun saveInstanceState(savedState: Bundle) {
+                savedState.putParcelable(
+                    LAYOUT_MANAGER_SAVED_STATE,
+                    colorOptionContainerView.layoutManager?.onSaveInstanceState()
+                )
+            }
+
+            override fun restoreInstanceState(savedState: Bundle) {
+                layoutManagerSavedState = savedState.getParcelable(LAYOUT_MANAGER_SAVED_STATE)
+            }
+        }
     }
+
+    interface Binding {
+        fun saveInstanceState(savedState: Bundle)
+        fun restoreInstanceState(savedState: Bundle)
+    }
+
+    private val LAYOUT_MANAGER_SAVED_STATE: String = "layout_manager_state"
+    private var layoutManagerSavedState: Parcelable? = null
 }
