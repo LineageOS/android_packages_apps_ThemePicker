@@ -113,8 +113,8 @@
     <string name="color_changed" msgid="7029571720331641235">"הצבע השתנה"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"דינמי"</string>
     <string name="color_picker_title" msgid="6666830057938082864">"צבעי המערכת"</string>
-    <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"קיצור דרך מימין"</string>
-    <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"קיצור דרך משמאל"</string>
+    <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"קיצור דרך שמאלי"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"קיצור דרך ימני"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"ללא"</string>
     <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"כדי לבחור באפליקציה <xliff:g id="APPNAME">%1$s</xliff:g> צריך לסמן את האפשרויות הבאות"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"פתיחת <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
