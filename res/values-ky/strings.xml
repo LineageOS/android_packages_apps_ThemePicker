@@ -112,7 +112,7 @@
     <string name="preset_color_subheader" msgid="8230588536141279371">"Сүрөтчөлөрүңүз, саатыңыз же башка нерселер үчүн каалаган түстү тандаңыз"</string>
     <string name="color_changed" msgid="7029571720331641235">"Түс өзгөртүлдү"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Динамикалык"</string>
-    <string name="color_picker_title" msgid="6666830057938082864">"Тутумдун түстөрү"</string>
+    <string name="color_picker_title" msgid="6666830057938082864">"Системанын түстөрү"</string>
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Сол ыкчам баскыч"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Оң ыкчам баскыч"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Жок"</string>
