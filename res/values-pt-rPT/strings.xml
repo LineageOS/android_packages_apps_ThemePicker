@@ -105,7 +105,7 @@
     <string name="beta_title" msgid="8703819523760746458">"Beta"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"Altere a grelha de apps"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"Cores imag. de fundo"</string>
-    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Ícones, texto, etc. condizem c/ cores da imag. de fundo"</string>
+    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Ícones, texto, etc. condizem com a imagem de fundo"</string>
     <string name="wallpaper_color_title" msgid="5687965239180986458">"Cor da imagem de fundo"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"Cores básicas"</string>
     <string name="preset_color_tab_2" msgid="1444107326712562538">"Outras cores"</string>
