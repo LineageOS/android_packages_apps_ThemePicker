@@ -30,9 +30,11 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -149,31 +151,47 @@ private constructor(
     /** The list of all available color options for the selected Color Type. */
     val colorOptions: Flow<List<OptionItemViewModel<ColorOptionIconViewModel>>> =
         combine(allColorOptions, selectedColorTypeTabId) {
-            allColorOptions: Map<ColorType, List<OptionItemViewModel<ColorOptionIconViewModel>>>,
-            selectedColorTypeIdOrNull ->
-            val selectedColorTypeId = selectedColorTypeIdOrNull ?: ColorType.WALLPAPER_COLOR
-            allColorOptions[selectedColorTypeId]!!
-        }
+                allColorOptions:
+                    Map<ColorType, List<OptionItemViewModel<ColorOptionIconViewModel>>>,
+                selectedColorTypeIdOrNull ->
+                val selectedColorTypeId = selectedColorTypeIdOrNull ?: ColorType.WALLPAPER_COLOR
+                allColorOptions[selectedColorTypeId]!!
+            }
+            .shareIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(),
+                replay = 1,
+            )
 
     /** The list of color options for the color section */
     val colorSectionOptions: Flow<List<OptionItemViewModel<ColorOptionIconViewModel>>> =
-        allColorOptions.map { allColorOptions ->
-            val wallpaperOptions = allColorOptions[ColorType.WALLPAPER_COLOR]
-            val presetOptions = allColorOptions[ColorType.PRESET_COLOR]
-            val subOptions =
-                wallpaperOptions!!.subList(0, min(COLOR_SECTION_OPTION_SIZE, wallpaperOptions.size))
-            // Add additional options based on preset colors if size of wallpaper color options is
-            // less than COLOR_SECTION_OPTION_SIZE
-            val additionalSubOptions =
-                presetOptions!!.subList(
-                    0,
-                    min(
-                        max(0, COLOR_SECTION_OPTION_SIZE - wallpaperOptions.size),
-                        presetOptions.size,
+        allColorOptions
+            .map { allColorOptions ->
+                val wallpaperOptions = allColorOptions[ColorType.WALLPAPER_COLOR]
+                val presetOptions = allColorOptions[ColorType.PRESET_COLOR]
+                val subOptions =
+                    wallpaperOptions!!.subList(
+                        0,
+                        min(COLOR_SECTION_OPTION_SIZE, wallpaperOptions.size)
                     )
-                )
-            subOptions + additionalSubOptions
-        }
+                // Add additional options based on preset colors if size of wallpaper color options
+                // is
+                // less than COLOR_SECTION_OPTION_SIZE
+                val additionalSubOptions =
+                    presetOptions!!.subList(
+                        0,
+                        min(
+                            max(0, COLOR_SECTION_OPTION_SIZE - wallpaperOptions.size),
+                            presetOptions.size,
+                        )
+                    )
+                subOptions + additionalSubOptions
+            }
+            .shareIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(),
+                replay = 1,
+            )
 
     class Factory(
         private val context: Context,
