@@ -17,7 +17,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name" msgid="1647136562008520313">"壁纸和样式"</string>
+    <string name="app_name" msgid="1647136562008520313">"壁纸与个性化"</string>
     <string name="theme_title" msgid="2144932106319405101">"样式"</string>
     <string name="clock_title" msgid="1974314575211361352">"自定义钟面"</string>
     <string name="clock_description" msgid="3563839327378948">"选择自定义钟面"</string>
@@ -101,7 +101,7 @@
     <string name="mode_title" msgid="2394873501427436055">"深色主题"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"因省电模式已开启，该功能被暂时停用了"</string>
     <string name="mode_changed" msgid="2243581369395418584">"主题已更改"</string>
-    <string name="themed_icon_title" msgid="7312460430471956558">"带主题的图标"</string>
+    <string name="themed_icon_title" msgid="7312460430471956558">"主题图标"</string>
     <string name="beta_title" msgid="8703819523760746458">"Beta 版"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"更改应用网格"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"壁纸颜色"</string>
@@ -113,8 +113,8 @@
     <string name="color_changed" msgid="7029571720331641235">"颜色已更改"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"动态"</string>
     <string name="color_picker_title" msgid="6666830057938082864">"系统颜色"</string>
-    <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"向左快捷方式"</string>
-    <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"向右快捷方式"</string>
+    <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"快捷方式左滑"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"快捷方式右滑"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"无"</string>
     <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"若要选择“<xliff:g id="APPNAME">%1$s</xliff:g>”，请确认满足已以下条件："</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"打开<xliff:g id="APPNAME">%1$s</xliff:g>"</string>

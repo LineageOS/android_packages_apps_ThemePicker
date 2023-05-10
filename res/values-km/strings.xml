@@ -109,7 +109,7 @@
     <string name="wallpaper_color_title" msgid="5687965239180986458">"ពណ៌​ផ្ទាំងរូបភាព"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"ពណ៌​គោល"</string>
     <string name="preset_color_tab_2" msgid="1444107326712562538">"ពណ៌ផ្សេងទៀត"</string>
-    <string name="preset_color_subheader" msgid="8230588536141279371">"ជ្រើសរើសពណ៌ណាមួយសម្រាប់រូបតំណាង នាឡិកា និងអ្វីៗជាច្រើនទៀតរបស់អ្នក"</string>
+    <string name="preset_color_subheader" msgid="8230588536141279371">"ជ្រើសរើសពណ៌ណាមួយសម្រាប់នាឡិកា រូបតំណាងរបស់អ្នក និងច្រើនទៀត"</string>
     <string name="color_changed" msgid="7029571720331641235">"បាន​ផ្លាស់ប្ដូរ​ពណ៌"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"ឌីណាមិក"</string>
     <string name="color_picker_title" msgid="6666830057938082864">"ពណ៌ប្រព័ន្ធ"</string>

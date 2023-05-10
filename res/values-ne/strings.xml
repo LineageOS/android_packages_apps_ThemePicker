@@ -113,8 +113,8 @@
     <string name="color_changed" msgid="7029571720331641235">"रङ बदलियो"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"गतिशील"</string>
     <string name="color_picker_title" msgid="6666830057938082864">"सिस्टमका रङहरू"</string>
-    <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"बायाँको सर्टकट"</string>
-    <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"दायाँको सर्टकट"</string>
+    <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"बायाँ सर्टकट"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"दायाँ सर्टकट"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"कुनै पनि होइन"</string>
     <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"\"<xliff:g id="APPNAME">%1$s</xliff:g>\" चयन गर्न तल दिइएका निर्देशनहरू पालना गर्नुहोस्"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g> खोल्नुहोस्"</string>

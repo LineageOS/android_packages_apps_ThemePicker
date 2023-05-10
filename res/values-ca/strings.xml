@@ -105,7 +105,7 @@
     <string name="beta_title" msgid="8703819523760746458">"Beta"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"Canvia la quadrícula d\'aplicacions"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"Colors del fons"</string>
-    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Icones, text i més poden combinar amb els colors del fons"</string>
+    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Combina el color d\'icones, text i més amb el fons"</string>
     <string name="wallpaper_color_title" msgid="5687965239180986458">"Color de fons de pantalla"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"Colors bàsics"</string>
     <string name="preset_color_tab_2" msgid="1444107326712562538">"Altres colors"</string>

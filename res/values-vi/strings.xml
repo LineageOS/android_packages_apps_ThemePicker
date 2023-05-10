@@ -109,7 +109,7 @@
     <string name="wallpaper_color_title" msgid="5687965239180986458">"Màu hình nền"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"Màu cơ bản"</string>
     <string name="preset_color_tab_2" msgid="1444107326712562538">"Màu khác"</string>
-    <string name="preset_color_subheader" msgid="8230588536141279371">"Chọn màu bất kỳ cho biểu tượng, đồng hồ của bạn, v.v."</string>
+    <string name="preset_color_subheader" msgid="8230588536141279371">"Chọn bất cứ màu nào cho biểu tượng, đồng hồ, v.v."</string>
     <string name="color_changed" msgid="7029571720331641235">"Đã thay đổi màu"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Động"</string>
     <string name="color_picker_title" msgid="6666830057938082864">"Màu hệ thống"</string>

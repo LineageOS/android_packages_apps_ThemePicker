@@ -104,8 +104,8 @@
     <string name="themed_icon_title" msgid="7312460430471956558">"Ikono gaidunak"</string>
     <string name="beta_title" msgid="8703819523760746458">"Beta"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"Aldatu aplikazioen sareta"</string>
-    <string name="wallpaper_color_tab" msgid="1447926591721403840">"Horma-papereko koloreak"</string>
-    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Ikonoak, testua eta abar horma-papereko koloreekin bat datoz"</string>
+    <string name="wallpaper_color_tab" msgid="1447926591721403840">"Horma-paperaren koloreak"</string>
+    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Ikonoak, testua, etab. horma-paperaren koloreekin bat datoz"</string>
     <string name="wallpaper_color_title" msgid="5687965239180986458">"Horma-paperaren kolorea"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"Oinarrizko koloreak"</string>
     <string name="preset_color_tab_2" msgid="1444107326712562538">"Beste kolore batzuk"</string>
