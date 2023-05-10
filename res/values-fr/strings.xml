@@ -105,7 +105,7 @@
     <string name="beta_title" msgid="8703819523760746458">"Bêta"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"Modifier la grille d\'applis"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"Couleurs fond d\'écran"</string>
-    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Icônes, texte et autres couleurs de votre fond d\'écran"</string>
+    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Couleur des icônes, du texte… assortie au fond d\'écran"</string>
     <string name="wallpaper_color_title" msgid="5687965239180986458">"Couleur du fond d\'écran"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"Couleurs de base"</string>
     <string name="preset_color_tab_2" msgid="1444107326712562538">"Autres couleurs"</string>

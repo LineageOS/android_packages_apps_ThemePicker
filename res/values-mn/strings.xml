@@ -37,7 +37,7 @@
     <string name="clock_color_teal" msgid="7499223425741344251">"Усан цэнхэр"</string>
     <string name="clock_size" msgid="5028923902364418263">"Хэмжээ"</string>
     <string name="clock_size_dynamic" msgid="1023930312455061642">"Динамик"</string>
-    <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Цагны хэмжээ нь түгжигдсэн дэлгэцийн контентоос хамаарч өөрчлөгддөг"</string>
+    <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Цагны хэмжээ нь түгжээтэй дэлгэцийн контентоос хамаарч өөрчлөгддөг"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Том"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"Жижиг"</string>
     <string name="grid_title" msgid="1688173478777254123">"Аппын хүснэгт"</string>

@@ -105,7 +105,7 @@
     <string name="beta_title" msgid="8703819523760746458">"Бета"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"Променете ја мрежата на апликации"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"Бои од тапетот"</string>
-    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Икони, текст и повеќе совпаѓачки бои на тапетот"</string>
+    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Иконите, текстот и др. се совпаѓаат со боите на тапетот"</string>
     <string name="wallpaper_color_title" msgid="5687965239180986458">"Боја на тапет"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"Основни бои"</string>
     <string name="preset_color_tab_2" msgid="1444107326712562538">"Други бои"</string>
