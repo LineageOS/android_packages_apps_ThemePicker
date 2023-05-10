@@ -109,7 +109,7 @@
     <string name="wallpaper_color_title" msgid="5687965239180986458">"桌布顏色"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"基本顏色"</string>
     <string name="preset_color_tab_2" msgid="1444107326712562538">"其他顏色"</string>
-    <string name="preset_color_subheader" msgid="8230588536141279371">"為圖示、時鐘等選擇任何顏色"</string>
+    <string name="preset_color_subheader" msgid="8230588536141279371">"為圖示、時鐘等選擇顏色"</string>
     <string name="color_changed" msgid="7029571720331641235">"已經變咗顏色"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"動態"</string>
     <string name="color_picker_title" msgid="6666830057938082864">"系統顏色"</string>

@@ -101,7 +101,7 @@
     <string name="mode_title" msgid="2394873501427436055">"Tumma teema"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"Tilapäisesti pois käytöstä virransäästön takia"</string>
     <string name="mode_changed" msgid="2243581369395418584">"Teema vaihdettu"</string>
-    <string name="themed_icon_title" msgid="7312460430471956558">"Kuvakkeiden teemat"</string>
+    <string name="themed_icon_title" msgid="7312460430471956558">"Teemaan sopivat kuvakkeet"</string>
     <string name="beta_title" msgid="8703819523760746458">"Beta"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"Muuta sovellusruudukkoa"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"Taustakuvan värit"</string>
@@ -120,8 +120,8 @@
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Avaa <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Jos haluat, että <xliff:g id="APPNAME">%1$s</xliff:g> lisätään pikakuvakkeeksi, varmista nämä:"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Valmis"</string>
-    <string name="keyguard_quick_affordance_title" msgid="4242813186995735584">"Pikakomennot"</string>
-    <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"Pikakomennot"</string>
+    <string name="keyguard_quick_affordance_title" msgid="4242813186995735584">"Pikakuvakkeet"</string>
+    <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"Pikakuvakkeet"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"–"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Näytä ilmoitukset lukitusnäytöllä"</string>
