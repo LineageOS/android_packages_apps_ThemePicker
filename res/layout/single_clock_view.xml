@@ -13,13 +13,14 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<com.android.wallpaper.picker.DisplayAspectRatioFrameLayout
+<com.android.wallpaper.picker.FixedWidthDisplayRatioFrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/screen_preview_height">
+    android:layout_width="@dimen/screen_preview_width"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
     <FrameLayout
         android:id="@+id/single_clock_host_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center" />
-</com.android.wallpaper.picker.DisplayAspectRatioFrameLayout>
+</com.android.wallpaper.picker.FixedWidthDisplayRatioFrameLayout>

@@ -158,7 +158,7 @@
 
     <dimen name="clock_carousel_item_width">190dp</dimen>
     <dimen name="clock_carousel_item_margin">16dp</dimen>
-    <dimen name="clock_carousel_guideline_margin">140dp</dimen>
+    <dimen name="clock_carousel_guideline_margin">100dp</dimen>
     <dimen name="clock_carousel_item_card_width">100dp</dimen>
     <dimen name="clock_carousel_item_card_height">108dp</dimen>
 
