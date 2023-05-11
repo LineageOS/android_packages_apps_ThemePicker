@@ -16,7 +16,9 @@
   -->
 <resources>
     <dimen name="clock_carousel_item_width">607dp</dimen>
-    <dimen name="clock_carousel_guideline_margin">290dp</dimen>
-    <dimen name="clock_carousel_item_card_width">175dp</dimen>
-    <dimen name="clock_carousel_item_card_height">190dp</dimen>
+
+    <!-- Clock carousel dimens -->
+    <dimen name="clock_carousel_item_card_width">114dp</dimen>
+    <dimen name="clock_carousel_item_card_height">124dp</dimen>
+    <dimen name="clock_carousel_guideline_margin">220dp</dimen>
 </resources>
