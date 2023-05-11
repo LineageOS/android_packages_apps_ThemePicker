@@ -15,8 +15,8 @@
   ~ limitations under the License
   -->
 <resources>
-    <dimen name="clock_carousel_item_width">300dp</dimen>
-    <dimen name="clock_carousel_guideline_margin">190dp</dimen>
-    <dimen name="clock_carousel_item_card_width">120dp</dimen>
-    <dimen name="clock_carousel_item_card_height">129dp</dimen>
+    <!-- Clock carousel dimens -->
+    <dimen name="clock_carousel_item_card_width">114dp</dimen>
+    <dimen name="clock_carousel_item_card_height">124dp</dimen>
+    <dimen name="clock_carousel_guideline_margin">240dp</dimen>
 </resources>
