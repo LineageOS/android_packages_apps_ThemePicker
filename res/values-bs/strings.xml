@@ -111,10 +111,10 @@
     <string name="preset_color_tab_2" msgid="1444107326712562538">"Druge boje"</string>
     <string name="preset_color_subheader" msgid="8230588536141279371">"Odaberite bilo koju boju za ikone, sat i drugo"</string>
     <string name="color_changed" msgid="7029571720331641235">"Boja je promijenjena"</string>
-    <string name="adaptive_color_title" msgid="1336508599235896205">"Dinamički"</string>
+    <string name="adaptive_color_title" msgid="1336508599235896205">"Dinamično"</string>
     <string name="color_picker_title" msgid="6666830057938082864">"Boje sistema"</string>
-    <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Prečica lijevo"</string>
-    <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Prečica desno"</string>
+    <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Lijeva prečica"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Desna prečica"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Ništa"</string>
     <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"Da odaberete aplikaciju \"<xliff:g id="APPNAME">%1$s</xliff:g>\" provjerite sljedeće"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Otvori aplikaciju <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
