@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (C) 2022 The Android Open Source Project
+  ~ Copyright (C) 2023 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -15,12 +15,8 @@
   ~ limitations under the License
   -->
 <resources>
-    <!-- Dimensions for the customization option tiles -->
-    <dimen name="option_tile_width">87dp</dimen>
-    <dimen name="option_tile_linear_padding_horizontal">8dp</dimen>
-
     <!-- Clock carousel dimens -->
     <dimen name="clock_carousel_item_card_width">114dp</dimen>
     <dimen name="clock_carousel_item_card_height">124dp</dimen>
-    <dimen name="clock_carousel_guideline_margin">320dp</dimen>
+    <dimen name="clock_carousel_guideline_margin">130dp</dimen>
 </resources>

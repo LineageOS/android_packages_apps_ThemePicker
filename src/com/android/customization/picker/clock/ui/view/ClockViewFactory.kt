@@ -38,8 +38,8 @@ class ClockViewFactory(
     fun getRatio(): Float {
         val screenSizeCalculator = ScreenSizeCalculator.getInstance()
         val screenSize = screenSizeCalculator.getScreenSize(activity.windowManager.defaultDisplay)
-        return activity.resources.getDimensionPixelSize(R.dimen.screen_preview_height).toFloat() /
-            screenSize.y.toFloat()
+        return activity.resources.getDimensionPixelSize(R.dimen.screen_preview_width).toFloat() /
+            screenSize.x.toFloat()
     }
 
     fun getController(clockId: String): ClockController {
