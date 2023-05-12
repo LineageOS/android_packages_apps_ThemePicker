@@ -25,6 +25,8 @@ import android.view.ViewGroup
 import android.view.ViewStub
 import androidx.activity.ComponentActivity
 import androidx.constraintlayout.helper.widget.Carousel
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.Guideline
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
@@ -61,6 +63,7 @@ class PreviewWithClockCarouselSectionController(
     wallpaperPreviewNavigator: WallpaperPreviewNavigator,
     private val navigationController: CustomizationSectionNavigationController,
     wallpaperInteractor: WallpaperInteractor,
+    private val isTwoPaneAndSmallWidth: Boolean,
 ) :
     ScreenPreviewSectionController(
         activity,
@@ -71,6 +74,7 @@ class PreviewWithClockCarouselSectionController(
         displayUtils,
         wallpaperPreviewNavigator,
         wallpaperInteractor,
+        isTwoPaneAndSmallWidth,
     ) {
 
     private val viewModel =
@@ -98,6 +102,23 @@ class PreviewWithClockCarouselSectionController(
             val carouselViewStub: ViewStub = view.requireViewById(R.id.clock_carousel_view_stub)
             carouselViewStub.layoutResource = R.layout.clock_carousel_view
             val carouselView = carouselViewStub.inflate() as ClockCarouselView
+
+            if (isTwoPaneAndSmallWidth) {
+                val guidelineMargin =
+                    context.resources.getDimensionPixelSize(
+                        R.dimen.clock_carousel_guideline_margin_for_2_pane_small_width
+                    )
+
+                val guidelineStart = carouselView.requireViewById<Guideline>(R.id.guideline_start)
+                var layoutParams = guidelineStart.layoutParams as ConstraintLayout.LayoutParams
+                layoutParams.guideBegin = guidelineMargin
+                guidelineStart.layoutParams = layoutParams
+
+                val guidelineEnd = carouselView.requireViewById<Guideline>(R.id.guideline_end)
+                layoutParams = guidelineEnd.layoutParams as ConstraintLayout.LayoutParams
+                layoutParams.guideEnd = guidelineMargin
+                guidelineEnd.layoutParams = layoutParams
+            }
 
             // TODO (b/270716937) We should handle the single clock case in the clock carousel
             // itself
