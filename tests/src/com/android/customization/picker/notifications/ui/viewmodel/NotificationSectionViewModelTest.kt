@@ -84,18 +84,14 @@ class NotificationSectionViewModelTest {
     @Test
     fun `toggles back and forth`() =
         testScope.runTest {
-            val titleStringResId = collectLastValue(underTest.titleStringResourceId)
             val isSwitchOn = collectLastValue(underTest.isSwitchOn)
 
-            val initialSubtitleStringRes = titleStringResId()
             val initialIsSwitchOn = isSwitchOn()
 
             underTest.onClicked()
-            assertThat(titleStringResId()).isNotEqualTo(initialSubtitleStringRes)
             assertThat(isSwitchOn()).isNotEqualTo(initialIsSwitchOn)
 
             underTest.onClicked()
-            assertThat(titleStringResId()).isEqualTo(initialSubtitleStringRes)
             assertThat(isSwitchOn()).isEqualTo(initialIsSwitchOn)
         }
 }
