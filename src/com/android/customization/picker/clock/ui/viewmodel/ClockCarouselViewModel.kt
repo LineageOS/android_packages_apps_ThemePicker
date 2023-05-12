@@ -63,7 +63,9 @@ constructor(
             .flatMapLatest { allClockIds ->
                 interactor.selectedClockId.map { selectedClockId ->
                     val index = allClockIds.indexOf(selectedClockId)
-                    if (index >= 0) {
+                    /** Making sure there is no active [setSelectedClockJob] */
+                    val isSetClockIdJobActive = setSelectedClockJob?.isActive == true
+                    if (index >= 0 && !isSetClockIdJobActive) {
                         index
                     } else {
                         null
@@ -85,10 +87,7 @@ constructor(
     fun setSelectedClock(clockId: String) {
         setSelectedClockJob?.cancel()
         setSelectedClockJob =
-            viewModelScope.launch(backgroundDispatcher) {
-                delay(SET_SELECTED_CLOCK_DELAY_MILLIS)
-                interactor.setSelectedClock(clockId)
-            }
+            viewModelScope.launch(backgroundDispatcher) { interactor.setSelectedClock(clockId) }
     }
 
     class Factory(
@@ -107,9 +106,5 @@ constructor(
 
     companion object {
         const val CLOCKS_EVENT_UPDATE_DELAY_MILLIS: Long = 100
-
-        // In the case if the user scroll the clock carousel frequently, we make a delay for
-        // setting the selected clock to avoid too many heavy calls.
-        const val SET_SELECTED_CLOCK_DELAY_MILLIS: Long = 650
     }
 }
