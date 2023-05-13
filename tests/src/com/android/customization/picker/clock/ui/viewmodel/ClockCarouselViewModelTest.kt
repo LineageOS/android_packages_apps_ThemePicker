@@ -77,7 +77,6 @@ class ClockCarouselViewModelTest {
         val observedSelectedIndex = collectLastValue(underTest.selectedIndex)
         advanceTimeBy(ClockCarouselViewModel.CLOCKS_EVENT_UPDATE_DELAY_MILLIS)
         underTest.setSelectedClock(FakeClockPickerRepository.fakeClocks[2].clockId)
-        advanceTimeBy(ClockCarouselViewModel.SET_SELECTED_CLOCK_DELAY_MILLIS)
         assertThat(observedSelectedIndex()).isEqualTo(2)
     }
 
