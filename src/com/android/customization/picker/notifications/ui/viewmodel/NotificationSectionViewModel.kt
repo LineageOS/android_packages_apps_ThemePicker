@@ -17,13 +17,11 @@
 
 package com.android.customization.picker.notifications.ui.viewmodel
 
-import androidx.annotation.StringRes
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.android.customization.picker.notifications.domain.interactor.NotificationsInteractor
-import com.android.wallpaper.R
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -34,16 +32,6 @@ class NotificationSectionViewModel
 constructor(
     private val interactor: NotificationsInteractor,
 ) : ViewModel() {
-
-    /** A string resource ID for the title. */
-    @StringRes
-    val titleStringResourceId: Flow<Int> =
-        interactor.settings.map { model ->
-            when (model.isShowNotificationsOnLockScreenEnabled) {
-                true -> R.string.show_notifications_on_lock_screen
-                false -> R.string.hide_notifications_on_lock_screen
-            }
-        }
 
     /** Whether the switch should be on. */
     val isSwitchOn: Flow<Boolean> =
