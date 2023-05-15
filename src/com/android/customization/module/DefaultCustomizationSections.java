@@ -99,7 +99,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
             CurrentWallpaperInfoFactory wallpaperInfoFactory,
             DisplayUtils displayUtils,
             CustomizationPickerViewModel customizationPickerViewModel,
-            WallpaperInteractor wallpaperInteractor) {
+            WallpaperInteractor wallpaperInteractor,
+            boolean isTwoPaneAndSmallWidth) {
         List<CustomizationSectionController<?>> sectionControllers = new ArrayList<>();
 
         // Wallpaper section.
@@ -116,7 +117,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
                         mClockViewFactory,
                         wallpaperPreviewNavigator,
                         sectionNavigationController,
-                        wallpaperInteractor)
+                        wallpaperInteractor,
+                        isTwoPaneAndSmallWidth)
                         : new ScreenPreviewSectionController(
                                 activity,
                                 lifecycleOwner,
@@ -125,7 +127,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
                                 wallpaperColorsViewModel,
                                 displayUtils,
                                 wallpaperPreviewNavigator,
-                                wallpaperInteractor));
+                                wallpaperInteractor,
+                                isTwoPaneAndSmallWidth));
 
         sectionControllers.add(
                 new ConnectedSectionController(
