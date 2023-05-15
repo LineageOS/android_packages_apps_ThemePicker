@@ -27,19 +27,13 @@
     android:orientation="horizontal"
     android:gravity="center_vertical">
 
-    <LinearLayout
+    <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_gravity="center"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/subtitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/SectionTitleTextStyle"/>
-    </LinearLayout>
+        android:text="@string/show_notifications_on_lock_screen"
+        style="@style/SectionTitleTextStyle"/>
 
     <Switch
         android:id="@+id/switcher"
