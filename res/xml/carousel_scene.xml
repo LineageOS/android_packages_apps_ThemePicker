@@ -21,20 +21,25 @@
     <Transition
         motion:constraintSetStart="@id/start"
         motion:constraintSetEnd="@+id/next"
-        motion:duration="1000"
+        motion:duration="200"
         android:id="@+id/forward">
         <OnSwipe
-            motion:dragDirection="dragLeft"
-            motion:touchAnchorSide="left" />
+            motion:dragDirection="dragStart"
+            motion:touchAnchorSide="start"
+            motion:maxVelocity="10"
+            motion:maxAcceleration="100"/>
     </Transition>
 
     <Transition
         motion:constraintSetStart="@+id/start"
         motion:constraintSetEnd="@+id/previous"
+        motion:duration="200"
         android:id="@+id/backward">
         <OnSwipe
-            motion:dragDirection="dragRight"
-            motion:touchAnchorSide="right" />
+            motion:dragDirection="dragEnd"
+            motion:touchAnchorSide="end"
+            motion:maxVelocity="10"
+            motion:maxAcceleration="100" />
     </Transition>
 
     <ConstraintSet android:id="@+id/previous">
