@@ -20,7 +20,6 @@ package com.android.customization.picker.notifications.ui.binder
 import android.annotation.SuppressLint
 import android.view.View
 import android.widget.Switch
-import android.widget.TextView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
@@ -39,19 +38,12 @@ object NotificationSectionBinder {
         viewModel: NotificationSectionViewModel,
         lifecycleOwner: LifecycleOwner,
     ) {
-        val subtitle: TextView = view.requireViewById(R.id.subtitle)
         val switch: Switch = view.requireViewById(R.id.switcher)
 
         view.setOnClickListener { viewModel.onClicked() }
 
         lifecycleOwner.lifecycleScope.launch {
             lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch {
-                    viewModel.titleStringResourceId.collect {
-                        subtitle.text = view.context.getString(it)
-                    }
-                }
-
                 launch { viewModel.isSwitchOn.collect { switch.isChecked = it } }
             }
         }
