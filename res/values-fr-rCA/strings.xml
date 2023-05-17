@@ -115,7 +115,7 @@
     <string name="color_picker_title" msgid="6666830057938082864">"Couleurs système"</string>
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Raccourci gauche"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Raccourci droit"</string>
-    <string name="keyguard_affordance_none" msgid="1751643933430782312">"Aucune"</string>
+    <string name="keyguard_affordance_none" msgid="1751643933430782312">"Aucun"</string>
     <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"Pour sélectionner « <xliff:g id="APPNAME">%1$s</xliff:g> » vérifiez ce qui suit"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Ouvrir <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Pour ajouter l\'application <xliff:g id="APPNAME">%1$s</xliff:g> en tant que raccourci, assurez-vous"</string>
