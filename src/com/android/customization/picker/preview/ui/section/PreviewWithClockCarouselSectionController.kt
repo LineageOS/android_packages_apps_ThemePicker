@@ -18,7 +18,9 @@
 package com.android.customization.picker.preview.ui.section
 
 import android.content.Context
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.TouchDelegate
 import android.view.View
 import android.view.View.OnAttachStateChangeListener
 import android.view.ViewGroup
@@ -97,6 +99,20 @@ class PreviewWithClockCarouselSectionController(
             clockColorAndSizeButton = clockColorAndSizeButtonStub.inflate() as View
             clockColorAndSizeButton?.setOnClickListener {
                 navigationController.navigateTo(ClockSettingsFragment())
+            }
+            // clockColorAndSizeButton's touch target has to be increased programmatically
+            // rather than with padding because this button only appears in the lock screen tab.
+            view.post {
+                val rect = Rect()
+                clockColorAndSizeButton?.getHitRect(rect)
+                val padding =
+                    context
+                        .getResources()
+                        .getDimensionPixelSize(R.dimen.screen_preview_section_vertical_space)
+                rect.top -= padding
+                rect.bottom += padding
+                val touchDelegate = TouchDelegate(rect, clockColorAndSizeButton)
+                view.setTouchDelegate(touchDelegate)
             }
 
             val carouselViewStub: ViewStub = view.requireViewById(R.id.clock_carousel_view_stub)
