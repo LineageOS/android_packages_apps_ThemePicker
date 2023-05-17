@@ -64,7 +64,6 @@ object ClockCarouselViewBinder {
 
                                 hideSmartspace(hasCustomWeatherDataDisplay)
                             },
-                            previewRatio = clockViewFactory.getRatio(),
                         )
                     }
                 }
