@@ -19,7 +19,6 @@ import android.content.res.Configuration
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.SeekBar
 import androidx.core.view.isInvisible
@@ -33,6 +32,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.customization.picker.clock.shared.ClockSize
 import com.android.customization.picker.clock.ui.adapter.ClockSettingsTabAdapter
+import com.android.customization.picker.clock.ui.view.ClockHostView
 import com.android.customization.picker.clock.ui.view.ClockSizeRadioButtonGroup
 import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockSettingsViewModel
@@ -55,8 +55,7 @@ object ClockSettingsBinder {
         clockViewFactory: ClockViewFactory,
         lifecycleOwner: LifecycleOwner,
     ) {
-        val clockHostView: FrameLayout = view.requireViewById(R.id.clock_host_view)
-
+        val clockHostView: ClockHostView = view.requireViewById(R.id.clock_host_view)
         val tabView: RecyclerView = view.requireViewById(R.id.tabs)
         val tabAdapter = ClockSettingsTabAdapter()
         tabView.adapter = tabAdapter
