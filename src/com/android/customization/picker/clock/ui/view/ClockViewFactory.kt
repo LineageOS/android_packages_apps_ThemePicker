@@ -16,6 +16,7 @@
 package com.android.customization.picker.clock.ui.view
 
 import android.app.Activity
+import android.graphics.Rect
 import android.util.TypedValue
 import android.view.View
 import androidx.annotation.ColorInt
@@ -34,13 +35,6 @@ class ClockViewFactory(
 ) {
     private val timeTickListeners: ConcurrentHashMap<Int, TimeTicker> = ConcurrentHashMap()
     private val clockControllers: HashMap<String, ClockController> = HashMap()
-
-    fun getRatio(): Float {
-        val screenSizeCalculator = ScreenSizeCalculator.getInstance()
-        val screenSize = screenSizeCalculator.getScreenSize(activity.windowManager.defaultDisplay)
-        return activity.resources.getDimensionPixelSize(R.dimen.screen_preview_width).toFloat() /
-            screenSize.x.toFloat()
-    }
 
     fun getController(clockId: String): ClockController {
         return clockControllers[clockId] ?: initClockController(clockId)
@@ -98,12 +92,11 @@ class ClockViewFactory(
         activity.theme.resolveAttribute(android.R.attr.isLightTheme, isLightTheme, true)
         val isRegionDark = isLightTheme.data == 0
         controller.largeClock.events.onRegionDarknessChanged(isRegionDark)
-
         // Configure font size
         controller.largeClock.events.onFontSettingChanged(
-            activity.resources.getDimensionPixelSize(R.dimen.large_clock_text_size).toFloat() *
-                getRatio()
+            activity.resources.getDimensionPixelSize(R.dimen.large_clock_text_size).toFloat()
         )
+        controller.largeClock.events.onTargetRegionChanged(getLargeClockRegion())
         // Use placeholder for weather clock preview in picker
         controller.events.onWeatherDataChanged(
             WeatherData(
@@ -115,6 +108,22 @@ class ClockViewFactory(
         )
         clockControllers[clockId] = controller
         return controller
+    }
+
+    /**
+     * Simulate the function of getLargeClockRegion in KeyguardClockSwitch so that we can get a
+     * proper region corresponding to lock screen in picker and for onTargetRegionChanged to scale
+     * and position the clock view
+     */
+    fun getLargeClockRegion(): Rect {
+        val screenSizeCalculator = ScreenSizeCalculator.getInstance()
+        val screenSize = screenSizeCalculator.getScreenSize(activity.windowManager.defaultDisplay)
+        val largeClockTopMargin =
+            activity.resources.getDimensionPixelSize(R.dimen.keyguard_large_clock_top_margin)
+        val targetHeight =
+            activity.resources.getDimensionPixelSize(R.dimen.large_clock_text_size) * 2
+        val top = (screenSize.y / 2 - targetHeight / 2 + largeClockTopMargin / 2)
+        return Rect(0, top, screenSize.x, (top + targetHeight))
     }
 
     companion object {
