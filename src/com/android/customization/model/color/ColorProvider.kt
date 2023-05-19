@@ -350,6 +350,7 @@ class ColorProvider(context: Context, stubPackageName: String) :
             when (colorScheme.style) {
                 Style.FRUIT_SALAD -> intArrayOf(seed, colorScheme.accent1.s200)
                 Style.TONAL_SPOT -> intArrayOf(colorScheme.accentColor, colorScheme.accentColor)
+                Style.RAINBOW -> intArrayOf(colorScheme.accent1.s200, colorScheme.accent1.s200)
                 else -> intArrayOf(colorScheme.accent1.s100, colorScheme.accent1.s100)
             }
         return intArrayOf(
