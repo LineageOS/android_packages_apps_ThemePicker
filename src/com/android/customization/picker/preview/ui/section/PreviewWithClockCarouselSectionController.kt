@@ -17,6 +17,7 @@
 
 package com.android.customization.picker.preview.ui.section
 
+import android.app.WallpaperManager
 import android.content.Context
 import android.graphics.Rect
 import android.os.Bundle
@@ -65,6 +66,7 @@ class PreviewWithClockCarouselSectionController(
     wallpaperPreviewNavigator: WallpaperPreviewNavigator,
     private val navigationController: CustomizationSectionNavigationController,
     wallpaperInteractor: WallpaperInteractor,
+    wallpaperManager: WallpaperManager,
     private val isTwoPaneAndSmallWidth: Boolean,
 ) :
     ScreenPreviewSectionController(
@@ -76,6 +78,7 @@ class PreviewWithClockCarouselSectionController(
         displayUtils,
         wallpaperPreviewNavigator,
         wallpaperInteractor,
+        wallpaperManager,
         isTwoPaneAndSmallWidth,
     ) {
 
