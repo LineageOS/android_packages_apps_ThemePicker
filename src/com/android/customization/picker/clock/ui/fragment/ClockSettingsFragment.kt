@@ -134,6 +134,10 @@ class ClockSettingsFragment : AppbarFragment() {
     }
 
     override fun getDefaultTitle(): CharSequence {
-        return requireContext().getString(R.string.clock_settings_title)
+        return requireContext().getString(R.string.clock_color_and_size_title)
+    }
+
+    override fun getToolbarColorId(): Int {
+        return android.R.color.transparent
     }
 }

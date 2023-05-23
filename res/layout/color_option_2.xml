@@ -16,7 +16,6 @@
 <!-- Content description is set programmatically on the parent FrameLayout -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/option_item_size"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -48,16 +47,5 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/color_seed_chip_margin2"/>
     </FrameLayout>
-
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/option_bottom_margin"
-        android:textColor="@color/text_color_primary"
-        android:visibility="gone"
-        android:gravity="center"
-        android:text="Placeholder for stable size calculation, please do not remove."
-        tools:ignore="HardcodedText" />
 </LinearLayout>
 
