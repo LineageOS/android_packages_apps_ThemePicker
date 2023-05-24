@@ -1,5 +1,6 @@
 package com.android.customization.module;
 
+import android.app.WallpaperManager;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -100,6 +101,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
             DisplayUtils displayUtils,
             CustomizationPickerViewModel customizationPickerViewModel,
             WallpaperInteractor wallpaperInteractor,
+            WallpaperManager wallpaperManager,
             boolean isTwoPaneAndSmallWidth) {
         List<CustomizationSectionController<?>> sectionControllers = new ArrayList<>();
 
@@ -118,6 +120,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
                         wallpaperPreviewNavigator,
                         sectionNavigationController,
                         wallpaperInteractor,
+                        wallpaperManager,
                         isTwoPaneAndSmallWidth)
                         : new ScreenPreviewSectionController(
                                 activity,
@@ -128,6 +131,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
                                 displayUtils,
                                 wallpaperPreviewNavigator,
                                 wallpaperInteractor,
+                                wallpaperManager,
                                 isTwoPaneAndSmallWidth));
 
         sectionControllers.add(
