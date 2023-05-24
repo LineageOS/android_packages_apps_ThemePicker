@@ -133,7 +133,7 @@ object ClockSettingsBinder {
                                 val item =
                                     LayoutInflater.from(view.context)
                                         .inflate(
-                                            R.layout.color_option_2,
+                                            R.layout.clock_color_option,
                                             colorOptionContainerListView,
                                             false,
                                         ) as LinearLayout
