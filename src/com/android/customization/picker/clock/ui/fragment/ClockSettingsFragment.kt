@@ -79,7 +79,7 @@ class ClockSettingsFragment : AppbarFragment() {
                                     R.string.lock_screen_preview_provider_authority,
                                 ),
                         ),
-                    wallpaperInfoProvider = {
+                    wallpaperInfoProvider = { forceReload ->
                         suspendCancellableCoroutine { continuation ->
                             injector
                                 .getCurrentWallpaperInfoFactory(context)
@@ -90,7 +90,7 @@ class ClockSettingsFragment : AppbarFragment() {
                                             null,
                                         )
                                     },
-                                    /* forceRefresh= */ true,
+                                    forceReload,
                                 )
                         }
                     },

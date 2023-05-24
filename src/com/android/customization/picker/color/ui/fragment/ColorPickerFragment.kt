@@ -98,13 +98,13 @@ class ColorPickerFragment : AppbarFragment() {
                                         R.string.lock_screen_preview_provider_authority,
                                     ),
                         ),
-                    wallpaperInfoProvider = {
+                    wallpaperInfoProvider = { forceReload ->
                         suspendCancellableCoroutine { continuation ->
                             wallpaperInfoFactory.createCurrentWallpaperInfos(
                                 { homeWallpaper, lockWallpaper, _ ->
                                     continuation.resume(lockWallpaper ?: homeWallpaper, null)
                                 },
-                                /* forceRefresh= */ true,
+                                forceReload,
                             )
                         }
                     },
@@ -133,13 +133,13 @@ class ColorPickerFragment : AppbarFragment() {
                                         R.string.grid_control_metadata_name,
                                     ),
                         ),
-                    wallpaperInfoProvider = {
+                    wallpaperInfoProvider = { forceReload ->
                         suspendCancellableCoroutine { continuation ->
                             wallpaperInfoFactory.createCurrentWallpaperInfos(
                                 { homeWallpaper, lockWallpaper, _ ->
                                     continuation.resume(homeWallpaper ?: lockWallpaper, null)
                                 },
-                                /* forceRefresh= */ true,
+                                forceReload,
                             )
                         }
                     },
