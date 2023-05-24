@@ -91,13 +91,13 @@ private constructor(
                     )
                 }
             },
-            wallpaperInfoProvider = {
+            wallpaperInfoProvider = { forceReload ->
                 suspendCancellableCoroutine { continuation ->
                     wallpaperInfoFactory.createCurrentWallpaperInfos(
                         { homeWallpaper, lockWallpaper, _ ->
                             continuation.resume(lockWallpaper ?: homeWallpaper, null)
                         },
-                        /* forceRefresh= */ true,
+                        forceReload,
                     )
                 }
             },
