@@ -456,6 +456,38 @@
     <string name="more_colors">More Colors</string>
 
     <!--
+    Accessibility string for a button that allows the user to select a color scheme generated from
+    their current wallpaper as the system color. This is shown in a list with other color options.
+
+    [CHAR LIMIT=NONE].
+    -->
+    <string name="content_description_dynamic_color_option">Primary dynamic theme</string>
+
+    <!--
+    Accessibility string for a button that allows the user to select a color scheme generated from
+    their current wallpaper as the system color. This is shown in a list with other color options.
+
+    [CHAR LIMIT=NONE].
+    -->
+    <string name="content_description_neutral_color_option">Primary neutral theme</string>
+
+    <!--
+    Accessibility string for a button that allows the user to select a color scheme generated from
+    their current wallpaper as the system color. This is shown in a list with other color options.
+
+    [CHAR LIMIT=NONE].
+    -->
+    <string name="content_description_vibrant_color_option">Primary vibrant theme</string>
+
+    <!--
+    Accessibility string for a button that allows the user to select a color scheme generated from
+    their current wallpaper as the system color. This is shown in a list with other color options.
+
+    [CHAR LIMIT=NONE].
+    -->
+    <string name="content_description_expressive_color_option">Primary expressive theme</string>
+
+    <!--
     Accessibility string for a button that allows the user to select the default color for their
     lock screen clock on the device. This is shown next to other buttons that allow the user to
     select from a set of custom colors.
