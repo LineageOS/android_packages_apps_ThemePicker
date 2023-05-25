@@ -61,10 +61,7 @@ class ColorOptionImpl(
     }
 
     override fun getContentDescription(context: Context): CharSequence? {
-        if (type == ColorType.WALLPAPER_COLOR) {
-            return context.getString(R.string.wallpaper_color_title)
-        }
-        return super.getContentDescription(context)
+        return title
     }
 
     override fun getSource(): String? {
