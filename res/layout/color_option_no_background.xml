@@ -52,5 +52,6 @@
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:src="@drawable/color_option_selected_no_background"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        android:importantForAccessibility="no" />
 </androidx.constraintlayout.widget.ConstraintLayout>
