@@ -64,7 +64,6 @@ private constructor(
     private val quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor,
     private val wallpaperInteractor: WallpaperInteractor,
     private val wallpaperInfoFactory: CurrentWallpaperInfoFactory,
-    private val activityStarter: (Intent) -> Unit,
 ) : ViewModel() {
 
     @SuppressLint("StaticFieldLeak") private val applicationContext = context.applicationContext
@@ -272,7 +271,7 @@ private constructor(
                             },
                         onLongClicked =
                             if (affordance.configureIntent != null) {
-                                { activityStarter(affordance.configureIntent) }
+                                { requestActivityStart(affordance.configureIntent) }
                             } else {
                                 null
                             },
@@ -318,9 +317,32 @@ private constructor(
      */
     val dialog: Flow<DialogViewModel?> = _dialog.asStateFlow()
 
+    private val _activityStartRequests = MutableStateFlow<Intent?>(null)
+    /**
+     * Requests to start an activity with the given [Intent].
+     *
+     * Important: once the activity is started, the [Intent] should be consumed by calling
+     * [onActivityStarted].
+     */
+    val activityStartRequests: StateFlow<Intent?> = _activityStartRequests.asStateFlow()
+
     /** Notifies that the dialog has been dismissed in the UI. */
     fun onDialogDismissed() {
         _dialog.value = null
+    }
+
+    /**
+     * Notifies that an activity request from [activityStartRequests] has been fulfilled (e.g. the
+     * activity was started and the view-model can forget needing to start this activity).
+     */
+    fun onActivityStarted() {
+        _activityStartRequests.value = null
+    }
+
+    private fun requestActivityStart(
+        intent: Intent,
+    ) {
+        _activityStartRequests.value = intent
     }
 
     private fun showEnablementDialog(
@@ -361,7 +383,7 @@ private constructor(
                             style = ButtonStyle.Primary,
                             onClicked = {
                                 actionComponentName.toIntent()?.let { intent ->
-                                    activityStarter(intent)
+                                    requestActivityStart(intent)
                                 }
                             }
                         ),
@@ -462,7 +484,6 @@ private constructor(
         private val quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor,
         private val wallpaperInteractor: WallpaperInteractor,
         private val wallpaperInfoFactory: CurrentWallpaperInfoFactory,
-        private val activityStarter: (Intent) -> Unit,
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             @Suppress("UNCHECKED_CAST")
@@ -471,7 +492,6 @@ private constructor(
                 quickAffordanceInteractor = quickAffordanceInteractor,
                 wallpaperInteractor = wallpaperInteractor,
                 wallpaperInfoFactory = wallpaperInfoFactory,
-                activityStarter = activityStarter,
             )
                 as T
         }
