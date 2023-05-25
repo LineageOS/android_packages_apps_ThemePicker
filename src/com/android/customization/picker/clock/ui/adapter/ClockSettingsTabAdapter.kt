@@ -16,13 +16,17 @@
  */
 package com.android.customization.picker.clock.ui.adapter
 
+import android.graphics.Rect
 import android.view.LayoutInflater
+import android.view.TouchDelegate
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.customization.picker.clock.ui.viewmodel.ClockSettingsTabViewModel
 import com.android.wallpaper.R
+import com.android.wallpaper.util.ViewUtils.setupTouchDelegate
+
 
 /** Adapter for the tab recycler view on the clock settings screen. */
 class ClockSettingsTabAdapter : RecyclerView.Adapter<ClockSettingsTabAdapter.ViewHolder>() {
@@ -54,6 +58,10 @@ class ClockSettingsTabAdapter : RecyclerView.Adapter<ClockSettingsTabAdapter.Vie
         val item = items[position]
         holder.itemView.isSelected = item.isSelected
         holder.textView.text = item.name
+        holder.textView.setupTouchDelegate(
+            parentView = holder.itemView,
+            heightRes = R.dimen.tab_touch_delegate_height_padding
+        )
         holder.textView.setOnClickListener(
             if (item.onClicked != null) {
                 View.OnClickListener { item.onClicked.invoke() }
