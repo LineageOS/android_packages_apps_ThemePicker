@@ -16,6 +16,7 @@
 package com.android.customization.module
 
 import android.app.UiModeManager
+import android.app.WallpaperManager
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -380,7 +381,11 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                     activity.applicationContext,
                     ScreenSizeCalculator.getInstance()
                         .getScreenSize(activity.windowManager.defaultDisplay),
-                    getClockRegistry(activity.applicationContext, activity),
+                    WallpaperManager.getInstance(activity.applicationContext),
+                    getClockRegistry(
+                        context = activity.applicationContext,
+                        lifecycleOwner = activity,
+                    ),
                 )
                 .also {
                     clockViewFactories[activityHashCode] = it
