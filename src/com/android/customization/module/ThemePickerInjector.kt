@@ -15,7 +15,6 @@
  */
 package com.android.customization.module
 
-import android.app.Activity
 import android.app.UiModeManager
 import android.content.Context
 import android.content.Intent
@@ -25,6 +24,8 @@ import android.text.TextUtils
 import androidx.activity.ComponentActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import com.android.customization.model.color.ColorCustomizationManager
@@ -80,6 +81,7 @@ import com.android.wallpaper.picker.customization.data.content.WallpaperClientIm
 import com.android.wallpaper.picker.customization.data.repository.WallpaperRepository
 import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInteractor
 import com.android.wallpaper.picker.undo.domain.interactor.SnapshotRestorer
+import com.android.wallpaper.util.ScreenSizeCalculator
 import kotlinx.coroutines.Dispatchers
 
 open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInjector {
@@ -101,7 +103,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     private var clockPickerInteractor: ClockPickerInteractor? = null
     private var clockSectionViewModel: ClockSectionViewModel? = null
     private var clockCarouselViewModelFactory: ClockCarouselViewModel.Factory? = null
-    private var clockViewFactory: ClockViewFactory? = null
+    private var clockViewFactories: MutableMap<Int, ClockViewFactory> = HashMap()
     private var notificationsInteractor: NotificationsInteractor? = null
     private var notificationSectionViewModelFactory: NotificationSectionViewModel.Factory? = null
     private var colorPickerInteractor: ColorPickerInteractor? = null
@@ -356,9 +358,29 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
             }
     }
 
-    override fun getClockViewFactory(activity: Activity): ClockViewFactory {
-        return clockViewFactory
-            ?: ClockViewFactory(activity, getClockRegistry(activity)).also { clockViewFactory = it }
+    override fun getClockViewFactory(activity: ComponentActivity): ClockViewFactory {
+        val activityHashCode = activity.hashCode()
+        return clockViewFactories[activityHashCode]
+            ?: ClockViewFactory(
+                    activity.applicationContext,
+                    ScreenSizeCalculator.getInstance()
+                        .getScreenSize(activity.windowManager.defaultDisplay),
+                    getClockRegistry(
+                        activity.applicationContext,
+                    ),
+                )
+                .also {
+                    clockViewFactories[activityHashCode] = it
+                    activity.lifecycle.addObserver(
+                        object : DefaultLifecycleObserver {
+                            override fun onDestroy(owner: LifecycleOwner) {
+                                super.onDestroy(owner)
+                                clockViewFactories[activityHashCode]?.onDestroy()
+                                clockViewFactories.remove(activityHashCode)
+                            }
+                        }
+                    )
+                }
     }
 
     private fun getNotificationsInteractor(
