@@ -72,8 +72,6 @@ class KeyguardQuickAffordancePickerViewModelTest {
     private lateinit var quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor
     private lateinit var wallpaperInteractor: WallpaperInteractor
 
-    private var latestStartedActivityIntent: Intent? = null
-
     @Before
     fun setUp() {
         InjectorProvider.setInjector(TestInjector())
@@ -115,7 +113,6 @@ class KeyguardQuickAffordancePickerViewModelTest {
                     quickAffordanceInteractor = quickAffordanceInteractor,
                     wallpaperInteractor = wallpaperInteractor,
                     wallpaperInfoFactory = TestCurrentWallpaperInfoFactory(context),
-                    activityStarter = { intent -> latestStartedActivityIntent = intent },
                 )
                 .create(KeyguardQuickAffordancePickerViewModel::class.java)
     }
@@ -249,6 +246,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
             val slots = collectLastValue(underTest.slots)
             val quickAffordances = collectLastValue(underTest.quickAffordances)
             val dialog = collectLastValue(underTest.dialog)
+            val activityStartRequest = collectLastValue(underTest.activityStartRequests)
 
             val enablementInstructions = listOf("instruction1", "instruction2")
             val enablementActionText = "enablementActionText"
@@ -283,10 +281,15 @@ class KeyguardQuickAffordancePickerViewModelTest {
                 .isEqualTo(Text.Loaded(enablementActionText))
 
             // When the button is clicked, we expect an intent of the given enablement action
-            // component name is launched.
+            // component name to be emitted.
             dialog()?.buttons?.first()?.onClicked?.invoke()
-            assertThat(latestStartedActivityIntent?.`package`).isEqualTo(packageName)
-            assertThat(latestStartedActivityIntent?.action).isEqualTo(action)
+            assertThat(activityStartRequest()?.`package`).isEqualTo(packageName)
+            assertThat(activityStartRequest()?.action).isEqualTo(action)
+
+            // Once we report that the activity was started, the activity start request should be
+            // nullified.
+            underTest.onActivityStarted()
+            assertThat(activityStartRequest()).isNull()
 
             // Once we report that the dialog has been dismissed by the user, we expect there to be
             // no dialog to be shown:
@@ -298,6 +301,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
     fun `Start settings activity when long-pressing an affordance`() =
         testScope.runTest {
             val quickAffordances = collectLastValue(underTest.quickAffordances)
+            val activityStartRequest = collectLastValue(underTest.activityStartRequests)
 
             // Lets add a configurable affordance to the picker:
             val configureIntent = Intent("some.action")
@@ -315,7 +319,11 @@ class KeyguardQuickAffordancePickerViewModelTest {
             // Lets try to long-click the affordance:
             quickAffordances()?.get(affordanceIndex + 1)?.onLongClicked?.invoke()
 
-            assertThat(latestStartedActivityIntent).isEqualTo(configureIntent)
+            assertThat(activityStartRequest()).isEqualTo(configureIntent)
+            // Once we report that the activity was started, the activity start request should be
+            // nullified.
+            underTest.onActivityStarted()
+            assertThat(activityStartRequest()).isNull()
         }
 
     @Test
