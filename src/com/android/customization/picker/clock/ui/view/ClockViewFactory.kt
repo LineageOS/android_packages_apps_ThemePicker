@@ -70,20 +70,19 @@ class ClockViewFactory(
                 FrameLayout.LayoutParams.WRAP_CONTENT,
                 resources.getDimensionPixelSize(R.dimen.small_clock_height)
             )
-        layoutParams.topMargin =
-            getStatusBarHeight(resources) +
-                resources.getDimensionPixelSize(R.dimen.small_clock_padding_top)
+        layoutParams.topMargin = getSmallClockTopMargin()
+        layoutParams.marginStart = getSmallClockStartPadding()
         smallClockFrame.layoutParams = layoutParams
-
-        smallClockFrame.setPaddingRelative(
-            resources.getDimensionPixelSize(R.dimen.clock_padding_start),
-            0,
-            0,
-            0
-        )
         smallClockFrame.clipChildren = false
         return smallClockFrame
     }
+
+    private fun getSmallClockTopMargin() =
+        getStatusBarHeight(appContext.resources) +
+            appContext.resources.getDimensionPixelSize(R.dimen.small_clock_padding_top)
+
+    private fun getSmallClockStartPadding() =
+        appContext.resources.getDimensionPixelSize(R.dimen.clock_padding_start)
 
     fun updateColorForAllClocks(@ColorInt seedColor: Int?) {
         clockControllers.values.forEach { it.events.onSeedColorChanged(seedColor = seedColor) }
@@ -185,12 +184,9 @@ class ClockViewFactory(
      * and position the clock view
      */
     private fun getSmallClockRegion(): Rect {
-        val topMargin =
-            getStatusBarHeight(resources) +
-                resources.getDimensionPixelSize(R.dimen.small_clock_padding_top)
-        val start = resources.getDimensionPixelSize(R.dimen.clock_padding_start)
+        val topMargin = getSmallClockTopMargin()
         val targetHeight = resources.getDimensionPixelSize(R.dimen.small_clock_height)
-        return Rect(start, topMargin, screenSize.x, topMargin + targetHeight)
+        return Rect(getSmallClockStartPadding(), topMargin, screenSize.x, topMargin + targetHeight)
     }
 
     companion object {
