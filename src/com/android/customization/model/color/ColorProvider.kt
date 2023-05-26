@@ -37,6 +37,7 @@ import com.android.customization.model.color.ColorUtils.toColorString
 import com.android.customization.picker.color.shared.model.ColorType
 import com.android.systemui.monet.ColorScheme
 import com.android.systemui.monet.Style
+import com.android.wallpaper.R
 import com.android.wallpaper.compat.WallpaperManagerCompat
 import com.android.wallpaper.module.InjectorProvider
 import kotlinx.coroutines.CoroutineScope
@@ -48,7 +49,7 @@ import kotlinx.coroutines.withContext
 /**
  * Default implementation of {@link ColorOptionsProvider} that reads preset colors from a stub APK.
  */
-class ColorProvider(context: Context, stubPackageName: String) :
+class ColorProvider(private val context: Context, stubPackageName: String) :
     ResourcesApkProvider(context, stubPackageName), ColorOptionsProvider {
 
     companion object {
@@ -244,6 +245,18 @@ class ColorProvider(context: Context, stubPackageName: String) :
                     OVERLAY_CATEGORY_SYSTEM_PALETTE,
                     if (isDefault) "" else toColorString(colorInt)
                 )
+                builder.title =
+                    when (style) {
+                        Style.TONAL_SPOT ->
+                            context.getString(R.string.content_description_dynamic_color_option)
+                        Style.SPRITZ ->
+                            context.getString(R.string.content_description_neutral_color_option)
+                        Style.VIBRANT ->
+                            context.getString(R.string.content_description_vibrant_color_option)
+                        Style.EXPRESSIVE ->
+                            context.getString(R.string.content_description_expressive_color_option)
+                        else -> context.getString(R.string.content_description_dynamic_color_option)
+                    }
                 builder.source = source
                 builder.style = style
                 // Color option index value starts from 1.

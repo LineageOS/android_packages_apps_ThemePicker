@@ -30,6 +30,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.android.customization.picker.color.ui.viewmodel.ColorOptionIconViewModel
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
 import com.android.wallpaper.R
+import com.android.wallpaper.picker.common.icon.ui.viewbinder.ContentDescriptionViewBinder
 import com.android.wallpaper.picker.option.ui.viewmodel.OptionItemViewModel
 import kotlinx.coroutines.launch
 
@@ -102,6 +103,10 @@ object ColorSectionViewBinder {
                     itemView.requireViewById(R.id.option_tile),
                     item.payload,
                     night
+                )
+                ContentDescriptionViewBinder.bind(
+                    view = itemView.requireViewById(R.id.option_tile),
+                    viewModel = item.text,
                 )
             }
             val optionSelectedView = itemView.findViewById<ImageView>(R.id.option_selected)
