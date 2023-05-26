@@ -123,6 +123,7 @@ class ClockSettingsFragment : AppbarFragment() {
                         context,
                         injector.getWallpaperColorsViewModel(),
                         injector.getClockViewFactory(activity),
+                        activity,
                     ),
                 )
                 .get(),
