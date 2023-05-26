@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
+import com.android.customization.picker.clock.shared.ClockSize
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
@@ -52,6 +53,8 @@ constructor(
                 allClocks.map { it.clockId }
             }
             .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
+
+    val selectedClockSize: Flow<ClockSize> = interactor.selectedClockSize
 
     val seedColor: Flow<Int?> = interactor.seedColor
 
