@@ -235,7 +235,12 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                     repository =
                         WallpaperRepository(
                             scope = getApplicationCoroutineScope(),
-                            client = WallpaperClientImpl(context = context),
+                            client =
+                                WallpaperClientImpl(
+                                    context = context,
+                                    infoFactory = getCurrentWallpaperInfoFactory(context),
+                                    wallpaperManager = WallpaperManager.getInstance(context)
+                                ),
                             wallpaperPreferences = getPreferences(context = context),
                             backgroundDispatcher = Dispatchers.IO,
                         ),
