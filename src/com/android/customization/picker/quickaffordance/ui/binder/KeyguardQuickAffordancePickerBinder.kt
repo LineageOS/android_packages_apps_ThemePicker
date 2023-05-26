@@ -126,6 +126,15 @@ object KeyguardQuickAffordancePickerBinder {
                             }
                     }
                 }
+
+                launch {
+                    viewModel.activityStartRequests.collect { intent ->
+                        if (intent != null) {
+                            view.context.startActivity(intent)
+                            viewModel.onActivityStarted()
+                        }
+                    }
+                }
             }
         }
     }
