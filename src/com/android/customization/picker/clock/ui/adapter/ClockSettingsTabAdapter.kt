@@ -54,7 +54,7 @@ class ClockSettingsTabAdapter : RecyclerView.Adapter<ClockSettingsTabAdapter.Vie
         val item = items[position]
         holder.itemView.isSelected = item.isSelected
         holder.textView.text = item.name
-        holder.textView.setOnClickListener(
+        holder.itemView.setOnClickListener(
             if (item.onClicked != null) {
                 View.OnClickListener { item.onClicked.invoke() }
             } else {
