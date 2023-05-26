@@ -27,6 +27,7 @@ import com.android.customization.picker.clock.ui.view.ClockCarouselView
 import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
 import com.android.wallpaper.R
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 
 object ClockCarouselViewBinder {
@@ -40,6 +41,7 @@ object ClockCarouselViewBinder {
         lifecycleOwner: LifecycleOwner,
         hideSmartspace: (Boolean) -> Unit,
     ) {
+        carouselView.setClockViewFactory(clockViewFactory)
         val singleClockHostView =
             singleClockView.requireViewById<FrameLayout>(R.id.single_clock_host_view)
         lifecycleOwner.lifecycleScope.launch {
@@ -47,12 +49,11 @@ object ClockCarouselViewBinder {
                 launch { viewModel.isCarouselVisible.collect { carouselView.isVisible = it } }
 
                 launch {
-                    viewModel.allClockIds.collect { allClockIds ->
+                    combine(viewModel.selectedClockSize, viewModel.allClockIds, ::Pair).collect {
+                        (size, allClockIds) ->
                         carouselView.setUpClockCarouselView(
+                            clockSize = size,
                             clockIds = allClockIds,
-                            onGetClockController = { clockId ->
-                                clockViewFactory.getController(clockId)
-                            },
                             onClockSelected = { clockId ->
                                 viewModel.setSelectedClock(clockId)
                                 val hasCustomWeatherDataDisplay =
@@ -61,7 +62,6 @@ object ClockCarouselViewBinder {
                                         .largeClock
                                         .config
                                         .hasCustomWeatherDataDisplay
-
                                 hideSmartspace(hasCustomWeatherDataDisplay)
                             },
                         )
