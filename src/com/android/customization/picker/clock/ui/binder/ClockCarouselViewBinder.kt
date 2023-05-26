@@ -91,7 +91,7 @@ object ClockCarouselViewBinder {
                 launch {
                     viewModel.clockId.collect { clockId ->
                         singleClockHostView.removeAllViews()
-                        val clockView = clockViewFactory.getView(clockId)
+                        val clockView = clockViewFactory.getLargeView(clockId)
                         // The clock view might still be attached to an existing parent. Detach
                         // before adding to another parent.
                         (clockView.parent as? ViewGroup)?.removeView(clockView)
