@@ -27,7 +27,6 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import com.android.customization.model.color.ColorCustomizationManager
 import com.android.customization.model.color.ColorOptionsProvider
 import com.android.customization.model.grid.GridOptionsManager
@@ -99,7 +98,11 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     private var keyguardQuickAffordanceSnapshotRestorer: KeyguardQuickAffordanceSnapshotRestorer? =
         null
     private var notificationsSnapshotRestorer: NotificationsSnapshotRestorer? = null
-    private var clockRegistry: ClockRegistry? = null
+    /**
+     * Mapping from LifeCycleOwner's hashcode to ClockRegistry as we need to keep different
+     * ClockRegistries per LifeCycle to ensure proper cleanup
+     */
+    private var clockRegistries: MutableMap<Int, ClockRegistry> = HashMap()
     private var clockPickerInteractor: ClockPickerInteractor? = null
     private var clockSectionViewModel: ClockSectionViewModel? = null
     private var clockCarouselViewModelFactory: ClockCarouselViewModel.Factory? = null
@@ -132,7 +135,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                     ),
                     getFlags(),
                     getClockCarouselViewModelFactory(
-                        getClockPickerInteractor(activity.applicationContext),
+                        getClockPickerInteractor(activity.applicationContext, activity),
                     ),
                     getClockViewFactory(activity),
                     getDarkModeSnapshotRestorer(activity),
@@ -314,8 +317,8 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                 .also { notificationsSnapshotRestorer = it }
     }
 
-    override fun getClockRegistry(context: Context): ClockRegistry {
-        return clockRegistry
+    override fun getClockRegistry(context: Context, lifecycleOwner: LifecycleOwner): ClockRegistry {
+        return clockRegistries[lifecycleOwner.hashCode()]
             ?: ClockRegistryProvider(
                     context = context,
                     coroutineScope = getApplicationCoroutineScope(),
@@ -323,28 +326,42 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                     backgroundDispatcher = Dispatchers.IO,
                 )
                 .get()
-                .also { clockRegistry = it }
+                .also {
+                    clockRegistries[lifecycleOwner.hashCode()] = it
+                    lifecycleOwner.lifecycle.addObserver(
+                        object : DefaultLifecycleObserver {
+                            override fun onDestroy(owner: LifecycleOwner) {
+                                super.onDestroy(owner)
+                                clockRegistries[lifecycleOwner.hashCode()]?.unregisterListeners()
+                                clockRegistries.remove(lifecycleOwner.hashCode())
+                            }
+                        }
+                    )
+                }
     }
 
     override fun getClockPickerInteractor(
         context: Context,
+        lifecycleOwner: LifecycleOwner,
     ): ClockPickerInteractor {
         return clockPickerInteractor
             ?: ClockPickerInteractor(
                     ClockPickerRepositoryImpl(
                         secureSettingsRepository = getSecureSettingsRepository(context),
-                        registry = getClockRegistry(context),
+                        registry = getClockRegistry(context, lifecycleOwner),
                         scope = getApplicationCoroutineScope(),
                     ),
                 )
                 .also { clockPickerInteractor = it }
     }
 
-    override fun getClockSectionViewModel(context: Context): ClockSectionViewModel {
+    override fun getClockSectionViewModel(
+        context: Context,
+        lifecycleOwner: LifecycleOwner
+    ): ClockSectionViewModel {
         return clockSectionViewModel
-            ?: ClockSectionViewModel(context, getClockPickerInteractor(context)).also {
-                clockSectionViewModel = it
-            }
+            ?: ClockSectionViewModel(context, getClockPickerInteractor(context, lifecycleOwner))
+                .also { clockSectionViewModel = it }
     }
 
     override fun getClockCarouselViewModelFactory(
@@ -363,9 +380,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                     activity.applicationContext,
                     ScreenSizeCalculator.getInstance()
                         .getScreenSize(activity.windowManager.defaultDisplay),
-                    getClockRegistry(
-                        activity.applicationContext,
-                    ),
+                    getClockRegistry(activity.applicationContext, activity),
                 )
                 .also {
                     clockViewFactories[activityHashCode] = it
@@ -484,11 +499,12 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
         context: Context,
         wallpaperColorsViewModel: WallpaperColorsViewModel,
         clockViewFactory: ClockViewFactory,
+        lifecycleOwner: LifecycleOwner,
     ): ClockSettingsViewModel.Factory {
         return clockSettingsViewModelFactory
             ?: ClockSettingsViewModel.Factory(
                     context,
-                    getClockPickerInteractor(context),
+                    getClockPickerInteractor(context, lifecycleOwner),
                     getColorPickerInteractor(
                         context,
                         wallpaperColorsViewModel,
