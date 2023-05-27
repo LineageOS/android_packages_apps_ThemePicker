@@ -20,7 +20,6 @@ package com.android.customization.picker.preview.ui.section
 import android.app.WallpaperManager
 import android.content.Context
 import android.graphics.Rect
-import android.os.Bundle
 import android.view.TouchDelegate
 import android.view.View
 import android.view.View.OnAttachStateChangeListener
@@ -39,7 +38,6 @@ import com.android.customization.picker.clock.ui.fragment.ClockSettingsFragment
 import com.android.customization.picker.clock.ui.view.ClockCarouselView
 import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
-import com.android.systemui.shared.quickaffordance.shared.model.KeyguardPreviewConstants
 import com.android.wallpaper.R
 import com.android.wallpaper.model.CustomizationSectionController.CustomizationSectionNavigationController
 import com.android.wallpaper.model.WallpaperColorsViewModel
@@ -163,7 +161,6 @@ class PreviewWithClockCarouselSectionController(
                                     viewModel = viewModel,
                                     clockViewFactory = clockViewFactory,
                                     lifecycleOwner = lifecycleOwner,
-                                    hideSmartspace = ::hideSmartspace,
                                 )
                                 if (onAttachStateChangeListener != null) {
                                     carouselView.carousel.removeOnAttachStateChangeListener(
@@ -181,17 +178,5 @@ class PreviewWithClockCarouselSectionController(
         }
 
         return view
-    }
-
-    private fun hideSmartspace(hide: Boolean) {
-        previewViewBinding.sendMessage(
-            KeyguardPreviewConstants.MESSAGE_ID_HIDE_SMART_SPACE,
-            Bundle().apply {
-                putBoolean(
-                    KeyguardPreviewConstants.KEY_HIDE_SMART_SPACE,
-                    hide,
-                )
-            }
-        )
     }
 }
