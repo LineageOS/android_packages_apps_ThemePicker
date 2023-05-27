@@ -39,7 +39,6 @@ object ClockCarouselViewBinder {
         viewModel: ClockCarouselViewModel,
         clockViewFactory: ClockViewFactory,
         lifecycleOwner: LifecycleOwner,
-        hideSmartspace: (Boolean) -> Unit,
     ) {
         carouselView.setClockViewFactory(clockViewFactory)
         val singleClockHostView =
@@ -54,16 +53,7 @@ object ClockCarouselViewBinder {
                         carouselView.setUpClockCarouselView(
                             clockSize = size,
                             clockIds = allClockIds,
-                            onClockSelected = { clockId ->
-                                viewModel.setSelectedClock(clockId)
-                                val hasCustomWeatherDataDisplay =
-                                    clockViewFactory
-                                        .getController(clockId)
-                                        .largeClock
-                                        .config
-                                        .hasCustomWeatherDataDisplay
-                                hideSmartspace(hasCustomWeatherDataDisplay)
-                            },
+                            onClockSelected = { clockId -> viewModel.setSelectedClock(clockId) },
                         )
                     }
                 }
