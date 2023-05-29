@@ -101,11 +101,11 @@
     <string name="mode_title" msgid="2394873501427436055">"Темна тема"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"Привремено оневозможено поради „Штедачот на батерија“"</string>
     <string name="mode_changed" msgid="2243581369395418584">"Темата е променета"</string>
-    <string name="themed_icon_title" msgid="7312460430471956558">"Икони со тема"</string>
+    <string name="themed_icon_title" msgid="7312460430471956558">"Тематски икони"</string>
     <string name="beta_title" msgid="8703819523760746458">"Бета"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"Променете ја мрежата на апликации"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"Бои од тапетот"</string>
-    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Иконите, текстот и др. се совпаѓаат со боите на тапетот"</string>
+    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Иконите, текстот и др. се совпаѓаат по боја со тапетот"</string>
     <string name="wallpaper_color_title" msgid="5687965239180986458">"Боја на тапет"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"Основни бои"</string>
     <string name="preset_color_tab_2" msgid="1444107326712562538">"Други бои"</string>
@@ -126,7 +126,7 @@
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"Нема"</string>
     <string name="notifications_section_title" msgid="4283049750376871538">"Известувања"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Прикажувај известувања на заклучен екран"</string>
-    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Сокривај известувања на заклучен екран"</string>
+    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Скриј известувања на заклучен екран"</string>
     <string name="more_settings_section_title" msgid="8524741850115625404">"Повеќе опции"</string>
     <string name="more_settings_section_description" msgid="8787768566854880683">"Текст на заклучен екран, Now Playing и друго"</string>
     <string name="more_colors" msgid="3191071655353004591">"Повеќе бои"</string>

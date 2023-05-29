@@ -105,11 +105,11 @@
     <string name="beta_title" msgid="8703819523760746458">"Beta"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"Ubah petak aplikasi"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"Warna wallpaper"</string>
-    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Warna ikon, teks, dan elemen lainnya serasi di dalam wallpaper"</string>
+    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Ikon, teks, dan lain-lain serasi dengan warna wallpaper"</string>
     <string name="wallpaper_color_title" msgid="5687965239180986458">"Warna wallpaper"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"Warna dasar"</string>
     <string name="preset_color_tab_2" msgid="1444107326712562538">"Warna lainnya"</string>
-    <string name="preset_color_subheader" msgid="8230588536141279371">"Pilih warna apa pun untuk ikon, jam, dan lainnya"</string>
+    <string name="preset_color_subheader" msgid="8230588536141279371">"Pilih warna untuk ikon, jam, dan lain-lain"</string>
     <string name="color_changed" msgid="7029571720331641235">"Warna diubah"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Dinamis"</string>
     <string name="color_picker_title" msgid="6666830057938082864">"Warna sistem"</string>

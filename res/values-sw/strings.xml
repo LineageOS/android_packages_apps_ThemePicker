@@ -109,7 +109,7 @@
     <string name="wallpaper_color_title" msgid="5687965239180986458">"Rangi ya mandhari"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"Rangi za msingi"</string>
     <string name="preset_color_tab_2" msgid="1444107326712562538">"Rangi nyinginezo"</string>
-    <string name="preset_color_subheader" msgid="8230588536141279371">"Chagua rangi yoyote ya aikoni zako, saa na zaidi"</string>
+    <string name="preset_color_subheader" msgid="8230588536141279371">"Chagua rangi yoyote uitumie kwenye aikoni, saa na zaidi"</string>
     <string name="color_changed" msgid="7029571720331641235">"Rangi imebadilishwa"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Inayobadilika"</string>
     <string name="color_picker_title" msgid="6666830057938082864">"Rangi za mfumo"</string>
@@ -129,7 +129,7 @@
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Ficha arifa kwenye skrini iliyofungwa"</string>
     <string name="more_settings_section_title" msgid="8524741850115625404">"Chaguo zaidi"</string>
     <string name="more_settings_section_description" msgid="8787768566854880683">"Maandishi kwenye skrini iliyofungwa, Kitambua Ngoma na zaidi"</string>
-    <string name="more_colors" msgid="3191071655353004591">"Rangi Nyingi Zaidi"</string>
+    <string name="more_colors" msgid="3191071655353004591">"Rangi Zaidi"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Chaguo la rangi chaguomsingi"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Chaguo la rangi ya <xliff:g id="ID_1">%1$d</xliff:g>"</string>
 </resources>
