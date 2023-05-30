@@ -19,12 +19,15 @@ import androidx.test.filters.SmallTest
 import androidx.test.platform.app.InstrumentationRegistry
 import com.android.customization.picker.clock.data.repository.FakeClockPickerRepository
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
+import com.android.customization.picker.clock.domain.interactor.ClockPickerSnapshotRestorer
 import com.android.customization.picker.clock.shared.ClockSize
 import com.android.customization.picker.clock.shared.model.ClockMetadataModel
+import com.android.wallpaper.testing.FakeSnapshotStore
 import com.android.wallpaper.testing.collectLastValue
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -50,7 +53,15 @@ class ClockSectionViewModelTest {
         Dispatchers.setMain(testDispatcher)
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         clockColorMap = ClockColorViewModel.getPresetColorMap(context.resources)
-        interactor = ClockPickerInteractor(FakeClockPickerRepository())
+        interactor =
+            ClockPickerInteractor(
+                repository = FakeClockPickerRepository(),
+                snapshotRestorer = {
+                    ClockPickerSnapshotRestorer(interactor = interactor).apply {
+                        runBlocking { setUpSnapshotRestorer(store = FakeSnapshotStore()) }
+                    }
+                },
+            )
         underTest =
             ClockSectionViewModel(
                 context,
@@ -68,6 +79,7 @@ class ClockSectionViewModelTest {
         val colorGrey = clockColorMap.values.first()
         val observedSelectedClockColorAndSizeText =
             collectLastValue(underTest.selectedClockColorAndSizeText)
+
         interactor.setClockColor(
             colorGrey.colorId,
             ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS,
@@ -77,6 +89,7 @@ class ClockSectionViewModelTest {
             )
         )
         interactor.setClockSize(ClockSize.DYNAMIC)
+
         assertThat(observedSelectedClockColorAndSizeText()).isEqualTo("Grey, dynamic")
     }
 }
