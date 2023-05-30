@@ -103,7 +103,7 @@ private constructor(
             )
     }
 
-    fun onSliderProgressStop(progress: Int) {
+    suspend fun onSliderProgressStop(progress: Int) {
         val selectedColorId = selectedColorId.value ?: return
         val clockColorViewModel = colorMap[selectedColorId] ?: return
         clockPickerInteractor.setClockColor(
@@ -168,18 +168,20 @@ private constructor(
                                         null
                                     } else {
                                         {
-                                            clockPickerInteractor.setClockColor(
-                                                selectedColorId = colorModel.colorId,
-                                                colorToneProgress = colorToneProgress,
-                                                seedColor =
-                                                    blendColorWithTone(
-                                                        color = colorModel.color,
-                                                        colorTone =
-                                                            colorModel.getColorTone(
-                                                                colorToneProgress,
-                                                            ),
-                                                    ),
-                                            )
+                                            viewModelScope.launch {
+                                                clockPickerInteractor.setClockColor(
+                                                    selectedColorId = colorModel.colorId,
+                                                    colorToneProgress = colorToneProgress,
+                                                    seedColor =
+                                                        blendColorWithTone(
+                                                            color = colorModel.color,
+                                                            colorTone =
+                                                                colorModel.getColorTone(
+                                                                    colorToneProgress,
+                                                                ),
+                                                        ),
+                                                )
+                                            }
                                         }
                                     }
                                 },
@@ -235,11 +237,14 @@ private constructor(
                         null
                     } else {
                         {
-                            clockPickerInteractor.setClockColor(
-                                selectedColorId = null,
-                                colorToneProgress = ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS,
-                                seedColor = null,
-                            )
+                            viewModelScope.launch {
+                                clockPickerInteractor.setClockColor(
+                                    selectedColorId = null,
+                                    colorToneProgress =
+                                        ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS,
+                                    seedColor = null,
+                                )
+                            }
                         }
                     }
                 },
