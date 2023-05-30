@@ -75,7 +75,9 @@ object ClockSettingsBinder {
 
                 override fun onStartTrackingTouch(seekBar: SeekBar?) = Unit
                 override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                    seekBar?.progress?.let { viewModel.onSliderProgressStop(it) }
+                    seekBar?.progress?.let {
+                        lifecycleOwner.lifecycleScope.launch { viewModel.onSliderProgressStop(it) }
+                    }
                 }
             }
         )
