@@ -5,6 +5,7 @@ import androidx.test.filters.SmallTest
 import androidx.test.platform.app.InstrumentationRegistry
 import com.android.customization.picker.clock.data.repository.FakeClockPickerRepository
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
+import com.android.customization.picker.clock.domain.interactor.ClockPickerSnapshotRestorer
 import com.android.customization.picker.clock.shared.ClockSize
 import com.android.customization.picker.clock.shared.model.ClockMetadataModel
 import com.android.customization.picker.color.data.repository.FakeColorPickerRepository
@@ -57,7 +58,15 @@ class ClockSettingsViewModelTest {
         Dispatchers.setMain(testDispatcher)
         context = InstrumentationRegistry.getInstrumentation().targetContext
         testScope = TestScope(testDispatcher)
-        clockPickerInteractor = ClockPickerInteractor(FakeClockPickerRepository())
+        clockPickerInteractor =
+            ClockPickerInteractor(
+                repository = FakeClockPickerRepository(),
+                snapshotRestorer = {
+                    ClockPickerSnapshotRestorer(interactor = clockPickerInteractor).apply {
+                        runBlocking { setUpSnapshotRestorer(store = FakeSnapshotStore()) }
+                    }
+                },
+            )
         colorPickerInteractor =
             ColorPickerInteractor(
                 repository = FakeColorPickerRepository(context = context),
@@ -160,7 +169,7 @@ class ClockSettingsViewModelTest {
         underTest.onSliderProgressChanged(targetProgress1)
         assertThat(observedSliderProgress()).isEqualTo(targetProgress1)
         val targetProgress2 = 55
-        underTest.onSliderProgressStop(targetProgress2)
+        testScope.launch { underTest.onSliderProgressStop(targetProgress2) }
         assertThat(observedSliderProgress()).isEqualTo(targetProgress2)
         val expectedSelectedColorModel = colorMap.values.first() // RED
         assertThat(observedSeedColor())

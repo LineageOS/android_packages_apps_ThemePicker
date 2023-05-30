@@ -24,6 +24,7 @@ import com.android.customization.picker.clock.shared.model.ClockMetadataModel
 import com.android.systemui.plugins.ClockMetadata
 import com.android.systemui.shared.clocks.ClockRegistry
 import com.android.wallpaper.settings.data.repository.SecureSettingsRepository
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
@@ -32,6 +33,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.mapNotNull
@@ -43,6 +45,7 @@ class ClockPickerRepositoryImpl(
     private val secureSettingsRepository: SecureSettingsRepository,
     private val registry: ClockRegistry,
     scope: CoroutineScope,
+    mainDispatcher: CoroutineDispatcher,
 ) : ClockPickerRepository {
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -67,6 +70,7 @@ class ClockPickerRepositoryImpl(
                 send()
                 awaitClose { registry.unregisterClockChangeListener(listener) }
             }
+            .flowOn(mainDispatcher)
             .mapLatest { allClocks ->
                 // Loading list of clock plugins can cause many consecutive calls of
                 // onAvailableClocksChanged(). We only care about the final fully-initiated clock
@@ -108,6 +112,7 @@ class ClockPickerRepositoryImpl(
                 send()
                 awaitClose { registry.unregisterClockChangeListener(listener) }
             }
+            .flowOn(mainDispatcher)
             .mapNotNull { it }
 
     override suspend fun setSelectedClock(clockId: String) {
@@ -118,7 +123,7 @@ class ClockPickerRepositoryImpl(
         }
     }
 
-    override fun setClockColor(
+    override suspend fun setClockColor(
         selectedColorId: String?,
         @IntRange(from = 0, to = 100) colorToneProgress: Int,
         @ColorInt seedColor: Int?,
