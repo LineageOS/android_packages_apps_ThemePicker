@@ -180,6 +180,4 @@
     <dimen name="small_clock_height">114dp</dimen>
     <dimen name="small_clock_padding_top">28dp</dimen>
     <dimen name="clock_padding_start">28dp</dimen>
-
-    <dimen name="tab_touch_delegate_height_padding">8dp</dimen>
 </resources>
