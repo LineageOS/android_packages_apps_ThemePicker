@@ -15,11 +15,12 @@
  */
 package com.android.customization.picker.clock.ui.view
 
+import android.app.WallpaperColors
+import android.app.WallpaperManager
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Point
 import android.graphics.Rect
-import android.util.TypedValue
 import android.view.View
 import android.widget.FrameLayout
 import androidx.annotation.ColorInt
@@ -39,6 +40,7 @@ import java.util.concurrent.ConcurrentHashMap
 class ClockViewFactory(
     private val appContext: Context,
     val screenSize: Point,
+    private val wallpaperManager: WallpaperManager,
     private val registry: ClockRegistry,
 ) {
     private val resources = appContext.resources
@@ -89,9 +91,21 @@ class ClockViewFactory(
     }
 
     fun updateColor(clockId: String, @ColorInt seedColor: Int?) {
-        return (clockControllers[clockId] ?: initClockController(clockId))
-            .events
-            .onSeedColorChanged(seedColor)
+        clockControllers[clockId]?.events?.onSeedColorChanged(seedColor)
+    }
+
+    fun updateRegionDarkness() {
+        val isRegionDark = isLockscreenWallpaperDark()
+        clockControllers.values.forEach {
+            it.largeClock.events.onRegionDarknessChanged(isRegionDark)
+            it.smallClock.events.onRegionDarknessChanged(isRegionDark)
+        }
+    }
+
+    private fun isLockscreenWallpaperDark(): Boolean {
+        val colors = wallpaperManager.getWallpaperColors(WallpaperManager.FLAG_LOCK)
+        return (colors?.colorHints?.and(WallpaperColors.HINT_SUPPORTS_DARK_TEXT)) !=
+            WallpaperColors.HINT_SUPPORTS_DARK_TEXT
     }
 
     fun updateTimeFormat(clockId: String) {
@@ -136,18 +150,16 @@ class ClockViewFactory(
             registry.createExampleClock(clockId).also { it?.initialize(resources, 0f, 0f) }
         checkNotNull(controller)
 
-        // Configure light/dark theme
-        val isLightTheme = TypedValue()
-        appContext.theme.resolveAttribute(android.R.attr.isLightTheme, isLightTheme, true)
-        val isRegionDark = isLightTheme.data == 0
-        controller.largeClock.events.onRegionDarknessChanged(isRegionDark)
-        // Configure font size
+        val isWallpaperDark = isLockscreenWallpaperDark()
+        // Initialize large clock
+        controller.largeClock.events.onRegionDarknessChanged(isWallpaperDark)
         controller.largeClock.events.onFontSettingChanged(
             resources.getDimensionPixelSize(R.dimen.large_clock_text_size).toFloat()
         )
         controller.largeClock.events.onTargetRegionChanged(getLargeClockRegion())
 
-        controller.smallClock.events.onRegionDarknessChanged(isRegionDark)
+        // Initialize small clock
+        controller.smallClock.events.onRegionDarknessChanged(isWallpaperDark)
         controller.smallClock.events.onFontSettingChanged(
             resources.getDimensionPixelSize(R.dimen.small_clock_text_size).toFloat()
         )
