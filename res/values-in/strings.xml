@@ -105,11 +105,11 @@
     <string name="beta_title" msgid="8703819523760746458">"Beta"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"Ubah petak aplikasi"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"Warna wallpaper"</string>
-    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Warna ikon, teks, dan elemen lainnya serasi di dalam wallpaper"</string>
+    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Ikon, teks, dan lain-lain serasi dengan warna wallpaper"</string>
     <string name="wallpaper_color_title" msgid="5687965239180986458">"Warna wallpaper"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"Warna dasar"</string>
     <string name="preset_color_tab_2" msgid="1444107326712562538">"Warna lainnya"</string>
-    <string name="preset_color_subheader" msgid="8230588536141279371">"Pilih warna apa pun untuk ikon, jam, dan lainnya"</string>
+    <string name="preset_color_subheader" msgid="8230588536141279371">"Pilih warna untuk ikon, jam, dan lain-lain"</string>
     <string name="color_changed" msgid="7029571720331641235">"Warna diubah"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Dinamis"</string>
     <string name="color_picker_title" msgid="6666830057938082864">"Warna sistem"</string>
@@ -129,6 +129,14 @@
     <string name="more_settings_section_title" msgid="1331425454775815958">"Opsi layar kunci lainnya"</string>
     <string name="more_settings_section_description" msgid="1860115709122398325">"Privasi, Now Playing, dan lainnya"</string>
     <string name="more_colors" msgid="3191071655353004591">"Warna Lainnya"</string>
+    <!-- no translation found for content_description_dynamic_color_option (2191721655642529886) -->
+    <skip />
+    <!-- no translation found for content_description_neutral_color_option (3385443834001275301) -->
+    <skip />
+    <!-- no translation found for content_description_vibrant_color_option (2230249305878632821) -->
+    <skip />
+    <!-- no translation found for content_description_expressive_color_option (6081295313456341282) -->
+    <skip />
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Opsi warna default"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Opsi warna <xliff:g id="ID_1">%1$d</xliff:g>"</string>
 </resources>
