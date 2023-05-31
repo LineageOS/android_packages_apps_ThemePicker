@@ -41,6 +41,7 @@ object ClockCarouselViewBinder {
         lifecycleOwner: LifecycleOwner,
     ) {
         carouselView.setClockViewFactory(clockViewFactory)
+        clockViewFactory.updateRegionDarkness()
         val singleClockHostView =
             singleClockView.requireViewById<FrameLayout>(R.id.single_clock_host_view)
         lifecycleOwner.lifecycleScope.launch {
