@@ -16,6 +16,6 @@
   -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_selected="true" android:color="@color/color_accent_primary" />
+    <item android:state_selected="true" android:color="@color/system_primary" />
     <item android:color="@android:color/transparent" />
 </selector>
