@@ -58,10 +58,10 @@
         android:gravity="center"
         android:drawablePadding="12dp"
         android:drawableStart="@drawable/ic_nav_color"
-        android:drawableTint="@color/text_color_primary"
+        android:drawableTint="@color/system_primary"
         android:text="@string/more_colors"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
-        android:textColor="@color/text_color_primary"
+        android:textColor="@color/system_primary"
         android:visibility="gone"
         tools:ignore="UseCompatTextViewDrawableXml" />
 </com.android.customization.picker.color.ui.view.ColorSectionView2>
