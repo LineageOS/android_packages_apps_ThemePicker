@@ -99,11 +99,6 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     private var keyguardQuickAffordanceSnapshotRestorer: KeyguardQuickAffordanceSnapshotRestorer? =
         null
     private var notificationsSnapshotRestorer: NotificationsSnapshotRestorer? = null
-    /**
-     * Mapping from LifeCycleOwner's hashcode to ClockRegistry as we need to keep different
-     * ClockRegistries per LifeCycle to ensure proper cleanup
-     */
-    private var clockRegistries: MutableMap<Int, ClockRegistry> = HashMap()
     private var clockPickerInteractor: ClockPickerInteractor? = null
     private var clockSectionViewModel: ClockSectionViewModel? = null
     private var clockCarouselViewModelFactory: ClockCarouselViewModel.Factory? = null
@@ -122,6 +117,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     private var gridInteractor: GridInteractor? = null
     private var gridSnapshotRestorer: GridSnapshotRestorer? = null
     private var gridScreenViewModelFactory: GridScreenViewModel.Factory? = null
+    private var clockRegistryProvider: ClockRegistryProvider? = null
 
     override fun getCustomizationSections(activity: ComponentActivity): CustomizationSections {
         return customizationSections
@@ -344,26 +340,15 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     }
 
     override fun getClockRegistry(context: Context, lifecycleOwner: LifecycleOwner): ClockRegistry {
-        return clockRegistries[lifecycleOwner.hashCode()]
-            ?: ClockRegistryProvider(
-                    context = context,
-                    coroutineScope = getApplicationCoroutineScope(),
-                    mainDispatcher = Dispatchers.Main,
-                    backgroundDispatcher = Dispatchers.IO,
-                )
-                .get()
-                .also {
-                    clockRegistries[lifecycleOwner.hashCode()] = it
-                    lifecycleOwner.lifecycle.addObserver(
-                        object : DefaultLifecycleObserver {
-                            override fun onDestroy(owner: LifecycleOwner) {
-                                super.onDestroy(owner)
-                                clockRegistries[lifecycleOwner.hashCode()]?.unregisterListeners()
-                                clockRegistries.remove(lifecycleOwner.hashCode())
-                            }
-                        }
+        return (clockRegistryProvider
+                ?: ClockRegistryProvider(
+                        context = context,
+                        coroutineScope = getApplicationCoroutineScope(),
+                        mainDispatcher = Dispatchers.Main,
+                        backgroundDispatcher = Dispatchers.IO,
                     )
-                }
+                    .also { clockRegistryProvider = it })
+            .getForOwner(lifecycleOwner)
     }
 
     override fun getClockPickerInteractor(
