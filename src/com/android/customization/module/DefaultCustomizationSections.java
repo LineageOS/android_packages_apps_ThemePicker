@@ -146,11 +146,11 @@ public final class DefaultCustomizationSections implements CustomizationSections
                                 lifecycleOwner),
                         // Wallpaper quick switch section.
                         new WallpaperQuickSwitchSectionController(
-                                screen,
                                 customizationPickerViewModel.getWallpaperQuickSwitchViewModel(
                                         screen),
                                 lifecycleOwner,
-                                sectionNavigationController),
+                                sectionNavigationController,
+                                savedInstanceState == null),
                         /* reverseOrderWhenHorizontal= */ true));
 
         switch (screen) {
