@@ -55,7 +55,7 @@ class ColorTypeTabAdapter : RecyclerView.Adapter<ColorTypeTabAdapter.ViewHolder>
         val item = items[position]
         holder.itemView.isSelected = item.isSelected
         holder.textView.text = item.name
-        holder.textView.setOnClickListener(
+        holder.itemView.setOnClickListener(
             if (item.onClick != null) {
                 View.OnClickListener { item.onClick.invoke() }
             } else {
