@@ -14,18 +14,26 @@
   ~ limitations under the License.
   ~
   -->
-
-<TextView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/text"
+<FrameLayout
+    android:id="@+id/text_wrapper"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:textColor="@color/picker_fragment_tab_text_color"
-    android:paddingVertical="8dp"
-    android:paddingHorizontal="16dp"
-    android:minWidth="48dp"
-    android:minHeight="36dp"
-    android:gravity="center"
-    android:background="@drawable/picker_fragment_tab_background"
-    android:maxLines="1"
-    android:ellipsize="end" />
+    android:minWidth="@dimen/touch_target_min_width"
+    android:minHeight="@dimen/touch_target_min_height"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/picker_fragment_tab_text_color"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="16dp"
+        android:minWidth="48dp"
+        android:minHeight="36dp"
+        android:gravity="center"
+        android:background="@drawable/picker_fragment_tab_background"
+        android:maxLines="1"
+        android:ellipsize="end" />
+
+</FrameLayout>
