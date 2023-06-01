@@ -159,11 +159,12 @@ object ClockSettingsBinder {
                         if (selectedPosition != -1) {
                             val colorOptionContainerListView: LinearLayout =
                                 view.requireViewById(R.id.color_options)
+
                             val selectedView =
-                                colorOptionContainerListView.requireViewById<View>(
+                                colorOptionContainerListView.findViewById<View>(
                                     COLOR_PICKER_ITEM_PREFIX_ID + selectedPosition
                                 )
-                            selectedView.parent.requestChildFocus(selectedView, selectedView)
+                            selectedView?.parent?.requestChildFocus(selectedView, selectedView)
                         }
                     }
                 }
