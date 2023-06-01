@@ -35,10 +35,10 @@ object ColorOptionIconBinder {
             )
         } else {
             view.bindColor(
-                viewModel.darkThemeColor0,
-                viewModel.darkThemeColor1,
-                viewModel.darkThemeColor2,
-                viewModel.darkThemeColor3,
+                viewModel.lightThemeColor0,
+                viewModel.lightThemeColor1,
+                viewModel.lightThemeColor2,
+                viewModel.lightThemeColor3,
             )
         }
     }
