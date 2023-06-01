@@ -39,6 +39,7 @@ object ClockCarouselViewBinder {
         viewModel: ClockCarouselViewModel,
         clockViewFactory: ClockViewFactory,
         lifecycleOwner: LifecycleOwner,
+        isTwoPaneAndSmallWidth: Boolean,
     ) {
         carouselView.setClockViewFactory(clockViewFactory)
         clockViewFactory.updateRegionDarkness()
@@ -55,6 +56,7 @@ object ClockCarouselViewBinder {
                             clockSize = size,
                             clockIds = allClockIds,
                             onClockSelected = { clockId -> viewModel.setSelectedClock(clockId) },
+                            isTwoPaneAndSmallWidth = isTwoPaneAndSmallWidth,
                         )
                     }
                 }
