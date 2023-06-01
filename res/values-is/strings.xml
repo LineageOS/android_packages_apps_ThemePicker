@@ -129,6 +129,14 @@
     <string name="more_settings_section_title" msgid="1331425454775815958">"Fleiri valkostir fyrir lásskjá"</string>
     <string name="more_settings_section_description" msgid="1860115709122398325">"Persónuvernd, í spilun og fleira"</string>
     <string name="more_colors" msgid="3191071655353004591">"Fleiri litir"</string>
+    <!-- no translation found for content_description_dynamic_color_option (2191721655642529886) -->
+    <skip />
+    <!-- no translation found for content_description_neutral_color_option (3385443834001275301) -->
+    <skip />
+    <!-- no translation found for content_description_vibrant_color_option (2230249305878632821) -->
+    <skip />
+    <!-- no translation found for content_description_expressive_color_option (6081295313456341282) -->
+    <skip />
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Sjálfgefinn litavalkostur"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Litavalkostur <xliff:g id="ID_1">%1$d</xliff:g>"</string>
 </resources>

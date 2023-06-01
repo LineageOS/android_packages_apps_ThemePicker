@@ -60,7 +60,7 @@ open class FakeClockPickerRepository(clocks: List<ClockMetadataModel> = fakeCloc
         selectedClockId.value = clockId
     }
 
-    override fun setClockColor(
+    override suspend fun setClockColor(
         selectedColorId: String?,
         @IntRange(from = 0, to = 100) colorToneProgress: Int,
         @ColorInt seedColor: Int?,

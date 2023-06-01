@@ -22,15 +22,21 @@ import androidx.annotation.IntRange
 import com.android.customization.picker.clock.data.repository.ClockPickerRepository
 import com.android.customization.picker.clock.shared.ClockSize
 import com.android.customization.picker.clock.shared.model.ClockMetadataModel
+import com.android.customization.picker.clock.shared.model.ClockSnapshotModel
+import javax.inject.Provider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
 
 /**
  * Interactor for accessing application clock settings, as well as selecting and configuring custom
  * clocks.
  */
-class ClockPickerInteractor(private val repository: ClockPickerRepository) {
+class ClockPickerInteractor(
+    private val repository: ClockPickerRepository,
+    private val snapshotRestorer: Provider<ClockPickerSnapshotRestorer>,
+) {
 
     val allClocks: Flow<List<ClockMetadataModel>> = repository.allClocks
 
@@ -48,18 +54,68 @@ class ClockPickerInteractor(private val repository: ClockPickerRepository) {
     val selectedClockSize: Flow<ClockSize> = repository.selectedClockSize
 
     suspend fun setSelectedClock(clockId: String) {
-        repository.setSelectedClock(clockId)
+        // Use the [clockId] to override saved clock id, since it might not be updated in time
+        setClockOption(ClockSnapshotModel(clockId = clockId))
     }
 
-    fun setClockColor(
+    suspend fun setClockColor(
         selectedColorId: String?,
         @IntRange(from = 0, to = 100) colorToneProgress: Int,
         @ColorInt seedColor: Int?,
     ) {
-        repository.setClockColor(selectedColorId, colorToneProgress, seedColor)
+        // Use the color to override saved color, since it might not be updated in time
+        setClockOption(
+            ClockSnapshotModel(
+                selectedColorId = selectedColorId,
+                colorToneProgress = colorToneProgress,
+                seedColor = seedColor,
+            )
+        )
     }
 
     suspend fun setClockSize(size: ClockSize) {
-        repository.setClockSize(size)
+        // Use the [ClockSize] to override saved clock size, since it might not be updated in time
+        setClockOption(ClockSnapshotModel(clockSize = size))
+    }
+
+    suspend fun setClockOption(clockSnapshotModel: ClockSnapshotModel) {
+        // [ClockCarouselViewModel] is monitoring the [ClockPickerInteractor.setSelectedClock] job,
+        // so it needs to finish last.
+        storeCurrentClockOption(clockSnapshotModel)
+
+        clockSnapshotModel.clockSize?.let { repository.setClockSize(it) }
+        clockSnapshotModel.colorToneProgress?.let {
+            repository.setClockColor(
+                selectedColorId = clockSnapshotModel.selectedColorId,
+                colorToneProgress = clockSnapshotModel.colorToneProgress,
+                seedColor = clockSnapshotModel.seedColor
+            )
+        }
+        clockSnapshotModel.clockId?.let { repository.setSelectedClock(it) }
+    }
+
+    /**
+     * Gets the [ClockSnapshotModel] from the storage and override with [latestOption].
+     *
+     * The storage might be in the middle of a write, and not reflecting the user's options, always
+     * pass in a [ClockSnapshotModel] if we know it's the latest option from a user's point of view.
+     *
+     * [selectedColorId] and [seedColor] have null state collide with nullable type, but we know
+     * they are presented whenever there's a [colorToneProgress].
+     */
+    suspend fun getCurrentClockToRestore(latestOption: ClockSnapshotModel? = null) =
+        ClockSnapshotModel(
+            clockId = latestOption?.clockId ?: selectedClockId.firstOrNull(),
+            clockSize = latestOption?.clockSize ?: selectedClockSize.firstOrNull(),
+            colorToneProgress = latestOption?.colorToneProgress ?: colorToneProgress.firstOrNull(),
+            selectedColorId = latestOption?.colorToneProgress?.let { latestOption.selectedColorId }
+                    ?: selectedColorId.firstOrNull(),
+            seedColor = latestOption?.colorToneProgress?.let { latestOption.seedColor }
+                    ?: seedColor.firstOrNull(),
+        )
+
+    private suspend fun storeCurrentClockOption(clockSnapshotModel: ClockSnapshotModel) {
+        val option = getCurrentClockToRestore(clockSnapshotModel)
+        snapshotRestorer.get().storeSnapshot(option)
     }
 }

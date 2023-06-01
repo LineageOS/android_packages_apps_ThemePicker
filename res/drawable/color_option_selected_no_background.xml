@@ -25,7 +25,7 @@
             android:innerRadius="@dimen/component_color_overflow_small_radius_default"
             android:thickness="2dp"
             android:useLevel="false">
-            <solid android:color="@color/text_color_primary"/>
+            <solid android:color="@color/system_secondary"/>
         </shape>
     </item>
     <item
