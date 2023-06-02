@@ -23,12 +23,14 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.constraintlayout.helper.widget.Carousel
 import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.get
 import androidx.core.view.isNotEmpty
 import com.android.customization.picker.clock.shared.ClockSize
 import com.android.systemui.plugins.ClockController
 import com.android.wallpaper.R
+import com.android.wallpaper.picker.FixedWidthDisplayRatioFrameLayout
 import java.lang.Float.max
 
 class ClockCarouselView(
@@ -70,7 +72,12 @@ class ClockCarouselView(
         clockSize: ClockSize,
         clockIds: List<String>,
         onClockSelected: (clockId: String) -> Unit,
+        isTwoPaneAndSmallWidth: Boolean,
     ) {
+        if (isTwoPaneAndSmallWidth) {
+            overrideScreenPreviewWidth()
+        }
+
         adapter = ClockCarouselAdapter(clockSize, clockIds, clockViewFactory, onClockSelected)
         carousel.setAdapter(adapter)
         carousel.refresh()
@@ -244,6 +251,51 @@ class ClockCarouselView(
         }
     }
 
+    private fun overrideScreenPreviewWidth() {
+        val overrideWidth =
+            context.resources.getDimensionPixelSize(
+                R.dimen.screen_preview_width_for_2_pane_small_width
+            )
+        itemViewIds.forEach { id ->
+            val itemView = motionLayout.requireViewById<FrameLayout>(id)
+            val itemViewLp = itemView.layoutParams
+            itemViewLp.width = overrideWidth
+            itemView.layoutParams = itemViewLp
+
+            getClockScaleViewId(id)?.let {
+                val scaleView = motionLayout.requireViewById<FixedWidthDisplayRatioFrameLayout>(it)
+                val scaleViewLp = scaleView.layoutParams
+                scaleViewLp.width = overrideWidth
+                scaleView.layoutParams = scaleViewLp
+            }
+        }
+
+        val previousConstaintSet = motionLayout.getConstraintSet(R.id.previous)
+        val startConstaintSet = motionLayout.getConstraintSet(R.id.start)
+        val nextConstaintSet = motionLayout.getConstraintSet(R.id.next)
+        val constaintSetList =
+            listOf<ConstraintSet>(previousConstaintSet, startConstaintSet, nextConstaintSet)
+        constaintSetList.forEach { constraintSet ->
+            itemViewIds.forEach { id ->
+                constraintSet.getConstraint(id)?.let { constraint ->
+                    val layout = constraint.layout
+                    if (
+                        constraint.layout.mWidth ==
+                            context.resources.getDimensionPixelSize(R.dimen.screen_preview_width)
+                    ) {
+                        layout.mWidth = overrideWidth
+                    }
+                    if (
+                        constraint.layout.widthMax ==
+                            context.resources.getDimensionPixelSize(R.dimen.screen_preview_width)
+                    ) {
+                        layout.widthMax = overrideWidth
+                    }
+                }
+            }
+        }
+    }
+
     private class ClockCarouselAdapter(
         val clockSize: ClockSize,
         val clockIds: List<String>,
@@ -359,6 +411,15 @@ class ClockCarouselView(
 
     companion object {
         const val CLOCK_CAROUSEL_VIEW_SCALE = 0.5f
+
+        val itemViewIds =
+            listOf(
+                R.id.item_view_0,
+                R.id.item_view_1,
+                R.id.item_view_2,
+                R.id.item_view_3,
+                R.id.item_view_4
+            )
 
         fun getScalingUpScale(progress: Float) =
             CLOCK_CAROUSEL_VIEW_SCALE + progress * (1f - CLOCK_CAROUSEL_VIEW_SCALE)

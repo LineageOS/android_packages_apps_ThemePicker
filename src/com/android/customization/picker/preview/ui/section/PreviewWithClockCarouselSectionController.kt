@@ -161,6 +161,7 @@ class PreviewWithClockCarouselSectionController(
                                     viewModel = viewModel,
                                     clockViewFactory = clockViewFactory,
                                     lifecycleOwner = lifecycleOwner,
+                                    isTwoPaneAndSmallWidth = isTwoPaneAndSmallWidth,
                                 )
                                 if (onAttachStateChangeListener != null) {
                                     carouselView.carousel.removeOnAttachStateChangeListener(
