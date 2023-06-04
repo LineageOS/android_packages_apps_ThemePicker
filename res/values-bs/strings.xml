@@ -90,7 +90,7 @@
     <string name="wallpaper_color_title" msgid="5687965239180986458">"Boja pozadinske slike"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"Osnovne boje"</string>
     <string name="color_changed" msgid="7029571720331641235">"Boja je promijenjena"</string>
-    <string name="adaptive_color_title" msgid="1336508599235896205">"Dinamički"</string>
+    <string name="adaptive_color_title" msgid="1336508599235896205">"Dinamično"</string>
     <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"Lijevo dugme"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"Desno dugme"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Ništa"</string>

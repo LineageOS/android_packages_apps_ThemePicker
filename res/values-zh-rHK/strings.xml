@@ -44,7 +44,7 @@
     <string name="preview_name_shape" msgid="5676971146080968721">"形狀"</string>
     <string name="preview_name_wallpaper" msgid="1738652462949531828">"桌布"</string>
     <string name="font_card_title" msgid="2343292653502548685">"ABC • abc • 123"</string>
-    <string name="font_card_body" msgid="6790525594503904468">"讓每個畫面顯示您喜愛的字型"</string>
+    <string name="font_card_body" msgid="6790525594503904468">"讓每個畫面顯示你喜愛的字型"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"請選擇網格大小"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g> x <xliff:g id="ID_2">%2$d</xliff:g>"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"成功設定樣式"</string>
@@ -81,7 +81,7 @@
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"自訂形狀"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"自訂樣式嘅名"</string>
     <string name="mode_title" msgid="2394873501427436055">"深色主題背景"</string>
-    <string name="mode_disabled_msg" msgid="9196245518435936512">"因「省電模式」而暫時停用"</string>
+    <string name="mode_disabled_msg" msgid="9196245518435936512">"因「慳電模式」而暫時停用"</string>
     <string name="mode_changed" msgid="2243581369395418584">"已經變咗主題"</string>
     <string name="themed_icon_title" msgid="7312460430471956558">"主題圖示"</string>
     <string name="beta_title" msgid="8703819523760746458">"Beta 版本"</string>

@@ -17,7 +17,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name" msgid="1647136562008520313">"Оформлення та стиль"</string>
+    <string name="app_name" msgid="1647136562008520313">"Оформлення і стиль"</string>
     <string name="theme_title" msgid="2144932106319405101">"Стиль"</string>
     <string name="clock_title" msgid="1974314575211361352">"Свій циферблат"</string>
     <string name="clock_description" msgid="3563839327378948">"Виберіть свій циферблат"</string>
@@ -37,7 +37,7 @@
     <string name="option_previewed_description" msgid="3467217598865047661">"<xliff:g id="ID_1">%1$s</xliff:g> (відображається зараз)"</string>
     <string name="option_change_applied_previewed_description" msgid="9197311327728570816">"<xliff:g id="ID_1">%1$s</xliff:g>, змінити елемент, який ви вибрали й переглядаєте"</string>
     <string name="theme_description" msgid="3697012391785254635">"Шрифт: <xliff:g id="ID_1">%1$s</xliff:g>; значки: <xliff:g id="ID_2">%2$s</xliff:g>; форма: <xliff:g id="ID_3">%3$s</xliff:g>; колір: <xliff:g id="ID_4">%4$s</xliff:g>"</string>
-    <string name="default_theme_title" msgid="2555741736622366797">"За умовчанням"</string>
+    <string name="default_theme_title" msgid="2555741736622366797">"Стандарт"</string>
     <string name="preview_name_font" msgid="4465423899630037038">"Шрифт"</string>
     <string name="preview_name_icon" msgid="6818927315316316440">"Значок"</string>
     <string name="preview_name_color" msgid="8776203144994416172">"Колір"</string>
@@ -86,7 +86,7 @@
     <string name="themed_icon_title" msgid="7312460430471956558">"Тема значків"</string>
     <string name="beta_title" msgid="8703819523760746458">"Бета"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"Змінити сітку додатків"</string>
-    <string name="wallpaper_color_tab" msgid="1447926591721403840">"Кольори малюнка"</string>
+    <string name="wallpaper_color_tab" msgid="1447926591721403840">"Кольори фону"</string>
     <string name="wallpaper_color_title" msgid="5687965239180986458">"Колір фонового малюнка"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"Основні кольори"</string>
     <string name="color_changed" msgid="7029571720331641235">"Колір змінено"</string>
