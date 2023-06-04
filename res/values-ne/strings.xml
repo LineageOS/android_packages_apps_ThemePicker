@@ -90,7 +90,7 @@
     <string name="use_style_button" msgid="1754493078383627019">"<xliff:g id="ID_1">%1$s</xliff:g> प्रयोग गर्नु…"</string>
     <string name="no_thanks" msgid="7286616980115687627">"पर्दैन, धन्यवाद"</string>
     <string name="clock_preview_content_description" msgid="5460561185905717460">"<xliff:g id="ID_1">%1$s</xliff:g> घडीको पूर्वावलोकन"</string>
-    <string name="something_went_wrong" msgid="529840112449799117">"हत्तेरिका! केही चिज गडबड भयो।"</string>
+    <string name="something_went_wrong" msgid="529840112449799117">"हत्तेरिका! कुनै समस्या आयो।"</string>
     <string name="theme_preview_icons_section_title" msgid="7064768910744000643">"रङ / आइकनहरू"</string>
     <string name="style_info_description" msgid="2612473574431003251">"फन्ट, आइकन, एपको आकृति र रङको प्रिभ्यू"</string>
     <string name="accessibility_custom_font_title" msgid="966867359157303705">"आफूले रोजेको फन्ट"</string>
@@ -113,8 +113,8 @@
     <string name="color_changed" msgid="7029571720331641235">"रङ बदलियो"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"गतिशील"</string>
     <string name="color_picker_title" msgid="6666830057938082864">"सिस्टमका रङहरू"</string>
-    <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"बायाँको सर्टकट"</string>
-    <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"दायाँको सर्टकट"</string>
+    <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"बायाँ सर्टकट"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"दायाँ सर्टकट"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"कुनै पनि होइन"</string>
     <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"\"<xliff:g id="APPNAME">%1$s</xliff:g>\" चयन गर्न तल दिइएका निर्देशनहरू पालना गर्नुहोस्"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g> खोल्नुहोस्"</string>

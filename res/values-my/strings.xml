@@ -101,11 +101,11 @@
     <string name="mode_title" msgid="2394873501427436055">"အမှောင်နောက်ခံ"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"‘ဘက်ထရီ အားထိန်း’ ကြောင့် ယာယီပိတ်ထားသည်"</string>
     <string name="mode_changed" msgid="2243581369395418584">"အပြင်အဆင် ပြောင်းလိုက်ပါပြီ"</string>
-    <string name="themed_icon_title" msgid="7312460430471956558">"အပြင်အဆင်သုံး သင်္ကေတများ"</string>
+    <string name="themed_icon_title" msgid="7312460430471956558">"အကြောင်းအရာ သင်္ကေတများ"</string>
     <string name="beta_title" msgid="8703819523760746458">"စမ်းသပ်"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"အက်ပ်ဇယား ပြောင်းရန်"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"နောက်ခံအရောင်များ"</string>
-    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"သင့်နောက်ခံရှိ သင်္ကေတ၊ စာသား၊ နောက်ထပ်တူညီသည့်အရောင်"</string>
+    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"သင်္ကေတ၊ စာသားစသည်တို့သည် သင့်နောက်ခံအရောင်များနှင့် ကိုက်ညီသည်"</string>
     <string name="wallpaper_color_title" msgid="5687965239180986458">"နောက်ခံအရောင်"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"အခြေခံအရောင်များ"</string>
     <string name="preset_color_tab_2" msgid="1444107326712562538">"အခြားအရောင်"</string>

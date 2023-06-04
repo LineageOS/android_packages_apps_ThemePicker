@@ -55,7 +55,7 @@
     <string name="option_previewed_description" msgid="3467217598865047661">"<xliff:g id="ID_1">%1$s</xliff:g> (vista previa en curso)"</string>
     <string name="option_change_applied_previewed_description" msgid="9197311327728570816">"<xliff:g id="ID_1">%1$s</xliff:g>, cambio seleccionado y con vista previa"</string>
     <string name="theme_description" msgid="3697012391785254635">"Fuente: <xliff:g id="ID_1">%1$s</xliff:g>; iconos: <xliff:g id="ID_2">%2$s</xliff:g>; forma: <xliff:g id="ID_3">%3$s</xliff:g>; color: <xliff:g id="ID_4">%4$s</xliff:g>"</string>
-    <string name="default_theme_title" msgid="2555741736622366797">"Predeterminado"</string>
+    <string name="default_theme_title" msgid="2555741736622366797">"Predeter­minado"</string>
     <string name="preview_name_font" msgid="4465423899630037038">"Fuente"</string>
     <string name="preview_name_icon" msgid="6818927315316316440">"Icono"</string>
     <string name="preview_name_color" msgid="8776203144994416172">"Color"</string>
@@ -113,8 +113,8 @@
     <string name="color_changed" msgid="7029571720331641235">"Color cambiado"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Dinámico"</string>
     <string name="color_picker_title" msgid="6666830057938082864">"Colores del sistema"</string>
-    <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Atajo izquierdo"</string>
-    <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Atajo derecho"</string>
+    <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Acceso izquierdo"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Acceso derecho"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Ninguno"</string>
     <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"Para seleccionar <xliff:g id="APPNAME">%1$s</xliff:g>, comprueba lo siguiente"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Abrir <xliff:g id="APPNAME">%1$s</xliff:g>"</string>

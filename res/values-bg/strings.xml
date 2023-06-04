@@ -55,7 +55,7 @@
     <string name="option_previewed_description" msgid="3467217598865047661">"Понастоящем е визуализирана опцията „<xliff:g id="ID_1">%1$s</xliff:g>“"</string>
     <string name="option_change_applied_previewed_description" msgid="9197311327728570816">"Промяна на избраната и визуализирана опция „<xliff:g id="ID_1">%1$s</xliff:g>“"</string>
     <string name="theme_description" msgid="3697012391785254635">"Шрифт: <xliff:g id="ID_1">%1$s</xliff:g> – икони: <xliff:g id="ID_2">%2$s</xliff:g> – форма: <xliff:g id="ID_3">%3$s</xliff:g> – цвят: <xliff:g id="ID_4">%4$s</xliff:g>"</string>
-    <string name="default_theme_title" msgid="2555741736622366797">"Основно"</string>
+    <string name="default_theme_title" msgid="2555741736622366797">"Основен"</string>
     <string name="preview_name_font" msgid="4465423899630037038">"Шрифт"</string>
     <string name="preview_name_icon" msgid="6818927315316316440">"Икона"</string>
     <string name="preview_name_color" msgid="8776203144994416172">"Цвят"</string>
@@ -64,7 +64,7 @@
     <string name="font_card_title" msgid="2343292653502548685">"ABC • abc • 123"</string>
     <string name="font_card_body" msgid="6790525594503904468">"Добавете любимите си шрифтове на всеки екран"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"Избиране на размер на решетката"</string>
-    <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g> x <xliff:g id="ID_2">%2$d</xliff:g>"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"Стилът бе зададен успешно"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"Часовникът бе зададен успешно"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"Решетката бе зададена успешно"</string>

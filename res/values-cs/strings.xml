@@ -101,7 +101,7 @@
     <string name="mode_title" msgid="2394873501427436055">"Tmavý motiv"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"Dočasně deaktivováno spořičem baterie"</string>
     <string name="mode_changed" msgid="2243581369395418584">"Motiv byl změněn"</string>
-    <string name="themed_icon_title" msgid="7312460430471956558">"Tematické ikony"</string>
+    <string name="themed_icon_title" msgid="7312460430471956558">"Přebarvené ikony"</string>
     <string name="beta_title" msgid="8703819523760746458">"Beta"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"Změnit mřížku aplikací"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"Barvy tapety"</string>
@@ -112,7 +112,7 @@
     <string name="preset_color_subheader" msgid="8230588536141279371">"Vyberte barvu pro ikony, hodiny atd."</string>
     <string name="color_changed" msgid="7029571720331641235">"Barva byla změněna"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Dynamické"</string>
-    <string name="color_picker_title" msgid="6666830057938082864">"Barvy systému"</string>
+    <string name="color_picker_title" msgid="6666830057938082864">"Systémové barvy"</string>
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Zkratka vlevo"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Zkratka vpravo"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Žádné"</string>
@@ -120,8 +120,8 @@
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Otevřít aplikaci <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Podmínky pro to, aby aplikaci <xliff:g id="APPNAME">%1$s</xliff:g> bylo možné přidat jako zkratku:"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Hotovo"</string>
-    <string name="keyguard_quick_affordance_title" msgid="4242813186995735584">"Zástupci"</string>
-    <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"Zástupci"</string>
+    <string name="keyguard_quick_affordance_title" msgid="4242813186995735584">"Zkratky"</string>
+    <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"Zkratky"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"Žádné"</string>
     <string name="notifications_section_title" msgid="4283049750376871538">"Oznámení"</string>

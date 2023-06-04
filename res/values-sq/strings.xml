@@ -22,7 +22,7 @@
     <string name="clock_title" msgid="1974314575211361352">"Orë e personalizuar"</string>
     <string name="clock_description" msgid="3563839327378948">"Orë e personalizuar"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Ndrysho orën e personalizuar"</string>
-    <string name="clock_settings_title" msgid="2940654205471453913">"Ora: Cilësimet"</string>
+    <string name="clock_settings_title" msgid="2940654205471453913">"Cilësimet e orës"</string>
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"Ora: Ngjyra/madhësia"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>"</string>
     <string name="clock_color" msgid="8081608867289156163">"Ngjyra"</string>

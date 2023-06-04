@@ -105,7 +105,7 @@
     <string name="beta_title" msgid="8703819523760746458">"பீட்டா"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"ஆப்ஸ் கட்டக் காட்சியை மாற்றும்"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"வால்பேப்பர் நிறங்கள்"</string>
-    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"வால்பேப்பருடன் பொருந்தும் ஐகான், உரை &amp; பலவற்றின் வண்ணம்"</string>
+    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"ஐகான், உரை மற்றும் பலவற்றின் வண்ணம் வால்பேப்பருடன் பொருந்தும்"</string>
     <string name="wallpaper_color_title" msgid="5687965239180986458">"வால்பேப்பரின் நிறம்"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"அடிப்படை வண்ணங்கள்"</string>
     <string name="preset_color_tab_2" msgid="1444107326712562538">"பிற வண்ணங்கள்"</string>
@@ -125,7 +125,7 @@
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"ஏதுமில்லை"</string>
     <string name="notifications_section_title" msgid="4283049750376871538">"அறிவிப்புகள்"</string>
-    <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"பூட்டுத் திரையில் அறிவிப்புகளைக் காட்டும்"</string>
+    <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"பூட்டுத் திரையில் அறிவிப்புகளைக் காட்டு"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"பூட்டுத் திரையில் அறிவிப்புகளைக் காட்டாது"</string>
     <string name="more_settings_section_title" msgid="8524741850115625404">"மேலும் விருப்பங்கள்"</string>
     <string name="more_settings_section_description" msgid="8787768566854880683">"பூட்டுத் திரையில் உரை, பாடல் விவரம் மற்றும் பல"</string>

@@ -39,7 +39,7 @@
     <string name="clock_size_dynamic" msgid="1023930312455061642">"डाइनैमिक"</string>
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"लॉक स्क्रीन के कॉन्टेंट के हिसाब से घड़ी का साइज़ बदलता है"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"बड़ा"</string>
-    <string name="clock_size_small" msgid="2280449912094164133">"छोटा करें"</string>
+    <string name="clock_size_small" msgid="2280449912094164133">"छोटा"</string>
     <string name="grid_title" msgid="1688173478777254123">"ऐप्लिकेशन ग्रिड"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"लागू करें"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"बदलाव करने के लिए टैप करें"</string>
@@ -129,7 +129,7 @@
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"लॉक स्क्रीन पर सूचनाएं छिपाएं"</string>
     <string name="more_settings_section_title" msgid="8524741850115625404">"ज़्यादा विकल्प"</string>
     <string name="more_settings_section_description" msgid="8787768566854880683">"लॉक स्क्रीन पर टेक्स्ट जोड़ना, \'अभी चल रहा है\' सुविधा वगैरह"</string>
-    <string name="more_colors" msgid="3191071655353004591">"ज़्यादा कलर"</string>
+    <string name="more_colors" msgid="3191071655353004591">"कुछ और रंग"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"रंग का डिफ़ॉल्ट विकल्प"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"रंग का विकल्प <xliff:g id="ID_1">%1$d</xliff:g>"</string>
 </resources>
