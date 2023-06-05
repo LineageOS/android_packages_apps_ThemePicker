@@ -329,28 +329,68 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
     /**
      * Returns the light theme version of the Revamped UI preview of a ColorScheme based on this
      * order: top left, top right, bottom left, bottom right
+     *
+     * This color mapping corresponds to GM3 colors: Primary (light), Primary (light), Secondary
+     * LStar 85, and Tertiary LStar 70
      */
     @ColorInt
     private fun getRevampedUILightColorPreview(colorScheme: ColorScheme): IntArray {
         return intArrayOf(
             setAlphaComponent(colorScheme.accent1.s600, ALPHA_MASK),
             setAlphaComponent(colorScheme.accent1.s600, ALPHA_MASK),
-            setAlphaComponent(colorScheme.accent2.s100, ALPHA_MASK),
-            ColorStateList.valueOf(colorScheme.accent3.s500).withLStar(59f).colors[0],
+            ColorStateList.valueOf(colorScheme.accent2.s500).withLStar(85f).colors[0],
+            setAlphaComponent(colorScheme.accent3.s300, ALPHA_MASK),
         )
     }
 
     /**
      * Returns the dark theme version of the Revamped UI preview of a ColorScheme based on this
      * order: top left, top right, bottom left, bottom right
+     *
+     * This color mapping corresponds to GM3 colors: Primary (dark), Primary (dark), Secondary LStar
+     * 35, and Tertiary LStar 70
      */
     @ColorInt
     private fun getRevampedUIDarkColorPreview(colorScheme: ColorScheme): IntArray {
         return intArrayOf(
             setAlphaComponent(colorScheme.accent1.s200, ALPHA_MASK),
             setAlphaComponent(colorScheme.accent1.s200, ALPHA_MASK),
-            setAlphaComponent(colorScheme.accent2.s700, ALPHA_MASK),
-            setAlphaComponent(colorScheme.accent3.s100, ALPHA_MASK),
+            ColorStateList.valueOf(colorScheme.accent2.s500).withLStar(35f).colors[0],
+            setAlphaComponent(colorScheme.accent3.s300, ALPHA_MASK),
+        )
+    }
+
+    /**
+     * Returns the light theme version of the Revamped UI preview of a ColorScheme based on this
+     * order: top left, top right, bottom left, bottom right
+     *
+     * This color mapping corresponds to GM3 colors: Primary LStar 0, Primary LStar 0, Secondary
+     * LStar 85, and Tertiary LStar 70
+     */
+    @ColorInt
+    private fun getRevampedUILightMonochromePreview(colorScheme: ColorScheme): IntArray {
+        return intArrayOf(
+            setAlphaComponent(colorScheme.accent1.s1000, ALPHA_MASK),
+            setAlphaComponent(colorScheme.accent1.s1000, ALPHA_MASK),
+            ColorStateList.valueOf(colorScheme.accent2.s500).withLStar(85f).colors[0],
+            setAlphaComponent(colorScheme.accent3.s300, ALPHA_MASK),
+        )
+    }
+
+    /**
+     * Returns the dark theme version of the Revamped UI preview of a ColorScheme based on this
+     * order: top left, top right, bottom left, bottom right
+     *
+     * This color mapping corresponds to GM3 colors: Primary LStar 99, Primary LStar 99, Secondary
+     * LStar 35, and Tertiary LStar 70
+     */
+    @ColorInt
+    private fun getRevampedUIDarkMonochromePreview(colorScheme: ColorScheme): IntArray {
+        return intArrayOf(
+            setAlphaComponent(colorScheme.accent1.s10, ALPHA_MASK),
+            setAlphaComponent(colorScheme.accent1.s10, ALPHA_MASK),
+            ColorStateList.valueOf(colorScheme.accent2.s500).withLStar(35f).colors[0],
+            setAlphaComponent(colorScheme.accent3.s300, ALPHA_MASK),
         )
     }
 
@@ -513,8 +553,8 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
 
             when (style) {
                 Style.MONOCHROMATIC -> {
-                    darkColors = getRevampedUIDarkColorPreview(darkColorScheme)
-                    lightColors = getRevampedUILightColorPreview(lightColorScheme)
+                    darkColors = getRevampedUIDarkMonochromePreview(darkColorScheme)
+                    lightColors = getRevampedUILightMonochromePreview(lightColorScheme)
                 }
                 else -> {
                     darkColors = getRevampedUIPresetColorPreview(darkColorScheme, colorFromStub)
