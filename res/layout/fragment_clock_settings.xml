@@ -46,6 +46,7 @@
 
         <com.android.customization.picker.clock.ui.view.ClockHostView
             android:id="@+id/clock_host_view"
+            android:importantForAccessibility="noHideDescendants"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center" />
