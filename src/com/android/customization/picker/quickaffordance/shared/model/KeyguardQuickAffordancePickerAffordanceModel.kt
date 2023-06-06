@@ -31,8 +31,8 @@ data class KeyguardQuickAffordancePickerAffordanceModel(
     @DrawableRes val iconResourceId: Int,
     /** Whether this quick affordance is enabled. */
     val isEnabled: Boolean,
-    /** If not enabled, the list of user-visible steps to re-enable it. */
-    val enablementInstructions: List<String>,
+    /** If not enabled, the user-visible message explaining why. */
+    val enablementExplanation: String,
     /**
      * If not enabled, an optional label for a button that takes the user to a destination where
      * they can re-enable it.
