@@ -49,7 +49,7 @@ object KeyguardQuickAffordancePreviewBinder {
                 lifecycleOwner = lifecycleOwner,
                 offsetToStart = offsetToStart,
                 dimWallpaper = true,
-                onPreviewDirty = { activity.recreate() },
+                onWallpaperPreviewDirty = { activity.recreate() },
             )
 
         previewView.contentDescription =
