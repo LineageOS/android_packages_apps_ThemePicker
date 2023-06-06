@@ -50,10 +50,7 @@ interface CustomizationInjector : Injector {
 
     fun getClockRegistry(context: Context, lifecycleOwner: LifecycleOwner): ClockRegistry
 
-    fun getClockPickerInteractor(
-        context: Context,
-        lifecycleOwner: LifecycleOwner
-    ): ClockPickerInteractor
+    fun getClockPickerInteractor(context: Context): ClockPickerInteractor
 
     fun getClockSectionViewModel(
         context: Context,
