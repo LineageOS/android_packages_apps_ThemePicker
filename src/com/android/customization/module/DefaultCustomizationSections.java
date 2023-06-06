@@ -24,6 +24,7 @@ import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel;
 import com.android.customization.picker.notifications.ui.section.NotificationSectionController;
 import com.android.customization.picker.notifications.ui.viewmodel.NotificationSectionViewModel;
 import com.android.customization.picker.preview.ui.section.PreviewWithClockCarouselSectionController;
+import com.android.customization.picker.preview.ui.section.PreviewWithThemeSectionController;
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor;
 import com.android.customization.picker.quickaffordance.ui.section.KeyguardQuickAffordanceSectionController;
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel;
@@ -39,7 +40,6 @@ import com.android.wallpaper.module.CurrentWallpaperInfoFactory;
 import com.android.wallpaper.module.CustomizationSections;
 import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInteractor;
 import com.android.wallpaper.picker.customization.ui.section.ConnectedSectionController;
-import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewSectionController;
 import com.android.wallpaper.picker.customization.ui.section.WallpaperQuickSwitchSectionController;
 import com.android.wallpaper.picker.customization.ui.viewmodel.CustomizationPickerViewModel;
 import com.android.wallpaper.util.DisplayUtils;
@@ -120,9 +120,10 @@ public final class DefaultCustomizationSections implements CustomizationSections
                         wallpaperPreviewNavigator,
                         sectionNavigationController,
                         wallpaperInteractor,
+                        mThemedIconInteractor,
                         wallpaperManager,
                         isTwoPaneAndSmallWidth)
-                        : new ScreenPreviewSectionController(
+                        : new PreviewWithThemeSectionController(
                                 activity,
                                 lifecycleOwner,
                                 screen,
@@ -131,6 +132,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
                                 displayUtils,
                                 wallpaperPreviewNavigator,
                                 wallpaperInteractor,
+                                mThemedIconInteractor,
                                 wallpaperManager,
                                 isTwoPaneAndSmallWidth));
 
