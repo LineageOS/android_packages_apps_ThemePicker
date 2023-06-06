@@ -33,6 +33,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.lifecycle.lifecycleScope
+import com.android.customization.model.themedicon.domain.interactor.ThemedIconInteractor
 import com.android.customization.picker.clock.ui.binder.ClockCarouselViewBinder
 import com.android.customization.picker.clock.ui.fragment.ClockSettingsFragment
 import com.android.customization.picker.clock.ui.view.ClockCarouselView
@@ -51,7 +52,10 @@ import com.android.wallpaper.util.DisplayUtils
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-/** Controls the screen preview section. */
+/**
+ * A ThemePicker version of the [ScreenPreviewSectionController] that adjusts the preview for the
+ * clock carousel, and also updates the preview on theme changes.
+ */
 class PreviewWithClockCarouselSectionController(
     activity: ComponentActivity,
     private val lifecycleOwner: LifecycleOwner,
@@ -64,10 +68,11 @@ class PreviewWithClockCarouselSectionController(
     wallpaperPreviewNavigator: WallpaperPreviewNavigator,
     private val navigationController: CustomizationSectionNavigationController,
     wallpaperInteractor: WallpaperInteractor,
+    themedIconInteractor: ThemedIconInteractor,
     wallpaperManager: WallpaperManager,
     private val isTwoPaneAndSmallWidth: Boolean,
 ) :
-    ScreenPreviewSectionController(
+    PreviewWithThemeSectionController(
         activity,
         lifecycleOwner,
         screen,
@@ -76,6 +81,7 @@ class PreviewWithClockCarouselSectionController(
         displayUtils,
         wallpaperPreviewNavigator,
         wallpaperInteractor,
+        themedIconInteractor,
         wallpaperManager,
         isTwoPaneAndSmallWidth,
     ) {
