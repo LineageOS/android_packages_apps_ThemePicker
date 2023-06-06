@@ -126,7 +126,7 @@ class GridFragment2 : AppbarFragment() {
                 ),
             lifecycleOwner = this,
             offsetToStart = false,
-            onPreviewDirty = { activity?.recreate() },
+            onWallpaperPreviewDirty = { activity?.recreate() },
         )
     }
 }

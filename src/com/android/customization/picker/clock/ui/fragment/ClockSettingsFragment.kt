@@ -112,7 +112,7 @@ class ClockSettingsFragment : AppbarFragment() {
                 ),
             lifecycleOwner = this,
             offsetToStart = displayUtils.isSingleDisplayOrUnfoldedHorizontalHinge(activity),
-            onPreviewDirty = { activity.recreate() },
+            onWallpaperPreviewDirty = { activity.recreate() },
         )
 
         ClockSettingsBinder.bind(
