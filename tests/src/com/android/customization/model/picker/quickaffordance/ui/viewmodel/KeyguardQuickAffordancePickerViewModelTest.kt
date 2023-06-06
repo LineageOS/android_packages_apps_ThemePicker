@@ -252,7 +252,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
             val enablementActionText = "enablementActionText"
             val packageName = "packageName"
             val action = "action"
-            val enablementActionComponentName = "$packageName/$action"
+            val enablementActionIntent = Intent(action).apply { `package` = packageName }
             // Lets add a disabled affordance to the picker:
             val affordanceIndex =
                 client.addAffordance(
@@ -263,7 +263,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
                         isEnabled = false,
                         enablementInstructions = enablementInstructions,
                         enablementActionText = enablementActionText,
-                        enablementActionComponentName = enablementActionComponentName,
+                        enablementActionIntent = enablementActionIntent,
                     )
                 )
 
@@ -273,7 +273,8 @@ class KeyguardQuickAffordancePickerViewModelTest {
             // We expect there to be a dialog that should be shown:
             assertThat(dialog()?.icon)
                 .isEqualTo(Icon.Loaded(FakeCustomizationProviderClient.ICON_1, null))
-            assertThat(dialog()?.title).isEqualTo(Text.Loaded("disabled"))
+            assertThat(dialog()?.headline)
+                .isEqualTo(Text.Resource(R.string.keyguard_affordance_enablement_dialog_headline))
             assertThat(dialog()?.message)
                 .isEqualTo(Text.Loaded(enablementInstructions.joinToString("\n")))
             assertThat(dialog()?.buttons?.size).isEqualTo(1)
