@@ -261,7 +261,7 @@ private constructor(
                                     showEnablementDialog(
                                         icon = affordanceIcon,
                                         name = affordance.name,
-                                        instructions = affordance.enablementInstructions,
+                                        explanation = affordance.enablementExplanation,
                                         actionText = affordance.enablementActionText,
                                         actionIntent = affordance.enablementActionIntent,
                                     )
@@ -346,7 +346,7 @@ private constructor(
     private fun showEnablementDialog(
         icon: Drawable,
         name: String,
-        instructions: List<String>,
+        explanation: String,
         actionText: String?,
         actionIntent: Intent?,
     ) {
@@ -358,39 +358,38 @@ private constructor(
                         contentDescription = null,
                     ),
                 headline = Text.Resource(R.string.keyguard_affordance_enablement_dialog_headline),
-                supportingText =
-                    Text.Loaded(
-                        applicationContext.getString(
-                            R.string.keyguard_affordance_enablement_dialog_title,
-                            name
-                        )
-                    ),
-                message =
-                    Text.Loaded(
-                        buildString {
-                            instructions.forEachIndexed { index, instruction ->
-                                if (index > 0) {
-                                    append('\n')
-                                }
-
-                                append(instruction)
-                            }
-                        }
-                    ),
+                message = Text.Loaded(explanation),
                 buttons =
-                    listOf(
-                        ButtonViewModel(
-                            text = actionText?.let { Text.Loaded(actionText) }
-                                    ?: Text.Resource(
-                                        R.string
-                                            .keyguard_affordance_enablement_dialog_dismiss_button,
+                    buildList {
+                        add(
+                            ButtonViewModel(
+                                text =
+                                    Text.Resource(
+                                        if (actionText != null) {
+                                            // This is not the only button on the dialog.
+                                            R.string.cancel
+                                        } else {
+                                            // This is the only button on the dialog.
+                                            R.string
+                                                .keyguard_affordance_enablement_dialog_dismiss_button
+                                        }
                                     ),
-                            style = ButtonStyle.Primary,
-                            onClicked = {
-                                actionIntent?.let { intent -> requestActivityStart(intent) }
-                            }
-                        ),
-                    ),
+                                style = ButtonStyle.Secondary,
+                            ),
+                        )
+
+                        if (actionText != null) {
+                            add(
+                                ButtonViewModel(
+                                    text = Text.Loaded(actionText),
+                                    style = ButtonStyle.Primary,
+                                    onClicked = {
+                                        actionIntent?.let { intent -> requestActivityStart(intent) }
+                                    }
+                                ),
+                            )
+                        }
+                    },
             )
     }
 
