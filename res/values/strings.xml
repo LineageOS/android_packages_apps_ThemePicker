@@ -34,7 +34,7 @@
     <string name="clock_picker_entry_content_description">Change a custom clock</string>
 
     <!-- Title of a section of the customization picker where the user can configure Clock face. [CHAR LIMIT=19] -->
-    <string name="clock_settings_title">Clock Settings</string>
+    <string name="clock_settings_title">Clock color &amp; size</string>
 
     <!-- Title of a section of the customization picker where the user can configure clock color and size. [CHAR LIMIT=20] -->
     <string name="clock_color_and_size_title">Clock color &amp; size</string>
@@ -360,14 +360,7 @@
     enabled. The dialog contains a list of instructions that the user needs to take in order to
     enable the option before it can be selected again. [CHAR LIMIT=NONE].
     -->
-    <string name="keyguard_affordance_enablement_dialog_headline">Shortcut unavailable</string>
-
-    <!--
-    Supporting text for a popup dialog shown when the user attempts to select an option that is not
-    currently enabled. The dialog contains a list of instructions that the user needs to take in
-    order to enable the option before it can be selected again. [CHAR LIMIT=NONE].
-    -->
-    <string name="keyguard_affordance_enablement_dialog_title">To select `<xliff:g id="appName" example="Wallet">%1$s</xliff:g>` check the following</string>
+    <string name="keyguard_affordance_enablement_dialog_headline">Can\'t add shortcut</string>
 
     <!--
     Template for an action that opens a specific app. [CHAR LIMIT=16]
