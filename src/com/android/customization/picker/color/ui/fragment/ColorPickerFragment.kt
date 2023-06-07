@@ -117,7 +117,7 @@ class ColorPickerFragment : AppbarFragment() {
             lifecycleOwner = this,
             offsetToStart =
                 displayUtils.isSingleDisplayOrUnfoldedHorizontalHinge(requireActivity()),
-            onPreviewDirty = { activity?.recreate() },
+            onWallpaperPreviewDirty = { activity?.recreate() },
         )
         ScreenPreviewBinder.bind(
             activity = requireActivity(),
@@ -152,7 +152,7 @@ class ColorPickerFragment : AppbarFragment() {
             lifecycleOwner = this,
             offsetToStart =
                 displayUtils.isSingleDisplayOrUnfoldedHorizontalHinge(requireActivity()),
-            onPreviewDirty = { activity?.recreate() },
+            onWallpaperPreviewDirty = { activity?.recreate() },
         )
         val darkModeToggleContainerView: FrameLayout =
             view.requireViewById(R.id.dark_mode_toggle_container)
