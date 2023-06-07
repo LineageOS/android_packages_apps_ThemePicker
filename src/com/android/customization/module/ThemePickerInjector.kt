@@ -200,7 +200,10 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
         return super<WallpaperPicker2Injector>.getSnapshotRestorers(context).toMutableMap().apply {
             this[KEY_QUICK_AFFORDANCE_SNAPSHOT_RESTORER] =
                 getKeyguardQuickAffordanceSnapshotRestorer(context)
-            this[KEY_WALLPAPER_SNAPSHOT_RESTORER] = getWallpaperSnapshotRestorer(context)
+            // TODO(b/285047815): Enable after adding wallpaper id for default static wallpaper
+            if (getFlags().isWallpaperRestorerEnabled()) {
+                this[KEY_WALLPAPER_SNAPSHOT_RESTORER] = getWallpaperSnapshotRestorer(context)
+            }
             this[KEY_NOTIFICATIONS_SNAPSHOT_RESTORER] = getNotificationsSnapshotRestorer(context)
             this[KEY_DARK_MODE_SNAPSHOT_RESTORER] = getDarkModeSnapshotRestorer(context)
             this[KEY_THEMED_ICON_SNAPSHOT_RESTORER] = getThemedIconSnapshotRestorer(context)
