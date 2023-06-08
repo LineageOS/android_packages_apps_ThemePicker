@@ -104,8 +104,7 @@ class ClockViewFactory(
 
     private fun isLockscreenWallpaperDark(): Boolean {
         val colors = wallpaperManager.getWallpaperColors(WallpaperManager.FLAG_LOCK)
-        return (colors?.colorHints?.and(WallpaperColors.HINT_SUPPORTS_DARK_TEXT)) !=
-            WallpaperColors.HINT_SUPPORTS_DARK_TEXT
+        return (colors?.colorHints?.and(WallpaperColors.HINT_SUPPORTS_DARK_TEXT)) == 0
     }
 
     fun updateTimeFormat(clockId: String) {
