@@ -37,7 +37,6 @@ class ClockCustomDemoFragment : AppbarFragment() {
         clockRegistry =
             (InjectorProvider.getInjector() as ThemePickerInjector).getClockRegistry(
                 requireContext(),
-                this
             )
         val listInUse = clockRegistry.getClocks().filter { "NOT_IN_USE" !in it.clockId }
 
