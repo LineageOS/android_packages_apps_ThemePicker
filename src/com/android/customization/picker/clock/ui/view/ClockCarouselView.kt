@@ -48,8 +48,8 @@ class ClockCarouselView(
     private lateinit var clockViewFactory: ClockViewFactory
     private var toCenterClockController: ClockController? = null
     private var offCenterClockController: ClockController? = null
-    private var toCenterClockView: View? = null
-    private var offCenterClockView: View? = null
+    private var toCenterClockScaleView: View? = null
+    private var offCenterClockScaleView: View? = null
     private var toCenterClockHostView: ClockHostView? = null
     private var offCenterClockHostView: ClockHostView? = null
     private var toCenterCardView: View? = null
@@ -125,8 +125,8 @@ class ClockCarouselView(
                     val scalingUpClockId = adapter.clockIds[scalingUpIdx]
                     offCenterClockController = clockViewFactory.getController(scalingDownClockId)
                     toCenterClockController = clockViewFactory.getController(scalingUpClockId)
-                    offCenterClockView = motionLayout.findViewById(R.id.clock_scale_view_2)
-                    toCenterClockView =
+                    offCenterClockScaleView = motionLayout.findViewById(R.id.clock_scale_view_2)
+                    toCenterClockScaleView =
                         motionLayout.findViewById(
                             if (endId == R.id.next) R.id.clock_scale_view_3
                             else R.id.clock_scale_view_1
@@ -166,10 +166,10 @@ class ClockCarouselView(
                         ?.onPickerCarouselSwiping(progress)
                     val scalingDownScale = getScalingDownScale(progress)
                     val scalingUpScale = getScalingUpScale(progress)
-                    offCenterClockView?.scaleX = scalingDownScale
-                    offCenterClockView?.scaleY = scalingDownScale
-                    toCenterClockView?.scaleX = scalingUpScale
-                    toCenterClockView?.scaleY = scalingUpScale
+                    offCenterClockScaleView?.scaleX = scalingDownScale
+                    offCenterClockScaleView?.scaleY = scalingDownScale
+                    toCenterClockScaleView?.scaleX = scalingUpScale
+                    toCenterClockScaleView?.scaleY = scalingUpScale
                 }
 
                 private fun onSmallClockViewTransition(progress: Float) {
@@ -339,6 +339,7 @@ class ClockCarouselView(
                         isMiddleView,
                         clockScaleView,
                         clockId,
+                        clockHostView,
                     )
                 ClockSize.SMALL ->
                     initializeSmallClockView(
@@ -354,7 +355,12 @@ class ClockCarouselView(
             isMiddleView: Boolean,
             clockScaleView: View,
             clockId: String,
+            clockHostView: ClockHostView,
         ) {
+            clockHostView.doOnPreDraw {
+                it.pivotX = it.width / 2F
+                it.pivotY = it.height / 2F
+            }
             if (isMiddleView) {
                 clockScaleView.scaleX = 1f
                 clockScaleView.scaleY = 1f
