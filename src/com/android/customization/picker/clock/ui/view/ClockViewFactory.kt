@@ -53,16 +53,31 @@ class ClockViewFactory(
             ?: initClockController(clockId).also { clockControllers[clockId] = it }
     }
 
+    /**
+     * Reset the large view to its initial state when getting the view. This is because some view
+     * configs, e.g. animation state, might change during the reuse of the clock view in the app.
+     */
     fun getLargeView(clockId: String): View {
-        return getController(clockId).largeClock.view
+        return getController(clockId).largeClock.let {
+            it.animations.onPickerCarouselSwiping(1F)
+            it.view
+        }
     }
 
+    /**
+     * Reset the small view to its initial state when getting the view. This is because some view
+     * configs, e.g. translation X, might change during the reuse of the clock view in the app.
+     */
     fun getSmallView(clockId: String): View {
-        return smallClockFrames[clockId]
-            ?: createSmallClockFrame().also {
-                it.addView(getController(clockId).smallClock.view)
-                smallClockFrames[clockId] = it
-            }
+        val smallClockFrame =
+            smallClockFrames[clockId]
+                ?: createSmallClockFrame().also {
+                    it.addView(getController(clockId).smallClock.view)
+                    smallClockFrames[clockId] = it
+                }
+        smallClockFrame.translationX = 0F
+        smallClockFrame.translationY = 0F
+        return smallClockFrame
     }
 
     private fun createSmallClockFrame(): FrameLayout {
