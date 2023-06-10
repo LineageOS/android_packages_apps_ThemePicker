@@ -1,6 +1,14 @@
 {
   "presubmit": [
     {
+      "name": "WallpaperPicker2Tests",
+      "options": [
+        {
+          "exclude-annotation": "org.junit.Ignore"
+        }
+      ]
+    },
+    {
       "name": "ThemePickerTests",
       "options": [
         {
