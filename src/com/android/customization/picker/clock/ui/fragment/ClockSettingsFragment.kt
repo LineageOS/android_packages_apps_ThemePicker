@@ -127,7 +127,7 @@ class ClockSettingsFragment : AppbarFragment() {
                 )
                 .get(),
             injector.getClockViewFactory(activity),
-            this@ClockSettingsFragment,
+            viewLifecycleOwner,
         )
 
         return view
