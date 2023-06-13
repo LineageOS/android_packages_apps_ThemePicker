@@ -22,7 +22,7 @@
     <string name="clock_title" msgid="1974314575211361352">"Ura po meri"</string>
     <string name="clock_description" msgid="3563839327378948">"Izberite uro po meri"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Spremenite uro po meri"</string>
-    <string name="clock_settings_title" msgid="2940654205471453913">"Nastavitve ure"</string>
+    <string name="clock_settings_title" msgid="2050906379377120431">"Barva, velikost ure"</string>
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"Barva, velikost ure"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>"</string>
     <string name="clock_color" msgid="8081608867289156163">"Barva"</string>
@@ -116,7 +116,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Leva bližnjica"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Desna bližnjica"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Brez"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"Če želite izbrati aplikacijo »<xliff:g id="APPNAME">%1$s</xliff:g>«, potrdite naslednje:"</string>
+    <string name="keyguard_affordance_enablement_dialog_headline" msgid="365379085932610314">"Bližnjice ni mogoče dodati"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Odpri <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Če želite aplikacijo <xliff:g id="APPNAME">%1$s</xliff:g> dodati kot bližnjico, zagotovite naslednje:"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Končano"</string>

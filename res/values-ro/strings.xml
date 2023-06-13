@@ -22,7 +22,7 @@
     <string name="clock_title" msgid="1974314575211361352">"Ecran personalizat"</string>
     <string name="clock_description" msgid="3563839327378948">"Alege un ecran personalizat"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Modifică un ecran personalizat"</string>
-    <string name="clock_settings_title" msgid="2940654205471453913">"Setări pentru ceas"</string>
+    <string name="clock_settings_title" msgid="2050906379377120431">"Culoare / mărime"</string>
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"Culoare / dimensiune"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>"</string>
     <string name="clock_color" msgid="8081608867289156163">"Culoare"</string>
@@ -116,7 +116,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Comanda rapidă stânga"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Comanda rapidă dreapta"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Fără"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"Ca să selectezi <xliff:g id="APPNAME">%1$s</xliff:g>, urmează aceste instrucțiuni"</string>
+    <string name="keyguard_affordance_enablement_dialog_headline" msgid="365379085932610314">"Nu se poate adăuga comanda rapidă"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Deschide <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Pentru a adăuga aplicația <xliff:g id="APPNAME">%1$s</xliff:g> drept comandă rapidă, asigură-te"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Gata"</string>
