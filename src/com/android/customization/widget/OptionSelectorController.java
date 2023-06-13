@@ -78,7 +78,7 @@ public class OptionSelectorController<T extends CustomizationOption<T>> {
         int CENTER_CHANGE_COLOR_WHEN_NOT_SELECTED = 3;
     }
 
-    private float mLinearLayoutHorizontalDisplayOptionsMax;
+    private final float mLinearLayoutHorizontalDisplayOptionsMax;
 
     private final RecyclerView mContainer;
     private final List<T> mOptions;
@@ -183,6 +183,16 @@ public class OptionSelectorController<T extends CustomizationOption<T>> {
             @Override
             public TileViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View v = LayoutInflater.from(parent.getContext()).inflate(viewType, parent, false);
+                // Provide width constraint when a grid layout manager is not use and width is set
+                // to match parent
+                if (!mUseGrid
+                        && v.getLayoutParams().width == RecyclerView.LayoutParams.MATCH_PARENT) {
+                    Resources res = mContainer.getContext().getResources();
+                    RecyclerView.LayoutParams layoutParams = new RecyclerView.LayoutParams(
+                            res.getDimensionPixelSize(R.dimen.option_tile_width),
+                            RecyclerView.LayoutParams.WRAP_CONTENT);
+                    v.setLayoutParams(layoutParams);
+                }
                 return new TileViewHolder(v);
             }
 

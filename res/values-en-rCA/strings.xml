@@ -22,6 +22,42 @@
     <string name="clock_title" msgid="1974314575211361352">"Custom clock"</string>
     <string name="clock_description" msgid="3563839327378948">"Pick a custom clock"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Change a custom clock"</string>
+    <!-- no translation found for clock_settings_title (2940654205471453913) -->
+    <skip />
+    <!-- no translation found for clock_color_and_size_title (7146791234905111351) -->
+    <skip />
+    <!-- no translation found for clock_color_and_size_description (6578061553012886817) -->
+    <skip />
+    <!-- no translation found for clock_color (8081608867289156163) -->
+    <skip />
+    <!-- no translation found for clock_color_red (3843504214807597810) -->
+    <skip />
+    <!-- no translation found for clock_color_orange (4175805201144275804) -->
+    <skip />
+    <!-- no translation found for clock_color_yellow (7391699163247349977) -->
+    <skip />
+    <!-- no translation found for clock_color_green (1991157556500156596) -->
+    <skip />
+    <!-- no translation found for clock_color_blue (4037792003465759149) -->
+    <skip />
+    <!-- no translation found for clock_color_indigo (8910855386698452917) -->
+    <skip />
+    <!-- no translation found for clock_color_violet (3454503847169375826) -->
+    <skip />
+    <!-- no translation found for clock_color_gray (9221530636948859231) -->
+    <skip />
+    <!-- no translation found for clock_color_teal (7499223425741344251) -->
+    <skip />
+    <!-- no translation found for clock_size (5028923902364418263) -->
+    <skip />
+    <!-- no translation found for clock_size_dynamic (1023930312455061642) -->
+    <skip />
+    <!-- no translation found for clock_size_dynamic_description (2776620745774561662) -->
+    <skip />
+    <!-- no translation found for clock_size_large (3143248715744138979) -->
+    <skip />
+    <!-- no translation found for clock_size_small (2280449912094164133) -->
+    <skip />
     <string name="grid_title" msgid="1688173478777254123">"App grid"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Apply"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Tap to edit"</string>
@@ -87,13 +123,21 @@
     <string name="beta_title" msgid="8703819523760746458">"Beta"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"Change app grid"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"Wallpaper colours"</string>
+    <!-- no translation found for wallpaper_color_subheader (4044464573669965670) -->
+    <skip />
     <string name="wallpaper_color_title" msgid="5687965239180986458">"Wallpaper colour"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"Basic colours"</string>
+    <!-- no translation found for preset_color_tab_2 (1444107326712562538) -->
+    <skip />
+    <!-- no translation found for preset_color_subheader (8230588536141279371) -->
+    <skip />
     <string name="color_changed" msgid="7029571720331641235">"Colour changed"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Dynamic"</string>
-    <!-- no translation found for keyguard_slot_name_bottom_start (6717374042663171860) -->
+    <!-- no translation found for color_picker_title (6666830057938082864) -->
     <skip />
-    <!-- no translation found for keyguard_slot_name_bottom_end (7636885379738905151) -->
+    <!-- no translation found for keyguard_slot_name_bottom_start (8747677880200629719) -->
+    <skip />
+    <!-- no translation found for keyguard_slot_name_bottom_end (2525487375680217083) -->
     <skip />
     <!-- no translation found for keyguard_affordance_none (1751643933430782312) -->
     <skip />
@@ -112,5 +156,21 @@
     <!-- no translation found for keyguard_quick_affordance_two_selected_template (1757099194522296363) -->
     <skip />
     <!-- no translation found for keyguard_quick_affordance_none_selected (8494127020144112003) -->
+    <skip />
+    <!-- no translation found for notifications_section_title (4283049750376871538) -->
+    <skip />
+    <!-- no translation found for show_notifications_on_lock_screen (4157744243084646720) -->
+    <skip />
+    <!-- no translation found for hide_notifications_on_lock_screen (7413548956484779174) -->
+    <skip />
+    <!-- no translation found for more_settings_section_title (8524741850115625404) -->
+    <skip />
+    <!-- no translation found for more_settings_section_description (8787768566854880683) -->
+    <skip />
+    <!-- no translation found for more_colors (3191071655353004591) -->
+    <skip />
+    <!-- no translation found for content_description_default_color_option (7011899327541080695) -->
+    <skip />
+    <!-- no translation found for content_description_color_option (4169813692012119578) -->
     <skip />
 </resources>

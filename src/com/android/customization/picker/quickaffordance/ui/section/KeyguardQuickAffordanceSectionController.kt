@@ -39,11 +39,11 @@ class KeyguardQuickAffordanceSectionController(
 
     private val isFeatureEnabled: Boolean = runBlocking { interactor.isFeatureEnabled() }
 
-    override fun isAvailable(context: Context?): Boolean {
+    override fun isAvailable(context: Context): Boolean {
         return isFeatureEnabled
     }
 
-    override fun createView(context: Context?): KeyguardQuickAffordanceSectionView {
+    override fun createView(context: Context): KeyguardQuickAffordanceSectionView {
         val view =
             LayoutInflater.from(context)
                 .inflate(

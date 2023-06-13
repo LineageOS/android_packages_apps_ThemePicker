@@ -22,6 +22,24 @@
     <string name="clock_title" msgid="1974314575211361352">"कस्टम घडी"</string>
     <string name="clock_description" msgid="3563839327378948">"कस्टम घडी छान्नु…"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"कुनै कस्टम घडी परिवर्तन गर्नुहोस्"</string>
+    <string name="clock_settings_title" msgid="2940654205471453913">"घडीका सेटिङ"</string>
+    <string name="clock_color_and_size_title" msgid="7146791234905111351">"घडीको रङ र आकार"</string>
+    <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>"</string>
+    <string name="clock_color" msgid="8081608867289156163">"रङ"</string>
+    <string name="clock_color_red" msgid="3843504214807597810">"रातो"</string>
+    <string name="clock_color_orange" msgid="4175805201144275804">"सुन्तले"</string>
+    <string name="clock_color_yellow" msgid="7391699163247349977">"पहेँलो"</string>
+    <string name="clock_color_green" msgid="1991157556500156596">"हरियो"</string>
+    <string name="clock_color_blue" msgid="4037792003465759149">"निलो"</string>
+    <string name="clock_color_indigo" msgid="8910855386698452917">"इन्डिगो"</string>
+    <string name="clock_color_violet" msgid="3454503847169375826">"बैजनी"</string>
+    <string name="clock_color_gray" msgid="9221530636948859231">"खरानी रङ"</string>
+    <string name="clock_color_teal" msgid="7499223425741344251">"निलोमिश्रित हरियो"</string>
+    <string name="clock_size" msgid="5028923902364418263">"आकार"</string>
+    <string name="clock_size_dynamic" msgid="1023930312455061642">"गतिशील"</string>
+    <string name="clock_size_dynamic_description" msgid="2776620745774561662">"घडीको आकार लक स्क्रिनको सामग्रीका आधारमा परिवर्तन हुन्छ"</string>
+    <string name="clock_size_large" msgid="3143248715744138979">"ठुलो"</string>
+    <string name="clock_size_small" msgid="2280449912094164133">"सानो"</string>
     <string name="grid_title" msgid="1688173478777254123">"एप ग्रिड"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"लागू गर्नुहोस्"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"सम्पादन गर्न ट्याप गर्नुहोस्"</string>
@@ -87,12 +105,16 @@
     <string name="beta_title" msgid="8703819523760746458">"बिटा"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"एप ग्रिड बदल्नुहोस्"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"वालपेपरका रङहरू"</string>
+    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"तपाईंको वालपेपरमा आइकन, टेक्स्ट तथा अन्य कुरासँग मिल्दाजुल्दा रङहरू"</string>
     <string name="wallpaper_color_title" msgid="5687965239180986458">"वालपेपरको रङ"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"आधारभूत रङहरू"</string>
+    <string name="preset_color_tab_2" msgid="1444107326712562538">"अन्य रङहरू"</string>
+    <string name="preset_color_subheader" msgid="8230588536141279371">"आइकन, घडी र अन्य कुराका लागि कुनै पनि रङ छनौट गर्नुहोस्"</string>
     <string name="color_changed" msgid="7029571720331641235">"रङ बदलियो"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"गतिशील"</string>
-    <string name="keyguard_slot_name_bottom_start" msgid="6717374042663171860">"बायाँतिरको बटन"</string>
-    <string name="keyguard_slot_name_bottom_end" msgid="7636885379738905151">"दायाँतिरको बटन"</string>
+    <string name="color_picker_title" msgid="6666830057938082864">"सिस्टमका रङहरू"</string>
+    <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"बायाँको सर्टकट"</string>
+    <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"दायाँको सर्टकट"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"कुनै पनि होइन"</string>
     <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"\"<xliff:g id="APPNAME">%1$s</xliff:g>\" चयन गर्न तल दिइएका निर्देशनहरू पालना गर्नुहोस्"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g> खोल्नुहोस्"</string>
@@ -102,4 +124,12 @@
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"सर्टकटहरू"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"कुनै पनि होइन"</string>
+    <string name="notifications_section_title" msgid="4283049750376871538">"सूचनाहरू"</string>
+    <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"लक स्क्रिनमा सूचनाहरू देखाइऊन्"</string>
+    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"लक स्क्रिनमा सूचनाहरू लुकाइऊन्"</string>
+    <string name="more_settings_section_title" msgid="8524741850115625404">"थप विकल्पहरू"</string>
+    <string name="more_settings_section_description" msgid="8787768566854880683">"लक स्क्रिनमा टेक्स्ट देखिने सुविधा, Now Playing र थप सुविधाहरू"</string>
+    <string name="more_colors" msgid="3191071655353004591">"थप रङहरू"</string>
+    <string name="content_description_default_color_option" msgid="7011899327541080695">"रङसम्बन्धी डिफल्ट विकल्प"</string>
+    <string name="content_description_color_option" msgid="4169813692012119578">"रङसम्बन्धी विकल्प <xliff:g id="ID_1">%1$d</xliff:g>"</string>
 </resources>
