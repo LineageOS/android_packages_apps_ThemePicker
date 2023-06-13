@@ -21,7 +21,7 @@
         android:height="48dp">
         <shape>
             <size android:height="48dp" />
-            <solid android:color="@color/color_accent_primary" />
+            <solid android:color="@color/system_secondary" />
             <corners android:radius="24dp"/>
         </shape>
     </item>
