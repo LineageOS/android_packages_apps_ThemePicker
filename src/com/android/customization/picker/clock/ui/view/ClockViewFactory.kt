@@ -24,6 +24,7 @@ import android.graphics.Rect
 import android.view.View
 import android.widget.FrameLayout
 import androidx.annotation.ColorInt
+import androidx.core.text.util.LocalePreferences
 import androidx.lifecycle.LifecycleOwner
 import com.android.systemui.plugins.ClockController
 import com.android.systemui.plugins.WeatherData
@@ -165,13 +166,18 @@ class ClockViewFactory(
         )
         controller.smallClock.events.onTargetRegionChanged(getSmallClockRegion())
 
-        // Use placeholder for weather clock preview in picker
+        // Use placeholder for weather clock preview in picker.
+        // Use locale default temp unit since assistant default is not available in this context.
+        val useCelsius =
+            LocalePreferences.getTemperatureUnit() == LocalePreferences.TemperatureUnit.CELSIUS
         controller.events.onWeatherDataChanged(
             WeatherData(
                 description = DESCRIPTION_PLACEHODLER,
                 state = WEATHERICON_PLACEHOLDER,
-                temperature = TEMPERATURE_PLACEHOLDER,
-                useCelsius = USE_CELSIUS_PLACEHODLER,
+                temperature =
+                    if (useCelsius) TEMPERATURE_CELSIUS_PLACEHOLDER
+                    else TEMPERATURE_FAHRENHEIT_PLACEHOLDER,
+                useCelsius = useCelsius,
             )
         )
         return controller
@@ -203,7 +209,8 @@ class ClockViewFactory(
 
     companion object {
         const val DESCRIPTION_PLACEHODLER = ""
-        const val TEMPERATURE_PLACEHOLDER = 58
+        const val TEMPERATURE_FAHRENHEIT_PLACEHOLDER = 58
+        const val TEMPERATURE_CELSIUS_PLACEHOLDER = 21
         val WEATHERICON_PLACEHOLDER = WeatherData.WeatherStateIcon.MOSTLY_SUNNY
         const val USE_CELSIUS_PLACEHODLER = false
 
