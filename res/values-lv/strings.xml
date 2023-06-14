@@ -22,7 +22,8 @@
     <string name="clock_title" msgid="1974314575211361352">"Pielāgots ekrāns"</string>
     <string name="clock_description" msgid="3563839327378948">"Pielāgota ekrāna izvēle"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Mainiet pielāgotu pulksteņa ekrānu."</string>
-    <string name="clock_settings_title" msgid="2940654205471453913">"Pulksteņa iestatījumi"</string>
+    <!-- no translation found for clock_settings_title (2050906379377120431) -->
+    <skip />
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"Pulksteņa krāsa/lielums"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>"</string>
     <string name="clock_color" msgid="8081608867289156163">"Krāsa"</string>
@@ -116,7 +117,8 @@
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Saīsne pa kreisi"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Saīsne pa labi"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Nav"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"Lai atlasītu lietotni <xliff:g id="APPNAME">%1$s</xliff:g>, pārbaudiet tālāk minēto"</string>
+    <!-- no translation found for keyguard_affordance_enablement_dialog_headline (365379085932610314) -->
+    <skip />
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Atvērt lietotni <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Lai pievienotu lietotni <xliff:g id="APPNAME">%1$s</xliff:g> kā saīsni, jābūt izpildītiem tālāk minētajiem nosacījumiem."</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Gatavs"</string>
