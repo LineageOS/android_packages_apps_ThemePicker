@@ -15,8 +15,8 @@
   ~ limitations under the License.
   -->
 <resources>
-    <string name="default_color_name">Clásicu</string>
-    <string name="bundle1_color_name">Carbón</string>
-    <string name="bundle2_color_name">Papel</string>
-    <string name="bundle3_color_name">Sol</string>
+    <string name="default_color_name">클래식</string>
+    <string name="bundle1_color_name">카본</string>
+    <string name="bundle2_color_name">종이</string>
+    <string name="bundle3_color_name">태양</string>
 </resources>
