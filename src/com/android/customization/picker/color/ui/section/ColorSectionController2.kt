@@ -20,6 +20,7 @@ package com.android.customization.picker.color.ui.section
 import android.content.Context
 import android.view.LayoutInflater
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
 import com.android.customization.picker.color.ui.binder.ColorSectionViewBinder
 import com.android.customization.picker.color.ui.fragment.ColorPickerFragment
 import com.android.customization.picker.color.ui.view.ColorSectionView2
@@ -27,10 +28,14 @@ import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
 import com.android.wallpaper.R
 import com.android.wallpaper.model.CustomizationSectionController
 import com.android.wallpaper.model.CustomizationSectionController.CustomizationSectionNavigationController as NavigationController
+import com.android.wallpaper.model.WallpaperColorsModel
+import com.android.wallpaper.model.WallpaperColorsViewModel
+import kotlinx.coroutines.launch
 
 class ColorSectionController2(
     private val navigationController: NavigationController,
     private val viewModel: ColorPickerViewModel,
+    private val wcViewModel: WallpaperColorsViewModel,
     private val lifecycleOwner: LifecycleOwner
 ) : CustomizationSectionController<ColorSectionView2> {
 
@@ -53,6 +58,15 @@ class ColorSectionController2(
                     R.layout.color_section_view2,
                     null,
                 ) as ColorSectionView2
+
+        // load wallpaper colors if it has not been populated
+        if (
+            wcViewModel.lockWallpaperColors.value is WallpaperColorsModel.Loading ||
+                wcViewModel.homeWallpaperColors.value is WallpaperColorsModel.Loading
+        ) {
+            lifecycleOwner.lifecycleScope.launch { viewModel.loadInitialColors() }
+        }
+
         ColorSectionViewBinder.bind(
             view = view,
             viewModel = viewModel,
