@@ -439,7 +439,8 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                     repository =
                         ColorPickerRepositoryImpl(
                             wallpaperColorsViewModel,
-                            getColorCustomizationManager(appContext)
+                            getColorCustomizationManager(appContext),
+                            WallpaperManager.getInstance(appContext),
                         ),
                     snapshotRestorer = {
                         getColorPickerSnapshotRestorer(appContext, wallpaperColorsViewModel)

@@ -94,10 +94,6 @@ open class PreviewWithThemeSectionController(
                                 } else {
                                     homeWallpaper ?: lockWallpaper
                                 }
-                            loadInitialColors(
-                                context = context,
-                                screen = screen,
-                            )
                             continuation.resume(wallpaper, null)
                         },
                         forceReload,
