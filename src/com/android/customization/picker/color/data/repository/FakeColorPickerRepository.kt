@@ -166,6 +166,8 @@ class FakeColorPickerRepository(private val context: Context) : ColorPickerRepos
             else -> null
         }
 
+    override suspend fun loadInitialColors() {}
+
     private fun ColorOptionModel.testEquals(other: Any?): Boolean {
         if (other == null) {
             return false
