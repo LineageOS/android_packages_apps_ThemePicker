@@ -145,7 +145,6 @@ public final class DefaultCustomizationSections implements CustomizationSections
                                         activity,
                                         mColorPickerViewModelFactory)
                                         .get(ColorPickerViewModel.class),
-                                wallpaperColorsViewModel,
                                 lifecycleOwner),
                         // Wallpaper quick switch section.
                         new WallpaperQuickSwitchSectionController(
