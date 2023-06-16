@@ -16,7 +16,6 @@
  */
 package com.android.customization.picker.color.data.repository
 
-import android.app.WallpaperManager
 import android.util.Log
 import com.android.customization.model.CustomizationManager
 import com.android.customization.model.color.ColorCustomizationManager
@@ -27,20 +26,17 @@ import com.android.customization.picker.color.shared.model.ColorType
 import com.android.systemui.monet.Style
 import com.android.wallpaper.model.WallpaperColorsModel
 import com.android.wallpaper.model.WallpaperColorsViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.suspendCancellableCoroutine
-import kotlinx.coroutines.withContext
 
 // TODO (b/262924623): refactor to remove dependency on ColorCustomizationManager & ColorOption
 // TODO (b/268203200): Create test for ColorPickerRepositoryImpl
 class ColorPickerRepositoryImpl(
-    private val wallpaperColorsViewModel: WallpaperColorsViewModel,
+    wallpaperColorsViewModel: WallpaperColorsViewModel,
     private val colorManager: ColorCustomizationManager,
-    private val wallpaperManager: WallpaperManager,
 ) : ColorPickerRepository {
 
     private val homeWallpaperColors: StateFlow<WallpaperColorsModel?> =
@@ -153,17 +149,6 @@ class ColorPickerRepositoryImpl(
 
     override fun getCurrentColorSource(): String? {
         return colorManager.currentColorSource
-    }
-
-    override suspend fun loadInitialColors() {
-        withContext(Dispatchers.IO) {
-            val lockColors = wallpaperManager.getWallpaperColors(WallpaperManager.FLAG_LOCK)
-            val homeColors = wallpaperManager.getWallpaperColors(WallpaperManager.FLAG_SYSTEM)
-            withContext(Dispatchers.Main) {
-                wallpaperColorsViewModel.setLockWallpaperColors(lockColors)
-                wallpaperColorsViewModel.setHomeWallpaperColors(homeColors)
-            }
-        }
     }
 
     private fun ColorOptionImpl.toModel(): ColorOptionModel {
