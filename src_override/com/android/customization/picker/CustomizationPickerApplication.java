@@ -20,7 +20,13 @@ import android.app.Application;
 import com.android.customization.module.ThemePickerInjector;
 import com.android.wallpaper.module.InjectorProvider;
 
-public class CustomizationPickerApplication extends Application {
+import dagger.hilt.android.HiltAndroidApp;
+
+/**
+ * Application subclass that initializes the injector.
+ */
+@HiltAndroidApp(Application.class)
+public class CustomizationPickerApplication extends Hilt_CustomizationPickerApplication {
     @Override
     public void onCreate() {
         super.onCreate();
