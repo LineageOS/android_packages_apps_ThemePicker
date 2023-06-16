@@ -37,7 +37,4 @@ interface ColorPickerRepository {
 
     /** Returns the current selected color source based on system settings */
     fun getCurrentColorSource(): String?
-
-    /** Retrieves and stores the wallpaper colors for generating wallpaper color options */
-    suspend fun loadInitialColors()
 }

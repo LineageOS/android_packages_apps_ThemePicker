@@ -202,8 +202,6 @@ private constructor(
                 replay = 1,
             )
 
-    suspend fun loadInitialColors() = interactor.loadInitialColors()
-
     class Factory(
         private val context: Context,
         private val interactor: ColorPickerInteractor,
