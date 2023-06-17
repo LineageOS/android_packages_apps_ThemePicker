@@ -46,6 +46,4 @@ class ColorPickerInteractor(
     }
 
     fun getCurrentColorOption(): ColorOptionModel = repository.getCurrentColorOption()
-
-    suspend fun loadInitialColors() = repository.loadInitialColors()
 }
