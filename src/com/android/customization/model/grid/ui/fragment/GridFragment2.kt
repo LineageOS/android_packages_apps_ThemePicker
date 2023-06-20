@@ -21,6 +21,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.transition.Transition
@@ -97,6 +98,14 @@ class GridFragment2 : AppbarFragment() {
 
     override fun getDefaultTitle(): CharSequence {
         return getString(R.string.grid_title)
+    }
+
+    override fun getToolbarColorId(): Int {
+        return android.R.color.transparent
+    }
+
+    override fun getToolbarTextColor(): Int {
+        return ContextCompat.getColor(requireContext(), R.color.system_on_surface)
     }
 
     private fun bindScreenPreview(
