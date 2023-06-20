@@ -21,6 +21,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowInsets
 import androidx.lifecycle.ViewModelProvider
 import com.android.customization.model.grid.ui.binder.GridScreenBinder
 import com.android.customization.model.grid.ui.viewmodel.GridScreenViewModel
@@ -53,6 +54,17 @@ class GridFragment2 : AppbarFragment() {
                 false,
             )
         setUpToolbar(view)
+
+        // For nav bar edge-to-edge effect.
+        view.setOnApplyWindowInsetsListener { v: View, windowInsets: WindowInsets ->
+            v.setPadding(
+                v.paddingLeft,
+                v.paddingTop,
+                v.paddingRight,
+                windowInsets.systemWindowInsetBottom
+            )
+            windowInsets
+        }
 
         val injector = InjectorProvider.getInjector() as ThemePickerInjector
 
