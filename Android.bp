@@ -102,7 +102,7 @@ java_defaults {
         enabled: false,
     },
     kotlincflags: ["-Xjvm-default=enable"],
-    certificate: "platform",
+    certificate: "",
 
     privileged: true,
     system_ext_specific: true,
