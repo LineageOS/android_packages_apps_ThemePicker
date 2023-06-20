@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+import android.view.WindowInsets
 import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -34,6 +35,18 @@ class ClockCustomDemoFragment : AppbarFragment() {
     ): View {
         val view = inflater.inflate(R.layout.fragment_clock_custom_picker_demo, container, false)
         setUpToolbar(view)
+
+        // For nav bar edge-to-edge effect.
+        view.setOnApplyWindowInsetsListener { v: View, windowInsets: WindowInsets ->
+            v.setPadding(
+                v.paddingLeft,
+                v.paddingTop,
+                v.paddingRight,
+                windowInsets.systemWindowInsetBottom
+            )
+            windowInsets
+        }
+
         clockRegistry =
             (InjectorProvider.getInjector() as ThemePickerInjector).getClockRegistry(
                 requireContext(),
