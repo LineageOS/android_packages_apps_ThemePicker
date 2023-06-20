@@ -48,7 +48,7 @@
         android:layout_width="@dimen/option_tile_width"
         android:layout_height="@dimen/option_tile_width"
         android:orientation="horizontal"
-        android:background="@drawable/option_border_color"
+        android:background="@drawable/picker_section_icon_background"
         android:importantForAccessibility="noHideDescendants"
         android:gravity="center"
         android:divider="@drawable/horizontal_divider_14dp"
