@@ -15,8 +15,8 @@
   ~ limitations under the License.
   -->
 <resources>
-    <string name="default_color_name">Clásicu</string>
-    <string name="bundle1_color_name">Carbón</string>
-    <string name="bundle2_color_name">Papel</string>
+    <string name="default_color_name">Klassisk</string>
+    <string name="bundle1_color_name">Kol</string>
+    <string name="bundle2_color_name">Papper</string>
     <string name="bundle3_color_name">Sol</string>
 </resources>
