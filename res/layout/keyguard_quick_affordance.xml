@@ -19,18 +19,34 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="@dimen/keyguard_quick_affordance_picker_item_width"
+    android:layout_width="@dimen/option_item_size"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:clipChildren="false">
 
     <FrameLayout
-        android:id="@+id/icon_container"
-        android:layout_width="@dimen/keyguard_quick_affordance_icon_container_size"
-        android:layout_height="@dimen/keyguard_quick_affordance_icon_container_size" >
+        android:layout_width="@dimen/option_item_size"
+        android:layout_height="@dimen/option_item_size"
+        android:clipChildren="false">
 
         <ImageView
-            android:id="@+id/icon"
+            android:id="@id/selection_border"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/option_item_border"
+            android:alpha="0"
+            android:importantForAccessibility="no" />
+
+        <ImageView
+            android:id="@id/background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/option_item_background"
+            android:importantForAccessibility="no" />
+
+        <ImageView
+            android:id="@id/foreground"
             android:layout_width="@dimen/keyguard_quick_affordance_icon_size"
             android:layout_height="@dimen/keyguard_quick_affordance_icon_size"
             android:layout_gravity="center"
@@ -43,7 +59,7 @@
         android:layout_height="8dp" />
 
     <TextView
-        android:id="@+id/name"
+        android:id="@id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/text_color_primary"

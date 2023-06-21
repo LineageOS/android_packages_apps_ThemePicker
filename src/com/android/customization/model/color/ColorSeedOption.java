@@ -80,7 +80,7 @@ public class ColorSeedOption extends ColorOption {
     }
 
     @Override
-    protected CharSequence getContentDescription(Context context) {
+    public CharSequence getContentDescription(Context context) {
         // Override because we want all options with the same description.
         return context.getString(R.string.wallpaper_color_title);
     }

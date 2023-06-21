@@ -33,6 +33,60 @@
     <!-- The content description of clock entry. [CHAR LIMIT=NONE] -->
     <string name="clock_picker_entry_content_description">Change a custom clock</string>
 
+    <!-- Title of a section of the customization picker where the user can configure Clock face. [CHAR LIMIT=19] -->
+    <string name="clock_settings_title">Clock Settings</string>
+
+    <!-- Title of a section of the customization picker where the user can configure clock color and size. [CHAR LIMIT=20] -->
+    <string name="clock_color_and_size_title">Clock color &amp; size</string>
+
+    <!-- Description of a section of the customization picker where the user can configure clock color and size, e.g. Violet, small. [CHAR LIMIT=NONE] -->
+    <string name="clock_color_and_size_description"><xliff:g name="color">%1$s</xliff:g>, <xliff:g name="size">%2$s</xliff:g></string>
+
+    <!-- Title of a tab to change the clock color. [CHAR LIMIT=15] -->
+    <string name="clock_color">Color</string>
+
+    <!-- Title of a clock color red option that will appear in the description of the custom clock section. [CHAR LIMIT=15] -->
+    <string name="clock_color_red">Red</string>
+
+    <!-- Title of a clock color orange option that will appear in the description of the custom clock section. [CHAR LIMIT=15] -->
+    <string name="clock_color_orange">Orange</string>
+
+    <!-- Title of a clock color yellow option that will appear in the description of the custom clock section. [CHAR LIMIT=15] -->
+    <string name="clock_color_yellow">Yellow</string>
+
+    <!-- Title of a clock color green option that will appear in the description of the custom clock section. [CHAR LIMIT=15] -->
+    <string name="clock_color_green">Green</string>
+
+    <!-- Title of a clock color blue option that will appear in the description of the custom clock section. [CHAR LIMIT=15] -->
+    <string name="clock_color_blue">Blue</string>
+
+    <!-- Title of a clock color indigo option that will appear in the description of the custom clock section. [CHAR LIMIT=15] -->
+    <string name="clock_color_indigo">Indigo</string>
+
+    <!-- Title of a clock color violet option that will appear in the description of the custom clock section. [CHAR LIMIT=15] -->
+    <string name="clock_color_violet">Violet</string>
+
+    <!-- Title of a clock color grey option that will appear in the description of the custom clock section. [CHAR LIMIT=15] -->
+    <string name="clock_color_gray">Grey</string>
+
+    <!-- Title of a clock color teal option that will appear in the description of the custom clock section. [CHAR LIMIT=15] -->
+    <string name="clock_color_teal">Teal</string>
+
+    <!-- Title of a tab to change the clock size. [CHAR LIMIT=15] -->
+    <string name="clock_size">Size</string>
+
+    <!-- Title of a radio button to apply clock size dynamic. [CHAR LIMIT=15] -->
+    <string name="clock_size_dynamic">Dynamic</string>
+
+    <!-- Description of a radio button to apply clock size dynamic. [CHAR LIMIT=NONE] -->
+    <string name="clock_size_dynamic_description">Clock size changes according to lock screen content</string>
+
+    <!-- Title of a radio button to apply clock size large. [CHAR LIMIT=15] -->
+    <string name="clock_size_large">Large</string>
+
+    <!-- Title of a radio button to apply clock size small. [CHAR LIMIT=15] -->
+    <string name="clock_size_small">Small</string>
+
     <!-- Title of a section of the customization picker where the user can select a Grid size for
         the home screen. [CHAR LIMIT=15] -->
     <string name="grid_title">App grid</string>
@@ -257,30 +311,42 @@
 
     <!-- The title for the tab with colors from wallpaper. [CHAR_LIMIT=20]-->
     <string name="wallpaper_color_tab">Wallpaper colors</string>
+    <!-- The subheader for the tab with colors from wallpaper. [CHAR_LIMIT=55]-->
+    <string name="wallpaper_color_subheader">Icons, text, and more match colors in your wallpaper</string>
     <!-- The description on an item that shows a color obtained from the wallpaper
         (used mainly for accessibility). [CHAR_LIMIT=NONE] -->
     <string name="wallpaper_color_title">Wallpaper color</string>
     <!-- The title for the tab with a default set of color options. [CHAR_LIMIT=20]-->
     <string name="preset_color_tab">Basic colors</string>
+    <!-- The revised title for the tab with a default set of color options. [CHAR_LIMIT=20]-->
+    <string name="preset_color_tab_2">Other colors</string>
+    <!-- The subheader for the tab with a default set of color options. [CHAR_LIMIT=55]-->
+    <string name="preset_color_subheader">Choose any color for your icons, clock, and more</string>
     <!-- The text for A11y announcement when color changes. -->
     <string name="color_changed">Color changed</string>
     <!-- Title of a section of color selection option that obtains colors automatically from the
         wallpaper instead of a set color [CHAR LIMIT=15] -->
     <string name="adaptive_color_title">Dynamic</string>
+    <!--
+    Title for a screen where the user can configure the system colors by selecting from a list of
+    color options.
+    [CHAR LIMIT=32].
+    -->
+    <string name="color_picker_title">System colors</string>
 
     <!--
-    Name of the slot on the "start" side of the bottom of the lock screen, where quick affordance
-    buttons can be added to the lock screen. In left-to-right languages, this is the left-hand side
-    button. In right-to-left languages, this is the right-hand side button. [CHAR LIMIT=16].
+    Name of the slot on the "start" side of the bottom of the lock screen, where lock screen
+    shortcuts can be added to the lock screen. In left-to-right languages, this is the left-hand
+    side button. In right-to-left languages, this is the right-hand side button. [CHAR LIMIT=16].
     -->
-    <string name="keyguard_slot_name_bottom_start">Left button</string>
+    <string name="keyguard_slot_name_bottom_start">Left shortcut</string>
 
     <!--
-    Name of the slot on the "end" side of the bottom of the lock screen, where quick affordance
-    buttons can be added to the lock screen. In left-to-right languages, this is the right-hand side
-    button. In right-to-left languages, this is the left-hand side button. [CHAR LIMIT=16].
+    Name of the slot on the "end" side of the bottom of the lock screen, where lock screen shortcuts
+    can be added to the lock screen. In left-to-right languages, this is the right-hand side button.
+    In right-to-left languages, this is the left-hand side button. [CHAR LIMIT=16].
     -->
-    <string name="keyguard_slot_name_bottom_end">Right button</string>
+    <string name="keyguard_slot_name_bottom_end">Right shortcut</string>
 
     <!--
     Name for an option to have no quick affordance selected for one of the sides of the lock
@@ -344,4 +410,74 @@
     [CHAR LIMIT=60].
     -->
     <string name="keyguard_quick_affordance_none_selected">None</string>
+
+    <!--
+    Title for a section in a list of sections in the settings app that allows the user to modify
+    how notifications behave whilst the device is locked.
+
+    [CHAR LIMIT=32].
+    -->
+    <string name="notifications_section_title">Notifications</string>
+
+    <!--
+    Summary for a setting that lets the user toggle between showing or hiding notifications on their
+    device's lock screen. This one is shown when the user is allowing notifications to show on their
+    device's lock screen.
+
+    [CHAR LIMIT=64].
+    -->
+    <string name="show_notifications_on_lock_screen">Show notifications on the lock screen</string>
+
+    <!--
+    Summary for a setting that lets the user toggle between showing or hiding notifications on their
+    device's lock screen. This one is shown when the user is not allowing notifications to show on
+    their device's lock screen.
+
+    [CHAR LIMIT=64].
+    -->
+    <string name="hide_notifications_on_lock_screen">Hide notifications on the lock screen</string>
+
+    <!--
+    Title for a section in a list of sections in the settings app that allows the user to access
+    additional settings related to lock screen behaviour.
+
+    [CHAR LIMIT=32].
+    -->
+    <string name="more_settings_section_title">More options</string>
+
+    <!--
+    Summary for a setting that lets the user access additional settings related to lock screen
+    behaviour. Please note that "Now Playing" is an entity; it's a name of an existing feature
+    that allows users to see the song that the device is picking up through its microphone on
+    the lock screen; therefore, it should not be translated literally.
+
+    [CHAR LIMIT=64].
+    -->
+    <string name="more_settings_section_description">Text on lock screen, Now Playing, and more</string>
+
+    <!--
+    Label for button that lets the user navigate to a full-screen experience of selecting
+    system colors.
+
+    [CHAR LIMIT=128].
+    -->
+    <string name="more_colors">More Colors</string>
+
+    <!--
+    Accessibility string for a button that allows the user to select the default color for their
+    lock screen clock on the device. This is shown next to other buttons that allow the user to
+    select from a set of custom colors.
+
+    [CHAR LIMIT=NONE].
+    -->
+    <string name="content_description_default_color_option">Default color option</string>
+
+    <!--
+    Accessibility string for a button that allows the user to select a custom color for their lock
+    screen clock on the device. This is shown next to other such buttons that allow the user to
+    select from a set of custom colors.
+
+    [CHAR LIMIT=NONE].
+    -->
+    <string name="content_description_color_option">Color option <xliff:g name="color_number" example="1">%1$d</xliff:g></string>
 </resources>
