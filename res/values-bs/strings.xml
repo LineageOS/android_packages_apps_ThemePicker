@@ -116,7 +116,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Lijeva prečica"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Desna prečica"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Ništa"</string>
-    <string name="keyguard_affordance_enablement_dialog_headline" msgid="365379085932610314">"Nije moguće dodati prečac"</string>
+    <string name="keyguard_affordance_enablement_dialog_headline" msgid="365379085932610314">"Nije moguće dodati prečicu"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Otvori aplikaciju <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Da dodate aplikaciju <xliff:g id="APPNAME">%1$s</xliff:g> kao prečicu, pobrinite se za sljedeće"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Gotovo"</string>
