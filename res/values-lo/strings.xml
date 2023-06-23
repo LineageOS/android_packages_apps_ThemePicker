@@ -69,7 +69,7 @@
     <string name="applied_clock_msg" msgid="1303338016701443767">"ຕັ້ງໂມງສຳເລັດແລ້ວ"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"ຕັ້ງຊ່ອງສຳເລັດແລ້ວ"</string>
     <string name="apply_theme_error_msg" msgid="791364062636538317">"ເກີດບັນຫາໃນການນຳໃຊ້ຮູບແບບ"</string>
-    <string name="custom_theme_next" msgid="6235420097213197301">"ຖັດໄປ"</string>
+    <string name="custom_theme_next" msgid="6235420097213197301">"ຕໍ່ໄປ"</string>
     <string name="custom_theme_previous" msgid="4941132112640503022">"ຜ່ານມາ"</string>
     <string name="custom_theme" msgid="1618351922263478163">"ກຳນົດເອງ"</string>
     <string name="custom_theme_title" msgid="2192300350332693631">"ແບບກຳນົດເອງ <xliff:g id="ID_1">%1$d</xliff:g>"</string>

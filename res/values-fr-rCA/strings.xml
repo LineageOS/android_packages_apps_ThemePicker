@@ -125,7 +125,7 @@
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"Aucun"</string>
     <string name="notifications_section_title" msgid="4283049750376871538">"Notifications"</string>
-    <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Affichez les notifications sur l\'écran de verrouillage"</string>
+    <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Afficher les notifications sur l\'écran de verrouillage"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Masquez les notifications sur l\'écran de verrouillage"</string>
     <string name="more_settings_section_title" msgid="8524741850115625404">"Plus d\'options"</string>
     <string name="more_settings_section_description" msgid="8787768566854880683">"Texte sur l\'écran de verrouillage, En cours de lecture, etc."</string>
