@@ -50,20 +50,22 @@ object ClockCarouselViewBinder {
                 launch { viewModel.isCarouselVisible.collect { carouselView.isVisible = it } }
 
                 launch {
-                    combine(viewModel.selectedClockSize, viewModel.allClockIds, ::Pair).collect {
-                        (size, allClockIds) ->
+                    combine(viewModel.selectedClockSize, viewModel.allClocks, ::Pair).collect {
+                        (size, allClocks) ->
                         carouselView.setUpClockCarouselView(
                             clockSize = size,
-                            clockIds = allClockIds,
-                            onClockSelected = { clockId -> viewModel.setSelectedClock(clockId) },
+                            clocks = allClocks,
+                            onClockSelected = { clock ->
+                                viewModel.setSelectedClock(clock.clockId)
+                            },
                             isTwoPaneAndSmallWidth = isTwoPaneAndSmallWidth,
                         )
                     }
                 }
 
                 launch {
-                    viewModel.allClockIds.collect {
-                        it.forEach { clockId -> clockViewFactory.updateTimeFormat(clockId) }
+                    viewModel.allClocks.collect {
+                        it.forEach { clock -> clockViewFactory.updateTimeFormat(clock.clockId) }
                     }
                 }
 
