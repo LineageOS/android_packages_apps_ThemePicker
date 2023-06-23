@@ -43,7 +43,8 @@
             android:layout_width="@dimen/screen_preview_width"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:clipChildren="false">
+            android:clipChildren="false"
+            android:importantForAccessibility="noHideDescendants">
             <com.android.customization.picker.clock.ui.view.ClockHostView
                 android:id="@+id/clock_host_view_0"
                 android:layout_width="match_parent"
@@ -74,7 +75,8 @@
             android:layout_width="@dimen/screen_preview_width"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:clipChildren="false">
+            android:clipChildren="false"
+            android:importantForAccessibility="noHideDescendants">
             <com.android.customization.picker.clock.ui.view.ClockHostView
                 android:id="@+id/clock_host_view_1"
                 android:layout_width="match_parent"
@@ -107,7 +109,8 @@
             android:layout_width="@dimen/screen_preview_width"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:clipChildren="false">
+            android:clipChildren="false"
+            android:importantForAccessibility="noHideDescendants">
             <com.android.customization.picker.clock.ui.view.ClockHostView
                 android:id="@+id/clock_host_view_2"
                 android:layout_width="match_parent"
@@ -138,7 +141,8 @@
             android:layout_width="@dimen/screen_preview_width"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:clipChildren="false">
+            android:clipChildren="false"
+            android:importantForAccessibility="noHideDescendants">
             <com.android.customization.picker.clock.ui.view.ClockHostView
                 android:id="@+id/clock_host_view_3"
                 android:layout_width="match_parent"
@@ -169,7 +173,8 @@
             android:layout_width="@dimen/screen_preview_width"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:clipChildren="false">
+            android:clipChildren="false"
+            android:importantForAccessibility="noHideDescendants">
             <com.android.customization.picker.clock.ui.view.ClockHostView
                 android:id="@+id/clock_host_view_4"
                 android:layout_width="match_parent"
