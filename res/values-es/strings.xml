@@ -22,8 +22,7 @@
     <string name="clock_title" msgid="1974314575211361352">"Reloj personalizado"</string>
     <string name="clock_description" msgid="3563839327378948">"Elige un reloj personalizado"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Cambiar reloj personalizado"</string>
-    <!-- no translation found for clock_settings_title (2050906379377120431) -->
-    <skip />
+    <string name="clock_settings_title" msgid="2050906379377120431">"Color/tamaño (reloj)"</string>
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"Color y tamaño del reloj"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>"</string>
     <string name="clock_color" msgid="8081608867289156163">"Color"</string>
@@ -102,7 +101,7 @@
     <string name="mode_title" msgid="2394873501427436055">"Tema oscuro"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"Inhabilitado temporalmente debido a Ahorro de batería"</string>
     <string name="mode_changed" msgid="2243581369395418584">"Tema cambiado"</string>
-    <string name="themed_icon_title" msgid="7312460430471956558">"Iconos con tema"</string>
+    <string name="themed_icon_title" msgid="7312460430471956558">"Iconos temáticos"</string>
     <string name="beta_title" msgid="8703819523760746458">"Beta"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"Cambiar cuadrícula de aplicaciones"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"Colores del fondo"</string>
@@ -117,8 +116,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Acceso izquierdo"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Acceso derecho"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Ninguno"</string>
-    <!-- no translation found for keyguard_affordance_enablement_dialog_headline (365379085932610314) -->
-    <skip />
+    <string name="keyguard_affordance_enablement_dialog_headline" msgid="365379085932610314">"No puede añadir el acceso directo"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Abrir <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Para añadir la aplicación <xliff:g id="APPNAME">%1$s</xliff:g> como acceso directo:"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Hecho"</string>
