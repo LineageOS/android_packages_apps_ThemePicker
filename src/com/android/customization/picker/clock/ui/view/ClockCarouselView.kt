@@ -28,6 +28,7 @@ import androidx.core.view.doOnPreDraw
 import androidx.core.view.get
 import androidx.core.view.isNotEmpty
 import com.android.customization.picker.clock.shared.ClockSize
+import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselItemViewModel
 import com.android.systemui.plugins.ClockController
 import com.android.wallpaper.R
 import com.android.wallpaper.picker.FixedWidthDisplayRatioFrameLayout
@@ -70,15 +71,15 @@ class ClockCarouselView(
 
     fun setUpClockCarouselView(
         clockSize: ClockSize,
-        clockIds: List<String>,
-        onClockSelected: (clockId: String) -> Unit,
+        clocks: List<ClockCarouselItemViewModel>,
+        onClockSelected: (clock: ClockCarouselItemViewModel) -> Unit,
         isTwoPaneAndSmallWidth: Boolean,
     ) {
         if (isTwoPaneAndSmallWidth) {
             overrideScreenPreviewWidth()
         }
 
-        adapter = ClockCarouselAdapter(clockSize, clockIds, clockViewFactory, onClockSelected)
+        adapter = ClockCarouselAdapter(clockSize, clocks, clockViewFactory, onClockSelected)
         carousel.setAdapter(adapter)
         carousel.refresh()
         motionLayout.setTransitionListener(
@@ -118,11 +119,11 @@ class ClockCarouselView(
                 }
 
                 private fun prepareDynamicClockView(motionLayout: MotionLayout, endId: Int) {
-                    val scalingDownClockId = adapter.clockIds[carousel.currentIndex]
+                    val scalingDownClockId = adapter.clocks[carousel.currentIndex].clockId
                     val scalingUpIdx =
                         if (endId == R.id.next) (carousel.currentIndex + 1) % adapter.count()
                         else (carousel.currentIndex - 1 + adapter.count()) % adapter.count()
-                    val scalingUpClockId = adapter.clockIds[scalingUpIdx]
+                    val scalingUpClockId = adapter.clocks[scalingUpIdx].clockId
                     offCenterClockController = clockViewFactory.getController(scalingDownClockId)
                     toCenterClockController = clockViewFactory.getController(scalingUpClockId)
                     offCenterClockScaleView = motionLayout.findViewById(R.id.clock_scale_view_2)
@@ -298,13 +299,13 @@ class ClockCarouselView(
 
     private class ClockCarouselAdapter(
         val clockSize: ClockSize,
-        val clockIds: List<String>,
+        val clocks: List<ClockCarouselItemViewModel>,
         private val clockViewFactory: ClockViewFactory,
-        private val onClockSelected: (clockId: String) -> Unit
+        private val onClockSelected: (clock: ClockCarouselItemViewModel) -> Unit
     ) : Carousel.Adapter {
 
         override fun count(): Int {
-            return clockIds.size
+            return clocks.size
         }
 
         override fun populate(view: View?, index: Int) {
@@ -318,7 +319,7 @@ class ClockCarouselView(
             val clockHostView =
                 getClockHostViewId(viewRoot.id)?.let { viewRoot.findViewById(it) as? ClockHostView }
                     ?: return
-            val clockId = clockIds[index]
+            val clockId = clocks[index].clockId
 
             // Add the clock view to the cloc host view
             clockHostView.removeAllViews()
@@ -333,6 +334,11 @@ class ClockCarouselView(
             clockHostView.addView(clockView)
 
             val isMiddleView = isMiddleView(viewRoot.id)
+
+            // Accessibility
+            viewRoot.contentDescription = clocks[index].getContentDescription(view.resources)
+            viewRoot.isSelected = isMiddleView
+
             when (clockSize) {
                 ClockSize.DYNAMIC ->
                     initializeDynamicClockView(
@@ -411,7 +417,7 @@ class ClockCarouselView(
         }
 
         override fun onNewItem(index: Int) {
-            onClockSelected.invoke(clockIds[index])
+            onClockSelected.invoke(clocks[index])
         }
     }
 
