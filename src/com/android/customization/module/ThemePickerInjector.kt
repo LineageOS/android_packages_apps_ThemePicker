@@ -51,6 +51,8 @@ import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
 import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
 import com.android.customization.picker.clock.ui.viewmodel.ClockSettingsViewModel
+import com.android.customization.picker.clock.utils.ClockDescriptionUtils
+import com.android.customization.picker.clock.utils.ThemePickerClockDescriptionUtils
 import com.android.customization.picker.color.data.repository.ColorPickerRepositoryImpl
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
 import com.android.customization.picker.color.domain.interactor.ColorPickerSnapshotRestorer
@@ -115,6 +117,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
     private var themedIconSnapshotRestorer: ThemedIconSnapshotRestorer? = null
     private var themedIconInteractor: ThemedIconInteractor? = null
     private var clockSettingsViewModelFactory: ClockSettingsViewModel.Factory? = null
+    private var clockDescriptionUtils: ClockDescriptionUtils? = null
     private var gridInteractor: GridInteractor? = null
     private var gridSnapshotRestorer: GridSnapshotRestorer? = null
     private var gridScreenViewModelFactory: GridScreenViewModel.Factory? = null
@@ -532,6 +535,11 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                         ?: false
                 }
                 .also { clockSettingsViewModelFactory = it }
+    }
+
+    override fun getClockDescriptionUtils(): ClockDescriptionUtils {
+        return clockDescriptionUtils
+            ?: ThemePickerClockDescriptionUtils().also { clockDescriptionUtils = it }
     }
 
     fun getGridScreenViewModelFactory(
