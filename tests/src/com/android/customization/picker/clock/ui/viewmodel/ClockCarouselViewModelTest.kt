@@ -48,11 +48,12 @@ class ClockCarouselViewModelTest {
         FakeClockPickerRepository(
             listOf(
                 ClockMetadataModel(
-                    "clock0",
-                    "clock0",
-                    null,
-                    ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS,
-                    null,
+                    clockId = "clock0",
+                    name = "clock0",
+                    isSelected = true,
+                    selectedColorId = null,
+                    colorToneProgress = ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS,
+                    seedColor = null,
                 ),
             )
         )
