@@ -47,8 +47,6 @@ import androidx.annotation.Nullable;
 import com.android.customization.model.color.ColorOption;
 import com.android.customization.model.grid.GridOption;
 import com.android.customization.model.theme.ThemeBundle;
-import com.android.wallpaper.module.Injector;
-import com.android.wallpaper.module.InjectorProvider;
 import com.android.wallpaper.module.NoOpUserEventLogger;
 import com.android.wallpaper.module.WallpaperPreferences;
 import com.android.wallpaper.module.WallpaperStatusChecker;
@@ -61,16 +59,17 @@ import java.util.Objects;
  */
 public class StatsLogUserEventLogger extends NoOpUserEventLogger implements ThemesUserEventLogger {
 
-    private static final String TAG = "StatsLogUserEventLogger";
     private final Context mContext;
     private final WallpaperPreferences mPreferences;
     private final WallpaperStatusChecker mWallpaperStatusChecker;
 
-    public StatsLogUserEventLogger(Context appContext) {
+    public StatsLogUserEventLogger(
+            Context appContext,
+            WallpaperPreferences preferences,
+            WallpaperStatusChecker wallpaperStatusChecker) {
         mContext = appContext;
-        Injector injector = InjectorProvider.getInjector();
-        mPreferences = injector.getPreferences(appContext);
-        mWallpaperStatusChecker = injector.getWallpaperStatusChecker();
+        mPreferences = preferences;
+        mWallpaperStatusChecker = wallpaperStatusChecker;
     }
 
     @Override
@@ -140,7 +139,7 @@ public class StatsLogUserEventLogger extends NoOpUserEventLogger implements Them
 
     @Override
     public void logSnapshot() {
-        final boolean isLockWallpaperSet = mWallpaperStatusChecker.isLockWallpaperSet(mContext);
+        final boolean isLockWallpaperSet = mWallpaperStatusChecker.isLockWallpaperSet();
         final String homeCollectionId = mPreferences.getHomeWallpaperCollectionId();
         final String homeRemoteId = mPreferences.getHomeWallpaperRemoteId();
         final String effects = mPreferences.getHomeWallpaperEffects();
