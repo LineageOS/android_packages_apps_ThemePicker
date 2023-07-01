@@ -19,6 +19,7 @@ import com.android.customization.model.themedicon.domain.interactor.ThemedIconIn
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconSnapshotRestorer;
 import com.android.customization.picker.clock.ui.view.ClockViewFactory;
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel;
+import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor;
 import com.android.customization.picker.color.ui.section.ColorSectionController2;
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel;
 import com.android.customization.picker.notifications.ui.section.NotificationSectionController;
@@ -61,6 +62,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
     private final DarkModeSnapshotRestorer mDarkModeSnapshotRestorer;
     private final ThemedIconSnapshotRestorer mThemedIconSnapshotRestorer;
     private final ThemedIconInteractor mThemedIconInteractor;
+    private final ColorPickerInteractor mColorPickerInteractor;
 
     public DefaultCustomizationSections(
             ColorPickerViewModel.Factory colorPickerViewModelFactory,
@@ -73,7 +75,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
             ClockViewFactory clockViewFactory,
             DarkModeSnapshotRestorer darkModeSnapshotRestorer,
             ThemedIconSnapshotRestorer themedIconSnapshotRestorer,
-            ThemedIconInteractor themedIconInteractor) {
+            ThemedIconInteractor themedIconInteractor,
+            ColorPickerInteractor colorPickerInteractor) {
         mColorPickerViewModelFactory = colorPickerViewModelFactory;
         mKeyguardQuickAffordancePickerInteractor = keyguardQuickAffordancePickerInteractor;
         mKeyguardQuickAffordancePickerViewModelFactory =
@@ -85,6 +88,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
         mDarkModeSnapshotRestorer = darkModeSnapshotRestorer;
         mThemedIconSnapshotRestorer = themedIconSnapshotRestorer;
         mThemedIconInteractor = themedIconInteractor;
+        mColorPickerInteractor = colorPickerInteractor;
     }
 
     @Override
@@ -121,6 +125,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
                         sectionNavigationController,
                         wallpaperInteractor,
                         mThemedIconInteractor,
+                        mColorPickerInteractor,
                         wallpaperManager,
                         isTwoPaneAndSmallWidth,
                         savedInstanceState)
@@ -134,6 +139,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
                                 wallpaperPreviewNavigator,
                                 wallpaperInteractor,
                                 mThemedIconInteractor,
+                                mColorPickerInteractor,
                                 wallpaperManager,
                                 isTwoPaneAndSmallWidth,
                                 savedInstanceState));

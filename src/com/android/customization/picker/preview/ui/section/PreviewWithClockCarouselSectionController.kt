@@ -40,6 +40,7 @@ import com.android.customization.picker.clock.ui.fragment.ClockSettingsFragment
 import com.android.customization.picker.clock.ui.view.ClockCarouselView
 import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
+import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
 import com.android.wallpaper.R
 import com.android.wallpaper.model.CustomizationSectionController.CustomizationSectionNavigationController
 import com.android.wallpaper.model.WallpaperColorsViewModel
@@ -71,6 +72,7 @@ class PreviewWithClockCarouselSectionController(
     private val navigationController: CustomizationSectionNavigationController,
     wallpaperInteractor: WallpaperInteractor,
     themedIconInteractor: ThemedIconInteractor,
+    colorPickerInteractor: ColorPickerInteractor,
     wallpaperManager: WallpaperManager,
     private val isTwoPaneAndSmallWidth: Boolean,
     savedInstanceState: Bundle?,
@@ -85,6 +87,7 @@ class PreviewWithClockCarouselSectionController(
         wallpaperPreviewNavigator,
         wallpaperInteractor,
         themedIconInteractor,
+        colorPickerInteractor,
         wallpaperManager,
         isTwoPaneAndSmallWidth,
         savedInstanceState,
