@@ -22,6 +22,7 @@
     <string name="clock_title" msgid="1974314575211361352">"কাস্টম ঘড়ি"</string>
     <string name="clock_description" msgid="3563839327378948">"কাস্টম ঘড়ি বেছে নিন"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"কাস্টম ঘড়ি পরিবর্তন করুন"</string>
+    <string name="select_clock_action_description" msgid="5025888763471843648">"ঘড়ির ডায়ালের বিকল্প <xliff:g id="ID_1">%1$s</xliff:g>"</string>
     <string name="clock_settings_title" msgid="2050906379377120431">"ঘড়ির রঙ &amp; সাইজ"</string>
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"ঘড়ির রঙ ও সাইজ"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>"</string>
