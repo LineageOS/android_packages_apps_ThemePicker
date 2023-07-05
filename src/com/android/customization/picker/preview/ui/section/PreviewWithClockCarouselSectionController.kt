@@ -46,6 +46,7 @@ import com.android.wallpaper.model.WallpaperPreviewNavigator
 import com.android.wallpaper.module.CurrentWallpaperInfoFactory
 import com.android.wallpaper.module.CustomizationSections
 import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInteractor
+import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewClickView
 import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewSectionController
 import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewView
 import com.android.wallpaper.util.DisplayUtils
@@ -100,6 +101,8 @@ class PreviewWithClockCarouselSectionController(
     override fun createView(context: Context): ScreenPreviewView {
         val view = super.createView(context)
         if (screen == CustomizationSections.Screen.LOCK_SCREEN) {
+            val screenPreviewClickView: ScreenPreviewClickView =
+                view.findViewById(R.id.screen_preview_click_view)
             val clockColorAndSizeButtonStub: ViewStub =
                 view.requireViewById(R.id.clock_color_and_size_button)
             clockColorAndSizeButtonStub.layoutResource = R.layout.clock_color_and_size_button
@@ -162,8 +165,10 @@ class PreviewWithClockCarouselSectionController(
                         bindJob =
                             lifecycleOwner.lifecycleScope.launch {
                                 ClockCarouselViewBinder.bind(
+                                    context = context,
                                     carouselView = carouselView,
                                     singleClockView = singleClockView,
+                                    screenPreviewClickView = screenPreviewClickView,
                                     viewModel = viewModel,
                                     clockViewFactory = clockViewFactory,
                                     lifecycleOwner = lifecycleOwner,
