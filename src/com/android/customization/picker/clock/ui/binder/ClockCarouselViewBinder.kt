@@ -15,6 +15,7 @@
  */
 package com.android.customization.picker.clock.ui.binder
 
+import android.content.Context
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.core.view.isVisible
@@ -27,6 +28,7 @@ import com.android.customization.picker.clock.ui.view.ClockCarouselView
 import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
 import com.android.wallpaper.R
+import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewClickView
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 
@@ -34,8 +36,10 @@ object ClockCarouselViewBinder {
 
     @JvmStatic
     fun bind(
+        context: Context,
         carouselView: ClockCarouselView,
         singleClockView: ViewGroup,
+        screenPreviewClickView: ScreenPreviewClickView,
         viewModel: ClockCarouselViewModel,
         clockViewFactory: ClockViewFactory,
         lifecycleOwner: LifecycleOwner,
@@ -43,6 +47,20 @@ object ClockCarouselViewBinder {
     ) {
         carouselView.setClockViewFactory(clockViewFactory)
         clockViewFactory.updateRegionDarkness()
+        val carouselAccessibilityDelegate =
+            CarouselAccessibilityDelegate(
+                context,
+                scrollForwardCallback = {
+                    // Callback code for scrolling forward
+                    carouselView.transitionToNext()
+                },
+                scrollBackwardCallback = {
+                    // Callback code for scrolling backward
+                    carouselView.transitionToPrevious()
+                }
+            )
+        screenPreviewClickView.accessibilityDelegate = carouselAccessibilityDelegate
+
         val singleClockHostView =
             singleClockView.requireViewById<FrameLayout>(R.id.single_clock_host_view)
         lifecycleOwner.lifecycleScope.launch {
@@ -71,6 +89,8 @@ object ClockCarouselViewBinder {
 
                 launch {
                     viewModel.selectedIndex.collect { selectedIndex ->
+                        carouselAccessibilityDelegate.contentDescriptionOfSelectedClock =
+                            carouselView.getContentDescription(selectedIndex)
                         carouselView.setSelectedClockIndex(selectedIndex)
                     }
                 }
