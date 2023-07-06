@@ -16,6 +16,7 @@
 package com.android.customization.picker.clock.ui.view
 
 import android.content.Context
+import android.content.res.Resources
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -60,6 +61,7 @@ class ClockCarouselView(
         val clockCarousel = LayoutInflater.from(context).inflate(R.layout.clock_carousel, this)
         carousel = clockCarousel.requireViewById(R.id.carousel)
         motionLayout = clockCarousel.requireViewById(R.id.motion_container)
+        motionLayout.contentDescription = context.getString(R.string.custom_clocks_label)
     }
 
     /**
@@ -67,6 +69,24 @@ class ClockCarouselView(
      */
     fun setClockViewFactory(factory: ClockViewFactory) {
         clockViewFactory = factory
+    }
+
+    fun transitionToNext() {
+        val index = (carousel.currentIndex + 1) % carousel.count
+        if (index < carousel.count && index > 0) {
+            carousel.transitionToIndex(index, 0)
+        }
+    }
+
+    fun transitionToPrevious() {
+        val index = (carousel.currentIndex - 1) % carousel.count
+        if (index < carousel.count && index > 0) {
+            carousel.transitionToIndex(index, 0)
+        }
+    }
+
+    fun getContentDescription(index: Int): String {
+        return adapter.getContentDescription(index, resources)
     }
 
     fun setUpClockCarouselView(
@@ -304,6 +324,10 @@ class ClockCarouselView(
         private val onClockSelected: (clock: ClockCarouselItemViewModel) -> Unit
     ) : Carousel.Adapter {
 
+        fun getContentDescription(index: Int, resources: Resources): String {
+            return clocks[index].getContentDescription(resources)
+        }
+
         override fun count(): Int {
             return clocks.size
         }
@@ -336,7 +360,7 @@ class ClockCarouselView(
             val isMiddleView = isMiddleView(viewRoot.id)
 
             // Accessibility
-            viewRoot.contentDescription = clocks[index].getContentDescription(view.resources)
+            viewRoot.contentDescription = getContentDescription(index, view.resources)
             viewRoot.isSelected = isMiddleView
 
             when (clockSize) {
