@@ -19,6 +19,7 @@ import android.app.UiModeManager
 import android.app.WallpaperManager
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
@@ -541,7 +542,7 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
                 .also { clockSettingsViewModelFactory = it }
     }
 
-    override fun getClockDescriptionUtils(): ClockDescriptionUtils {
+    override fun getClockDescriptionUtils(resources: Resources): ClockDescriptionUtils {
         return clockDescriptionUtils
             ?: ThemePickerClockDescriptionUtils().also { clockDescriptionUtils = it }
     }
