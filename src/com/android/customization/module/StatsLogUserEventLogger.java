@@ -70,46 +70,40 @@ public class StatsLogUserEventLogger extends NoOpUserEventLogger implements Them
 
     @Override
     public void logAppLaunched(Intent launchSource) {
-        new SysUiStatsLogger()
-                .setAction(STYLE_UICHANGED__ACTION__APP_LAUNCHED)
+        new SysUiStatsLogger(STYLE_UICHANGED__ACTION__APP_LAUNCHED)
                 .setLaunchedPreference(getAppLaunchSource(launchSource))
                 .log();
     }
 
     @Override
     public void logResumed(boolean provisioned, boolean wallpaper) {
-        new SysUiStatsLogger()
-                .setAction(StyleEnums.ONRESUME)
+        new SysUiStatsLogger(StyleEnums.ONRESUME)
                 .log();
     }
 
     @Override
     public void logStopped() {
-        new SysUiStatsLogger()
-                .setAction(StyleEnums.ONSTOP)
+        new SysUiStatsLogger(StyleEnums.ONSTOP)
                 .log();
     }
 
     @Override
     public void logActionClicked(String collectionId, int actionLabelResId) {
-        new SysUiStatsLogger()
-                .setAction(StyleEnums.WALLPAPER_EXPLORE)
+        new SysUiStatsLogger(StyleEnums.WALLPAPER_EXPLORE)
                 .setWallpaperCategoryHash(getIdHashCode(collectionId))
                 .log();
     }
 
     @Override
     public void logIndividualWallpaperSelected(String collectionId) {
-        new SysUiStatsLogger()
-                .setAction(StyleEnums.WALLPAPER_SELECT)
+        new SysUiStatsLogger(StyleEnums.WALLPAPER_SELECT)
                 .setWallpaperCategoryHash(getIdHashCode(collectionId))
                 .log();
     }
 
     @Override
     public void logCategorySelected(String collectionId) {
-        new SysUiStatsLogger()
-                .setAction(StyleEnums.WALLPAPER_OPEN_CATEGORY)
+        new SysUiStatsLogger(StyleEnums.WALLPAPER_OPEN_CATEGORY)
                 .setWallpaperCategoryHash(getIdHashCode(collectionId))
                 .log();
     }
@@ -127,7 +121,7 @@ public class StatsLogUserEventLogger extends NoOpUserEventLogger implements Them
         String lockWallpaperId = isLockWallpaperSet ? mPreferences.getLockWallpaperRemoteId()
                 : homeWallpaperId;
 
-        new SysUiStatsLogger().setAction(StyleEnums.SNAPSHOT)
+        new SysUiStatsLogger(StyleEnums.SNAPSHOT)
                 .setWallpaperCategoryHash(getIdHashCode(homeCollectionId))
                 .setWallpaperIdHash(getIdHashCode(homeWallpaperId))
                 .setLockWallpaperCategoryHash(getIdHashCode(lockCollectionId))
@@ -143,8 +137,7 @@ public class StatsLogUserEventLogger extends NoOpUserEventLogger implements Them
     @Override
     public void logWallpaperSet(String collectionId, @Nullable String wallpaperId,
             @Nullable String effects) {
-        new SysUiStatsLogger()
-                .setAction(StyleEnums.WALLPAPER_APPLIED)
+        new SysUiStatsLogger(StyleEnums.WALLPAPER_APPLIED)
                 .setWallpaperCategoryHash(getIdHashCode(collectionId))
                 .setWallpaperIdHash(getIdHashCode(wallpaperId))
                 .setEffectIdHash(getIdHashCode(effects))
@@ -154,8 +147,7 @@ public class StatsLogUserEventLogger extends NoOpUserEventLogger implements Them
     @Override
     public void logEffectApply(String effect, @EffectStatus int status, long timeElapsedMillis,
             int resultCode) {
-        new SysUiStatsLogger()
-                .setAction(StyleEnums.WALLPAPER_EFFECT_APPLIED)
+        new SysUiStatsLogger(StyleEnums.WALLPAPER_EFFECT_APPLIED)
                 .setEffectPreference(status)
                 .setEffectIdHash(getIdHashCode(effect))
                 .setTimeElapsed(timeElapsedMillis)
@@ -165,8 +157,7 @@ public class StatsLogUserEventLogger extends NoOpUserEventLogger implements Them
 
     @Override
     public void logEffectProbe(String effect, @EffectStatus int status) {
-        new SysUiStatsLogger()
-                .setAction(StyleEnums.WALLPAPER_EFFECT_PROBE)
+        new SysUiStatsLogger(StyleEnums.WALLPAPER_EFFECT_PROBE)
                 .setEffectPreference(status)
                 .setEffectIdHash(getIdHashCode(effect))
                 .log();
@@ -180,8 +171,7 @@ public class StatsLogUserEventLogger extends NoOpUserEventLogger implements Them
 
     @Override
     public void logThemeSelected(ThemeBundle theme, boolean isCustomTheme) {
-        new SysUiStatsLogger()
-                .setAction(StyleEnums.PICKER_SELECT)
+        new SysUiStatsLogger(StyleEnums.PICKER_SELECT)
                 .setColorPackageHash(
                         Objects.hashCode(getThemePackage(theme, OVERLAY_CATEGORY_COLOR)))
                 .setFontPackageHash(Objects.hashCode(getThemePackage(theme, OVERLAY_CATEGORY_FONT)))
@@ -192,8 +182,7 @@ public class StatsLogUserEventLogger extends NoOpUserEventLogger implements Them
 
     @Override
     public void logThemeApplied(ThemeBundle theme, boolean isCustomTheme) {
-        new SysUiStatsLogger()
-                .setAction(StyleEnums.PICKER_APPLIED)
+        new SysUiStatsLogger(StyleEnums.PICKER_APPLIED)
                 .setColorPackageHash(
                         Objects.hashCode(getThemePackage(theme, OVERLAY_CATEGORY_COLOR)))
                 .setFontPackageHash(Objects.hashCode(getThemePackage(theme, OVERLAY_CATEGORY_FONT)))
@@ -204,8 +193,7 @@ public class StatsLogUserEventLogger extends NoOpUserEventLogger implements Them
 
     @Override
     public void logColorApplied(int action, ColorOption colorOption) {
-        new SysUiStatsLogger()
-                .setAction(action)
+        new SysUiStatsLogger(action)
                 .setColorPreference(colorOption.getIndex())
                 .setColorVariant(colorOption.getStyle().ordinal() + 1)
                 .log();
@@ -213,16 +201,14 @@ public class StatsLogUserEventLogger extends NoOpUserEventLogger implements Them
 
     @Override
     public void logGridSelected(GridOption grid) {
-        new SysUiStatsLogger()
-                .setAction(StyleEnums.PICKER_SELECT)
+        new SysUiStatsLogger(StyleEnums.PICKER_SELECT)
                 .setLauncherGrid(grid.cols)
                 .log();
     }
 
     @Override
     public void logGridApplied(GridOption grid) {
-        new SysUiStatsLogger()
-                .setAction(StyleEnums.PICKER_APPLIED)
+        new SysUiStatsLogger(StyleEnums.PICKER_APPLIED)
                 .setLauncherGrid(grid.cols)
                 .log();
     }
