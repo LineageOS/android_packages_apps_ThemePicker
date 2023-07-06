@@ -183,8 +183,14 @@ open class ThemePickerInjector : WallpaperPicker2Injector(), CustomizationInject
 
     @Synchronized
     override fun getUserEventLogger(context: Context): ThemesUserEventLogger {
-        return if (userEventLogger != null) userEventLogger as ThemesUserEventLogger
-        else StatsLogUserEventLogger(context.applicationContext).also { userEventLogger = it }
+        val appContext = context.applicationContext
+        return userEventLogger as? ThemesUserEventLogger
+            ?: StatsLogUserEventLogger(
+                    appContext,
+                    getPreferences(appContext),
+                    getWallpaperStatusChecker(appContext),
+                )
+                .also { userEventLogger = it }
     }
 
     @Synchronized
