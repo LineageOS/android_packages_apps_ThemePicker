@@ -136,4 +136,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Pangunahing expressive na tema"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Default na opsyon sa kulay"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Opsyon sa kulay na <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Mag-swipe pakaliwa para pumili ng ibang clock face"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Mag-swipe pakanan para pumili ng ibang clock face"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"Mga Custom na Orasan"</string>
 </resources>

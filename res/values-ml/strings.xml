@@ -136,4 +136,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"പ്രാഥമിക എക്‌സ്‌പ്രസീവ് തീം"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"ഡിഫോൾട്ട് വർണ്ണ ഓപ്‌ഷൻ"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"വർണ്ണ ഓപ്‌ഷൻ <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"മറ്റൊരു ക്ലോക്ക് ഫേസ് തിരഞ്ഞെടുക്കാൻ ഇടതുഭാഗത്തേക്ക് സ്വൈപ്പ് ചെയ്യുക"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"മറ്റൊരു ക്ലോക്ക് ഫേസ് തിരഞ്ഞെടുക്കാൻ വലതുഭാഗത്തേക്ക് സ്വൈപ്പ് ചെയ്യുക"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"ഇഷ്‌ടാനുസൃത ക്ലോക്കുകൾ"</string>
 </resources>
