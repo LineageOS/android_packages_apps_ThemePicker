@@ -22,6 +22,7 @@
     <string name="clock_title" msgid="1974314575211361352">"అనుకూల గడియారం"</string>
     <string name="clock_description" msgid="3563839327378948">"అనుకూల గడియారాన్ని ఎంచుకోండి"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"అనుకూల గడియారాన్ని మార్చండి"</string>
+    <string name="select_clock_action_description" msgid="5025888763471843648">"గడియారం ఫేస్ ఆప్షన్ <xliff:g id="ID_1">%1$s</xliff:g>"</string>
     <string name="clock_settings_title" msgid="2050906379377120431">"గడియారం రంగు &amp; సైజు"</string>
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"గడియారం రంగు &amp; సైజు"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>"</string>
@@ -135,4 +136,10 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"ప్రాథమిక ఎక్స్‌ప్రెషిప్ రూపం"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"ఆటోమేటిక్ సెట్టింగ్ రంగు ఆప్షన్"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"రంగు ఆప్షన్ <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <!-- no translation found for scroll_forward_and_select (6156132388656395769) -->
+    <skip />
+    <!-- no translation found for scroll_backward_and_select (5472202348434803757) -->
+    <skip />
+    <!-- no translation found for custom_clocks_label (8168419717593569347) -->
+    <skip />
 </resources>
