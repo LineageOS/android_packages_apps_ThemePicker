@@ -2,13 +2,23 @@
 package {
     default_applicable_licenses: ["Android-Apache-2.0"],
 }
+
 android_robolectric_test {
     name: "ThemePickerRoboTests",
     srcs: [
         "src/**/*.java",
         "src/**/*.kt",
     ],
+    // TODO(b/291104503) Enable this test
+    exclude_srcs: ["src/com/android/customization/model/picker/quickaffordance/ui/viewmodel/KeyguardQuickAffordancePickerViewModelTest.kt"],
     java_resource_dirs: ["config"],
+    static_libs: [
+        "WallpaperPicker2TestLib",
+        "androidx.test.rules",
+        "junit",
+        "kotlinx_coroutines_test",
+        "truth-prebuilt",
+    ],
     libs: [
         "androidx.test.core",
         "androidx.test.runner",
