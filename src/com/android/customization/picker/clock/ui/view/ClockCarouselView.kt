@@ -101,7 +101,13 @@ class ClockCarouselView(
 
         adapter = ClockCarouselAdapter(clockSize, clocks, clockViewFactory, onClockSelected)
         carousel.setAdapter(adapter)
-        carousel.refresh()
+        val indexOfSelectedClock =
+            clocks
+                .indexOfFirst { it.isSelected }
+                // If not found, default to the first clock as selected:
+                .takeIf { it != -1 }
+                ?: 0
+        carousel.jumpToIndex(indexOfSelectedClock)
         motionLayout.setTransitionListener(
             object : MotionLayout.TransitionListener {
 
@@ -265,9 +271,11 @@ class ClockCarouselView(
     fun setSelectedClockIndex(
         index: Int,
     ) {
-        // jumpToIndex to the same position can cause the views unnecessarily populate again.
-        // Only call jumpToIndex when the jump-to index is different from the current carousel.
-        if (index != carousel.currentIndex) {
+        // 1. setUpClockCarouselView() can possibly not be called before setSelectedClockIndex().
+        //    We need to check if index out of bound.
+        // 2. jumpToIndex() to the same position can cause the views unnecessarily populate again.
+        //    We only call jumpToIndex when the index is different from the current carousel.
+        if (index < carousel.count && index != carousel.currentIndex) {
             carousel.jumpToIndex(index)
         }
     }

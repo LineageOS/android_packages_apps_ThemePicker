@@ -57,7 +57,7 @@ class ClockPickerRepositoryImpl(
                         registry
                             .getClocks()
                             .filter { "NOT_IN_USE" !in it.clockId }
-                            .map { it.toModel() }
+                            .map { it.toModel(isSelected = it.clockId == registry.currentClockId) }
                     trySend(allClocks)
                 }
 
@@ -91,6 +91,7 @@ class ClockPickerRepositoryImpl(
                             .getClocks()
                             .find { clockMetadata -> clockMetadata.clockId == currentClockId }
                             ?.toModel(
+                                isSelected = true,
                                 selectedColorId = metadata?.getSelectedColorId(),
                                 colorTone = metadata?.getColorTone()
                                         ?: ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS,
@@ -178,6 +179,7 @@ class ClockPickerRepositoryImpl(
 
     /** By default, [ClockMetadataModel] has no color information unless specified. */
     private fun ClockMetadata.toModel(
+        isSelected: Boolean,
         selectedColorId: String? = null,
         @IntRange(from = 0, to = 100) colorTone: Int = 0,
         @ColorInt seedColor: Int? = null,
@@ -185,6 +187,7 @@ class ClockPickerRepositoryImpl(
         return ClockMetadataModel(
             clockId = clockId,
             name = name,
+            isSelected = isSelected,
             selectedColorId = selectedColorId,
             colorToneProgress = colorTone,
             seedColor = seedColor,
