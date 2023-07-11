@@ -45,11 +45,12 @@ open class FakeClockPickerRepository(clocks: List<ClockMetadataModel> = fakeCloc
             val selectedClock = fakeClocks.find { clock -> clock.clockId == selectedClockId }
             checkNotNull(selectedClock)
             ClockMetadataModel(
-                selectedClock.clockId,
-                selectedClock.name,
-                selectedColor,
-                colorTone,
-                seedColor,
+                clockId = selectedClock.clockId,
+                name = selectedClock.name,
+                isSelected = true,
+                selectedColorId = selectedColor,
+                colorToneProgress = colorTone,
+                seedColor = seedColor,
             )
         }
 
@@ -81,10 +82,10 @@ open class FakeClockPickerRepository(clocks: List<ClockMetadataModel> = fakeCloc
         const val CLOCK_ID_3 = "clock3"
         val fakeClocks =
             listOf(
-                ClockMetadataModel(CLOCK_ID_0, "clock0", null, 50, null),
-                ClockMetadataModel(CLOCK_ID_1, "clock1", null, 50, null),
-                ClockMetadataModel(CLOCK_ID_2, "clock2", null, 50, null),
-                ClockMetadataModel(CLOCK_ID_3, "clock3", null, 50, null),
+                ClockMetadataModel(CLOCK_ID_0, "clock0", true, null, 50, null),
+                ClockMetadataModel(CLOCK_ID_1, "clock1", false, null, 50, null),
+                ClockMetadataModel(CLOCK_ID_2, "clock2", false, null, 50, null),
+                ClockMetadataModel(CLOCK_ID_3, "clock3", false, null, 50, null),
             )
         const val CLOCK_COLOR_ID = "RED"
         const val CLOCK_COLOR_TONE_PROGRESS = 87
