@@ -20,7 +20,7 @@ import com.android.customization.module.CustomizationInjector
 import com.android.wallpaper.R
 import com.android.wallpaper.module.InjectorProvider
 
-class ClockCarouselItemViewModel(val clockId: String) {
+class ClockCarouselItemViewModel(val clockId: String, val isSelected: Boolean) {
 
     /** Description for accessibility purposes when a clock is selected. */
     fun getContentDescription(resources: Resources): String {
