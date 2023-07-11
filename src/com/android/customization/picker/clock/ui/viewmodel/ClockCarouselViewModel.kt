@@ -50,7 +50,7 @@ constructor(
             .mapLatest { allClocks ->
                 // Delay to avoid the case that the full list of clocks is not initiated.
                 delay(CLOCKS_EVENT_UPDATE_DELAY_MILLIS)
-                allClocks.map { ClockCarouselItemViewModel(it.clockId) }
+                allClocks.map { ClockCarouselItemViewModel(it.clockId, it.isSelected) }
             }
             .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
 
