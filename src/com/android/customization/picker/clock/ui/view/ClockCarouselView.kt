@@ -71,17 +71,31 @@ class ClockCarouselView(
         clockViewFactory = factory
     }
 
+    // This function is for the custom accessibility action to trigger a transition to the next
+    // carousel item. If the current item is the last item in the carousel, the next item
+    // will be the first item.
     fun transitionToNext() {
-        val index = (carousel.currentIndex + 1) % carousel.count
-        if (index < carousel.count && index > 0) {
-            carousel.transitionToIndex(index, 0)
+        if (carousel.count != 0) {
+            val index = (carousel.currentIndex + 1) % carousel.count
+            carousel.jumpToIndex(index)
+            // Explicitly called this since using transitionToIndex(index) leads to
+            // race-condition between announcement of content description of the correct clock-face
+            // and the selection of clock face itself
+            adapter.onNewItem(index)
         }
     }
 
+    // This function is for the custom accessibility action to trigger a transition to
+    // the previous carousel item. If the current item is the first item in the carousel,
+    // the previous item will be the last item.
     fun transitionToPrevious() {
-        val index = (carousel.currentIndex - 1) % carousel.count
-        if (index < carousel.count && index > 0) {
-            carousel.transitionToIndex(index, 0)
+        if (carousel.count != 0) {
+            val index = (carousel.currentIndex + carousel.count - 1) % carousel.count
+            carousel.jumpToIndex(index)
+            // Explicitly called this since using transitionToIndex(index) leads to
+            // race-condition between announcement of content description of the correct clock-face
+            // and the selection of clock face itself
+            adapter.onNewItem(index)
         }
     }
 
@@ -217,11 +231,13 @@ class ClockCarouselView(
                         }
                             ?: return
                     offCenterClockHostView.doOnPreDraw {
-                        it.pivotX = progress * it.width / 2
+                        it.pivotX =
+                            progress * it.width / 2 + (1 - progress) * getCenteredHostViewPivotX(it)
                         it.pivotY = progress * it.height / 2
                     }
                     toCenterClockHostView.doOnPreDraw {
-                        it.pivotX = (1 - progress) * it.width / 2
+                        it.pivotX =
+                            (1 - progress) * it.width / 2 + progress * getCenteredHostViewPivotX(it)
                         it.pivotY = (1 - progress) * it.height / 2
                     }
                     offCenterClockFrame.translationX =
@@ -425,7 +441,7 @@ class ClockCarouselView(
         ) {
             clockHostView.doOnPreDraw {
                 if (isMiddleView) {
-                    it.pivotX = 0F
+                    it.pivotX = getCenteredHostViewPivotX(it)
                     it.pivotY = 0F
                     clockView.translationX = 0F
                     clockView.translationY = 0F
@@ -513,6 +529,10 @@ class ClockCarouselView(
 
         fun isMiddleView(rootViewId: Int): Boolean {
             return rootViewId == R.id.item_view_2
+        }
+
+        fun getCenteredHostViewPivotX(hostView: View): Float {
+            return if (hostView.isLayoutRtl) hostView.width.toFloat() else 0F
         }
 
         private fun getTranslationDistance(
