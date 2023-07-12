@@ -231,11 +231,13 @@ class ClockCarouselView(
                         }
                             ?: return
                     offCenterClockHostView.doOnPreDraw {
-                        it.pivotX = progress * it.width / 2
+                        it.pivotX =
+                            progress * it.width / 2 + (1 - progress) * getCenteredHostViewPivotX(it)
                         it.pivotY = progress * it.height / 2
                     }
                     toCenterClockHostView.doOnPreDraw {
-                        it.pivotX = (1 - progress) * it.width / 2
+                        it.pivotX =
+                            (1 - progress) * it.width / 2 + progress * getCenteredHostViewPivotX(it)
                         it.pivotY = (1 - progress) * it.height / 2
                     }
                     offCenterClockFrame.translationX =
@@ -439,7 +441,7 @@ class ClockCarouselView(
         ) {
             clockHostView.doOnPreDraw {
                 if (isMiddleView) {
-                    it.pivotX = 0F
+                    it.pivotX = getCenteredHostViewPivotX(it)
                     it.pivotY = 0F
                     clockView.translationX = 0F
                     clockView.translationY = 0F
@@ -527,6 +529,10 @@ class ClockCarouselView(
 
         fun isMiddleView(rootViewId: Int): Boolean {
             return rootViewId == R.id.item_view_2
+        }
+
+        fun getCenteredHostViewPivotX(hostView: View): Float {
+            return if (hostView.isLayoutRtl) hostView.width.toFloat() else 0F
         }
 
         private fun getTranslationDistance(

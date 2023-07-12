@@ -33,6 +33,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.customization.picker.clock.shared.ClockSize
 import com.android.customization.picker.clock.ui.adapter.ClockSettingsTabAdapter
+import com.android.customization.picker.clock.ui.view.ClockCarouselView
 import com.android.customization.picker.clock.ui.view.ClockHostView
 import com.android.customization.picker.clock.ui.view.ClockSizeRadioButtonGroup
 import com.android.customization.picker.clock.ui.view.ClockViewFactory
@@ -199,7 +200,7 @@ object ClockSettingsBinder {
                                     sizeOptions.radioButtonDynamic.isChecked = false
                                     sizeOptions.radioButtonSmall.isChecked = true
                                     clockHostView.doOnPreDraw {
-                                        it.pivotX = 0F
+                                        it.pivotX = ClockCarouselView.getCenteredHostViewPivotX(it)
                                         it.pivotY = 0F
                                     }
                                 }
