@@ -37,7 +37,6 @@ import static com.android.wallpaper.util.LaunchSourceUtils.LAUNCH_SOURCE_TIPS;
 import static com.android.wallpaper.util.LaunchSourceUtils.WALLPAPER_LAUNCH_SOURCE;
 
 import android.app.WallpaperManager;
-import android.content.Context;
 import android.content.Intent;
 import android.stats.style.StyleEnums;
 import android.text.TextUtils;
@@ -59,15 +58,12 @@ import java.util.Objects;
  */
 public class StatsLogUserEventLogger extends NoOpUserEventLogger implements ThemesUserEventLogger {
 
-    private final Context mContext;
     private final WallpaperPreferences mPreferences;
     private final WallpaperStatusChecker mWallpaperStatusChecker;
 
     public StatsLogUserEventLogger(
-            Context appContext,
             WallpaperPreferences preferences,
             WallpaperStatusChecker wallpaperStatusChecker) {
-        mContext = appContext;
         mPreferences = preferences;
         mWallpaperStatusChecker = wallpaperStatusChecker;
     }
