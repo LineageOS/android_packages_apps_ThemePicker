@@ -20,7 +20,6 @@ package com.android.customization.picker.preview.ui.section
 import android.app.WallpaperManager
 import android.content.Context
 import android.graphics.Rect
-import android.os.Bundle
 import android.view.TouchDelegate
 import android.view.View
 import android.view.View.OnAttachStateChangeListener
@@ -50,6 +49,7 @@ import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInt
 import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewClickView
 import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewSectionController
 import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewView
+import com.android.wallpaper.picker.customization.ui.viewmodel.CustomizationPickerViewModel
 import com.android.wallpaper.util.DisplayUtils
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -73,7 +73,7 @@ class PreviewWithClockCarouselSectionController(
     themedIconInteractor: ThemedIconInteractor,
     wallpaperManager: WallpaperManager,
     private val isTwoPaneAndSmallWidth: Boolean,
-    savedInstanceState: Bundle?,
+    customizationPickerViewModel: CustomizationPickerViewModel,
 ) :
     PreviewWithThemeSectionController(
         activity,
@@ -87,7 +87,7 @@ class PreviewWithClockCarouselSectionController(
         themedIconInteractor,
         wallpaperManager,
         isTwoPaneAndSmallWidth,
-        savedInstanceState,
+        customizationPickerViewModel,
     ) {
 
     private val viewModel =
