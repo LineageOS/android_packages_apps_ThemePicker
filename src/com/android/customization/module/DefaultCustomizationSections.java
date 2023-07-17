@@ -122,7 +122,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
                         wallpaperInteractor,
                         mThemedIconInteractor,
                         wallpaperManager,
-                        isTwoPaneAndSmallWidth)
+                        isTwoPaneAndSmallWidth,
+                        savedInstanceState)
                         : new PreviewWithThemeSectionController(
                                 activity,
                                 lifecycleOwner,
@@ -134,7 +135,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
                                 wallpaperInteractor,
                                 mThemedIconInteractor,
                                 wallpaperManager,
-                                isTwoPaneAndSmallWidth));
+                                isTwoPaneAndSmallWidth,
+                                savedInstanceState));
 
         sectionControllers.add(
                 new ConnectedSectionController(
