@@ -119,25 +119,6 @@ public class StatsLogUserEventLogger extends NoOpUserEventLogger implements Them
     }
 
     @Override
-    public void logLiveWallpaperInfoSelected(String collectionId, @Nullable String wallpaperId) {
-        new SysUiStatsLogger()
-                .setAction(StyleEnums.LIVE_WALLPAPER_INFO_SELECT)
-                .setWallpaperCategoryHash(getIdHashCode(collectionId))
-                .setWallpaperIdHash(getIdHashCode(wallpaperId))
-                .log();
-    }
-
-    @Override
-    public void logLiveWallpaperCustomizeSelected(String collectionId,
-            @Nullable String wallpaperId) {
-        new SysUiStatsLogger().setAction(StyleEnums.LIVE_WALLPAPER_CUSTOMIZE_SELECT)
-                .setWallpaperCategoryHash(getIdHashCode(collectionId))
-                .setWallpaperIdHash(getIdHashCode(wallpaperId))
-                .log();
-
-    }
-
-    @Override
     public void logSnapshot() {
         final boolean isLockWallpaperSet = mWallpaperStatusChecker.isLockWallpaperSet();
         final String homeCollectionId = mPreferences.getHomeWallpaperCollectionId();
