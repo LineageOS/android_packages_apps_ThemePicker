@@ -20,10 +20,8 @@ import com.android.systemui.shared.system.SysUiStatsLog
 import com.android.systemui.shared.system.SysUiStatsLog.STYLE_UI_CHANGED
 
 /** The builder for [SysUiStatsLog]. */
-class SysUiStatsLogger {
+class SysUiStatsLogger(val action: Int) {
 
-    private var atom = STYLE_UI_CHANGED
-    private var action = StyleEnums.DEFAULT_ACTION
     private var colorPackageHash = 0
     private var fontPackageHash = 0
     private var shapePackageHash = 0
@@ -46,85 +44,83 @@ class SysUiStatsLogger {
     private var timeElapsedMillis = 0L
     private var effectResultCode = -1
 
-    fun setAction(action: Int) = apply { this.action = action }
-
-    fun setColorPackageHash(color_package_hash: Int) = apply {
-        this.colorPackageHash = color_package_hash
+    fun setColorPackageHash(colorPackageHash: Int) = apply {
+        this.colorPackageHash = colorPackageHash
     }
 
-    fun setFontPackageHash(font_package_hash: Int) = apply {
-        this.fontPackageHash = font_package_hash
+    fun setFontPackageHash(fontPackageHash: Int) = apply {
+        this.fontPackageHash = fontPackageHash
     }
 
-    fun setShapePackageHash(shape_package_hash: Int) = apply {
-        this.shapePackageHash = shape_package_hash
+    fun setShapePackageHash(shapePackageHash: Int) = apply {
+        this.shapePackageHash = shapePackageHash
     }
 
-    fun setClockPackageHash(clock_package_hash: Int) = apply {
-        this.clockPackageHash = clock_package_hash
+    fun setClockPackageHash(clockPackageHash: Int) = apply {
+        this.clockPackageHash = clockPackageHash
     }
 
-    fun setLauncherGrid(launcher_grid: Int) = apply { this.launcherGrid = launcher_grid }
+    fun setLauncherGrid(launcherGrid: Int) = apply { this.launcherGrid = launcherGrid }
 
-    fun setWallpaperCategoryHash(wallpaper_category_hash: Int) = apply {
-        this.wallpaperCategoryHash = wallpaper_category_hash
+    fun setWallpaperCategoryHash(wallpaperCategoryHash: Int) = apply {
+        this.wallpaperCategoryHash = wallpaperCategoryHash
     }
 
-    fun setWallpaperIdHash(wallpaper_id_hash: Int) = apply {
-        this.wallpaperIdHash = wallpaper_id_hash
+    fun setWallpaperIdHash(wallpaperIdHash: Int) = apply {
+        this.wallpaperIdHash = wallpaperIdHash
     }
 
-    fun setColorPreference(color_preference: Int) = apply {
-        this.colorPreference = color_preference
+    fun setColorPreference(colorPreference: Int) = apply {
+        this.colorPreference = colorPreference
     }
 
-    fun setLocationPreference(location_preference: Int) = apply {
-        this.locationPreference = location_preference
+    fun setLocationPreference(locationPreference: Int) = apply {
+        this.locationPreference = locationPreference
     }
 
-    fun setDatePreference(date_preference: Int) = apply { this.datePreference = date_preference }
+    fun setDatePreference(datePreference: Int) = apply { this.datePreference = datePreference }
 
-    fun setLaunchedPreference(launched_preference: Int) = apply {
-        this.launchedPreference = launched_preference
+    fun setLaunchedPreference(launchedPreference: Int) = apply {
+        this.launchedPreference = launchedPreference
     }
 
-    fun setEffectPreference(effect_preference: Int) = apply {
-        this.effectPreference = effect_preference
+    fun setEffectPreference(effectPreference: Int) = apply {
+        this.effectPreference = effectPreference
     }
 
-    fun setEffectIdHash(effect_id_hash: Int) = apply { this.effectIdHash = effect_id_hash }
+    fun setEffectIdHash(effectIdHash: Int) = apply { this.effectIdHash = effectIdHash }
 
-    fun setLockWallpaperCategoryHash(lock_wallpaper_category_hash: Int) = apply {
-        this.lockWallpaperCategoryHash = lock_wallpaper_category_hash
+    fun setLockWallpaperCategoryHash(lockWallpaperCategoryHash: Int) = apply {
+        this.lockWallpaperCategoryHash = lockWallpaperCategoryHash
     }
 
-    fun setLockWallpaperIdHash(lock_wallpaper_id_hash: Int) = apply {
-        this.lockWallpaperIdHash = lock_wallpaper_id_hash
+    fun setLockWallpaperIdHash(lockWallpaperIdHash: Int) = apply {
+        this.lockWallpaperIdHash = lockWallpaperIdHash
     }
 
-    fun setFirstLaunchDateSinceSetup(first_launch_date_since_setup: Int) = apply {
-        this.firstLaunchDateSinceSetup = first_launch_date_since_setup
+    fun setFirstLaunchDateSinceSetup(firstLaunchDateSinceSetup: Int) = apply {
+        this.firstLaunchDateSinceSetup = firstLaunchDateSinceSetup
     }
 
-    fun setFirstWallpaperApplyDateSinceSetup(first_wallpaper_apply_date_since_setup: Int) = apply {
-        this.firstWallpaperApplyDateSinceSetup = first_wallpaper_apply_date_since_setup
+    fun setFirstWallpaperApplyDateSinceSetup(firstWallpaperApplyDateSinceSetup: Int) = apply {
+        this.firstWallpaperApplyDateSinceSetup = firstWallpaperApplyDateSinceSetup
     }
 
-    fun setAppLaunchCount(app_launch_count: Int) = apply { this.appLaunchCount = app_launch_count }
+    fun setAppLaunchCount(appLaunchCount: Int) = apply { this.appLaunchCount = appLaunchCount }
 
-    fun setColorVariant(color_variant: Int) = apply { this.colorVariant = color_variant }
+    fun setColorVariant(colorVariant: Int) = apply { this.colorVariant = colorVariant }
 
-    fun setTimeElapsed(time_elapsed_millis: Long) = apply {
-      this.timeElapsedMillis = time_elapsed_millis
+    fun setTimeElapsed(timeElapsedMillis: Long) = apply {
+      this.timeElapsedMillis = timeElapsedMillis
     }
 
-    fun setEffectResultCode(effect_result_code: Int) = apply {
-        this.effectResultCode = effect_result_code
+    fun setEffectResultCode(effectResultCode: Int) = apply {
+        this.effectResultCode = effectResultCode
     }
 
     fun log() {
         SysUiStatsLog.write(
-            atom,
+            STYLE_UI_CHANGED,
             action,
             colorPackageHash,
             fontPackageHash,
