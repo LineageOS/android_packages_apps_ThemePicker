@@ -48,6 +48,7 @@
         <item name="colorSurface">@color/design_default_color_surface</item>
         <item name="colorOnSurface">@color/design_default_color_on_surface</item>
         <item name="android:textAllCaps">false</item>
+        <item name="motionDurationLong1">500</item>
     </style>
 
     <!-- Snackbar margin -->

@@ -37,6 +37,7 @@ import com.android.wallpaper.picker.common.icon.ui.viewbinder.IconViewBinder
 import com.android.wallpaper.picker.common.icon.ui.viewmodel.Icon
 import com.android.wallpaper.picker.option.ui.adapter.OptionItemAdapter
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.collectIndexed
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flatMapLatest
@@ -99,13 +100,18 @@ object KeyguardQuickAffordancePickerBinder {
                                 selectedFlags.indexOfFirst { it }
                             }
                         }
-                        .collect { selectedPosition ->
+                        .collectIndexed { index, selectedPosition ->
                             // Scroll the view to show the first selected affordance.
                             if (selectedPosition != -1) {
                                 // We use "post" because we need to give the adapter item a pass to
                                 // update the view.
                                 affordancesView.post {
-                                    affordancesView.smoothScrollToPosition(selectedPosition)
+                                    if (index == 0) {
+                                        // don't animate on initial collection
+                                        affordancesView.scrollToPosition(selectedPosition)
+                                    } else {
+                                        affordancesView.smoothScrollToPosition(selectedPosition)
+                                    }
                                 }
                             }
                         }

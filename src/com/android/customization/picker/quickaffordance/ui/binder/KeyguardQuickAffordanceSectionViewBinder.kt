@@ -48,7 +48,7 @@ object KeyguardQuickAffordanceSectionViewBinder {
 
         lifecycleOwner.lifecycleScope.launch {
             viewModel.summary
-                .flowWithLifecycle(lifecycleOwner.lifecycle, Lifecycle.State.RESUMED)
+                .flowWithLifecycle(lifecycleOwner.lifecycle, Lifecycle.State.STARTED)
                 .collectLatest { summary ->
                     TextViewBinder.bind(
                         view = descriptionView,
