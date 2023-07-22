@@ -21,7 +21,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
+import androidx.transition.Transition
+import androidx.transition.doOnStart
 import com.android.customization.model.grid.ui.binder.GridScreenBinder
 import com.android.customization.model.grid.ui.viewmodel.GridScreenViewModel
 import com.android.customization.module.ThemePickerInjector
@@ -84,6 +87,10 @@ class GridFragment2 : AppbarFragment() {
                     )
             }
         )
+
+        (returnTransition as? Transition)?.doOnStart {
+            view.requireViewById<View>(R.id.preview).isVisible = false
+        }
 
         return view
     }
