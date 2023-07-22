@@ -22,9 +22,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.cardview.widget.CardView
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.lifecycle.lifecycleScope
+import androidx.transition.Transition
+import androidx.transition.doOnStart
 import com.android.customization.model.mode.DarkModeSectionController
 import com.android.customization.module.ThemePickerInjector
 import com.android.customization.picker.color.ui.binder.ColorPickerBinder
@@ -197,6 +200,12 @@ class ColorPickerFragment : AppbarFragment() {
                 .createView(requireContext())
         darkModeSectionView.background = null
         darkModeToggleContainerView.addView(darkModeSectionView)
+
+        (returnTransition as? Transition)?.doOnStart {
+            lockScreenView.isVisible = false
+            homeScreenView.isVisible = false
+        }
+
         return view
     }
 
