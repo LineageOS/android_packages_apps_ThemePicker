@@ -21,8 +21,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
+import androidx.transition.Transition
+import androidx.transition.doOnStart
 import com.android.customization.module.ThemePickerInjector
 import com.android.customization.picker.quickaffordance.ui.binder.KeyguardQuickAffordancePickerBinder
 import com.android.customization.picker.quickaffordance.ui.binder.KeyguardQuickAffordancePreviewBinder
@@ -77,6 +80,10 @@ class KeyguardQuickAffordancePickerFragment : AppbarFragment() {
             viewModel = viewModel,
             lifecycleOwner = this,
         )
+        (returnTransition as? Transition)?.doOnStart {
+            // Hide preview during exit transition animation
+            view?.findViewById<View>(R.id.preview)?.isVisible = false
+        }
         return view
     }
 
