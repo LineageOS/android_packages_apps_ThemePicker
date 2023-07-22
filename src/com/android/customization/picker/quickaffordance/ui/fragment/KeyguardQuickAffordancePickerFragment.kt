@@ -33,9 +33,7 @@ import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQui
 import com.android.wallpaper.R
 import com.android.wallpaper.module.InjectorProvider
 import com.android.wallpaper.picker.AppbarFragment
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-@OptIn(ExperimentalCoroutinesApi::class)
 class KeyguardQuickAffordancePickerFragment : AppbarFragment() {
     companion object {
         const val DESTINATION_ID = "quick_affordances"
@@ -80,6 +78,8 @@ class KeyguardQuickAffordancePickerFragment : AppbarFragment() {
             viewModel = viewModel,
             lifecycleOwner = this,
         )
+        postponeEnterTransition()
+        view.post { startPostponedEnterTransition() }
         (returnTransition as? Transition)?.doOnStart {
             // Hide preview during exit transition animation
             view?.findViewById<View>(R.id.preview)?.isVisible = false
