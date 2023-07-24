@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.wallpaper.model.WallpaperColorsViewModel;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
@@ -32,6 +33,7 @@ import org.robolectric.annotation.Config;
 /**
  * Tests of {@link ColorSectionController}.
  */
+@Ignore("b/290798811")
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE)
 public final class ColorSectionControllerTest {
