@@ -15,14 +15,12 @@
  */
 package com.android.customization.picker.clock.utils
 
-import androidx.annotation.StringRes
-
 /** Provides clock description for accessibility purposes. */
 interface ClockDescriptionUtils {
 
     /**
-     * TODO (b/287507746) : Migrate description res ID to system UI or a shared library, instead of
-     * preserving the clock description at the Wallpaper Picker side.
+     * TODO (b/287507746) : Migrate the clock description to system UI or a shared library, instead
+     * of preserving at the Wallpaper Picker side.
      */
-    @StringRes fun getDescriptionResId(clockId: String): Int
+    fun getDescription(clockId: String): String
 }
