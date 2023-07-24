@@ -16,6 +16,7 @@
 package com.android.customization.module
 
 import android.content.Context
+import android.content.res.Resources
 import androidx.activity.ComponentActivity
 import androidx.fragment.app.FragmentActivity
 import com.android.customization.model.theme.OverlayManagerCompat
@@ -78,5 +79,5 @@ interface CustomizationInjector : Injector {
         clockViewFactory: ClockViewFactory,
     ): ClockSettingsViewModel.Factory
 
-    fun getClockDescriptionUtils(): ClockDescriptionUtils
+    fun getClockDescriptionUtils(resources: Resources): ClockDescriptionUtils
 }

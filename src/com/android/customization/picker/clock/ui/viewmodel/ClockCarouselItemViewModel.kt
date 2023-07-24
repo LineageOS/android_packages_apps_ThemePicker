@@ -26,9 +26,8 @@ class ClockCarouselItemViewModel(val clockId: String, val isSelected: Boolean) {
     fun getContentDescription(resources: Resources): String {
         val clockContent =
             (InjectorProvider.getInjector() as? CustomizationInjector)
-                ?.getClockDescriptionUtils()
-                ?.getDescriptionResId(clockId)
-                ?.let { resources.getString(it) }
+                ?.getClockDescriptionUtils(resources)
+                ?.getDescription(clockId)
                 ?: ""
         return resources.getString(R.string.select_clock_action_description, clockContent)
     }
