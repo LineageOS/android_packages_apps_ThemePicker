@@ -128,7 +128,7 @@
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"በማያ ገፅ ቁልፉ ላይ ማሳወቂያዎችን አሳይ"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"በማያ ገፅ ቁልፉ ላይ ማሳወቂያዎችን ደብቅ"</string>
     <string name="more_settings_section_title" msgid="8524741850115625404">"ተጨማሪ አማራጮች"</string>
-    <string name="more_settings_section_description" msgid="8787768566854880683">"ጽሑፍ በማያ ገፅ ቁልፍ፣ አሁን በመጫወት ላይ እና ሌሎችም"</string>
+    <string name="more_settings_section_description" msgid="8787768566854880683">"ጽሁፍ በማያ ገፅ ቁልፍ፣ አሁን በመጫወት ላይ እና ሌሎችም"</string>
     <string name="more_colors" msgid="3191071655353004591">"ተጨማሪ ቀለማት"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"ነባሪ የቀለም አማራጭ"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"የቀለም አማራጭ <xliff:g id="ID_1">%1$d</xliff:g>"</string>
