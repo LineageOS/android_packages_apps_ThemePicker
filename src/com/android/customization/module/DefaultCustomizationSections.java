@@ -123,7 +123,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
                         mThemedIconInteractor,
                         wallpaperManager,
                         isTwoPaneAndSmallWidth,
-                        savedInstanceState)
+                        customizationPickerViewModel)
                         : new PreviewWithThemeSectionController(
                                 activity,
                                 lifecycleOwner,
@@ -136,7 +136,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
                                 mThemedIconInteractor,
                                 wallpaperManager,
                                 isTwoPaneAndSmallWidth,
-                                savedInstanceState));
+                                customizationPickerViewModel));
 
         sectionControllers.add(
                 new ConnectedSectionController(
