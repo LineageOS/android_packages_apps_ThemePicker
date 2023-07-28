@@ -55,8 +55,8 @@ public class GridTileDrawable extends Drawable {
         for (int r = 0; r < mRows; r++) {
             for (int c = 0; c < mCols; c++) {
                 int saveCount = canvas.save();
-                float x = (float) ((r * size / mRows) + SPACE_BETWEEN_ICONS);
-                float y = (float) ((c * size / mCols) + SPACE_BETWEEN_ICONS);
+                float y = (float) ((r * size / mRows) + SPACE_BETWEEN_ICONS);
+                float x = (float) ((c * size / mCols) + SPACE_BETWEEN_ICONS);
                 canvas.translate(x, y);
                 canvas.drawPath(mTransformedPath, mPaint);
                 canvas.restoreToCount(saveCount);
