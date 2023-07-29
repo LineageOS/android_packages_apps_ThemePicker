@@ -40,6 +40,7 @@ import com.android.customization.picker.clock.ui.view.ClockCarouselView
 import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
 import com.android.wallpaper.R
+import com.android.wallpaper.model.CustomizationSectionController
 import com.android.wallpaper.model.CustomizationSectionController.CustomizationSectionNavigationController
 import com.android.wallpaper.model.WallpaperColorsViewModel
 import com.android.wallpaper.model.WallpaperPreviewNavigator
@@ -101,8 +102,11 @@ class PreviewWithClockCarouselSectionController(
 
     override val hideLockScreenClockPreview = true
 
-    override fun createView(context: Context): ScreenPreviewView {
-        val view = super.createView(context)
+    override fun createView(
+        context: Context,
+        params: CustomizationSectionController.ViewCreationParams,
+    ): ScreenPreviewView {
+        val view = super.createView(context, params)
         if (screen == CustomizationSections.Screen.LOCK_SCREEN) {
             val screenPreviewClickView: ScreenPreviewClickView =
                 view.findViewById(R.id.screen_preview_click_view)

@@ -19,8 +19,8 @@ package com.android.customization.model.picker.quickaffordance.ui.viewmodel
 
 import android.content.Context
 import android.content.Intent
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.filters.SmallTest
-import androidx.test.platform.app.InstrumentationRegistry
 import com.android.customization.picker.quickaffordance.data.repository.KeyguardQuickAffordancePickerRepository
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordanceSnapshotRestorer
@@ -57,11 +57,11 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.robolectric.RobolectricTestRunner
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @SmallTest
-@RunWith(JUnit4::class)
+@RunWith(RobolectricTestRunner::class)
 class KeyguardQuickAffordancePickerViewModelTest {
 
     private lateinit var underTest: KeyguardQuickAffordancePickerViewModel
@@ -75,7 +75,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
     @Before
     fun setUp() {
         InjectorProvider.setInjector(TestInjector())
-        context = InstrumentationRegistry.getInstrumentation().targetContext
+        context = ApplicationProvider.getApplicationContext()
         val testDispatcher = StandardTestDispatcher()
         testScope = TestScope(testDispatcher)
         Dispatchers.setMain(testDispatcher)
