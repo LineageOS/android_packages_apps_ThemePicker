@@ -156,6 +156,7 @@ internal constructor(
                     getDarkModeSnapshotRestorer(activity),
                     getThemedIconSnapshotRestorer(activity),
                     getThemedIconInteractor(),
+                    getColorPickerInteractor(activity, getWallpaperColorsViewModel()),
                 )
                 .also { customizationSections = it }
     }
