@@ -20,12 +20,14 @@ package com.android.customization.picker.preview.ui.viewmodel
 import android.app.WallpaperColors
 import android.os.Bundle
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconInteractor
+import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
 import com.android.wallpaper.model.WallpaperInfo
 import com.android.wallpaper.module.CustomizationSections
 import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInteractor
 import com.android.wallpaper.picker.customization.ui.viewmodel.ScreenPreviewViewModel
 import com.android.wallpaper.util.PreviewUtils
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 
 /** A ThemePicker version of the [ScreenPreviewViewModel] */
 class PreviewWithThemeViewModel(
@@ -35,6 +37,7 @@ class PreviewWithThemeViewModel(
     onWallpaperColorChanged: (WallpaperColors?) -> Unit = {},
     wallpaperInteractor: WallpaperInteractor,
     private val themedIconInteractor: ThemedIconInteractor? = null,
+    colorPickerInteractor: ColorPickerInteractor? = null,
     screen: CustomizationSections.Screen,
 ) :
     ScreenPreviewViewModel(
@@ -46,4 +49,16 @@ class PreviewWithThemeViewModel(
         screen,
     ) {
     override fun workspaceUpdateEvents(): Flow<Boolean>? = themedIconInteractor?.isActivated
+
+    private val wallpaperIsLoading = super.isLoading
+
+    override val isLoading: Flow<Boolean> =
+        colorPickerInteractor?.let {
+            combine(wallpaperIsLoading, colorPickerInteractor.isApplyingSystemColor) {
+                wallpaperIsLoading,
+                colorIsLoading ->
+                wallpaperIsLoading || colorIsLoading
+            }
+        }
+            ?: wallpaperIsLoading
 }

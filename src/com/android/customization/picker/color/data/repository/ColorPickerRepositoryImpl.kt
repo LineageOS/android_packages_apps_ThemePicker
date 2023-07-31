@@ -27,7 +27,9 @@ import com.android.systemui.monet.Style
 import com.android.wallpaper.model.WallpaperColorsModel
 import com.android.wallpaper.model.WallpaperColorsViewModel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -43,9 +45,17 @@ class ColorPickerRepositoryImpl(
         wallpaperColorsViewModel.homeWallpaperColors
     private val lockWallpaperColors: StateFlow<WallpaperColorsModel?> =
         wallpaperColorsViewModel.lockWallpaperColors
+    private var selectedColorOption: MutableStateFlow<ColorOptionModel> =
+        MutableStateFlow(getCurrentColorOption())
+
+    private val _isApplyingSystemColor = MutableStateFlow(false)
+    override val isApplyingSystemColor = _isApplyingSystemColor.asStateFlow()
 
     override val colorOptions: Flow<Map<ColorType, List<ColorOptionModel>>> =
-        combine(homeWallpaperColors, lockWallpaperColors) { homeColors, lockColors ->
+        combine(homeWallpaperColors, lockWallpaperColors, selectedColorOption) {
+                homeColors,
+                lockColors,
+                _ ->
                 homeColors to lockColors
             }
             .map { (homeColors, lockColors) ->
@@ -109,17 +119,21 @@ class ColorPickerRepositoryImpl(
                 }
             }
 
-    override suspend fun select(colorOptionModel: ColorOptionModel) =
+    override suspend fun select(colorOptionModel: ColorOptionModel) {
+        _isApplyingSystemColor.value = true
         suspendCancellableCoroutine { continuation ->
             colorManager.apply(
                 colorOptionModel.colorOption,
                 object : CustomizationManager.Callback {
                     override fun onSuccess() {
+                        _isApplyingSystemColor.value = false
+                        selectedColorOption.value = colorOptionModel
                         continuation.resumeWith(Result.success(Unit))
                     }
 
                     override fun onError(throwable: Throwable?) {
                         Log.w(TAG, "Apply theme with error", throwable)
+                        _isApplyingSystemColor.value = false
                         continuation.resumeWith(
                             Result.failure(throwable ?: Throwable("Error loading theme bundles"))
                         )
@@ -127,6 +141,7 @@ class ColorPickerRepositoryImpl(
                 }
             )
         }
+    }
 
     override fun getCurrentColorOption(): ColorOptionModel {
         val overlays = colorManager.currentOverlays
