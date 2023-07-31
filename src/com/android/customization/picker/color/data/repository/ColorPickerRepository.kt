@@ -19,12 +19,15 @@ package com.android.customization.picker.color.data.repository
 import com.android.customization.picker.color.shared.model.ColorOptionModel
 import com.android.customization.picker.color.shared.model.ColorType
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
 
 /**
  * Abstracts access to application state related to functionality for selecting, picking, or setting
  * system color.
  */
 interface ColorPickerRepository {
+    /** Whether the system color is in the process of being updated */
+    val isApplyingSystemColor: StateFlow<Boolean>
 
     /** List of wallpaper and preset color options on the device, categorized by Color Type */
     val colorOptions: Flow<Map<ColorType, List<ColorOptionModel>>>

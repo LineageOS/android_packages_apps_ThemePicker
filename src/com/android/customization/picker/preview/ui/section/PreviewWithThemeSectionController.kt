@@ -22,6 +22,7 @@ import android.app.WallpaperManager
 import android.content.Context
 import androidx.lifecycle.LifecycleOwner
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconInteractor
+import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
 import com.android.customization.picker.preview.ui.viewmodel.PreviewWithThemeViewModel
 import com.android.wallpaper.R
 import com.android.wallpaper.model.WallpaperColorsViewModel
@@ -50,6 +51,7 @@ open class PreviewWithThemeSectionController(
     wallpaperPreviewNavigator: WallpaperPreviewNavigator,
     private val wallpaperInteractor: WallpaperInteractor,
     private val themedIconInteractor: ThemedIconInteractor,
+    private val colorPickerInteractor: ColorPickerInteractor,
     wallpaperManager: WallpaperManager,
     isTwoPaneAndSmallWidth: Boolean,
     customizationPickerViewModel: CustomizationPickerViewModel,
@@ -117,6 +119,7 @@ open class PreviewWithThemeSectionController(
             initialExtrasProvider = { getInitialExtras(isOnLockScreen) },
             wallpaperInteractor = wallpaperInteractor,
             themedIconInteractor = themedIconInteractor,
+            colorPickerInteractor = colorPickerInteractor,
             screen = screen,
         )
     }
