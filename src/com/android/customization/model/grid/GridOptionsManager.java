@@ -99,6 +99,11 @@ public class GridOptionsManager implements CustomizationManager<GridOption> {
     }
 
     @Override
+    public void preview(GridOption option) {
+        mProvider.updateView();
+    }
+
+    @Override
     public void fetchOptions(OptionsFetchedListener<GridOption> callback, boolean reload) {
         sExecutorService.submit(() -> {
             List<GridOption> gridOptions = mProvider.fetch(reload);
