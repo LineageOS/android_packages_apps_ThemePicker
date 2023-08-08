@@ -16,8 +16,6 @@
 package com.android.customization.picker.clock.ui.binder
 
 import android.content.Context
-import android.view.ViewGroup
-import android.widget.FrameLayout
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
@@ -27,7 +25,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.android.customization.picker.clock.ui.view.ClockCarouselView
 import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
-import com.android.wallpaper.R
 import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewClickView
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
@@ -38,7 +35,6 @@ object ClockCarouselViewBinder {
     fun bind(
         context: Context,
         carouselView: ClockCarouselView,
-        singleClockView: ViewGroup,
         screenPreviewClickView: ScreenPreviewClickView,
         viewModel: ClockCarouselViewModel,
         clockViewFactory: ClockViewFactory,
@@ -46,6 +42,7 @@ object ClockCarouselViewBinder {
         isTwoPaneAndSmallWidth: Boolean,
     ) {
         carouselView.setClockViewFactory(clockViewFactory)
+        carouselView.isVisible = true
         clockViewFactory.updateRegionDarkness()
         val carouselAccessibilityDelegate =
             CarouselAccessibilityDelegate(
@@ -61,12 +58,8 @@ object ClockCarouselViewBinder {
             )
         screenPreviewClickView.accessibilityDelegate = carouselAccessibilityDelegate
 
-        val singleClockHostView =
-            singleClockView.requireViewById<FrameLayout>(R.id.single_clock_host_view)
         lifecycleOwner.lifecycleScope.launch {
             lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch { viewModel.isCarouselVisible.collect { carouselView.isVisible = it } }
-
                 launch {
                     combine(viewModel.selectedClockSize, viewModel.allClocks, ::Pair).collect {
                         (size, allClocks) ->
@@ -97,21 +90,6 @@ object ClockCarouselViewBinder {
 
                 launch {
                     viewModel.seedColor.collect { clockViewFactory.updateColorForAllClocks(it) }
-                }
-
-                launch {
-                    viewModel.isSingleClockViewVisible.collect { singleClockView.isVisible = it }
-                }
-
-                launch {
-                    viewModel.clockId.collect { clockId ->
-                        singleClockHostView.removeAllViews()
-                        val clockView = clockViewFactory.getLargeView(clockId)
-                        // The clock view might still be attached to an existing parent. Detach
-                        // before adding to another parent.
-                        (clockView.parent as? ViewGroup)?.removeView(clockView)
-                        singleClockHostView.addView(clockView)
-                    }
                 }
             }
         }
