@@ -31,6 +31,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import com.android.customization.model.color.ColorCustomizationManager
 import com.android.customization.model.color.ColorOptionsProvider
+import com.android.customization.model.color.ColorOptionsProvider.COLOR_SOURCE_PRESET
 import com.android.customization.model.grid.GridOptionsManager
 import com.android.customization.model.grid.data.repository.GridRepositoryImpl
 import com.android.customization.model.grid.domain.interactor.GridInteractor
@@ -597,6 +598,12 @@ internal constructor(
                     interactor = getGridInteractor(context),
                 )
                 .also { gridSnapshotRestorer = it }
+    }
+
+    override fun isCurrentSelectedColorPreset(context: Context): Boolean {
+        val colorManager =
+            ColorCustomizationManager.getInstance(context, OverlayManagerCompat(context))
+        return COLOR_SOURCE_PRESET == colorManager.currentColorSource
     }
 
     companion object {
