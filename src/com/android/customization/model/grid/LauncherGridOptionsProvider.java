@@ -117,6 +117,10 @@ public class LauncherGridOptionsProvider {
         mPreviewUtils.renderPreview(bundle, callback);
     }
 
+    void updateView() {
+        mLiveData.postValue(new Object());
+    }
+
     int applyGrid(String name) {
         ContentValues values = new ContentValues();
         values.put("name", name);
