@@ -27,7 +27,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
@@ -39,8 +38,7 @@ import kotlinx.coroutines.launch
  * Clock carousel view model that provides data for the carousel of clock previews. When there is
  * only one item, we should show a single clock preview instead of a carousel.
  */
-class ClockCarouselViewModel
-constructor(
+class ClockCarouselViewModel(
     private val interactor: ClockPickerInteractor,
     private val backgroundDispatcher: CoroutineDispatcher,
 ) : ViewModel() {
@@ -58,8 +56,6 @@ constructor(
 
     val seedColor: Flow<Int?> = interactor.seedColor
 
-    val isCarouselVisible: Flow<Boolean> = allClocks.map { it.size > 1 }.distinctUntilChanged()
-
     @OptIn(ExperimentalCoroutinesApi::class)
     val selectedIndex: Flow<Int> =
         allClocks
@@ -75,15 +71,6 @@ constructor(
                     }
                 }
             }
-            .mapNotNull { it }
-
-    // Handle the case when there is only one clock in the carousel
-    val isSingleClockViewVisible: Flow<Boolean> =
-        allClocks.map { it.size == 1 }.distinctUntilChanged()
-
-    val clockId: Flow<String> =
-        allClocks
-            .map { allClockIds -> if (allClockIds.size == 1) allClockIds[0].clockId else null }
             .mapNotNull { it }
 
     private var setSelectedClockJob: Job? = null

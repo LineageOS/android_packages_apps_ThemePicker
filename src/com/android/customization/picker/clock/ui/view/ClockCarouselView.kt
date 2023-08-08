@@ -114,6 +114,7 @@ class ClockCarouselView(
         }
 
         adapter = ClockCarouselAdapter(clockSize, clocks, clockViewFactory, onClockSelected)
+        carousel.isInfinite = clocks.size >= MIN_CLOCKS_TO_ENABLE_INFINITE_CAROUSEL
         carousel.setAdapter(adapter)
         val indexOfSelectedClock =
             clocks
@@ -470,6 +471,8 @@ class ClockCarouselView(
     }
 
     companion object {
+        // The carousel needs to have at least 5 different clock faces to be infinite
+        const val MIN_CLOCKS_TO_ENABLE_INFINITE_CAROUSEL = 5
         const val CLOCK_CAROUSEL_VIEW_SCALE = 0.5f
 
         val itemViewIds =

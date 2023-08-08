@@ -88,38 +88,6 @@ class ClockCarouselViewModelTest {
         assertThat(observedSelectedIndex()).isEqualTo(2)
     }
 
-    @Test
-    fun multipleClockCase() = runTest {
-        underTest =
-            ClockCarouselViewModel(
-                getClockPickerInteractor(repositoryWithMultipleClocks),
-                testDispatcher
-            )
-        val observedIsCarouselVisible = collectLastValue(underTest.isCarouselVisible)
-        val observedIsSingleClockViewVisible = collectLastValue(underTest.isSingleClockViewVisible)
-
-        advanceTimeBy(ClockCarouselViewModel.CLOCKS_EVENT_UPDATE_DELAY_MILLIS)
-
-        assertThat(observedIsCarouselVisible()).isTrue()
-        assertThat(observedIsSingleClockViewVisible()).isFalse()
-    }
-
-    @Test
-    fun singleClockCase() = runTest {
-        underTest =
-            ClockCarouselViewModel(
-                getClockPickerInteractor(repositoryWithSingleClock),
-                testDispatcher
-            )
-        val observedIsCarouselVisible = collectLastValue(underTest.isCarouselVisible)
-        val observedIsSingleClockViewVisible = collectLastValue(underTest.isSingleClockViewVisible)
-
-        advanceTimeBy(ClockCarouselViewModel.CLOCKS_EVENT_UPDATE_DELAY_MILLIS)
-
-        assertThat(observedIsCarouselVisible()).isFalse()
-        assertThat(observedIsSingleClockViewVisible()).isTrue()
-    }
-
     private fun getClockPickerInteractor(repository: ClockPickerRepository): ClockPickerInteractor {
         return ClockPickerInteractor(
                 repository = repository,

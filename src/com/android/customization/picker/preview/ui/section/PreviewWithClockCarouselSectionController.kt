@@ -23,7 +23,6 @@ import android.graphics.Rect
 import android.view.TouchDelegate
 import android.view.View
 import android.view.View.OnAttachStateChangeListener
-import android.view.ViewGroup
 import android.view.ViewStub
 import androidx.activity.ComponentActivity
 import androidx.constraintlayout.helper.widget.Carousel
@@ -156,12 +155,6 @@ class PreviewWithClockCarouselSectionController(
                 guidelineEnd.layoutParams = layoutParams
             }
 
-            // TODO (b/270716937) We should handle the single clock case in the clock carousel
-            // itself
-            val singleClockViewStub: ViewStub = view.requireViewById(R.id.single_clock_view_stub)
-            singleClockViewStub.layoutResource = R.layout.single_clock_view
-            val singleClockView = singleClockViewStub.inflate() as ViewGroup
-
             /**
              * Only bind after [Carousel.onAttachedToWindow]. This is to avoid the race condition
              * that the flow emits before attached to window where [Carousel.mMotionLayout] is still
@@ -177,7 +170,6 @@ class PreviewWithClockCarouselSectionController(
                                 ClockCarouselViewBinder.bind(
                                     context = context,
                                     carouselView = carouselView,
-                                    singleClockView = singleClockView,
                                     screenPreviewClickView = screenPreviewClickView,
                                     viewModel = viewModel,
                                     clockViewFactory = clockViewFactory,
