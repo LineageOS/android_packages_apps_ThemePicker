@@ -69,6 +69,7 @@ import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQui
 import com.android.systemui.shared.clocks.ClockRegistry
 import com.android.systemui.shared.customization.data.content.CustomizationProviderClient
 import com.android.systemui.shared.customization.data.content.CustomizationProviderClientImpl
+import com.android.wallpaper.config.BaseFlags
 import com.android.wallpaper.dispatchers.BackgroundDispatcher
 import com.android.wallpaper.dispatchers.MainDispatcher
 import com.android.wallpaper.model.LiveWallpaperInfo
@@ -571,7 +572,7 @@ internal constructor(
                 .also { gridScreenViewModelFactory = it }
     }
 
-    private fun getGridInteractor(
+    fun getGridInteractor(
         context: Context,
     ): GridInteractor {
         val appContext = context.applicationContext
@@ -580,10 +581,11 @@ internal constructor(
                     applicationScope = getApplicationCoroutineScope(),
                     repository =
                         GridRepositoryImpl(
-                            context = appContext,
                             applicationScope = getApplicationCoroutineScope(),
                             manager = GridOptionsManager.getInstance(context),
                             backgroundDispatcher = bgDispatcher,
+                            isGridApplyButtonEnabled =
+                                BaseFlags.get().isGridApplyButtonEnabled(appContext),
                         ),
                     snapshotRestorer = { getGridSnapshotRestorer(appContext) },
                 )

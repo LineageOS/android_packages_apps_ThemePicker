@@ -17,14 +17,12 @@
 
 package com.android.customization.model.grid.data.repository
 
-import android.content.Context
 import androidx.lifecycle.asFlow
 import com.android.customization.model.CustomizationManager
 import com.android.customization.model.grid.GridOption
 import com.android.customization.model.grid.GridOptionsManager
 import com.android.customization.model.grid.shared.model.GridOptionItemModel
 import com.android.customization.model.grid.shared.model.GridOptionItemsModel
-import com.android.wallpaper.config.BaseFlags
 import kotlin.coroutines.resume
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -40,13 +38,14 @@ interface GridRepository {
     suspend fun isAvailable(): Boolean
     fun getOptionChanges(): Flow<Unit>
     suspend fun getOptions(): GridOptionItemsModel
+    fun getSelectedOption(): GridOption?
 }
 
 class GridRepositoryImpl(
-    private val context: Context,
     private val applicationScope: CoroutineScope,
     private val manager: GridOptionsManager,
     private val backgroundDispatcher: CoroutineDispatcher,
+    private val isGridApplyButtonEnabled: Boolean,
 ) : GridRepository {
 
     override suspend fun isAvailable(): Boolean {
@@ -58,6 +57,8 @@ class GridRepositoryImpl(
 
     private val selectedOption = MutableStateFlow<GridOption?>(null)
 
+    override fun getSelectedOption() = selectedOption.value
+
     override suspend fun getOptions(): GridOptionItemsModel {
         return withContext(backgroundDispatcher) {
             suspendCancellableCoroutine { continuation ->
@@ -65,7 +66,11 @@ class GridRepositoryImpl(
                     object : CustomizationManager.OptionsFetchedListener<GridOption> {
                         override fun onOptionsLoaded(options: MutableList<GridOption>?) {
                             val optionsOrEmpty = options ?: emptyList()
-                            selectedOption.value = optionsOrEmpty.find { it.isActive(manager) }
+                            // After Apply Button is added, we will rely on onSelected() method
+                            // to update selectedOption.
+                            if (!isGridApplyButtonEnabled || selectedOption.value == null) {
+                                selectedOption.value = optionsOrEmpty.find { it.isActive(manager) }
+                            }
                             continuation.resume(
                                 GridOptionItemsModel.Loaded(
                                     optionsOrEmpty.map { option -> toModel(option) }
@@ -108,8 +113,12 @@ class GridRepositoryImpl(
     private suspend fun onSelected(option: GridOption) {
         withContext(backgroundDispatcher) {
             suspendCancellableCoroutine { continuation ->
-                if (BaseFlags.get().isGridApplyButtonEnabled(context)) {
+                if (isGridApplyButtonEnabled) {
+                    selectedOption.value?.setIsCurrent(false)
+                    selectedOption.value = option
+                    selectedOption.value?.setIsCurrent(true)
                     manager.preview(option)
+                    continuation.resume(true)
                 } else {
                     manager.apply(
                         option,
