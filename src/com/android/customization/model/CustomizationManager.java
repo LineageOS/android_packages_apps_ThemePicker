@@ -72,6 +72,9 @@ public interface CustomizationManager<T extends CustomizationOption> {
      */
     void apply(T option, Callback callback);
 
+    /** Preview the given option without committing the change. */
+    default void preview(T option) {}
+
     /**
      * Loads the available options for the type of Customization managed by this class, calling the
      * given callback when done.
