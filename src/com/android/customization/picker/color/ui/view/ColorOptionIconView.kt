@@ -69,7 +69,7 @@ class ColorOptionIconView(
         super.onSizeChanged(w, h, oldw, oldh)
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         // The w and h need to be an even number to avoid tiny pixel-level gaps between the pies
         w = w.roundDownToEven()
@@ -79,7 +79,7 @@ class ColorOptionIconView(
         val height = h.toFloat()
 
         oval.set(0f, 0f, width, height)
-        canvas?.apply {
+        canvas.apply {
             paint.color = color3
             drawArc(
                 oval,
