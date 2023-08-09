@@ -34,28 +34,28 @@ class CarouselAccessibilityDelegate(
     private val ACTION_SCROLL_BACKWARD = R.id.action_scroll_backward
     private val ACTION_SCROLL_FORWARD = R.id.action_scroll_forward
 
-    override fun onInitializeAccessibilityNodeInfo(host: View?, info: AccessibilityNodeInfo?) {
+    override fun onInitializeAccessibilityNodeInfo(host: View, info: AccessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(host, info)
-        info?.isScrollable = true
-        info?.addAction(
+        info.isScrollable = true
+        info.addAction(
             AccessibilityNodeInfo.AccessibilityAction(
                 ACTION_SCROLL_FORWARD,
                 context.getString(R.string.scroll_forward_and_select)
             )
         )
-        info?.addAction(
+        info.addAction(
             AccessibilityNodeInfo.AccessibilityAction(
                 ACTION_SCROLL_BACKWARD,
                 context.getString(R.string.scroll_backward_and_select)
             )
         )
-        info?.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_ACCESSIBILITY_FOCUS)
+        info.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_ACCESSIBILITY_FOCUS)
         // We need to specifically set the content description since for some reason the talkback
         // service does not go to children of the clock carousel in the view hierarchy
-        info?.contentDescription = contentDescriptionOfSelectedClock
+        info.contentDescription = contentDescriptionOfSelectedClock
     }
 
-    override fun performAccessibilityAction(host: View?, action: Int, args: Bundle?): Boolean {
+    override fun performAccessibilityAction(host: View, action: Int, args: Bundle?): Boolean {
         when (action) {
             ACTION_SCROLL_BACKWARD -> {
                 scrollBackwardCallback.invoke()
