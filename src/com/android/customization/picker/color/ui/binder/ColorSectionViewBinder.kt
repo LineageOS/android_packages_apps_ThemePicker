@@ -95,7 +95,7 @@ object ColorSectionViewBinder {
                 LayoutInflater.from(view.context)
                     .inflate(R.layout.color_option_no_background, view, false)
             item.payload?.let { ColorOptionIconBinder.bind(itemView as ViewGroup, item.payload) }
-            val optionSelectedView = itemView.findViewById<ImageView>(R.id.option_selected)
+            val optionSelectedView = itemView.requireViewById<ImageView>(R.id.option_selected)
 
             lifecycleOwner.lifecycleScope.launch {
                 lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
