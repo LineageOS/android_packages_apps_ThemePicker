@@ -17,14 +17,12 @@
 
 package com.android.customization.model.grid.data.repository
 
-import android.content.Context
 import androidx.lifecycle.asFlow
 import com.android.customization.model.CustomizationManager
 import com.android.customization.model.grid.GridOption
 import com.android.customization.model.grid.GridOptionsManager
 import com.android.customization.model.grid.shared.model.GridOptionItemModel
 import com.android.customization.model.grid.shared.model.GridOptionItemsModel
-import com.android.wallpaper.config.BaseFlags
 import kotlin.coroutines.resume
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -43,7 +41,6 @@ interface GridRepository {
 }
 
 class GridRepositoryImpl(
-    private val context: Context,
     private val applicationScope: CoroutineScope,
     private val manager: GridOptionsManager,
     private val backgroundDispatcher: CoroutineDispatcher,
@@ -108,22 +105,18 @@ class GridRepositoryImpl(
     private suspend fun onSelected(option: GridOption) {
         withContext(backgroundDispatcher) {
             suspendCancellableCoroutine { continuation ->
-                if (BaseFlags.get().isGridApplyButtonEnabled(context)) {
-                    manager.preview(option)
-                } else {
-                    manager.apply(
-                        option,
-                        object : CustomizationManager.Callback {
-                            override fun onSuccess() {
-                                continuation.resume(true)
-                            }
+                manager.apply(
+                    option,
+                    object : CustomizationManager.Callback {
+                        override fun onSuccess() {
+                            continuation.resume(true)
+                        }
 
-                            override fun onError(throwable: Throwable?) {
-                                continuation.resume(false)
-                            }
-                        },
-                    )
-                }
+                        override fun onError(throwable: Throwable?) {
+                            continuation.resume(false)
+                        }
+                    },
+                )
             }
         }
     }
