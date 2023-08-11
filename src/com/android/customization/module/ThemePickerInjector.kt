@@ -580,7 +580,6 @@ internal constructor(
                     applicationScope = getApplicationCoroutineScope(),
                     repository =
                         GridRepositoryImpl(
-                            context = appContext,
                             applicationScope = getApplicationCoroutineScope(),
                             manager = GridOptionsManager.getInstance(context),
                             backgroundDispatcher = bgDispatcher,
