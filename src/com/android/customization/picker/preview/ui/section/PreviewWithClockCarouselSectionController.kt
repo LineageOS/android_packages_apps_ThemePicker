@@ -111,7 +111,7 @@ class PreviewWithClockCarouselSectionController(
         val view = super.createView(context, params)
         if (screen == CustomizationSections.Screen.LOCK_SCREEN) {
             val screenPreviewClickView: ScreenPreviewClickView =
-                view.findViewById(R.id.screen_preview_click_view)
+                view.requireViewById(R.id.screen_preview_click_view)
             val clockColorAndSizeButtonStub: ViewStub =
                 view.requireViewById(R.id.clock_color_and_size_button)
             clockColorAndSizeButtonStub.layoutResource = R.layout.clock_color_and_size_button
@@ -164,7 +164,7 @@ class PreviewWithClockCarouselSectionController(
             var bindJob: Job? = null
             onAttachStateChangeListener =
                 object : OnAttachStateChangeListener {
-                    override fun onViewAttachedToWindow(view: View?) {
+                    override fun onViewAttachedToWindow(view: View) {
                         bindJob =
                             lifecycleOwner.lifecycleScope.launch {
                                 ClockCarouselViewBinder.bind(
@@ -184,7 +184,7 @@ class PreviewWithClockCarouselSectionController(
                             }
                     }
 
-                    override fun onViewDetachedFromWindow(view: View?) {
+                    override fun onViewDetachedFromWindow(view: View) {
                         bindJob?.cancel()
                     }
                 }
