@@ -26,6 +26,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.transition.Transition
 import androidx.transition.doOnStart
+import com.android.customization.model.grid.domain.interactor.GridInteractor
 import com.android.customization.model.grid.ui.binder.GridScreenBinder
 import com.android.customization.model.grid.ui.viewmodel.GridScreenViewModel
 import com.android.customization.module.ThemePickerInjector
@@ -65,7 +66,8 @@ class GridFragment2 : AppbarFragment() {
             bindScreenPreview(
                 view,
                 wallpaperInfoFactory,
-                injector.getWallpaperInteractor(requireContext())
+                injector.getWallpaperInteractor(requireContext()),
+                injector.getGridInteractor(requireContext())
             )
 
         val viewModelFactory = injector.getGridScreenViewModelFactory(requireContext())
@@ -84,7 +86,8 @@ class GridFragment2 : AppbarFragment() {
                     bindScreenPreview(
                         view,
                         wallpaperInfoFactory,
-                        injector.getWallpaperInteractor(requireContext())
+                        injector.getWallpaperInteractor(requireContext()),
+                        injector.getGridInteractor(requireContext())
                     )
             }
         )
@@ -112,6 +115,7 @@ class GridFragment2 : AppbarFragment() {
         view: View,
         wallpaperInfoFactory: CurrentWallpaperInfoFactory,
         wallpaperInteractor: WallpaperInteractor,
+        gridInteractor: GridInteractor
     ): ScreenPreviewBinder.Binding {
         return ScreenPreviewBinder.bind(
             activity = requireActivity(),
@@ -127,6 +131,11 @@ class GridFragment2 : AppbarFragment() {
                                         R.string.grid_control_metadata_name,
                                     ),
                         ),
+                    initialExtrasProvider = {
+                        val bundle = Bundle()
+                        bundle.putString("name", gridInteractor.getSelectedOptionName())
+                        bundle
+                    },
                     wallpaperInfoProvider = {
                         suspendCancellableCoroutine { continuation ->
                             wallpaperInfoFactory.createCurrentWallpaperInfos(

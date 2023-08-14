@@ -95,4 +95,6 @@ class GridInteractor(
             model
         }
     }
+
+    fun getSelectedOptionName(): String? = repository.getSelectedOption()?.name
 }
