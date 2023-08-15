@@ -18,19 +18,24 @@
 package com.android.customization.model.grid.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.transition.Transition
 import androidx.transition.doOnStart
+import com.android.customization.model.CustomizationManager.Callback
 import com.android.customization.model.grid.domain.interactor.GridInteractor
 import com.android.customization.model.grid.ui.binder.GridScreenBinder
 import com.android.customization.model.grid.ui.viewmodel.GridScreenViewModel
 import com.android.customization.module.ThemePickerInjector
 import com.android.wallpaper.R
+import com.android.wallpaper.config.BaseFlags
 import com.android.wallpaper.module.CurrentWallpaperInfoFactory
 import com.android.wallpaper.module.CustomizationSections
 import com.android.wallpaper.module.InjectorProvider
@@ -43,8 +48,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.suspendCancellableCoroutine
 
+private val TAG = GridFragment2::class.java.simpleName
+
 @OptIn(ExperimentalCoroutinesApi::class)
 class GridFragment2 : AppbarFragment() {
+
+    private lateinit var gridInteractor: GridInteractor
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,6 +68,8 @@ class GridFragment2 : AppbarFragment() {
             )
         setUpToolbar(view)
 
+        val isGridApplyButtonEnabled = BaseFlags.get().isGridApplyButtonEnabled(requireContext())
+
         val injector = InjectorProvider.getInjector() as ThemePickerInjector
 
         val wallpaperInfoFactory = injector.getCurrentWallpaperInfoFactory(requireContext())
@@ -71,6 +82,7 @@ class GridFragment2 : AppbarFragment() {
             )
 
         val viewModelFactory = injector.getGridScreenViewModelFactory(requireContext())
+        gridInteractor = injector.getGridInteractor(requireContext())
         GridScreenBinder.bind(
             view = view,
             viewModel =
@@ -87,8 +99,42 @@ class GridFragment2 : AppbarFragment() {
                         view,
                         wallpaperInfoFactory,
                         injector.getWallpaperInteractor(requireContext()),
-                        injector.getGridInteractor(requireContext())
+                        gridInteractor,
                     )
+                if (isGridApplyButtonEnabled) {
+                    val applyButton: Button = view.requireViewById(R.id.apply_button)
+                    applyButton.isEnabled = !gridInteractor.isSelectedOptionApplied()
+                }
+            },
+            isGridApplyButtonEnabled = isGridApplyButtonEnabled,
+            onOptionApplied = {
+                gridInteractor.applySelectedOption(
+                    object : Callback {
+                        override fun onSuccess() {
+                            Toast.makeText(
+                                    context,
+                                    getString(
+                                        R.string.toast_of_changing_grid,
+                                        gridInteractor.getSelectOptionNonSuspend()?.title
+                                    ),
+                                    Toast.LENGTH_SHORT
+                                )
+                                .show()
+                            val applyButton: Button = view.requireViewById(R.id.apply_button)
+                            applyButton.isEnabled = false
+                        }
+
+                        override fun onError(throwable: Throwable?) {
+                            val errorMsg =
+                                getString(
+                                    R.string.toast_of_failure_to_change_grid,
+                                    gridInteractor.getSelectOptionNonSuspend()?.title
+                                )
+                            Toast.makeText(context, errorMsg, Toast.LENGTH_SHORT).show()
+                            Log.e(TAG, errorMsg, throwable)
+                        }
+                    }
+                )
             }
         )
 
@@ -133,7 +179,7 @@ class GridFragment2 : AppbarFragment() {
                         ),
                     initialExtrasProvider = {
                         val bundle = Bundle()
-                        bundle.putString("name", gridInteractor.getSelectedOptionName())
+                        bundle.putString("name", gridInteractor.getSelectOptionNonSuspend()?.name)
                         bundle
                     },
                     wallpaperInfoProvider = {
@@ -153,5 +199,12 @@ class GridFragment2 : AppbarFragment() {
             offsetToStart = false,
             onWallpaperPreviewDirty = { activity?.recreate() },
         )
+    }
+
+    override fun onBackPressed(): Boolean {
+        if (BaseFlags.get().isGridApplyButtonEnabled(requireContext())) {
+            gridInteractor.clearSelectedOption()
+        }
+        return super.onBackPressed()
     }
 }
