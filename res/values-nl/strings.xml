@@ -41,6 +41,8 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Het formaat van de klok past zich aan de content van het vergrendelscherm aan"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Groot"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"Klein"</string>
+    <!-- no translation found for clock_size_small_description (4089511196955732480) -->
+    <skip />
     <string name="grid_title" msgid="1688173478777254123">"App-raster"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Toepassen"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Tik om te bewerken"</string>

@@ -41,6 +41,8 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"လော့ခ်မျက်နှာပြင် အကြောင်းအရာအလိုက် နာရီအရွယ်အစား ပြောင်းလဲသည်"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"ကြီး"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"သေး"</string>
+    <!-- no translation found for clock_size_small_description (4089511196955732480) -->
+    <skip />
     <string name="grid_title" msgid="1688173478777254123">"အက်ပ်ဇယား"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"အသုံးပြုရန်"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"တည်းဖြတ်ရန် တို့ပါ"</string>

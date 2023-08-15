@@ -41,6 +41,8 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"ಲಾಕ್ ಸ್ಕ್ರೀನ್‌ನಲ್ಲಿರುವ ವಿಷಯಕ್ಕೆ ಅನುಗುಣವಾಗಿ ಗಡಿಯಾರದ ಗಾತ್ರ ಬದಲಾಗುತ್ತದೆ"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"ದೊಡ್ಡದು"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"ಚಿಕ್ಕದು"</string>
+    <!-- no translation found for clock_size_small_description (4089511196955732480) -->
+    <skip />
     <string name="grid_title" msgid="1688173478777254123">"ಆ್ಯಪ್ ಗ್ರಿಡ್"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"ಅನ್ವಯಿಸಿ"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"ಎಡಿಟ್ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ"</string>
