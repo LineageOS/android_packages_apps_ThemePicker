@@ -163,6 +163,16 @@ public class StatsLogUserEventLogger extends NoOpUserEventLogger implements Them
                 .log();
     }
 
+    @Override
+    public void logEffectForegroundDownload(String effect, @EffectStatus int status,
+            long timeElapsedMillis) {
+        new SysUiStatsLogger(StyleEnums.WALLPAPER_EFFECT_FG_DOWNLOAD)
+                .setEffectPreference(status)
+                .setEffectIdHash(getIdHashCode(effect))
+                .setTimeElapsed(timeElapsedMillis)
+                .log();
+    }
+
     @Nullable
     private String getThemePackage(ThemeBundle theme, String category) {
         Map<String, String> packages = theme.getPackagesByCategory();
