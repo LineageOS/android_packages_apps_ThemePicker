@@ -432,7 +432,8 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
             val extractor = ColorBundlePreviewExtractor(mContext)
             val bundles: MutableList<ColorOption> = ArrayList()
 
-            val bundleNames = getItemsFromStub(COLOR_BUNDLES_ARRAY_NAME)
+            val bundleNames =
+                if (isAvailable) getItemsFromStub(COLOR_BUNDLES_ARRAY_NAME) else emptyArray()
             // Color option index value starts from 1.
             var index = 1
             val maxPresetColors = if (themeStyleEnabled) bundleNames.size else MAX_PRESET_COLORS

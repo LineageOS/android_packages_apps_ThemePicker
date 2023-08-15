@@ -49,7 +49,6 @@ public class GridOption implements CustomizationOption<GridOption>, Parcelable {
     };
 
     private final String mTitle;
-    private final boolean mIsCurrent;
     private final String mIconShapePath;
     private final GridTileDrawable mTileDrawable;
     public final String name;
@@ -57,6 +56,7 @@ public class GridOption implements CustomizationOption<GridOption>, Parcelable {
     public final int cols;
     public final Uri previewImageUri;
     public final int previewPagesCount;
+    private boolean mIsCurrent;
 
     public GridOption(String title, String name, boolean isCurrent, int rows, int cols,
             Uri previewImageUri, int previewPagesCount, String iconShapePath) {
@@ -69,6 +69,10 @@ public class GridOption implements CustomizationOption<GridOption>, Parcelable {
         this.cols = cols;
         this.previewImageUri = previewImageUri;
         this.previewPagesCount = previewPagesCount;
+    }
+
+    public void setIsCurrent(boolean isCurrent) {
+        mIsCurrent = isCurrent;
     }
 
     protected GridOption(Parcel in) {
