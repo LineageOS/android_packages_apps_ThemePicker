@@ -38,12 +38,14 @@ interface GridRepository {
     suspend fun isAvailable(): Boolean
     fun getOptionChanges(): Flow<Unit>
     suspend fun getOptions(): GridOptionItemsModel
+    fun getSelectedOption(): GridOption?
 }
 
 class GridRepositoryImpl(
     private val applicationScope: CoroutineScope,
     private val manager: GridOptionsManager,
     private val backgroundDispatcher: CoroutineDispatcher,
+    private val isGridApplyButtonEnabled: Boolean,
 ) : GridRepository {
 
     override suspend fun isAvailable(): Boolean {
@@ -55,6 +57,8 @@ class GridRepositoryImpl(
 
     private val selectedOption = MutableStateFlow<GridOption?>(null)
 
+    override fun getSelectedOption() = selectedOption.value
+
     override suspend fun getOptions(): GridOptionItemsModel {
         return withContext(backgroundDispatcher) {
             suspendCancellableCoroutine { continuation ->
@@ -62,7 +66,11 @@ class GridRepositoryImpl(
                     object : CustomizationManager.OptionsFetchedListener<GridOption> {
                         override fun onOptionsLoaded(options: MutableList<GridOption>?) {
                             val optionsOrEmpty = options ?: emptyList()
-                            selectedOption.value = optionsOrEmpty.find { it.isActive(manager) }
+                            // After Apply Button is added, we will rely on onSelected() method
+                            // to update selectedOption.
+                            if (!isGridApplyButtonEnabled || selectedOption.value == null) {
+                                selectedOption.value = optionsOrEmpty.find { it.isActive(manager) }
+                            }
                             continuation.resume(
                                 GridOptionItemsModel.Loaded(
                                     optionsOrEmpty.map { option -> toModel(option) }
@@ -105,18 +113,26 @@ class GridRepositoryImpl(
     private suspend fun onSelected(option: GridOption) {
         withContext(backgroundDispatcher) {
             suspendCancellableCoroutine { continuation ->
-                manager.apply(
-                    option,
-                    object : CustomizationManager.Callback {
-                        override fun onSuccess() {
-                            continuation.resume(true)
-                        }
+                if (isGridApplyButtonEnabled) {
+                    selectedOption.value?.setIsCurrent(false)
+                    selectedOption.value = option
+                    selectedOption.value?.setIsCurrent(true)
+                    manager.preview(option)
+                    continuation.resume(true)
+                } else {
+                    manager.apply(
+                        option,
+                        object : CustomizationManager.Callback {
+                            override fun onSuccess() {
+                                continuation.resume(true)
+                            }
 
-                        override fun onError(throwable: Throwable?) {
-                            continuation.resume(false)
-                        }
-                    },
-                )
+                            override fun onError(throwable: Throwable?) {
+                                continuation.resume(false)
+                            }
+                        },
+                    )
+                }
             }
         }
     }

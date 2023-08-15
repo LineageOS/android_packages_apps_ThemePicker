@@ -17,6 +17,7 @@
 
 package com.android.customization.model.grid.data.repository
 
+import com.android.customization.model.grid.GridOption
 import com.android.customization.model.grid.shared.model.GridOptionItemModel
 import com.android.customization.model.grid.shared.model.GridOptionItemsModel
 import kotlinx.coroutines.CoroutineScope
@@ -50,6 +51,8 @@ class FakeGridRepository(
     override suspend fun getOptions(): GridOptionItemsModel {
         return options
     }
+
+    override fun getSelectedOption(): GridOption? = null
 
     fun setOptions(
         count: Int,
