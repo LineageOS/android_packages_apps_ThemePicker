@@ -181,7 +181,8 @@ internal constructor(
         mode: Int,
         viewAsHome: Boolean,
         viewFullScreen: Boolean,
-        testingModeEnabled: Boolean
+        testingModeEnabled: Boolean,
+        isAssetIdPresent: Boolean
     ): Fragment {
         return if (wallpaperInfo is LiveWallpaperInfo) LivePreviewFragment()
         else
