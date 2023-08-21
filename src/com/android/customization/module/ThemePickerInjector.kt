@@ -80,7 +80,6 @@ import com.android.wallpaper.module.CustomizationSections
 import com.android.wallpaper.module.FragmentFactory
 import com.android.wallpaper.module.UserEventLogger
 import com.android.wallpaper.module.WallpaperPicker2Injector
-import com.android.wallpaper.module.WallpaperPreferences
 import com.android.wallpaper.picker.CustomizationPickerActivity
 import com.android.wallpaper.picker.ImagePreviewFragment
 import com.android.wallpaper.picker.LivePreviewFragment
@@ -105,7 +104,6 @@ internal constructor(
 ) : WallpaperPicker2Injector(mainScope, bgDispatcher), CustomizationInjector {
     private var customizationSections: CustomizationSections? = null
     private var userEventLogger: UserEventLogger? = null
-    private var prefs: WallpaperPreferences? = null
     private var wallpaperInteractor: WallpaperInteractor? = null
     private var keyguardQuickAffordancePickerInteractor: KeyguardQuickAffordancePickerInteractor? =
         null
@@ -206,12 +204,6 @@ internal constructor(
                     getWallpaperStatusChecker(context.applicationContext),
                 )
                 .also { userEventLogger = it }
-    }
-
-    @Synchronized
-    override fun getPreferences(context: Context): WallpaperPreferences {
-        return prefs
-            ?: DefaultCustomizationPreferences(context.applicationContext).also { prefs = it }
     }
 
     override fun getFragmentFactory(): FragmentFactory? {
