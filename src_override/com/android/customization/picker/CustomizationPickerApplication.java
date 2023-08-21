@@ -17,7 +17,7 @@ package com.android.customization.picker;
 
 import android.app.Application;
 
-import com.android.customization.module.ThemePickerInjector;
+import com.android.customization.module.CustomizationInjector;
 import com.android.wallpaper.module.InjectorProvider;
 
 import dagger.hilt.android.HiltAndroidApp;
@@ -30,7 +30,8 @@ import javax.inject.Inject;
 @HiltAndroidApp(Application.class)
 public class CustomizationPickerApplication extends Hilt_CustomizationPickerApplication {
 
-    @Inject ThemePickerInjector mInjector;
+    @Inject
+    CustomizationInjector mInjector;
 
     @Override
     public void onCreate() {
