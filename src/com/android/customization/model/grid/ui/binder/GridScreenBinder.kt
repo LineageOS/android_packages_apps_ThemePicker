@@ -57,8 +57,8 @@ object GridScreenBinder {
                 backgroundDispatcher = backgroundDispatcher,
                 foregroundTintSpec =
                     OptionItemBinder.TintSpec(
-                        selectedColor = view.context.getColor(R.color.text_color_primary),
-                        unselectedColor = view.context.getColor(R.color.text_color_secondary),
+                        selectedColor = view.context.getColor(R.color.system_on_surface),
+                        unselectedColor = view.context.getColor(R.color.system_on_surface),
                     ),
                 bindIcon = { foregroundView: View, gridIcon: GridIconViewModel ->
                     val imageView = foregroundView as? ImageView
