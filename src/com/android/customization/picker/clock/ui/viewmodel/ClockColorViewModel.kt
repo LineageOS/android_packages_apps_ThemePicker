@@ -35,8 +35,8 @@ data class ClockColorViewModel(
     }
 
     companion object {
-        const val DEFAULT_COLOR_TONE_MIN = 0
-        const val DEFAULT_COLOR_TONE_MAX = 100
+        private const val DEFAULT_COLOR_TONE_MIN = 0
+        private const val DEFAULT_COLOR_TONE_MAX = 100
 
         fun getPresetColorMap(resources: Resources): Map<String, ClockColorViewModel> {
             val ids = resources.getStringArray(R.array.clock_color_ids)

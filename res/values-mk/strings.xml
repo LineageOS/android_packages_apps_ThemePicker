@@ -39,7 +39,7 @@
     <string name="clock_size_dynamic" msgid="1023930312455061642">"Динамичнa"</string>
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Големината на часовникот се променува според содржините на заклучен екран"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Голема"</string>
-    <string name="clock_size_small" msgid="2280449912094164133">"Мала"</string>
+    <string name="clock_size_small" msgid="2280449912094164133">"Мал"</string>
     <string name="grid_title" msgid="1688173478777254123">"Мрежа"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Примени"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Допрете за да измените"</string>
@@ -101,11 +101,11 @@
     <string name="mode_title" msgid="2394873501427436055">"Темна тема"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"Привремено оневозможено поради „Штедачот на батерија“"</string>
     <string name="mode_changed" msgid="2243581369395418584">"Темата е променета"</string>
-    <string name="themed_icon_title" msgid="7312460430471956558">"Тематски икони"</string>
+    <string name="themed_icon_title" msgid="7312460430471956558">"Икони со тема"</string>
     <string name="beta_title" msgid="8703819523760746458">"Бета"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"Променете ја мрежата на апликации"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"Бои од тапетот"</string>
-    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Иконите, текстот и др. се совпаѓаат по боја со тапетот"</string>
+    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Икони, текст и повеќе совпаѓачки бои на тапетот"</string>
     <string name="wallpaper_color_title" msgid="5687965239180986458">"Боја на тапет"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"Основни бои"</string>
     <string name="preset_color_tab_2" msgid="1444107326712562538">"Други бои"</string>
@@ -124,11 +124,12 @@
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"Кратенки"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"Нема"</string>
-    <string name="notifications_section_title" msgid="4283049750376871538">"Известувања"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Прикажувај известувања на заклучен екран"</string>
-    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Скриј известувања на заклучен екран"</string>
-    <string name="more_settings_section_title" msgid="8524741850115625404">"Повеќе опции"</string>
-    <string name="more_settings_section_description" msgid="8787768566854880683">"Текст на заклучен екран, Now Playing и друго"</string>
+    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Сокривај известувања на заклучен екран"</string>
+    <!-- no translation found for more_settings_section_title (1331425454775815958) -->
+    <skip />
+    <!-- no translation found for more_settings_section_description (1860115709122398325) -->
+    <skip />
     <string name="more_colors" msgid="3191071655353004591">"Повеќе бои"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Стандардна опција за боја"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Опција за <xliff:g id="ID_1">%1$d</xliff:g> боја"</string>

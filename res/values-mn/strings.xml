@@ -37,7 +37,7 @@
     <string name="clock_color_teal" msgid="7499223425741344251">"Усан цэнхэр"</string>
     <string name="clock_size" msgid="5028923902364418263">"Хэмжээ"</string>
     <string name="clock_size_dynamic" msgid="1023930312455061642">"Динамик"</string>
-    <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Цагны хэмжээ нь түгжээтэй дэлгэцийн контентоос хамаарч өөрчлөгддөг"</string>
+    <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Цагны хэмжээ нь түгжигдсэн дэлгэцийн контентоос хамаарч өөрчлөгддөг"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Том"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"Жижиг"</string>
     <string name="grid_title" msgid="1688173478777254123">"Аппын хүснэгт"</string>
@@ -124,11 +124,12 @@
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"Товчлол"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"Байхгүй"</string>
-    <string name="notifications_section_title" msgid="4283049750376871538">"Мэдэгдэл"</string>
-    <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Түгжээтэй дэлгэц дээр мэдэгдэл харуулах"</string>
+    <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Түгжигдсэн дэлгэц дээр мэдэгдлийг харуулах"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Түгжигдсэн дэлгэц дээрх мэдэгдлүүдийг нуух"</string>
-    <string name="more_settings_section_title" msgid="8524741850115625404">"Бусад сонголт"</string>
-    <string name="more_settings_section_description" msgid="8787768566854880683">"Түгжигдсэн дэлгэцийн текст, Now Playing болон бусад"</string>
+    <!-- no translation found for more_settings_section_title (1331425454775815958) -->
+    <skip />
+    <!-- no translation found for more_settings_section_description (1860115709122398325) -->
+    <skip />
     <string name="more_colors" msgid="3191071655353004591">"Бусад өнгө"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Өгөгдмөл өнгөний сонголт"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Өнгөний сонголт <xliff:g id="ID_1">%1$d</xliff:g>"</string>

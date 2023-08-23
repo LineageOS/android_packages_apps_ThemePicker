@@ -56,11 +56,11 @@ open class FakeClockPickerRepository(clocks: List<ClockMetadataModel> = fakeCloc
     private val _selectedClockSize = MutableStateFlow(ClockSize.SMALL)
     override val selectedClockSize: Flow<ClockSize> = _selectedClockSize.asStateFlow()
 
-    override fun setSelectedClock(clockId: String) {
+    override suspend fun setSelectedClock(clockId: String) {
         selectedClockId.value = clockId
     }
 
-    override fun setClockColor(
+    override suspend fun setClockColor(
         selectedColorId: String?,
         @IntRange(from = 0, to = 100) colorToneProgress: Int,
         @ColorInt seedColor: Int?,
@@ -75,12 +75,16 @@ open class FakeClockPickerRepository(clocks: List<ClockMetadataModel> = fakeCloc
     }
 
     companion object {
+        const val CLOCK_ID_0 = "clock0"
+        const val CLOCK_ID_1 = "clock1"
+        const val CLOCK_ID_2 = "clock2"
+        const val CLOCK_ID_3 = "clock3"
         val fakeClocks =
             listOf(
-                ClockMetadataModel("clock0", "clock0", null, 50, null),
-                ClockMetadataModel("clock1", "clock1", null, 50, null),
-                ClockMetadataModel("clock2", "clock2", null, 50, null),
-                ClockMetadataModel("clock3", "clock3", null, 50, null),
+                ClockMetadataModel(CLOCK_ID_0, "clock0", null, 50, null),
+                ClockMetadataModel(CLOCK_ID_1, "clock1", null, 50, null),
+                ClockMetadataModel(CLOCK_ID_2, "clock2", null, 50, null),
+                ClockMetadataModel(CLOCK_ID_3, "clock3", null, 50, null),
             )
         const val CLOCK_COLOR_ID = "RED"
         const val CLOCK_COLOR_TONE_PROGRESS = 87

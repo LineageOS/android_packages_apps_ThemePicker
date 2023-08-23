@@ -62,7 +62,7 @@
     <string name="preview_name_shape" msgid="5676971146080968721">"形狀"</string>
     <string name="preview_name_wallpaper" msgid="1738652462949531828">"桌布"</string>
     <string name="font_card_title" msgid="2343292653502548685">"ABC • abc • 123"</string>
-    <string name="font_card_body" msgid="6790525594503904468">"讓每個畫面顯示你喜愛的字型"</string>
+    <string name="font_card_body" msgid="6790525594503904468">"讓每個畫面顯示您喜愛的字型"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"請選擇網格大小"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g> x <xliff:g id="ID_2">%2$d</xliff:g>"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"成功設定樣式"</string>
@@ -109,7 +109,7 @@
     <string name="wallpaper_color_title" msgid="5687965239180986458">"桌布顏色"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"基本顏色"</string>
     <string name="preset_color_tab_2" msgid="1444107326712562538">"其他顏色"</string>
-    <string name="preset_color_subheader" msgid="8230588536141279371">"為圖示、時鐘等選擇顏色"</string>
+    <string name="preset_color_subheader" msgid="8230588536141279371">"為圖示、時鐘等選擇任何顏色"</string>
     <string name="color_changed" msgid="7029571720331641235">"已經變咗顏色"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"動態"</string>
     <string name="color_picker_title" msgid="6666830057938082864">"系統顏色"</string>
@@ -124,11 +124,12 @@
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"捷徑"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>，<xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"無"</string>
-    <string name="notifications_section_title" msgid="4283049750376871538">"通知"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"在上鎖畫面顯示通知"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"在上鎖畫面隱藏通知"</string>
-    <string name="more_settings_section_title" msgid="8524741850115625404">"更多選項"</string>
-    <string name="more_settings_section_description" msgid="8787768566854880683">"在上鎖畫面發短訊、使用「歌曲識別」功能等"</string>
+    <!-- no translation found for more_settings_section_title (1331425454775815958) -->
+    <skip />
+    <!-- no translation found for more_settings_section_description (1860115709122398325) -->
+    <skip />
     <string name="more_colors" msgid="3191071655353004591">"更多顏色"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"預設顏色選項"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"顏色選項：<xliff:g id="ID_1">%1$d</xliff:g>"</string>

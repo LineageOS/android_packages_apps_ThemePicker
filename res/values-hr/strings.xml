@@ -39,7 +39,7 @@
     <string name="clock_size_dynamic" msgid="1023930312455061642">"Dinamičan"</string>
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Veličina sata mijenja se u skladu sa sadržajem zaključanog zaslona"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Velik"</string>
-    <string name="clock_size_small" msgid="2280449912094164133">"Mali"</string>
+    <string name="clock_size_small" msgid="2280449912094164133">"Malo"</string>
     <string name="grid_title" msgid="1688173478777254123">"Rešetka aplik."</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Primijeni"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Dodirnite da biste uredili"</string>
@@ -105,11 +105,11 @@
     <string name="beta_title" msgid="8703819523760746458">"Beta"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"Promjena rešetke aplikacije"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"Boje pozadine"</string>
-    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Ikone, tekst i ostalo odgovara bojama na pozadini"</string>
+    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Ikone, tekst i više toga odgovaraju bojama na pozadini"</string>
     <string name="wallpaper_color_title" msgid="5687965239180986458">"Boja pozadine"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"Osnovne boje"</string>
-    <string name="preset_color_tab_2" msgid="1444107326712562538">"Druge boje"</string>
-    <string name="preset_color_subheader" msgid="8230588536141279371">"Odaberite bilo koju boju za svoje ikone, sat i ostalo"</string>
+    <string name="preset_color_tab_2" msgid="1444107326712562538">"Ostale boje"</string>
+    <string name="preset_color_subheader" msgid="8230588536141279371">"Odaberite bilo koju boju za svoje ikone, sat i više"</string>
     <string name="color_changed" msgid="7029571720331641235">"Promijenjena boja"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Dinamično"</string>
     <string name="color_picker_title" msgid="6666830057938082864">"Boje sustava"</string>
@@ -124,11 +124,10 @@
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"Prečaci"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"Ništa"</string>
-    <string name="notifications_section_title" msgid="4283049750376871538">"Obavijesti"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Prikaz obavijesti na zaključanom zaslonu"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Skrivanje obavijesti na zaključanom zaslonu"</string>
-    <string name="more_settings_section_title" msgid="8524741850115625404">"Više opcija"</string>
-    <string name="more_settings_section_description" msgid="8787768566854880683">"Tekst na zaključanom zaslonu, Upravo svira i još mnogo toga"</string>
+    <string name="more_settings_section_title" msgid="1331425454775815958">"Više opcija zaključanog zaslona"</string>
+    <string name="more_settings_section_description" msgid="1860115709122398325">"Privatnost, Upravo svira i drugo"</string>
     <string name="more_colors" msgid="3191071655353004591">"Više boja"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Zadana opcija boje"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Opcija boje <xliff:g id="ID_1">%1$d</xliff:g>"</string>

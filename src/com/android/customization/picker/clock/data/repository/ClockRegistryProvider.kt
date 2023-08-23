@@ -43,24 +43,27 @@ class ClockRegistryProvider(
     private val mainDispatcher: CoroutineDispatcher,
     private val backgroundDispatcher: CoroutineDispatcher,
 ) {
-    private val pluginManager: PluginManager by lazy { createPluginManager(context) }
     private val clockRegistry: ClockRegistry by lazy {
         ClockRegistry(
-                context,
-                pluginManager,
-                coroutineScope,
-                mainDispatcher,
-                backgroundDispatcher,
-                isEnabled = true,
-                handleAllUsers = false,
-                DefaultClockProvider(context, LayoutInflater.from(context), context.resources)
-            )
-            .apply { registerListeners() }
+            context,
+            createPluginManager(context),
+            coroutineScope,
+            mainDispatcher,
+            backgroundDispatcher,
+            isEnabled = true,
+            handleAllUsers = false,
+            DefaultClockProvider(context, LayoutInflater.from(context), context.resources),
+            keepAllLoaded = true,
+            subTag = "Picker",
+        )
     }
 
-    fun get(): ClockRegistry {
-        return clockRegistry
+    init {
+        // Listeners in ClockRegistry get cleaned up when app ended
+        clockRegistry.registerListeners()
     }
+
+    fun get() = clockRegistry
 
     private fun createPluginManager(context: Context): PluginManager {
         val privilegedPlugins = listOf<String>()
@@ -70,7 +73,7 @@ class ClockRegistryProvider(
             PluginInstance.Factory(
                 this::class.java.classLoader,
                 PluginInstance.InstanceFactory<Plugin>(),
-                PluginInstance.VersionChecker(),
+                PluginInstance.VersionCheckerImpl(),
                 privilegedPlugins,
                 isDebugDevice,
             )

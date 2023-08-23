@@ -24,6 +24,7 @@ import com.android.customization.picker.clock.shared.model.ClockMetadataModel
 import com.android.systemui.plugins.ClockMetadata
 import com.android.systemui.shared.clocks.ClockRegistry
 import com.android.wallpaper.settings.data.repository.SecureSettingsRepository
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
@@ -32,6 +33,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.mapNotNull
@@ -43,6 +45,7 @@ class ClockPickerRepositoryImpl(
     private val secureSettingsRepository: SecureSettingsRepository,
     private val registry: ClockRegistry,
     scope: CoroutineScope,
+    mainDispatcher: CoroutineDispatcher,
 ) : ClockPickerRepository {
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -67,6 +70,7 @@ class ClockPickerRepositoryImpl(
                 send()
                 awaitClose { registry.unregisterClockChangeListener(listener) }
             }
+            .flowOn(mainDispatcher)
             .mapLatest { allClocks ->
                 // Loading list of clock plugins can cause many consecutive calls of
                 // onAvailableClocksChanged(). We only care about the final fully-initiated clock
@@ -108,9 +112,10 @@ class ClockPickerRepositoryImpl(
                 send()
                 awaitClose { registry.unregisterClockChangeListener(listener) }
             }
+            .flowOn(mainDispatcher)
             .mapNotNull { it }
 
-    override fun setSelectedClock(clockId: String) {
+    override suspend fun setSelectedClock(clockId: String) {
         registry.mutateSetting { oldSettings ->
             val newSettings = oldSettings.copy(clockId = clockId)
             newSettings.metadata = oldSettings.metadata
@@ -118,7 +123,7 @@ class ClockPickerRepositoryImpl(
         }
     }
 
-    override fun setClockColor(
+    override suspend fun setClockColor(
         selectedColorId: String?,
         @IntRange(from = 0, to = 100) colorToneProgress: Int,
         @ColorInt seedColor: Int?,
@@ -137,6 +142,7 @@ class ClockPickerRepositoryImpl(
         secureSettingsRepository
             .intSetting(
                 name = Settings.Secure.LOCKSCREEN_USE_DOUBLE_LINE_CLOCK,
+                defaultValue = DEFAULT_CLOCK_SIZE,
             )
             .map { setting -> setting == 1 }
             .map { isDynamic -> if (isDynamic) ClockSize.DYNAMIC else ClockSize.SMALL }
@@ -189,5 +195,8 @@ class ClockPickerRepositoryImpl(
 
         // The color tone to apply to the selected color
         private const val KEY_METADATA_COLOR_TONE_PROGRESS = "metadataColorToneProgress"
+
+        // The default clock size is 1, which means dynamic
+        private const val DEFAULT_CLOCK_SIZE = 1
     }
 }

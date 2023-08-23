@@ -80,9 +80,9 @@ class KeyguardQuickAffordancePickerRepository(
             name = name,
             iconResourceId = iconResourceId,
             isEnabled = isEnabled,
-            enablementInstructions = enablementInstructions ?: emptyList(),
+            enablementExplanation = enablementExplanation ?: "",
             enablementActionText = enablementActionText,
-            enablementActionComponentName = enablementActionComponentName,
+            enablementActionIntent = enablementActionIntent,
             configureIntent = configureIntent,
         )
     }

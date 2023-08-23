@@ -122,11 +122,11 @@ class GridFragment2 : AppbarFragment() {
                         }
                     },
                     wallpaperInteractor = wallpaperInteractor,
+                    screen = CustomizationSections.Screen.HOME_SCREEN,
                 ),
-            lifecycleOwner = this,
+            lifecycleOwner = viewLifecycleOwner,
             offsetToStart = false,
-            screen = CustomizationSections.Screen.HOME_SCREEN,
-            onPreviewDirty = { activity?.recreate() },
+            onWallpaperPreviewDirty = { activity?.recreate() },
         )
     }
 }

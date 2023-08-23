@@ -34,10 +34,14 @@ import com.android.wallpaper.R
 import com.android.wallpaper.module.InjectorProvider
 import com.android.wallpaper.picker.common.icon.ui.viewmodel.Icon
 import com.android.wallpaper.picker.common.text.ui.viewmodel.Text
+import com.android.wallpaper.picker.customization.data.repository.WallpaperRepository
+import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInteractor
 import com.android.wallpaper.picker.option.ui.viewmodel.OptionItemViewModel
 import com.android.wallpaper.testing.FakeSnapshotStore
+import com.android.wallpaper.testing.FakeWallpaperClient
 import com.android.wallpaper.testing.TestCurrentWallpaperInfoFactory
 import com.android.wallpaper.testing.TestInjector
+import com.android.wallpaper.testing.TestWallpaperPreferences
 import com.android.wallpaper.testing.collectLastValue
 import com.google.common.truth.Truth.assertThat
 import com.google.common.truth.Truth.assertWithMessage
@@ -66,8 +70,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
     private lateinit var testScope: TestScope
     private lateinit var client: FakeCustomizationProviderClient
     private lateinit var quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor
-
-    private var latestStartedActivityIntent: Intent? = null
+    private lateinit var wallpaperInteractor: WallpaperInteractor
 
     @Before
     fun setUp() {
@@ -94,12 +97,22 @@ class KeyguardQuickAffordancePickerViewModelTest {
                         .apply { runBlocking { setUpSnapshotRestorer(FakeSnapshotStore()) } }
                 },
             )
+        wallpaperInteractor =
+            WallpaperInteractor(
+                repository =
+                    WallpaperRepository(
+                        scope = testScope.backgroundScope,
+                        client = FakeWallpaperClient(),
+                        wallpaperPreferences = TestWallpaperPreferences(),
+                        backgroundDispatcher = testDispatcher,
+                    ),
+            )
         underTest =
             KeyguardQuickAffordancePickerViewModel.Factory(
                     context = context,
                     quickAffordanceInteractor = quickAffordanceInteractor,
+                    wallpaperInteractor = wallpaperInteractor,
                     wallpaperInfoFactory = TestCurrentWallpaperInfoFactory(context),
-                    activityStarter = { intent -> latestStartedActivityIntent = intent },
                 )
                 .create(KeyguardQuickAffordancePickerViewModel::class.java)
     }
@@ -233,12 +246,13 @@ class KeyguardQuickAffordancePickerViewModelTest {
             val slots = collectLastValue(underTest.slots)
             val quickAffordances = collectLastValue(underTest.quickAffordances)
             val dialog = collectLastValue(underTest.dialog)
+            val activityStartRequest = collectLastValue(underTest.activityStartRequests)
 
-            val enablementInstructions = listOf("instruction1", "instruction2")
+            val enablementExplanation = "enablementExplanation"
             val enablementActionText = "enablementActionText"
             val packageName = "packageName"
             val action = "action"
-            val enablementActionComponentName = "$packageName/$action"
+            val enablementActionIntent = Intent(action).apply { `package` = packageName }
             // Lets add a disabled affordance to the picker:
             val affordanceIndex =
                 client.addAffordance(
@@ -247,9 +261,9 @@ class KeyguardQuickAffordancePickerViewModelTest {
                         name = "disabled",
                         iconResourceId = 1,
                         isEnabled = false,
-                        enablementInstructions = enablementInstructions,
+                        enablementExplanation = enablementExplanation,
                         enablementActionText = enablementActionText,
-                        enablementActionComponentName = enablementActionComponentName,
+                        enablementActionIntent = enablementActionIntent,
                     )
                 )
 
@@ -259,16 +273,26 @@ class KeyguardQuickAffordancePickerViewModelTest {
             // We expect there to be a dialog that should be shown:
             assertThat(dialog()?.icon)
                 .isEqualTo(Icon.Loaded(FakeCustomizationProviderClient.ICON_1, null))
-            assertThat(dialog()?.title).isEqualTo(Text.Loaded("disabled"))
-            assertThat(dialog()?.message)
-                .isEqualTo(Text.Loaded(enablementInstructions.joinToString("\n")))
-            assertThat(dialog()?.buttons?.size).isEqualTo(1)
-            assertThat(dialog()?.buttons?.first()?.text)
-                .isEqualTo(Text.Loaded(enablementActionText))
+            assertThat(dialog()?.headline)
+                .isEqualTo(Text.Resource(R.string.keyguard_affordance_enablement_dialog_headline))
+            assertThat(dialog()?.message).isEqualTo(Text.Loaded(enablementExplanation))
+            assertThat(dialog()?.buttons?.size).isEqualTo(2)
+            assertThat(dialog()?.buttons?.first()?.text).isEqualTo(Text.Resource(R.string.cancel))
+            assertThat(dialog()?.buttons?.get(1)?.text).isEqualTo(Text.Loaded(enablementActionText))
+
+            // When the button is clicked, we expect an intent of the given enablement action
+            // component name to be emitted.
+            dialog()?.buttons?.get(1)?.onClicked?.invoke()
+            assertThat(activityStartRequest()?.`package`).isEqualTo(packageName)
+            assertThat(activityStartRequest()?.action).isEqualTo(action)
+
+            // Once we report that the activity was started, the activity start request should be
+            // nullified.
+            underTest.onActivityStarted()
+            assertThat(activityStartRequest()).isNull()
 
             // Once we report that the dialog has been dismissed by the user, we expect there to be
-            // no
-            // dialog to be shown:
+            // no dialog to be shown:
             underTest.onDialogDismissed()
             assertThat(dialog()).isNull()
         }
@@ -277,6 +301,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
     fun `Start settings activity when long-pressing an affordance`() =
         testScope.runTest {
             val quickAffordances = collectLastValue(underTest.quickAffordances)
+            val activityStartRequest = collectLastValue(underTest.activityStartRequests)
 
             // Lets add a configurable affordance to the picker:
             val configureIntent = Intent("some.action")
@@ -294,7 +319,11 @@ class KeyguardQuickAffordancePickerViewModelTest {
             // Lets try to long-click the affordance:
             quickAffordances()?.get(affordanceIndex + 1)?.onLongClicked?.invoke()
 
-            assertThat(latestStartedActivityIntent).isEqualTo(configureIntent)
+            assertThat(activityStartRequest()).isEqualTo(configureIntent)
+            // Once we report that the activity was started, the activity start request should be
+            // nullified.
+            underTest.onActivityStarted()
+            assertThat(activityStartRequest()).isNull()
         }
 
     @Test

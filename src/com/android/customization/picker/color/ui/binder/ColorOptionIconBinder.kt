@@ -17,25 +17,29 @@
 
 package com.android.customization.picker.color.ui.binder
 
-import android.graphics.BlendMode
-import android.graphics.BlendModeColorFilter
-import android.view.ViewGroup
-import android.widget.ImageView
+import com.android.customization.picker.color.ui.view.ColorOptionIconView
 import com.android.customization.picker.color.ui.viewmodel.ColorOptionIconViewModel
-import com.android.wallpaper.R
 
 object ColorOptionIconBinder {
     fun bind(
-        view: ViewGroup,
+        view: ColorOptionIconView,
         viewModel: ColorOptionIconViewModel,
+        darkTheme: Boolean,
     ) {
-        val color0View: ImageView = view.requireViewById(R.id.color_preview_0)
-        val color1View: ImageView = view.requireViewById(R.id.color_preview_1)
-        val color2View: ImageView = view.requireViewById(R.id.color_preview_2)
-        val color3View: ImageView = view.requireViewById(R.id.color_preview_3)
-        color0View.drawable.colorFilter = BlendModeColorFilter(viewModel.color0, BlendMode.SRC)
-        color1View.drawable.colorFilter = BlendModeColorFilter(viewModel.color1, BlendMode.SRC)
-        color2View.drawable.colorFilter = BlendModeColorFilter(viewModel.color2, BlendMode.SRC)
-        color3View.drawable.colorFilter = BlendModeColorFilter(viewModel.color3, BlendMode.SRC)
+        if (darkTheme) {
+            view.bindColor(
+                viewModel.darkThemeColor0,
+                viewModel.darkThemeColor1,
+                viewModel.darkThemeColor2,
+                viewModel.darkThemeColor3,
+            )
+        } else {
+            view.bindColor(
+                viewModel.lightThemeColor0,
+                viewModel.lightThemeColor1,
+                viewModel.lightThemeColor2,
+                viewModel.lightThemeColor3,
+            )
+        }
     }
 }

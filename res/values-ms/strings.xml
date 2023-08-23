@@ -17,7 +17,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name" msgid="1647136562008520313">"Hiasan latar &amp; gaya"</string>
+    <string name="app_name" msgid="1647136562008520313">"Kertas dinding &amp; gaya"</string>
     <string name="theme_title" msgid="2144932106319405101">"Gaya"</string>
     <string name="clock_title" msgid="1974314575211361352">"Jam Tersuai"</string>
     <string name="clock_description" msgid="3563839327378948">"Pilih jam tersuai"</string>
@@ -104,7 +104,7 @@
     <string name="themed_icon_title" msgid="7312460430471956558">"Ikon bertema"</string>
     <string name="beta_title" msgid="8703819523760746458">"Beta"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"Tukar grid apl"</string>
-    <string name="wallpaper_color_tab" msgid="1447926591721403840">"Warna hiasan latar"</string>
+    <string name="wallpaper_color_tab" msgid="1447926591721403840">"Warna kertas dinding"</string>
     <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Ikon, teks dan pelbagai padanan warna pada hiasan latar"</string>
     <string name="wallpaper_color_title" msgid="5687965239180986458">"Warna kertas dinding"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"Warna asas"</string>
@@ -124,11 +124,10 @@
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"Pintasan"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"Tiada"</string>
-    <string name="notifications_section_title" msgid="4283049750376871538">"Pemberitahuan"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Tunjukkan pemberitahuan pada skrin kunci"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Sembunyikan pemberitahuan pada skrin kunci"</string>
-    <string name="more_settings_section_title" msgid="8524741850115625404">"Lagi pilihan"</string>
-    <string name="more_settings_section_description" msgid="8787768566854880683">"Teks pada skrin kunci, Now Playing dan pelbagai lagi"</string>
+    <string name="more_settings_section_title" msgid="1331425454775815958">"Lebih banyak pilihan skrin kunci"</string>
+    <string name="more_settings_section_description" msgid="1860115709122398325">"Privasi, Now Playing dan pelbagai lagi"</string>
     <string name="more_colors" msgid="3191071655353004591">"Lagi Warna"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Pilihan warna lalai"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Pilihan warna <xliff:g id="ID_1">%1$d</xliff:g>"</string>

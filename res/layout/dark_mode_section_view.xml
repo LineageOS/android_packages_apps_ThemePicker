@@ -22,7 +22,7 @@
     android:clickable="true"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingVertical="@dimen/section_vertical_padding"
+    android:paddingVertical="@dimen/section_padding"
     android:paddingHorizontal="@dimen/section_horizontal_padding">
 
     <TextView
