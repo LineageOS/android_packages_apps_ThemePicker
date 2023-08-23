@@ -15,11 +15,13 @@
  */
 package com.android.customization.picker.clock.ui.viewmodel
 
+import android.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.shared.ClockSize
+import com.android.wallpaper.R
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
@@ -55,6 +57,38 @@ class ClockCarouselViewModel(
     val selectedClockSize: Flow<ClockSize> = interactor.selectedClockSize
 
     val seedColor: Flow<Int?> = interactor.seedColor
+
+    fun getClockCardColorResId(isDarkThemeEnabled: Boolean): Flow<Int> {
+        return interactor.seedColor.map {
+            it.let { seedColor ->
+                // if seedColor is null, default clock color is selected
+                if (seedColor == null) {
+                    if (isDarkThemeEnabled) {
+                        // In dark mode, use darkest surface container color
+                        R.color.system_surface_container_high
+                    } else {
+                        // In light mode, use lightest surface container color
+                        R.color.system_surface_bright
+                    }
+                } else {
+                    val luminance = Color.luminance(seedColor)
+                    if (isDarkThemeEnabled) {
+                        if (luminance <= CARD_COLOR_CHANGE_LUMINANCE_THRESHOLD_DARK_THEME) {
+                            R.color.system_surface_bright
+                        } else {
+                            R.color.system_surface_container_high
+                        }
+                    } else {
+                        if (luminance <= CARD_COLOR_CHANGE_LUMINANCE_THRESHOLD_LIGHT_THEME) {
+                            R.color.system_surface_bright
+                        } else {
+                            R.color.system_surface_container_highest
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val selectedIndex: Flow<Int> =
@@ -96,5 +130,7 @@ class ClockCarouselViewModel(
 
     companion object {
         const val CLOCKS_EVENT_UPDATE_DELAY_MILLIS: Long = 100
+        const val CARD_COLOR_CHANGE_LUMINANCE_THRESHOLD_LIGHT_THEME: Float = 0.85f
+        const val CARD_COLOR_CHANGE_LUMINANCE_THRESHOLD_DARK_THEME: Float = 0.03f
     }
 }

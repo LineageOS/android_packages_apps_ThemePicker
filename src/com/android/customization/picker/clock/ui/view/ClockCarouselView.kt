@@ -16,6 +16,7 @@
 package com.android.customization.picker.clock.ui.view
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.content.res.Resources
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -294,6 +295,16 @@ class ClockCarouselView(
         //    We only call jumpToIndex when the index is different from the current carousel.
         if (index < carousel.count && index != carousel.currentIndex) {
             carousel.jumpToIndex(index)
+        }
+    }
+
+    fun setCarouselCardColor(color: Int) {
+        itemViewIds.forEach { id ->
+            val cardViewId = getClockCardViewId(id)
+            cardViewId?.let {
+                val cardView = motionLayout.requireViewById<View>(it)
+                cardView.backgroundTintList = ColorStateList.valueOf(color)
+            }
         }
     }
 
