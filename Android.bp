@@ -94,6 +94,8 @@ java_defaults {
         ":ThemePicker_src_overrides",
     ],
 
+    required: ["android.software.theme_picker.xml"],
+
     use_embedded_native_libs: true,
 
     resource_zips: [":WallpaperPicker2_res", ":ThemePicker_res", ":ThemePicker_res_overrides"],
@@ -106,6 +108,13 @@ java_defaults {
 
     privileged: true,
     system_ext_specific: true,
+}
+
+prebuilt_etc {
+    name: "android.software.theme_picker.xml",
+    system_ext_specific: true,
+    sub_dir: "permissions",
+    src: "android.software.theme_picker.xml",
 }
 
 //
