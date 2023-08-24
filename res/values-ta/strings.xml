@@ -41,8 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"பூட்டுத் திரையில் உள்ள உள்ளடக்கத்தைப் பொறுத்து கடிகாரத்தின் அளவு மாறுபடும்"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"பெரியது"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"சிறியது"</string>
-    <!-- no translation found for clock_size_small_description (4089511196955732480) -->
-    <skip />
+    <string name="clock_size_small_description" msgid="4089511196955732480">"உங்கள் திரையின் மூலையில் ஒரு சிறிய கடிகாரம் காட்டப்படும்"</string>
     <string name="grid_title" msgid="1688173478777254123">"ஆப்ஸ் கட்டம்"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"பயன்படுத்து"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"\'தீமைத்\' திருத்த தட்டவும்"</string>
