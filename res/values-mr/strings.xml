@@ -41,8 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"लॉक स्‍क्रीनवरील आशयानुसार घड्याळाचा आकार बदलेल"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"मोठा"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"छोटे"</string>
-    <!-- no translation found for clock_size_small_description (4089511196955732480) -->
-    <skip />
+    <string name="clock_size_small_description" msgid="4089511196955732480">"तुमच्या स्क्रीनच्या कोपऱ्यामध्ये एक लहान घड्याळ दिसते"</string>
     <string name="grid_title" msgid="1688173478777254123">"ॲप ग्रिड"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"लागू करा"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"संपादित करण्‍यासाठी टॅप करा"</string>
