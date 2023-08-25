@@ -566,9 +566,7 @@ internal constructor(
                 .also { gridScreenViewModelFactory = it }
     }
 
-    fun getGridInteractor(
-        context: Context,
-    ): GridInteractor {
+    fun getGridInteractor(context: Context): GridInteractor {
         val appContext = context.applicationContext
         return gridInteractor
             ?: GridInteractor(
