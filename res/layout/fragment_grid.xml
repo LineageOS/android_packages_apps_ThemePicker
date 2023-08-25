@@ -88,6 +88,24 @@
 
         </FrameLayout>
 
+        <Button
+            android:id="@+id/apply_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"
+            android:enabled="false"
+            style="@style/ActionPrimaryButton"
+            android:text="@string/apply_btn" />
+
+        <TextView
+            android:id="@+id/apply_button_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/grid_apply_button_note_text_size"
+            android:visibility="gone"
+            android:text="@string/apply_grid_btn_note" />
     </LinearLayout>
 
 </LinearLayout>
