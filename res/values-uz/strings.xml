@@ -41,8 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Soat hajmi ekran qulfidagi kontent asosida oʻzgaradi"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Yirik"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"Kichik"</string>
-    <!-- no translation found for clock_size_small_description (4089511196955732480) -->
-    <skip />
+    <string name="clock_size_small_description" msgid="4089511196955732480">"Ekran chekkasida kichik soat chiqishi"</string>
     <string name="grid_title" msgid="1688173478777254123">"Ilovalar jadvali"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Tatbiq etish"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Tahrirlash uchun tegining"</string>
