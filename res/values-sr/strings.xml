@@ -41,8 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Величина сата се мења у складу са садржајем закључаног екрана"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Велико"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"Мали"</string>
-    <!-- no translation found for clock_size_small_description (4089511196955732480) -->
-    <skip />
+    <string name="clock_size_small_description" msgid="4089511196955732480">"Мали сат се приказује у углу екрана"</string>
     <string name="grid_title" msgid="1688173478777254123">"Мрежа апл."</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Примени"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Додирните да бисте изменили"</string>

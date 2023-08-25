@@ -41,8 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Размер часов меняется в зависимости от контента на заблокированном экране"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Большой"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"Маленький"</string>
-    <!-- no translation found for clock_size_small_description (4089511196955732480) -->
-    <skip />
+    <string name="clock_size_small_description" msgid="4089511196955732480">"Небольшие часы в углу экрана"</string>
     <string name="grid_title" msgid="1688173478777254123">"Сетка приложений"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Применить"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Нажмите, чтобы изменить"</string>
