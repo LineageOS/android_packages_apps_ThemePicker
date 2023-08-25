@@ -19,6 +19,7 @@ package com.android.customization.model.grid.data.repository
 
 import androidx.lifecycle.asFlow
 import com.android.customization.model.CustomizationManager
+import com.android.customization.model.CustomizationManager.Callback
 import com.android.customization.model.grid.GridOption
 import com.android.customization.model.grid.GridOptionsManager
 import com.android.customization.model.grid.shared.model.GridOptionItemModel
@@ -39,6 +40,9 @@ interface GridRepository {
     fun getOptionChanges(): Flow<Unit>
     suspend fun getOptions(): GridOptionItemsModel
     fun getSelectedOption(): GridOption?
+    fun applySelectedOption(callback: Callback)
+    fun clearSelectedOption()
+    fun isSelectedOptionApplied(): Boolean
 }
 
 class GridRepositoryImpl(
@@ -57,6 +61,8 @@ class GridRepositoryImpl(
 
     private val selectedOption = MutableStateFlow<GridOption?>(null)
 
+    private var appliedOption: GridOption? = null
+
     override fun getSelectedOption() = selectedOption.value
 
     override suspend fun getOptions(): GridOptionItemsModel {
@@ -70,6 +76,9 @@ class GridRepositoryImpl(
                             // to update selectedOption.
                             if (!isGridApplyButtonEnabled || selectedOption.value == null) {
                                 selectedOption.value = optionsOrEmpty.find { it.isActive(manager) }
+                            }
+                            if (isGridApplyButtonEnabled && appliedOption == null) {
+                                appliedOption = selectedOption.value
                             }
                             continuation.resume(
                                 GridOptionItemsModel.Loaded(
@@ -136,6 +145,35 @@ class GridRepositoryImpl(
             }
         }
     }
+
+    override fun applySelectedOption(callback: Callback) {
+        val option = getSelectedOption()
+        manager.apply(
+            option,
+            if (isGridApplyButtonEnabled) {
+                object : Callback {
+                    override fun onSuccess() {
+                        callback.onSuccess()
+                        appliedOption = option
+                    }
+
+                    override fun onError(throwable: Throwable?) {
+                        callback.onError(throwable)
+                    }
+                }
+            } else callback
+        )
+    }
+
+    override fun clearSelectedOption() {
+        if (!isGridApplyButtonEnabled) {
+            return
+        }
+        selectedOption.value?.setIsCurrent(false)
+        selectedOption.value = null
+    }
+
+    override fun isSelectedOptionApplied() = selectedOption.value?.name == appliedOption?.name
 
     private fun GridOption?.key(): String? {
         return if (this != null) "${cols}x${rows}" else null
