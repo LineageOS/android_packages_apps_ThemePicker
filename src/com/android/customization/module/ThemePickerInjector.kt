@@ -81,9 +81,9 @@ import com.android.wallpaper.module.FragmentFactory
 import com.android.wallpaper.module.UserEventLogger
 import com.android.wallpaper.module.WallpaperPicker2Injector
 import com.android.wallpaper.picker.CustomizationPickerActivity
-import com.android.wallpaper.picker.ImagePreviewFragment
-import com.android.wallpaper.picker.LivePreviewFragment
-import com.android.wallpaper.picker.PreviewFragment
+import com.android.wallpaper.picker.ImagePreviewFragment2
+import com.android.wallpaper.picker.LivePreviewFragment2
+import com.android.wallpaper.picker.PreviewFragment2
 import com.android.wallpaper.picker.customization.data.content.WallpaperClientImpl
 import com.android.wallpaper.picker.customization.data.repository.WallpaperRepository
 import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInteractor
@@ -182,16 +182,16 @@ internal constructor(
         testingModeEnabled: Boolean,
         isAssetIdPresent: Boolean
     ): Fragment {
-        return if (wallpaperInfo is LiveWallpaperInfo) LivePreviewFragment()
+        return if (wallpaperInfo is LiveWallpaperInfo) LivePreviewFragment2()
         else
-            ImagePreviewFragment().apply {
+            ImagePreviewFragment2().apply {
                 arguments =
                     Bundle().apply {
-                        putParcelable(PreviewFragment.ARG_WALLPAPER, wallpaperInfo)
-                        putInt(PreviewFragment.ARG_PREVIEW_MODE, mode)
-                        putBoolean(PreviewFragment.ARG_VIEW_AS_HOME, viewAsHome)
-                        putBoolean(PreviewFragment.ARG_FULL_SCREEN, viewFullScreen)
-                        putBoolean(PreviewFragment.ARG_TESTING_MODE_ENABLED, testingModeEnabled)
+                        putParcelable(PreviewFragment2.ARG_WALLPAPER, wallpaperInfo)
+                        putInt(PreviewFragment2.ARG_PREVIEW_MODE, mode)
+                        putBoolean(PreviewFragment2.ARG_VIEW_AS_HOME, viewAsHome)
+                        putBoolean(PreviewFragment2.ARG_FULL_SCREEN, viewFullScreen)
+                        putBoolean(PreviewFragment2.ARG_TESTING_MODE_ENABLED, testingModeEnabled)
                     }
             }
     }
@@ -566,9 +566,7 @@ internal constructor(
                 .also { gridScreenViewModelFactory = it }
     }
 
-    fun getGridInteractor(
-        context: Context,
-    ): GridInteractor {
+    fun getGridInteractor(context: Context): GridInteractor {
         val appContext = context.applicationContext
         return gridInteractor
             ?: GridInteractor(

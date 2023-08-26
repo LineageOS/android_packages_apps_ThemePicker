@@ -18,6 +18,7 @@
 package com.android.customization.model.grid.ui.binder
 
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -41,6 +42,8 @@ object GridScreenBinder {
         lifecycleOwner: LifecycleOwner,
         backgroundDispatcher: CoroutineDispatcher,
         onOptionsChanged: () -> Unit,
+        isGridApplyButtonEnabled: Boolean,
+        onOptionApplied: () -> Unit,
     ) {
         val optionView: RecyclerView = view.requireViewById(R.id.options)
         optionView.layoutManager =
@@ -66,6 +69,13 @@ object GridScreenBinder {
                 }
             )
         optionView.adapter = adapter
+
+        if (isGridApplyButtonEnabled) {
+            val applyButton: Button = view.requireViewById(R.id.apply_button)
+            applyButton.visibility = View.VISIBLE
+            view.requireViewById<View>(R.id.apply_button_note).visibility = View.VISIBLE
+            applyButton.setOnClickListener { onOptionApplied() }
+        }
 
         lifecycleOwner.lifecycleScope.launch {
             lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {

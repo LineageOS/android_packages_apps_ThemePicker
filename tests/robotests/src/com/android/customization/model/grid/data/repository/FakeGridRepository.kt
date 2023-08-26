@@ -17,6 +17,7 @@
 
 package com.android.customization.model.grid.data.repository
 
+import com.android.customization.model.CustomizationManager
 import com.android.customization.model.grid.GridOption
 import com.android.customization.model.grid.shared.model.GridOptionItemModel
 import com.android.customization.model.grid.shared.model.GridOptionItemsModel
@@ -53,6 +54,12 @@ class FakeGridRepository(
     }
 
     override fun getSelectedOption(): GridOption? = null
+
+    override fun applySelectedOption(callback: CustomizationManager.Callback) {}
+
+    override fun clearSelectedOption() {}
+
+    override fun isSelectedOptionApplied() = false
 
     fun setOptions(
         count: Int,
