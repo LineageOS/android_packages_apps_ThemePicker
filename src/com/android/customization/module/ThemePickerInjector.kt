@@ -21,10 +21,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.net.Uri
-import android.os.Bundle
 import android.text.TextUtils
 import androidx.activity.ComponentActivity
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -73,17 +71,12 @@ import com.android.systemui.shared.customization.data.content.CustomizationProvi
 import com.android.wallpaper.config.BaseFlags
 import com.android.wallpaper.dispatchers.BackgroundDispatcher
 import com.android.wallpaper.dispatchers.MainDispatcher
-import com.android.wallpaper.model.LiveWallpaperInfo
 import com.android.wallpaper.model.WallpaperColorsViewModel
-import com.android.wallpaper.model.WallpaperInfo
 import com.android.wallpaper.module.CustomizationSections
 import com.android.wallpaper.module.FragmentFactory
 import com.android.wallpaper.module.UserEventLogger
 import com.android.wallpaper.module.WallpaperPicker2Injector
 import com.android.wallpaper.picker.CustomizationPickerActivity
-import com.android.wallpaper.picker.ImagePreviewFragment2
-import com.android.wallpaper.picker.LivePreviewFragment2
-import com.android.wallpaper.picker.PreviewFragment2
 import com.android.wallpaper.picker.customization.data.content.WallpaperClientImpl
 import com.android.wallpaper.picker.customization.data.repository.WallpaperRepository
 import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInteractor
@@ -171,29 +164,6 @@ internal constructor(
 
     override fun getDownloadableIntentAction(): String? {
         return null
-    }
-
-    override fun getPreviewFragment(
-        context: Context,
-        wallpaperInfo: WallpaperInfo,
-        mode: Int,
-        viewAsHome: Boolean,
-        viewFullScreen: Boolean,
-        testingModeEnabled: Boolean,
-        isAssetIdPresent: Boolean
-    ): Fragment {
-        return if (wallpaperInfo is LiveWallpaperInfo) LivePreviewFragment2()
-        else
-            ImagePreviewFragment2().apply {
-                arguments =
-                    Bundle().apply {
-                        putParcelable(PreviewFragment2.ARG_WALLPAPER, wallpaperInfo)
-                        putInt(PreviewFragment2.ARG_PREVIEW_MODE, mode)
-                        putBoolean(PreviewFragment2.ARG_VIEW_AS_HOME, viewAsHome)
-                        putBoolean(PreviewFragment2.ARG_FULL_SCREEN, viewFullScreen)
-                        putBoolean(PreviewFragment2.ARG_TESTING_MODE_ENABLED, testingModeEnabled)
-                    }
-            }
     }
 
     @Synchronized
