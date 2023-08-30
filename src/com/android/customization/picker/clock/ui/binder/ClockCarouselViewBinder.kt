@@ -59,6 +59,9 @@ object ClockCarouselViewBinder {
                 }
             )
         screenPreviewClickView.accessibilityDelegate = carouselAccessibilityDelegate
+        screenPreviewClickView.setOnSideClickedListener { isStart ->
+            if (isStart) carouselView.scrollToPrevious() else carouselView.scrollToNext()
+        }
 
         lifecycleOwner.lifecycleScope.launch {
             lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
