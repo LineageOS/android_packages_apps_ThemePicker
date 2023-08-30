@@ -53,7 +53,7 @@ class ColorOptionImpl(
     }
 
     override fun getLayoutResId(): Int {
-        return R.layout.color_option
+        return R.layout.color_option_2
     }
 
     override fun getPreviewInfo(): PreviewInfo {

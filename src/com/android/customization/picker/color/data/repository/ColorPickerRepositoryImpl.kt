@@ -80,7 +80,7 @@ class ColorPickerRepositoryImpl(
                         homeColorsLoaded.colors,
                         lockColorsLoaded.colors
                     )
-                    colorManager.fetchRevampedUIOptions(
+                    colorManager.fetchOptions(
                         object : CustomizationManager.OptionsFetchedListener<ColorOption?> {
                             override fun onOptionsLoaded(options: MutableList<ColorOption?>?) {
                                 val wallpaperColorOptions: MutableList<ColorOptionModel> =
