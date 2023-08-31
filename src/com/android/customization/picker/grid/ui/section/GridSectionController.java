@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.customization.model.grid;
+package com.android.customization.picker.grid.ui.section;
 
 import android.content.Context;
 import android.util.Log;
@@ -27,8 +27,10 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 
 import com.android.customization.model.CustomizationManager.OptionsFetchedListener;
-import com.android.customization.model.grid.ui.fragment.GridFragment2;
-import com.android.customization.picker.grid.GridSectionView;
+import com.android.customization.model.grid.GridOption;
+import com.android.customization.model.grid.GridOptionsManager;
+import com.android.customization.picker.grid.ui.fragment.GridFragment;
+import com.android.customization.picker.grid.ui.view.GridSectionView;
 import com.android.wallpaper.R;
 import com.android.wallpaper.model.CustomizationSectionController;
 
@@ -77,7 +79,7 @@ public class GridSectionController implements CustomizationSectionController<Gri
 
         gridSectionView.setOnClickListener(
                 v -> {
-                    final Fragment gridFragment = new GridFragment2();
+                    final Fragment gridFragment = new GridFragment();
                     mSectionNavigationController.navigateTo(gridFragment);
                 });
 

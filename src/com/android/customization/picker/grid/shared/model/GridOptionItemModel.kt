@@ -15,7 +15,7 @@
  *
  */
 
-package com.android.customization.model.grid.shared.model
+package com.android.customization.picker.grid.shared.model
 
 import kotlinx.coroutines.flow.StateFlow
 

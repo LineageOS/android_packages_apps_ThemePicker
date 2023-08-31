@@ -15,7 +15,7 @@
  *
  */
 
-package com.android.customization.model.grid.ui.viewmodel
+package com.android.customization.picker.grid.ui.viewmodel
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -24,8 +24,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.android.customization.model.ResourceConstants
-import com.android.customization.model.grid.domain.interactor.GridInteractor
-import com.android.customization.model.grid.shared.model.GridOptionItemsModel
+import com.android.customization.picker.grid.domain.interactor.GridInteractor
+import com.android.customization.picker.grid.shared.model.GridOptionItemsModel
 import com.android.wallpaper.picker.common.text.ui.viewmodel.Text
 import com.android.wallpaper.picker.option.ui.viewmodel.OptionItemViewModel
 import kotlinx.coroutines.flow.Flow

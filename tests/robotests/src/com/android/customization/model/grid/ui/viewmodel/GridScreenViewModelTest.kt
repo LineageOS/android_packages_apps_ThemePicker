@@ -20,8 +20,10 @@ package com.android.customization.model.grid.ui.viewmodel
 import androidx.test.filters.SmallTest
 import androidx.test.platform.app.InstrumentationRegistry
 import com.android.customization.model.grid.data.repository.FakeGridRepository
-import com.android.customization.model.grid.domain.interactor.GridInteractor
-import com.android.customization.model.grid.domain.interactor.GridSnapshotRestorer
+import com.android.customization.picker.grid.domain.interactor.GridInteractor
+import com.android.customization.picker.grid.domain.interactor.GridSnapshotRestorer
+import com.android.customization.picker.grid.ui.viewmodel.GridIconViewModel
+import com.android.customization.picker.grid.ui.viewmodel.GridScreenViewModel
 import com.android.wallpaper.picker.option.ui.viewmodel.OptionItemViewModel
 import com.android.wallpaper.testing.FakeSnapshotStore
 import com.android.wallpaper.testing.collectLastValue

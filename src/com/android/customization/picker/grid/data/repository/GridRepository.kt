@@ -15,15 +15,15 @@
  *
  */
 
-package com.android.customization.model.grid.data.repository
+package com.android.customization.picker.grid.data.repository
 
 import androidx.lifecycle.asFlow
 import com.android.customization.model.CustomizationManager
 import com.android.customization.model.CustomizationManager.Callback
 import com.android.customization.model.grid.GridOption
 import com.android.customization.model.grid.GridOptionsManager
-import com.android.customization.model.grid.shared.model.GridOptionItemModel
-import com.android.customization.model.grid.shared.model.GridOptionItemsModel
+import com.android.customization.picker.grid.shared.model.GridOptionItemModel
+import com.android.customization.picker.grid.shared.model.GridOptionItemsModel
 import kotlin.coroutines.resume
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope

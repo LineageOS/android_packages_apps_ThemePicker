@@ -15,7 +15,7 @@
  *
  */
 
-package com.android.customization.model.grid.ui.fragment
+package com.android.customization.picker.grid.ui.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -30,10 +30,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.transition.Transition
 import androidx.transition.doOnStart
 import com.android.customization.model.CustomizationManager.Callback
-import com.android.customization.model.grid.domain.interactor.GridInteractor
-import com.android.customization.model.grid.ui.binder.GridScreenBinder
-import com.android.customization.model.grid.ui.viewmodel.GridScreenViewModel
 import com.android.customization.module.ThemePickerInjector
+import com.android.customization.picker.grid.domain.interactor.GridInteractor
+import com.android.customization.picker.grid.ui.binder.GridScreenBinder
+import com.android.customization.picker.grid.ui.viewmodel.GridScreenViewModel
 import com.android.wallpaper.R
 import com.android.wallpaper.config.BaseFlags
 import com.android.wallpaper.module.CurrentWallpaperInfoFactory
@@ -48,10 +48,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.suspendCancellableCoroutine
 
-private val TAG = GridFragment2::class.java.simpleName
+private val TAG = GridFragment::class.java.simpleName
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class GridFragment2 : AppbarFragment() {
+class GridFragment : AppbarFragment() {
 
     private lateinit var gridInteractor: GridInteractor
 
