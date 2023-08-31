@@ -22,37 +22,37 @@ import android.view.LayoutInflater
 import androidx.lifecycle.LifecycleOwner
 import com.android.customization.picker.color.ui.binder.ColorSectionViewBinder
 import com.android.customization.picker.color.ui.fragment.ColorPickerFragment
-import com.android.customization.picker.color.ui.view.ColorSectionView2
+import com.android.customization.picker.color.ui.view.ColorSectionView
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
 import com.android.wallpaper.R
 import com.android.wallpaper.model.CustomizationSectionController
 import com.android.wallpaper.model.CustomizationSectionController.CustomizationSectionNavigationController as NavigationController
 
-class ColorSectionController2(
+class ColorSectionController(
     private val navigationController: NavigationController,
     private val viewModel: ColorPickerViewModel,
     private val lifecycleOwner: LifecycleOwner
-) : CustomizationSectionController<ColorSectionView2> {
+) : CustomizationSectionController<ColorSectionView> {
 
     override fun isAvailable(context: Context): Boolean {
         return true
     }
 
-    override fun createView(context: Context): ColorSectionView2 {
+    override fun createView(context: Context): ColorSectionView {
         return createView(context, CustomizationSectionController.ViewCreationParams())
     }
 
     override fun createView(
         context: Context,
         params: CustomizationSectionController.ViewCreationParams
-    ): ColorSectionView2 {
+    ): ColorSectionView {
         @SuppressWarnings("It is fine to inflate with null parent for our need.")
         val view =
             LayoutInflater.from(context)
                 .inflate(
-                    R.layout.color_section_view2,
+                    R.layout.color_section_view,
                     null,
-                ) as ColorSectionView2
+                ) as ColorSectionView
         ColorSectionViewBinder.bind(
             view = view,
             viewModel = viewModel,
