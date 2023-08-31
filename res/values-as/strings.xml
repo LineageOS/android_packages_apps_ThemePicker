@@ -67,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"প্ৰত্যেকখন স্ক্ৰীনত আপোনাৰ প্ৰিয় ফ’ণ্ট যোগ দিয়ক"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"এটা গ্ৰিডৰ আকাৰ বাছনি কৰক"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"গ্ৰিড আকাৰ সলনি কৰিলে ৱৰ্কস্পেছ পুনৰ ল’ড হ’ব আৰু কেইছেকেণ্ডমান সময় লাগিব পাৰে।"</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"%1$s গ্ৰিডৰ সৈতে ৱৰ্কস্পেছ পুনৰ ল’ড কৰি থকা হৈছে"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"%1$s গ্ৰিডৰ সৈতে ৱৰ্কস্পেছ পুনৰ ল’ড কৰিব পৰা নগ’ল"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"শৈলী সফলতাৰে ছেট কৰা হ’ল"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"ঘড়ী সফলতাৰে ছেট কৰা হ’ল"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"গ্ৰিড সফলতাৰে ছেট কৰা হ’ল"</string>

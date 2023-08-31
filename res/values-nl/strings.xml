@@ -67,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"Voeg je favoriete lettertypen toe aan elk scherm"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"Een rastergrootte kiezen"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g> x <xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"Als je de rastergrootte wijzigt, wordt de werkruimte opnieuw geladen. Dit kan een paar seconden duren."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"Werkruimte opnieuw laden met %1$s raster"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"Kan werkruimte niet opnieuw laden met %1$s raster"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"Stijl ingesteld"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"Klok ingesteld"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"Raster ingesteld"</string>
