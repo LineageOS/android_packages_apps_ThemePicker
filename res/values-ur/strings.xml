@@ -67,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"ہر اسکرین میں اپنے پسندیدہ فونٹس شامل کریں"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"گرڈ کا سائز منتخب کریں"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"GRid کا سائز تبدیل کرنے سے ورک اسپیس دوبارہ لوڈ ہو جائے گا اور اس میں چند سیکنڈ لگ سکتے ہیں۔"</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"%1$s GRid کے ساتھ ورک اسپیس کو دوبارہ لوڈ کرنا"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"%1$s GRid کے ساتھ ورک اسپیس کو دوبارہ لوڈ کرنے میں ناکام"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"طرز کامیابی کے ساتھ سیٹ ہو گیا"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"گھڑی کامیابی کے ساتھ سیٹ ہو گئی"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"گرڈ کامیابی کے ساتھ سیٹ ہو گیا"</string>

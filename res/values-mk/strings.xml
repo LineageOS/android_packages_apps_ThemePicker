@@ -67,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"Додајте ги омилените фонтови на секој екран"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"Изберете големина на решетка"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"Промената на големината на решетката пак ќе го вчита работниот простор и може да потрае неколку секунди."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"Работниот простор се вчитува повторно со решетката %1$s"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"Работниот простор не можеше да се вчита повторно со решетката %1$s"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"Стилот е успешно поставен"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"Часовникот е успешно поставен"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"Мрежата е успешно поставена"</string>
