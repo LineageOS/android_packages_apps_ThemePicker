@@ -33,6 +33,9 @@
     <!-- The content description of clock entry. [CHAR LIMIT=NONE] -->
     <string name="clock_picker_entry_content_description">Change a custom clock</string>
 
+    <!-- action description for announcing selected Clock [CHAR LIMIT=NONE]-->
+    <string name="select_clock_action_description">Clock face option <xliff:g name="clock_face_description">%1$s</xliff:g></string>
+
     <!-- Title of a section of the customization picker where the user can configure Clock face. [CHAR LIMIT=19] -->
     <string name="clock_settings_title">Clock color &amp; size</string>
 
@@ -504,4 +507,22 @@
     [CHAR LIMIT=NONE].
     -->
     <string name="content_description_color_option">Color option <xliff:g name="color_number" example="1">%1$d</xliff:g></string>
+
+    <!--
+    Accessibility label for forward scrolling in the carousel of clock faces.
+    [CHAR LIMIT=128].
+    -->
+    <string name="scroll_forward_and_select">Swipe left to choose a different clock face</string>
+
+    <!--
+    Accessibility label for backward scrolling in the carousel of clock faces.
+    [CHAR LIMIT=128].
+    -->
+    <string name="scroll_backward_and_select">Swipe right to choose a different clock face</string>
+
+    <!--
+    Accessibility label for the carousel of clock faces.
+    [CHAR LIMIT=128].
+    -->
+    <string name="custom_clocks_label">Custom Clocks</string>
 </resources>

@@ -45,12 +45,12 @@ constructor(
     private val backgroundDispatcher: CoroutineDispatcher,
 ) : ViewModel() {
     @OptIn(ExperimentalCoroutinesApi::class)
-    val allClockIds: StateFlow<List<String>> =
+    val allClocks: StateFlow<List<ClockCarouselItemViewModel>> =
         interactor.allClocks
             .mapLatest { allClocks ->
                 // Delay to avoid the case that the full list of clocks is not initiated.
                 delay(CLOCKS_EVENT_UPDATE_DELAY_MILLIS)
-                allClocks.map { it.clockId }
+                allClocks.map { ClockCarouselItemViewModel(it.clockId) }
             }
             .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
 
@@ -58,14 +58,14 @@ constructor(
 
     val seedColor: Flow<Int?> = interactor.seedColor
 
-    val isCarouselVisible: Flow<Boolean> = allClockIds.map { it.size > 1 }.distinctUntilChanged()
+    val isCarouselVisible: Flow<Boolean> = allClocks.map { it.size > 1 }.distinctUntilChanged()
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val selectedIndex: Flow<Int> =
-        allClockIds
+        allClocks
             .flatMapLatest { allClockIds ->
                 interactor.selectedClockId.map { selectedClockId ->
-                    val index = allClockIds.indexOf(selectedClockId)
+                    val index = allClockIds.indexOfFirst { it.clockId == selectedClockId }
                     /** Making sure there is no active [setSelectedClockJob] */
                     val isSetClockIdJobActive = setSelectedClockJob?.isActive == true
                     if (index >= 0 && !isSetClockIdJobActive) {
@@ -79,11 +79,11 @@ constructor(
 
     // Handle the case when there is only one clock in the carousel
     val isSingleClockViewVisible: Flow<Boolean> =
-        allClockIds.map { it.size == 1 }.distinctUntilChanged()
+        allClocks.map { it.size == 1 }.distinctUntilChanged()
 
     val clockId: Flow<String> =
-        allClockIds
-            .map { allClockIds -> if (allClockIds.size == 1) allClockIds[0] else null }
+        allClocks
+            .map { allClockIds -> if (allClockIds.size == 1) allClockIds[0].clockId else null }
             .mapNotNull { it }
 
     private var setSelectedClockJob: Job? = null
