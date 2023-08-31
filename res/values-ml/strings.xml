@@ -67,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"എല്ലാ സ്‌ക്രീനിലേക്കും നിങ്ങളുടെ പ്രിയപ്പെട്ട ഫോണ്ടുകൾ ചേർക്കുക"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"ഗ്രിഡ് വലുപ്പം തിരഞ്ഞെടുക്കുക"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"ഗ്രിഡ് വലുപ്പം മാറ്റുന്നത് വർക്ക്‌സ്‌പെയ്‌സിനെ റീലോഡ് ചെയ്തേക്കാം, ഏതാനും സെക്കൻഡുകൾ സമയമെടുക്കുകയും ചെയ്യും."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"%1$s ഗ്രിഡ് ഉപയോഗിച്ച് വർക്ക്‌സ്‌പെയ്‌സ് റീലോഡ് ചെയ്യുന്നു"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"%1$s ഗ്രിഡ് ഉപയോഗിച്ച് വർക്ക്‌സ്‌പെയ്‌സ് റീലോഡ് ചെയ്യാനായില്ല"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"സ്‌റ്റൈൽ സജ്ജീകരിച്ചു"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"ക്ലോക്ക് സജ്ജമാക്കി"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"ഗ്രിഡ് സജ്ജീകരിച്ചു"</string>

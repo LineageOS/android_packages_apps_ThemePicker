@@ -67,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"បញ្ចូលពុម្ព​អក្សរ​ដែលអ្នកចូលចិត្ត​ទៅគ្រប់អេក្រង់"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"ជ្រើសរើស​ទំហំក្រឡា"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"ការប្ដូរទំហំក្រឡានឹងផ្ទុកលំហការងារឡើងវិញ និងអាចចំណាយពេលបន្តិច។"</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"កំពុងផ្ទុកឡើងវិញនូវលំហការងារដែលមានក្រឡា %1$s"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"មិនអាចផ្ទុកឡើងវិញនូវលំហការងារដែលមានក្រឡា %1$s ទេ"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"បានកំណត់​រចនាប័ទ្មដោយ​ជោគជ័យ"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"បានកំណត់​នាឡិកាដោយ​ជោគជ័យ"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"បានកំណត់​ក្រឡាដោយ​ជោគជ័យ"</string>

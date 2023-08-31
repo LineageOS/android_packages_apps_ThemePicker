@@ -67,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"Ajoutez vos polices préférées sur chaque écran"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"Choisir une taille de grille"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g> x <xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"Changer la taille de la grille actualisera l\'espace de travail. Cela peut prendre quelques secondes."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"Actualisation de l\'espace de travail avec une grille %1$s"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"Échec de l\'actualisation de l\'espace de travail avec une grille %1$s"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"Le style a bien été défini"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"L\'horloge a bien été réglée"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"La grille a bien été définie"</string>
