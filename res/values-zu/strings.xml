@@ -22,7 +22,7 @@
     <string name="clock_title" msgid="1974314575211361352">"Iwashi Elingokomuntu Ngamunye"</string>
     <string name="clock_description" msgid="3563839327378948">"Khetha iwashi elingokomuntu ngamunye"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Shintsha iwashi elingokomuntu ngamunye"</string>
-    <string name="clock_settings_title" msgid="2940654205471453913">"Amasethingi Ewashi"</string>
+    <string name="clock_settings_title" msgid="2050906379377120431">"Umbala wewashi nosayizi"</string>
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"Umbala wewashi nosayizi"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>"</string>
     <string name="clock_color" msgid="8081608867289156163">"Umbala"</string>
@@ -116,7 +116,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Isinqamuleli sangakwesokunxele"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Isinqamuleli sangakwesokudla"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Lutho"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"Ukukhetha i-`<xliff:g id="APPNAME">%1$s</xliff:g>` maka okulandelayo"</string>
+    <string name="keyguard_affordance_enablement_dialog_headline" msgid="365379085932610314">"Ayikwazi ukwengeza isinqamuleli"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Vula i-<xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Ukwengeza i-app ye-<xliff:g id="APPNAME">%1$s</xliff:g> njengesinqamuleli, qinisekisa"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Kwenziwe"</string>
@@ -129,6 +129,10 @@
     <string name="more_settings_section_title" msgid="1331425454775815958">"Okukhethwa kukho kokukhiya isikrini okuningi"</string>
     <string name="more_settings_section_description" msgid="1860115709122398325">"Ubumfihlo, Okudlala Manje, nokuningi"</string>
     <string name="more_colors" msgid="3191071655353004591">"Imibala Eyengeziwe"</string>
+    <string name="content_description_dynamic_color_option" msgid="2191721655642529886">"Itimu eshintshayo eyinhloko"</string>
+    <string name="content_description_neutral_color_option" msgid="3385443834001275301">"Itimu emaphakathi eyinhloko"</string>
+    <string name="content_description_vibrant_color_option" msgid="2230249305878632821">"Itimu edlidlizayo eyinhloko"</string>
+    <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Itimu ebizayo eyinhloko"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Okukhethwa kukho kombala okuzenzakalelayo"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Okukhethwa kukho kombala kwe-<xliff:g id="ID_1">%1$d</xliff:g>"</string>
 </resources>
