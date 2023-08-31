@@ -28,7 +28,6 @@ import androidx.lifecycle.Observer;
 
 import com.android.customization.model.CustomizationManager.OptionsFetchedListener;
 import com.android.customization.model.grid.ui.fragment.GridFragment2;
-import com.android.customization.picker.grid.GridFragment;
 import com.android.customization.picker.grid.GridSectionView;
 import com.android.wallpaper.R;
 import com.android.wallpaper.model.CustomizationSectionController;
@@ -42,7 +41,6 @@ public class GridSectionController implements CustomizationSectionController<Gri
 
     private final GridOptionsManager mGridOptionsManager;
     private final CustomizationSectionNavigationController mSectionNavigationController;
-    private final boolean mIsRevampedUiEnabled;
     private final Observer<Object> mOptionChangeObserver;
     private final LifecycleOwner mLifecycleOwner;
     private TextView mSectionDescription;
@@ -55,7 +53,6 @@ public class GridSectionController implements CustomizationSectionController<Gri
             boolean isRevampedUiEnabled) {
         mGridOptionsManager = gridOptionsManager;
         mSectionNavigationController = sectionNavigationController;
-        mIsRevampedUiEnabled = isRevampedUiEnabled;
         mLifecycleOwner = lifecycleOwner;
         mOptionChangeObserver = o -> updateUi(/* reload= */ true);
     }
@@ -74,20 +71,13 @@ public class GridSectionController implements CustomizationSectionController<Gri
 
         // Fetch grid options to show currently set grid.
         updateUi(/* The result is getting when calling isAvailable(), so reload= */ false);
-        if (mIsRevampedUiEnabled) {
-            mGridOptionsManager.getOptionChangeObservable(/* handler= */ null).observe(
-                    mLifecycleOwner,
-                    mOptionChangeObserver);
-        }
+        mGridOptionsManager.getOptionChangeObservable(/* handler= */ null).observe(
+                mLifecycleOwner,
+                mOptionChangeObserver);
 
         gridSectionView.setOnClickListener(
                 v -> {
-                    final Fragment gridFragment;
-                    if (mIsRevampedUiEnabled) {
-                        gridFragment = new GridFragment2();
-                    } else {
-                        gridFragment = new GridFragment();
-                    }
+                    final Fragment gridFragment = new GridFragment2();
                     mSectionNavigationController.navigateTo(gridFragment);
                 });
 
@@ -96,7 +86,7 @@ public class GridSectionController implements CustomizationSectionController<Gri
 
     @Override
     public void release() {
-        if (mIsRevampedUiEnabled && mGridOptionsManager.isAvailable()) {
+        if (mGridOptionsManager.isAvailable()) {
             mGridOptionsManager.getOptionChangeObservable(/* handler= */ null).removeObserver(
                     mOptionChangeObserver
             );
