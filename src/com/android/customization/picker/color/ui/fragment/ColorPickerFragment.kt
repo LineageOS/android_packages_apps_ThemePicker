@@ -34,7 +34,7 @@ import com.android.customization.module.ThemePickerInjector
 import com.android.customization.picker.color.ui.binder.ColorPickerBinder
 import com.android.wallpaper.R
 import com.android.wallpaper.model.WallpaperColorsModel
-import com.android.wallpaper.model.WallpaperColorsViewModel
+import com.android.wallpaper.model.WallpaperColorsRepository
 import com.android.wallpaper.module.CustomizationSections
 import com.android.wallpaper.module.InjectorProvider
 import com.android.wallpaper.picker.AppbarFragment
@@ -76,7 +76,7 @@ class ColorPickerFragment : AppbarFragment() {
         val homeScreenView: CardView = view.requireViewById(R.id.home_preview)
         val wallpaperInfoFactory = injector.getCurrentWallpaperInfoFactory(requireContext())
         val displayUtils: DisplayUtils = injector.getDisplayUtils(requireContext())
-        val wcViewModel = injector.getWallpaperColorsViewModel()
+        val wallpaperColorsRepository = injector.getWallpaperColorsRepository()
         val wallpaperManager = WallpaperManager.getInstance(requireContext())
 
         binding =
@@ -87,7 +87,7 @@ class ColorPickerFragment : AppbarFragment() {
                             requireActivity(),
                             injector.getColorPickerViewModelFactory(
                                 context = requireContext(),
-                                wallpaperColorsViewModel = wcViewModel,
+                                wallpaperColorsRepository = wallpaperColorsRepository,
                             ),
                         )
                         .get(),
@@ -117,12 +117,12 @@ class ColorPickerFragment : AppbarFragment() {
                                     { homeWallpaper, lockWallpaper, _ ->
                                         lifecycleScope.launch {
                                             if (
-                                                wcViewModel.lockWallpaperColors.value
+                                                wallpaperColorsRepository.lockWallpaperColors.value
                                                     is WallpaperColorsModel.Loading
                                             ) {
                                                 loadInitialColors(
                                                     wallpaperManager,
-                                                    wcViewModel,
+                                                    wallpaperColorsRepository,
                                                     CustomizationSections.Screen.LOCK_SCREEN
                                                 )
                                             }
@@ -134,7 +134,7 @@ class ColorPickerFragment : AppbarFragment() {
                             }
                         },
                         onWallpaperColorChanged = { colors ->
-                            wcViewModel.setLockWallpaperColors(colors)
+                            wallpaperColorsRepository.setLockWallpaperColors(colors)
                         },
                         wallpaperInteractor = injector.getWallpaperInteractor(requireContext()),
                         screen = CustomizationSections.Screen.LOCK_SCREEN,
@@ -168,12 +168,12 @@ class ColorPickerFragment : AppbarFragment() {
                                 { homeWallpaper, lockWallpaper, _ ->
                                     lifecycleScope.launch {
                                         if (
-                                            wcViewModel.homeWallpaperColors.value
+                                            wallpaperColorsRepository.homeWallpaperColors.value
                                                 is WallpaperColorsModel.Loading
                                         ) {
                                             loadInitialColors(
                                                 wallpaperManager,
-                                                wcViewModel,
+                                                wallpaperColorsRepository,
                                                 CustomizationSections.Screen.HOME_SCREEN
                                             )
                                         }
@@ -185,7 +185,7 @@ class ColorPickerFragment : AppbarFragment() {
                         }
                     },
                     onWallpaperColorChanged = { colors ->
-                        wcViewModel.setHomeWallpaperColors(colors)
+                        wallpaperColorsRepository.setHomeWallpaperColors(colors)
                     },
                     wallpaperInteractor = injector.getWallpaperInteractor(requireContext()),
                     screen = CustomizationSections.Screen.HOME_SCREEN,
@@ -218,7 +218,7 @@ class ColorPickerFragment : AppbarFragment() {
 
     private suspend fun loadInitialColors(
         wallpaperManager: WallpaperManager,
-        colorViewModel: WallpaperColorsViewModel,
+        colorViewModel: WallpaperColorsRepository,
         screen: CustomizationSections.Screen,
     ) {
         withContext(Dispatchers.IO) {
