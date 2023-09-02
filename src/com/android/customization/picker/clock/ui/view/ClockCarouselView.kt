@@ -100,6 +100,29 @@ class ClockCarouselView(
         }
     }
 
+    fun scrollToNext() {
+        if (
+            carousel.count <= 1 ||
+                (!carousel.isInfinite && carousel.currentIndex == carousel.count - 1)
+        ) {
+            // No need to scroll if the count is equal or less than 1
+            return
+        }
+        if (motionLayout.currentState == R.id.start) {
+            motionLayout.transitionToState(R.id.next, TRANSITION_DURATION)
+        }
+    }
+
+    fun scrollToPrevious() {
+        if (carousel.count <= 1 || (!carousel.isInfinite && carousel.currentIndex == 0)) {
+            // No need to scroll if the count is equal or less than 1
+            return
+        }
+        if (motionLayout.currentState == R.id.start) {
+            motionLayout.transitionToState(R.id.previous, TRANSITION_DURATION)
+        }
+    }
+
     fun getContentDescription(index: Int): String {
         return adapter.getContentDescription(index, resources)
     }
@@ -485,6 +508,7 @@ class ClockCarouselView(
         // The carousel needs to have at least 5 different clock faces to be infinite
         const val MIN_CLOCKS_TO_ENABLE_INFINITE_CAROUSEL = 5
         const val CLOCK_CAROUSEL_VIEW_SCALE = 0.5f
+        const val TRANSITION_DURATION = 250
 
         val itemViewIds =
             listOf(
