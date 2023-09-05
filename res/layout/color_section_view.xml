@@ -14,7 +14,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<com.android.customization.picker.color.ui.view.ColorSectionView2 xmlns:android="http://schemas.android.com/apk/res/android"
+<com.android.customization.picker.color.ui.view.ColorSectionView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -64,4 +64,4 @@
         android:textColor="@color/system_primary"
         android:visibility="gone"
         tools:ignore="UseCompatTextViewDrawableXml" />
-</com.android.customization.picker.color.ui.view.ColorSectionView2>
+</com.android.customization.picker.color.ui.view.ColorSectionView>

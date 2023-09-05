@@ -52,8 +52,6 @@ public abstract class ColorOption implements CustomizationOption<ColorOption> {
     static final String TIMESTAMP_FIELD = "_applied_timestamp";
 
     protected final Map<String, String> mPackagesByCategory;
-    protected final int[] mPreviewColorIds = {R.id.color_preview_0, R.id.color_preview_1,
-            R.id.color_preview_2, R.id.color_preview_3};
     private final String mTitle;
     private final boolean mIsDefault;
     private final Style mStyle;
@@ -86,6 +84,9 @@ public abstract class ColorOption implements CustomizationOption<ColorOption> {
 
         if (mIsDefault) {
             String serializedOverlays = colorManager.getStoredOverlays();
+            // a default color option is active if the manager has no stored overlays or current
+            // overlays, or the stored overlay does not contain either category system palette or
+            // category color
             return (TextUtils.isEmpty(serializedOverlays) || EMPTY_JSON.equals(serializedOverlays)
                     || colorManager.getCurrentOverlays().isEmpty() || !(serializedOverlays.contains(
                     OVERLAY_CATEGORY_SYSTEM_PALETTE) || serializedOverlays.contains(

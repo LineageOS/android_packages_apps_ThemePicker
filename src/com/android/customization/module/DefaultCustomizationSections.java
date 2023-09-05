@@ -18,7 +18,7 @@ import com.android.customization.model.themedicon.domain.interactor.ThemedIconSn
 import com.android.customization.picker.clock.ui.view.ClockViewFactory;
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel;
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor;
-import com.android.customization.picker.color.ui.section.ColorSectionController2;
+import com.android.customization.picker.color.ui.section.ColorSectionController;
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel;
 import com.android.customization.picker.notifications.ui.section.NotificationSectionController;
 import com.android.customization.picker.notifications.ui.viewmodel.NotificationSectionViewModel;
@@ -144,7 +144,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
         sectionControllers.add(
                 new ConnectedSectionController(
                         // Theme color section.
-                        new ColorSectionController2(
+                        new ColorSectionController(
                                 sectionNavigationController,
                                 new ViewModelProvider(
                                         activity,

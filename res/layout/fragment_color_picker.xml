@@ -133,7 +133,7 @@
             It's critical for any TextViews inside the included layout to have text.
             -->
             <include
-                layout="@layout/color_option_2"
+                layout="@layout/color_option"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="invisible" />

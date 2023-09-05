@@ -23,4 +23,4 @@ import com.android.wallpaper.picker.SectionView
  * The class inherits from {@link SectionView} as the view representing the color section of the
  * customization picker. It displays a list of color options and an overflow option.
  */
-class ColorSectionView2(context: Context, attrs: AttributeSet?) : SectionView(context, attrs)
+class ColorSectionView(context: Context, attrs: AttributeSet?) : SectionView(context, attrs)
