@@ -22,6 +22,7 @@
     <string name="clock_title" msgid="1974314575211361352">"ಕಸ್ಟಮ್ ಗಡಿಯಾರ"</string>
     <string name="clock_description" msgid="3563839327378948">"ಕಸ್ಟಮ್ ವಾಚ್ ಪಿಕ್"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"ಕಸ್ಟಮ್ ಗಡಿಯಾರ ಬದಲಿಸಿ"</string>
+    <string name="select_clock_action_description" msgid="5025888763471843648">"ಕ್ಲಾಕ್ ಫೇಸ್ ಆಯ್ಕೆ <xliff:g id="ID_1">%1$s</xliff:g>"</string>
     <string name="clock_settings_title" msgid="2050906379377120431">"ಗಡಿಯಾರದ ಬಣ್ಣ, ಗಾತ್ರ"</string>
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"ಗಡಿಯಾರದ ಬಣ್ಣ, ಗಾತ್ರ"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>"</string>
@@ -125,7 +126,7 @@
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"ಯಾವುದೂ ಅಲ್ಲ"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"ಲಾಕ್ ಸ್ಕ್ರೀನ್‌ನಲ್ಲಿ ಅಧಿಸೂಚನೆಗಳನ್ನು ತೋರಿಸಿ"</string>
-    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"ಲಾಕ್ ಸ್ಕ್ರೀನ್‌ನಲ್ಲಿ ಅಧಿಸೂಚನೆಗಳನ್ನು ಮರೆಮಾಡಿ"</string>
+    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"ಲಾಕ್ ಸ್ಕ್ರೀನ್‌ನಲ್ಲಿ ನೋಟಿಫಿಕೇಶನ್‌ಗಳನ್ನು ಮರೆಮಾಡಿ"</string>
     <string name="more_settings_section_title" msgid="1331425454775815958">"ಇನ್ನಷ್ಟು ಲಾಕ್ ಸ್ಕ್ರೀನ್ ಆಯ್ಕೆಗಳು"</string>
     <string name="more_settings_section_description" msgid="1860115709122398325">"ಗೌಪ್ಯತೆ, Now Playing ಮತ್ತು ಇನ್ನಷ್ಟು"</string>
     <string name="more_colors" msgid="3191071655353004591">"ಇನ್ನಷ್ಟು ಬಣ್ಣಗಳು"</string>
@@ -135,4 +136,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"ಪ್ರಾಥಮಿಕ ಅಭಿವ್ಯಕ್ತಿಶೀಲ ಥೀಮ್"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"ಡೀಫಾಲ್ಟ್ ಬಣ್ಣದ ಆಯ್ಕೆ"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"ಬಣ್ಣದ ಆಯ್ಕೆ <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"ಬೇರೊಂದು ಕ್ಲಾಕ್ ಫೇಸ್ ಅನ್ನು ಆಯ್ಕೆಮಾಡಲು ಎಡಕ್ಕೆ ಸ್ವೈಪ್ ಮಾಡಿ"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"ಬೇರೊಂದು ಕ್ಲಾಕ್ ಫೇಸ್ ಅನ್ನು ಆಯ್ಕೆಮಾಡಲು ಬಲಕ್ಕೆ ಸ್ವೈಪ್ ಮಾಡಿ"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"ಕಸ್ಟಮ್ ಕ್ಲಾಕ್‌ಗಳು"</string>
 </resources>
