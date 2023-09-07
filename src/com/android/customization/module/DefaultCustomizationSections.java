@@ -32,7 +32,7 @@ import com.android.wallpaper.config.BaseFlags;
 import com.android.wallpaper.model.CustomizationSectionController;
 import com.android.wallpaper.model.CustomizationSectionController.CustomizationSectionNavigationController;
 import com.android.wallpaper.model.PermissionRequester;
-import com.android.wallpaper.model.WallpaperColorsViewModel;
+import com.android.wallpaper.model.WallpaperColorsRepository;
 import com.android.wallpaper.model.WallpaperPreviewNavigator;
 import com.android.wallpaper.module.CurrentWallpaperInfoFactory;
 import com.android.wallpaper.module.CustomizationSections;
@@ -93,7 +93,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
             Screen screen,
             FragmentActivity activity,
             LifecycleOwner lifecycleOwner,
-            WallpaperColorsViewModel wallpaperColorsViewModel,
+            WallpaperColorsRepository wallpaperColorsRepository,
             PermissionRequester permissionRequester,
             WallpaperPreviewNavigator wallpaperPreviewNavigator,
             CustomizationSectionNavigationController sectionNavigationController,
@@ -114,7 +114,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
                         lifecycleOwner,
                         screen,
                         wallpaperInfoFactory,
-                        wallpaperColorsViewModel,
+                        wallpaperColorsRepository,
                         displayUtils,
                         mClockCarouselViewModelFactory,
                         mClockViewFactory,
@@ -131,7 +131,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
                                 lifecycleOwner,
                                 screen,
                                 wallpaperInfoFactory,
-                                wallpaperColorsViewModel,
+                                wallpaperColorsRepository,
                                 displayUtils,
                                 wallpaperPreviewNavigator,
                                 wallpaperInteractor,
