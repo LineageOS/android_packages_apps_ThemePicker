@@ -1,7 +1,7 @@
-package com.android.customization.model.grid.ui.binder
+package com.android.customization.picker.grid.ui.binder
 
 import android.widget.ImageView
-import com.android.customization.model.grid.ui.viewmodel.GridIconViewModel
+import com.android.customization.picker.grid.ui.viewmodel.GridIconViewModel
 import com.android.customization.widget.GridTileDrawable
 
 object GridIconViewBinder {

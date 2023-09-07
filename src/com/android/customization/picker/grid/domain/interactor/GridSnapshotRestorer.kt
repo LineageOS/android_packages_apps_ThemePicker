@@ -15,10 +15,10 @@
  *
  */
 
-package com.android.customization.model.grid.domain.interactor
+package com.android.customization.picker.grid.domain.interactor
 
 import android.util.Log
-import com.android.customization.model.grid.shared.model.GridOptionItemModel
+import com.android.customization.picker.grid.shared.model.GridOptionItemModel
 import com.android.wallpaper.picker.undo.domain.interactor.SnapshotRestorer
 import com.android.wallpaper.picker.undo.domain.interactor.SnapshotStore
 import com.android.wallpaper.picker.undo.shared.model.RestorableSnapshot

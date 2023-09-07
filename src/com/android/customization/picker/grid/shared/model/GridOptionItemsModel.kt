@@ -15,7 +15,7 @@
  *
  */
 
-package com.android.customization.model.grid.shared.model
+package com.android.customization.picker.grid.shared.model
 
 sealed class GridOptionItemsModel {
     data class Loaded(

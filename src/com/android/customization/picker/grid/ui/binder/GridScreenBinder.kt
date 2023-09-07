@@ -15,7 +15,7 @@
  *
  */
 
-package com.android.customization.model.grid.ui.binder
+package com.android.customization.picker.grid.ui.binder
 
 import android.view.View
 import android.widget.Button
@@ -26,9 +26,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.customization.model.grid.ui.viewmodel.GridIconViewModel
-import com.android.customization.model.grid.ui.viewmodel.GridScreenViewModel
 import com.android.customization.picker.common.ui.view.ItemSpacing
+import com.android.customization.picker.grid.ui.viewmodel.GridIconViewModel
+import com.android.customization.picker.grid.ui.viewmodel.GridScreenViewModel
 import com.android.wallpaper.R
 import com.android.wallpaper.picker.option.ui.adapter.OptionItemAdapter
 import com.android.wallpaper.picker.option.ui.binder.OptionItemBinder
