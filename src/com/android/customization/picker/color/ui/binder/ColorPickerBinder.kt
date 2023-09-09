@@ -93,29 +93,21 @@ object ColorPickerBinder {
 
                 launch {
                     viewModel.colorOptions.collect { colorOptions ->
-                        colorOptionAdapter.setItems(colorOptions)
-                        // the same recycler view is used for different color types tabs
-                        // the scroll state of each tab should be independent of others
-                        if (layoutManagerSavedState != null) {
-                            colorOptionContainerView.post {
+                        // only set or restore instance state on a recycler view once data binding
+                        // is complete to ensure scroll position is reflected correctly
+                        colorOptionAdapter.setItems(colorOptions) {
+                            // the same recycler view is used for different color types tabs
+                            // the scroll state of each tab should be independent of others
+                            if (layoutManagerSavedState != null) {
                                 (colorOptionContainerView.layoutManager as LinearLayoutManager)
                                     .onRestoreInstanceState(layoutManagerSavedState)
                                 layoutManagerSavedState = null
+                            } else {
+                                var indexToFocus = colorOptions.indexOfFirst { it.isSelected.value }
+                                indexToFocus = if (indexToFocus < 0) 0 else indexToFocus
+                                (colorOptionContainerView.layoutManager as LinearLayoutManager)
+                                    .scrollToPositionWithOffset(indexToFocus, 0)
                             }
-                        } else {
-                            var indexToFocus = colorOptions.indexOfFirst { it.isSelected.value }
-                            indexToFocus = if (indexToFocus < 0) 0 else indexToFocus
-                            val linearLayoutManager =
-                                object : LinearLayoutManager(view.context, HORIZONTAL, false) {
-                                    override fun onLayoutCompleted(state: RecyclerView.State?) {
-                                        super.onLayoutCompleted(state)
-                                        // scrollToPosition seems to be inconsistently moving
-                                        // selected
-                                        // color to different positions
-                                        scrollToPositionWithOffset(indexToFocus, 0)
-                                    }
-                                }
-                            colorOptionContainerView.layoutManager = linearLayoutManager
                         }
                     }
                 }
@@ -123,9 +115,13 @@ object ColorPickerBinder {
         }
         return object : Binding {
             override fun saveInstanceState(savedState: Bundle) {
+                // as a workaround for the picker restarting twice after a config change, if the
+                // picker restarts before the saved state was applied and set to null,
+                // re-use the same saved state
                 savedState.putParcelable(
                     LAYOUT_MANAGER_SAVED_STATE,
-                    colorOptionContainerView.layoutManager?.onSaveInstanceState()
+                    layoutManagerSavedState
+                        ?: colorOptionContainerView.layoutManager?.onSaveInstanceState()
                 )
             }
 
