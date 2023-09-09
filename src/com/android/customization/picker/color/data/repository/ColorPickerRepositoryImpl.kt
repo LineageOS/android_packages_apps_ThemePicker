@@ -51,11 +51,9 @@ class ColorPickerRepositoryImpl(
     private val _isApplyingSystemColor = MutableStateFlow(false)
     override val isApplyingSystemColor = _isApplyingSystemColor.asStateFlow()
 
+    // TODO (b/299510645): update color options on selected option change after restart is disabled
     override val colorOptions: Flow<Map<ColorType, List<ColorOptionModel>>> =
-        combine(homeWallpaperColors, lockWallpaperColors, selectedColorOption) {
-                homeColors,
-                lockColors,
-                _ ->
+        combine(homeWallpaperColors, lockWallpaperColors) { homeColors, lockColors ->
                 homeColors to lockColors
             }
             .map { (homeColors, lockColors) ->
