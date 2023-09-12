@@ -17,17 +17,12 @@ package com.android.customization.module;
 
 import com.android.customization.model.color.ColorOption;
 import com.android.customization.model.grid.GridOption;
-import com.android.customization.model.theme.ThemeBundle;
 import com.android.wallpaper.module.UserEventLogger;
 
 /**
  * Extension of {@link UserEventLogger} that adds ThemePicker specific events.
  */
 public interface ThemesUserEventLogger extends UserEventLogger {
-
-    void logThemeSelected(ThemeBundle theme, boolean isCustomTheme);
-
-    void logThemeApplied(ThemeBundle theme, boolean isCustomTheme);
 
     /**
      * Logs the color usage while color is applied.

@@ -15,9 +15,6 @@
  */
 package com.android.customization.module;
 
-import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_COLOR;
-import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_FONT;
-import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_SHAPE;
 import static com.android.systemui.shared.system.SysUiStatsLog.STYLE_UICHANGED__ACTION__APP_LAUNCHED;
 import static com.android.systemui.shared.system.SysUiStatsLog.STYLE_UICHANGED__LAUNCHED_PREFERENCE__LAUNCHED_CROP_AND_SET_ACTION;
 import static com.android.systemui.shared.system.SysUiStatsLog.STYLE_UICHANGED__LAUNCHED_PREFERENCE__LAUNCHED_DEEP_LINK;
@@ -45,13 +42,9 @@ import androidx.annotation.Nullable;
 
 import com.android.customization.model.color.ColorOption;
 import com.android.customization.model.grid.GridOption;
-import com.android.customization.model.theme.ThemeBundle;
 import com.android.wallpaper.module.NoOpUserEventLogger;
 import com.android.wallpaper.module.WallpaperPreferences;
 import com.android.wallpaper.module.WallpaperStatusChecker;
-
-import java.util.Map;
-import java.util.Objects;
 
 /**
  * StatsLog-backed implementation of {@link ThemesUserEventLogger}.
@@ -170,34 +163,6 @@ public class StatsLogUserEventLogger extends NoOpUserEventLogger implements Them
                 .setEffectPreference(status)
                 .setEffectIdHash(getIdHashCode(effect))
                 .setTimeElapsed(timeElapsedMillis)
-                .log();
-    }
-
-    @Nullable
-    private String getThemePackage(ThemeBundle theme, String category) {
-        Map<String, String> packages = theme.getPackagesByCategory();
-        return packages.get(category);
-    }
-
-    @Override
-    public void logThemeSelected(ThemeBundle theme, boolean isCustomTheme) {
-        new SysUiStatsLogger(StyleEnums.PICKER_SELECT)
-                .setColorPackageHash(
-                        Objects.hashCode(getThemePackage(theme, OVERLAY_CATEGORY_COLOR)))
-                .setFontPackageHash(Objects.hashCode(getThemePackage(theme, OVERLAY_CATEGORY_FONT)))
-                .setShapePackageHash(
-                        Objects.hashCode(getThemePackage(theme, OVERLAY_CATEGORY_SHAPE)))
-                .log();
-    }
-
-    @Override
-    public void logThemeApplied(ThemeBundle theme, boolean isCustomTheme) {
-        new SysUiStatsLogger(StyleEnums.PICKER_APPLIED)
-                .setColorPackageHash(
-                        Objects.hashCode(getThemePackage(theme, OVERLAY_CATEGORY_COLOR)))
-                .setFontPackageHash(Objects.hashCode(getThemePackage(theme, OVERLAY_CATEGORY_FONT)))
-                .setShapePackageHash(
-                        Objects.hashCode(getThemePackage(theme, OVERLAY_CATEGORY_SHAPE)))
                 .log();
     }
 
