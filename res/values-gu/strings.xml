@@ -67,12 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"દરેક સ્ક્રીન પર તમારા મનપસંદ ફોન્ટ ઉમેરો"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"ગ્રિડનું કદ પસંદ કરો"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
-    <!-- no translation found for apply_grid_btn_note (2966021967355139181) -->
-    <skip />
-    <!-- no translation found for toast_of_changing_grid (3515633981312731121) -->
-    <skip />
-    <!-- no translation found for toast_of_failure_to_change_grid (1349622908271736044) -->
-    <skip />
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"ગ્રિડનું કદ બદલવાથી કાર્યસ્થળ ફરીથી લોડ થશે અને તેમાં થોડો સમય લાગી શકે છે."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"%1$s ગ્રિડ વડે કાર્યસ્થળ ફરીથી લોડ કરી રહ્યું છે"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"%1$s ગ્રિડ વડે કાર્યસ્થળ ફરીથી લોડ કરવામાં નિષ્ફળ રહ્યાં"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"શૈલી સફળતાપૂર્વક સેટ કરી"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"ઘડિયાળ સફળતાપૂર્વક સેટ કરી"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"ગ્રિડ સફળતાપૂર્વક સેટ કરી"</string>
