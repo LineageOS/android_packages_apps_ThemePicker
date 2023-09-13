@@ -115,7 +115,7 @@ public class GridOption implements CustomizationOption<GridOption>, Parcelable {
 
     @Override
     public int getLayoutResId() {
-        return R.layout.grid_option_2;
+        return R.layout.grid_option;
     }
 
     @Override
