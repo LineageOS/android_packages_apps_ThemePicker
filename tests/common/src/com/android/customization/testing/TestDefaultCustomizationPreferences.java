@@ -17,21 +17,32 @@ package com.android.customization.testing;
 
 import android.content.Context;
 
+import com.android.customization.module.CustomizationPreferences;
 import com.android.customization.module.DefaultCustomizationPreferences;
+import com.android.wallpaper.testing.TestWallpaperPreferences;
+
+import dagger.hilt.android.qualifiers.ApplicationContext;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 /**
  * Test implementation of {@link DefaultCustomizationPreferences}.
  */
-public class TestDefaultCustomizationPreferences extends DefaultCustomizationPreferences {
+@Singleton
+public class TestDefaultCustomizationPreferences extends TestWallpaperPreferences implements
+        CustomizationPreferences {
 
     private String mCustomThemes;
     private final Set<String> mTabVisited = new HashSet<>();
+    private boolean mThemedIconEnabled = false;
 
-    public TestDefaultCustomizationPreferences(Context context) {
-        super(context);
+    @Inject
+    public TestDefaultCustomizationPreferences(@ApplicationContext Context context) {
+        super();
     }
 
     @Override
@@ -52,5 +63,15 @@ public class TestDefaultCustomizationPreferences extends DefaultCustomizationPre
     @Override
     public void setTabVisited(String id) {
         mTabVisited.add(id);
+    }
+
+    @Override
+    public boolean getThemedIconEnabled() {
+        return mThemedIconEnabled;
+    }
+
+    @Override
+    public void setThemedIconEnabled(boolean enabled) {
+        mThemedIconEnabled = enabled;
     }
 }

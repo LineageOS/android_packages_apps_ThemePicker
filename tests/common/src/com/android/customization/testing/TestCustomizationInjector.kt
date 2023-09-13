@@ -23,8 +23,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-open class TestCustomizationInjector @Inject constructor() : TestInjector(), CustomizationInjector {
-    private var customizationPrefs: CustomizationPreferences? = null
+open class TestCustomizationInjector
+@Inject
+constructor(private val customPrefs: TestDefaultCustomizationPreferences) :
+    TestInjector(), CustomizationInjector {
     private var themesUserEventLogger: ThemesUserEventLogger? = null
 
     /////////////////
@@ -32,8 +34,7 @@ open class TestCustomizationInjector @Inject constructor() : TestInjector(), Cus
     /////////////////
 
     override fun getCustomizationPreferences(context: Context): CustomizationPreferences {
-        return customizationPrefs
-            ?: TestDefaultCustomizationPreferences(context).also { customizationPrefs = it }
+        return customPrefs
     }
 
     override fun getKeyguardQuickAffordancePickerInteractor(
