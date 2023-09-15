@@ -67,12 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"将您喜爱的字体应用于每个屏幕上的文字"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"选择网格大小"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
-    <!-- no translation found for apply_grid_btn_note (2966021967355139181) -->
-    <skip />
-    <!-- no translation found for toast_of_changing_grid (3515633981312731121) -->
-    <skip />
-    <!-- no translation found for toast_of_failure_to_change_grid (1349622908271736044) -->
-    <skip />
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"更改网格大小将会重新加载工作区，这可能需要几秒钟的时间。"</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"正在重新加载网格大小为“%1$s”的工作区"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"未能重新加载网格大小为“%1$s”的工作区"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"已成功设置样式"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"已成功设置时钟"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"已成功设置网格"</string>
