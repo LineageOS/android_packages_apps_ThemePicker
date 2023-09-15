@@ -55,7 +55,7 @@ object GridScreenBinder {
         optionView.addItemDecoration(ItemSpacing(ItemSpacing.ITEM_SPACING_DP))
         val adapter =
             OptionItemAdapter(
-                layoutResourceId = R.layout.grid_option_2,
+                layoutResourceId = R.layout.grid_option,
                 lifecycleOwner = lifecycleOwner,
                 backgroundDispatcher = backgroundDispatcher,
                 foregroundTintSpec =

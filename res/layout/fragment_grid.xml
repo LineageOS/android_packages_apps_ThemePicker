@@ -81,7 +81,7 @@
             It's critical for any TextViews inside the included layout to have text.
             -->
             <include
-                layout="@layout/grid_option_2"
+                layout="@layout/grid_option"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="invisible" />
