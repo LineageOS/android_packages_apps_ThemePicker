@@ -27,7 +27,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class TestCustomizationInjector @Inject constructor() : TestInjector(), CustomizationInjector {
+open class TestCustomizationInjector @Inject constructor() : TestInjector(), CustomizationInjector {
     private var customizationPrefs: CustomizationPreferences? = null
     private var themeManager: ThemeManager? = null
     private var themesUserEventLogger: ThemesUserEventLogger? = null
