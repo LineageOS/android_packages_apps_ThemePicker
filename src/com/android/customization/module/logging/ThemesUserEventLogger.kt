@@ -13,29 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.customization.module.logging;
+package com.android.customization.module.logging
 
-import com.android.customization.model.color.ColorOption;
-import com.android.customization.model.grid.GridOption;
-import com.android.wallpaper.module.logging.UserEventLogger;
+import com.android.customization.model.color.ColorOption
+import com.android.customization.model.grid.GridOption
+import com.android.wallpaper.module.logging.UserEventLogger
 
-/**
- * Extension of {@link UserEventLogger} that adds ThemePicker specific events.
- */
-public interface ThemesUserEventLogger extends UserEventLogger {
-
+/** Extension of [UserEventLogger] that adds ThemePicker specific events. */
+interface ThemesUserEventLogger : UserEventLogger {
     /**
      * Logs the color usage while color is applied.
      *
      * @param action color applied action.
      * @param colorOption applied color option.
      */
-    void logColorApplied(int action, ColorOption colorOption);
+    fun logColorApplied(action: Int, colorOption: ColorOption)
 
-    /** */
-    void logGridSelected(GridOption grid);
+    /**  */
+    fun logGridSelected(grid: GridOption)
 
-    /** */
-    void logGridApplied(GridOption grid);
-
+    /**  */
+    fun logGridApplied(grid: GridOption)
 }
