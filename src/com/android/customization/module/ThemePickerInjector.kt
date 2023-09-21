@@ -23,7 +23,6 @@ import android.content.res.Resources
 import android.net.Uri
 import android.text.TextUtils
 import androidx.activity.ComponentActivity
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
@@ -33,8 +32,6 @@ import com.android.customization.model.color.ColorOptionsProvider.COLOR_SOURCE_P
 import com.android.customization.model.grid.GridOptionsManager
 import com.android.customization.model.mode.DarkModeSnapshotRestorer
 import com.android.customization.model.theme.OverlayManagerCompat
-import com.android.customization.model.theme.ThemeBundleProvider
-import com.android.customization.model.theme.ThemeManager
 import com.android.customization.model.themedicon.ThemedIconSwitchProvider
 import com.android.customization.model.themedicon.data.repository.ThemeIconRepository
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconInteractor
@@ -202,15 +199,6 @@ internal constructor(
 
     override fun getCustomizationPreferences(context: Context): CustomizationPreferences {
         return getPreferences(context) as CustomizationPreferences
-    }
-
-    override fun getThemeManager(
-        provider: ThemeBundleProvider,
-        activity: FragmentActivity,
-        overlayManagerCompat: OverlayManagerCompat,
-        logger: ThemesUserEventLogger
-    ): ThemeManager {
-        return ThemeManager(provider, activity, overlayManagerCompat, logger)
     }
 
     override fun getWallpaperInteractor(context: Context): WallpaperInteractor {

@@ -18,10 +18,6 @@ package com.android.customization.module
 import android.content.Context
 import android.content.res.Resources
 import androidx.activity.ComponentActivity
-import androidx.fragment.app.FragmentActivity
-import com.android.customization.model.theme.OverlayManagerCompat
-import com.android.customization.model.theme.ThemeBundleProvider
-import com.android.customization.model.theme.ThemeManager
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
@@ -37,13 +33,6 @@ import com.android.wallpaper.module.Injector
 
 interface CustomizationInjector : Injector {
     fun getCustomizationPreferences(context: Context): CustomizationPreferences
-
-    fun getThemeManager(
-        provider: ThemeBundleProvider,
-        activity: FragmentActivity,
-        overlayManagerCompat: OverlayManagerCompat,
-        logger: ThemesUserEventLogger,
-    ): ThemeManager
 
     fun getKeyguardQuickAffordancePickerInteractor(
         context: Context,

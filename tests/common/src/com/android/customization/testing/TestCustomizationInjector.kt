@@ -3,10 +3,6 @@ package com.android.customization.testing
 import android.content.Context
 import android.content.res.Resources
 import androidx.activity.ComponentActivity
-import androidx.fragment.app.FragmentActivity
-import com.android.customization.model.theme.OverlayManagerCompat
-import com.android.customization.model.theme.ThemeBundleProvider
-import com.android.customization.model.theme.ThemeManager
 import com.android.customization.module.CustomizationInjector
 import com.android.customization.module.CustomizationPreferences
 import com.android.customization.module.ThemesUserEventLogger
@@ -29,7 +25,6 @@ import javax.inject.Singleton
 @Singleton
 open class TestCustomizationInjector @Inject constructor() : TestInjector(), CustomizationInjector {
     private var customizationPrefs: CustomizationPreferences? = null
-    private var themeManager: ThemeManager? = null
     private var themesUserEventLogger: ThemesUserEventLogger? = null
 
     /////////////////
@@ -39,18 +34,6 @@ open class TestCustomizationInjector @Inject constructor() : TestInjector(), Cus
     override fun getCustomizationPreferences(context: Context): CustomizationPreferences {
         return customizationPrefs
             ?: TestDefaultCustomizationPreferences(context).also { customizationPrefs = it }
-    }
-
-    override fun getThemeManager(
-        provider: ThemeBundleProvider,
-        activity: FragmentActivity,
-        overlayManagerCompat: OverlayManagerCompat,
-        logger: ThemesUserEventLogger,
-    ): ThemeManager {
-        return themeManager
-            ?: TestThemeManager(provider, activity, overlayManagerCompat, logger).also {
-                themeManager = it
-            }
     }
 
     override fun getKeyguardQuickAffordancePickerInteractor(
