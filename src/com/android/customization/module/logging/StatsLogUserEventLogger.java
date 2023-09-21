@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.customization.module;
+package com.android.customization.module.logging;
 
 import static com.android.systemui.shared.system.SysUiStatsLog.STYLE_UICHANGED__ACTION__APP_LAUNCHED;
 import static com.android.systemui.shared.system.SysUiStatsLog.STYLE_UICHANGED__LAUNCHED_PREFERENCE__LAUNCHED_CROP_AND_SET_ACTION;
@@ -42,9 +42,10 @@ import androidx.annotation.Nullable;
 
 import com.android.customization.model.color.ColorOption;
 import com.android.customization.model.grid.GridOption;
-import com.android.wallpaper.module.NoOpUserEventLogger;
+import com.android.customization.module.SysUiStatsLogger;
 import com.android.wallpaper.module.WallpaperPreferences;
 import com.android.wallpaper.module.WallpaperStatusChecker;
+import com.android.wallpaper.module.logging.NoOpUserEventLogger;
 
 /**
  * StatsLog-backed implementation of {@link ThemesUserEventLogger}.
