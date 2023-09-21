@@ -69,18 +69,6 @@ public class StatsLogUserEventLogger extends NoOpUserEventLogger implements Them
     }
 
     @Override
-    public void logResumed(boolean provisioned, boolean wallpaper) {
-        new SysUiStatsLogger(StyleEnums.ONRESUME)
-                .log();
-    }
-
-    @Override
-    public void logStopped() {
-        new SysUiStatsLogger(StyleEnums.ONSTOP)
-                .log();
-    }
-
-    @Override
     public void logActionClicked(String collectionId, int actionLabelResId) {
         new SysUiStatsLogger(StyleEnums.WALLPAPER_EXPLORE)
                 .setWallpaperCategoryHash(getIdHashCode(collectionId))
