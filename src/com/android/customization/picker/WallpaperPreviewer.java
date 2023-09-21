@@ -241,7 +241,7 @@ public class WallpaperPreviewer implements LifecycleObserver {
                                                 () -> mFadeInScrim.setVisibility(View.INVISIBLE));
                             }
                         }
-                    }, mWallpaperSurface);
+                    }, mWallpaperSurface, WallpaperConnection.WHICH_PREVIEW.PREVIEW_CURRENT);
 
             mWallpaperConnection.setVisibility(true);
             mHomePreview.post(() -> {

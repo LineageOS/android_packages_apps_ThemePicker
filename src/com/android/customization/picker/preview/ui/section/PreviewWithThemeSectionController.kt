@@ -25,7 +25,7 @@ import com.android.customization.model.themedicon.domain.interactor.ThemedIconIn
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
 import com.android.customization.picker.preview.ui.viewmodel.PreviewWithThemeViewModel
 import com.android.wallpaper.R
-import com.android.wallpaper.model.WallpaperColorsViewModel
+import com.android.wallpaper.model.WallpaperColorsRepository
 import com.android.wallpaper.model.WallpaperPreviewNavigator
 import com.android.wallpaper.module.CurrentWallpaperInfoFactory
 import com.android.wallpaper.module.CustomizationSections
@@ -46,7 +46,7 @@ open class PreviewWithThemeSectionController(
     lifecycleOwner: LifecycleOwner,
     private val screen: CustomizationSections.Screen,
     private val wallpaperInfoFactory: CurrentWallpaperInfoFactory,
-    private val colorViewModel: WallpaperColorsViewModel,
+    private val wallpaperColorsRepository: WallpaperColorsRepository,
     displayUtils: DisplayUtils,
     wallpaperPreviewNavigator: WallpaperPreviewNavigator,
     private val wallpaperInteractor: WallpaperInteractor,
@@ -61,7 +61,7 @@ open class PreviewWithThemeSectionController(
         lifecycleOwner,
         screen,
         wallpaperInfoFactory,
-        colorViewModel,
+        wallpaperColorsRepository,
         displayUtils,
         wallpaperPreviewNavigator,
         wallpaperInteractor,
@@ -111,9 +111,9 @@ open class PreviewWithThemeSectionController(
             },
             onWallpaperColorChanged = { colors ->
                 if (isOnLockScreen) {
-                    colorViewModel.setLockWallpaperColors(colors)
+                    wallpaperColorsRepository.setLockWallpaperColors(colors)
                 } else {
-                    colorViewModel.setHomeWallpaperColors(colors)
+                    wallpaperColorsRepository.setHomeWallpaperColors(colors)
                 }
             },
             initialExtrasProvider = { getInitialExtras(isOnLockScreen) },

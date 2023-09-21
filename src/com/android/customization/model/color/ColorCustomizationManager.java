@@ -182,22 +182,7 @@ public class ColorCustomizationManager implements CustomizationManager<ColorOpti
             lockWallpaperColors = null;
         }
         mProvider.fetch(callback, reload, mHomeWallpaperColors,
-                lockWallpaperColors,  /* shouldUseRevampedUi= */ false);
-    }
-
-    /**
-     * Fetch options function for the customization hub revamped UI
-     *
-     * TODO (b/276417460): refactor to reduce code repetition with the other fetch options function
-     */
-    public void fetchRevampedUIOptions(OptionsFetchedListener<ColorOption> callback,
-            boolean reload) {
-        WallpaperColors lockWallpaperColors = mLockWallpaperColors;
-        if (lockWallpaperColors != null && mLockWallpaperColors.equals(mHomeWallpaperColors)) {
-            lockWallpaperColors = null;
-        }
-        mProvider.fetch(callback, reload, mHomeWallpaperColors,
-                lockWallpaperColors,  /* shouldUseRevampedUi= */ true);
+                lockWallpaperColors);
     }
 
     /**

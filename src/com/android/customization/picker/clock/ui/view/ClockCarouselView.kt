@@ -16,6 +16,7 @@
 package com.android.customization.picker.clock.ui.view
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.content.res.Resources
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -96,6 +97,29 @@ class ClockCarouselView(
             // race-condition between announcement of content description of the correct clock-face
             // and the selection of clock face itself
             adapter.onNewItem(index)
+        }
+    }
+
+    fun scrollToNext() {
+        if (
+            carousel.count <= 1 ||
+                (!carousel.isInfinite && carousel.currentIndex == carousel.count - 1)
+        ) {
+            // No need to scroll if the count is equal or less than 1
+            return
+        }
+        if (motionLayout.currentState == R.id.start) {
+            motionLayout.transitionToState(R.id.next, TRANSITION_DURATION)
+        }
+    }
+
+    fun scrollToPrevious() {
+        if (carousel.count <= 1 || (!carousel.isInfinite && carousel.currentIndex == 0)) {
+            // No need to scroll if the count is equal or less than 1
+            return
+        }
+        if (motionLayout.currentState == R.id.start) {
+            motionLayout.transitionToState(R.id.previous, TRANSITION_DURATION)
         }
     }
 
@@ -297,6 +321,16 @@ class ClockCarouselView(
         }
     }
 
+    fun setCarouselCardColor(color: Int) {
+        itemViewIds.forEach { id ->
+            val cardViewId = getClockCardViewId(id)
+            cardViewId?.let {
+                val cardView = motionLayout.requireViewById<View>(it)
+                cardView.backgroundTintList = ColorStateList.valueOf(color)
+            }
+        }
+    }
+
     private fun overrideScreenPreviewWidth() {
         val overrideWidth =
             context.resources.getDimensionPixelSize(
@@ -474,6 +508,7 @@ class ClockCarouselView(
         // The carousel needs to have at least 5 different clock faces to be infinite
         const val MIN_CLOCKS_TO_ENABLE_INFINITE_CAROUSEL = 5
         const val CLOCK_CAROUSEL_VIEW_SCALE = 0.5f
+        const val TRANSITION_DURATION = 250
 
         val itemViewIds =
             listOf(

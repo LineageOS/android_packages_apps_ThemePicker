@@ -81,13 +81,31 @@
             It's critical for any TextViews inside the included layout to have text.
             -->
             <include
-                layout="@layout/grid_option_2"
+                layout="@layout/grid_option"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="invisible" />
 
         </FrameLayout>
 
+        <Button
+            android:id="@+id/apply_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"
+            android:enabled="false"
+            style="@style/ActionPrimaryButton"
+            android:text="@string/apply_btn" />
+
+        <TextView
+            android:id="@+id/apply_button_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/grid_apply_button_note_text_size"
+            android:visibility="gone"
+            android:text="@string/apply_grid_btn_note" />
     </LinearLayout>
 
 </LinearLayout>

@@ -25,10 +25,11 @@
             android:innerRadius="@dimen/component_color_overflow_small_radius_default"
             android:thickness="-1dp"
             android:useLevel="false">
-            <solid android:color="@color/color_surface_variant"/>
+            <solid android:color="@color/system_outline"/>
         </shape>
     </item>
     <item
         android:drawable="@drawable/ic_more_horiz"
+        android:tint="@color/system_on_surface"
         android:gravity="center"/>
 </layer-list>

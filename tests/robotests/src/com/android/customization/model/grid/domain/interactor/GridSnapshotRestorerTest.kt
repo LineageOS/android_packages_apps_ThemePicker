@@ -19,7 +19,9 @@ package com.android.customization.model.grid.domain.interactor
 
 import androidx.test.filters.SmallTest
 import com.android.customization.model.grid.data.repository.FakeGridRepository
-import com.android.customization.model.grid.shared.model.GridOptionItemsModel
+import com.android.customization.picker.grid.domain.interactor.GridInteractor
+import com.android.customization.picker.grid.domain.interactor.GridSnapshotRestorer
+import com.android.customization.picker.grid.shared.model.GridOptionItemsModel
 import com.android.wallpaper.testing.FakeSnapshotStore
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi

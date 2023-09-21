@@ -15,14 +15,11 @@
  */
 package com.android.customization.model.grid;
 
-import android.content.Context;
-import android.graphics.PorterDuff.Mode;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 
@@ -30,7 +27,6 @@ import com.android.customization.model.CustomizationManager;
 import com.android.customization.model.CustomizationOption;
 import com.android.customization.widget.GridTileDrawable;
 import com.android.wallpaper.R;
-import com.android.wallpaper.util.ResourceUtils;
 
 /**
  * Represents a grid layout option available in the current launcher.
@@ -48,9 +44,9 @@ public class GridOption implements CustomizationOption<GridOption>, Parcelable {
         }
     };
 
-    private final String mTitle;
     private final String mIconShapePath;
     private final GridTileDrawable mTileDrawable;
+    public final String title;
     public final String name;
     public final int rows;
     public final int cols;
@@ -60,7 +56,7 @@ public class GridOption implements CustomizationOption<GridOption>, Parcelable {
 
     public GridOption(String title, String name, boolean isCurrent, int rows, int cols,
             Uri previewImageUri, int previewPagesCount, String iconShapePath) {
-        mTitle = title;
+        this.title = title;
         mIsCurrent = isCurrent;
         mIconShapePath = iconShapePath;
         mTileDrawable = new GridTileDrawable(rows, cols, mIconShapePath);
@@ -76,7 +72,7 @@ public class GridOption implements CustomizationOption<GridOption>, Parcelable {
     }
 
     protected GridOption(Parcel in) {
-        mTitle = in.readString();
+        title = in.readString();
         mIsCurrent = in.readByte() != 0;
         mIconShapePath = in.readString();
         name = in.readString();
@@ -89,26 +85,12 @@ public class GridOption implements CustomizationOption<GridOption>, Parcelable {
 
     @Override
     public String getTitle() {
-        return mTitle;
+        return title;
     }
 
     @Override
     public void bindThumbnailTile(View view) {
-        Context context = view.getContext();
-
-        int colorFilter = ResourceUtils.getColorAttr(context,
-                view.isActivated()
-                        ? (mIsCurrent
-                            ? android.R.attr.textColorPrimary
-                            : android.R.attr.textColorPrimaryInverse)
-                        : android.R.attr.textColorTertiary);
-        mTileDrawable.setColorFilter(colorFilter, Mode.SRC_ATOP);
-        ((ImageView) view.findViewById(R.id.grid_option_thumbnail))
-                .setImageDrawable(mTileDrawable);
-
-        int backgroundResource = view.isActivated() && !mIsCurrent
-                ? R.drawable.option_border_new_selection : R.drawable.option_border;
-        view.findViewById(R.id.option_tile).setBackgroundResource(backgroundResource);
+        // Do nothing. This function will no longer be used in the Revamped UI
     }
 
     @Override
@@ -143,7 +125,7 @@ public class GridOption implements CustomizationOption<GridOption>, Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(mTitle);
+        parcel.writeString(title);
         parcel.writeByte((byte) (mIsCurrent ? 1 : 0));
         parcel.writeString(mIconShapePath);
         parcel.writeString(name);
@@ -158,7 +140,7 @@ public class GridOption implements CustomizationOption<GridOption>, Parcelable {
         return String.format(
                 "GridOption{mTitle='%s', mIsCurrent=%s, mTileDrawable=%s, name='%s', rows=%d, "
                         + "cols=%d, previewImageUri=%s, previewPagesCount=%d}\n",
-                mTitle, mIsCurrent, mTileDrawable, name, rows, cols, previewImageUri,
+                title, mIsCurrent, mTileDrawable, name, rows, cols, previewImageUri,
                 previewPagesCount);
     }
 }

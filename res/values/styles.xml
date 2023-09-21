@@ -75,7 +75,9 @@
     </style>
 
     <!-- Common components and widgets -->
-    <style name="TitleTextAppearance" parent="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Title"/>
+    <style name="TitleTextAppearance" parent="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Title">
+        <item name="android:textSize">14sp</item>
+    </style>
 
     <style name="ActionPrimaryButton" parent="android:Widget.DeviceDefault.Button.Colored"/>
 
@@ -115,7 +117,7 @@
 
     <style name="SectionTitleTextStyle">
         <item name="android:fontFamily">@*android:string/config_headlineFontFamily</item>
-        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textColor">@color/system_on_surface</item>
         <item name="android:textDirection">locale</item>
         <item name="android:textSize">20sp</item>
         <item name="android:lineHeight">24dp</item>
@@ -123,7 +125,7 @@
 
     <style name="SectionSubtitleTextStyle" parent="SectionTitleTextStyle">
         <item name="android:fontFamily">@*android:string/config_bodyFontFamily</item>
-        <item name="android:textColor">?android:textColorSecondary</item>
+        <item name="android:textColor">@color/system_on_surface_variant</item>
         <item name="android:textSize">14sp</item>
         <item name="android:lineHeight">16sp</item>
     </style>

@@ -62,6 +62,12 @@ class SlotTabAdapter : RecyclerView.Adapter<SlotTabAdapter.ViewHolder>() {
                 null
             }
         )
+        val stateDescription =
+            item.selectedQuickAffordances
+                .find { it.isSelected.value }
+                ?.text
+                ?.asString(holder.itemView.context)
+        stateDescription?.let { holder.itemView.stateDescription = it }
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

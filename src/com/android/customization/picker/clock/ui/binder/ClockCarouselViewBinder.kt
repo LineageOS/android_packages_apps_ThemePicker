@@ -16,6 +16,8 @@
 package com.android.customization.picker.clock.ui.binder
 
 import android.content.Context
+import android.content.res.Configuration
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
@@ -57,6 +59,9 @@ object ClockCarouselViewBinder {
                 }
             )
         screenPreviewClickView.accessibilityDelegate = carouselAccessibilityDelegate
+        screenPreviewClickView.setOnSideClickedListener { isStart ->
+            if (isStart) carouselView.scrollToPrevious() else carouselView.scrollToNext()
+        }
 
         lifecycleOwner.lifecycleScope.launch {
             lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -90,6 +95,15 @@ object ClockCarouselViewBinder {
 
                 launch {
                     viewModel.seedColor.collect { clockViewFactory.updateColorForAllClocks(it) }
+                }
+
+                launch {
+                    val night =
+                        (context.resources.configuration.uiMode and
+                            Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES)
+                    viewModel.getClockCardColorResId(night).collect {
+                        carouselView.setCarouselCardColor(ContextCompat.getColor(context, it))
+                    }
                 }
             }
         }

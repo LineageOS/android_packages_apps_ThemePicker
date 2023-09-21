@@ -18,10 +18,6 @@ package com.android.customization.module
 import android.content.Context
 import android.content.res.Resources
 import androidx.activity.ComponentActivity
-import androidx.fragment.app.FragmentActivity
-import com.android.customization.model.theme.OverlayManagerCompat
-import com.android.customization.model.theme.ThemeBundleProvider
-import com.android.customization.model.theme.ThemeManager
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
@@ -32,18 +28,11 @@ import com.android.customization.picker.color.domain.interactor.ColorPickerInter
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
 import com.android.systemui.shared.clocks.ClockRegistry
-import com.android.wallpaper.model.WallpaperColorsViewModel
+import com.android.wallpaper.model.WallpaperColorsRepository
 import com.android.wallpaper.module.Injector
 
 interface CustomizationInjector : Injector {
     fun getCustomizationPreferences(context: Context): CustomizationPreferences
-
-    fun getThemeManager(
-        provider: ThemeBundleProvider,
-        activity: FragmentActivity,
-        overlayManagerCompat: OverlayManagerCompat,
-        logger: ThemesUserEventLogger,
-    ): ThemeManager
 
     fun getKeyguardQuickAffordancePickerInteractor(
         context: Context,
@@ -59,12 +48,12 @@ interface CustomizationInjector : Injector {
 
     fun getColorPickerInteractor(
         context: Context,
-        wallpaperColorsViewModel: WallpaperColorsViewModel,
+        wallpaperColorsRepository: WallpaperColorsRepository,
     ): ColorPickerInteractor
 
     fun getColorPickerViewModelFactory(
         context: Context,
-        wallpaperColorsViewModel: WallpaperColorsViewModel,
+        wallpaperColorsRepository: WallpaperColorsRepository,
     ): ColorPickerViewModel.Factory
 
     fun getClockCarouselViewModelFactory(
@@ -75,7 +64,7 @@ interface CustomizationInjector : Injector {
 
     fun getClockSettingsViewModelFactory(
         context: Context,
-        wallpaperColorsViewModel: WallpaperColorsViewModel,
+        wallpaperColorsRepository: WallpaperColorsRepository,
         clockViewFactory: ClockViewFactory,
     ): ClockSettingsViewModel.Factory
 

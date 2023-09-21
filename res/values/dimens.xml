@@ -61,6 +61,7 @@
     <!-- Dimensions for the grid options -->
     <dimen name="grid_options_container_bottom_margin">@dimen/bottom_actions_height</dimen>
     <dimen name="grid_options_container_horizontal_margin">24dp</dimen>
+    <dimen name="grid_apply_button_note_text_size">11sp</dimen>
 
     <dimen name="card_title_text_size">16sp</dimen>
     <dimen name="card_header_icon_size">32dp</dimen>

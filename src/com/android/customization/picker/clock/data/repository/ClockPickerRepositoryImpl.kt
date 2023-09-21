@@ -53,11 +53,12 @@ class ClockPickerRepositoryImpl(
     override val allClocks: Flow<List<ClockMetadataModel>> =
         callbackFlow {
                 fun send() {
+                    val activeClockId = registry.activeClockId
                     val allClocks =
-                        registry
-                            .getClocks()
-                            .filter { "NOT_IN_USE" !in it.clockId }
-                            .map { it.toModel(isSelected = it.clockId == registry.currentClockId) }
+                        registry.getClocks().map {
+                            it.toModel(isSelected = it.clockId == activeClockId)
+                        }
+
                     trySend(allClocks)
                 }
 
@@ -84,12 +85,12 @@ class ClockPickerRepositoryImpl(
     override val selectedClock: Flow<ClockMetadataModel> =
         callbackFlow {
                 fun send() {
-                    val currentClockId = registry.currentClockId
+                    val activeClockId = registry.activeClockId
                     val metadata = registry.settings?.metadata
                     val model =
                         registry
                             .getClocks()
-                            .find { clockMetadata -> clockMetadata.clockId == currentClockId }
+                            .find { clockMetadata -> clockMetadata.clockId == activeClockId }
                             ?.toModel(
                                 isSelected = true,
                                 selectedColorId = metadata?.getSelectedColorId(),
