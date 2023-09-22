@@ -35,6 +35,13 @@ filegroup {
     ],
 }
 
+// Production-only files that should be excluded in tests.
+filegroup {
+    name: "ThemePicker_src_prod",
+    visibility: [":__subpackages__"],
+    srcs: ["src_override/com/android/customization/picker/CustomizationPickerApplication.java"],
+}
+
 filegroup {
     name: "ThemePicker_Manifest",
     srcs: [
