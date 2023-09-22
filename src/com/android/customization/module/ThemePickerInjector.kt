@@ -36,6 +36,8 @@ import com.android.customization.model.themedicon.ThemedIconSwitchProvider
 import com.android.customization.model.themedicon.data.repository.ThemeIconRepository
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconInteractor
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconSnapshotRestorer
+import com.android.customization.module.logging.StatsLogUserEventLogger
+import com.android.customization.module.logging.ThemesUserEventLogger
 import com.android.customization.picker.clock.data.repository.ClockPickerRepositoryImpl
 import com.android.customization.picker.clock.data.repository.ClockRegistryProvider
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
@@ -71,8 +73,8 @@ import com.android.wallpaper.dispatchers.MainDispatcher
 import com.android.wallpaper.model.WallpaperColorsRepository
 import com.android.wallpaper.module.CustomizationSections
 import com.android.wallpaper.module.FragmentFactory
-import com.android.wallpaper.module.UserEventLogger
 import com.android.wallpaper.module.WallpaperPicker2Injector
+import com.android.wallpaper.module.logging.UserEventLogger
 import com.android.wallpaper.picker.CustomizationPickerActivity
 import com.android.wallpaper.picker.customization.data.content.WallpaperClientImpl
 import com.android.wallpaper.picker.customization.data.repository.WallpaperRepository

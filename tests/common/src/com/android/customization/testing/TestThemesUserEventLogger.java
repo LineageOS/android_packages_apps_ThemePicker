@@ -17,7 +17,7 @@ package com.android.customization.testing;
 
 import com.android.customization.model.color.ColorOption;
 import com.android.customization.model.grid.GridOption;
-import com.android.customization.module.ThemesUserEventLogger;
+import com.android.customization.module.logging.ThemesUserEventLogger;
 import com.android.wallpaper.testing.TestUserEventLogger;
 
 /**
