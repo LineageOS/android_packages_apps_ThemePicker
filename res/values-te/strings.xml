@@ -130,7 +130,6 @@
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"ఏదీ ఎంచుకోలేదు"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"లాక్ స్క్రీన్‌లో నోటిఫికేషన్‌లను చూపండి"</string>
-    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"లాక్ స్క్రీన్‌లో నోటిఫికేషన్‌లను దాచండి"</string>
     <string name="more_settings_section_title" msgid="1331425454775815958">"మరిన్ని లాక్ స్క్రీన్ ఆప్షన్‌లు"</string>
     <string name="more_settings_section_description" msgid="1860115709122398325">"గోప్యత, Now Playing, ఇంకా మరిన్ని"</string>
     <string name="more_colors" msgid="3191071655353004591">"మరిన్ని రంగులు"</string>
