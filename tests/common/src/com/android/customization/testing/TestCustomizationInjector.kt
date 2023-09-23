@@ -5,7 +5,7 @@ import android.content.res.Resources
 import androidx.activity.ComponentActivity
 import com.android.customization.module.CustomizationInjector
 import com.android.customization.module.CustomizationPreferences
-import com.android.customization.module.ThemesUserEventLogger
+import com.android.customization.module.logging.ThemesUserEventLogger
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
@@ -17,14 +17,16 @@ import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
 import com.android.systemui.shared.clocks.ClockRegistry
 import com.android.wallpaper.model.WallpaperColorsRepository
-import com.android.wallpaper.module.UserEventLogger
+import com.android.wallpaper.module.logging.UserEventLogger
 import com.android.wallpaper.testing.TestInjector
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-open class TestCustomizationInjector @Inject constructor() : TestInjector(), CustomizationInjector {
-    private var customizationPrefs: CustomizationPreferences? = null
+open class TestCustomizationInjector
+@Inject
+constructor(private val customPrefs: TestDefaultCustomizationPreferences) :
+    TestInjector(), CustomizationInjector {
     private var themesUserEventLogger: ThemesUserEventLogger? = null
 
     /////////////////
@@ -32,8 +34,7 @@ open class TestCustomizationInjector @Inject constructor() : TestInjector(), Cus
     /////////////////
 
     override fun getCustomizationPreferences(context: Context): CustomizationPreferences {
-        return customizationPrefs
-            ?: TestDefaultCustomizationPreferences(context).also { customizationPrefs = it }
+        return customPrefs
     }
 
     override fun getKeyguardQuickAffordancePickerInteractor(
