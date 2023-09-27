@@ -15,19 +15,38 @@
  */
 package com.android.customization.module.logging
 
+import android.stats.style.StyleEnums
+import androidx.annotation.IntDef
 import com.android.customization.model.color.ColorOption
 import com.android.customization.model.grid.GridOption
 import com.android.wallpaper.module.logging.UserEventLogger
 
 /** Extension of [UserEventLogger] that adds ThemePicker specific events. */
 interface ThemesUserEventLogger : UserEventLogger {
-    /**
-     * Logs the color usage while color is applied.
-     *
-     * @param action color applied action.
-     * @param colorOption applied color option.
-     */
-    fun logColorApplied(action: Int, colorOption: ColorOption)
+
+    fun logThemeColorApplied(colorOption: ColorOption)
 
     fun logGridApplied(grid: GridOption)
+
+    fun logClockApplied(clockId: String)
+
+    fun logClockColorApplied(seedColor: Int)
+
+    fun logClockSizeApplied(@ClockSize clockSize: Int)
+
+    fun logThemedIconApplied(useThemeIcon: Boolean)
+
+    fun logLockScreenNotificationApplied(showLockScreenNotifications: Boolean)
+
+    fun logShortcutApplied(shortcut: String, shortcutSlotId: String)
+
+    fun logDarkThemeApplied(useDarkTheme: Boolean)
+
+    @IntDef(
+        StyleEnums.CLOCK_SIZE_UNSPECIFIED,
+        StyleEnums.CLOCK_SIZE_DYNAMIC,
+        StyleEnums.CLOCK_SIZE_SMALL,
+    )
+    @Retention(AnnotationRetention.SOURCE)
+    annotation class ClockSize
 }
