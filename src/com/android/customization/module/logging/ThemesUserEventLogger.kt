@@ -29,9 +29,5 @@ interface ThemesUserEventLogger : UserEventLogger {
      */
     fun logColorApplied(action: Int, colorOption: ColorOption)
 
-    /**  */
-    fun logGridSelected(grid: GridOption)
-
-    /**  */
     fun logGridApplied(grid: GridOption)
 }
