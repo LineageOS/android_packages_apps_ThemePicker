@@ -384,7 +384,7 @@ class ClockCarouselView(
     ) : Carousel.Adapter {
 
         fun getContentDescription(index: Int, resources: Resources): String {
-            return clocks[index].getContentDescription(resources)
+            return clocks[index].contentDescription
         }
 
         override fun count(): Int {
