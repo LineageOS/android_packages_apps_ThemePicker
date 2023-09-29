@@ -25,7 +25,7 @@ import com.android.customization.module.SysUiStatsLogger
 import com.android.systemui.shared.system.SysUiStatsLog
 import com.android.wallpaper.module.WallpaperPreferences
 import com.android.wallpaper.module.logging.NoOpUserEventLogger
-import com.android.wallpaper.module.logging.UserEventLogger.Companion.EffectStatus
+import com.android.wallpaper.module.logging.UserEventLogger.EffectStatus
 import com.android.wallpaper.util.LaunchSourceUtils
 
 /** StatsLog-backed implementation of [ThemesUserEventLogger]. */
