@@ -70,13 +70,13 @@ import com.android.systemui.shared.customization.data.content.CustomizationProvi
 import com.android.wallpaper.config.BaseFlags
 import com.android.wallpaper.dispatchers.BackgroundDispatcher
 import com.android.wallpaper.dispatchers.MainDispatcher
-import com.android.wallpaper.model.WallpaperColorsRepository
 import com.android.wallpaper.module.CustomizationSections
 import com.android.wallpaper.module.FragmentFactory
 import com.android.wallpaper.module.WallpaperPicker2Injector
 import com.android.wallpaper.module.logging.UserEventLogger
 import com.android.wallpaper.picker.CustomizationPickerActivity
 import com.android.wallpaper.picker.customization.data.content.WallpaperClientImpl
+import com.android.wallpaper.picker.customization.data.repository.WallpaperColorsRepository
 import com.android.wallpaper.picker.customization.data.repository.WallpaperRepository
 import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInteractor
 import com.android.wallpaper.picker.undo.domain.interactor.SnapshotRestorer

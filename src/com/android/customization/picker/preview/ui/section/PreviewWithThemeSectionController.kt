@@ -25,10 +25,10 @@ import com.android.customization.model.themedicon.domain.interactor.ThemedIconIn
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
 import com.android.customization.picker.preview.ui.viewmodel.PreviewWithThemeViewModel
 import com.android.wallpaper.R
-import com.android.wallpaper.model.WallpaperColorsRepository
 import com.android.wallpaper.model.WallpaperPreviewNavigator
 import com.android.wallpaper.module.CurrentWallpaperInfoFactory
 import com.android.wallpaper.module.CustomizationSections
+import com.android.wallpaper.picker.customization.data.repository.WallpaperColorsRepository
 import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInteractor
 import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewSectionController
 import com.android.wallpaper.picker.customization.ui.viewmodel.CustomizationPickerViewModel

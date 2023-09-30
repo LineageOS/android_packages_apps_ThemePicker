@@ -28,8 +28,8 @@ import com.android.customization.picker.color.domain.interactor.ColorPickerInter
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
 import com.android.systemui.shared.clocks.ClockRegistry
-import com.android.wallpaper.model.WallpaperColorsRepository
 import com.android.wallpaper.module.Injector
+import com.android.wallpaper.picker.customization.data.repository.WallpaperColorsRepository
 
 interface CustomizationInjector : Injector {
     fun getCustomizationPreferences(context: Context): CustomizationPreferences

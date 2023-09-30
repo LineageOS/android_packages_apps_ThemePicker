@@ -33,11 +33,11 @@ import com.android.customization.model.mode.DarkModeSectionController
 import com.android.customization.module.ThemePickerInjector
 import com.android.customization.picker.color.ui.binder.ColorPickerBinder
 import com.android.wallpaper.R
-import com.android.wallpaper.model.WallpaperColorsModel
-import com.android.wallpaper.model.WallpaperColorsRepository
 import com.android.wallpaper.module.CustomizationSections
 import com.android.wallpaper.module.InjectorProvider
 import com.android.wallpaper.picker.AppbarFragment
+import com.android.wallpaper.picker.customization.data.repository.WallpaperColorsRepository
+import com.android.wallpaper.picker.customization.shared.model.WallpaperColorsModel
 import com.android.wallpaper.picker.customization.ui.binder.ScreenPreviewBinder
 import com.android.wallpaper.picker.customization.ui.viewmodel.ScreenPreviewViewModel
 import com.android.wallpaper.util.DisplayUtils

@@ -25,7 +25,5 @@ class TestThemesUserEventLogger : TestUserEventLogger(), ThemesUserEventLogger {
 
     override fun logColorApplied(action: Int, colorOption: ColorOption) {}
 
-    override fun logGridSelected(grid: GridOption) {}
-
     override fun logGridApplied(grid: GridOption) {}
 }

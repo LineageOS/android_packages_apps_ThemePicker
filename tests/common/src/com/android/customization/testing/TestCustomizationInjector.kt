@@ -16,8 +16,8 @@ import com.android.customization.picker.color.domain.interactor.ColorPickerInter
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
 import com.android.systemui.shared.clocks.ClockRegistry
-import com.android.wallpaper.model.WallpaperColorsRepository
 import com.android.wallpaper.module.logging.UserEventLogger
+import com.android.wallpaper.picker.customization.data.repository.WallpaperColorsRepository
 import com.android.wallpaper.testing.TestInjector
 import javax.inject.Inject
 import javax.inject.Singleton

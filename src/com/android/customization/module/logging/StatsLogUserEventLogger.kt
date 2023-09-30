@@ -47,18 +47,6 @@ class StatsLogUserEventLogger(
             .log()
     }
 
-    override fun logIndividualWallpaperSelected(collectionId: String) {
-        SysUiStatsLogger(StyleEnums.WALLPAPER_SELECT)
-            .setWallpaperCategoryHash(getIdHashCode(collectionId))
-            .log()
-    }
-
-    override fun logCategorySelected(collectionId: String) {
-        SysUiStatsLogger(StyleEnums.WALLPAPER_OPEN_CATEGORY)
-            .setWallpaperCategoryHash(getIdHashCode(collectionId))
-            .log()
-    }
-
     override fun logSnapshot() {
         val isLockWallpaperSet = wallpaperStatusChecker.isLockWallpaperSet()
         val homeCollectionId = preferences.homeWallpaperCollectionId
@@ -83,7 +71,7 @@ class StatsLogUserEventLogger(
             .log()
     }
 
-    override fun logWallpaperSet(
+    override fun logWallpaperApplied(
         collectionId: String?,
         wallpaperId: String?,
         effects: String?,
@@ -133,10 +121,6 @@ class StatsLogUserEventLogger(
             .setColorPreference(colorOption.index)
             .setColorVariant(colorOption.style.ordinal + 1)
             .log()
-    }
-
-    override fun logGridSelected(grid: GridOption) {
-        SysUiStatsLogger(StyleEnums.PICKER_SELECT).setLauncherGrid(grid.cols).log()
     }
 
     override fun logGridApplied(grid: GridOption) {

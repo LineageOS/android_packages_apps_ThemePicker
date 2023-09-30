@@ -24,8 +24,8 @@ import com.android.customization.model.color.ColorOptionImpl
 import com.android.customization.picker.color.shared.model.ColorOptionModel
 import com.android.customization.picker.color.shared.model.ColorType
 import com.android.systemui.monet.Style
-import com.android.wallpaper.model.WallpaperColorsModel
-import com.android.wallpaper.model.WallpaperColorsRepository
+import com.android.wallpaper.picker.customization.data.repository.WallpaperColorsRepository
+import com.android.wallpaper.picker.customization.shared.model.WallpaperColorsModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
