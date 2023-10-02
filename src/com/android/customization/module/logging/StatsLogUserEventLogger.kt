@@ -23,9 +23,14 @@ import com.android.customization.model.color.ColorOption
 import com.android.customization.model.grid.GridOption
 import com.android.customization.module.SysUiStatsLogger
 import com.android.systemui.shared.system.SysUiStatsLog
+import com.android.wallpaper.module.WallpaperPersister.DEST_BOTH
+import com.android.wallpaper.module.WallpaperPersister.DEST_HOME_SCREEN
+import com.android.wallpaper.module.WallpaperPersister.DEST_LOCK_SCREEN
 import com.android.wallpaper.module.WallpaperPreferences
 import com.android.wallpaper.module.logging.NoOpUserEventLogger
 import com.android.wallpaper.module.logging.UserEventLogger.EffectStatus
+import com.android.wallpaper.module.logging.UserEventLogger.SetWallpaperEntryPoint
+import com.android.wallpaper.module.logging.UserEventLogger.WallpaperDestination
 import com.android.wallpaper.util.LaunchSourceUtils
 
 /** StatsLog-backed implementation of [ThemesUserEventLogger]. */
@@ -58,11 +63,21 @@ class StatsLogUserEventLogger(private val preferences: WallpaperPreferences) :
         collectionId: String?,
         wallpaperId: String?,
         effects: String?,
+        @SetWallpaperEntryPoint setWallpaperEntryPoint: Int,
+        @WallpaperDestination destination: Int,
     ) {
+        val categoryHash = getIdHashCode(collectionId)
+        val wallpaperIdHash = getIdHashCode(wallpaperId)
+        val isHomeWallpaperSet = destination == DEST_HOME_SCREEN || destination == DEST_BOTH
+        val isLockWallpaperSet = destination == DEST_LOCK_SCREEN || destination == DEST_BOTH
         SysUiStatsLogger(StyleEnums.WALLPAPER_APPLIED)
-            .setWallpaperCategoryHash(getIdHashCode(collectionId))
-            .setWallpaperIdHash(getIdHashCode(wallpaperId))
+            .setWallpaperCategoryHash(if (isHomeWallpaperSet) categoryHash else 0)
+            .setWallpaperIdHash(if (isHomeWallpaperSet) wallpaperIdHash else 0)
+            .setLockWallpaperCategoryHash(if (isLockWallpaperSet) categoryHash else 0)
+            .setLockWallpaperIdHash(if (isLockWallpaperSet) wallpaperIdHash else 0)
             .setEffectIdHash(getIdHashCode(effects))
+            .setSetWallpaperEntryPoint(setWallpaperEntryPoint)
+            .setWallpaperDestination(destination)
             .log()
     }
 
