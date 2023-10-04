@@ -24,16 +24,13 @@ import com.android.customization.model.grid.GridOption
 import com.android.customization.module.SysUiStatsLogger
 import com.android.systemui.shared.system.SysUiStatsLog
 import com.android.wallpaper.module.WallpaperPreferences
-import com.android.wallpaper.module.WallpaperStatusChecker
 import com.android.wallpaper.module.logging.NoOpUserEventLogger
-import com.android.wallpaper.module.logging.UserEventLogger.Companion.EffectStatus
+import com.android.wallpaper.module.logging.UserEventLogger.EffectStatus
 import com.android.wallpaper.util.LaunchSourceUtils
 
 /** StatsLog-backed implementation of [ThemesUserEventLogger]. */
-class StatsLogUserEventLogger(
-    private val preferences: WallpaperPreferences,
-    private val wallpaperStatusChecker: WallpaperStatusChecker
-) : NoOpUserEventLogger(), ThemesUserEventLogger {
+class StatsLogUserEventLogger(private val preferences: WallpaperPreferences) :
+    NoOpUserEventLogger(), ThemesUserEventLogger {
 
     override fun logAppLaunched(launchSource: Intent) {
         SysUiStatsLogger(SysUiStatsLog.STYLE_UICHANGED__ACTION__APP_LAUNCHED)
@@ -48,26 +45,12 @@ class StatsLogUserEventLogger(
     }
 
     override fun logSnapshot() {
-        val isLockWallpaperSet = wallpaperStatusChecker.isLockWallpaperSet()
-        val homeCollectionId = preferences.homeWallpaperCollectionId
-        val homeRemoteId = preferences.homeWallpaperRemoteId
-        val effects = preferences.homeWallpaperEffects
-        val homeWallpaperId =
-            if (TextUtils.isEmpty(homeRemoteId)) preferences.homeWallpaperServiceName
-            else homeRemoteId
-        val lockCollectionId =
-            if (isLockWallpaperSet) preferences.lockWallpaperCollectionId else homeCollectionId
-        val lockWallpaperId =
-            if (isLockWallpaperSet) preferences.lockWallpaperRemoteId else homeWallpaperId
         SysUiStatsLogger(StyleEnums.SNAPSHOT)
-            .setWallpaperCategoryHash(getIdHashCode(homeCollectionId))
-            .setWallpaperIdHash(getIdHashCode(homeWallpaperId))
-            .setLockWallpaperCategoryHash(getIdHashCode(lockCollectionId))
-            .setLockWallpaperIdHash(getIdHashCode(lockWallpaperId))
-            .setFirstLaunchDateSinceSetup(preferences.firstLaunchDateSinceSetup)
-            .setFirstWallpaperApplyDateSinceSetup(preferences.firstWallpaperApplyDateSinceSetup)
-            .setAppLaunchCount(preferences.appLaunchCount)
-            .setEffectIdHash(getIdHashCode(effects))
+            .setWallpaperCategoryHash(preferences.getHomeCategoryHash())
+            .setWallpaperIdHash(preferences.getHomeWallpaperIdHash())
+            .setLockWallpaperCategoryHash(preferences.getLockCategoryHash())
+            .setLockWallpaperIdHash(preferences.getLockWallpaperIdHash())
+            .setEffectIdHash(getIdHashCode(preferences.homeWallpaperEffects))
             .log()
     }
 
@@ -159,6 +142,30 @@ class StatsLogUserEventLogger(
         } else {
             SysUiStatsLog.STYLE_UICHANGED__LAUNCHED_PREFERENCE__LAUNCHED_PREFERENCE_UNSPECIFIED
         }
+    }
+
+    /** If not set, the output hash is 0. */
+    private fun WallpaperPreferences.getHomeCategoryHash(): Int {
+        return getIdHashCode(homeWallpaperCollectionId)
+    }
+
+    /** If not set, the output hash is 0. */
+    private fun WallpaperPreferences.getHomeWallpaperIdHash(): Int {
+        val remoteId = homeWallpaperRemoteId
+        val wallpaperId = if (!TextUtils.isEmpty(remoteId)) remoteId else homeWallpaperServiceName
+        return getIdHashCode(wallpaperId)
+    }
+
+    /** If not set, the output hash is 0. */
+    private fun WallpaperPreferences.getLockCategoryHash(): Int {
+        return getIdHashCode(lockWallpaperCollectionId)
+    }
+
+    /** If not set, the output hash is 0. */
+    private fun WallpaperPreferences.getLockWallpaperIdHash(): Int {
+        val remoteId = lockWallpaperRemoteId
+        val wallpaperId = if (!TextUtils.isEmpty(remoteId)) remoteId else lockWallpaperServiceName
+        return getIdHashCode(wallpaperId)
     }
 
     private fun getIdHashCode(id: String?): Int {

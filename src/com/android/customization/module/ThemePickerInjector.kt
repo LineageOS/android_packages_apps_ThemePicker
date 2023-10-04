@@ -168,11 +168,9 @@ internal constructor(
     @Synchronized
     override fun getUserEventLogger(context: Context): ThemesUserEventLogger {
         return userEventLogger as? ThemesUserEventLogger
-            ?: StatsLogUserEventLogger(
-                    getPreferences(context.applicationContext),
-                    getWallpaperStatusChecker(context.applicationContext),
-                )
-                .also { userEventLogger = it }
+            ?: StatsLogUserEventLogger(getPreferences(context.applicationContext)).also {
+                userEventLogger = it
+            }
     }
 
     override fun getFragmentFactory(): FragmentFactory? {
