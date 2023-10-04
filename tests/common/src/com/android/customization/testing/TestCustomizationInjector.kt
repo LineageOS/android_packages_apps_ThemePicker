@@ -5,6 +5,7 @@ import android.content.res.Resources
 import androidx.activity.ComponentActivity
 import com.android.customization.module.CustomizationInjector
 import com.android.customization.module.CustomizationPreferences
+import com.android.customization.module.logging.TestThemesUserEventLogger
 import com.android.customization.module.logging.ThemesUserEventLogger
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.ui.view.ClockViewFactory

@@ -36,8 +36,8 @@ import com.android.customization.model.themedicon.ThemedIconSwitchProvider
 import com.android.customization.model.themedicon.data.repository.ThemeIconRepository
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconInteractor
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconSnapshotRestorer
-import com.android.customization.module.logging.StatsLogUserEventLogger
 import com.android.customization.module.logging.ThemesUserEventLogger
+import com.android.customization.module.logging.ThemesUserEventLoggerImpl
 import com.android.customization.picker.clock.data.repository.ClockPickerRepositoryImpl
 import com.android.customization.picker.clock.data.repository.ClockRegistryProvider
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
@@ -169,7 +169,7 @@ internal constructor(
     @Synchronized
     override fun getUserEventLogger(context: Context): ThemesUserEventLogger {
         return userEventLogger as? ThemesUserEventLogger
-            ?: StatsLogUserEventLogger(getPreferences(context.applicationContext)).also {
+            ?: ThemesUserEventLoggerImpl(getPreferences(context.applicationContext)).also {
                 userEventLogger = it
             }
     }
