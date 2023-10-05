@@ -22,7 +22,8 @@
     <string name="clock_title" msgid="1974314575211361352">"Reloj person."</string>
     <string name="clock_description" msgid="3563839327378948">"Elige un reloj"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Cambia el reloj personalizado"</string>
-    <string name="clock_settings_title" msgid="2940654205471453913">"Config. del reloj"</string>
+    <string name="select_clock_action_description" msgid="5025888763471843648">"Opción de cara de reloj <xliff:g id="ID_1">%1$s</xliff:g>"</string>
+    <string name="clock_settings_title" msgid="2050906379377120431">"Color, tamaño de reloj"</string>
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"Reloj: color, tamaño"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>"</string>
     <string name="clock_color" msgid="8081608867289156163">"Color"</string>
@@ -116,7 +117,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Acceso izquierdo"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Acceso derecho"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Ninguno"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"Para seleccionar \"<xliff:g id="APPNAME">%1$s</xliff:g>\", verifica lo siguiente"</string>
+    <string name="keyguard_affordance_enablement_dialog_headline" msgid="365379085932610314">"No se puede agregar el acceso directo"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Abrir <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Para agregar la app <xliff:g id="APPNAME">%1$s</xliff:g> como acceso directo, asegúrate que se cumplan los siguientes requisitos:"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Listo"</string>
@@ -124,12 +125,18 @@
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"Accesos directos"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"Ninguno"</string>
-    <string name="notifications_section_title" msgid="4283049750376871538">"Notificaciones"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Mostrar las notificaciones en la pantalla de bloqueo"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Esconder las notificaciones en la pantalla de bloqueo"</string>
-    <string name="more_settings_section_title" msgid="8524741850115625404">"Más opciones"</string>
-    <string name="more_settings_section_description" msgid="8787768566854880683">"Texto en la pantalla de bloqueo, Está sonando y mucho más"</string>
+    <string name="more_settings_section_title" msgid="1331425454775815958">"Opciones de pantalla de bloqueo"</string>
+    <string name="more_settings_section_description" msgid="1860115709122398325">"Privacidad, Está sonando y más"</string>
     <string name="more_colors" msgid="3191071655353004591">"Más colores"</string>
+    <string name="content_description_dynamic_color_option" msgid="2191721655642529886">"Tema dinámico principal"</string>
+    <string name="content_description_neutral_color_option" msgid="3385443834001275301">"Tema neutro principal"</string>
+    <string name="content_description_vibrant_color_option" msgid="2230249305878632821">"Tema intenso principal"</string>
+    <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Tema expresivo principal"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Opción de color predeterminada"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Opción en color <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Desliza el dedo hacia la izquierda para elegir otra cara de reloj"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Desliza el dedo hacia la derecha para elegir otra cara de reloj"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"Relojes personalizados"</string>
 </resources>

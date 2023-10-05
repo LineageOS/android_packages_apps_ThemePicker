@@ -33,7 +33,7 @@
     <dimen name="options_container_width">0dp</dimen>
     <dimen name="option_bottom_margin">8dp</dimen>
     <dimen name="option_padding_horizontal">2dp</dimen>
-    <dimen name="option_tile_width">82dp</dimen>
+    <dimen name="option_tile_width">80dp</dimen>
     <dimen name="option_tile_radius">20dp</dimen>
     <dimen name="option_tile_margin_horizontal">6dp</dimen>
     <dimen name="option_tile_padding_vertical">12dp</dimen>
@@ -157,11 +157,27 @@
     <dimen name="keyguard_quick_affordance_icon_size">24dp</dimen>
 
     <dimen name="clock_carousel_item_width">190dp</dimen>
-    <dimen name="clock_carousel_item_height">380dp</dimen>
     <dimen name="clock_carousel_item_margin">16dp</dimen>
-    <dimen name="clock_carousel_guideline_margin">140dp</dimen>
-    <!-- Scale of the carousel items that are not selected and at the side -->
-    <dimen name="clock_carousel_scale" format="float">0.5</dimen>
-    <!-- Alpha of the carousel items that are not selected and at the side -->
-    <dimen name="clock_carousel_alpha" format="float">0.4</dimen>
+    <dimen name="clock_carousel_guideline_margin">100dp</dimen>
+    <dimen name="clock_carousel_item_card_width">100dp</dimen>
+    <dimen name="clock_carousel_item_card_height">108dp</dimen>
+    <dimen name="clock_carousel_guideline_margin_for_2_pane_small_width">122dp</dimen>
+
+    <!-- Clock color and size button -->
+    <dimen name="clock_color_size_button_min_height">32dp</dimen>
+    <dimen name="clock_color_size_button_horizontal_padding">12dp</dimen>
+    <dimen name="clock_color_size_button_vertical_padding">6dp</dimen>
+    <dimen name="clock_color_size_button_corner_radius">16dp</dimen>
+    <dimen name="clock_color_size_button_icon_size">20dp</dimen>
+    <dimen name="clock_color_size_button_icon_margin_end">12dp</dimen>
+
+    <!--
+    Dimension for clock translationY when swiping clock carousel in picker,
+    copied from sysui resources
+    -->
+    <dimen name="keyguard_large_clock_top_margin">-60dp</dimen>
+    <!-- Dimension for the clock view, copied from sysui resources. -->
+    <dimen name="small_clock_height">114dp</dimen>
+    <dimen name="small_clock_padding_top">28dp</dimen>
+    <dimen name="clock_padding_start">28dp</dimen>
 </resources>

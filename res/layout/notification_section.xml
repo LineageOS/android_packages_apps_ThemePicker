@@ -22,35 +22,25 @@
     android:layout_height="wrap_content"
     android:background="?selectableItemBackground"
     android:clickable="true"
-    android:paddingVertical="@dimen/section_top_padding"
+    android:paddingVertical="@dimen/section_padding"
     android:paddingHorizontal="@dimen/section_horizontal_padding"
     android:orientation="horizontal"
     android:gravity="center_vertical">
 
-    <LinearLayout
+    <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/notifications_section_title"
-            style="@style/SectionTitleTextStyle" />
-
-        <TextView
-            android:id="@+id/subtitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/SectionSubtitleTextStyle"/>
-    </LinearLayout>
+        android:layout_gravity="center"
+        android:text="@string/show_notifications_on_lock_screen"
+        style="@style/SectionTitleTextStyle"/>
 
     <Switch
         android:id="@+id/switcher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="false"
+        android:layout_gravity="center"
         style="@style/Switch.SettingsLib"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 

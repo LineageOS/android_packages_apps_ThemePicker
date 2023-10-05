@@ -22,7 +22,8 @@
     <string name="clock_title" msgid="1974314575211361352">"Oma kello"</string>
     <string name="clock_description" msgid="3563839327378948">"Valitse kello"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Muuta omaa kelloa"</string>
-    <string name="clock_settings_title" msgid="2940654205471453913">"Kelloasetukset"</string>
+    <string name="select_clock_action_description" msgid="5025888763471843648">"Kellotauluvaihtoehto <xliff:g id="ID_1">%1$s</xliff:g>"</string>
+    <string name="clock_settings_title" msgid="2050906379377120431">"Kellon väri ja koko"</string>
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"Kellon väri ja koko"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>"</string>
     <string name="clock_color" msgid="8081608867289156163">"Väri"</string>
@@ -116,7 +117,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Vasen pikakuvake"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Oikea pikakuvake"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"–"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"Tarkista seuraavat, jotta \"<xliff:g id="APPNAME">%1$s</xliff:g>\" on valittavissa"</string>
+    <string name="keyguard_affordance_enablement_dialog_headline" msgid="365379085932610314">"Pikanäppäintä ei voi lisätä"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Avaa <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Jos haluat, että <xliff:g id="APPNAME">%1$s</xliff:g> lisätään pikakuvakkeeksi, varmista nämä:"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Valmis"</string>
@@ -124,12 +125,18 @@
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"Pikakuvakkeet"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"–"</string>
-    <string name="notifications_section_title" msgid="4283049750376871538">"Ilmoitukset"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Näytä ilmoitukset lukitusnäytöllä"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Piilota lukitusnäytön ilmoitukset"</string>
-    <string name="more_settings_section_title" msgid="8524741850115625404">"Lisäasetukset"</string>
-    <string name="more_settings_section_description" msgid="8787768566854880683">"Lukitusnäytöllä näkyvä teksti, Musiikintunnistus ja muita"</string>
+    <string name="more_settings_section_title" msgid="1331425454775815958">"Lisää valintoja lukitusnäytölle"</string>
+    <string name="more_settings_section_description" msgid="1860115709122398325">"Yksityisyys, Musiikintunnistus ja muita"</string>
     <string name="more_colors" msgid="3191071655353004591">"Lisää värejä"</string>
+    <string name="content_description_dynamic_color_option" msgid="2191721655642529886">"Ensisijainen dynaaminen teema"</string>
+    <string name="content_description_neutral_color_option" msgid="3385443834001275301">"Ensisijainen neutraali teema"</string>
+    <string name="content_description_vibrant_color_option" msgid="2230249305878632821">"Ensisijainen voimakas teema"</string>
+    <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Ensisijainen ekspressiivinen teema"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Oletusväri"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Värivaihtoehto: <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Valitse toinen kellotaulu pyyhkäisemällä vasemmalle"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Valitse toinen kellotaulu pyyhkäisemällä oikealle"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"Omat kellot"</string>
 </resources>

@@ -35,7 +35,7 @@ class ClockSectionViewModel(context: Context, interactor: ClockPickerInteractor)
             (selectedColorId, selectedClockSize) ->
             val colorText =
                 clockColorMap[selectedColorId]?.colorName
-                    ?: context.getString(R.string.default_theme_title)
+                    ?: appContext.getString(R.string.default_theme_title)
             val sizeText =
                 when (selectedClockSize) {
                     ClockSize.SMALL -> appContext.getString(R.string.clock_size_small)

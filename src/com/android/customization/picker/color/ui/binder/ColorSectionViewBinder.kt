@@ -17,9 +17,9 @@
 
 package com.android.customization.picker.color.ui.binder
 
+import android.content.res.Configuration
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.view.isVisible
@@ -30,6 +30,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.android.customization.picker.color.ui.viewmodel.ColorOptionIconViewModel
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
 import com.android.wallpaper.R
+import com.android.wallpaper.picker.common.icon.ui.viewbinder.ContentDescriptionViewBinder
 import com.android.wallpaper.picker.option.ui.viewmodel.OptionItemViewModel
 import kotlinx.coroutines.launch
 
@@ -91,10 +92,23 @@ object ColorSectionViewBinder {
                 })
                 .let { if (it < 0) 0 else it }
         options.subList(0, colorOptionSlotSize).forEach { item ->
+            val night =
+                (view.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK ==
+                    Configuration.UI_MODE_NIGHT_YES)
             val itemView =
                 LayoutInflater.from(view.context)
                     .inflate(R.layout.color_option_no_background, view, false)
-            item.payload?.let { ColorOptionIconBinder.bind(itemView as ViewGroup, item.payload) }
+            item.payload?.let {
+                ColorOptionIconBinder.bind(
+                    itemView.requireViewById(R.id.option_tile),
+                    item.payload,
+                    night
+                )
+                ContentDescriptionViewBinder.bind(
+                    view = itemView.requireViewById(R.id.option_tile),
+                    viewModel = item.text,
+                )
+            }
             val optionSelectedView = itemView.requireViewById<ImageView>(R.id.option_selected)
 
             lifecycleOwner.lifecycleScope.launch {

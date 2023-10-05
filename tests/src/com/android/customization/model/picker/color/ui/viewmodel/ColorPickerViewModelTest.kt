@@ -61,8 +61,8 @@ class ColorPickerViewModelTest {
     fun setUp() {
         context = InstrumentationRegistry.getInstrumentation().targetContext
         val testDispatcher = StandardTestDispatcher()
-        testScope = TestScope(testDispatcher)
         Dispatchers.setMain(testDispatcher)
+        testScope = TestScope(testDispatcher)
         repository = FakeColorPickerRepository(context = context)
         store = FakeSnapshotStore()
 

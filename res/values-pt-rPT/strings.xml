@@ -22,7 +22,8 @@
     <string name="clock_title" msgid="1974314575211361352">"Relógio person."</string>
     <string name="clock_description" msgid="3563839327378948">"Escolha rel. pers."</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Altere um relógio personalizado"</string>
-    <string name="clock_settings_title" msgid="2940654205471453913">"Def. do Relógio"</string>
+    <string name="select_clock_action_description" msgid="5025888763471843648">"Opção de mostrador <xliff:g id="ID_1">%1$s</xliff:g>"</string>
+    <string name="clock_settings_title" msgid="2050906379377120431">"Cor/tamanho relógio"</string>
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"Cor/tamanho relógio"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>"</string>
     <string name="clock_color" msgid="8081608867289156163">"Cor"</string>
@@ -85,8 +86,8 @@
     <string name="delete_custom_theme_button" msgid="5102462988130208824">"Eliminar"</string>
     <string name="cancel" msgid="4651030493668562067">"Cancelar"</string>
     <string name="set_theme_wallpaper_dialog_message" msgid="2179661027350908003">"Defina a imagem de fundo do estilo"</string>
-    <string name="use_style_instead_title" msgid="1578754995763917502">"Pretende utilizar <xliff:g id="ID_1">%1$s</xliff:g>?"</string>
-    <string name="use_style_instead_body" msgid="3051937045807471496">"Os componentes que escolheu correspondem ao estilo <xliff:g id="ID_1">%1$s</xliff:g>. Em vez disso, pretende utilizar <xliff:g id="ID_2">%1$s</xliff:g>?"</string>
+    <string name="use_style_instead_title" msgid="1578754995763917502">"Quer utilizar <xliff:g id="ID_1">%1$s</xliff:g>?"</string>
+    <string name="use_style_instead_body" msgid="3051937045807471496">"Os componentes que escolheu correspondem ao estilo <xliff:g id="ID_1">%1$s</xliff:g>. Em vez disso, quer utilizar <xliff:g id="ID_2">%1$s</xliff:g>?"</string>
     <string name="use_style_button" msgid="1754493078383627019">"Usar <xliff:g id="ID_1">%1$s</xliff:g>"</string>
     <string name="no_thanks" msgid="7286616980115687627">"Não, obrigado"</string>
     <string name="clock_preview_content_description" msgid="5460561185905717460">"Pré-visualização do relógio <xliff:g id="ID_1">%1$s</xliff:g>"</string>
@@ -116,7 +117,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Atalho esquerdo"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Atalho direito"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Nenhum"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"Para selecionar \"<xliff:g id="APPNAME">%1$s</xliff:g>\", verifique o seguinte"</string>
+    <string name="keyguard_affordance_enablement_dialog_headline" msgid="365379085932610314">"Não é possível adicionar o atalho"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Abrir <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Para adicionar a app <xliff:g id="APPNAME">%1$s</xliff:g> como um atalho, garanta"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Concluído"</string>
@@ -124,12 +125,18 @@
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"Atalhos"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"Nenhum"</string>
-    <string name="notifications_section_title" msgid="4283049750376871538">"Notificações"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Mostre as notificações no ecrã de bloqueio"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Oculte as notificações no ecrã de bloqueio"</string>
-    <string name="more_settings_section_title" msgid="8524741850115625404">"Mais opções"</string>
-    <string name="more_settings_section_description" msgid="8787768566854880683">"Texto no ecrã de bloqueio, A tocar e muito mais"</string>
+    <string name="more_settings_section_title" msgid="1331425454775815958">"Mais opções do ecrã de bloqueio"</string>
+    <string name="more_settings_section_description" msgid="1860115709122398325">"Privacidade, A reproduzir e muito mais"</string>
     <string name="more_colors" msgid="3191071655353004591">"Mais cores"</string>
+    <string name="content_description_dynamic_color_option" msgid="2191721655642529886">"Tema dinâmico principal"</string>
+    <string name="content_description_neutral_color_option" msgid="3385443834001275301">"Tema neutro principal"</string>
+    <string name="content_description_vibrant_color_option" msgid="2230249305878632821">"Tema vibrante principal"</string>
+    <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Tema expressivo principal"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Opção de cor predefinida"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Opção de cor <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Deslizar rapidamente para a esquerda para escolher um mostrador diferente"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Deslizar rapidamente para a direita para escolher um mostrador diferente"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"Relógios personalizados"</string>
 </resources>

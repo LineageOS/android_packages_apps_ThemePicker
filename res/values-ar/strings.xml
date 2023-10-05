@@ -22,7 +22,8 @@
     <string name="clock_title" msgid="1974314575211361352">"خلفية شاشة ساعة مخصّصة"</string>
     <string name="clock_description" msgid="3563839327378948">"اختيار خلفية شاشة ساعة مخصّصة"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"تغيير خلفية شاشة ساعة مخصّصة"</string>
-    <string name="clock_settings_title" msgid="2940654205471453913">"إعدادات الساعة"</string>
+    <string name="select_clock_action_description" msgid="5025888763471843648">"خيار تصميم الساعة: <xliff:g id="ID_1">%1$s</xliff:g>"</string>
+    <string name="clock_settings_title" msgid="2050906379377120431">"لون الساعة وحجمها"</string>
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"لون الساعة وحجمها"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g> و<xliff:g id="ID_2">%2$s</xliff:g>"</string>
     <string name="clock_color" msgid="8081608867289156163">"اللون"</string>
@@ -116,7 +117,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"اختصار اليمين"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"اختصار اليسار"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"بدون أزرار"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"لاختيار \"<xliff:g id="APPNAME">%1$s</xliff:g>\"، تأكّد مما يلي:"</string>
+    <string name="keyguard_affordance_enablement_dialog_headline" msgid="365379085932610314">"تعذُّر إضافة الاختصار"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"فتح <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"لإضافة تطبيق \"<xliff:g id="APPNAME">%1$s</xliff:g>\" كاختصار، تأكَّد من"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"تم"</string>
@@ -124,12 +125,18 @@
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"الاختصارات"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"\"<xliff:g id="FIRST">%1$s</xliff:g>\" و\"<xliff:g id="SECOND">%2$s</xliff:g>\""</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"بدون اختصارات"</string>
-    <string name="notifications_section_title" msgid="4283049750376871538">"الإشعارات"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"إظهار الإشعارات على شاشة القفل"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"إخفاء الإشعارات على شاشة القفل"</string>
-    <string name="more_settings_section_title" msgid="8524741850115625404">"خيارات إضافية"</string>
-    <string name="more_settings_section_description" msgid="8787768566854880683">"النص على شاشة القفل و\"التعرف التلقائي على الموسيقى\" والمزيد"</string>
+    <string name="more_settings_section_title" msgid="1331425454775815958">"المزيد من خيارات شاشة القفل"</string>
+    <string name="more_settings_section_description" msgid="1860115709122398325">"الخصوصية وميزة \"التعرّف التلقائي على الموسيقى\" وغير ذلك"</string>
     <string name="more_colors" msgid="3191071655353004591">"المزيد من الألوان"</string>
+    <string name="content_description_dynamic_color_option" msgid="2191721655642529886">"مظهر ديناميكي أساسي"</string>
+    <string name="content_description_neutral_color_option" msgid="3385443834001275301">"مظهر أساسي محايد"</string>
+    <string name="content_description_vibrant_color_option" msgid="2230249305878632821">"مظهر أساسي نابض بالحياة"</string>
+    <string name="content_description_expressive_color_option" msgid="6081295313456341282">"مظهر أساسي معبِّر"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"خيار اللون التلقائي"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"خيار اللون <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"مرِّر سريعًا لليمين لاختيار تصميم ساعة مختلف."</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"مرِّر سريعًا لليسار لاختيار تصميم ساعة مختلف."</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"تصميمات ساعة مخصّصة"</string>
 </resources>

@@ -22,7 +22,8 @@
     <string name="clock_title" msgid="1974314575211361352">"Własny zegar"</string>
     <string name="clock_description" msgid="3563839327378948">"Wybierz własny zegar"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Zmień własny zegar"</string>
-    <string name="clock_settings_title" msgid="2940654205471453913">"Ustawienia zegara"</string>
+    <string name="select_clock_action_description" msgid="5025888763471843648">"Opcja tarczy zegarka: <xliff:g id="ID_1">%1$s</xliff:g>"</string>
+    <string name="clock_settings_title" msgid="2050906379377120431">"Kolor i rozmiar zegara"</string>
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"Kolor i rozmiar zegara"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>"</string>
     <string name="clock_color" msgid="8081608867289156163">"Kolor"</string>
@@ -116,7 +117,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Lewy skrót"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Prawy skrót"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Brak"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"Aby wybrać opcję „<xliff:g id="APPNAME">%1$s</xliff:g>”, wykonaj te czynności"</string>
+    <string name="keyguard_affordance_enablement_dialog_headline" msgid="365379085932610314">"Nie udało się dodać skrótu"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Otwórz: <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Aby dodać aplikację <xliff:g id="APPNAME">%1$s</xliff:g> jako skrót, upewnij się, że spełnione zostały te warunki:"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Gotowe"</string>
@@ -124,12 +125,18 @@
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"Skróty"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"Brak"</string>
-    <string name="notifications_section_title" msgid="4283049750376871538">"Powiadomienia"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Pokazuj powiadomienia na ekranie blokady"</string>
     <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Ukrywaj powiadomienia na ekranie blokady"</string>
-    <string name="more_settings_section_title" msgid="8524741850115625404">"Więcej opcji"</string>
-    <string name="more_settings_section_description" msgid="8787768566854880683">"SMS-y na ekranie blokady, Co jest grane i inne funkcje"</string>
+    <string name="more_settings_section_title" msgid="1331425454775815958">"Więcej opcji ekranu blokady"</string>
+    <string name="more_settings_section_description" msgid="1860115709122398325">"Prywatność, Co jest grane i inne ustawienia"</string>
     <string name="more_colors" msgid="3191071655353004591">"Więcej kolorów"</string>
+    <string name="content_description_dynamic_color_option" msgid="2191721655642529886">"Główny motyw dynamiczny"</string>
+    <string name="content_description_neutral_color_option" msgid="3385443834001275301">"Główny motyw neutralny"</string>
+    <string name="content_description_vibrant_color_option" msgid="2230249305878632821">"Główny motyw barwny"</string>
+    <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Główny motyw ekspresyjny"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Domyślna opcja koloru"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Opcja koloru <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Przesuń w lewo, aby wybrać inną tarczę zegara"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Przesuń w prawo, aby wybrać inną tarczę zegara"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"Zegary niestandardowe"</string>
 </resources>

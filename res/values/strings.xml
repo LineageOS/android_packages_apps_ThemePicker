@@ -33,8 +33,11 @@
     <!-- The content description of clock entry. [CHAR LIMIT=NONE] -->
     <string name="clock_picker_entry_content_description">Change a custom clock</string>
 
+    <!-- action description for announcing selected Clock [CHAR LIMIT=NONE]-->
+    <string name="select_clock_action_description">Clock face option <xliff:g name="clock_face_description">%1$s</xliff:g></string>
+
     <!-- Title of a section of the customization picker where the user can configure Clock face. [CHAR LIMIT=19] -->
-    <string name="clock_settings_title">Clock Settings</string>
+    <string name="clock_settings_title">Clock color &amp; size</string>
 
     <!-- Title of a section of the customization picker where the user can configure clock color and size. [CHAR LIMIT=20] -->
     <string name="clock_color_and_size_title">Clock color &amp; size</string>
@@ -360,7 +363,7 @@
     enabled. The dialog contains a list of instructions that the user needs to take in order to
     enable the option before it can be selected again. [CHAR LIMIT=NONE].
     -->
-    <string name="keyguard_affordance_enablement_dialog_title">To select `<xliff:g id="appName" example="Wallet">%1$s</xliff:g>` check the following</string>
+    <string name="keyguard_affordance_enablement_dialog_headline">Can\'t add shortcut</string>
 
     <!--
     Template for an action that opens a specific app. [CHAR LIMIT=16]
@@ -412,14 +415,6 @@
     <string name="keyguard_quick_affordance_none_selected">None</string>
 
     <!--
-    Title for a section in a list of sections in the settings app that allows the user to modify
-    how notifications behave whilst the device is locked.
-
-    [CHAR LIMIT=32].
-    -->
-    <string name="notifications_section_title">Notifications</string>
-
-    <!--
     Summary for a setting that lets the user toggle between showing or hiding notifications on their
     device's lock screen. This one is shown when the user is allowing notifications to show on their
     device's lock screen.
@@ -443,7 +438,7 @@
 
     [CHAR LIMIT=32].
     -->
-    <string name="more_settings_section_title">More options</string>
+    <string name="more_settings_section_title">More lock screen options</string>
 
     <!--
     Summary for a setting that lets the user access additional settings related to lock screen
@@ -453,7 +448,7 @@
 
     [CHAR LIMIT=64].
     -->
-    <string name="more_settings_section_description">Text on lock screen, Now Playing, and more</string>
+    <string name="more_settings_section_description">Privacy, Now Playing, and more</string>
 
     <!--
     Label for button that lets the user navigate to a full-screen experience of selecting
@@ -462,6 +457,38 @@
     [CHAR LIMIT=128].
     -->
     <string name="more_colors">More Colors</string>
+
+    <!--
+    Accessibility string for a button that allows the user to select a color scheme generated from
+    their current wallpaper as the system color. This is shown in a list with other color options.
+
+    [CHAR LIMIT=NONE].
+    -->
+    <string name="content_description_dynamic_color_option">Primary dynamic theme</string>
+
+    <!--
+    Accessibility string for a button that allows the user to select a color scheme generated from
+    their current wallpaper as the system color. This is shown in a list with other color options.
+
+    [CHAR LIMIT=NONE].
+    -->
+    <string name="content_description_neutral_color_option">Primary neutral theme</string>
+
+    <!--
+    Accessibility string for a button that allows the user to select a color scheme generated from
+    their current wallpaper as the system color. This is shown in a list with other color options.
+
+    [CHAR LIMIT=NONE].
+    -->
+    <string name="content_description_vibrant_color_option">Primary vibrant theme</string>
+
+    <!--
+    Accessibility string for a button that allows the user to select a color scheme generated from
+    their current wallpaper as the system color. This is shown in a list with other color options.
+
+    [CHAR LIMIT=NONE].
+    -->
+    <string name="content_description_expressive_color_option">Primary expressive theme</string>
 
     <!--
     Accessibility string for a button that allows the user to select the default color for their
@@ -480,4 +507,22 @@
     [CHAR LIMIT=NONE].
     -->
     <string name="content_description_color_option">Color option <xliff:g name="color_number" example="1">%1$d</xliff:g></string>
+
+    <!--
+    Accessibility label for forward scrolling in the carousel of clock faces.
+    [CHAR LIMIT=128].
+    -->
+    <string name="scroll_forward_and_select">Swipe left to choose a different clock face</string>
+
+    <!--
+    Accessibility label for backward scrolling in the carousel of clock faces.
+    [CHAR LIMIT=128].
+    -->
+    <string name="scroll_backward_and_select">Swipe right to choose a different clock face</string>
+
+    <!--
+    Accessibility label for the carousel of clock faces.
+    [CHAR LIMIT=128].
+    -->
+    <string name="custom_clocks_label">Custom Clocks</string>
 </resources>
