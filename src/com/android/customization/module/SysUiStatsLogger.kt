@@ -25,6 +25,7 @@ import com.android.systemui.shared.system.SysUiStatsLog.STYLE_UICHANGED__LOCATIO
 import com.android.systemui.shared.system.SysUiStatsLog.STYLE_UICHANGED__SET_WALLPAPER_ENTRY_POINT__SET_WALLPAPER_ENTRY_POINT_UNSPECIFIED
 import com.android.systemui.shared.system.SysUiStatsLog.STYLE_UICHANGED__WALLPAPER_DESTINATION__WALLPAPER_DESTINATION_UNSPECIFIED
 import com.android.systemui.shared.system.SysUiStatsLog.STYLE_UI_CHANGED
+import com.android.wallpaper.module.logging.UserEventLogger.SetWallpaperEntryPoint
 
 /** The builder for [SysUiStatsLog]. */
 class SysUiStatsLogger(val action: Int) {
@@ -138,7 +139,7 @@ class SysUiStatsLogger(val action: Int) {
         this.sessionId = sessionId
     }
 
-    fun setSetWallpaperEntryPoint(setWallpaperEntryPoint: Int) = apply {
+    fun setSetWallpaperEntryPoint(@SetWallpaperEntryPoint setWallpaperEntryPoint: Int) = apply {
         this.setWallpaperEntryPoint = setWallpaperEntryPoint
     }
 
