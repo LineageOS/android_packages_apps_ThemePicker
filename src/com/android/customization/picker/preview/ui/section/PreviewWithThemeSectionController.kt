@@ -35,6 +35,7 @@ import com.android.wallpaper.picker.customization.ui.viewmodel.CustomizationPick
 import com.android.wallpaper.picker.customization.ui.viewmodel.ScreenPreviewViewModel
 import com.android.wallpaper.util.DisplayUtils
 import com.android.wallpaper.util.PreviewUtils
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.suspendCancellableCoroutine
 
 /**
@@ -69,6 +70,7 @@ open class PreviewWithThemeSectionController(
         isTwoPaneAndSmallWidth,
         customizationPickerViewModel,
     ) {
+    @OptIn(ExperimentalCoroutinesApi::class)
     override fun createScreenPreviewViewModel(context: Context): ScreenPreviewViewModel {
         return PreviewWithThemeViewModel(
             previewUtils =
@@ -92,21 +94,21 @@ open class PreviewWithThemeSectionController(
             wallpaperInfoProvider = { forceReload ->
                 suspendCancellableCoroutine { continuation ->
                     wallpaperInfoFactory.createCurrentWallpaperInfos(
-                        { homeWallpaper, lockWallpaper, _ ->
-                            val wallpaper =
-                                if (isOnLockScreen) {
-                                    lockWallpaper ?: homeWallpaper
-                                } else {
-                                    homeWallpaper ?: lockWallpaper
-                                }
-                            loadInitialColors(
-                                context = context,
-                                screen = screen,
-                            )
-                            continuation.resume(wallpaper, null)
-                        },
+                        context,
                         forceReload,
-                    )
+                    ) { homeWallpaper, lockWallpaper, _ ->
+                        val wallpaper =
+                            if (isOnLockScreen) {
+                                lockWallpaper ?: homeWallpaper
+                            } else {
+                                homeWallpaper ?: lockWallpaper
+                            }
+                        loadInitialColors(
+                            context = context,
+                            screen = screen,
+                        )
+                        continuation.resume(wallpaper, null)
+                    }
                 }
             },
             onWallpaperColorChanged = { colors ->

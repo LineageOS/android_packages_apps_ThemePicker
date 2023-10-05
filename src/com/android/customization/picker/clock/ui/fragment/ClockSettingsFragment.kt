@@ -88,14 +88,14 @@ class ClockSettingsFragment : AppbarFragment() {
                             injector
                                 .getCurrentWallpaperInfoFactory(context)
                                 .createCurrentWallpaperInfos(
-                                    { homeWallpaper, lockWallpaper, _ ->
-                                        continuation.resume(
-                                            lockWallpaper ?: homeWallpaper,
-                                            null,
-                                        )
-                                    },
+                                    context,
                                     forceReload,
-                                )
+                                ) { homeWallpaper, lockWallpaper, _ ->
+                                    continuation.resume(
+                                        lockWallpaper ?: homeWallpaper,
+                                        null,
+                                    )
+                                }
                         }
                     },
                     onWallpaperColorChanged = { colors ->
