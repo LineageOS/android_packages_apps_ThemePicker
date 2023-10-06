@@ -43,6 +43,7 @@ import com.android.customization.picker.clock.data.repository.ClockRegistryProvi
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.domain.interactor.ClockPickerSnapshotRestorer
 import com.android.customization.picker.clock.ui.view.ClockViewFactory
+import com.android.customization.picker.clock.ui.view.ClockViewFactoryImpl
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
 import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
 import com.android.customization.picker.clock.ui.viewmodel.ClockSettingsViewModel
@@ -373,7 +374,7 @@ internal constructor(
     override fun getClockViewFactory(activity: ComponentActivity): ClockViewFactory {
         val activityHashCode = activity.hashCode()
         return clockViewFactories[activityHashCode]
-            ?: ClockViewFactory(
+            ?: ClockViewFactoryImpl(
                     activity.applicationContext,
                     ScreenSizeCalculator.getInstance()
                         .getScreenSize(activity.windowManager.defaultDisplay),
