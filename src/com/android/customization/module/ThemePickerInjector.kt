@@ -136,7 +136,6 @@ internal constructor(
                         context = activity,
                         wallpaperColorsRepository = getWallpaperColorsRepository(),
                     ),
-                    getKeyguardQuickAffordancePickerInteractor(activity),
                     getKeyguardQuickAffordancePickerViewModelFactory(activity),
                     NotificationSectionViewModel.Factory(
                         interactor = getNotificationsInteractor(activity),
@@ -256,7 +255,7 @@ internal constructor(
         val client = getKeyguardQuickAffordancePickerProviderClient(context)
         val appContext = context.applicationContext
         return KeyguardQuickAffordancePickerInteractor(
-            KeyguardQuickAffordancePickerRepository(client, bgDispatcher),
+            KeyguardQuickAffordancePickerRepository(client),
             client
         ) {
             getKeyguardQuickAffordanceSnapshotRestorer(appContext)

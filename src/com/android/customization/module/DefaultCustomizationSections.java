@@ -24,7 +24,6 @@ import com.android.customization.picker.notifications.ui.section.NotificationSec
 import com.android.customization.picker.notifications.ui.viewmodel.NotificationSectionViewModel;
 import com.android.customization.picker.preview.ui.section.PreviewWithClockCarouselSectionController;
 import com.android.customization.picker.preview.ui.section.PreviewWithThemeSectionController;
-import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor;
 import com.android.customization.picker.quickaffordance.ui.section.KeyguardQuickAffordanceSectionController;
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel;
 import com.android.customization.picker.settings.ui.section.MoreSettingsSectionController;
@@ -49,7 +48,6 @@ import java.util.List;
 public final class DefaultCustomizationSections implements CustomizationSections {
 
     private final ColorPickerViewModel.Factory mColorPickerViewModelFactory;
-    private final KeyguardQuickAffordancePickerInteractor mKeyguardQuickAffordancePickerInteractor;
     private final KeyguardQuickAffordancePickerViewModel.Factory
             mKeyguardQuickAffordancePickerViewModelFactory;
     private final NotificationSectionViewModel.Factory mNotificationSectionViewModelFactory;
@@ -63,7 +61,6 @@ public final class DefaultCustomizationSections implements CustomizationSections
 
     public DefaultCustomizationSections(
             ColorPickerViewModel.Factory colorPickerViewModelFactory,
-            KeyguardQuickAffordancePickerInteractor keyguardQuickAffordancePickerInteractor,
             KeyguardQuickAffordancePickerViewModel.Factory
                     keyguardQuickAffordancePickerViewModelFactory,
             NotificationSectionViewModel.Factory notificationSectionViewModelFactory,
@@ -75,7 +72,6 @@ public final class DefaultCustomizationSections implements CustomizationSections
             ThemedIconInteractor themedIconInteractor,
             ColorPickerInteractor colorPickerInteractor) {
         mColorPickerViewModelFactory = colorPickerViewModelFactory;
-        mKeyguardQuickAffordancePickerInteractor = keyguardQuickAffordancePickerInteractor;
         mKeyguardQuickAffordancePickerViewModelFactory =
                 keyguardQuickAffordancePickerViewModelFactory;
         mNotificationSectionViewModelFactory = notificationSectionViewModelFactory;
@@ -166,7 +162,6 @@ public final class DefaultCustomizationSections implements CustomizationSections
                 sectionControllers.add(
                         new KeyguardQuickAffordanceSectionController(
                                 sectionNavigationController,
-                                mKeyguardQuickAffordancePickerInteractor,
                                 new ViewModelProvider(
                                         activity,
                                         mKeyguardQuickAffordancePickerViewModelFactory)
