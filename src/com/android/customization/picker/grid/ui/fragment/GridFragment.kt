@@ -185,11 +185,11 @@ class GridFragment : AppbarFragment() {
                     wallpaperInfoProvider = {
                         suspendCancellableCoroutine { continuation ->
                             wallpaperInfoFactory.createCurrentWallpaperInfos(
-                                { homeWallpaper, lockWallpaper, _ ->
-                                    continuation.resume(homeWallpaper ?: lockWallpaper, null)
-                                },
+                                context,
                                 /* forceRefresh= */ true,
-                            )
+                            ) { homeWallpaper, lockWallpaper, _ ->
+                                continuation.resume(homeWallpaper ?: lockWallpaper, null)
+                            }
                         }
                     },
                     wallpaperInteractor = wallpaperInteractor,

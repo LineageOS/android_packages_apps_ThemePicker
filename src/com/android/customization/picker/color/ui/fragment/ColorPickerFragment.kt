@@ -114,23 +114,23 @@ class ColorPickerFragment : AppbarFragment() {
                         wallpaperInfoProvider = { forceReload ->
                             suspendCancellableCoroutine { continuation ->
                                 wallpaperInfoFactory.createCurrentWallpaperInfos(
-                                    { homeWallpaper, lockWallpaper, _ ->
-                                        lifecycleScope.launch {
-                                            if (
-                                                wallpaperColorsRepository.lockWallpaperColors.value
-                                                    is WallpaperColorsModel.Loading
-                                            ) {
-                                                loadInitialColors(
-                                                    wallpaperManager,
-                                                    wallpaperColorsRepository,
-                                                    CustomizationSections.Screen.LOCK_SCREEN
-                                                )
-                                            }
-                                        }
-                                        continuation.resume(lockWallpaper ?: homeWallpaper, null)
-                                    },
+                                    context,
                                     forceReload,
-                                )
+                                ) { homeWallpaper, lockWallpaper, _ ->
+                                    lifecycleScope.launch {
+                                        if (
+                                            wallpaperColorsRepository.lockWallpaperColors.value
+                                                is WallpaperColorsModel.Loading
+                                        ) {
+                                            loadInitialColors(
+                                                wallpaperManager,
+                                                wallpaperColorsRepository,
+                                                CustomizationSections.Screen.LOCK_SCREEN
+                                            )
+                                        }
+                                    }
+                                    continuation.resume(lockWallpaper ?: homeWallpaper, null)
+                                }
                             }
                         },
                         onWallpaperColorChanged = { colors ->
@@ -165,23 +165,23 @@ class ColorPickerFragment : AppbarFragment() {
                     wallpaperInfoProvider = { forceReload ->
                         suspendCancellableCoroutine { continuation ->
                             wallpaperInfoFactory.createCurrentWallpaperInfos(
-                                { homeWallpaper, lockWallpaper, _ ->
-                                    lifecycleScope.launch {
-                                        if (
-                                            wallpaperColorsRepository.homeWallpaperColors.value
-                                                is WallpaperColorsModel.Loading
-                                        ) {
-                                            loadInitialColors(
-                                                wallpaperManager,
-                                                wallpaperColorsRepository,
-                                                CustomizationSections.Screen.HOME_SCREEN
-                                            )
-                                        }
-                                    }
-                                    continuation.resume(homeWallpaper ?: lockWallpaper, null)
-                                },
+                                context,
                                 forceReload,
-                            )
+                            ) { homeWallpaper, lockWallpaper, _ ->
+                                lifecycleScope.launch {
+                                    if (
+                                        wallpaperColorsRepository.homeWallpaperColors.value
+                                            is WallpaperColorsModel.Loading
+                                    ) {
+                                        loadInitialColors(
+                                            wallpaperManager,
+                                            wallpaperColorsRepository,
+                                            CustomizationSections.Screen.HOME_SCREEN
+                                        )
+                                    }
+                                }
+                                continuation.resume(homeWallpaper ?: lockWallpaper, null)
+                            }
                         }
                     },
                     onWallpaperColorChanged = { colors ->
