@@ -33,7 +33,7 @@ android_test {
         "androidx.test.rules",
         "junit",
         "kotlinx_coroutines_test",
-        "truth-prebuilt",
+        "truth",
     ],
     libs: [
         "android.test.runner",
