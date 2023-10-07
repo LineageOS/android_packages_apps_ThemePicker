@@ -187,7 +187,6 @@ class ClockPickerRepositoryImpl(
     ): ClockMetadataModel {
         return ClockMetadataModel(
             clockId = clockId,
-            name = name,
             isSelected = isSelected,
             selectedColorId = selectedColorId,
             colorToneProgress = colorTone,

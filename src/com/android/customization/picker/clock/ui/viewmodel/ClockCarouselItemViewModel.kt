@@ -15,20 +15,8 @@
  */
 package com.android.customization.picker.clock.ui.viewmodel
 
-import android.content.res.Resources
-import com.android.customization.module.CustomizationInjector
-import com.android.wallpaper.R
-import com.android.wallpaper.module.InjectorProvider
-
-class ClockCarouselItemViewModel(val clockId: String, val isSelected: Boolean) {
-
-    /** Description for accessibility purposes when a clock is selected. */
-    fun getContentDescription(resources: Resources): String {
-        val clockContent =
-            (InjectorProvider.getInjector() as? CustomizationInjector)
-                ?.getClockDescriptionUtils(resources)
-                ?.getDescription(clockId)
-                ?: ""
-        return resources.getString(R.string.select_clock_action_description, clockContent)
-    }
-}
+class ClockCarouselItemViewModel(
+    val clockId: String,
+    val isSelected: Boolean,
+    val contentDescription: String,
+)

@@ -92,11 +92,11 @@ private constructor(
             wallpaperInfoProvider = { forceReload ->
                 suspendCancellableCoroutine { continuation ->
                     wallpaperInfoFactory.createCurrentWallpaperInfos(
-                        { homeWallpaper, lockWallpaper, _ ->
-                            continuation.resume(lockWallpaper ?: homeWallpaper, null)
-                        },
+                        context,
                         forceReload,
-                    )
+                    ) { homeWallpaper, lockWallpaper, _ ->
+                        continuation.resume(lockWallpaper ?: homeWallpaper, null)
+                    }
                 }
             },
             wallpaperInteractor = wallpaperInteractor,

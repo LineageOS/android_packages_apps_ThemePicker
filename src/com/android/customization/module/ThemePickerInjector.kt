@@ -36,8 +36,8 @@ import com.android.customization.model.themedicon.ThemedIconSwitchProvider
 import com.android.customization.model.themedicon.data.repository.ThemeIconRepository
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconInteractor
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconSnapshotRestorer
-import com.android.customization.module.logging.StatsLogUserEventLogger
 import com.android.customization.module.logging.ThemesUserEventLogger
+import com.android.customization.module.logging.ThemesUserEventLoggerImpl
 import com.android.customization.picker.clock.data.repository.ClockPickerRepositoryImpl
 import com.android.customization.picker.clock.data.repository.ClockRegistryProvider
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
@@ -47,8 +47,6 @@ import com.android.customization.picker.clock.ui.view.ClockViewFactoryImpl
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
 import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
 import com.android.customization.picker.clock.ui.viewmodel.ClockSettingsViewModel
-import com.android.customization.picker.clock.utils.ClockDescriptionUtils
-import com.android.customization.picker.clock.utils.ThemePickerClockDescriptionUtils
 import com.android.customization.picker.color.data.repository.ColorPickerRepositoryImpl
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
 import com.android.customization.picker.color.domain.interactor.ColorPickerSnapshotRestorer
@@ -123,7 +121,6 @@ internal constructor(
     private var themedIconSnapshotRestorer: ThemedIconSnapshotRestorer? = null
     private var themedIconInteractor: ThemedIconInteractor? = null
     private var clockSettingsViewModelFactory: ClockSettingsViewModel.Factory? = null
-    private var clockDescriptionUtils: ClockDescriptionUtils? = null
     private var gridInteractor: GridInteractor? = null
     private var gridSnapshotRestorer: GridSnapshotRestorer? = null
     private var gridScreenViewModelFactory: GridScreenViewModel.Factory? = null
@@ -144,6 +141,8 @@ internal constructor(
                     getFlags(),
                     getClockCarouselViewModelFactory(
                         getClockPickerInteractor(activity.applicationContext),
+                        getClockViewFactory(activity),
+                        resources = activity.resources,
                     ),
                     getClockViewFactory(activity),
                     getDarkModeSnapshotRestorer(activity),
@@ -169,7 +168,7 @@ internal constructor(
     @Synchronized
     override fun getUserEventLogger(context: Context): ThemesUserEventLogger {
         return userEventLogger as? ThemesUserEventLogger
-            ?: StatsLogUserEventLogger(getPreferences(context.applicationContext)).also {
+            ?: ThemesUserEventLoggerImpl(getPreferences(context.applicationContext)).also {
                 userEventLogger = it
             }
     }
@@ -364,11 +363,12 @@ internal constructor(
 
     override fun getClockCarouselViewModelFactory(
         interactor: ClockPickerInteractor,
+        clockViewFactory: ClockViewFactory,
+        resources: Resources,
     ): ClockCarouselViewModel.Factory {
         return clockCarouselViewModelFactory
-            ?: ClockCarouselViewModel.Factory(interactor, bgDispatcher).also {
-                clockCarouselViewModelFactory = it
-            }
+            ?: ClockCarouselViewModel.Factory(interactor, bgDispatcher, clockViewFactory, resources)
+                .also { clockCarouselViewModelFactory = it }
     }
 
     override fun getClockViewFactory(activity: ComponentActivity): ClockViewFactory {
@@ -507,11 +507,6 @@ internal constructor(
                         ?: false
                 }
                 .also { clockSettingsViewModelFactory = it }
-    }
-
-    override fun getClockDescriptionUtils(resources: Resources): ClockDescriptionUtils {
-        return clockDescriptionUtils
-            ?: ThemePickerClockDescriptionUtils().also { clockDescriptionUtils = it }
     }
 
     fun getGridScreenViewModelFactory(

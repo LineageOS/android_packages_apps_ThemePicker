@@ -23,7 +23,6 @@ import androidx.annotation.IntRange
 /** Model for clock metadata. */
 data class ClockMetadataModel(
     val clockId: String,
-    val name: String,
     val isSelected: Boolean,
     val selectedColorId: String?,
     @IntRange(from = 0, to = 100) val colorToneProgress: Int,

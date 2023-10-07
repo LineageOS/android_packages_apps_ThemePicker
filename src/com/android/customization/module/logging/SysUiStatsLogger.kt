@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.customization.module
+package com.android.customization.module.logging
 
 import com.android.systemui.shared.system.SysUiStatsLog
 import com.android.systemui.shared.system.SysUiStatsLog.STYLE_UICHANGED__CLOCK_SIZE__CLOCK_SIZE_UNSPECIFIED
@@ -38,9 +38,11 @@ class SysUiStatsLogger(val action: Int) {
     private var wallpaperCategoryHash = 0
     private var wallpaperIdHash = 0
     private var colorPreference = 0
-    private var locationPreference = STYLE_UICHANGED__LOCATION_PREFERENCE__LOCATION_PREFERENCE_UNSPECIFIED
+    private var locationPreference =
+        STYLE_UICHANGED__LOCATION_PREFERENCE__LOCATION_PREFERENCE_UNSPECIFIED
     private var datePreference = STYLE_UICHANGED__DATE_PREFERENCE__DATE_PREFERENCE_UNSPECIFIED
-    private var launchedPreference = STYLE_UICHANGED__LAUNCHED_PREFERENCE__LAUNCHED_PREFERENCE_UNSPECIFIED
+    private var launchedPreference =
+        STYLE_UICHANGED__LAUNCHED_PREFERENCE__LAUNCHED_PREFERENCE_UNSPECIFIED
     private var effectPreference = STYLE_UICHANGED__EFFECT_PREFERENCE__EFFECT_PREFERENCE_UNSPECIFIED
     private var effectIdHash = 0
     private var lockWallpaperCategoryHash = 0
@@ -52,8 +54,10 @@ class SysUiStatsLogger(val action: Int) {
     private var timeElapsedMillis = 0L
     private var effectResultCode = -1
     private var sessionId = 0
-    private var setWallpaperEntryPoint = STYLE_UICHANGED__SET_WALLPAPER_ENTRY_POINT__SET_WALLPAPER_ENTRY_POINT_UNSPECIFIED
-    private var wallpaperDestination = STYLE_UICHANGED__WALLPAPER_DESTINATION__WALLPAPER_DESTINATION_UNSPECIFIED
+    private var setWallpaperEntryPoint =
+        STYLE_UICHANGED__SET_WALLPAPER_ENTRY_POINT__SET_WALLPAPER_ENTRY_POINT_UNSPECIFIED
+    private var wallpaperDestination =
+        STYLE_UICHANGED__WALLPAPER_DESTINATION__WALLPAPER_DESTINATION_UNSPECIFIED
     private var colorSource = STYLE_UICHANGED__COLOR_SOURCE__COLOR_SOURCE_UNSPECIFIED
     private var seedColor = 0
     private var clockSize = STYLE_UICHANGED__CLOCK_SIZE__CLOCK_SIZE_UNSPECIFIED
@@ -65,9 +69,7 @@ class SysUiStatsLogger(val action: Int) {
         this.colorPackageHash = colorPackageHash
     }
 
-    fun setFontPackageHash(fontPackageHash: Int) = apply {
-        this.fontPackageHash = fontPackageHash
-    }
+    fun setFontPackageHash(fontPackageHash: Int) = apply { this.fontPackageHash = fontPackageHash }
 
     fun setShapePackageHash(shapePackageHash: Int) = apply {
         this.shapePackageHash = shapePackageHash
@@ -83,13 +85,9 @@ class SysUiStatsLogger(val action: Int) {
         this.wallpaperCategoryHash = wallpaperCategoryHash
     }
 
-    fun setWallpaperIdHash(wallpaperIdHash: Int) = apply {
-        this.wallpaperIdHash = wallpaperIdHash
-    }
+    fun setWallpaperIdHash(wallpaperIdHash: Int) = apply { this.wallpaperIdHash = wallpaperIdHash }
 
-    fun setColorPreference(colorPreference: Int) = apply {
-        this.colorPreference = colorPreference
-    }
+    fun setColorPreference(colorPreference: Int) = apply { this.colorPreference = colorPreference }
 
     fun setLocationPreference(locationPreference: Int) = apply {
         this.locationPreference = locationPreference
@@ -128,16 +126,14 @@ class SysUiStatsLogger(val action: Int) {
     fun setColorVariant(colorVariant: Int) = apply { this.colorVariant = colorVariant }
 
     fun setTimeElapsed(timeElapsedMillis: Long) = apply {
-      this.timeElapsedMillis = timeElapsedMillis
+        this.timeElapsedMillis = timeElapsedMillis
     }
 
     fun setEffectResultCode(effectResultCode: Int) = apply {
         this.effectResultCode = effectResultCode
     }
 
-    fun setSessionId(sessionId: Int) = apply {
-        this.sessionId = sessionId
-    }
+    fun setSessionId(sessionId: Int) = apply { this.sessionId = sessionId }
 
     fun setSetWallpaperEntryPoint(@SetWallpaperEntryPoint setWallpaperEntryPoint: Int) = apply {
         this.setWallpaperEntryPoint = setWallpaperEntryPoint
@@ -147,29 +143,17 @@ class SysUiStatsLogger(val action: Int) {
         this.wallpaperDestination = wallpaperDestination
     }
 
-    fun setColorSource(colorSource: Int) = apply {
-        this.colorSource = colorSource
-    }
+    fun setColorSource(colorSource: Int) = apply { this.colorSource = colorSource }
 
-    fun setSeedColor(seedColor: Int) = apply {
-        this.seedColor = seedColor
-    }
+    fun setSeedColor(seedColor: Int) = apply { this.seedColor = seedColor }
 
-    fun setClockSize(clockSize: Int) = apply {
-        this.clockSize = clockSize
-    }
+    fun setClockSize(clockSize: Int) = apply { this.clockSize = clockSize }
 
-    fun setToggleOn(toggleOn: Boolean) = apply {
-        this.toggleOn = toggleOn
-    }
+    fun setToggleOn(toggleOn: Boolean) = apply { this.toggleOn = toggleOn }
 
-    fun setShortcut(shortcut: String) = apply {
-        this.shortcut = shortcut
-    }
+    fun setShortcut(shortcut: String) = apply { this.shortcut = shortcut }
 
-    fun setShortcutSlotId(shortcutSlotId: String) = apply {
-        this.shortcutSlotId = shortcutSlotId
-    }
+    fun setShortcutSlotId(shortcutSlotId: String) = apply { this.shortcutSlotId = shortcutSlotId }
 
     fun log() {
         SysUiStatsLog.write(

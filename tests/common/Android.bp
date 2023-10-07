@@ -25,8 +25,8 @@ android_library {
 
     defaults: ["ThemePicker_common_defaults"],
     srcs: [
-        "src/com/android/customization/testing/**/*.java",
-        "src/com/android/customization/testing/**/*.kt",
+        "src/**/*.java",
+        "src/**/*.kt",
     ],
     static_libs: [
         "WallpaperPicker2TestLib",

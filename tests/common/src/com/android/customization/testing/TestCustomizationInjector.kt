@@ -5,13 +5,13 @@ import android.content.res.Resources
 import androidx.activity.ComponentActivity
 import com.android.customization.module.CustomizationInjector
 import com.android.customization.module.CustomizationPreferences
+import com.android.customization.module.logging.TestThemesUserEventLogger
 import com.android.customization.module.logging.ThemesUserEventLogger
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
 import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
 import com.android.customization.picker.clock.ui.viewmodel.ClockSettingsViewModel
-import com.android.customization.picker.clock.utils.ClockDescriptionUtils
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
@@ -70,7 +70,9 @@ constructor(private val customPrefs: TestDefaultCustomizationPreferences) :
     }
 
     override fun getClockCarouselViewModelFactory(
-        interactor: ClockPickerInteractor
+        interactor: ClockPickerInteractor,
+        clockViewFactory: ClockViewFactory,
+        resources: Resources,
     ): ClockCarouselViewModel.Factory {
         throw UnsupportedOperationException("not implemented")
     }
@@ -84,10 +86,6 @@ constructor(private val customPrefs: TestDefaultCustomizationPreferences) :
         wallpaperColorsRepository: WallpaperColorsRepository,
         clockViewFactory: ClockViewFactory,
     ): ClockSettingsViewModel.Factory {
-        throw UnsupportedOperationException("not implemented")
-    }
-
-    override fun getClockDescriptionUtils(resources: Resources): ClockDescriptionUtils {
         throw UnsupportedOperationException("not implemented")
     }
 
