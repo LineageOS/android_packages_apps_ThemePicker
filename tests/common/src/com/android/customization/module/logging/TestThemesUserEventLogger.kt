@@ -15,14 +15,14 @@
  */
 package com.android.customization.module.logging
 
-import com.android.customization.model.color.ColorOption
 import com.android.customization.model.grid.GridOption
+import com.android.customization.module.logging.ThemesUserEventLogger.ColorSource
 import com.android.wallpaper.module.logging.TestUserEventLogger
 
 /** Test implementation of [ThemesUserEventLogger]. */
 class TestThemesUserEventLogger : TestUserEventLogger(), ThemesUserEventLogger {
 
-    override fun logThemeColorApplied(colorOption: ColorOption) {}
+    override fun logThemeColorApplied(@ColorSource source: Int, variant: Int, seedColor: Int) {}
 
     override fun logGridApplied(grid: GridOption) {}
 

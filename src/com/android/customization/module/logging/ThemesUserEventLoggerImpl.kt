@@ -19,9 +19,9 @@ import android.app.WallpaperManager
 import android.content.Intent
 import android.stats.style.StyleEnums
 import android.text.TextUtils
-import com.android.customization.model.color.ColorOption
 import com.android.customization.model.grid.GridOption
 import com.android.customization.module.logging.ThemesUserEventLogger.ClockSize
+import com.android.customization.module.logging.ThemesUserEventLogger.ColorSource
 import com.android.systemui.shared.system.SysUiStatsLog
 import com.android.wallpaper.module.WallpaperPersister.DEST_BOTH
 import com.android.wallpaper.module.WallpaperPersister.DEST_HOME_SCREEN
@@ -115,10 +115,15 @@ class ThemesUserEventLoggerImpl(private val preferences: WallpaperPreferences) :
         SysUiStatsLogger(StyleEnums.WALLPAPER_EXPLORE).log()
     }
 
-    override fun logThemeColorApplied(colorOption: ColorOption) {
+    override fun logThemeColorApplied(
+        @ColorSource source: Int,
+        variant: Int,
+        seedColor: Int,
+    ) {
         SysUiStatsLogger(StyleEnums.THEME_COLOR_APPLIED)
-            .setColorPreference(colorOption.index)
-            .setColorVariant(colorOption.style.ordinal + 1)
+            .setColorSource(source)
+            .setColorVariant(variant)
+            .setSeedColor(seedColor)
             .log()
     }
 

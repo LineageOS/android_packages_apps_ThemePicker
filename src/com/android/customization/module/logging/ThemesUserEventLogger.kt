@@ -17,14 +17,13 @@ package com.android.customization.module.logging
 
 import android.stats.style.StyleEnums
 import androidx.annotation.IntDef
-import com.android.customization.model.color.ColorOption
 import com.android.customization.model.grid.GridOption
 import com.android.wallpaper.module.logging.UserEventLogger
 
 /** Extension of [UserEventLogger] that adds ThemePicker specific events. */
 interface ThemesUserEventLogger : UserEventLogger {
 
-    fun logThemeColorApplied(colorOption: ColorOption)
+    fun logThemeColorApplied(@ColorSource source: Int, variant: Int, seedColor: Int)
 
     fun logGridApplied(grid: GridOption)
 
@@ -41,6 +40,15 @@ interface ThemesUserEventLogger : UserEventLogger {
     fun logShortcutApplied(shortcut: String, shortcutSlotId: String)
 
     fun logDarkThemeApplied(useDarkTheme: Boolean)
+
+    @IntDef(
+        StyleEnums.COLOR_SOURCE_UNSPECIFIED,
+        StyleEnums.COLOR_SOURCE_HOME_SCREEN_WALLPAPER,
+        StyleEnums.COLOR_SOURCE_LOCK_SCREEN_WALLPAPER,
+        StyleEnums.COLOR_SOURCE_PRESET_COLOR,
+    )
+    @Retention(AnnotationRetention.SOURCE)
+    annotation class ColorSource
 
     @IntDef(
         StyleEnums.CLOCK_SIZE_UNSPECIFIED,
