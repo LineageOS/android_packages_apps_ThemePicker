@@ -86,7 +86,6 @@ class KeyguardQuickAffordancePickerViewModelTest {
                 repository =
                     KeyguardQuickAffordancePickerRepository(
                         client = client,
-                        backgroundDispatcher = testDispatcher,
                     ),
                 client = client,
                 snapshotRestorer = {
