@@ -40,6 +40,7 @@ class ThemesUserEventLoggerImpl
 @Inject
 constructor(
     private val preferences: WallpaperPreferences,
+    private val appSessionId: AppSessionId,
 ) : ThemesUserEventLogger {
 
     override fun logSnapshot() {
@@ -54,6 +55,7 @@ constructor(
 
     override fun logAppLaunched(launchSource: Intent) {
         SysUiStatsLogger(StyleEnums.APP_LAUNCHED)
+            .setAppSessionId(appSessionId.createNewId().getId())
             .setLaunchedPreference(launchSource.getAppLaunchSource())
             .log()
     }
@@ -70,6 +72,7 @@ constructor(
         val isHomeWallpaperSet = destination == DEST_HOME_SCREEN || destination == DEST_BOTH
         val isLockWallpaperSet = destination == DEST_LOCK_SCREEN || destination == DEST_BOTH
         SysUiStatsLogger(StyleEnums.WALLPAPER_APPLIED)
+            .setAppSessionId(appSessionId.getId())
             .setWallpaperCategoryHash(if (isHomeWallpaperSet) categoryHash else 0)
             .setWallpaperIdHash(if (isHomeWallpaperSet) wallpaperIdHash else 0)
             .setLockWallpaperCategoryHash(if (isLockWallpaperSet) categoryHash else 0)
@@ -87,6 +90,7 @@ constructor(
         resultCode: Int
     ) {
         SysUiStatsLogger(StyleEnums.WALLPAPER_EFFECT_APPLIED)
+            .setAppSessionId(appSessionId.getId())
             .setEffectPreference(status)
             .setEffectIdHash(getIdHashCode(effect))
             .setTimeElapsed(timeElapsedMillis)
@@ -96,6 +100,7 @@ constructor(
 
     override fun logEffectProbe(effect: String, @EffectStatus status: Int) {
         SysUiStatsLogger(StyleEnums.WALLPAPER_EFFECT_PROBE)
+            .setAppSessionId(appSessionId.getId())
             .setEffectPreference(status)
             .setEffectIdHash(getIdHashCode(effect))
             .log()
@@ -107,6 +112,7 @@ constructor(
         timeElapsedMillis: Long
     ) {
         SysUiStatsLogger(StyleEnums.WALLPAPER_EFFECT_FG_DOWNLOAD)
+            .setAppSessionId(appSessionId.getId())
             .setEffectPreference(status)
             .setEffectIdHash(getIdHashCode(effect))
             .setTimeElapsed(timeElapsedMillis)
@@ -114,11 +120,11 @@ constructor(
     }
 
     override fun logResetApplied() {
-        SysUiStatsLogger(StyleEnums.RESET_APPLIED).log()
+        SysUiStatsLogger(StyleEnums.RESET_APPLIED).setAppSessionId(appSessionId.getId()).log()
     }
 
     override fun logWallpaperExploreButtonClicked() {
-        SysUiStatsLogger(StyleEnums.WALLPAPER_EXPLORE).log()
+        SysUiStatsLogger(StyleEnums.WALLPAPER_EXPLORE).setAppSessionId(appSessionId.getId()).log()
     }
 
     override fun logThemeColorApplied(
@@ -127,6 +133,7 @@ constructor(
         seedColor: Int,
     ) {
         SysUiStatsLogger(StyleEnums.THEME_COLOR_APPLIED)
+            .setAppSessionId(appSessionId.getId())
             .setColorSource(source)
             .setColorVariant(variant)
             .setSeedColor(seedColor)
@@ -134,40 +141,60 @@ constructor(
     }
 
     override fun logGridApplied(grid: GridOption) {
-        SysUiStatsLogger(StyleEnums.GRID_APPLIED).setLauncherGrid(grid.getLauncherGridInt()).log()
+        SysUiStatsLogger(StyleEnums.GRID_APPLIED)
+            .setAppSessionId(appSessionId.getId())
+            .setLauncherGrid(grid.getLauncherGridInt())
+            .log()
     }
 
     override fun logClockApplied(clockId: String) {
-        SysUiStatsLogger(StyleEnums.CLOCK_APPLIED).setClockPackageHash(getIdHashCode(clockId)).log()
+        SysUiStatsLogger(StyleEnums.CLOCK_APPLIED)
+            .setAppSessionId(appSessionId.getId())
+            .setClockPackageHash(getIdHashCode(clockId))
+            .log()
     }
 
     override fun logClockColorApplied(seedColor: Int) {
-        SysUiStatsLogger(StyleEnums.CLOCK_COLOR_APPLIED).setSeedColor(seedColor).log()
+        SysUiStatsLogger(StyleEnums.CLOCK_COLOR_APPLIED)
+            .setAppSessionId(appSessionId.getId())
+            .setSeedColor(seedColor)
+            .log()
     }
 
     override fun logClockSizeApplied(@ClockSize clockSize: Int) {
-        SysUiStatsLogger(StyleEnums.CLOCK_SIZE_APPLIED).setClockSize(clockSize).log()
+        SysUiStatsLogger(StyleEnums.CLOCK_SIZE_APPLIED)
+            .setAppSessionId(appSessionId.getId())
+            .setClockSize(clockSize)
+            .log()
     }
 
     override fun logThemedIconApplied(useThemeIcon: Boolean) {
-        SysUiStatsLogger(StyleEnums.THEMED_ICON_APPLIED).setToggleOn(useThemeIcon).log()
+        SysUiStatsLogger(StyleEnums.THEMED_ICON_APPLIED)
+            .setAppSessionId(appSessionId.getId())
+            .setToggleOn(useThemeIcon)
+            .log()
     }
 
     override fun logLockScreenNotificationApplied(showLockScreenNotifications: Boolean) {
         SysUiStatsLogger(StyleEnums.LOCK_SCREEN_NOTIFICATION_APPLIED)
+            .setAppSessionId(appSessionId.getId())
             .setToggleOn(showLockScreenNotifications)
             .log()
     }
 
     override fun logShortcutApplied(shortcut: String, shortcutSlotId: String) {
         SysUiStatsLogger(StyleEnums.SHORTCUT_APPLIED)
+            .setAppSessionId(appSessionId.getId())
             .setShortcut(shortcut)
             .setShortcutSlotId(shortcutSlotId)
             .log()
     }
 
     override fun logDarkThemeApplied(useDarkTheme: Boolean) {
-        SysUiStatsLogger(StyleEnums.DARK_THEME_APPLIED).setToggleOn(useDarkTheme).log()
+        SysUiStatsLogger(StyleEnums.DARK_THEME_APPLIED)
+            .setAppSessionId(appSessionId.getId())
+            .setToggleOn(useDarkTheme)
+            .log()
     }
 
     /**
