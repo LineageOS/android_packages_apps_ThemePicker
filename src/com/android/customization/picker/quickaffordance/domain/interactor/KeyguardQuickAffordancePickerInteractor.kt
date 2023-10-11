@@ -78,9 +78,4 @@ class KeyguardQuickAffordancePickerInteractor(
     ): Drawable {
         return client.getAffordanceIcon(iconResourceId)
     }
-
-    /** Returns `true` if the feature is enabled; `false` otherwise. */
-    suspend fun isFeatureEnabled(): Boolean {
-        return repository.isFeatureEnabled()
-    }
 }
