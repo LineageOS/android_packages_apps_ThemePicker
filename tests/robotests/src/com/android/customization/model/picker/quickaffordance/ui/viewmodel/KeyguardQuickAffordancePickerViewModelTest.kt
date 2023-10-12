@@ -21,6 +21,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.filters.SmallTest
+import com.android.customization.module.logging.TestThemesUserEventLogger
 import com.android.customization.picker.quickaffordance.data.repository.KeyguardQuickAffordancePickerRepository
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordanceSnapshotRestorer
@@ -64,6 +65,8 @@ import org.robolectric.RobolectricTestRunner
 @RunWith(RobolectricTestRunner::class)
 class KeyguardQuickAffordancePickerViewModelTest {
 
+    private val logger = TestThemesUserEventLogger()
+
     private lateinit var underTest: KeyguardQuickAffordancePickerViewModel
 
     private lateinit var context: Context
@@ -74,7 +77,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
 
     @Before
     fun setUp() {
-        InjectorProvider.setInjector(TestInjector())
+        InjectorProvider.setInjector(TestInjector(logger))
         context = ApplicationProvider.getApplicationContext()
         val testDispatcher = StandardTestDispatcher()
         testScope = TestScope(testDispatcher)
