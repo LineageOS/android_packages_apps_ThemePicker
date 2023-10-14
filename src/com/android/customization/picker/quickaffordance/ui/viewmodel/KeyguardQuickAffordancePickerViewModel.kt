@@ -158,7 +158,8 @@ private constructor(
                                         Icon.Loaded(
                                             drawable =
                                                 getAffordanceIcon(affordanceModel.iconResourceId),
-                                            contentDescription = null,
+                                            contentDescription =
+                                                Text.Loaded(getSlotContentDescription(slot.id)),
                                         ),
                                     text = Text.Loaded(affordanceModel.name),
                                     isSelected = MutableStateFlow(true) as StateFlow<Boolean>,
@@ -419,6 +420,18 @@ private constructor(
                 KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END ->
                     R.string.keyguard_slot_name_bottom_end
                 else -> error("No name for slot with ID of \"$slotId\"!")
+            }
+        )
+    }
+
+    private fun getSlotContentDescription(slotId: String): String {
+        return applicationContext.getString(
+            when (slotId) {
+                KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START ->
+                    R.string.keyguard_slot_name_bottom_start
+                KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END ->
+                    R.string.keyguard_slot_name_bottom_end
+                else -> error("No accessibility label for slot with ID \"$slotId\"!")
             }
         )
     }
