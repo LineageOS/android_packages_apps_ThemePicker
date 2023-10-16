@@ -17,6 +17,7 @@ package com.android.customization.picker.clock.ui.viewmodel
 
 import androidx.test.filters.SmallTest
 import androidx.test.platform.app.InstrumentationRegistry
+import com.android.customization.module.logging.TestThemesUserEventLogger
 import com.android.customization.picker.clock.data.repository.ClockPickerRepository
 import com.android.customization.picker.clock.data.repository.FakeClockPickerRepository
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
@@ -86,6 +87,7 @@ class ClockCarouselViewModelTest {
                 backgroundDispatcher = testDispatcher,
                 clockViewFactory = clockViewFactory,
                 resources = InstrumentationRegistry.getInstrumentation().targetContext.resources,
+                logger = TestThemesUserEventLogger(),
             )
         val observedSelectedIndex = collectLastValue(underTest.selectedIndex)
         advanceTimeBy(ClockCarouselViewModel.CLOCKS_EVENT_UPDATE_DELAY_MILLIS)

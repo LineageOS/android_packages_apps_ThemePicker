@@ -142,6 +142,7 @@ internal constructor(
                         interactor = getClockPickerInteractor(appContext),
                         clockViewFactory = clockViewFactory,
                         resources = resources,
+                        logger = userEventLogger,
                     ),
                     clockViewFactory,
                     getThemedIconSnapshotRestorer(appContext),
@@ -350,9 +351,16 @@ internal constructor(
         interactor: ClockPickerInteractor,
         clockViewFactory: ClockViewFactory,
         resources: Resources,
+        logger: ThemesUserEventLogger,
     ): ClockCarouselViewModel.Factory {
         return clockCarouselViewModelFactory
-            ?: ClockCarouselViewModel.Factory(interactor, bgDispatcher, clockViewFactory, resources)
+            ?: ClockCarouselViewModel.Factory(
+                    interactor,
+                    bgDispatcher,
+                    clockViewFactory,
+                    resources,
+                    logger,
+                )
                 .also { clockCarouselViewModelFactory = it }
     }
 
