@@ -32,7 +32,7 @@ android_library {
         "WallpaperPicker2TestLib",
         "androidx.annotation_annotation",
         "kotlinx_coroutines_test",
-        "truth-prebuilt",
+        "truth",
     ],
 
     platform_apis: true,
