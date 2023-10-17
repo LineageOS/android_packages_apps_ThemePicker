@@ -10,7 +10,6 @@ import com.android.customization.module.logging.ThemesUserEventLogger
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
-import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
 import com.android.customization.picker.clock.ui.viewmodel.ClockSettingsViewModel
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
@@ -48,10 +47,6 @@ constructor(private val customPrefs: TestDefaultCustomizationPreferences) :
     }
 
     override fun getClockPickerInteractor(context: Context): ClockPickerInteractor {
-        throw UnsupportedOperationException("not implemented")
-    }
-
-    override fun getClockSectionViewModel(context: Context): ClockSectionViewModel {
         throw UnsupportedOperationException("not implemented")
     }
 
