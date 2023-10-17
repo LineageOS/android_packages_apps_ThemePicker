@@ -147,6 +147,7 @@ internal constructor(
                     getThemedIconSnapshotRestorer(appContext),
                     getThemedIconInteractor(),
                     getColorPickerInteractor(appContext, getWallpaperColorsRepository()),
+                    getUserEventLogger(appContext),
                 )
                 .also { customizationSections = it }
     }
