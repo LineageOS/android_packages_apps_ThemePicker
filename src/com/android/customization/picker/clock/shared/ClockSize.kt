@@ -16,7 +16,18 @@
  */
 package com.android.customization.picker.clock.shared
 
+import android.stats.style.StyleEnums
+import com.android.customization.module.logging.ThemesUserEventLogger
+
 enum class ClockSize {
     DYNAMIC,
     SMALL,
+}
+
+@ThemesUserEventLogger.ClockSize
+fun ClockSize.toClockSizeForLogging(): Int {
+    return when (this) {
+        ClockSize.DYNAMIC -> StyleEnums.CLOCK_SIZE_DYNAMIC
+        ClockSize.SMALL -> StyleEnums.CLOCK_SIZE_SMALL
+    }
 }

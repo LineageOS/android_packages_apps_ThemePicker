@@ -15,7 +15,9 @@
  */
 package com.android.customization.module.logging
 
+import android.stats.style.StyleEnums
 import com.android.customization.model.grid.GridOption
+import com.android.customization.module.logging.ThemesUserEventLogger.ClockSize
 import com.android.customization.module.logging.ThemesUserEventLogger.ColorSource
 import com.android.wallpaper.module.logging.TestUserEventLogger
 import javax.inject.Inject
@@ -25,6 +27,7 @@ import javax.inject.Singleton
 @Singleton
 class TestThemesUserEventLogger @Inject constructor() :
     TestUserEventLogger(), ThemesUserEventLogger {
+    @ClockSize private var clockSize: Int = StyleEnums.CLOCK_SIZE_UNSPECIFIED
 
     override fun logThemeColorApplied(@ColorSource source: Int, variant: Int, seedColor: Int) {}
 
@@ -34,7 +37,9 @@ class TestThemesUserEventLogger @Inject constructor() :
 
     override fun logClockColorApplied(seedColor: Int) {}
 
-    override fun logClockSizeApplied(clockSize: Int) {}
+    override fun logClockSizeApplied(@ClockSize clockSize: Int) {
+        this.clockSize = clockSize
+    }
 
     override fun logThemedIconApplied(useThemeIcon: Boolean) {}
 
@@ -43,4 +48,9 @@ class TestThemesUserEventLogger @Inject constructor() :
     override fun logShortcutApplied(shortcut: String, shortcutSlotId: String) {}
 
     override fun logDarkThemeApplied(useDarkTheme: Boolean) {}
+
+    @ClockSize
+    fun getLoggedClockSize(): Int {
+        return clockSize
+    }
 }

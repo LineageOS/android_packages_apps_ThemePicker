@@ -494,6 +494,7 @@ internal constructor(
                         context,
                         wallpaperColorsRepository,
                     ),
+                    userEventLogger,
                 ) { clockId ->
                     clockId?.let { clockViewFactory.getController(clockId).config.isReactiveToTone }
                         ?: false

@@ -57,4 +57,8 @@ interface ThemesUserEventLogger : UserEventLogger {
     )
     @Retention(AnnotationRetention.SOURCE)
     annotation class ClockSize
+
+    companion object {
+        const val NULL_SEED_COLOR = 0
+    }
 }
