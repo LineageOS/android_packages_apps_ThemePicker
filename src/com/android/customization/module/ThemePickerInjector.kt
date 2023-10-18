@@ -267,7 +267,7 @@ internal constructor(
         val client = getKeyguardQuickAffordancePickerProviderClient(context)
         val appContext = context.applicationContext
         return KeyguardQuickAffordancePickerInteractor(
-            KeyguardQuickAffordancePickerRepository(client, bgDispatcher),
+            KeyguardQuickAffordancePickerRepository(client, getFlags(), appContext),
             client
         ) {
             getKeyguardQuickAffordanceSnapshotRestorer(appContext)
