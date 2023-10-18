@@ -13,8 +13,10 @@ import com.android.wallpaper.module.logging.TestUserEventLogger
 import com.android.wallpaper.module.logging.UserEventLogger
 import com.android.wallpaper.testing.TestInjector
 import com.android.wallpaper.testing.TestWallpaperPreferences
+import com.android.wallpaper.util.converter.DefaultWallpaperModelFactory
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
 import javax.inject.Singleton
@@ -57,4 +59,12 @@ abstract class TestModule {
     abstract fun bindCustomizationPrefs(
         impl: TestDefaultCustomizationPreferences
     ): CustomizationPreferences
+
+    companion object {
+        @Provides
+        @Singleton
+        fun provideDefaultWallpaperModelFactory(): DefaultWallpaperModelFactory {
+            return DefaultWallpaperModelFactory()
+        }
+    }
 }
