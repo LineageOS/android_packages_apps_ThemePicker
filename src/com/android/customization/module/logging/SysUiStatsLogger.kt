@@ -53,7 +53,7 @@ class SysUiStatsLogger(val action: Int) {
     private var colorVariant = 0
     private var timeElapsedMillis = 0L
     private var effectResultCode = -1
-    private var sessionId = 0
+    private var appSessionId = 0
     private var setWallpaperEntryPoint =
         STYLE_UICHANGED__SET_WALLPAPER_ENTRY_POINT__SET_WALLPAPER_ENTRY_POINT_UNSPECIFIED
     private var wallpaperDestination =
@@ -133,7 +133,7 @@ class SysUiStatsLogger(val action: Int) {
         this.effectResultCode = effectResultCode
     }
 
-    fun setSessionId(sessionId: Int) = apply { this.sessionId = sessionId }
+    fun setAppSessionId(sessionId: Int) = apply { this.appSessionId = sessionId }
 
     fun setSetWallpaperEntryPoint(@SetWallpaperEntryPoint setWallpaperEntryPoint: Int) = apply {
         this.setWallpaperEntryPoint = setWallpaperEntryPoint
@@ -180,7 +180,7 @@ class SysUiStatsLogger(val action: Int) {
             colorVariant,
             timeElapsedMillis,
             effectResultCode,
-            sessionId,
+            appSessionId,
             setWallpaperEntryPoint,
             wallpaperDestination,
             colorSource,
