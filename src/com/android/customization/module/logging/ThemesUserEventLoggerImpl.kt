@@ -31,10 +31,16 @@ import com.android.wallpaper.module.logging.UserEventLogger.EffectStatus
 import com.android.wallpaper.module.logging.UserEventLogger.SetWallpaperEntryPoint
 import com.android.wallpaper.module.logging.UserEventLogger.WallpaperDestination
 import com.android.wallpaper.util.LaunchSourceUtils
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /** StatsLog-backed implementation of [ThemesUserEventLogger]. */
-class ThemesUserEventLoggerImpl(private val preferences: WallpaperPreferences) :
-    ThemesUserEventLogger {
+@Singleton
+class ThemesUserEventLoggerImpl
+@Inject
+constructor(
+    private val preferences: WallpaperPreferences,
+) : ThemesUserEventLogger {
 
     override fun logSnapshot() {
         SysUiStatsLogger(StyleEnums.SNAPSHOT)

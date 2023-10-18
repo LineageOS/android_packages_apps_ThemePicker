@@ -19,6 +19,9 @@ import android.content.Context
 import com.android.customization.module.CustomizationInjector
 import com.android.customization.module.DefaultCustomizationPreferences
 import com.android.customization.module.ThemePickerInjector
+import com.android.customization.module.logging.ThemesUserEventLogger
+import com.android.customization.module.logging.ThemesUserEventLoggerImpl
+import com.android.wallpaper.module.logging.UserEventLogger
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -31,6 +34,14 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 abstract class AppModule {
     @Binds @Singleton abstract fun bindInjector(impl: ThemePickerInjector): CustomizationInjector
+
+    @Binds
+    @Singleton
+    abstract fun bindUserEventLogger(impl: ThemesUserEventLoggerImpl): UserEventLogger
+
+    @Binds
+    @Singleton
+    abstract fun bindThemesUserEventLogger(impl: ThemesUserEventLoggerImpl): ThemesUserEventLogger
 
     companion object {
         @Provides
