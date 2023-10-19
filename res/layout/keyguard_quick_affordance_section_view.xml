@@ -48,7 +48,7 @@
         android:layout_width="@dimen/option_tile_width"
         android:layout_height="@dimen/option_tile_width"
         android:orientation="horizontal"
-        android:background="@drawable/option_border_color"
+        android:background="@drawable/picker_section_icon_background"
         android:importantForAccessibility="noHideDescendants"
         android:gravity="center"
         android:divider="@drawable/horizontal_divider_14dp"
@@ -60,14 +60,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:tint="@color/text_color_primary" />
+            android:tint="@color/system_on_surface" />
 
         <ImageView
             android:id="@+id/icon_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:tint="@color/text_color_primary" />
+            android:tint="@color/system_on_surface" />
 
     </LinearLayout>
 

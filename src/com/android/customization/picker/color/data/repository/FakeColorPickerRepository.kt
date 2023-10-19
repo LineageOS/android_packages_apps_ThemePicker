@@ -29,6 +29,9 @@ import kotlinx.coroutines.flow.asStateFlow
 
 class FakeColorPickerRepository(private val context: Context) : ColorPickerRepository {
 
+    private val _isApplyingSystemColor = MutableStateFlow(false)
+    override val isApplyingSystemColor = _isApplyingSystemColor.asStateFlow()
+
     private lateinit var selectedColorOption: ColorOptionModel
 
     private val _colorOptions =

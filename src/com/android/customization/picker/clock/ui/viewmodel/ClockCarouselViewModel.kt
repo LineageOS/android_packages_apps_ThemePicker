@@ -15,11 +15,13 @@
  */
 package com.android.customization.picker.clock.ui.viewmodel
 
+import android.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.shared.ClockSize
+import com.android.wallpaper.R
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
@@ -27,7 +29,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
@@ -39,8 +40,7 @@ import kotlinx.coroutines.launch
  * Clock carousel view model that provides data for the carousel of clock previews. When there is
  * only one item, we should show a single clock preview instead of a carousel.
  */
-class ClockCarouselViewModel
-constructor(
+class ClockCarouselViewModel(
     private val interactor: ClockPickerInteractor,
     private val backgroundDispatcher: CoroutineDispatcher,
 ) : ViewModel() {
@@ -50,7 +50,7 @@ constructor(
             .mapLatest { allClocks ->
                 // Delay to avoid the case that the full list of clocks is not initiated.
                 delay(CLOCKS_EVENT_UPDATE_DELAY_MILLIS)
-                allClocks.map { ClockCarouselItemViewModel(it.clockId) }
+                allClocks.map { ClockCarouselItemViewModel(it.clockId, it.isSelected) }
             }
             .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
 
@@ -58,7 +58,37 @@ constructor(
 
     val seedColor: Flow<Int?> = interactor.seedColor
 
-    val isCarouselVisible: Flow<Boolean> = allClocks.map { it.size > 1 }.distinctUntilChanged()
+    fun getClockCardColorResId(isDarkThemeEnabled: Boolean): Flow<Int> {
+        return interactor.seedColor.map {
+            it.let { seedColor ->
+                // if seedColor is null, default clock color is selected
+                if (seedColor == null) {
+                    if (isDarkThemeEnabled) {
+                        // In dark mode, use darkest surface container color
+                        R.color.system_surface_container_high
+                    } else {
+                        // In light mode, use lightest surface container color
+                        R.color.system_surface_bright
+                    }
+                } else {
+                    val luminance = Color.luminance(seedColor)
+                    if (isDarkThemeEnabled) {
+                        if (luminance <= CARD_COLOR_CHANGE_LUMINANCE_THRESHOLD_DARK_THEME) {
+                            R.color.system_surface_bright
+                        } else {
+                            R.color.system_surface_container_high
+                        }
+                    } else {
+                        if (luminance <= CARD_COLOR_CHANGE_LUMINANCE_THRESHOLD_LIGHT_THEME) {
+                            R.color.system_surface_bright
+                        } else {
+                            R.color.system_surface_container_highest
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val selectedIndex: Flow<Int> =
@@ -75,15 +105,6 @@ constructor(
                     }
                 }
             }
-            .mapNotNull { it }
-
-    // Handle the case when there is only one clock in the carousel
-    val isSingleClockViewVisible: Flow<Boolean> =
-        allClocks.map { it.size == 1 }.distinctUntilChanged()
-
-    val clockId: Flow<String> =
-        allClocks
-            .map { allClockIds -> if (allClockIds.size == 1) allClockIds[0].clockId else null }
             .mapNotNull { it }
 
     private var setSelectedClockJob: Job? = null
@@ -109,5 +130,7 @@ constructor(
 
     companion object {
         const val CLOCKS_EVENT_UPDATE_DELAY_MILLIS: Long = 100
+        const val CARD_COLOR_CHANGE_LUMINANCE_THRESHOLD_LIGHT_THEME: Float = 0.85f
+        const val CARD_COLOR_CHANGE_LUMINANCE_THRESHOLD_DARK_THEME: Float = 0.03f
     }
 }

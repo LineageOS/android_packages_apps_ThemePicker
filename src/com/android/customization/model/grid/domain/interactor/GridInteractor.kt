@@ -17,6 +17,8 @@
 
 package com.android.customization.model.grid.domain.interactor
 
+import com.android.customization.model.CustomizationManager
+import com.android.customization.model.grid.GridOption
 import com.android.customization.model.grid.data.repository.GridRepository
 import com.android.customization.model.grid.shared.model.GridOptionItemModel
 import com.android.customization.model.grid.shared.model.GridOptionItemsModel
@@ -71,6 +73,16 @@ class GridInteractor(
             optionItem ->
             optionItem.isSelected.value
         }
+    }
+
+    fun getSelectOptionNonSuspend(): GridOption? = repository.getSelectedOption()
+
+    fun clearSelectedOption() = repository.clearSelectedOption()
+
+    fun isSelectedOptionApplied() = repository.isSelectedOptionApplied()
+
+    fun applySelectedOption(callback: CustomizationManager.Callback) {
+        repository.applySelectedOption(callback)
     }
 
     private suspend fun reload(): GridOptionItemsModel {

@@ -48,6 +48,7 @@
         <item name="colorSurface">@color/design_default_color_surface</item>
         <item name="colorOnSurface">@color/design_default_color_on_surface</item>
         <item name="android:textAllCaps">false</item>
+        <item name="motionDurationLong1">500</item>
     </style>
 
     <!-- Snackbar margin -->
@@ -114,7 +115,7 @@
 
     <style name="SectionTitleTextStyle">
         <item name="android:fontFamily">@*android:string/config_headlineFontFamily</item>
-        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textColor">@color/system_on_surface</item>
         <item name="android:textDirection">locale</item>
         <item name="android:textSize">20sp</item>
         <item name="android:lineHeight">24dp</item>
@@ -122,7 +123,7 @@
 
     <style name="SectionSubtitleTextStyle" parent="SectionTitleTextStyle">
         <item name="android:fontFamily">@*android:string/config_bodyFontFamily</item>
-        <item name="android:textColor">?android:textColorSecondary</item>
+        <item name="android:textColor">@color/system_on_surface_variant</item>
         <item name="android:textSize">14sp</item>
         <item name="android:lineHeight">16sp</item>
     </style>

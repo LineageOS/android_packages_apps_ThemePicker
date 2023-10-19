@@ -48,19 +48,19 @@ public class GridOption implements CustomizationOption<GridOption>, Parcelable {
         }
     };
 
-    private final String mTitle;
-    private final boolean mIsCurrent;
     private final String mIconShapePath;
     private final GridTileDrawable mTileDrawable;
+    public final String title;
     public final String name;
     public final int rows;
     public final int cols;
     public final Uri previewImageUri;
     public final int previewPagesCount;
+    private boolean mIsCurrent;
 
     public GridOption(String title, String name, boolean isCurrent, int rows, int cols,
             Uri previewImageUri, int previewPagesCount, String iconShapePath) {
-        mTitle = title;
+        this.title = title;
         mIsCurrent = isCurrent;
         mIconShapePath = iconShapePath;
         mTileDrawable = new GridTileDrawable(rows, cols, mIconShapePath);
@@ -71,8 +71,12 @@ public class GridOption implements CustomizationOption<GridOption>, Parcelable {
         this.previewPagesCount = previewPagesCount;
     }
 
+    public void setIsCurrent(boolean isCurrent) {
+        mIsCurrent = isCurrent;
+    }
+
     protected GridOption(Parcel in) {
-        mTitle = in.readString();
+        title = in.readString();
         mIsCurrent = in.readByte() != 0;
         mIconShapePath = in.readString();
         name = in.readString();
@@ -85,7 +89,7 @@ public class GridOption implements CustomizationOption<GridOption>, Parcelable {
 
     @Override
     public String getTitle() {
-        return mTitle;
+        return title;
     }
 
     @Override
@@ -139,7 +143,7 @@ public class GridOption implements CustomizationOption<GridOption>, Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(mTitle);
+        parcel.writeString(title);
         parcel.writeByte((byte) (mIsCurrent ? 1 : 0));
         parcel.writeString(mIconShapePath);
         parcel.writeString(name);
@@ -154,7 +158,7 @@ public class GridOption implements CustomizationOption<GridOption>, Parcelable {
         return String.format(
                 "GridOption{mTitle='%s', mIsCurrent=%s, mTileDrawable=%s, name='%s', rows=%d, "
                         + "cols=%d, previewImageUri=%s, previewPagesCount=%d}\n",
-                mTitle, mIsCurrent, mTileDrawable, name, rows, cols, previewImageUri,
+                title, mIsCurrent, mTileDrawable, name, rows, cols, previewImageUri,
                 previewPagesCount);
     }
 }

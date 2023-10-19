@@ -90,6 +90,9 @@
     <!-- Title of a radio button to apply clock size small. [CHAR LIMIT=15] -->
     <string name="clock_size_small">Small</string>
 
+    <!-- Description of a radio button to apply clock size small. [CHAR LIMIT=NONE] -->
+    <string name="clock_size_small_description">A small clock shows in the corner of your screen</string>
+
     <!-- Title of a section of the customization picker where the user can select a Grid size for
         the home screen. [CHAR LIMIT=15] -->
     <string name="grid_title">App grid</string>
@@ -174,6 +177,15 @@
 
     <!--Title for a grid option, describing the number of columns and rows, eg: 4x4 [CHAR LIMIT=10] -->
     <string name="grid_title_pattern"><xliff:g name="num_cols" example="1">%1$d</xliff:g>x<xliff:g name="num_rows" example="1">%2$d</xliff:g></string>
+
+    <!-- Label of what will happen when user tap on apply button to change grid. [CHAR LIMIT=50] -->
+    <string name="apply_grid_btn_note">Changing grid size will reload workspace and may take a few seconds.</string>
+
+    <!-- Toast of reloading workspace with new grid. -->
+    <string name="toast_of_changing_grid">Reloading workspace with %1$s grid</string>
+
+    <!-- Toast of failure to reload workspace with new grid. -->
+    <string name="toast_of_failure_to_change_grid">Failed to reload workspace with %1$s grid</string>
 
     <!-- Message shown when a theme has been applied successfully in the system [CHAR LIMIT=NONE] -->
     <string name="applied_theme_msg">Style set successfully</string>
