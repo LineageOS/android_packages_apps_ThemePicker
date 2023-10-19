@@ -15,6 +15,7 @@
  */
 package com.android.customization.module
 
+import android.app.Activity
 import android.app.UiModeManager
 import android.app.WallpaperManager
 import android.content.Context
@@ -105,7 +106,7 @@ internal constructor(
     private var notificationsSnapshotRestorer: NotificationsSnapshotRestorer? = null
     private var clockPickerInteractor: ClockPickerInteractor? = null
     private var clockCarouselViewModelFactory: ClockCarouselViewModel.Factory? = null
-    private var clockViewFactories: MutableMap<Int, ClockViewFactory> = HashMap()
+    private var clockViewFactory: ClockViewFactory? = null
     private var clockPickerSnapshotRestorer: ClockPickerSnapshotRestorer? = null
     private var notificationsInteractor: NotificationsInteractor? = null
     private var notificationSectionViewModelFactory: NotificationSectionViewModel.Factory? = null
@@ -247,7 +248,7 @@ internal constructor(
         val client = getKeyguardQuickAffordancePickerProviderClient(context)
         val appContext = context.applicationContext
         return KeyguardQuickAffordancePickerInteractor(
-            KeyguardQuickAffordancePickerRepository(client),
+            KeyguardQuickAffordancePickerRepository(client, getApplicationCoroutineScope()),
             client
         ) {
             getKeyguardQuickAffordanceSnapshotRestorer(appContext)
@@ -353,8 +354,7 @@ internal constructor(
     }
 
     override fun getClockViewFactory(activity: ComponentActivity): ClockViewFactory {
-        val activityHashCode = activity.hashCode()
-        return clockViewFactories[activityHashCode]
+        return clockViewFactory
             ?: ClockViewFactoryImpl(
                     activity.applicationContext,
                     ScreenSizeCalculator.getInstance()
@@ -363,13 +363,13 @@ internal constructor(
                     getClockRegistry(activity.applicationContext),
                 )
                 .also {
-                    clockViewFactories[activityHashCode] = it
+                    clockViewFactory = it
                     activity.lifecycle.addObserver(
                         object : DefaultLifecycleObserver {
                             override fun onDestroy(owner: LifecycleOwner) {
                                 super.onDestroy(owner)
-                                clockViewFactories[activityHashCode]?.onDestroy()
-                                clockViewFactories.remove(activityHashCode)
+                                if ((owner as Activity).isChangingConfigurations()) return
+                                clockViewFactory?.onDestroy()
                             }
                         }
                     )
