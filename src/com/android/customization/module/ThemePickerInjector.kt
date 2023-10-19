@@ -37,7 +37,6 @@ import com.android.customization.model.themedicon.data.repository.ThemeIconRepos
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconInteractor
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconSnapshotRestorer
 import com.android.customization.module.logging.ThemesUserEventLogger
-import com.android.customization.module.logging.ThemesUserEventLoggerImpl
 import com.android.customization.picker.clock.data.repository.ClockPickerRepositoryImpl
 import com.android.customization.picker.clock.data.repository.ClockRegistryProvider
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
@@ -72,7 +71,6 @@ import com.android.wallpaper.dispatchers.MainDispatcher
 import com.android.wallpaper.module.CustomizationSections
 import com.android.wallpaper.module.FragmentFactory
 import com.android.wallpaper.module.WallpaperPicker2Injector
-import com.android.wallpaper.module.logging.UserEventLogger
 import com.android.wallpaper.picker.CustomizationPickerActivity
 import com.android.wallpaper.picker.customization.data.content.WallpaperClientImpl
 import com.android.wallpaper.picker.customization.data.repository.WallpaperColorsRepository
@@ -92,9 +90,9 @@ internal constructor(
     @MainDispatcher private val mainScope: CoroutineScope,
     @MainDispatcher private val mainDispatcher: CoroutineDispatcher,
     @BackgroundDispatcher private val bgDispatcher: CoroutineDispatcher,
-) : WallpaperPicker2Injector(mainScope, bgDispatcher), CustomizationInjector {
+    private val userEventLogger: ThemesUserEventLogger,
+) : WallpaperPicker2Injector(mainScope, bgDispatcher, userEventLogger), CustomizationInjector {
     private var customizationSections: CustomizationSections? = null
-    private var userEventLogger: UserEventLogger? = null
     private var wallpaperInteractor: WallpaperInteractor? = null
     private var keyguardQuickAffordancePickerInteractor: KeyguardQuickAffordancePickerInteractor? =
         null
@@ -166,10 +164,7 @@ internal constructor(
 
     @Synchronized
     override fun getUserEventLogger(context: Context): ThemesUserEventLogger {
-        return userEventLogger as? ThemesUserEventLogger
-            ?: ThemesUserEventLoggerImpl(getPreferences(context.applicationContext)).also {
-                userEventLogger = it
-            }
+        return userEventLogger
     }
 
     override fun getFragmentFactory(): FragmentFactory? {

@@ -18,9 +18,13 @@ package com.android.customization.module.logging
 import com.android.customization.model.grid.GridOption
 import com.android.customization.module.logging.ThemesUserEventLogger.ColorSource
 import com.android.wallpaper.module.logging.TestUserEventLogger
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /** Test implementation of [ThemesUserEventLogger]. */
-class TestThemesUserEventLogger : TestUserEventLogger(), ThemesUserEventLogger {
+@Singleton
+class TestThemesUserEventLogger @Inject constructor() :
+    TestUserEventLogger(), ThemesUserEventLogger {
 
     override fun logThemeColorApplied(@ColorSource source: Int, variant: Int, seedColor: Int) {}
 
