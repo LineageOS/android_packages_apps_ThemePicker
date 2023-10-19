@@ -89,6 +89,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
                 repository =
                     KeyguardQuickAffordancePickerRepository(
                         client = client,
+                        scope = testScope.backgroundScope,
                     ),
                 client = client,
                 snapshotRestorer = {
