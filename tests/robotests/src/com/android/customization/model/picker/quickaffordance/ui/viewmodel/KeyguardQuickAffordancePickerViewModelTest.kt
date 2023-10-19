@@ -87,6 +87,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
                 repository =
                     KeyguardQuickAffordancePickerRepository(
                         client = client,
+                        scope = testScope.backgroundScope,
                         flags = injector.getFlags(),
                         context = context,
                     ),
