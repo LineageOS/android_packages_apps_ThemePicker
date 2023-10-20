@@ -238,6 +238,7 @@ internal constructor(
                     getKeyguardQuickAffordancePickerInteractor(context),
                     getWallpaperInteractor(context),
                     getCurrentWallpaperInfoFactory(context),
+                    getUserEventLogger(context),
                 )
                 .also { keyguardQuickAffordancePickerViewModelFactory = it }
     }

@@ -116,6 +116,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
                     quickAffordanceInteractor = quickAffordanceInteractor,
                     wallpaperInteractor = wallpaperInteractor,
                     wallpaperInfoFactory = TestCurrentWallpaperInfoFactory(context),
+                    logger = logger,
                 )
                 .create(KeyguardQuickAffordancePickerViewModel::class.java)
     }
