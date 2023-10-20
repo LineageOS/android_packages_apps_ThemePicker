@@ -44,7 +44,6 @@ import com.android.customization.picker.clock.domain.interactor.ClockPickerSnaps
 import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.view.ClockViewFactoryImpl
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
-import com.android.customization.picker.clock.ui.viewmodel.ClockSectionViewModel
 import com.android.customization.picker.clock.ui.viewmodel.ClockSettingsViewModel
 import com.android.customization.picker.color.data.repository.ColorPickerRepositoryImpl
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
@@ -105,7 +104,6 @@ internal constructor(
         null
     private var notificationsSnapshotRestorer: NotificationsSnapshotRestorer? = null
     private var clockPickerInteractor: ClockPickerInteractor? = null
-    private var clockSectionViewModel: ClockSectionViewModel? = null
     private var clockCarouselViewModelFactory: ClockCarouselViewModel.Factory? = null
     private var clockViewFactories: MutableMap<Int, ClockViewFactory> = HashMap()
     private var clockPickerSnapshotRestorer: ClockPickerSnapshotRestorer? = null
@@ -342,17 +340,6 @@ internal constructor(
                     snapshotRestorer = { getClockPickerSnapshotRestorer(appContext) },
                 )
                 .also { clockPickerInteractor = it }
-    }
-
-    override fun getClockSectionViewModel(
-        context: Context,
-    ): ClockSectionViewModel {
-        return clockSectionViewModel
-            ?: ClockSectionViewModel(
-                    context.applicationContext,
-                    getClockPickerInteractor(context.applicationContext)
-                )
-                .also { clockSectionViewModel = it }
     }
 
     override fun getClockCarouselViewModelFactory(
