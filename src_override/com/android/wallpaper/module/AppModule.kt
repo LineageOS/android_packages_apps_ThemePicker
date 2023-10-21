@@ -22,6 +22,7 @@ import com.android.customization.module.ThemePickerInjector
 import com.android.customization.module.logging.ThemesUserEventLogger
 import com.android.customization.module.logging.ThemesUserEventLoggerImpl
 import com.android.wallpaper.module.logging.UserEventLogger
+import com.android.wallpaper.util.converter.DefaultWallpaperModelFactory
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -50,6 +51,12 @@ abstract class AppModule {
             @ApplicationContext context: Context
         ): WallpaperPreferences {
             return DefaultCustomizationPreferences(context)
+        }
+
+        @Provides
+        @Singleton
+        fun provideDefaultWallpaperModelFactory(): DefaultWallpaperModelFactory {
+            return DefaultWallpaperModelFactory()
         }
     }
 }

@@ -89,6 +89,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
                 repository =
                     KeyguardQuickAffordancePickerRepository(
                         client = client,
+                        scope = testScope.backgroundScope,
                     ),
                 client = client,
                 snapshotRestorer = {
@@ -115,6 +116,7 @@ class KeyguardQuickAffordancePickerViewModelTest {
                     quickAffordanceInteractor = quickAffordanceInteractor,
                     wallpaperInteractor = wallpaperInteractor,
                     wallpaperInfoFactory = TestCurrentWallpaperInfoFactory(context),
+                    logger = logger,
                 )
                 .create(KeyguardQuickAffordancePickerViewModel::class.java)
     }

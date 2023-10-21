@@ -26,6 +26,7 @@ import androidx.annotation.DrawableRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.android.customization.module.logging.ThemesUserEventLogger
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
 import com.android.systemui.shared.keyguard.shared.model.KeyguardQuickAffordanceSlots
 import com.android.systemui.shared.quickaffordance.shared.model.KeyguardPreviewConstants
@@ -63,6 +64,7 @@ private constructor(
     private val quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor,
     private val wallpaperInteractor: WallpaperInteractor,
     private val wallpaperInfoFactory: CurrentWallpaperInfoFactory,
+    private val logger: ThemesUserEventLogger,
 ) : ViewModel() {
 
     @SuppressLint("StaticFieldLeak") private val applicationContext = context.applicationContext
@@ -216,6 +218,10 @@ private constructor(
                                 {
                                     viewModelScope.launch {
                                         quickAffordanceInteractor.unselectAll(selectedSlotId)
+                                        logger.logShortcutApplied(
+                                            shortcut = "none",
+                                            shortcutSlotId = selectedSlotId,
+                                        )
                                     }
                                 }
                             } else {
@@ -250,6 +256,10 @@ private constructor(
                                                 quickAffordanceInteractor.select(
                                                     slotId = selectedSlotId,
                                                     affordanceId = affordance.id,
+                                                )
+                                                logger.logShortcutApplied(
+                                                    shortcut = affordance.id,
+                                                    shortcutSlotId = selectedSlotId,
                                                 )
                                             }
                                         }
@@ -476,6 +486,7 @@ private constructor(
         private val quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor,
         private val wallpaperInteractor: WallpaperInteractor,
         private val wallpaperInfoFactory: CurrentWallpaperInfoFactory,
+        private val logger: ThemesUserEventLogger,
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             @Suppress("UNCHECKED_CAST")
@@ -484,6 +495,7 @@ private constructor(
                 quickAffordanceInteractor = quickAffordanceInteractor,
                 wallpaperInteractor = wallpaperInteractor,
                 wallpaperInfoFactory = wallpaperInfoFactory,
+                logger = logger,
             )
                 as T
         }
