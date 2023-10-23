@@ -202,7 +202,8 @@ class ColorPickerFragment : AppbarFragment() {
             DarkModeSectionController(
                     context,
                     lifecycle,
-                    injector.getDarkModeSnapshotRestorer(requireContext())
+                    injector.getDarkModeSnapshotRestorer(requireContext()),
+                    injector.getUserEventLogger(requireContext()),
                 )
                 .createView(requireContext())
         darkModeSectionView.background = null
