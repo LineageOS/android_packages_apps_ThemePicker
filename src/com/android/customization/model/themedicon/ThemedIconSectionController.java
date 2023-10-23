@@ -24,7 +24,6 @@ import androidx.lifecycle.Observer;
 
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconInteractor;
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconSnapshotRestorer;
-import com.android.customization.module.logging.ThemesUserEventLogger;
 import com.android.customization.picker.themedicon.ThemedIconSectionView;
 import com.android.wallpaper.R;
 import com.android.wallpaper.model.CustomizationSectionController;
@@ -39,7 +38,6 @@ public class ThemedIconSectionController implements
     private final ThemedIconInteractor mInteractor;
     private final ThemedIconSnapshotRestorer mSnapshotRestorer;
     private final Observer<Boolean> mIsActivatedChangeObserver;
-    private final ThemesUserEventLogger mThemesUserEventLogger;
 
     private ThemedIconSectionView mThemedIconSectionView;
     private boolean mSavedThemedIconEnabled = false;
@@ -48,8 +46,7 @@ public class ThemedIconSectionController implements
             ThemedIconSwitchProvider themedIconOptionsProvider,
             ThemedIconInteractor interactor,
             @Nullable Bundle savedInstanceState,
-            ThemedIconSnapshotRestorer snapshotRestorer,
-            ThemesUserEventLogger themesUserEventLogger) {
+            ThemedIconSnapshotRestorer snapshotRestorer) {
         mThemedIconOptionsProvider = themedIconOptionsProvider;
         mInteractor = interactor;
         mSnapshotRestorer = snapshotRestorer;
@@ -58,7 +55,6 @@ public class ThemedIconSectionController implements
                 mThemedIconSectionView.getSwitch().setChecked(isActivated);
             }
         };
-        mThemesUserEventLogger = themesUserEventLogger;
 
         if (savedInstanceState != null) {
             mSavedThemedIconEnabled = savedInstanceState.getBoolean(
@@ -95,7 +91,6 @@ public class ThemedIconSectionController implements
         }
         mThemedIconOptionsProvider.setThemedIconEnabled(viewActivated);
         mInteractor.setActivated(viewActivated);
-        mThemesUserEventLogger.logThemedIconApplied(viewActivated);
         mSnapshotRestorer.store(viewActivated);
     }
 
