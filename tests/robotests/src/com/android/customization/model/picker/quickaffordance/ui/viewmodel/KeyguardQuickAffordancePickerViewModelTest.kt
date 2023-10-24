@@ -353,8 +353,16 @@ class KeyguardQuickAffordancePickerViewModelTest {
                                 "${FakeCustomizationProviderClient.AFFORDANCE_1}," +
                                     " ${FakeCustomizationProviderClient.AFFORDANCE_3}"
                             ),
-                        icon1 = Icon.Loaded(FakeCustomizationProviderClient.ICON_1, null),
-                        icon2 = Icon.Loaded(FakeCustomizationProviderClient.ICON_3, null),
+                        icon1 =
+                            Icon.Loaded(
+                                FakeCustomizationProviderClient.ICON_1,
+                                Text.Loaded("Left shortcut")
+                            ),
+                        icon2 =
+                            Icon.Loaded(
+                                FakeCustomizationProviderClient.ICON_3,
+                                Text.Loaded("Right shortcut")
+                            ),
                     )
                 )
         }
@@ -373,7 +381,11 @@ class KeyguardQuickAffordancePickerViewModelTest {
                 .isEqualTo(
                     KeyguardQuickAffordanceSummaryViewModel(
                         description = Text.Loaded(FakeCustomizationProviderClient.AFFORDANCE_1),
-                        icon1 = Icon.Loaded(FakeCustomizationProviderClient.ICON_1, null),
+                        icon1 =
+                            Icon.Loaded(
+                                FakeCustomizationProviderClient.ICON_1,
+                                Text.Loaded("Left shortcut")
+                            ),
                         icon2 = null,
                     )
                 )
@@ -397,7 +409,11 @@ class KeyguardQuickAffordancePickerViewModelTest {
                     KeyguardQuickAffordanceSummaryViewModel(
                         description = Text.Loaded(FakeCustomizationProviderClient.AFFORDANCE_3),
                         icon1 = null,
-                        icon2 = Icon.Loaded(FakeCustomizationProviderClient.ICON_3, null),
+                        icon2 =
+                            Icon.Loaded(
+                                FakeCustomizationProviderClient.ICON_3,
+                                Text.Loaded("Right shortcut")
+                            ),
                     )
                 )
         }
