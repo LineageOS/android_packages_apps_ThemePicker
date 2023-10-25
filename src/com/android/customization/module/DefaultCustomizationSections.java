@@ -9,7 +9,6 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.android.customization.model.grid.GridOptionsManager;
-import com.android.customization.model.mode.DarkModeSnapshotRestorer;
 import com.android.customization.model.themedicon.ThemedIconSectionController;
 import com.android.customization.model.themedicon.ThemedIconSwitchProvider;
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconInteractor;
@@ -54,7 +53,6 @@ public final class DefaultCustomizationSections implements CustomizationSections
     private final BaseFlags mFlags;
     private final ClockCarouselViewModel.Factory mClockCarouselViewModelFactory;
     private final ClockViewFactory mClockViewFactory;
-    private final DarkModeSnapshotRestorer mDarkModeSnapshotRestorer;
     private final ThemedIconSnapshotRestorer mThemedIconSnapshotRestorer;
     private final ThemedIconInteractor mThemedIconInteractor;
     private final ColorPickerInteractor mColorPickerInteractor;
@@ -67,7 +65,6 @@ public final class DefaultCustomizationSections implements CustomizationSections
             BaseFlags flags,
             ClockCarouselViewModel.Factory clockCarouselViewModelFactory,
             ClockViewFactory clockViewFactory,
-            DarkModeSnapshotRestorer darkModeSnapshotRestorer,
             ThemedIconSnapshotRestorer themedIconSnapshotRestorer,
             ThemedIconInteractor themedIconInteractor,
             ColorPickerInteractor colorPickerInteractor) {
@@ -78,7 +75,6 @@ public final class DefaultCustomizationSections implements CustomizationSections
         mFlags = flags;
         mClockCarouselViewModelFactory = clockCarouselViewModelFactory;
         mClockViewFactory = clockViewFactory;
-        mDarkModeSnapshotRestorer = darkModeSnapshotRestorer;
         mThemedIconSnapshotRestorer = themedIconSnapshotRestorer;
         mThemedIconInteractor = themedIconInteractor;
         mColorPickerInteractor = colorPickerInteractor;

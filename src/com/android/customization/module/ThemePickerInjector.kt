@@ -124,27 +124,29 @@ internal constructor(
     private var clockRegistryProvider: ClockRegistryProvider? = null
 
     override fun getCustomizationSections(activity: ComponentActivity): CustomizationSections {
+        val appContext = activity.applicationContext
+        val clockViewFactory = getClockViewFactory(activity)
+        val resources = activity.resources
         return customizationSections
             ?: DefaultCustomizationSections(
                     getColorPickerViewModelFactory(
-                        context = activity,
+                        context = appContext,
                         wallpaperColorsRepository = getWallpaperColorsRepository(),
                     ),
-                    getKeyguardQuickAffordancePickerViewModelFactory(activity),
+                    getKeyguardQuickAffordancePickerViewModelFactory(appContext),
                     NotificationSectionViewModel.Factory(
-                        interactor = getNotificationsInteractor(activity),
+                        interactor = getNotificationsInteractor(appContext),
                     ),
                     getFlags(),
                     getClockCarouselViewModelFactory(
-                        getClockPickerInteractor(activity.applicationContext),
-                        getClockViewFactory(activity),
-                        resources = activity.resources,
+                        interactor = getClockPickerInteractor(appContext),
+                        clockViewFactory = clockViewFactory,
+                        resources = resources,
                     ),
-                    getClockViewFactory(activity),
-                    getDarkModeSnapshotRestorer(activity),
-                    getThemedIconSnapshotRestorer(activity),
+                    clockViewFactory,
+                    getThemedIconSnapshotRestorer(appContext),
                     getThemedIconInteractor(),
-                    getColorPickerInteractor(activity, getWallpaperColorsRepository()),
+                    getColorPickerInteractor(appContext, getWallpaperColorsRepository()),
                 )
                 .also { customizationSections = it }
     }
