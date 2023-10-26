@@ -56,7 +56,7 @@ class ColorCustomizationManagerTest {
 
     @Before
     fun setUp() {
-        MockitoAnnotations.openMocks(this)
+        MockitoAnnotations.initMocks(this)
         val application = ApplicationProvider.getApplicationContext<Context>()
         manager = ColorCustomizationManager(provider, application.contentResolver, mockOM)
     }
