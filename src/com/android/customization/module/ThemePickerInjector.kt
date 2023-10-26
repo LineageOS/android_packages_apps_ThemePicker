@@ -142,11 +142,13 @@ internal constructor(
                         interactor = getClockPickerInteractor(appContext),
                         clockViewFactory = clockViewFactory,
                         resources = resources,
+                        logger = userEventLogger,
                     ),
                     clockViewFactory,
                     getThemedIconSnapshotRestorer(appContext),
                     getThemedIconInteractor(),
                     getColorPickerInteractor(appContext, getWallpaperColorsRepository()),
+                    getUserEventLogger(appContext),
                 )
                 .also { customizationSections = it }
     }
@@ -350,9 +352,16 @@ internal constructor(
         interactor: ClockPickerInteractor,
         clockViewFactory: ClockViewFactory,
         resources: Resources,
+        logger: ThemesUserEventLogger,
     ): ClockCarouselViewModel.Factory {
         return clockCarouselViewModelFactory
-            ?: ClockCarouselViewModel.Factory(interactor, bgDispatcher, clockViewFactory, resources)
+            ?: ClockCarouselViewModel.Factory(
+                    interactor,
+                    bgDispatcher,
+                    clockViewFactory,
+                    resources,
+                    logger,
+                )
                 .also { clockCarouselViewModelFactory = it }
     }
 
@@ -486,6 +495,7 @@ internal constructor(
                         context,
                         wallpaperColorsRepository,
                     ),
+                    userEventLogger,
                 ) { clockId ->
                     clockId?.let { clockViewFactory.getController(clockId).config.isReactiveToTone }
                         ?: false

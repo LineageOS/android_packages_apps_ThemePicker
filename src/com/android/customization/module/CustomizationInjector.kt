@@ -18,6 +18,7 @@ package com.android.customization.module
 import android.content.Context
 import android.content.res.Resources
 import androidx.activity.ComponentActivity
+import com.android.customization.module.logging.ThemesUserEventLogger
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
@@ -54,6 +55,7 @@ interface CustomizationInjector : Injector {
         interactor: ClockPickerInteractor,
         clockViewFactory: ClockViewFactory,
         resources: Resources,
+        logger: ThemesUserEventLogger,
     ): ClockCarouselViewModel.Factory
 
     fun getClockViewFactory(activity: ComponentActivity): ClockViewFactory

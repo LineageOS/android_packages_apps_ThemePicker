@@ -67,6 +67,7 @@ constructor(
         interactor: ClockPickerInteractor,
         clockViewFactory: ClockViewFactory,
         resources: Resources,
+        logger: ThemesUserEventLogger,
     ): ClockCarouselViewModel.Factory {
         throw UnsupportedOperationException("not implemented")
     }

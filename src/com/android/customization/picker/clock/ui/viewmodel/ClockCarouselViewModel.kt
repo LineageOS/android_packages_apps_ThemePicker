@@ -20,6 +20,7 @@ import android.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.android.customization.module.logging.ThemesUserEventLogger
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.shared.ClockSize
 import com.android.customization.picker.clock.ui.view.ClockViewFactory
@@ -47,6 +48,7 @@ class ClockCarouselViewModel(
     private val backgroundDispatcher: CoroutineDispatcher,
     private val clockViewFactory: ClockViewFactory,
     private val resources: Resources,
+    private val logger: ThemesUserEventLogger,
 ) : ViewModel() {
     @OptIn(ExperimentalCoroutinesApi::class)
     val allClocks: StateFlow<List<ClockCarouselItemViewModel>> =
@@ -122,7 +124,10 @@ class ClockCarouselViewModel(
     fun setSelectedClock(clockId: String) {
         setSelectedClockJob?.cancel()
         setSelectedClockJob =
-            viewModelScope.launch(backgroundDispatcher) { interactor.setSelectedClock(clockId) }
+            viewModelScope.launch(backgroundDispatcher) {
+                interactor.setSelectedClock(clockId)
+                logger.logClockApplied(clockId)
+            }
     }
 
     class Factory(
@@ -130,6 +135,7 @@ class ClockCarouselViewModel(
         private val backgroundDispatcher: CoroutineDispatcher,
         private val clockViewFactory: ClockViewFactory,
         private val resources: Resources,
+        private val logger: ThemesUserEventLogger,
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             @Suppress("UNCHECKED_CAST")
@@ -138,6 +144,7 @@ class ClockCarouselViewModel(
                 backgroundDispatcher = backgroundDispatcher,
                 clockViewFactory = clockViewFactory,
                 resources = resources,
+                logger = logger,
             )
                 as T
         }
