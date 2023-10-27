@@ -134,9 +134,7 @@ internal constructor(
                         wallpaperColorsRepository = getWallpaperColorsRepository(),
                     ),
                     getKeyguardQuickAffordancePickerViewModelFactory(appContext),
-                    NotificationSectionViewModel.Factory(
-                        interactor = getNotificationsInteractor(appContext),
-                    ),
+                    getNotificationSectionViewModelFactory(appContext),
                     getFlags(),
                     getClockCarouselViewModelFactory(
                         interactor = getClockPickerInteractor(appContext),
@@ -286,6 +284,7 @@ internal constructor(
         return notificationSectionViewModelFactory
             ?: NotificationSectionViewModel.Factory(
                     interactor = getNotificationsInteractor(context),
+                    logger = getUserEventLogger(context),
                 )
                 .also { notificationSectionViewModelFactory = it }
     }
