@@ -16,6 +16,24 @@
       "message": "No new goodies (or changes) from U?",
       "revId": "5228a7acbb020a7e68e8992daf9a6fa2f8bf86da",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "888922f7_d5e50908",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2023-10-28T13:04:24Z",
+      "side": 1,
+      "message": "We can look at this later, no need to block the bringup.",
+      "parentUuid": "400ffbe1_6d57e689",
+      "revId": "5228a7acbb020a7e68e8992daf9a6fa2f8bf86da",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
