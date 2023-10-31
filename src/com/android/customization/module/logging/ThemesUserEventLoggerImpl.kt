@@ -49,7 +49,7 @@ constructor(
             .setWallpaperIdHash(preferences.getHomeWallpaperIdHash())
             .setLockWallpaperCategoryHash(preferences.getLockCategoryHash())
             .setLockWallpaperIdHash(preferences.getLockWallpaperIdHash())
-            .setEffectIdHash(getIdHashCode(preferences.homeWallpaperEffects))
+            .setEffectIdHash(preferences.getHomeWallpaperEffectsIdHash())
             .log()
     }
 
@@ -235,26 +235,33 @@ constructor(
 
     /** If not set, the output hash is 0. */
     private fun WallpaperPreferences.getHomeCategoryHash(): Int {
-        return getIdHashCode(homeWallpaperCollectionId)
+        return getIdHashCode(getHomeWallpaperCollectionId())
     }
 
     /** If not set, the output hash is 0. */
     private fun WallpaperPreferences.getHomeWallpaperIdHash(): Int {
-        val remoteId = homeWallpaperRemoteId
-        val wallpaperId = if (!TextUtils.isEmpty(remoteId)) remoteId else homeWallpaperServiceName
+        val remoteId = getHomeWallpaperRemoteId()
+        val wallpaperId =
+            if (!TextUtils.isEmpty(remoteId)) remoteId else getHomeWallpaperServiceName()
         return getIdHashCode(wallpaperId)
     }
 
     /** If not set, the output hash is 0. */
     private fun WallpaperPreferences.getLockCategoryHash(): Int {
-        return getIdHashCode(lockWallpaperCollectionId)
+        return getIdHashCode(getLockWallpaperCollectionId())
     }
 
     /** If not set, the output hash is 0. */
     private fun WallpaperPreferences.getLockWallpaperIdHash(): Int {
-        val remoteId = lockWallpaperRemoteId
-        val wallpaperId = if (!TextUtils.isEmpty(remoteId)) remoteId else lockWallpaperServiceName
+        val remoteId = getLockWallpaperRemoteId()
+        val wallpaperId =
+            if (!TextUtils.isEmpty(remoteId)) remoteId else getLockWallpaperServiceName()
         return getIdHashCode(wallpaperId)
+    }
+
+    /** If not set, the output hash is 0. */
+    private fun WallpaperPreferences.getHomeWallpaperEffectsIdHash(): Int {
+        return getIdHashCode(getHomeWallpaperEffects())
     }
 
     private fun getIdHashCode(id: String?): Int {
