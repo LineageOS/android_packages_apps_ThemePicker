@@ -35,7 +35,7 @@
     <string name="clock_color_indigo" msgid="8910855386698452917">"نیلی"</string>
     <string name="clock_color_violet" msgid="3454503847169375826">"یاسی"</string>
     <string name="clock_color_gray" msgid="9221530636948859231">"خاکستری"</string>
-    <string name="clock_color_teal" msgid="7499223425741344251">"سبز دودی"</string>
+    <string name="clock_color_teal" msgid="7499223425741344251">"سبزآبی"</string>
     <string name="clock_size" msgid="5028923902364418263">"اندازه"</string>
     <string name="clock_size_dynamic" msgid="1023930312455061642">"پویا"</string>
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"اندازه ساعت نسبت به محتوای صفحه قفل تغییر می‌کند"</string>
