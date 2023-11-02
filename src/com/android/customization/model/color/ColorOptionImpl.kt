@@ -17,6 +17,7 @@
 package com.android.customization.model.color
 
 import android.content.Context
+import android.stats.style.StyleEnums
 import android.view.View
 import androidx.annotation.ColorInt
 import com.android.customization.model.color.ColorOptionsProvider.ColorSource
@@ -66,6 +67,15 @@ class ColorOptionImpl(
 
     override fun getSource(): String? {
         return source
+    }
+
+    override fun getSourceForLogging(): Int {
+        return when (getSource()) {
+            ColorOptionsProvider.COLOR_SOURCE_PRESET -> StyleEnums.COLOR_SOURCE_PRESET_COLOR
+            ColorOptionsProvider.COLOR_SOURCE_HOME -> StyleEnums.COLOR_SOURCE_HOME_SCREEN_WALLPAPER
+            ColorOptionsProvider.COLOR_SOURCE_LOCK -> StyleEnums.COLOR_SOURCE_LOCK_SCREEN_WALLPAPER
+            else -> StyleEnums.COLOR_SOURCE_UNSPECIFIED
+        }
     }
 
     class Builder {
