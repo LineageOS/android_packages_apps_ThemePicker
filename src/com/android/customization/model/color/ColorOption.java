@@ -112,6 +112,9 @@ public abstract class ColorOption implements CustomizationOption<ColorOption> {
         if (seedColor == null || seedColor.isEmpty()) {
             return ThemesUserEventLogger.NULL_SEED_COLOR;
         }
+        if (!seedColor.startsWith("#")) {
+            seedColor = "#" + seedColor;
+        }
         return Color.parseColor(seedColor);
     }
 
