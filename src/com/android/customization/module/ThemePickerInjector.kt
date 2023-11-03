@@ -423,6 +423,7 @@ internal constructor(
             ?: ColorPickerViewModel.Factory(
                     context.applicationContext,
                     getColorPickerInteractor(context, wallpaperColorsRepository),
+                    userEventLogger,
                 )
                 .also { colorPickerViewModelFactory = it }
     }

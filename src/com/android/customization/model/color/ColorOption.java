@@ -19,6 +19,7 @@ import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY
 import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_SYSTEM_PALETTE;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -27,6 +28,7 @@ import androidx.annotation.VisibleForTesting;
 import com.android.customization.model.CustomizationManager;
 import com.android.customization.model.CustomizationOption;
 import com.android.customization.model.color.ColorOptionsProvider.ColorSource;
+import com.android.customization.module.logging.ThemesUserEventLogger;
 import com.android.systemui.monet.Style;
 import com.android.wallpaper.R;
 
@@ -98,6 +100,19 @@ public abstract class ColorOption implements CustomizationOption<ColorOption> {
                     currentSource);
             return isCurrentSource && isCurrentStyle && mPackagesByCategory.equals(currentOverlays);
         }
+    }
+
+    /**
+     * Gets the seed color from the overlay packages for logging.
+     *
+     * @return an int representing the seed color, or NULL_SEED_COLOR
+     */
+    public int getSeedColorForLogging() {
+        String seedColor = mPackagesByCategory.get(OVERLAY_CATEGORY_SYSTEM_PALETTE);
+        if (seedColor == null || seedColor.isEmpty()) {
+            return ThemesUserEventLogger.NULL_SEED_COLOR;
+        }
+        return Color.parseColor(seedColor);
     }
 
     /**
@@ -207,6 +222,12 @@ public abstract class ColorOption implements CustomizationOption<ColorOption> {
      */
     @ColorSource
     public abstract String getSource();
+
+    /**
+     * @return the source of this color option for logging
+     */
+    @ThemesUserEventLogger.ColorSource
+    public abstract int getSourceForLogging();
 
     /**
      * @return the style of this color option
