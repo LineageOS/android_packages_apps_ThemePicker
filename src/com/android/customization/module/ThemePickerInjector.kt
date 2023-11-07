@@ -28,7 +28,6 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import com.android.customization.model.color.ColorCustomizationManager
-import com.android.customization.model.color.ColorOptionsProvider
 import com.android.customization.model.color.ColorOptionsProvider.COLOR_SOURCE_PRESET
 import com.android.customization.model.grid.GridOptionsManager
 import com.android.customization.model.mode.DarkModeSnapshotRestorer
@@ -197,6 +196,10 @@ internal constructor(
     }
 
     override fun getWallpaperInteractor(context: Context): WallpaperInteractor {
+        if (getFlags().isMultiCropEnabled() && getFlags().isMultiCropPreviewUiEnabled()) {
+            return injectedWallpaperInteractor
+        }
+
         val appContext = context.applicationContext
         return wallpaperInteractor
             ?: WallpaperInteractor(
@@ -206,7 +209,6 @@ internal constructor(
                             client =
                                 WallpaperClientImpl(
                                     context = appContext,
-                                    infoFactory = getCurrentWallpaperInfoFactory(appContext),
                                     wallpaperManager = WallpaperManager.getInstance(appContext),
                                     wallpaperPreferences = getPreferences(appContext)
                                 ),
@@ -216,7 +218,7 @@ internal constructor(
                     shouldHandleReload = {
                         TextUtils.equals(
                             getColorCustomizationManager(appContext).currentColorSource,
-                            ColorOptionsProvider.COLOR_SOURCE_PRESET
+                            COLOR_SOURCE_PRESET,
                         )
                     }
                 )

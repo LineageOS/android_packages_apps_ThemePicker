@@ -1,5 +1,8 @@
 package com.android.customization
 
+import androidx.test.core.app.ApplicationProvider
+import com.android.customization.model.color.ColorCustomizationManager
+import com.android.customization.model.theme.OverlayManagerCompat
 import com.android.customization.module.CustomizationInjector
 import com.android.customization.module.CustomizationPreferences
 import com.android.customization.module.logging.TestThemesUserEventLogger
@@ -65,6 +68,15 @@ abstract class TestModule {
         @Singleton
         fun provideDefaultWallpaperModelFactory(): DefaultWallpaperModelFactory {
             return DefaultWallpaperModelFactory()
+        }
+
+        @Provides
+        @Singleton
+        fun provideColorCustomizationManager(): ColorCustomizationManager {
+            return ColorCustomizationManager.getInstance(
+                ApplicationProvider.getApplicationContext(),
+                OverlayManagerCompat(ApplicationProvider.getApplicationContext())
+            )
         }
     }
 }
