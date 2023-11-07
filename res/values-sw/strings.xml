@@ -136,4 +136,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Mandhari msingi inayojidhihirisha"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Chaguo la rangi chaguomsingi"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Chaguo la rangi ya <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Telezesha kidole kushoto ili uchague uso tofauti wa saa"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Telezesha kidole kulia ili uchague uso tofauti wa saa"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"Uso wa Saa"</string>
 </resources>

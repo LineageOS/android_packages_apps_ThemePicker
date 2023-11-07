@@ -136,4 +136,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"প্ৰাথমিক অভিব্যক্তিপূৰ্ণ থীম"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"ডিফ’ল্ট ৰঙৰ বিকল্প"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"ৰঙৰ বিকল্প <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"অন্য কোনো ক্লক ফে’চ বাছনি কৰিবলৈ বাওঁফাললৈ ছোৱাইপ কৰক"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"অন্য কোনো ক্লক ফে’চ বাছনি কৰিবলৈ সোঁফাললৈ ছোৱাইপ কৰক"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"কাষ্টম ঘড়ী"</string>
 </resources>

@@ -136,4 +136,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Primārais ekspresīvais motīvs"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Noklusējuma krāsas opcija"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"<xliff:g id="ID_1">%1$d</xliff:g>. krāsas opcija"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Velciet pa kreisi, lai izvēlētos citu pulksteņa ekrānu"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Velciet pa labi, lai izvēlētos citu pulksteņa ekrānu"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"Pielāgoti pulksteņa ekrāni"</string>
 </resources>
