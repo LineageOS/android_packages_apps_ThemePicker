@@ -58,6 +58,7 @@ class KeyguardQuickAffordancePickerRepositoryTest {
         underTest =
             KeyguardQuickAffordancePickerRepository(
                 client = client,
+                scope = testScope.backgroundScope,
                 flags =
                     object : BaseFlags() {
                         override fun getCachedFlags(

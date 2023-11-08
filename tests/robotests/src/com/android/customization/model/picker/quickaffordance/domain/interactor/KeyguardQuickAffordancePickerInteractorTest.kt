@@ -65,6 +65,7 @@ class KeyguardQuickAffordancePickerInteractorTest {
                 repository =
                     KeyguardQuickAffordancePickerRepository(
                         client = client,
+                        scope = testScope.backgroundScope,
                         flags = testFlags,
                         context = ApplicationProvider.getApplicationContext(),
                     ),
