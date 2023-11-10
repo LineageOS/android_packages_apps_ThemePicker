@@ -130,7 +130,7 @@ class ColorPickerViewModelTest {
                     repository.buildWallpaperOption(
                         ColorOptionsProvider.COLOR_SOURCE_LOCK,
                         Style.EXPRESSIVE,
-                        "#121212"
+                        "121212"
                     )
                 ),
                 listOf(repository.buildPresetOption(Style.FRUIT_SALAD, "#ABCDEF")),
@@ -161,7 +161,7 @@ class ColorPickerViewModelTest {
                     repository.buildWallpaperOption(
                         ColorOptionsProvider.COLOR_SOURCE_LOCK,
                         Style.EXPRESSIVE,
-                        "#121212"
+                        "121212"
                     )
                 ),
                 listOf(repository.buildPresetOption(Style.FRUIT_SALAD, "#ABCDEF")),
