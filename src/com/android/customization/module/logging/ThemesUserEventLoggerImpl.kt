@@ -17,15 +17,39 @@ package com.android.customization.module.logging
 
 import android.app.WallpaperManager
 import android.content.Intent
-import android.stats.style.StyleEnums
+import android.stats.style.StyleEnums.APP_LAUNCHED
+import android.stats.style.StyleEnums.CLOCK_APPLIED
+import android.stats.style.StyleEnums.CLOCK_COLOR_APPLIED
+import android.stats.style.StyleEnums.CLOCK_SIZE_APPLIED
+import android.stats.style.StyleEnums.DARK_THEME_APPLIED
+import android.stats.style.StyleEnums.GRID_APPLIED
+import android.stats.style.StyleEnums.LAUNCHED_CROP_AND_SET_ACTION
+import android.stats.style.StyleEnums.LAUNCHED_DEEP_LINK
+import android.stats.style.StyleEnums.LAUNCHED_LAUNCHER
+import android.stats.style.StyleEnums.LAUNCHED_LAUNCH_ICON
+import android.stats.style.StyleEnums.LAUNCHED_PREFERENCE_UNSPECIFIED
+import android.stats.style.StyleEnums.LAUNCHED_SETTINGS
+import android.stats.style.StyleEnums.LAUNCHED_SETTINGS_SEARCH
+import android.stats.style.StyleEnums.LAUNCHED_SUW
+import android.stats.style.StyleEnums.LAUNCHED_TIPS
+import android.stats.style.StyleEnums.LOCK_SCREEN_NOTIFICATION_APPLIED
+import android.stats.style.StyleEnums.RESET_APPLIED
+import android.stats.style.StyleEnums.SHORTCUT_APPLIED
+import android.stats.style.StyleEnums.SNAPSHOT
+import android.stats.style.StyleEnums.THEMED_ICON_APPLIED
+import android.stats.style.StyleEnums.THEME_COLOR_APPLIED
+import android.stats.style.StyleEnums.WALLPAPER_APPLIED
+import android.stats.style.StyleEnums.WALLPAPER_DESTINATION_HOME_AND_LOCK_SCREEN
+import android.stats.style.StyleEnums.WALLPAPER_DESTINATION_HOME_SCREEN
+import android.stats.style.StyleEnums.WALLPAPER_DESTINATION_LOCK_SCREEN
+import android.stats.style.StyleEnums.WALLPAPER_EFFECT_APPLIED
+import android.stats.style.StyleEnums.WALLPAPER_EFFECT_FG_DOWNLOAD
+import android.stats.style.StyleEnums.WALLPAPER_EFFECT_PROBE
+import android.stats.style.StyleEnums.WALLPAPER_EXPLORE
 import android.text.TextUtils
 import com.android.customization.model.grid.GridOption
 import com.android.customization.module.logging.ThemesUserEventLogger.ClockSize
 import com.android.customization.module.logging.ThemesUserEventLogger.ColorSource
-import com.android.systemui.shared.system.SysUiStatsLog
-import com.android.wallpaper.module.WallpaperPersister.DEST_BOTH
-import com.android.wallpaper.module.WallpaperPersister.DEST_HOME_SCREEN
-import com.android.wallpaper.module.WallpaperPersister.DEST_LOCK_SCREEN
 import com.android.wallpaper.module.WallpaperPreferences
 import com.android.wallpaper.module.logging.UserEventLogger.EffectStatus
 import com.android.wallpaper.module.logging.UserEventLogger.SetWallpaperEntryPoint
@@ -44,7 +68,7 @@ constructor(
 ) : ThemesUserEventLogger {
 
     override fun logSnapshot() {
-        SysUiStatsLogger(StyleEnums.SNAPSHOT)
+        SysUiStatsLogger(SNAPSHOT)
             .setWallpaperCategoryHash(preferences.getHomeCategoryHash())
             .setWallpaperIdHash(preferences.getHomeWallpaperIdHash())
             .setLockWallpaperCategoryHash(preferences.getLockCategoryHash())
@@ -54,7 +78,7 @@ constructor(
     }
 
     override fun logAppLaunched(launchSource: Intent) {
-        SysUiStatsLogger(StyleEnums.APP_LAUNCHED)
+        SysUiStatsLogger(APP_LAUNCHED)
             .setAppSessionId(appSessionId.createNewId().getId())
             .setLaunchedPreference(launchSource.getAppLaunchSource())
             .log()
@@ -69,9 +93,13 @@ constructor(
     ) {
         val categoryHash = getIdHashCode(collectionId)
         val wallpaperIdHash = getIdHashCode(wallpaperId)
-        val isHomeWallpaperSet = destination == DEST_HOME_SCREEN || destination == DEST_BOTH
-        val isLockWallpaperSet = destination == DEST_LOCK_SCREEN || destination == DEST_BOTH
-        SysUiStatsLogger(StyleEnums.WALLPAPER_APPLIED)
+        val isHomeWallpaperSet =
+            destination == WALLPAPER_DESTINATION_HOME_SCREEN ||
+                destination == WALLPAPER_DESTINATION_HOME_AND_LOCK_SCREEN
+        val isLockWallpaperSet =
+            destination == WALLPAPER_DESTINATION_LOCK_SCREEN ||
+                destination == WALLPAPER_DESTINATION_HOME_AND_LOCK_SCREEN
+        SysUiStatsLogger(WALLPAPER_APPLIED)
             .setAppSessionId(appSessionId.getId())
             .setWallpaperCategoryHash(if (isHomeWallpaperSet) categoryHash else 0)
             .setWallpaperIdHash(if (isHomeWallpaperSet) wallpaperIdHash else 0)
@@ -89,7 +117,7 @@ constructor(
         timeElapsedMillis: Long,
         resultCode: Int
     ) {
-        SysUiStatsLogger(StyleEnums.WALLPAPER_EFFECT_APPLIED)
+        SysUiStatsLogger(WALLPAPER_EFFECT_APPLIED)
             .setAppSessionId(appSessionId.getId())
             .setEffectPreference(status)
             .setEffectIdHash(getIdHashCode(effect))
@@ -99,7 +127,7 @@ constructor(
     }
 
     override fun logEffectProbe(effect: String, @EffectStatus status: Int) {
-        SysUiStatsLogger(StyleEnums.WALLPAPER_EFFECT_PROBE)
+        SysUiStatsLogger(WALLPAPER_EFFECT_PROBE)
             .setAppSessionId(appSessionId.getId())
             .setEffectPreference(status)
             .setEffectIdHash(getIdHashCode(effect))
@@ -111,7 +139,7 @@ constructor(
         @EffectStatus status: Int,
         timeElapsedMillis: Long
     ) {
-        SysUiStatsLogger(StyleEnums.WALLPAPER_EFFECT_FG_DOWNLOAD)
+        SysUiStatsLogger(WALLPAPER_EFFECT_FG_DOWNLOAD)
             .setAppSessionId(appSessionId.getId())
             .setEffectPreference(status)
             .setEffectIdHash(getIdHashCode(effect))
@@ -120,11 +148,11 @@ constructor(
     }
 
     override fun logResetApplied() {
-        SysUiStatsLogger(StyleEnums.RESET_APPLIED).setAppSessionId(appSessionId.getId()).log()
+        SysUiStatsLogger(RESET_APPLIED).setAppSessionId(appSessionId.getId()).log()
     }
 
     override fun logWallpaperExploreButtonClicked() {
-        SysUiStatsLogger(StyleEnums.WALLPAPER_EXPLORE).setAppSessionId(appSessionId.getId()).log()
+        SysUiStatsLogger(WALLPAPER_EXPLORE).setAppSessionId(appSessionId.getId()).log()
     }
 
     override fun logThemeColorApplied(
@@ -132,7 +160,7 @@ constructor(
         variant: Int,
         seedColor: Int,
     ) {
-        SysUiStatsLogger(StyleEnums.THEME_COLOR_APPLIED)
+        SysUiStatsLogger(THEME_COLOR_APPLIED)
             .setAppSessionId(appSessionId.getId())
             .setColorSource(source)
             .setColorVariant(variant)
@@ -141,49 +169,49 @@ constructor(
     }
 
     override fun logGridApplied(grid: GridOption) {
-        SysUiStatsLogger(StyleEnums.GRID_APPLIED)
+        SysUiStatsLogger(GRID_APPLIED)
             .setAppSessionId(appSessionId.getId())
             .setLauncherGrid(grid.getLauncherGridInt())
             .log()
     }
 
     override fun logClockApplied(clockId: String) {
-        SysUiStatsLogger(StyleEnums.CLOCK_APPLIED)
+        SysUiStatsLogger(CLOCK_APPLIED)
             .setAppSessionId(appSessionId.getId())
             .setClockPackageHash(getIdHashCode(clockId))
             .log()
     }
 
     override fun logClockColorApplied(seedColor: Int) {
-        SysUiStatsLogger(StyleEnums.CLOCK_COLOR_APPLIED)
+        SysUiStatsLogger(CLOCK_COLOR_APPLIED)
             .setAppSessionId(appSessionId.getId())
             .setSeedColor(seedColor)
             .log()
     }
 
     override fun logClockSizeApplied(@ClockSize clockSize: Int) {
-        SysUiStatsLogger(StyleEnums.CLOCK_SIZE_APPLIED)
+        SysUiStatsLogger(CLOCK_SIZE_APPLIED)
             .setAppSessionId(appSessionId.getId())
             .setClockSize(clockSize)
             .log()
     }
 
     override fun logThemedIconApplied(useThemeIcon: Boolean) {
-        SysUiStatsLogger(StyleEnums.THEMED_ICON_APPLIED)
+        SysUiStatsLogger(THEMED_ICON_APPLIED)
             .setAppSessionId(appSessionId.getId())
             .setToggleOn(useThemeIcon)
             .log()
     }
 
     override fun logLockScreenNotificationApplied(showLockScreenNotifications: Boolean) {
-        SysUiStatsLogger(StyleEnums.LOCK_SCREEN_NOTIFICATION_APPLIED)
+        SysUiStatsLogger(LOCK_SCREEN_NOTIFICATION_APPLIED)
             .setAppSessionId(appSessionId.getId())
             .setToggleOn(showLockScreenNotifications)
             .log()
     }
 
     override fun logShortcutApplied(shortcut: String, shortcutSlotId: String) {
-        SysUiStatsLogger(StyleEnums.SHORTCUT_APPLIED)
+        SysUiStatsLogger(SHORTCUT_APPLIED)
             .setAppSessionId(appSessionId.getId())
             .setShortcut(shortcut)
             .setShortcutSlotId(shortcutSlotId)
@@ -191,7 +219,7 @@ constructor(
     }
 
     override fun logDarkThemeApplied(useDarkTheme: Boolean) {
-        SysUiStatsLogger(StyleEnums.DARK_THEME_APPLIED)
+        SysUiStatsLogger(DARK_THEME_APPLIED)
             .setAppSessionId(appSessionId.getId())
             .setToggleOn(useDarkTheme)
             .log()
@@ -208,28 +236,21 @@ constructor(
     private fun Intent.getAppLaunchSource(): Int {
         return if (hasExtra(LaunchSourceUtils.WALLPAPER_LAUNCH_SOURCE)) {
             when (getStringExtra(LaunchSourceUtils.WALLPAPER_LAUNCH_SOURCE)) {
-                LaunchSourceUtils.LAUNCH_SOURCE_LAUNCHER ->
-                    SysUiStatsLog.STYLE_UICHANGED__LAUNCHED_PREFERENCE__LAUNCHED_LAUNCHER
-                LaunchSourceUtils.LAUNCH_SOURCE_SETTINGS ->
-                    SysUiStatsLog.STYLE_UICHANGED__LAUNCHED_PREFERENCE__LAUNCHED_SETTINGS
-                LaunchSourceUtils.LAUNCH_SOURCE_SUW ->
-                    SysUiStatsLog.STYLE_UICHANGED__LAUNCHED_PREFERENCE__LAUNCHED_SUW
-                LaunchSourceUtils.LAUNCH_SOURCE_TIPS ->
-                    SysUiStatsLog.STYLE_UICHANGED__LAUNCHED_PREFERENCE__LAUNCHED_TIPS
-                LaunchSourceUtils.LAUNCH_SOURCE_DEEP_LINK ->
-                    SysUiStatsLog.STYLE_UICHANGED__LAUNCHED_PREFERENCE__LAUNCHED_DEEP_LINK
-                else ->
-                    SysUiStatsLog
-                        .STYLE_UICHANGED__LAUNCHED_PREFERENCE__LAUNCHED_PREFERENCE_UNSPECIFIED
+                LaunchSourceUtils.LAUNCH_SOURCE_LAUNCHER -> LAUNCHED_LAUNCHER
+                LaunchSourceUtils.LAUNCH_SOURCE_SETTINGS -> LAUNCHED_SETTINGS
+                LaunchSourceUtils.LAUNCH_SOURCE_SUW -> LAUNCHED_SUW
+                LaunchSourceUtils.LAUNCH_SOURCE_TIPS -> LAUNCHED_TIPS
+                LaunchSourceUtils.LAUNCH_SOURCE_DEEP_LINK -> LAUNCHED_DEEP_LINK
+                else -> LAUNCHED_PREFERENCE_UNSPECIFIED
             }
         } else if (hasExtra(LaunchSourceUtils.LAUNCH_SETTINGS_SEARCH)) {
-            SysUiStatsLog.STYLE_UICHANGED__LAUNCHED_PREFERENCE__LAUNCHED_SETTINGS_SEARCH
+            LAUNCHED_SETTINGS_SEARCH
         } else if (action != null && action == WallpaperManager.ACTION_CROP_AND_SET_WALLPAPER) {
-            SysUiStatsLog.STYLE_UICHANGED__LAUNCHED_PREFERENCE__LAUNCHED_CROP_AND_SET_ACTION
+            LAUNCHED_CROP_AND_SET_ACTION
         } else if (categories != null && categories.contains(Intent.CATEGORY_LAUNCHER)) {
-            SysUiStatsLog.STYLE_UICHANGED__LAUNCHED_PREFERENCE__LAUNCHED_LAUNCH_ICON
+            LAUNCHED_LAUNCH_ICON
         } else {
-            SysUiStatsLog.STYLE_UICHANGED__LAUNCHED_PREFERENCE__LAUNCHED_PREFERENCE_UNSPECIFIED
+            LAUNCHED_PREFERENCE_UNSPECIFIED
         }
     }
 
