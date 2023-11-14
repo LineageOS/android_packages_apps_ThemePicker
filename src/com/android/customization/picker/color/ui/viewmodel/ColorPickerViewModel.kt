@@ -147,8 +147,8 @@ private constructor(
                                                         logger.logThemeColorApplied(
                                                             colorOptionModel.colorOption
                                                                 .sourceForLogging,
-                                                            colorOptionModel.colorOption.style
-                                                                .ordinal + 1,
+                                                            colorOptionModel.colorOption
+                                                                .styleForLogging,
                                                             colorOptionModel.colorOption
                                                                 .seedColorForLogging,
                                                         )

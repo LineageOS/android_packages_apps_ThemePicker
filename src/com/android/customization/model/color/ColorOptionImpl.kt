@@ -78,6 +78,8 @@ class ColorOptionImpl(
         }
     }
 
+    override fun getStyleForLogging(): Int = style.toString().hashCode()
+
     class Builder {
         var title: String? = null
 

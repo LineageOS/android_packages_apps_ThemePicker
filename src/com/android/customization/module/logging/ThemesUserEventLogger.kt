@@ -23,7 +23,7 @@ import com.android.wallpaper.module.logging.UserEventLogger
 /** Extension of [UserEventLogger] that adds ThemePicker specific events. */
 interface ThemesUserEventLogger : UserEventLogger {
 
-    fun logThemeColorApplied(@ColorSource source: Int, variant: Int, seedColor: Int)
+    fun logThemeColorApplied(@ColorSource source: Int, style: Int, seedColor: Int)
 
     fun logGridApplied(grid: GridOption)
 

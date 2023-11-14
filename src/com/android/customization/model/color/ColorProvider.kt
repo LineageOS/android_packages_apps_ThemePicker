@@ -48,6 +48,7 @@ import kotlinx.coroutines.withContext
 
 /**
  * Default implementation of {@link ColorOptionsProvider} that reads preset colors from a stub APK.
+ * TODO (b/311212666): Make [ColorProvider] and [ColorCustomizationManager] injectable
  */
 class ColorProvider(private val context: Context, stubPackageName: String) :
     ResourcesApkProvider(context, stubPackageName), ColorOptionsProvider {
@@ -68,8 +69,6 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
             arrayOf(Style.TONAL_SPOT, Style.SPRITZ, Style.VIBRANT, Style.EXPRESSIVE)
         else arrayOf(Style.TONAL_SPOT)
 
-    private val monochromeEnabled =
-        InjectorProvider.getInjector().getFlags().isMonochromaticThemeEnabled(mContext)
     private var monochromeBundleName: String? = null
 
     private val scope =
@@ -177,7 +176,7 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
 
         // Insert monochrome in the second position if it is enabled and included in preset
         // colors
-        if (monochromeEnabled) {
+        if (InjectorProvider.getInjector().getFlags().isMonochromaticThemeEnabled(mContext)) {
             monochromeBundleName?.let {
                 bundles.add(1, buildPreset(it, -1, Style.MONOCHROMATIC, ColorType.WALLPAPER_COLOR))
             }
@@ -361,7 +360,11 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
                         }
 
                     if (style == Style.MONOCHROMATIC) {
-                        if (!monochromeEnabled) {
+                        if (
+                            !InjectorProvider.getInjector()
+                                .getFlags()
+                                .isMonochromaticThemeEnabled(mContext)
+                        ) {
                             continue
                         }
                         hasMonochrome = true
