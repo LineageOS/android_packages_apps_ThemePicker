@@ -152,6 +152,7 @@
                     android:layout_gravity="center_vertical"
                     android:minHeight="48dp"
                     android:thumb="@null"
+                    android:contentDescription="@string/accessibility_clock_slider_description"
                     android:background="@null"
                     android:paddingHorizontal="16dp"
                     android:progressDrawable="@drawable/saturation_progress_drawable"
