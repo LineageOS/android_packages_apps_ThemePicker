@@ -103,6 +103,8 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"Rangi maalum"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"Umbo maalum"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"Jina la muundo maalum"</string>
+    <!-- no translation found for accessibility_clock_slider_description (8374135133110681332) -->
+    <skip />
     <string name="mode_title" msgid="2394873501427436055">"Mandhari meusi"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"Imezimwa kwa muda kwa sababu ya Kiokoa Betri"</string>
     <string name="mode_changed" msgid="2243581369395418584">"Mandhari yamebadilishwa"</string>
