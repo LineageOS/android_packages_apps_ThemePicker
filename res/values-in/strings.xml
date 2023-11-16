@@ -103,6 +103,8 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"Warna khusus"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"Bentuk khusus"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"Nama gaya khusus"</string>
+    <!-- no translation found for accessibility_clock_slider_description (8374135133110681332) -->
+    <skip />
     <string name="mode_title" msgid="2394873501427436055">"Tema gelap"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"Dinonaktifkan sementara karena fitur Penghemat Baterai"</string>
     <string name="mode_changed" msgid="2243581369395418584">"Tema diubah"</string>
