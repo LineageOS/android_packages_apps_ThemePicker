@@ -240,6 +240,11 @@ public abstract class ColorOption implements CustomizationOption<ColorOption> {
     }
 
     /**
+     * @return the style of this color option for logging
+     */
+    public abstract int getStyleForLogging();
+
+    /**
      * @return the index of this color option
      */
     public int getIndex() {
