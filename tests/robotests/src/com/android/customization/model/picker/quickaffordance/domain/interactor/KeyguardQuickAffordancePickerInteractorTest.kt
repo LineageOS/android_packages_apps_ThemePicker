@@ -132,7 +132,7 @@ class KeyguardQuickAffordancePickerInteractorTest {
                 affordanceId = FakeCustomizationProviderClient.AFFORDANCE_3,
             )
 
-            underTest.unselectAll(
+            underTest.unselectAllFromSlot(
                 slotId = KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END,
             )
 
