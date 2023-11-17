@@ -16,6 +16,8 @@
 package com.android.wallpaper.module
 
 import android.content.Context
+import com.android.customization.model.color.ColorCustomizationManager
+import com.android.customization.model.theme.OverlayManagerCompat
 import com.android.customization.module.CustomizationInjector
 import com.android.customization.module.DefaultCustomizationPreferences
 import com.android.customization.module.ThemePickerInjector
@@ -57,6 +59,14 @@ abstract class AppModule {
         @Singleton
         fun provideDefaultWallpaperModelFactory(): DefaultWallpaperModelFactory {
             return DefaultWallpaperModelFactory()
+        }
+
+        @Provides
+        @Singleton
+        fun provideColorCustomizationManager(
+            @ApplicationContext context: Context
+        ): ColorCustomizationManager {
+            return ColorCustomizationManager.getInstance(context, OverlayManagerCompat(context))
         }
     }
 }

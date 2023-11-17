@@ -103,6 +103,8 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"Захиалгат өнгө"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"Захиалгат дүрс"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"Захиалгат загварын нэр"</string>
+    <!-- no translation found for accessibility_clock_slider_description (8374135133110681332) -->
+    <skip />
     <string name="mode_title" msgid="2394873501427436055">"Бараан загвар"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"Батарей хэмнэгчийн улмаас түр зуур идэвхгүй болгосон"</string>
     <string name="mode_changed" msgid="2243581369395418584">"Загварыг өөрчилсөн"</string>

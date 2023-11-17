@@ -47,6 +47,7 @@ import android.stats.style.StyleEnums.WALLPAPER_EFFECT_FG_DOWNLOAD
 import android.stats.style.StyleEnums.WALLPAPER_EFFECT_PROBE
 import android.stats.style.StyleEnums.WALLPAPER_EXPLORE
 import android.text.TextUtils
+import com.android.customization.model.color.ColorCustomizationManager
 import com.android.customization.model.grid.GridOption
 import com.android.customization.module.logging.ThemesUserEventLogger.ClockSize
 import com.android.customization.module.logging.ThemesUserEventLogger.ColorSource
@@ -64,6 +65,7 @@ class ThemesUserEventLoggerImpl
 @Inject
 constructor(
     private val preferences: WallpaperPreferences,
+    private val colorManager: ColorCustomizationManager,
     private val appSessionId: AppSessionId,
 ) : ThemesUserEventLogger {
 
@@ -74,6 +76,9 @@ constructor(
             .setLockWallpaperCategoryHash(preferences.getLockCategoryHash())
             .setLockWallpaperIdHash(preferences.getLockWallpaperIdHash())
             .setEffectIdHash(preferences.getHomeWallpaperEffectsIdHash())
+            .setColorSource(colorManager.currentColorSourceForLogging)
+            .setColorVariant(colorManager.currentStyleForLogging)
+            .setSeedColor(colorManager.currentSeedColorForLogging)
             .log()
     }
 
@@ -157,13 +162,13 @@ constructor(
 
     override fun logThemeColorApplied(
         @ColorSource source: Int,
-        variant: Int,
+        style: Int,
         seedColor: Int,
     ) {
         SysUiStatsLogger(THEME_COLOR_APPLIED)
             .setAppSessionId(appSessionId.getId())
             .setColorSource(source)
-            .setColorVariant(variant)
+            .setColorVariant(style)
             .setSeedColor(seedColor)
             .log()
     }
