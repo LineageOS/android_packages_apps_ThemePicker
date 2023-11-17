@@ -217,7 +217,9 @@ private constructor(
                             if (!isSelected) {
                                 {
                                     viewModelScope.launch {
-                                        quickAffordanceInteractor.unselectAll(selectedSlotId)
+                                        quickAffordanceInteractor.unselectAllFromSlot(
+                                            selectedSlotId
+                                        )
                                         logger.logShortcutApplied(
                                             shortcut = "none",
                                             shortcutSlotId = selectedSlotId,
