@@ -141,6 +141,7 @@ object ClockSettingsBinder {
 
                 launch {
                     viewModel.colorOptions.collect { colorOptions ->
+                        colorOptionContainerListView.removeAllViews()
                         colorOptions.forEachIndexed { index, colorOption ->
                             colorOption.payload?.let { payload ->
                                 val item =
