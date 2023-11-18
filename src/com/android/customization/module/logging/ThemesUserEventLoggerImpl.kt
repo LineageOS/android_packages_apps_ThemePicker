@@ -25,6 +25,7 @@ import android.stats.style.StyleEnums.DARK_THEME_APPLIED
 import android.stats.style.StyleEnums.GRID_APPLIED
 import android.stats.style.StyleEnums.LAUNCHED_CROP_AND_SET_ACTION
 import android.stats.style.StyleEnums.LAUNCHED_DEEP_LINK
+import android.stats.style.StyleEnums.LAUNCHED_KEYGUARD
 import android.stats.style.StyleEnums.LAUNCHED_LAUNCHER
 import android.stats.style.StyleEnums.LAUNCHED_LAUNCH_ICON
 import android.stats.style.StyleEnums.LAUNCHED_PREFERENCE_UNSPECIFIED
@@ -55,6 +56,7 @@ import com.android.wallpaper.module.WallpaperPreferences
 import com.android.wallpaper.module.logging.UserEventLogger.EffectStatus
 import com.android.wallpaper.module.logging.UserEventLogger.SetWallpaperEntryPoint
 import com.android.wallpaper.module.logging.UserEventLogger.WallpaperDestination
+import com.android.wallpaper.util.ActivityUtils
 import com.android.wallpaper.util.LaunchSourceUtils
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -246,9 +248,10 @@ constructor(
                 LaunchSourceUtils.LAUNCH_SOURCE_SUW -> LAUNCHED_SUW
                 LaunchSourceUtils.LAUNCH_SOURCE_TIPS -> LAUNCHED_TIPS
                 LaunchSourceUtils.LAUNCH_SOURCE_DEEP_LINK -> LAUNCHED_DEEP_LINK
+                LaunchSourceUtils.LAUNCH_SOURCE_KEYGUARD -> LAUNCHED_KEYGUARD
                 else -> LAUNCHED_PREFERENCE_UNSPECIFIED
             }
-        } else if (hasExtra(LaunchSourceUtils.LAUNCH_SETTINGS_SEARCH)) {
+        } else if (ActivityUtils.isLaunchedFromSettingsSearch(this)) {
             LAUNCHED_SETTINGS_SEARCH
         } else if (action != null && action == WallpaperManager.ACTION_CROP_AND_SET_WALLPAPER) {
             LAUNCHED_CROP_AND_SET_ACTION

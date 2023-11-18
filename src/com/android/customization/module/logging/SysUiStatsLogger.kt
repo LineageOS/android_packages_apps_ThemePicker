@@ -15,15 +15,15 @@
  */
 package com.android.customization.module.logging
 
+import android.stats.style.StyleEnums.CLOCK_SIZE_UNSPECIFIED
+import android.stats.style.StyleEnums.COLOR_SOURCE_UNSPECIFIED
+import android.stats.style.StyleEnums.DATE_PREFERENCE_UNSPECIFIED
+import android.stats.style.StyleEnums.EFFECT_PREFERENCE_UNSPECIFIED
+import android.stats.style.StyleEnums.LAUNCHED_PREFERENCE_UNSPECIFIED
+import android.stats.style.StyleEnums.LOCATION_PREFERENCE_UNSPECIFIED
+import android.stats.style.StyleEnums.SET_WALLPAPER_ENTRY_POINT_UNSPECIFIED
+import android.stats.style.StyleEnums.WALLPAPER_DESTINATION_UNSPECIFIED
 import com.android.systemui.shared.system.SysUiStatsLog
-import com.android.systemui.shared.system.SysUiStatsLog.STYLE_UICHANGED__CLOCK_SIZE__CLOCK_SIZE_UNSPECIFIED
-import com.android.systemui.shared.system.SysUiStatsLog.STYLE_UICHANGED__COLOR_SOURCE__COLOR_SOURCE_UNSPECIFIED
-import com.android.systemui.shared.system.SysUiStatsLog.STYLE_UICHANGED__DATE_PREFERENCE__DATE_PREFERENCE_UNSPECIFIED
-import com.android.systemui.shared.system.SysUiStatsLog.STYLE_UICHANGED__EFFECT_PREFERENCE__EFFECT_PREFERENCE_UNSPECIFIED
-import com.android.systemui.shared.system.SysUiStatsLog.STYLE_UICHANGED__LAUNCHED_PREFERENCE__LAUNCHED_PREFERENCE_UNSPECIFIED
-import com.android.systemui.shared.system.SysUiStatsLog.STYLE_UICHANGED__LOCATION_PREFERENCE__LOCATION_PREFERENCE_UNSPECIFIED
-import com.android.systemui.shared.system.SysUiStatsLog.STYLE_UICHANGED__SET_WALLPAPER_ENTRY_POINT__SET_WALLPAPER_ENTRY_POINT_UNSPECIFIED
-import com.android.systemui.shared.system.SysUiStatsLog.STYLE_UICHANGED__WALLPAPER_DESTINATION__WALLPAPER_DESTINATION_UNSPECIFIED
 import com.android.systemui.shared.system.SysUiStatsLog.STYLE_UI_CHANGED
 import com.android.wallpaper.module.logging.UserEventLogger.SetWallpaperEntryPoint
 
@@ -38,12 +38,10 @@ class SysUiStatsLogger(val action: Int) {
     private var wallpaperCategoryHash = 0
     private var wallpaperIdHash = 0
     private var colorPreference = 0
-    private var locationPreference =
-        STYLE_UICHANGED__LOCATION_PREFERENCE__LOCATION_PREFERENCE_UNSPECIFIED
-    private var datePreference = STYLE_UICHANGED__DATE_PREFERENCE__DATE_PREFERENCE_UNSPECIFIED
-    private var launchedPreference =
-        STYLE_UICHANGED__LAUNCHED_PREFERENCE__LAUNCHED_PREFERENCE_UNSPECIFIED
-    private var effectPreference = STYLE_UICHANGED__EFFECT_PREFERENCE__EFFECT_PREFERENCE_UNSPECIFIED
+    private var locationPreference = LOCATION_PREFERENCE_UNSPECIFIED
+    private var datePreference = DATE_PREFERENCE_UNSPECIFIED
+    private var launchedPreference = LAUNCHED_PREFERENCE_UNSPECIFIED
+    private var effectPreference = EFFECT_PREFERENCE_UNSPECIFIED
     private var effectIdHash = 0
     private var lockWallpaperCategoryHash = 0
     private var lockWallpaperIdHash = 0
@@ -54,13 +52,11 @@ class SysUiStatsLogger(val action: Int) {
     private var timeElapsedMillis = 0L
     private var effectResultCode = -1
     private var appSessionId = 0
-    private var setWallpaperEntryPoint =
-        STYLE_UICHANGED__SET_WALLPAPER_ENTRY_POINT__SET_WALLPAPER_ENTRY_POINT_UNSPECIFIED
-    private var wallpaperDestination =
-        STYLE_UICHANGED__WALLPAPER_DESTINATION__WALLPAPER_DESTINATION_UNSPECIFIED
-    private var colorSource = STYLE_UICHANGED__COLOR_SOURCE__COLOR_SOURCE_UNSPECIFIED
+    private var setWallpaperEntryPoint = SET_WALLPAPER_ENTRY_POINT_UNSPECIFIED
+    private var wallpaperDestination = WALLPAPER_DESTINATION_UNSPECIFIED
+    private var colorSource = COLOR_SOURCE_UNSPECIFIED
     private var seedColor = 0
-    private var clockSize = STYLE_UICHANGED__CLOCK_SIZE__CLOCK_SIZE_UNSPECIFIED
+    private var clockSize = CLOCK_SIZE_UNSPECIFIED
     private var toggleOn = false
     private var shortcut = ""
     private var shortcutSlotId = ""

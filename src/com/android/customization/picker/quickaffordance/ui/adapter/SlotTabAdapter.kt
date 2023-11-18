@@ -67,7 +67,9 @@ class SlotTabAdapter : RecyclerView.Adapter<SlotTabAdapter.ViewHolder>() {
                 .find { it.isSelected.value }
                 ?.text
                 ?.asString(holder.itemView.context)
-        stateDescription?.let { holder.itemView.stateDescription = it }
+        holder.itemView.stateDescription =
+            stateDescription
+                ?: holder.itemView.resources.getString(R.string.keyguard_affordance_none)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
