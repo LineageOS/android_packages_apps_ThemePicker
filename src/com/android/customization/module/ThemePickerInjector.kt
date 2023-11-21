@@ -17,6 +17,7 @@ package com.android.customization.module
 
 import android.app.Activity
 import android.app.UiModeManager
+import android.app.WallpaperColors
 import android.app.WallpaperManager
 import android.content.Context
 import android.content.Intent
@@ -29,6 +30,8 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import com.android.customization.model.color.ColorCustomizationManager
 import com.android.customization.model.color.ColorOptionsProvider.COLOR_SOURCE_PRESET
+import com.android.customization.model.color.ThemedWallpaperColorResources
+import com.android.customization.model.color.WallpaperColorResources
 import com.android.customization.model.grid.GridOptionsManager
 import com.android.customization.model.mode.DarkModeSnapshotRestorer
 import com.android.customization.model.theme.OverlayManagerCompat
@@ -397,6 +400,13 @@ internal constructor(
             ?: ClockPickerSnapshotRestorer(getClockPickerInteractor(context)).also {
                 clockPickerSnapshotRestorer = it
             }
+    }
+
+    override fun getWallpaperColorResources(
+        wallpaperColors: WallpaperColors,
+        context: Context
+    ): WallpaperColorResources {
+        return ThemedWallpaperColorResources(wallpaperColors, context)
     }
 
     override fun getColorPickerInteractor(
