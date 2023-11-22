@@ -103,8 +103,7 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"Kolor niestandardowy"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"Kształt niestandardowy"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"Nazwa stylu niestandardowego"</string>
-    <!-- no translation found for accessibility_clock_slider_description (8374135133110681332) -->
-    <skip />
+    <string name="accessibility_clock_slider_description" msgid="8374135133110681332">"Intensywność kolorów"</string>
     <string name="mode_title" msgid="2394873501427436055">"Ciemny motyw"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"Tymczasowo wyłączono z powodu oszczędzania baterii"</string>
     <string name="mode_changed" msgid="2243581369395418584">"Motyw został zmieniony"</string>

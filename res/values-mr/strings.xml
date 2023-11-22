@@ -103,8 +103,7 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"कस्टम रंग"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"कस्टम आकार"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"कस्टम शैलीचे नाव"</string>
-    <!-- no translation found for accessibility_clock_slider_description (8374135133110681332) -->
-    <skip />
+    <string name="accessibility_clock_slider_description" msgid="8374135133110681332">"रंगाची तीव्रता"</string>
     <string name="mode_title" msgid="2394873501427436055">"गडद थीम"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"बॅटरी सेव्हर मुळे तात्पुरते बंद केले आहे"</string>
     <string name="mode_changed" msgid="2243581369395418584">"थीम बदलली आहे"</string>
