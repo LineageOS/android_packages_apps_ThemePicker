@@ -21,7 +21,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.IntRange
 import com.android.customization.picker.clock.shared.ClockSize
 import com.android.customization.picker.clock.shared.model.ClockMetadataModel
-import com.android.systemui.plugins.ClockMetadata
+import com.android.systemui.plugins.clocks.ClockMetadata
 import com.android.systemui.shared.clocks.ClockRegistry
 import com.android.wallpaper.settings.data.repository.SecureSettingsRepository
 import kotlinx.coroutines.CoroutineDispatcher
