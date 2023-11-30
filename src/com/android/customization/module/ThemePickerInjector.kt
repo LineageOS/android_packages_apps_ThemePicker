@@ -406,7 +406,7 @@ internal constructor(
         wallpaperColors: WallpaperColors,
         context: Context
     ): WallpaperColorResources {
-        return ThemedWallpaperColorResources(wallpaperColors, context)
+        return ThemedWallpaperColorResources(wallpaperColors, getSecureSettingsRepository(context))
     }
 
     override fun getColorPickerInteractor(
