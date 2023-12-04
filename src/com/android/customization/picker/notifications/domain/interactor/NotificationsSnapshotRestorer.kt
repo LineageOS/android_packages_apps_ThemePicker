@@ -12,24 +12,28 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
 
 package com.android.customization.picker.notifications.domain.interactor
 
-import com.android.customization.picker.notifications.shared.model.NotificationSettingsModel
+import com.android.systemui.shared.notifications.domain.interactor.NotificationSettingsInteractor
+import com.android.systemui.shared.notifications.shared.model.NotificationSettingsModel
+import com.android.wallpaper.picker.di.modules.BackgroundDispatcher
 import com.android.wallpaper.picker.undo.domain.interactor.SnapshotRestorer
 import com.android.wallpaper.picker.undo.domain.interactor.SnapshotStore
 import com.android.wallpaper.picker.undo.shared.model.RestorableSnapshot
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 /** Handles state restoration for notification settings. */
 class NotificationsSnapshotRestorer(
-    private val interactor: NotificationsInteractor,
+    private val interactor: NotificationSettingsInteractor,
+    @BackgroundDispatcher private val backgroundScope: CoroutineScope,
 ) : SnapshotRestorer {
 
     private var snapshotStore: SnapshotStore = SnapshotStore.NOOP
 
-    fun storeSnapshot(model: NotificationSettingsModel) {
+    private fun storeSnapshot(model: NotificationSettingsModel) {
         snapshotStore.store(snapshot(model))
     }
 
@@ -37,6 +41,7 @@ class NotificationsSnapshotRestorer(
         store: SnapshotStore,
     ): RestorableSnapshot {
         snapshotStore = store
+        backgroundScope.launch { interactor.settings.collect { model -> storeSnapshot(model) } }
         return snapshot(interactor.getSettings())
     }
 
