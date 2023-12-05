@@ -80,7 +80,10 @@ public class ThemedIconSectionController implements
         mThemedIconSectionView.setViewListener(this::onViewActivated);
         mThemedIconSectionView.getSwitch().setChecked(mSavedThemedIconEnabled);
         mThemedIconOptionsProvider.fetchThemedIconEnabled(
-                enabled -> mThemedIconSectionView.getSwitch().setChecked(enabled));
+                enabled -> {
+                    mInteractor.setActivated(enabled);
+                    mThemedIconSectionView.getSwitch().setChecked(enabled);
+                });
         mInteractor.isActivatedAsLiveData().observeForever(mIsActivatedChangeObserver);
         return mThemedIconSectionView;
     }
