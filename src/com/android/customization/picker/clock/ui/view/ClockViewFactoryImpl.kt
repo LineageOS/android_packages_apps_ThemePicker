@@ -26,8 +26,8 @@ import android.widget.FrameLayout
 import androidx.annotation.ColorInt
 import androidx.core.text.util.LocalePreferences
 import androidx.lifecycle.LifecycleOwner
-import com.android.systemui.plugins.ClockController
-import com.android.systemui.plugins.WeatherData
+import com.android.systemui.plugins.clocks.ClockController
+import com.android.systemui.plugins.clocks.WeatherData
 import com.android.systemui.shared.clocks.ClockRegistry
 import com.android.wallpaper.R
 import com.android.wallpaper.util.TimeUtils.TimeTicker

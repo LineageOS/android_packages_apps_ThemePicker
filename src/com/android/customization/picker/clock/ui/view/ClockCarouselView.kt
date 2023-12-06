@@ -31,7 +31,7 @@ import androidx.core.view.get
 import androidx.core.view.isNotEmpty
 import com.android.customization.picker.clock.shared.ClockSize
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselItemViewModel
-import com.android.systemui.plugins.ClockController
+import com.android.systemui.plugins.clocks.ClockController
 import com.android.wallpaper.R
 import com.android.wallpaper.picker.FixedWidthDisplayRatioFrameLayout
 import java.lang.Float.max

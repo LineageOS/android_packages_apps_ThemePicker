@@ -6,10 +6,10 @@ import androidx.lifecycle.LifecycleOwner
 import com.android.customization.picker.clock.data.repository.FakeClockPickerRepository
 import com.android.customization.picker.clock.ui.FakeClockViewFactory.Companion.fakeClocks
 import com.android.customization.picker.clock.ui.view.ClockViewFactory
-import com.android.systemui.plugins.ClockConfig
-import com.android.systemui.plugins.ClockController
-import com.android.systemui.plugins.ClockEvents
-import com.android.systemui.plugins.ClockFaceController
+import com.android.systemui.plugins.clocks.ClockConfig
+import com.android.systemui.plugins.clocks.ClockController
+import com.android.systemui.plugins.clocks.ClockEvents
+import com.android.systemui.plugins.clocks.ClockFaceController
 import java.io.PrintWriter
 
 /**
