@@ -21,8 +21,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
+import androidx.transition.Transition
+import androidx.transition.doOnStart
 import com.android.customization.module.ThemePickerInjector
 import com.android.customization.picker.quickaffordance.ui.binder.KeyguardQuickAffordancePickerBinder
 import com.android.customization.picker.quickaffordance.ui.binder.KeyguardQuickAffordancePreviewBinder
@@ -30,9 +34,7 @@ import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQui
 import com.android.wallpaper.R
 import com.android.wallpaper.module.InjectorProvider
 import com.android.wallpaper.picker.AppbarFragment
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-@OptIn(ExperimentalCoroutinesApi::class)
 class KeyguardQuickAffordancePickerFragment : AppbarFragment() {
     companion object {
         const val DESTINATION_ID = "quick_affordances"
@@ -77,6 +79,12 @@ class KeyguardQuickAffordancePickerFragment : AppbarFragment() {
             viewModel = viewModel,
             lifecycleOwner = this,
         )
+        postponeEnterTransition()
+        view.post { startPostponedEnterTransition() }
+        (returnTransition as? Transition)?.doOnStart {
+            // Hide preview during exit transition animation
+            view?.findViewById<View>(R.id.preview)?.isVisible = false
+        }
         return view
     }
 
@@ -86,5 +94,9 @@ class KeyguardQuickAffordancePickerFragment : AppbarFragment() {
 
     override fun getToolbarColorId(): Int {
         return android.R.color.transparent
+    }
+
+    override fun getToolbarTextColor(): Int {
+        return ContextCompat.getColor(requireContext(), R.color.system_on_surface)
     }
 }

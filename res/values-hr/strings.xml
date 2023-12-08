@@ -22,8 +22,7 @@
     <string name="clock_title" msgid="1974314575211361352">"Prilagođeni sat"</string>
     <string name="clock_description" msgid="3563839327378948">"Odaberite prilagođeni sat"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Promijenite prilagođeni sat"</string>
-    <string name="select_clock_action_description" msgid="5025888763471843648">"Opcija brojčanika <xliff:g id="ID_1">%1$s</xliff:g>"</string>
-    <string name="clock_settings_title" msgid="2050906379377120431">"Boja i veličina sata"</string>
+    <string name="clock_settings_title" msgid="2940654205471453913">"Postavke sata"</string>
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"Boja i veličina sata"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>"</string>
     <string name="clock_color" msgid="8081608867289156163">"Boja"</string>
@@ -40,7 +39,7 @@
     <string name="clock_size_dynamic" msgid="1023930312455061642">"Dinamičan"</string>
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Veličina sata mijenja se u skladu sa sadržajem zaključanog zaslona"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Velik"</string>
-    <string name="clock_size_small" msgid="2280449912094164133">"Mali"</string>
+    <string name="clock_size_small" msgid="2280449912094164133">"Malo"</string>
     <string name="grid_title" msgid="1688173478777254123">"Rešetka aplik."</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Primijeni"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Dodirnite da biste uredili"</string>
@@ -106,18 +105,18 @@
     <string name="beta_title" msgid="8703819523760746458">"Beta"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"Promjena rešetke aplikacije"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"Boje pozadine"</string>
-    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Ikone, tekst i ostalo odgovara bojama na pozadini"</string>
+    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Ikone, tekst i više toga odgovaraju bojama na pozadini"</string>
     <string name="wallpaper_color_title" msgid="5687965239180986458">"Boja pozadine"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"Osnovne boje"</string>
-    <string name="preset_color_tab_2" msgid="1444107326712562538">"Druge boje"</string>
-    <string name="preset_color_subheader" msgid="8230588536141279371">"Odaberite bilo koju boju za svoje ikone, sat i ostalo"</string>
+    <string name="preset_color_tab_2" msgid="1444107326712562538">"Ostale boje"</string>
+    <string name="preset_color_subheader" msgid="8230588536141279371">"Odaberite bilo koju boju za svoje ikone, sat i više"</string>
     <string name="color_changed" msgid="7029571720331641235">"Promijenjena boja"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"Dinamično"</string>
     <string name="color_picker_title" msgid="6666830057938082864">"Boje sustava"</string>
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Lijevi prečac"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Desni prečac"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Ništa"</string>
-    <string name="keyguard_affordance_enablement_dialog_headline" msgid="365379085932610314">"Nije moguće dodati prečac"</string>
+    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"Da biste odabrali <xliff:g id="APPNAME">%1$s</xliff:g>, označite sljedeće"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Otvori <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Da biste aplikaciju <xliff:g id="APPNAME">%1$s</xliff:g> dodali kao prečac, učinite sljedeće"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Gotovo"</string>
@@ -130,13 +129,6 @@
     <string name="more_settings_section_title" msgid="1331425454775815958">"Više opcija zaključanog zaslona"</string>
     <string name="more_settings_section_description" msgid="1860115709122398325">"Privatnost, Upravo svira i drugo"</string>
     <string name="more_colors" msgid="3191071655353004591">"Više boja"</string>
-    <string name="content_description_dynamic_color_option" msgid="2191721655642529886">"Primarna dinamična tema"</string>
-    <string name="content_description_neutral_color_option" msgid="3385443834001275301">"Primarna neutralna tema"</string>
-    <string name="content_description_vibrant_color_option" msgid="2230249305878632821">"Primarna vibrantna tema"</string>
-    <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Primarna ekspresivna tema"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Zadana opcija boje"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Opcija boje <xliff:g id="ID_1">%1$d</xliff:g>"</string>
-    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Prijeđite prstom ulijevo da biste odabrali drugi brojčanik"</string>
-    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Prijeđite prstom udesno da biste odabrali drugi brojčanik"</string>
-    <string name="custom_clocks_label" msgid="8168419717593569347">"Prilagođeni satovi"</string>
 </resources>

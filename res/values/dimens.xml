@@ -61,6 +61,7 @@
     <!-- Dimensions for the grid options -->
     <dimen name="grid_options_container_bottom_margin">@dimen/bottom_actions_height</dimen>
     <dimen name="grid_options_container_horizontal_margin">24dp</dimen>
+    <dimen name="grid_apply_button_note_text_size">11sp</dimen>
 
     <dimen name="card_title_text_size">16sp</dimen>
     <dimen name="card_header_icon_size">32dp</dimen>
@@ -170,14 +171,4 @@
     <dimen name="clock_color_size_button_corner_radius">16dp</dimen>
     <dimen name="clock_color_size_button_icon_size">20dp</dimen>
     <dimen name="clock_color_size_button_icon_margin_end">12dp</dimen>
-
-    <!--
-    Dimension for clock translationY when swiping clock carousel in picker,
-    copied from sysui resources
-    -->
-    <dimen name="keyguard_large_clock_top_margin">-60dp</dimen>
-    <!-- Dimension for the clock view, copied from sysui resources. -->
-    <dimen name="small_clock_height">114dp</dimen>
-    <dimen name="small_clock_padding_top">28dp</dimen>
-    <dimen name="clock_padding_start">28dp</dimen>
 </resources>

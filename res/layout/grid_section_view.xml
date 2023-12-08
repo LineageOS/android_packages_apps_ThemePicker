@@ -49,7 +49,8 @@
         android:layout_height="@dimen/option_tile_width"
         android:scaleType="center"
         android:src="@drawable/ic_grid_24px"
-        android:background="@drawable/option_border_color"
+        android:tint="@color/system_on_surface"
+        android:background="@drawable/picker_section_icon_background"
         android:contentDescription="@string/gird_picker_entry_content_description" />
 
 </com.android.customization.picker.grid.GridSectionView>

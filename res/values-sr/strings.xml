@@ -22,8 +22,7 @@
     <string name="clock_title" msgid="1974314575211361352">"Прилагођени сат"</string>
     <string name="clock_description" msgid="3563839327378948">"Прилагођени сат"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Промените прилагођени сат"</string>
-    <string name="select_clock_action_description" msgid="5025888763471843648">"Опција бројчаника <xliff:g id="ID_1">%1$s</xliff:g>"</string>
-    <string name="clock_settings_title" msgid="2050906379377120431">"Боја и величина сата"</string>
+    <string name="clock_settings_title" msgid="2940654205471453913">"Подешавања сата"</string>
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"Боја и величина сата"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>"</string>
     <string name="clock_color" msgid="8081608867289156163">"Боја"</string>
@@ -40,7 +39,7 @@
     <string name="clock_size_dynamic" msgid="1023930312455061642">"Динамички"</string>
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Величина сата се мења у складу са садржајем закључаног екрана"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Велико"</string>
-    <string name="clock_size_small" msgid="2280449912094164133">"Мали"</string>
+    <string name="clock_size_small" msgid="2280449912094164133">"Мало"</string>
     <string name="grid_title" msgid="1688173478777254123">"Мрежа апл."</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Примени"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Додирните да бисте изменили"</string>
@@ -117,7 +116,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Лева пречица"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Десна пречица"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Ништа"</string>
-    <string name="keyguard_affordance_enablement_dialog_headline" msgid="365379085932610314">"Додавање пречице није успело"</string>
+    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"Да бисте изабрали „<xliff:g id="APPNAME">%1$s</xliff:g>“, проверите следеће"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Отворите: <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Да бисте додали апликацију <xliff:g id="APPNAME">%1$s</xliff:g> као пречицу, уверите се"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Готово"</string>
@@ -130,13 +129,6 @@
     <string name="more_settings_section_title" msgid="1331425454775815958">"Још опција за закључани екран"</string>
     <string name="more_settings_section_description" msgid="1860115709122398325">"Приватност, Тренутно свира и друго"</string>
     <string name="more_colors" msgid="3191071655353004591">"Још боја"</string>
-    <string name="content_description_dynamic_color_option" msgid="2191721655642529886">"Примарна динамична тема"</string>
-    <string name="content_description_neutral_color_option" msgid="3385443834001275301">"Примарна неутрална тема"</string>
-    <string name="content_description_vibrant_color_option" msgid="2230249305878632821">"Примарна интензивна тема"</string>
-    <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Примарна експресивна тема"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Подразумевана опција боје"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Опција боје <xliff:g id="ID_1">%1$d</xliff:g>"</string>
-    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Превуците налево да бисте одабрали други бројчаник"</string>
-    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Превуците надесно да бисте одабрали други бројчаник"</string>
-    <string name="custom_clocks_label" msgid="8168419717593569347">"Прилагођени сатови"</string>
 </resources>

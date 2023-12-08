@@ -17,13 +17,12 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name" msgid="1647136562008520313">"Hiasan latar &amp; gaya"</string>
+    <string name="app_name" msgid="1647136562008520313">"Kertas dinding &amp; gaya"</string>
     <string name="theme_title" msgid="2144932106319405101">"Gaya"</string>
     <string name="clock_title" msgid="1974314575211361352">"Jam Tersuai"</string>
     <string name="clock_description" msgid="3563839327378948">"Pilih jam tersuai"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Tukar jam tersuai"</string>
-    <string name="select_clock_action_description" msgid="5025888763471843648">"Pilihan muka jam <xliff:g id="ID_1">%1$s</xliff:g>"</string>
-    <string name="clock_settings_title" msgid="2050906379377120431">"Warna &amp; saiz jam"</string>
+    <string name="clock_settings_title" msgid="2940654205471453913">"Tetapan Jam"</string>
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"Warna &amp; saiz jam"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>"</string>
     <string name="clock_color" msgid="8081608867289156163">"Warna"</string>
@@ -105,7 +104,7 @@
     <string name="themed_icon_title" msgid="7312460430471956558">"Ikon bertema"</string>
     <string name="beta_title" msgid="8703819523760746458">"Beta"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"Tukar grid apl"</string>
-    <string name="wallpaper_color_tab" msgid="1447926591721403840">"Warna hiasan latar"</string>
+    <string name="wallpaper_color_tab" msgid="1447926591721403840">"Warna kertas dinding"</string>
     <string name="wallpaper_color_subheader" msgid="4044464573669965670">"Ikon, teks dan pelbagai padanan warna pada hiasan latar"</string>
     <string name="wallpaper_color_title" msgid="5687965239180986458">"Warna kertas dinding"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"Warna asas"</string>
@@ -117,7 +116,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Pintasan kiri"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Pintasan kanan"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Tiada"</string>
-    <string name="keyguard_affordance_enablement_dialog_headline" msgid="365379085932610314">"Tidak dapat menambahkan pintasan"</string>
+    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"Untuk memilih `<xliff:g id="APPNAME">%1$s</xliff:g>` semak perkara berikut"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Buka <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Untuk menambahkan apl <xliff:g id="APPNAME">%1$s</xliff:g> sebagai pintasan, pastikan"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Selesai"</string>
@@ -130,13 +129,6 @@
     <string name="more_settings_section_title" msgid="1331425454775815958">"Lebih banyak pilihan skrin kunci"</string>
     <string name="more_settings_section_description" msgid="1860115709122398325">"Privasi, Now Playing dan pelbagai lagi"</string>
     <string name="more_colors" msgid="3191071655353004591">"Lagi Warna"</string>
-    <string name="content_description_dynamic_color_option" msgid="2191721655642529886">"Tema dinamik utama"</string>
-    <string name="content_description_neutral_color_option" msgid="3385443834001275301">"Tema neutral utama"</string>
-    <string name="content_description_vibrant_color_option" msgid="2230249305878632821">"Tema ceria utama"</string>
-    <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Tema ekspresif utama"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Pilihan warna lalai"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Pilihan warna <xliff:g id="ID_1">%1$d</xliff:g>"</string>
-    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Leret ke kiri untuk memilih muka jam yang lain"</string>
-    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Leret ke kanan untuk memilih muka jam yang lain"</string>
-    <string name="custom_clocks_label" msgid="8168419717593569347">"Jam Tersuai"</string>
 </resources>

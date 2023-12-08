@@ -20,8 +20,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
+import androidx.transition.Transition
+import androidx.transition.doOnStart
 import com.android.customization.module.ThemePickerInjector
 import com.android.customization.picker.clock.ui.binder.ClockSettingsBinder
 import com.android.systemui.shared.clocks.shared.model.ClockPreviewConstants
@@ -130,6 +134,8 @@ class ClockSettingsFragment : AppbarFragment() {
             viewLifecycleOwner,
         )
 
+        (returnTransition as? Transition)?.doOnStart { lockScreenView.isVisible = false }
+
         return view
     }
 
@@ -139,5 +145,9 @@ class ClockSettingsFragment : AppbarFragment() {
 
     override fun getToolbarColorId(): Int {
         return android.R.color.transparent
+    }
+
+    override fun getToolbarTextColor(): Int {
+        return ContextCompat.getColor(requireContext(), R.color.system_on_surface)
     }
 }
