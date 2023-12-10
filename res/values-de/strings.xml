@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Die Größe der Uhr ändert sich je nach Inhalt auf dem Sperrbildschirm"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Groß"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"Klein"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"Eine kleine Uhr wird in der Ecke des Displays angezeigt"</string>
     <string name="grid_title" msgid="1688173478777254123">"App-Raster"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Anwenden"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Zum Bearbeiten tippen"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"Füg jedem Bildschirm deine bevorzugten Schriftarten hinzu"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"Rastergröße auswählen"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g> x <xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"Durch Ändern der Rastergröße wird der Arbeitsbereich neu geladen. Dies kann ein paar Sekunden dauern."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"Arbeitsbereich wird mit Rastergröße %1$s neu geladen"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"Arbeitsbereich konnte mit Rastergröße %1$s nicht neu geladen werden"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"Design festgelegt"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"Uhr festgelegt"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"Raster festgelegt"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Primäres ausdrucksstarkes Design"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Standardfarboption"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Farboption <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Nach links wischen, um ein anderes Zifferblatt auszuwählen"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Nach rechts wischen, um ein anderes Zifferblatt auszuwählen"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"Individuelle Zifferblätter"</string>
 </resources>

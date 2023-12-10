@@ -26,6 +26,8 @@ class ColorPickerInteractor(
     private val repository: ColorPickerRepository,
     private val snapshotRestorer: Provider<ColorPickerSnapshotRestorer>,
 ) {
+    val isApplyingSystemColor = repository.isApplyingSystemColor
+
     /**
      * The newly selected color option for overwriting the current active option during an
      * optimistic update, the value is set to null when update fails

@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"時計のサイズがロック画面の状況に応じて変わります"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"大"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"小"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"画面の隅に小さい時計を表示する"</string>
     <string name="grid_title" msgid="1688173478777254123">"アプリグリッド"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"適用"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"タップして編集"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"お気に入りのフォントをすべての画面に追加できます"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"グリッドサイズの選択"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"グリッドのサイズを変えるとワークスペースが再読み込みされます（数秒かかることがあります）。"</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"%1$s グリッドでワークスペースを再読み込みしています"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"%1$s グリッドでのワークスペースの再読み込みに失敗しました"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"スタイルの設定が完了しました"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"時計の設定が完了しました"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"グリッドの設定が完了しました"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"メインの表現力豊かなテーマ"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"デフォルトのカラー オプション"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"カラー オプション <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"別の文字盤を選択するには、左にスワイプします"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"別の文字盤を選択するには、右にスワイプします"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"カスタム時計"</string>
 </resources>

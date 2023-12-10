@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"ಲಾಕ್ ಸ್ಕ್ರೀನ್‌ನಲ್ಲಿರುವ ವಿಷಯಕ್ಕೆ ಅನುಗುಣವಾಗಿ ಗಡಿಯಾರದ ಗಾತ್ರ ಬದಲಾಗುತ್ತದೆ"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"ದೊಡ್ಡದು"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"ಚಿಕ್ಕದು"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"ನಿಮ್ಮ ಸ್ಕ್ರೀನ್‌ನ ಮೂಲೆಯಲ್ಲಿ ಸಣ್ಣ ಗಡಿಯಾರವೊಂದು ಕಾಣಿಸುತ್ತದೆ"</string>
     <string name="grid_title" msgid="1688173478777254123">"ಆ್ಯಪ್ ಗ್ರಿಡ್"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"ಅನ್ವಯಿಸಿ"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"ಎಡಿಟ್ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"ಪ್ರತಿ ಸ್ಕ್ರೀನ್‌ಗೆ ನಿಮ್ಮ ಮೆಚ್ಚಿನ ಫಾಂಟ್‌ಗಳನ್ನು ಸೇರಿಸಿ"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"ಗ್ರಿಡ್ ಗಾತ್ರವನ್ನು ಆರಿಸಿ"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"ಗ್ರಿಡ್ ಗಾತ್ರವನ್ನು ಬದಲಾಯಿಸುವುದರಿಂದ ಕಾರ್ಯಸ್ಥಳವನ್ನು ಮರುಲೋಡ್ ಮಾಡುತ್ತದೆ ಮತ್ತು ಕೆಲವು ಸೆಕೆಂಡ್‌ಗಳನ್ನು ತೆಗೆದುಕೊಳ್ಳಬಹುದು."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"%1$s ಗ್ರಿಡ್ ಮೂಲಕ ಕಾರ್ಯಸ್ಥಳವನ್ನು ಮರುಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"%1$s ಗ್ರಿಡ್ ಮೂಲಕ ಕಾರ್ಯಸ್ಥಳವನ್ನು ಮರುಲೋಡ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"ಶೈಲಿಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಹೊಂದಿಸಲಾಗಿದೆ"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"ಗಡಿಯಾರವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಹೊಂದಿಸಲಾಗಿದೆ"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"ಗ್ರಿಡ್ ಅನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಹೊಂದಿಸಲಾಗಿದೆ"</string>
@@ -126,7 +130,7 @@
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"ಯಾವುದೂ ಅಲ್ಲ"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"ಲಾಕ್ ಸ್ಕ್ರೀನ್‌ನಲ್ಲಿ ಅಧಿಸೂಚನೆಗಳನ್ನು ತೋರಿಸಿ"</string>
-    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"ಲಾಕ್ ಸ್ಕ್ರೀನ್‌ನಲ್ಲಿ ಅಧಿಸೂಚನೆಗಳನ್ನು ಮರೆಮಾಡಿ"</string>
+    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"ಲಾಕ್ ಸ್ಕ್ರೀನ್‌ನಲ್ಲಿ ನೋಟಿಫಿಕೇಶನ್‌ಗಳನ್ನು ಮರೆಮಾಡಿ"</string>
     <string name="more_settings_section_title" msgid="1331425454775815958">"ಇನ್ನಷ್ಟು ಲಾಕ್ ಸ್ಕ್ರೀನ್ ಆಯ್ಕೆಗಳು"</string>
     <string name="more_settings_section_description" msgid="1860115709122398325">"ಗೌಪ್ಯತೆ, Now Playing ಮತ್ತು ಇನ್ನಷ್ಟು"</string>
     <string name="more_colors" msgid="3191071655353004591">"ಇನ್ನಷ್ಟು ಬಣ್ಣಗಳು"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"ಪ್ರಾಥಮಿಕ ಅಭಿವ್ಯಕ್ತಿಶೀಲ ಥೀಮ್"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"ಡೀಫಾಲ್ಟ್ ಬಣ್ಣದ ಆಯ್ಕೆ"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"ಬಣ್ಣದ ಆಯ್ಕೆ <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"ಬೇರೊಂದು ಕ್ಲಾಕ್ ಫೇಸ್ ಅನ್ನು ಆಯ್ಕೆಮಾಡಲು ಎಡಕ್ಕೆ ಸ್ವೈಪ್ ಮಾಡಿ"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"ಬೇರೊಂದು ಕ್ಲಾಕ್ ಫೇಸ್ ಅನ್ನು ಆಯ್ಕೆಮಾಡಲು ಬಲಕ್ಕೆ ಸ್ವೈಪ್ ಮಾಡಿ"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"ಕಸ್ಟಮ್ ಕ್ಲಾಕ್‌ಗಳು"</string>
 </resources>

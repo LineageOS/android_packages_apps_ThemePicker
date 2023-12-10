@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"시계 크기가 잠금 화면 콘텐츠에 따라 변경됩니다."</string>
     <string name="clock_size_large" msgid="3143248715744138979">"크게"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"작게"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"작은 시계가 화면 모서리에 표시됩니다."</string>
     <string name="grid_title" msgid="1688173478777254123">"앱 그리드"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"적용"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"탭하여 수정"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"모든 화면에 좋아하는 글꼴을 추가하세요."</string>
     <string name="grid_options_title" msgid="7071930966989877023">"그리드 크기 선택"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"그리드 크기를 변경하면 작업공간이 새로고침되며 몇 초 정도 걸릴 수 있습니다."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"%1$s 그리드로 작업공간을 새로고침하는 중"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"%1$s 그리드로 작업공간을 새로고침하지 못함"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"스타일 설정이 완료되었습니다."</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"시계 설정이 완료되었습니다."</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"그리드 설정이 완료되었습니다."</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"기본 표현 테마"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"기본 색상 옵션"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"<xliff:g id="ID_1">%1$d</xliff:g> 색상 옵션"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"왼쪽으로 스와이프하여 다른 시계 페이스 선택"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"오른쪽으로 스와이프하여 다른 시계 페이스 선택"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"시계 페이스 맞춤설정"</string>
 </resources>

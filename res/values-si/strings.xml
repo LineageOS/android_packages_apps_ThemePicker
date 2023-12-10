@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"අගුළු තිරයේ අන්තර්ගතය අනුව ඔරලෝසුවේ තරම වෙනස් වේ"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"විශාල"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"කුඩා"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"ඔබේ තිරයේ කෙළවරේ කුඩා ඔරලෝසුවක් පෙන්වයි"</string>
     <string name="grid_title" msgid="1688173478777254123">"යෙදුම් ජාලකය"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"යොදන්න"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"සංස්කරණයට තට්ටු කරන්න"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"සෑම තිරයටම ඔබේ ප්‍රියතම අකුරු එක් කරන්න"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"ජාලක තරමක් තෝරා ගන්න"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"ජාලක ප්‍රමාණය වෙනස් කිරීම කාර්ය ඉඩ නැවත පූරණය කරන අතර තත්පර කිහිපයක් ගත විය හැක."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"%1$s ජාලකය සමග කාර්ය ඉඩ නැවත පූරණය වේ"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"%1$s ජාලකය සමග කාර්ය ඉඩ නැවත පූරණය කිරීමට අසමත් විය"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"විලාස සාර්ථකව සැකසිණි"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"ඔරලෝසුව සාර්ථකව සැකසිණි"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"ජාලකය සාර්ථකව සැකසිණි"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"මූලික ප්‍රකාශන තේමාව"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"පෙරනිමි වර්ණ විකල්පය"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"වර්ණ විකල්පය <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"වෙනස් ඔරලෝසු මුහුණතක් තෝරා ගැනීමට වමට ස්වයිප් කරන්න"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"වෙනස් ඔරලෝසු මුහුණතක් තෝරා ගැනීමට දකුණට ස්වයිප් කරන්න"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"අභිරුචි ඔරලෝසු"</string>
 </resources>

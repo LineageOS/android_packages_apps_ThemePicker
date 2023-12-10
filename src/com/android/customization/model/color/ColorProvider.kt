@@ -16,6 +16,7 @@
 package com.android.customization.model.color
 
 import android.app.WallpaperColors
+import android.app.WallpaperManager
 import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.Resources
@@ -38,7 +39,6 @@ import com.android.customization.picker.color.shared.model.ColorType
 import com.android.systemui.monet.ColorScheme
 import com.android.systemui.monet.Style
 import com.android.wallpaper.R
-import com.android.wallpaper.compat.WallpaperManagerCompat
 import com.android.wallpaper.module.InjectorProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -130,9 +130,9 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
     private fun isLockScreenWallpaperLastApplied(): Boolean {
         // The WallpaperId increases every time a new wallpaper is set, so the larger wallpaper id
         // is the most recently set wallpaper
-        val manager = InjectorProvider.getInjector().getWallpaperManagerCompat(mContext)
-        return manager.getWallpaperId(WallpaperManagerCompat.FLAG_LOCK) >
-            manager.getWallpaperId(WallpaperManagerCompat.FLAG_SYSTEM)
+        val manager = WallpaperManager.getInstance(mContext)
+        return manager.getWallpaperId(WallpaperManager.FLAG_LOCK) >
+            manager.getWallpaperId(WallpaperManager.FLAG_SYSTEM)
     }
 
     private fun loadSeedColors(
@@ -432,7 +432,8 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
             val extractor = ColorBundlePreviewExtractor(mContext)
             val bundles: MutableList<ColorOption> = ArrayList()
 
-            val bundleNames = getItemsFromStub(COLOR_BUNDLES_ARRAY_NAME)
+            val bundleNames =
+                if (isAvailable) getItemsFromStub(COLOR_BUNDLES_ARRAY_NAME) else emptyArray()
             // Color option index value starts from 1.
             var index = 1
             val maxPresetColors = if (themeStyleEnabled) bundleNames.size else MAX_PRESET_COLORS

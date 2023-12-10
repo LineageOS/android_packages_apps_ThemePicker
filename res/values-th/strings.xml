@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"ขนาดของนาฬิกาจะเปลี่ยนตามเนื้อหาในหน้าจอล็อก"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"ใหญ่"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"เล็ก"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"นาฬิกาขนาดเล็กจะแสดงที่มุมของหน้าจอ"</string>
     <string name="grid_title" msgid="1688173478777254123">"ตารางกริดแอป"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"ใช้"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"แตะเพื่อแก้ไข"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"เพิ่มแบบอักษรที่ชอบในทุกหน้าจอ"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"เลือกขนาดตารางกริด"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"การเปลี่ยนขนาดตารางกริดจะโหลดพื้นที่ทำงานซ้ำและอาจใช้เวลาสักครู่"</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"กำลังโหลดพื้นที่ทำงานซ้ำด้วยตารางกริด %1$s"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"โหลดพื้นที่ทำงานซ้ำด้วยตาราง %1$s ไม่สำเร็จ"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"ตั้งค่ารูปแบบเรียบร้อยแล้ว"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"ตั้งนาฬิกาเรียบร้อยแล้ว"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"ตั้งค่าตารางกริดเรียบร้อยแล้ว"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"ธีมหลักแบบชัดเจน"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"ตัวเลือกสีเริ่มต้น"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"ตัวเลือกสี <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"ปัดซ้ายเพื่อเลือกหน้าปัดแบบต่างๆ"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"ปัดขวาเพื่อเลือกหน้าปัดแบบต่างๆ"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"หน้าปัดแบบกำหนดเอง"</string>
 </resources>

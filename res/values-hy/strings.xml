@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Ժամացույցի չափսը փոխվում է կողպէկրանի բովանդակությանը համապատասխան"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Մեծ"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"Փոքր"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"Էկրանի անկյունում ցուցադրվում է փոքրիկ ժամացույց"</string>
     <string name="grid_title" msgid="1688173478777254123">"Հավելվածների ցանց"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Կիրառել"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Հպեք՝ փոփոխելու համար"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"Ավելացրեք ձեր նախընտրած տառատեսակները յուրաքանչյուր էկրանին"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"Ընտրեք ցանցի չափը"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"Ցանցի չափը փոխելու դեպքում աշխատանքային տարածքը մի քանի վայրկյանում կվերաբեռնվի։"</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"Աշխատանքային տարածքի (%1$s ցանցով) վերաբեռնում"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"Չհաջողվեց վերաբեռնել %1$s ցանցով աշխատանքային տարածքը"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"Ոճը կարգավորվեց"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"Ժամացույցը կարգավորվեց"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"Ցանցը կարգավորվեց"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Հիմնական արտահայտիչ թեմա"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Գույնի կանխադրված տարբերակ"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Գույնի տարբերակ <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Սահեցրեք ձախ՝ այլ թվատախտակ ընտրելու համար"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Սահեցրեք աջ՝ այլ թվատախտակ ընտրելու համար"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"Հատուկ թվատախտակներ"</string>
 </resources>

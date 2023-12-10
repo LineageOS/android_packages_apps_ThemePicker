@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"O tamaño do reloxo cambia en función do contido da pantalla de bloqueo"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Grande"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"Pequeno"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"Un pequeno reloxo móstrase na esquina da pantalla"</string>
     <string name="grid_title" msgid="1688173478777254123">"Grade de apps"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Aplicar"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Toca para editar"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"Engade as túas fontes favoritas a todas as pantallas"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"Escoller un tamaño para a grade"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"Cambio tamaño grade volve cargar esp. traballo; pode tardar uns seg."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"Volvendo cargar o espazo de traballo coa grade %1$s"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"Non se puido volver cargar o espazo de traballo coa grade %1$s"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"O estilo aplicouse correctamente"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"O reloxo aplicouse correctamente"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"A grade aplicouse correctamente"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Tema expresivo con cores primarias"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Opción de cor predeterminada"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Opción de cor: <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Pasar o dedo cara á esquerda para seleccionar outra esfera de reloxo"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Pasar o dedo cara á dereita para seleccionar outra esfera de reloxo"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"Reloxos personalizados"</string>
 </resources>

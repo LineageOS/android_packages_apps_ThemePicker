@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Velikost ure se spremeni glede na vsebino zaklenjenega zaslona."</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Velika"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"Majhna"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"V kotu zaslona je prikazana majhna ura"</string>
     <string name="grid_title" msgid="1688173478777254123">"Mreža aplikacij"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Uporabi"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Dotaknite se za urejanje"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"Dodajte priljubljeno pisavo na vsak zaslon"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"Izbira velikosti mreže"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g> x <xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"Če spremenite velikost mreže, se znova naloži delovni prostor, kar lahko traja nekaj sekund."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"Vnovično nalaganje delovnega prostora z mrežo %1$s"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"Delovnega prostora z mrežo %1$s ni bilo mogoče znova naložiti"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"Slog je uspešno nastavljen"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"Ura je uspešno nastavljena"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"Mreža je uspešno nastavljena"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Primarna izrazna tema"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Privzeta možnost barve"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Možnost barve <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Povlecite v levo, če želite izbrati drugačno številčnico"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Povlecite v desno, če želite izbrati drugačno številčnico"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"Ure po meri"</string>
 </resources>

@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"時鐘大小會依螢幕鎖定畫面上的內容調整"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"大"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"小"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"在畫面角落顯示小型時鐘"</string>
     <string name="grid_title" msgid="1688173478777254123">"應用程式格線"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"套用"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"輕觸這裡即可編輯"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"將你喜愛的字型套用到每個畫面"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"選擇網格大小"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g> x <xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"如果變更網格大小，系統會重新載入工作區，且需要幾秒鐘的時間才能完成。"</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"正在重新載入網格大小為「%1$s」的工作區"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"無法重新載入網格大小為「%1$s」的工作區"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"已成功設定樣式"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"已成功設定時鐘"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"已成功設定網格"</string>
@@ -121,7 +125,7 @@
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"開啟「<xliff:g id="APPNAME">%1$s</xliff:g>」"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"如要將「<xliff:g id="APPNAME">%1$s</xliff:g>」應用程式新增為捷徑，必須滿足以下條件"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"完成"</string>
-    <string name="keyguard_quick_affordance_title" msgid="4242813186995735584">"快速鍵"</string>
+    <string name="keyguard_quick_affordance_title" msgid="4242813186995735584">"捷徑"</string>
     <string name="keyguard_quick_affordance_section_title" msgid="2806304242671717309">"捷徑"</string>
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>、<xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"無"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"主要表現主題"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"預設顏色選項"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"顏色選項 <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"向左滑動可選擇其他錶面"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"向右滑動可選擇其他錶面"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"自訂錶面"</string>
 </resources>

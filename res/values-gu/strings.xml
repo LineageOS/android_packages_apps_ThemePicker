@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"ઘડિયાળનું કદ લૉક સ્ક્રીન પરના કન્ટેન્ટ અનુસાર બદલાય છે"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"મોટું"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"નાનું"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"તમારી સ્ક્રીનના ખૂણામાં એક નાની ઘડિયાળ દેખાય છે"</string>
     <string name="grid_title" msgid="1688173478777254123">"ઍપ ગ્રિડ"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"લાગુ કરો"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"ફેરફાર કરવા માટે ટૅપ કરો"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"દરેક સ્ક્રીન પર તમારા મનપસંદ ફોન્ટ ઉમેરો"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"ગ્રિડનું કદ પસંદ કરો"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"ગ્રિડનું કદ બદલવાથી કાર્યસ્થળ ફરીથી લોડ થશે અને તેમાં થોડો સમય લાગી શકે છે."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"%1$s ગ્રિડ વડે કાર્યસ્થળ ફરીથી લોડ કરી રહ્યું છે"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"%1$s ગ્રિડ વડે કાર્યસ્થળ ફરીથી લોડ કરવામાં નિષ્ફળ રહ્યાં"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"શૈલી સફળતાપૂર્વક સેટ કરી"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"ઘડિયાળ સફળતાપૂર્વક સેટ કરી"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"ગ્રિડ સફળતાપૂર્વક સેટ કરી"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"પ્રાથિમક અભિવ્યક્તપૂર્ણ થીમ"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"ડિફૉલ્ટ રંગનો વિકલ્પ"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"રંગનો વિકલ્પ <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"કોઈ બીજી ઘડિયાળ પસંદ કરવા માટે ડાબે સ્વાઇપ કરો"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"કોઈ બીજી ઘડિયાળ પસંદ કરવા માટે જમણે સ્વાઇપ કરો"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"કસ્ટમ ઘડિયાળો"</string>
 </resources>

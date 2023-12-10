@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"பூட்டுத் திரையில் உள்ள உள்ளடக்கத்தைப் பொறுத்து கடிகாரத்தின் அளவு மாறுபடும்"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"பெரியது"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"சிறியது"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"உங்கள் திரையின் மூலையில் ஒரு சிறிய கடிகாரம் காட்டப்படும்"</string>
     <string name="grid_title" msgid="1688173478777254123">"ஆப்ஸ் கட்டம்"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"பயன்படுத்து"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"\'தீமைத்\' திருத்த தட்டவும்"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"ஒவ்வொரு திரையிலும் உங்களுக்குப் பிடித்த எழுத்துருக்களைச் சேருங்கள்"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"கட்ட அளவைத் தேர்வுசெய்தல்"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"கட்ட அளவை மாற்றினால் பணியிடம் ரெஃப்ரெஷ் செய்யப்படும், சில வினாடிகள் ஆகக்கூடும்."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"%1$s கட்டத்துடன் பணியிடத்தை ரெஃப்ரெஷ் செய்கிறது"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"%1$s கட்டத்துடன் பணியிடத்தை ரெஃப்ரெஷ் செய்ய முடியவில்லை"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"ஸ்டைல் அமைக்கப்பட்டது"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"கடிகாரம் அமைக்கப்பட்டது"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"கட்டம் அமைக்கப்பட்டது"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"முதன்மையான எக்ஸ்பிரஸிவ் தீம்"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"இயல்பு வண்ண விருப்பம்"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"வண்ண விருப்பம் <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"வேறு கடிகார முகப்பைத் தேர்வுசெய்ய இடதுபக்கம் ஸ்வைப் செய்யவும்"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"வேறு கடிகார முகப்பைத் தேர்வுசெய்ய வலதுபக்கம் ஸ்வைப் செய்யவும்"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"பிரத்தியேகக் கடிகார முகப்புகள்"</string>
 </resources>

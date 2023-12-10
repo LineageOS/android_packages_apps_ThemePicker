@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"घडीको आकार लक स्क्रिनको सामग्रीका आधारमा परिवर्तन हुन्छ"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"ठुलो"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"सानो"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"तपाईंको स्क्रिनको कुनामा सानो घडी देखा पर्छ"</string>
     <string name="grid_title" msgid="1688173478777254123">"एप ग्रिड"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"लागू गर्नुहोस्"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"सम्पादन गर्न ट्याप गर्नुहोस्"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"प्रत्येक स्क्रिनमा आफूलाई मन पर्ने फन्टहरू थप्नुहोस्"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"ग्रिडको आकार छनौट गर्नुहोस्"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"तपाईंले ग्रिडको आकार परिवर्तन गर्नुभयो भने वर्कस्पेस रिलोड हुन्छ र रिलोड हुन केही सेकेन्ड लाग्न सक्छ।"</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"%1$s ग्रिड सेट गरेर वर्कस्पेस पुनः लोड गरिँदै छ"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"%1$s ग्रिड सेट गरिएको वर्कस्पेस रिलोड गर्न सकिएन"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"शैली सफलतापूर्वक सेट गरियो"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"घडी सफलतापूर्वक सेट गरियो"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"ग्रिड सफलतापूर्वक सेट गरियो"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"प्राइमरी एक्सप्रेसिभ थिम"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"रङसम्बन्धी डिफल्ट विकल्प"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"रङसम्बन्धी विकल्प <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"घडीको स्क्रिनको अर्कै डिजाइन छनौट गर्न बायाँतिर स्वाइप गर्नुहोस्"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"घडीको स्क्रिनको अर्कै डिजाइन छनौट गर्न दायाँतिर स्वाइप गर्नुहोस्"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"घडीको स्क्रिनका कस्टम डिजाइनहरू"</string>
 </resources>

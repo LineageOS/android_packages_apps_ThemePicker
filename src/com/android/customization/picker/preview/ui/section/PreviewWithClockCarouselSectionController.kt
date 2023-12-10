@@ -23,7 +23,6 @@ import android.graphics.Rect
 import android.view.TouchDelegate
 import android.view.View
 import android.view.View.OnAttachStateChangeListener
-import android.view.ViewGroup
 import android.view.ViewStub
 import androidx.activity.ComponentActivity
 import androidx.constraintlayout.helper.widget.Carousel
@@ -39,7 +38,9 @@ import com.android.customization.picker.clock.ui.fragment.ClockSettingsFragment
 import com.android.customization.picker.clock.ui.view.ClockCarouselView
 import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel
+import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
 import com.android.wallpaper.R
+import com.android.wallpaper.model.CustomizationSectionController
 import com.android.wallpaper.model.CustomizationSectionController.CustomizationSectionNavigationController
 import com.android.wallpaper.model.WallpaperColorsViewModel
 import com.android.wallpaper.model.WallpaperPreviewNavigator
@@ -49,6 +50,7 @@ import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInt
 import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewClickView
 import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewSectionController
 import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewView
+import com.android.wallpaper.picker.customization.ui.viewmodel.CustomizationPickerViewModel
 import com.android.wallpaper.util.DisplayUtils
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -70,8 +72,10 @@ class PreviewWithClockCarouselSectionController(
     private val navigationController: CustomizationSectionNavigationController,
     wallpaperInteractor: WallpaperInteractor,
     themedIconInteractor: ThemedIconInteractor,
+    colorPickerInteractor: ColorPickerInteractor,
     wallpaperManager: WallpaperManager,
     private val isTwoPaneAndSmallWidth: Boolean,
+    customizationPickerViewModel: CustomizationPickerViewModel,
 ) :
     PreviewWithThemeSectionController(
         activity,
@@ -83,8 +87,10 @@ class PreviewWithClockCarouselSectionController(
         wallpaperPreviewNavigator,
         wallpaperInteractor,
         themedIconInteractor,
+        colorPickerInteractor,
         wallpaperManager,
         isTwoPaneAndSmallWidth,
+        customizationPickerViewModel,
     ) {
 
     private val viewModel =
@@ -98,8 +104,11 @@ class PreviewWithClockCarouselSectionController(
 
     override val hideLockScreenClockPreview = true
 
-    override fun createView(context: Context): ScreenPreviewView {
-        val view = super.createView(context)
+    override fun createView(
+        context: Context,
+        params: CustomizationSectionController.ViewCreationParams,
+    ): ScreenPreviewView {
+        val view = super.createView(context, params)
         if (screen == CustomizationSections.Screen.LOCK_SCREEN) {
             val screenPreviewClickView: ScreenPreviewClickView =
                 view.findViewById(R.id.screen_preview_click_view)
@@ -146,12 +155,6 @@ class PreviewWithClockCarouselSectionController(
                 guidelineEnd.layoutParams = layoutParams
             }
 
-            // TODO (b/270716937) We should handle the single clock case in the clock carousel
-            // itself
-            val singleClockViewStub: ViewStub = view.requireViewById(R.id.single_clock_view_stub)
-            singleClockViewStub.layoutResource = R.layout.single_clock_view
-            val singleClockView = singleClockViewStub.inflate() as ViewGroup
-
             /**
              * Only bind after [Carousel.onAttachedToWindow]. This is to avoid the race condition
              * that the flow emits before attached to window where [Carousel.mMotionLayout] is still
@@ -167,7 +170,6 @@ class PreviewWithClockCarouselSectionController(
                                 ClockCarouselViewBinder.bind(
                                     context = context,
                                     carouselView = carouselView,
-                                    singleClockView = singleClockView,
                                     screenPreviewClickView = screenPreviewClickView,
                                     viewModel = viewModel,
                                     clockViewFactory = clockViewFactory,

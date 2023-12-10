@@ -22,6 +22,7 @@ import android.app.WallpaperManager
 import android.content.Context
 import androidx.lifecycle.LifecycleOwner
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconInteractor
+import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
 import com.android.customization.picker.preview.ui.viewmodel.PreviewWithThemeViewModel
 import com.android.wallpaper.R
 import com.android.wallpaper.model.WallpaperColorsViewModel
@@ -30,6 +31,7 @@ import com.android.wallpaper.module.CurrentWallpaperInfoFactory
 import com.android.wallpaper.module.CustomizationSections
 import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInteractor
 import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewSectionController
+import com.android.wallpaper.picker.customization.ui.viewmodel.CustomizationPickerViewModel
 import com.android.wallpaper.picker.customization.ui.viewmodel.ScreenPreviewViewModel
 import com.android.wallpaper.util.DisplayUtils
 import com.android.wallpaper.util.PreviewUtils
@@ -49,8 +51,10 @@ open class PreviewWithThemeSectionController(
     wallpaperPreviewNavigator: WallpaperPreviewNavigator,
     private val wallpaperInteractor: WallpaperInteractor,
     private val themedIconInteractor: ThemedIconInteractor,
+    private val colorPickerInteractor: ColorPickerInteractor,
     wallpaperManager: WallpaperManager,
     isTwoPaneAndSmallWidth: Boolean,
+    customizationPickerViewModel: CustomizationPickerViewModel,
 ) :
     ScreenPreviewSectionController(
         activity,
@@ -62,7 +66,8 @@ open class PreviewWithThemeSectionController(
         wallpaperPreviewNavigator,
         wallpaperInteractor,
         wallpaperManager,
-        isTwoPaneAndSmallWidth
+        isTwoPaneAndSmallWidth,
+        customizationPickerViewModel,
     ) {
     override fun createScreenPreviewViewModel(context: Context): ScreenPreviewViewModel {
         return PreviewWithThemeViewModel(
@@ -114,6 +119,7 @@ open class PreviewWithThemeSectionController(
             initialExtrasProvider = { getInitialExtras(isOnLockScreen) },
             wallpaperInteractor = wallpaperInteractor,
             themedIconInteractor = themedIconInteractor,
+            colorPickerInteractor = colorPickerInteractor,
             screen = screen,
         )
     }

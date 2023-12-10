@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"اندازه ساعت نسبت به محتوای صفحه قفل تغییر می‌کند"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"بزرگ"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"کوچک"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"ساعت کوچکی در گوشه صفحه‌نمایش شما نشان داده می‌شود"</string>
     <string name="grid_title" msgid="1688173478777254123">"شبکه برنامه‌ها"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"اعمال"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"برای ویرایش ضربه بزنید"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"قلم‌های دلخواهتان را به همه صفحه‌نمایش‌ها اضافه کنید"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"انتخاب اندازه جدول"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"تغییر اندازه شبکه باعث بار کردن مجدد فضای کاری می‌شود و ممکن است چند ثانیه طول بکشد."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"درحال بار کردن مجدد فضای کاری با شبکه %1$s"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"فضای کاری با شبکه %1$s مجدداً بار نشد"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"سبک باموفقیت تنظیم شد"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"ساعت باموفقیت تنظیم شد"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"جدول باموفقیت تنظیم شد"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"زمینه تأثیرگذار اصلی"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"گزینه رنگ پیش‌فرض"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"گزینه رنگ <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"برای انتخاب صفحه ساعت متفاوت، تند به چپ بکشید"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"برای انتخاب صفحه ساعت متفاوت، تند به راست بکشید"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"ساعت‌های سفارشی"</string>
 </resources>

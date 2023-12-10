@@ -82,6 +82,7 @@ java_defaults {
         "androidx.lifecycle_lifecycle-viewmodel-ktx",
         "androidx.recyclerview_recyclerview",
         "SystemUICustomizationLib",
+        "hilt_android",
     ],
 
     jni_libs: [

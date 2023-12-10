@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"လော့ခ်မျက်နှာပြင် အကြောင်းအရာအလိုက် နာရီအရွယ်အစား ပြောင်းလဲသည်"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"ကြီး"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"သေး"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"သင့်ဖန်သားပြင်ထောင့်တွင် ပြသထားသော နာရီအသေးတစ်ခု"</string>
     <string name="grid_title" msgid="1688173478777254123">"အက်ပ်ဇယား"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"အသုံးပြုရန်"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"တည်းဖြတ်ရန် တို့ပါ"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"မျက်နှာပြင်တိုင်းတွင် သင့်အကြိုက်ဆုံး ဖောင့်များ ထည့်ရန်"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"ဇယားကွက်အရွယ်အစားတစ်ခု ရွေးပါ"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"ဂရစ်အရွယ်အစားပြောင်းခြင်းသည် အလုပ်နေရာကို ပြန်စတင်စေပြီး စက္ကန့်အနည်းငယ် ကြာနိုင်သည်။"</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"%1$s ဂရစ်ဖြင့် အလုပ်နေရာ ပြန်လည်စတင်နေသည်"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"%1$s ဂရစ်ဖြင့် အလုပ်နေရာ ပြန်လည်စတင်၍ မရပါ"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"ပုံစံကို အောင်မြင်စွာ သတ်မှတ်ပြီးပါပြီ"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"နာရီကို အောင်မြင်စွာ သတ်မှတ်ပြီးပါပြီ"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"ဇယားကွက်ကို အောင်မြင်စွာ သတ်မှတ်ပြီးပါပြီ"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"မူလ ခံစားမှုပြ အပြင်အဆင်"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"မူလ အရောင်ရွေးစရာ"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"အရောင်ရွေးစရာ <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"အခြားနာရီဒိုင်ခွက်ရွေးရန် ဘယ်ဘက်သို့ ပွတ်ဆွဲပါ"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"အခြားနာရီဒိုင်ခွက်ရွေးရန် ညာဘက်သို့ ပွတ်ဆွဲပါ"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"စိတ်ကြိုက် နာရီဒိုင်ခွက်များ"</string>
 </resources>

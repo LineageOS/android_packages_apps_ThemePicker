@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"El tamaño del reloj cambia según el contenido de la pantalla de bloqueo"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Grande"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"Pequeño"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"Aparece un reloj pequeño en la esquina de tu pantalla"</string>
     <string name="grid_title" msgid="1688173478777254123">"Cuadr. de apps"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Aplicar"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Presiona para editar"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"Agrega tus fuentes favoritas a cada pantalla"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"Elige un tamaño de cuadrícula"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g> x <xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"Cambiar la cuadrícula podrá tomar unos segundos."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"Volviendo a cargar el espacio de trabajo con la cuadrícula %1$s"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"No se pudo volver a cargar el espacio de trabajo con la cuadrícula %1$s"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"Se estableció correctamente el estilo"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"Se estableció correctamente el reloj"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"Se estableció correctamente la cuadrícula"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Tema expresivo principal"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Opción de color predeterminada"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Opción en color <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Desliza el dedo hacia la izquierda para elegir otra cara de reloj"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Desliza el dedo hacia la derecha para elegir otra cara de reloj"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"Relojes personalizados"</string>
 </resources>

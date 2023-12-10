@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"লক স্ক্রিনের কন্টেন্ট অনুযায়ী ঘড়ির সাইজ পরিবর্তন হয়"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"বড়"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"ছোট করুন"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"স্ক্রিনের কোনায় একটি ছোট ঘড়ি দেখানো হয়"</string>
     <string name="grid_title" msgid="1688173478777254123">"অ্যাপ গ্রিড"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"প্রয়োগ করুন"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"এডিট করতে ট্যাপ করুন"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"প্রতিটি স্ক্রিনে আপনার পছন্দের ফন্ট যোগ করুন"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"গ্রিডের সাইজ বেছে নিন"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"গ্রিড সাইজ বদলালে ওয়ার্কস্পেস রিলোড করা হবে ও এতে কয়েক সেকেন্ড লাগতে পারে।"</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"%1$s গ্রিড সহ ওয়ার্কস্পেস রিলোড করা হচ্ছে"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"%1$s গ্রিড সহ ওয়ার্কস্পেস রিলোড করা যায়নি"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"স্টাইল সফলভাবে সেট করা হয়েছে"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"ঘড়ি সফলভাবে সেট করা হয়েছে"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"গ্রিড সফলভাবে সেট করা হয়েছে"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"প্রাইমারি এক্সপ্রেসিভ থিম"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"রঙের ডিফল্ট বিকল্প"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"রঙের বিকল্প <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"অন্য ধরনের ঘড়ির ডায়াল বেছে নিতে বাঁদিকে সোয়াইপ করুন"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"অন্য ধরনের ঘড়ির ডায়াল বেছে নিতে ডানদিকে সোয়াইপ করুন"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"কাস্টমাইজ করা ঘড়ি"</string>
 </resources>

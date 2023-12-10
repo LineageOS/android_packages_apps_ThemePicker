@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"O tamanho do relógio muda de acordo com o conteúdo do ecrã de bloqueio"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Grande"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"Pequeno"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"Um pequeno relógio é apresentado no canto do ecrã"</string>
     <string name="grid_title" msgid="1688173478777254123">"Grelha de apps"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Aplicar"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Toque para editar"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"Adicione os seus tipos de letra favoritos a todos os ecrãs."</string>
     <string name="grid_options_title" msgid="7071930966989877023">"Escolha um tamanho de grelha"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g> x <xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"Mudar tam. grelha atualiza o esp. trab. e pode demorar algum tempo."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"A atualizar o espaço de trabalho com a grelha %1$s"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"Não foi possível atualizar o espaço de trabalho com a grelha %1$s"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"Estilo definido com êxito."</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"Relógio definido com êxito."</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"Grelha definida com êxito."</string>
@@ -86,8 +90,8 @@
     <string name="delete_custom_theme_button" msgid="5102462988130208824">"Eliminar"</string>
     <string name="cancel" msgid="4651030493668562067">"Cancelar"</string>
     <string name="set_theme_wallpaper_dialog_message" msgid="2179661027350908003">"Defina a imagem de fundo do estilo"</string>
-    <string name="use_style_instead_title" msgid="1578754995763917502">"Pretende utilizar <xliff:g id="ID_1">%1$s</xliff:g>?"</string>
-    <string name="use_style_instead_body" msgid="3051937045807471496">"Os componentes que escolheu correspondem ao estilo <xliff:g id="ID_1">%1$s</xliff:g>. Em vez disso, pretende utilizar <xliff:g id="ID_2">%1$s</xliff:g>?"</string>
+    <string name="use_style_instead_title" msgid="1578754995763917502">"Quer utilizar <xliff:g id="ID_1">%1$s</xliff:g>?"</string>
+    <string name="use_style_instead_body" msgid="3051937045807471496">"Os componentes que escolheu correspondem ao estilo <xliff:g id="ID_1">%1$s</xliff:g>. Em vez disso, quer utilizar <xliff:g id="ID_2">%1$s</xliff:g>?"</string>
     <string name="use_style_button" msgid="1754493078383627019">"Usar <xliff:g id="ID_1">%1$s</xliff:g>"</string>
     <string name="no_thanks" msgid="7286616980115687627">"Não, obrigado"</string>
     <string name="clock_preview_content_description" msgid="5460561185905717460">"Pré-visualização do relógio <xliff:g id="ID_1">%1$s</xliff:g>"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Tema expressivo principal"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Opção de cor predefinida"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Opção de cor <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Deslizar rapidamente para a esquerda para escolher um mostrador diferente"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Deslizar rapidamente para a direita para escolher um mostrador diferente"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"Relógios personalizados"</string>
 </resources>

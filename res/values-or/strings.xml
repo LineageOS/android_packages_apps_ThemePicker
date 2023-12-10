@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"ଘଣ୍ଟାର ଆକାର ଲକ ସ୍କ୍ରିନର ବିଷୟବସ୍ତୁ ଅନୁସାରେ ପରିବର୍ତ୍ତନ ହୋଇଥାଏ"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"ବଡ଼"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"ଛୋଟ"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"ଆପଣଙ୍କ ସ୍କ୍ରିନର କୋଣରେ ଏକ ଛୋଟ କ୍ଲକ ଦେଖାଯାଉଛି"</string>
     <string name="grid_title" msgid="1688173478777254123">"ଆପ ଗ୍ରିଡ"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"ପ୍ରୟୋଗ କରନ୍ତୁ"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"ଏଡିଟ କରିବା ପାଇଁ ଟାପ କରନ୍ତୁ"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"ଆପଣଙ୍କ ପସନ୍ଦର ଫଣ୍ଟକୁ ପ୍ରତ୍ୟେକ ସ୍କ୍ରିନ୍‍‍‍‍‍ରେ ଯୋଗ କରନ୍ତୁ"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"ଏକ ଗ୍ରିଡ୍ ଆକାର ବାଛନ୍ତୁ"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"ଗ୍ରିଡର ଆକାର ପରିବର୍ତ୍ତନ କରିବା ୱାର୍କସ୍ପେସକୁ ପୁଣି ଲୋଡ କରିବ ଏବଂ ଏଥିପାଇଁ କିଛି ସେକେଣ୍ଡ ଲାଗିପାରେ।"</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"%1$s ଗ୍ରିଡ ସହିତ ୱାର୍କସ୍ପେସକୁ ପୁଣି ଲୋଡ କରିବା"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"%1$s ଗ୍ରିଡ ସହିତ ୱାର୍କସ୍ପେସକୁ ପୁଣି ଲୋଡ କରିବାରେ ବିଫଳ ହୋଇଛି"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"ଷ୍ଟାଇଲ୍ ସଫଳତାର ସହ ସେଟ୍ ହୋଇଛି"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"ଘଣ୍ଟା ସଫଳତାର ସହ ସେଟ୍ ହୋଇଛି"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"ଗ୍ରିଡ୍ ସଫଳତାର ସହ ସେଟ୍ ହୋଇଛି"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"ପ୍ରାଥମିକ ଏକ୍ସପ୍ରେସିଭ ଥିମ"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"ଡିଫଲ୍ଟ ରଙ୍ଗର ବିକଳ୍ପ"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"ରଙ୍ଗର ବିକଳ୍ପ <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"ଏକ ଭିନ୍ନ କ୍ଲକ ଫେସ ବାଛିବାକୁ ବାମକୁ ସ୍ୱାଇପ କରନ୍ତୁ"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"ଏକ ଭିନ୍ନ କ୍ଲକ ଫେସ ବାଛିବାକୁ ଡାହାଣକୁ ସ୍ୱାଇପ କରନ୍ତୁ"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"କ୍ଲକ ଫେସ କଷ୍ଟମ କରନ୍ତୁ"</string>
 </resources>

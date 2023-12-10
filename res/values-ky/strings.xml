@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Сааттын өлчөмү кулпуланган экрандагы нерселерге ылайык өзгөрөт"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Чоң"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"Кичине"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"Кичинекей саат экрандын бурчунда көрүнүп турат"</string>
     <string name="grid_title" msgid="1688173478777254123">"Колдонмонун торчосу"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Колдонуу"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Өзгөртүү үчүн таптап коюңуз"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"Жактырган ариптериңизди каалаган экранга коюп алсаңыз болот"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"Торчонун өлчөмүн тандоо"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"Торчонун өлчөмү өзгөрсө, иштөө аймагы кайра жүктөлөт. Буга бир нече секунд керек."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"Иштөө аймагы %1$s торчо менен кайра жүктөлүүдө"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"Иштөө аймагы %1$s торчо менен кайра жүктөлбөй калды"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"Стиль коюлду"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"Саат ийгиликтүү жөндөлдү"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"Торчо ийгиликтүү жөндөлдү"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Негизги ачык тема"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Демейки түс варианты"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"<xliff:g id="ID_1">%1$d</xliff:g> түс варианты"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Башка циферблатты тандоо үчүн экранды солго сүрүңүз"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Башка циферблатты тандоо үчүн экранды оңго сүрүңүз"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"Жеке сааттар"</string>
 </resources>

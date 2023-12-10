@@ -41,16 +41,17 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"የClock መጠን በማያ ገፅ ቁልፍ ይዘት መሰረት ይለወጣል"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"ትልቅ"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"ትንሽ"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"በእርስዎ ማያ ገፅ ጥግ ላይ ትንሽ ሰዓት ይታያል"</string>
     <string name="grid_title" msgid="1688173478777254123">"የመተግበሪያ ፍርግርግ"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"ተግብር"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"ለማርትዕ መታ ያድርጉ"</string>
     <string name="keep_my_wallpaper" msgid="8012385376769568517">"የአሁኑን ልጣፍ ያቆዩት"</string>
-    <string name="theme_preview_card_content_description" msgid="5989222908619535533">"የቅጥ ቅድመ-እይታ"</string>
-    <string name="grid_preview_card_content_description" msgid="8449383777584714842">"የፍርግርግ ቅድመ-እይታ"</string>
-    <string name="font_preview_content_description" msgid="128230439293337891">"የቅርጸ-ቁምፊ ቅድመ-እይታ"</string>
-    <string name="icon_preview_content_description" msgid="7761101284351952890">"የአዶ ቅድመ-እይታ"</string>
-    <string name="color_preview_content_description" msgid="4879120462082058124">"የቀለም ቅድመ-እይታ"</string>
-    <string name="shape_preview_content_description" msgid="6479487796176550432">"የቅርጽ ቅድመ-እይታ"</string>
+    <string name="theme_preview_card_content_description" msgid="5989222908619535533">"የቅጥ ቅድመ-ዕይታ"</string>
+    <string name="grid_preview_card_content_description" msgid="8449383777584714842">"የፍርግርግ ቅድመ-ዕይታ"</string>
+    <string name="font_preview_content_description" msgid="128230439293337891">"የቅርጸ-ቁምፊ ቅድመ-ዕይታ"</string>
+    <string name="icon_preview_content_description" msgid="7761101284351952890">"የአዶ ቅድመ-ዕይታ"</string>
+    <string name="color_preview_content_description" msgid="4879120462082058124">"የቀለም ቅድመ-ዕይታ"</string>
+    <string name="shape_preview_content_description" msgid="6479487796176550432">"የቅርጽ ቅድመ-ዕይታ"</string>
     <string name="option_applied_description" msgid="5022305212078053534">"<xliff:g id="ID_1">%1$s</xliff:g>፣ አሁን ላይ ተፈጻሚ ሆኗል"</string>
     <string name="option_applied_previewed_description" msgid="5269654286638446858">"<xliff:g id="ID_1">%1$s</xliff:g>, currently applied and previewed"</string>
     <string name="option_previewed_description" msgid="3467217598865047661">"<xliff:g id="ID_1">%1$s</xliff:g>, currently previewed"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"የእርስዎን ተወዳጅ ቁፊዎች ወደ ሁሉም ማያ ገፅ ያክሉ"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"የፍርግርግ መጠን ይምረጡ"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"የፍርግርግ መጠንን መለወጥ መሥሪያ ቦታን ዳግም ይጭናል እና ጥቂት ደቂቃዎችን ሊወስድ ይችላል።"</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"በ%1$s ፍርግርግ መሥሪያ ቦታን እንደገና መጫን"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"በ%1$s ፍርግርግ መሥሪያ ቦታን እንደገና መጫን አልተሳካም"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"ቅጥ በተሳካ ሁኔታ ተቀናብሯል"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"ሰዓት በተሳካ ሁኔታ ተቀናብሯል"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"ፍርግርግ በተሳካ ሁኔታ ተቀናብሯል"</string>
@@ -90,10 +94,10 @@
     <string name="use_style_instead_body" msgid="3051937045807471496">"የመረጧቸው ክፍላተ አካላት የ <xliff:g id="ID_1">%1$s</xliff:g> ቅጥ ጋር ይዛመዳሉ። በምትኩ <xliff:g id="ID_2">%1$s</xliff:g> መጠቀም ይፈልጋሉ?"</string>
     <string name="use_style_button" msgid="1754493078383627019">"<xliff:g id="ID_1">%1$s</xliff:g>ን ይጠቀሙ"</string>
     <string name="no_thanks" msgid="7286616980115687627">"አይ፣ አመሰግናለሁ"</string>
-    <string name="clock_preview_content_description" msgid="5460561185905717460">"የ<xliff:g id="ID_1">%1$s</xliff:g> ሰዓት ቅድመ-እይታ"</string>
+    <string name="clock_preview_content_description" msgid="5460561185905717460">"የ<xliff:g id="ID_1">%1$s</xliff:g> ሰዓት ቅድመ-ዕይታ"</string>
     <string name="something_went_wrong" msgid="529840112449799117">"ውይ! የሆነ ችግር ተፈጥሯል።"</string>
     <string name="theme_preview_icons_section_title" msgid="7064768910744000643">"ቀለም / አዶዎች"</string>
-    <string name="style_info_description" msgid="2612473574431003251">"የቅርጸ-ቁምፊ፣ የአዶዎች፣ የመተግበሪያ ቅርጽ እና የቀለም ቅድመ-እይታ"</string>
+    <string name="style_info_description" msgid="2612473574431003251">"የቅርጸ-ቁምፊ፣ የአዶዎች፣ የመተግበሪያ ቅርጽ እና የቀለም ቅድመ-ዕይታ"</string>
     <string name="accessibility_custom_font_title" msgid="966867359157303705">"ብጁ ቅርጸ-ቁምፊ"</string>
     <string name="accessibility_custom_icon_title" msgid="5753297905849062296">"ብጁ አዶ"</string>
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"ብጁ ቀለም"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"የመጀመሪያ ገላጭ ገጽታ"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"ነባሪ የቀለም አማራጭ"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"የቀለም አማራጭ <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"የተለየ የሰዓት መልክ ለመምረጥ ወደ ግራ ያንሸራትቱ"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"የተለየ የሰዓት መልክ ለመምረጥ ወደ ቀኝ ያንሸራትቱ"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"ብጁ ሰዓቶች"</string>
 </resources>

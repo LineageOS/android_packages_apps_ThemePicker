@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"ലോക്ക് സ്‌ക്രീൻ ഉള്ളടക്കത്തിനനുസരിച്ച് ക്ലോക്കിന്റെ വലുപ്പം മാറുന്നു"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"വലുത്"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"ചെറുത്"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"സ്ക്രീനിന്റെ മൂലയിൽ ഒരു ചെറിയ ക്ലോക്ക് കാണിക്കുന്നു"</string>
     <string name="grid_title" msgid="1688173478777254123">"ആപ്പ് ഗ്രിഡ്"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"പ്രയോഗിക്കുക"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"എഡിറ്റ് ചെയ്യാൻ ടാപ്പ് ചെയ്യുക"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"എല്ലാ സ്‌ക്രീനിലേക്കും നിങ്ങളുടെ പ്രിയപ്പെട്ട ഫോണ്ടുകൾ ചേർക്കുക"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"ഗ്രിഡ് വലുപ്പം തിരഞ്ഞെടുക്കുക"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"ഗ്രിഡ് വലുപ്പം മാറ്റുന്നത് വർക്ക്‌സ്‌പെയ്‌സിനെ റീലോഡ് ചെയ്തേക്കാം, ഏതാനും സെക്കൻഡുകൾ സമയമെടുക്കുകയും ചെയ്യും."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"%1$s ഗ്രിഡ് ഉപയോഗിച്ച് വർക്ക്‌സ്‌പെയ്‌സ് റീലോഡ് ചെയ്യുന്നു"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"%1$s ഗ്രിഡ് ഉപയോഗിച്ച് വർക്ക്‌സ്‌പെയ്‌സ് റീലോഡ് ചെയ്യാനായില്ല"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"സ്‌റ്റൈൽ സജ്ജീകരിച്ചു"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"ക്ലോക്ക് സജ്ജമാക്കി"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"ഗ്രിഡ് സജ്ജീകരിച്ചു"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"പ്രാഥമിക എക്‌സ്‌പ്രസീവ് തീം"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"ഡിഫോൾട്ട് വർണ്ണ ഓപ്‌ഷൻ"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"വർണ്ണ ഓപ്‌ഷൻ <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"മറ്റൊരു ക്ലോക്ക് ഫേസ് തിരഞ്ഞെടുക്കാൻ ഇടതുഭാഗത്തേക്ക് സ്വൈപ്പ് ചെയ്യുക"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"മറ്റൊരു ക്ലോക്ക് ഫേസ് തിരഞ്ഞെടുക്കാൻ വലതുഭാഗത്തേക്ക് സ്വൈപ്പ് ചെയ്യുക"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"ഇഷ്‌ടാനുസൃത ക്ലോക്കുകൾ"</string>
 </resources>

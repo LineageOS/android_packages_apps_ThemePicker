@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Het formaat van de klok past zich aan de content van het vergrendelscherm aan"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Groot"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"Klein"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"Er staat een kleine klok in de hoek van je scherm"</string>
     <string name="grid_title" msgid="1688173478777254123">"App-raster"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Toepassen"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Tik om te bewerken"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"Voeg je favoriete lettertypen toe aan elk scherm"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"Een rastergrootte kiezen"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g> x <xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"Als je de rastergrootte wijzigt, wordt de werkruimte opnieuw geladen. Dit kan een paar seconden duren."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"Werkruimte opnieuw laden met %1$s raster"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"Kan werkruimte niet opnieuw laden met %1$s raster"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"Stijl ingesteld"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"Klok ingesteld"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"Raster ingesteld"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Primair expressief thema"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Standaard kleuroptie"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Kleuroptie <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Swipe naar links om een andere wijzerplaat te kiezen"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Swipe naar rechts om een andere wijzerplaat te kiezen"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"Aangepaste wijzerplaten"</string>
 </resources>

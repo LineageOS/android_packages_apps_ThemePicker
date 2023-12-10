@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"ទំហំនាឡិកា​ផ្លាស់ប្ដូរទៅតាមខ្លឹមសារ​លើអេក្រង់ចាក់សោ"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"ធំ"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"តូច"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"នាឡិកា​តូចមួយ​បង្ហាញ​នៅជ្រុងនៃ​អេក្រង់​របស់អ្នក"</string>
     <string name="grid_title" msgid="1688173478777254123">"ក្រឡា​កម្មវិធី"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"ប្រើ"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"ចុច ដើម្បី​កែ"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"បញ្ចូលពុម្ព​អក្សរ​ដែលអ្នកចូលចិត្ត​ទៅគ្រប់អេក្រង់"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"ជ្រើសរើស​ទំហំក្រឡា"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"ការប្ដូរទំហំក្រឡានឹងផ្ទុកលំហការងារឡើងវិញ និងអាចចំណាយពេលបន្តិច។"</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"កំពុងផ្ទុកឡើងវិញនូវលំហការងារដែលមានក្រឡា %1$s"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"មិនអាចផ្ទុកឡើងវិញនូវលំហការងារដែលមានក្រឡា %1$s ទេ"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"បានកំណត់​រចនាប័ទ្មដោយ​ជោគជ័យ"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"បានកំណត់​នាឡិកាដោយ​ជោគជ័យ"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"បានកំណត់​ក្រឡាដោយ​ជោគជ័យ"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"ទម្រង់រចនាបែបបង្ហាញចម្បង"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"ជម្រើសពណ៌លំនាំដើម"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"ជម្រើស​ពណ៌ <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"អូសទៅឆ្វេង ដើម្បីជ្រើសរើសមុខនាឡិកាផ្សេង"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"អូសទៅស្ដាំ ដើម្បីជ្រើសរើសមុខនាឡិកាផ្សេង"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"នាឡិកាផ្ទាល់ខ្លួន"</string>
 </resources>

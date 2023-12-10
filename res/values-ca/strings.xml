@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"La mida del rellotge canvia d\'acord amb el contingut de la pantalla de bloqueig"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Gran"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"Petit"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"Es mostra un rellotge petit a l\'extrem de la pantalla"</string>
     <string name="grid_title" msgid="1688173478777254123">"Quadrícula d\'apps"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Aplica"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Toca per editar"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"Afegeix els teus tipus de lletra preferits a cada pantalla"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"Tria una mida de quadrícula"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g> x <xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"Canviar la quadrícula recarrega l\'àrea de treball i tarda uns segons."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"S\'està tornant a carregar l\'àrea de treball amb la quadrícula %1$s"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"No s\'ha pogut tornar a carregar l\'àrea de treball amb la quadrícula %1$s"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"L\'estil s\'ha definit correctament"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"El rellotge s\'ha definit correctament"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"La quadrícula s\'ha definit correctament"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Tema expressiu principal"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Opció de color predeterminada"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Opció de color <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Llisca a l\'esquerra per triar una altra esfera de rellotge"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Llisca a la dreta per triar una altra esfera de rellotge"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"Rellotges personalitzats"</string>
 </resources>

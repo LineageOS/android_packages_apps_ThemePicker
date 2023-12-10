@@ -35,12 +35,13 @@
     <string name="clock_color_indigo" msgid="8910855386698452917">"Çivit mavisi"</string>
     <string name="clock_color_violet" msgid="3454503847169375826">"Mor"</string>
     <string name="clock_color_gray" msgid="9221530636948859231">"Gri"</string>
-    <string name="clock_color_teal" msgid="7499223425741344251">"Turkuaz"</string>
+    <string name="clock_color_teal" msgid="7499223425741344251">"Deniz mavisi"</string>
     <string name="clock_size" msgid="5028923902364418263">"Boyut"</string>
     <string name="clock_size_dynamic" msgid="1023930312455061642">"Dinamik"</string>
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Saat boyutu, kilit ekranındaki içeriklere göre değişir"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Büyük"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"Küçük"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"Ekranınızın köşesinde küçük bir saat görünür"</string>
     <string name="grid_title" msgid="1688173478777254123">"Uygulama tablosu"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Uygula"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Düzenlemek için dokunun"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"En sevdiğiniz yazı tiplerini her ekrana ekleyin"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"Izgara boyutu seçin"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"Izgara boyutu değiştirilirse çalışma alanı yeniden yüklenir. Bu işlem birkaç saniye sürebilir."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"Çalışma alanı, %1$s ızgarasıyla yeniden yükleniyor"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"Çalışma alanı, %1$s ızgarasıyla yeniden yüklenemedi"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"Stil başarıyla ayarlandı"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"Saat başarıyla ayarlandı"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"Izgara başarıyla ayarlandı"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Birincil ifade teması"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Varsayılan renk seçeneği"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"<xliff:g id="ID_1">%1$d</xliff:g> renk seçeneği"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Farklı bir kadran seçmek için sola kaydırın"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Farklı bir kadran seçmek için sağa kaydırın"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"Özel Saatler"</string>
 </resources>

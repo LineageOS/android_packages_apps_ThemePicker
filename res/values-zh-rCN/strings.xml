@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"时钟大小会依据锁定屏幕上的内容而变化"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"大"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"小"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"一个小型时钟显示在界面一角"</string>
     <string name="grid_title" msgid="1688173478777254123">"应用网格"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"应用"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"点按即可修改"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"将您喜爱的字体应用于每个屏幕上的文字"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"选择网格大小"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"更改网格大小将会重新加载工作区，这可能需要几秒钟的时间。"</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"正在重新加载网格大小为“%1$s”的工作区"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"未能重新加载网格大小为“%1$s”的工作区"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"已成功设置样式"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"已成功设置时钟"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"已成功设置网格"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"主要炫彩主题"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"默认颜色选项"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"颜色选项 <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"向左滑动，选择另一个表盘"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"向右滑动，选择另一个表盘"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"自定义表盘"</string>
 </resources>

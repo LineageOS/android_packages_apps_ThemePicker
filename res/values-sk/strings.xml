@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Veľkosť hodín sa mení podľa obsahu na uzamknutej obrazovke"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Veľké"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"Malé"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"V rohu obrazovky sa zobrazujú malé hodiny"</string>
     <string name="grid_title" msgid="1688173478777254123">"Mriežka aplik."</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Použiť"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Klepnutím upravte"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"Pridajte na každú obrazovku svoje obľúbené písma"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"Vyberte veľkosť mriežky"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g> × <xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"Zmena veľkosti mriežky znova načíta pracovný priestor a môže trvať niekoľko sekúnd."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"Znova sa načítava pracovný priestor s mriežkou %1$s"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"Nepodarilo sa znova načítať pracovný priestor s mriežkou %1$s"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"Štýl bol úspešne nastavený"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"Hodiny boli úspešne nastavené"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"Mriežka bola úspešne nastavená"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Primárny expresívny motív"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Predvolená farba"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Farba: <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Potiahnutím doľava vyberiete iný ciferník"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Potiahnutím doprava vyberiete iný ciferník"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"Vlastné hodiny"</string>
 </resources>

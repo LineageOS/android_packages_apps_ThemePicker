@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Madhësia e orës ndryshon sipas përmbajtjes së ekranit të kyçjes"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"E madhe"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"E vogël"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"Në këndin e ekranit shfaqet një orë e vogël"</string>
     <string name="grid_title" msgid="1688173478777254123">"Rrjeta e aplikacioneve"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Zbato"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Trokit për të modifikuar"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"Shto fontet e tua të preferuara në çdo ekran"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"Zgjidh një madhësi rrjete"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"Ndryshimi i rrjetës ringarkon vendin e punës dhe zgjat disa sekonda."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"Vendi i punës po ringarkohet me rrjetën %1$s"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"Vendi i punës nuk mund të ringarkohej me rrjetën %1$s"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"Stili u caktua me sukses"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"Ora u caktua me sukses"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"Rrjeta u caktua me sukses"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Tema kryesore ekspresive"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Opsioni i parazgjedhur i ngjyrës"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Opsioni i ngjyrës: <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Rrëshqit shpejt majtas për të zgjedhur një tjetër fushë ore"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Rrëshqit shpejt djathtas për të zgjedhur një tjetër fushë ore"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"Fusha ore të personalizuara"</string>
 </resources>

@@ -41,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"ຂະໜາດຂອງໂມງປ່ຽນຕາມເນື້ອຫາໃນໜ້າຈໍລັອກ"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"ໃຫຍ່"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"ນ້ອຍ"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"ໂມງນ້ອຍທີ່ສະແດງຢູ່ໃນມຸມຂອງໜ້າຈໍທ່ານ"</string>
     <string name="grid_title" msgid="1688173478777254123">"ຕາຕະລາງແອັບ"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"ນຳໃຊ້"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"ແຕະເພື່ອແກ້ໄຂ"</string>
@@ -66,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"ເພີ່ມຟອນທີ່ທ່ານມັກໃສ່ທຸກໜ້າຈໍ"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"ເລືອກຂະໜາດຊ່ອງ"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"ການປ່ຽນຂະໜາດໂຄງຮ່າງຕາຕະລາງຈະໂຫຼດບ່ອນເຮັດວຽກ ແລະ ອາດໃຊ້ເວລາສອງສາມວິນາທີ."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"ກຳລັງໂຫຼດບ່ອນເຮັດວຽກຄືນໃໝ່ດ້ວຍໂຄງຮ່າງຕາຕະລາງ %1$s"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"ໂຫຼດບ່ອນເຮັດວຽກຄືນໃໝ່ດ້ວຍໂຄງຮ່າງຕາຕະລາງ %1$s ບໍ່ສຳເລັດ"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"ຕັ້ງຮູບແບບສຳເລັດແລ້ວ"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"ຕັ້ງໂມງສຳເລັດແລ້ວ"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"ຕັ້ງຊ່ອງສຳເລັດແລ້ວ"</string>
@@ -136,4 +140,7 @@
     <string name="content_description_expressive_color_option" msgid="6081295313456341282">"ຮູບແບບສີສັນຫຼັກແບບຊັດເຈນ"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"ຕົວເລືອກສີຄ່າເລີ່ມຕົ້ນ"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"ຕົວເລືອກສີ <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"ປັດຊ້າຍເພື່ອເລືອກໜ້າປັດໂມງແບບຕ່າງໆ"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"ປັດຂວາເພື່ອເລືອກໜ້າປັດໂມງແບບຕ່າງໆ"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"ໜ້າປັດໂມງແບບກຳນົດເອງ"</string>
 </resources>
