@@ -23,6 +23,8 @@ import javax.inject.Singleton
 @Singleton
 class AppSessionId @Inject constructor() {
 
+    private val idSequence = InstanceIdSequence(INSTANCE_ID_MAX)
+
     private var sessionId: InstanceId = newInstanceId()
 
     fun createNewId(): AppSessionId {
@@ -34,7 +36,7 @@ class AppSessionId @Inject constructor() {
         return sessionId.hashCode()
     }
 
-    private fun newInstanceId(): InstanceId = InstanceIdSequence(INSTANCE_ID_MAX).newInstanceId()
+    private fun newInstanceId(): InstanceId = idSequence.newInstanceId()
 
     companion object {
         // At most 20 bits: ~1m possibilities, ~0.5% probability of collision in 100 values
