@@ -24,7 +24,6 @@ import androidx.lifecycle.viewModelScope
 import com.android.customization.module.logging.ThemesUserEventLogger
 import com.android.systemui.shared.notifications.domain.interactor.NotificationSettingsInteractor
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 /** Models UI state for a section that lets the user control the notification settings. */
@@ -36,15 +35,14 @@ constructor(
 ) : ViewModel() {
 
     /** Whether the switch should be on. */
-    val isSwitchOn: Flow<Boolean> =
-        interactor.settings.map { model -> model.isShowNotificationsOnLockScreenEnabled }
+    val isSwitchOn: Flow<Boolean> = interactor.isShowNotificationsOnLockScreenEnabled
 
     /** Notifies that the section has been clicked. */
     fun onClicked() {
         viewModelScope.launch {
-            interactor.toggleShowNotificationsOnLockScreenEnabled()
+            interactor.toggleShowNotificationsOnLockscreenEnabled()
             logger.logLockScreenNotificationApplied(
-                interactor.getSettings().isShowNotificationsOnLockScreenEnabled
+                interactor.isShowNotificationsOnLockScreenEnabled.value
             )
         }
     }
