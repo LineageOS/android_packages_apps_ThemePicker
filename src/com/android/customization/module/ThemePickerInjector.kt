@@ -56,8 +56,6 @@ import com.android.customization.picker.grid.data.repository.GridRepositoryImpl
 import com.android.customization.picker.grid.domain.interactor.GridInteractor
 import com.android.customization.picker.grid.domain.interactor.GridSnapshotRestorer
 import com.android.customization.picker.grid.ui.viewmodel.GridScreenViewModel
-import com.android.customization.picker.notifications.data.repository.NotificationsRepository
-import com.android.customization.picker.notifications.domain.interactor.NotificationsInteractor
 import com.android.customization.picker.notifications.domain.interactor.NotificationsSnapshotRestorer
 import com.android.customization.picker.notifications.ui.viewmodel.NotificationSectionViewModel
 import com.android.customization.picker.quickaffordance.data.repository.KeyguardQuickAffordancePickerRepository
@@ -67,6 +65,8 @@ import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQui
 import com.android.systemui.shared.clocks.ClockRegistry
 import com.android.systemui.shared.customization.data.content.CustomizationProviderClient
 import com.android.systemui.shared.customization.data.content.CustomizationProviderClientImpl
+import com.android.systemui.shared.notifications.data.repository.NotificationSettingsRepository
+import com.android.systemui.shared.notifications.domain.interactor.NotificationSettingsInteractor
 import com.android.wallpaper.config.BaseFlags
 import com.android.wallpaper.module.CustomizationSections
 import com.android.wallpaper.module.FragmentFactory
@@ -91,6 +91,7 @@ open class ThemePickerInjector
 internal constructor(
     @MainDispatcher private val mainScope: CoroutineScope,
     @MainDispatcher private val mainDispatcher: CoroutineDispatcher,
+    @BackgroundDispatcher private val bgScope: CoroutineScope,
     @BackgroundDispatcher private val bgDispatcher: CoroutineDispatcher,
     private val userEventLogger: ThemesUserEventLogger,
 ) : WallpaperPicker2Injector(mainScope, bgDispatcher, userEventLogger), CustomizationInjector {
@@ -110,7 +111,7 @@ internal constructor(
     private var clockCarouselViewModelFactory: ClockCarouselViewModel.Factory? = null
     private var clockViewFactory: ClockViewFactory? = null
     private var clockPickerSnapshotRestorer: ClockPickerSnapshotRestorer? = null
-    private var notificationsInteractor: NotificationsInteractor? = null
+    private var notificationSettingsInteractor: NotificationSettingsInteractor? = null
     private var notificationSectionViewModelFactory: NotificationSectionViewModel.Factory? = null
     private var colorPickerInteractor: ColorPickerInteractor? = null
     private var colorPickerViewModelFactory: ColorPickerViewModel.Factory? = null
@@ -297,19 +298,17 @@ internal constructor(
 
     private fun getNotificationsInteractor(
         context: Context,
-    ): NotificationsInteractor {
-        val appContext = context.applicationContext
-        return notificationsInteractor
-            ?: NotificationsInteractor(
+    ): NotificationSettingsInteractor {
+        return notificationSettingsInteractor
+            ?: NotificationSettingsInteractor(
                     repository =
-                        NotificationsRepository(
+                        NotificationSettingsRepository(
                             scope = getApplicationCoroutineScope(),
                             backgroundDispatcher = bgDispatcher,
                             secureSettingsRepository = getSecureSettingsRepository(context),
                         ),
-                    snapshotRestorer = { getNotificationsSnapshotRestorer(appContext) },
                 )
-                .also { notificationsInteractor = it }
+                .also { notificationSettingsInteractor = it }
     }
 
     private fun getNotificationsSnapshotRestorer(context: Context): NotificationsSnapshotRestorer {
@@ -319,6 +318,7 @@ internal constructor(
                         getNotificationsInteractor(
                             context = context,
                         ),
+                    backgroundScope = bgScope,
                 )
                 .also { notificationsSnapshotRestorer = it }
     }

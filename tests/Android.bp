@@ -47,6 +47,7 @@ android_test {
         "WallpaperPicker2TestLib",
         "WallpaperPicker2TestRunner",
         "ThemePickerTestLib",
+        "SystemUICustomizationTestUtils",
         "androidx.test.espresso.core",
         "androidx.test.espresso.contrib",
         "androidx.test.espresso.intents",
