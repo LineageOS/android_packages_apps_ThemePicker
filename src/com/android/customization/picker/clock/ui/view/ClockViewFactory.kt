@@ -18,7 +18,7 @@ package com.android.customization.picker.clock.ui.view
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.lifecycle.LifecycleOwner
-import com.android.systemui.plugins.ClockController
+import com.android.systemui.plugins.clocks.ClockController
 
 interface ClockViewFactory {
 

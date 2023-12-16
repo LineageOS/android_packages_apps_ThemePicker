@@ -12,18 +12,17 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
 
-package com.android.customization.picker.notifications.data.repository
+package com.android.customization.picker.repository
 
 import android.provider.Settings
 import androidx.test.filters.SmallTest
-import com.android.customization.picker.notifications.shared.model.NotificationSettingsModel
-import com.android.wallpaper.testing.FakeSecureSettingsRepository
+import com.android.systemui.shared.notifications.data.repository.NotificationSettingsRepository
+import com.android.systemui.shared.notifications.shared.model.NotificationSettingsModel
+import com.android.systemui.shared.settings.data.repository.FakeSecureSettingsRepository
 import com.android.wallpaper.testing.collectLastValue
 import com.google.common.truth.Truth.assertThat
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
@@ -32,12 +31,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
-@OptIn(ExperimentalCoroutinesApi::class)
 @SmallTest
 @RunWith(JUnit4::class)
-class NotificationsRepositoryTest {
+class NotificationSettingsRepositoryTest {
 
-    private lateinit var underTest: NotificationsRepository
+    private lateinit var underTest: NotificationSettingsRepository
 
     private lateinit var testScope: TestScope
     private lateinit var secureSettingsRepository: FakeSecureSettingsRepository
@@ -49,7 +47,7 @@ class NotificationsRepositoryTest {
         secureSettingsRepository = FakeSecureSettingsRepository()
 
         underTest =
-            NotificationsRepository(
+            NotificationSettingsRepository(
                 scope = testScope.backgroundScope,
                 backgroundDispatcher = testDispatcher,
                 secureSettingsRepository = secureSettingsRepository,

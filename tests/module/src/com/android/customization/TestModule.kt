@@ -1,5 +1,8 @@
 package com.android.customization
 
+import androidx.test.core.app.ApplicationProvider
+import com.android.customization.model.color.ColorCustomizationManager
+import com.android.customization.model.theme.OverlayManagerCompat
 import com.android.customization.module.CustomizationInjector
 import com.android.customization.module.CustomizationPreferences
 import com.android.customization.module.logging.TestThemesUserEventLogger
@@ -11,9 +14,12 @@ import com.android.wallpaper.module.Injector
 import com.android.wallpaper.module.WallpaperPreferences
 import com.android.wallpaper.module.logging.TestUserEventLogger
 import com.android.wallpaper.module.logging.UserEventLogger
+import com.android.wallpaper.picker.preview.data.util.DefaultLiveWallpaperDownloader
+import com.android.wallpaper.picker.preview.data.util.LiveWallpaperDownloader
 import com.android.wallpaper.testing.TestInjector
 import com.android.wallpaper.testing.TestWallpaperPreferences
 import com.android.wallpaper.util.converter.DefaultWallpaperModelFactory
+import com.android.wallpaper.util.converter.WallpaperModelFactory
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -60,11 +66,26 @@ abstract class TestModule {
         impl: TestDefaultCustomizationPreferences
     ): CustomizationPreferences
 
+    @Binds
+    @Singleton
+    abstract fun bindWallpaperModelFactory(
+        impl: DefaultWallpaperModelFactory
+    ): WallpaperModelFactory
+
+    @Binds
+    @Singleton
+    abstract fun bindLiveWallpaperDownloader(
+        impl: DefaultLiveWallpaperDownloader
+    ): LiveWallpaperDownloader
+
     companion object {
         @Provides
         @Singleton
-        fun provideDefaultWallpaperModelFactory(): DefaultWallpaperModelFactory {
-            return DefaultWallpaperModelFactory()
+        fun provideColorCustomizationManager(): ColorCustomizationManager {
+            return ColorCustomizationManager.getInstance(
+                ApplicationProvider.getApplicationContext(),
+                OverlayManagerCompat(ApplicationProvider.getApplicationContext())
+            )
         }
     }
 }

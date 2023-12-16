@@ -24,7 +24,10 @@ import com.android.customization.module.ThemePickerInjector
 import com.android.customization.module.logging.ThemesUserEventLogger
 import com.android.customization.module.logging.ThemesUserEventLoggerImpl
 import com.android.wallpaper.module.logging.UserEventLogger
+import com.android.wallpaper.picker.preview.data.util.DefaultLiveWallpaperDownloader
+import com.android.wallpaper.picker.preview.data.util.LiveWallpaperDownloader
 import com.android.wallpaper.util.converter.DefaultWallpaperModelFactory
+import com.android.wallpaper.util.converter.WallpaperModelFactory
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -46,6 +49,18 @@ abstract class AppModule {
     @Singleton
     abstract fun bindThemesUserEventLogger(impl: ThemesUserEventLoggerImpl): ThemesUserEventLogger
 
+    @Binds
+    @Singleton
+    abstract fun bindWallpaperModelFactory(
+        impl: DefaultWallpaperModelFactory
+    ): WallpaperModelFactory
+
+    @Binds
+    @Singleton
+    abstract fun bindLiveWallpaperDownloader(
+        impl: DefaultLiveWallpaperDownloader
+    ): LiveWallpaperDownloader
+
     companion object {
         @Provides
         @Singleton
@@ -53,12 +68,6 @@ abstract class AppModule {
             @ApplicationContext context: Context
         ): WallpaperPreferences {
             return DefaultCustomizationPreferences(context)
-        }
-
-        @Provides
-        @Singleton
-        fun provideDefaultWallpaperModelFactory(): DefaultWallpaperModelFactory {
-            return DefaultWallpaperModelFactory()
         }
 
         @Provides

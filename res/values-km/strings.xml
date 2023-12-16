@@ -103,8 +103,7 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"ពណ៌​ផ្ទាល់ខ្លួន"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"រូបរាង​ផ្ទាល់ខ្លួន"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"ឈ្មោះ​រចនាប័ទ្ម​ផ្ទាល់ខ្លួន"</string>
-    <!-- no translation found for accessibility_clock_slider_description (8374135133110681332) -->
-    <skip />
+    <string name="accessibility_clock_slider_description" msgid="8374135133110681332">"កម្រិតពណ៌"</string>
     <string name="mode_title" msgid="2394873501427436055">"ទម្រង់រចនាងងឹត"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"បានបិទ​ជា​បណ្តោះអាសន្ន ដោយសារ​មុខងារ​សន្សំ​ថ្ម"</string>
     <string name="mode_changed" msgid="2243581369395418584">"បាន​ផ្លាស់ប្ដូរ​រចនាប័ទ្ម"</string>

@@ -22,7 +22,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.android.customization.module.logging.ThemesUserEventLogger
-import com.android.customization.picker.notifications.domain.interactor.NotificationsInteractor
+import com.android.systemui.shared.notifications.domain.interactor.NotificationSettingsInteractor
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -31,7 +31,7 @@ import kotlinx.coroutines.launch
 class NotificationSectionViewModel
 @VisibleForTesting
 constructor(
-    private val interactor: NotificationsInteractor,
+    private val interactor: NotificationSettingsInteractor,
     private val logger: ThemesUserEventLogger,
 ) : ViewModel() {
 
@@ -50,7 +50,7 @@ constructor(
     }
 
     class Factory(
-        private val interactor: NotificationsInteractor,
+        private val interactor: NotificationSettingsInteractor,
         private val logger: ThemesUserEventLogger,
     ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
