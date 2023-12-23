@@ -157,7 +157,7 @@ class ClockPickerRepositoryImpl(
             )
 
     override suspend fun setClockSize(size: ClockSize) {
-        secureSettingsRepository.set(
+        secureSettingsRepository.setInt(
             name = Settings.Secure.LOCKSCREEN_USE_DOUBLE_LINE_CLOCK,
             value = if (size == ClockSize.DYNAMIC) 1 else 0,
         )

@@ -4,7 +4,6 @@ import android.app.WallpaperColors
 import android.content.Context
 import android.content.res.Resources
 import androidx.activity.ComponentActivity
-import com.android.customization.model.color.ThemedWallpaperColorResources
 import com.android.customization.model.color.WallpaperColorResources
 import com.android.customization.module.CustomizationInjector
 import com.android.customization.module.CustomizationPreferences
@@ -56,7 +55,7 @@ constructor(
         wallpaperColors: WallpaperColors,
         context: Context
     ): WallpaperColorResources {
-        return ThemedWallpaperColorResources(wallpaperColors, context)
+        throw UnsupportedOperationException("not implemented")
     }
 
     override fun getColorPickerInteractor(
