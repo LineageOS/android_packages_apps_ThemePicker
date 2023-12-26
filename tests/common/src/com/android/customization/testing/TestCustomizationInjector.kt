@@ -76,7 +76,6 @@ constructor(
         interactor: ClockPickerInteractor,
         clockViewFactory: ClockViewFactory,
         resources: Resources,
-        logger: ThemesUserEventLogger,
     ): ClockCarouselViewModel.Factory {
         throw UnsupportedOperationException("not implemented")
     }
@@ -97,7 +96,7 @@ constructor(
     // TestInjector overrides
     /////////////////
 
-    override fun getUserEventLogger(context: Context): UserEventLogger {
+    override fun getUserEventLogger(): UserEventLogger {
         return themesUserEventLogger
     }
 }
