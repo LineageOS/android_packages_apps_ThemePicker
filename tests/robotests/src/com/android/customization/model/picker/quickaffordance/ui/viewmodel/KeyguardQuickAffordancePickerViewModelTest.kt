@@ -74,7 +74,8 @@ class KeyguardQuickAffordancePickerViewModelTest {
 
     @Before
     fun setUp() {
-        InjectorProvider.setInjector(TestInjector())
+        val injector = TestInjector()
+        InjectorProvider.setInjector(injector)
         context = ApplicationProvider.getApplicationContext()
         val testDispatcher = StandardTestDispatcher()
         testScope = TestScope(testDispatcher)
@@ -86,7 +87,9 @@ class KeyguardQuickAffordancePickerViewModelTest {
                 repository =
                     KeyguardQuickAffordancePickerRepository(
                         client = client,
-                        backgroundDispatcher = testDispatcher,
+                        scope = testScope.backgroundScope,
+                        flags = injector.getFlags(),
+                        context = context,
                     ),
                 client = client,
                 snapshotRestorer = {
