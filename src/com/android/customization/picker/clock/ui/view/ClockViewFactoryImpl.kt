@@ -29,7 +29,7 @@ import androidx.lifecycle.LifecycleOwner
 import com.android.systemui.plugins.clocks.ClockController
 import com.android.systemui.plugins.clocks.WeatherData
 import com.android.systemui.shared.clocks.ClockRegistry
-import com.android.wallpaper.R
+import com.android.themepicker.R
 import com.android.wallpaper.util.TimeUtils.TimeTicker
 import java.util.concurrent.ConcurrentHashMap
 
@@ -86,7 +86,9 @@ class ClockViewFactoryImpl(
         val layoutParams =
             FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.WRAP_CONTENT,
-                resources.getDimensionPixelSize(R.dimen.small_clock_height)
+                resources.getDimensionPixelSize(
+                    com.android.systemui.customization.R.dimen.small_clock_height
+                )
             )
         layoutParams.topMargin = getSmallClockTopMargin()
         layoutParams.marginStart = getSmallClockStartPadding()
@@ -97,10 +99,14 @@ class ClockViewFactoryImpl(
 
     private fun getSmallClockTopMargin() =
         getStatusBarHeight(appContext.resources) +
-            appContext.resources.getDimensionPixelSize(R.dimen.small_clock_padding_top)
+            appContext.resources.getDimensionPixelSize(
+                com.android.systemui.customization.R.dimen.small_clock_padding_top
+            )
 
     private fun getSmallClockStartPadding() =
-        appContext.resources.getDimensionPixelSize(R.dimen.clock_padding_start)
+        appContext.resources.getDimensionPixelSize(
+            com.android.systemui.customization.R.dimen.clock_padding_start
+        )
 
     override fun updateColorForAllClocks(@ColorInt seedColor: Int?) {
         clockControllers.values.forEach { it.events.onSeedColorChanged(seedColor = seedColor) }
@@ -169,14 +175,22 @@ class ClockViewFactoryImpl(
         // Initialize large clock
         controller.largeClock.events.onRegionDarknessChanged(isWallpaperDark)
         controller.largeClock.events.onFontSettingChanged(
-            resources.getDimensionPixelSize(R.dimen.large_clock_text_size).toFloat()
+            resources
+                .getDimensionPixelSize(
+                    com.android.systemui.customization.R.dimen.large_clock_text_size
+                )
+                .toFloat()
         )
         controller.largeClock.events.onTargetRegionChanged(getLargeClockRegion())
 
         // Initialize small clock
         controller.smallClock.events.onRegionDarknessChanged(isWallpaperDark)
         controller.smallClock.events.onFontSettingChanged(
-            resources.getDimensionPixelSize(R.dimen.small_clock_text_size).toFloat()
+            resources
+                .getDimensionPixelSize(
+                    com.android.systemui.customization.R.dimen.small_clock_text_size
+                )
+                .toFloat()
         )
         controller.smallClock.events.onTargetRegionChanged(getSmallClockRegion())
 
@@ -204,8 +218,13 @@ class ClockViewFactoryImpl(
      */
     private fun getLargeClockRegion(): Rect {
         val largeClockTopMargin =
-            resources.getDimensionPixelSize(R.dimen.keyguard_large_clock_top_margin)
-        val targetHeight = resources.getDimensionPixelSize(R.dimen.large_clock_text_size) * 2
+            resources.getDimensionPixelSize(
+                com.android.systemui.customization.R.dimen.keyguard_large_clock_top_margin
+            )
+        val targetHeight =
+            resources.getDimensionPixelSize(
+                com.android.systemui.customization.R.dimen.large_clock_text_size
+            ) * 2
         val top = (screenSize.y / 2 - targetHeight / 2 + largeClockTopMargin / 2)
         return Rect(0, top, screenSize.x, (top + targetHeight))
     }
@@ -217,7 +236,10 @@ class ClockViewFactoryImpl(
      */
     private fun getSmallClockRegion(): Rect {
         val topMargin = getSmallClockTopMargin()
-        val targetHeight = resources.getDimensionPixelSize(R.dimen.small_clock_height)
+        val targetHeight =
+            resources.getDimensionPixelSize(
+                com.android.systemui.customization.R.dimen.small_clock_height
+            )
         return Rect(getSmallClockStartPadding(), topMargin, screenSize.x, topMargin + targetHeight)
     }
 

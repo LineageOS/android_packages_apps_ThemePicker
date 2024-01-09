@@ -23,7 +23,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordanceSlotViewModel
-import com.android.wallpaper.R
+import com.android.themepicker.R
 
 /** Adapts between lock screen quick affordance slot items and views. */
 class SlotTabAdapter : RecyclerView.Adapter<SlotTabAdapter.ViewHolder>() {

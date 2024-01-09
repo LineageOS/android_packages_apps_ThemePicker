@@ -48,7 +48,7 @@ import com.android.customization.model.ResourceConstants;
 import com.android.customization.model.color.ColorOptionsProvider.ColorSource;
 import com.android.customization.model.theme.OverlayManagerCompat;
 import com.android.customization.module.logging.ThemesUserEventLogger;
-import com.android.wallpaper.R;
+import com.android.themepicker.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

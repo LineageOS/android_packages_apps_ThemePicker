@@ -33,7 +33,7 @@ import com.android.customization.picker.color.ui.view.ColorOptionIconView
 import com.android.customization.picker.color.ui.viewmodel.ColorOptionIconViewModel
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
 import com.android.customization.picker.common.ui.view.ItemSpacing
-import com.android.wallpaper.R
+import com.android.themepicker.R
 import com.android.wallpaper.picker.option.ui.adapter.OptionItemAdapter
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch

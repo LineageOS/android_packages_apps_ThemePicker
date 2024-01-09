@@ -23,7 +23,7 @@ import android.content.Intent
 import android.provider.Settings
 import android.view.LayoutInflater
 import com.android.customization.picker.settings.ui.view.MoreSettingsSectionView
-import com.android.wallpaper.R
+import com.android.themepicker.R
 import com.android.wallpaper.model.CustomizationSectionController
 
 class MoreSettingsSectionController : CustomizationSectionController<MoreSettingsSectionView> {

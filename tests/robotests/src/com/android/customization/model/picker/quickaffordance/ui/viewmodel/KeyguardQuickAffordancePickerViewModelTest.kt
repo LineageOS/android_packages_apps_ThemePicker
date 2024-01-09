@@ -31,7 +31,7 @@ import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQui
 import com.android.systemui.shared.customization.data.content.CustomizationProviderClient
 import com.android.systemui.shared.customization.data.content.FakeCustomizationProviderClient
 import com.android.systemui.shared.keyguard.shared.model.KeyguardQuickAffordanceSlots
-import com.android.wallpaper.R
+import com.android.themepicker.R
 import com.android.wallpaper.module.InjectorProvider
 import com.android.wallpaper.picker.common.icon.ui.viewmodel.Icon
 import com.android.wallpaper.picker.common.text.ui.viewmodel.Text
