@@ -89,7 +89,7 @@ import kotlinx.coroutines.CoroutineScope
 @Singleton
 open class ThemePickerInjector
 @Inject
-internal constructor(
+constructor(
     @MainDispatcher private val mainScope: CoroutineScope,
     @MainDispatcher private val mainDispatcher: CoroutineDispatcher,
     @BackgroundDispatcher private val bgScope: CoroutineScope,

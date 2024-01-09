@@ -25,6 +25,7 @@ android_robolectric_test {
         "kotlinx_coroutines_test",
         "truth",
         "SystemUICustomizationTestUtils",
+        "ThemePickerApplicationLib",
     ],
 
     libs: [
