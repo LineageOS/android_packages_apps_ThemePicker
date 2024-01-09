@@ -33,6 +33,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.mapNotNull
@@ -65,6 +66,10 @@ class ClockCarouselViewModel(
                     ClockCarouselItemViewModel(it.clockId, it.isSelected, contentDescription)
                 }
             }
+            // makes sure that the operations above this statement are executed on I/O dispatcher
+            // while parallelism limits the number of threads this can run on which makes sure that
+            // the flows run sequentially
+            .flowOn(backgroundDispatcher.limitedParallelism(1))
             .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
 
     val selectedClockSize: Flow<ClockSize> = interactor.selectedClockSize
