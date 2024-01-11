@@ -201,7 +201,7 @@ internal constructor(
 
     override fun getWallpaperInteractor(context: Context): WallpaperInteractor {
         if (getFlags().isMultiCropEnabled() && getFlags().isMultiCropPreviewUiEnabled()) {
-            return injectedWallpaperInteractor
+            return injectedWallpaperInteractor.get()
         }
 
         val appContext = context.applicationContext
