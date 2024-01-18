@@ -21,11 +21,11 @@ import com.android.customization.picker.quickaffordance.shared.model.KeyguardQui
 import com.android.customization.picker.quickaffordance.shared.model.KeyguardQuickAffordancePickerSelectionModel as SelectionModel
 import com.android.customization.picker.quickaffordance.shared.model.KeyguardQuickAffordancePickerSlotModel as SlotModel
 import com.android.systemui.shared.customization.data.content.CustomizationProviderClient as Client
-import com.android.systemui.shared.customization.data.content.CustomizationProviderContract as Contract
-import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.shareIn
 
 /**
  * Abstracts access to application state related to functionality for selecting, picking, or setting
@@ -33,39 +33,25 @@ import kotlinx.coroutines.withContext
  */
 class KeyguardQuickAffordancePickerRepository(
     private val client: Client,
-    private val backgroundDispatcher: CoroutineDispatcher,
+    private val scope: CoroutineScope
 ) {
-    /** Whether the feature is enabled. */
-    val isFeatureEnabled: Flow<Boolean> =
-        client.observeFlags().map { flags -> flags.isFeatureEnabled() }
-
     /** List of slots available on the device. */
     val slots: Flow<List<SlotModel>> =
         client.observeSlots().map { slots -> slots.map { slot -> slot.toModel() } }
 
     /** List of all available quick affordances. */
     val affordances: Flow<List<AffordanceModel>> =
-        client.observeAffordances().map { affordances ->
-            affordances.map { affordance -> affordance.toModel() }
-        }
+        client
+            .observeAffordances()
+            .map { affordances -> affordances.map { affordance -> affordance.toModel() } }
+            .shareIn(scope, replay = 1, started = SharingStarted.Lazily)
 
     /** List of slot-affordance pairs, modeling what the user has currently chosen for each slot. */
     val selections: Flow<List<SelectionModel>> =
-        client.observeSelections().map { selections ->
-            selections.map { selection -> selection.toModel() }
-        }
-
-    suspend fun isFeatureEnabled(): Boolean {
-        return withContext(backgroundDispatcher) { client.queryFlags().isFeatureEnabled() }
-    }
-
-    private fun List<Client.Flag>.isFeatureEnabled(): Boolean {
-        return find { flag ->
-                flag.name ==
-                    Contract.FlagsTable.FLAG_NAME_CUSTOM_LOCK_SCREEN_QUICK_AFFORDANCES_ENABLED
-            }
-            ?.value == true
-    }
+        client
+            .observeSelections()
+            .map { selections -> selections.map { selection -> selection.toModel() } }
+            .shareIn(scope, replay = 1, started = SharingStarted.Lazily)
 
     private fun Client.Slot.toModel(): SlotModel {
         return SlotModel(

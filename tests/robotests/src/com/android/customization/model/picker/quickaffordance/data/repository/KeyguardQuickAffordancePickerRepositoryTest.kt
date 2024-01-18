@@ -19,17 +19,13 @@ package com.android.customization.model.picker.quickaffordance.data.repository
 
 import androidx.test.filters.SmallTest
 import com.android.customization.picker.quickaffordance.data.repository.KeyguardQuickAffordancePickerRepository
-import com.android.systemui.shared.customization.data.content.CustomizationProviderContract
 import com.android.systemui.shared.customization.data.content.FakeCustomizationProviderClient
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
@@ -57,44 +53,18 @@ class KeyguardQuickAffordancePickerRepositoryTest {
         underTest =
             KeyguardQuickAffordancePickerRepository(
                 client = client,
-                backgroundDispatcher = coroutineDispatcher,
+                scope = testScope.backgroundScope,
             )
+    }
+
+    // We need at least one test to prevent Studio errors
+    @Test
+    fun creationSucceeds() {
+        assertThat(underTest).isNotNull()
     }
 
     @After
     fun tearDown() {
         Dispatchers.resetMain()
     }
-
-    @Test
-    fun `isFeatureEnabled - enabled`() =
-        testScope.runTest {
-            client.setFlag(
-                CustomizationProviderContract.FlagsTable
-                    .FLAG_NAME_CUSTOM_LOCK_SCREEN_QUICK_AFFORDANCES_ENABLED,
-                true,
-            )
-            val values = mutableListOf<Boolean>()
-            val job = launch { underTest.isFeatureEnabled.toList(values) }
-
-            assertThat(values.last()).isTrue()
-
-            job.cancel()
-        }
-
-    @Test
-    fun `isFeatureEnabled - not enabled`() =
-        testScope.runTest {
-            client.setFlag(
-                CustomizationProviderContract.FlagsTable
-                    .FLAG_NAME_CUSTOM_LOCK_SCREEN_QUICK_AFFORDANCES_ENABLED,
-                false,
-            )
-            val values = mutableListOf<Boolean>()
-            val job = launch { underTest.isFeatureEnabled.toList(values) }
-
-            assertThat(values.last()).isFalse()
-
-            job.cancel()
-        }
 }

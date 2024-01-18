@@ -22,7 +22,8 @@
     <string name="clock_title" msgid="1974314575211361352">"Настр. цифербл."</string>
     <string name="clock_description" msgid="3563839327378948">"Выбер. цифербл."</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Выберите настраиваемый циферблат."</string>
-    <string name="clock_settings_title" msgid="2940654205471453913">"Настройки часов"</string>
+    <string name="select_clock_action_description" msgid="5025888763471843648">"Циферблат, вариант <xliff:g id="ID_1">%1$s</xliff:g>"</string>
+    <string name="clock_settings_title" msgid="2050906379377120431">"Цвет и размер часов"</string>
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"Цвет и размер часов"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>."</string>
     <string name="clock_color" msgid="8081608867289156163">"Цвет"</string>
@@ -40,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Размер часов меняется в зависимости от контента на заблокированном экране"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Большой"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"Маленький"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"Небольшие часы в углу экрана"</string>
     <string name="grid_title" msgid="1688173478777254123">"Сетка приложений"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Применить"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Нажмите, чтобы изменить"</string>
@@ -65,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"Добавьте любимые шрифты на каждый экран."</string>
     <string name="grid_options_title" msgid="7071930966989877023">"Выберите размер сетки"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g> x <xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"При изменении размера сетки рабочая область обновляется. Это может занять несколько секунд."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"Обновление рабочей области с сеткой \"%1$s\"."</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"Не удалось обновить рабочую область с сеткой \"%1$s\"."</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"Стиль настроен."</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"Часы настроены."</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"Сетка настроена."</string>
@@ -98,6 +103,7 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"Пользовательский цвет"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"Пользовательская форма"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"Название пользовательского стиля"</string>
+    <string name="accessibility_clock_slider_description" msgid="8374135133110681332">"Интенсивность цвета"</string>
     <string name="mode_title" msgid="2394873501427436055">"Тёмная тема"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"Временно отключено из-за режима энергосбережения"</string>
     <string name="mode_changed" msgid="2243581369395418584">"Тема изменена"</string>
@@ -116,7 +122,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Ярлык слева"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Ярлык справа"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Нет"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"Чтобы выбрать приложение \"<xliff:g id="APPNAME">%1$s</xliff:g>\", сделайте следующее:"</string>
+    <string name="keyguard_affordance_enablement_dialog_headline" msgid="365379085932610314">"Не удалось добавить ярлык"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Открыть: <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Для добавления ярлыка приложения \"<xliff:g id="APPNAME">%1$s</xliff:g>\" должны выполняться следующие условия:"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"ОК"</string>
@@ -125,12 +131,16 @@
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"Нет"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Показывать уведомления на заблокированном экране"</string>
-    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Скрывать уведомления на заблокированном экране"</string>
-    <!-- no translation found for more_settings_section_title (1331425454775815958) -->
-    <skip />
-    <!-- no translation found for more_settings_section_description (1860115709122398325) -->
-    <skip />
+    <string name="more_settings_section_title" msgid="1331425454775815958">"Ещё настройки заблок. экрана"</string>
+    <string name="more_settings_section_description" msgid="1860115709122398325">"Конфиденциальность, функция \"Что сейчас играет?\" и т. д."</string>
     <string name="more_colors" msgid="3191071655353004591">"Ещё цвета"</string>
+    <string name="content_description_dynamic_color_option" msgid="2191721655642529886">"Основная динамическая тема"</string>
+    <string name="content_description_neutral_color_option" msgid="3385443834001275301">"Основная нейтральная тема"</string>
+    <string name="content_description_vibrant_color_option" msgid="2230249305878632821">"Основная живая тема"</string>
+    <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Основная выразительная тема"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Цвет по умолчанию"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Цвет: <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Проведите влево, чтобы выбрать другой циферблат"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Проведите вправо, чтобы выбрать другой циферблат"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"Настраиваемые циферблаты"</string>
 </resources>

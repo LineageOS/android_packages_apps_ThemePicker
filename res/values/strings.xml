@@ -303,6 +303,9 @@
     <!-- Accessibility for custom style name page [CHAR_LIMIT=50] -->
     <string name="accessibility_custom_name_title">Custom style name</string>
 
+    <!-- Accessibility for clock color slider [CHAR_LIMIT=50] -->
+    <string name="accessibility_clock_slider_description">Color intensity</string>
+
     <!--Name of metadata in the main launcher Activity which values contains the authority
     corresponding to a ContentProvider in launcher to query or change themed icon option  -->
     <string name="themed_icon_metadata_key" translatable="false">com.android.launcher3.themedicon.option</string>
@@ -434,15 +437,6 @@
     [CHAR LIMIT=64].
     -->
     <string name="show_notifications_on_lock_screen">Show notifications on the lock screen</string>
-
-    <!--
-    Summary for a setting that lets the user toggle between showing or hiding notifications on their
-    device's lock screen. This one is shown when the user is not allowing notifications to show on
-    their device's lock screen.
-
-    [CHAR LIMIT=64].
-    -->
-    <string name="hide_notifications_on_lock_screen">Hide notifications on the lock screen</string>
 
     <!--
     Title for a section in a list of sections in the settings app that allows the user to access

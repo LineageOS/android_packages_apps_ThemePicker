@@ -17,8 +17,12 @@
 package com.android.customization.model.picker.color.ui.viewmodel
 
 import android.content.Context
+import android.graphics.Color
+import android.stats.style.StyleEnums
 import androidx.test.filters.SmallTest
 import androidx.test.platform.app.InstrumentationRegistry
+import com.android.customization.model.color.ColorOptionsProvider
+import com.android.customization.module.logging.TestThemesUserEventLogger
 import com.android.customization.picker.color.data.repository.FakeColorPickerRepository
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
 import com.android.customization.picker.color.domain.interactor.ColorPickerSnapshotRestorer
@@ -26,6 +30,7 @@ import com.android.customization.picker.color.shared.model.ColorType
 import com.android.customization.picker.color.ui.viewmodel.ColorOptionIconViewModel
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
 import com.android.customization.picker.color.ui.viewmodel.ColorTypeTabViewModel
+import com.android.systemui.monet.Style
 import com.android.wallpaper.picker.option.ui.viewmodel.OptionItemViewModel
 import com.android.wallpaper.testing.FakeSnapshotStore
 import com.android.wallpaper.testing.collectLastValue
@@ -36,6 +41,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestScope
+import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
@@ -49,6 +55,7 @@ import org.robolectric.RobolectricTestRunner
 @SmallTest
 @RunWith(RobolectricTestRunner::class)
 class ColorPickerViewModelTest {
+    private val logger = TestThemesUserEventLogger()
     private lateinit var underTest: ColorPickerViewModel
     private lateinit var repository: FakeColorPickerRepository
     private lateinit var interactor: ColorPickerInteractor
@@ -77,7 +84,11 @@ class ColorPickerViewModelTest {
             )
 
         underTest =
-            ColorPickerViewModel.Factory(context = context, interactor = interactor)
+            ColorPickerViewModel.Factory(
+                    context = context,
+                    interactor = interactor,
+                    logger = logger
+                )
                 .create(ColorPickerViewModel::class.java)
 
         repository.setOptions(4, 4, ColorType.WALLPAPER_COLOR, 0)
@@ -109,6 +120,67 @@ class ColorPickerViewModelTest {
                 colorOptions = colorSectionOptions(),
                 selectedColorOptionIndex = 4
             )
+        }
+
+    @Test
+    fun `Log selected wallpaper color`() =
+        testScope.runTest {
+            repository.setOptions(
+                listOf(
+                    repository.buildWallpaperOption(
+                        ColorOptionsProvider.COLOR_SOURCE_LOCK,
+                        Style.EXPRESSIVE,
+                        "121212"
+                    )
+                ),
+                listOf(repository.buildPresetOption(Style.FRUIT_SALAD, "#ABCDEF")),
+                ColorType.PRESET_COLOR,
+                0
+            )
+
+            val colorTypes = collectLastValue(underTest.colorTypeTabs)
+            val colorOptions = collectLastValue(underTest.colorOptions)
+
+            // Select "Wallpaper colors" tab
+            colorTypes()?.get(ColorType.WALLPAPER_COLOR)?.onClick?.invoke()
+            // Select a color option
+            selectColorOption(colorOptions, 0)
+            advanceUntilIdle()
+
+            assertThat(logger.themeColorSource)
+                .isEqualTo(StyleEnums.COLOR_SOURCE_LOCK_SCREEN_WALLPAPER)
+            assertThat(logger.themeColorStyle).isEqualTo(Style.EXPRESSIVE.toString().hashCode())
+            assertThat(logger.themeSeedColor).isEqualTo(Color.parseColor("#121212"))
+        }
+
+    @Test
+    fun `Log selected preset color`() =
+        testScope.runTest {
+            repository.setOptions(
+                listOf(
+                    repository.buildWallpaperOption(
+                        ColorOptionsProvider.COLOR_SOURCE_LOCK,
+                        Style.EXPRESSIVE,
+                        "121212"
+                    )
+                ),
+                listOf(repository.buildPresetOption(Style.FRUIT_SALAD, "#ABCDEF")),
+                ColorType.WALLPAPER_COLOR,
+                0
+            )
+
+            val colorTypes = collectLastValue(underTest.colorTypeTabs)
+            val colorOptions = collectLastValue(underTest.colorOptions)
+
+            // Select "Wallpaper colors" tab
+            colorTypes()?.get(ColorType.PRESET_COLOR)?.onClick?.invoke()
+            // Select a color option
+            selectColorOption(colorOptions, 0)
+            advanceUntilIdle()
+
+            assertThat(logger.themeColorSource).isEqualTo(StyleEnums.COLOR_SOURCE_PRESET_COLOR)
+            assertThat(logger.themeColorStyle).isEqualTo(Style.FRUIT_SALAD.toString().hashCode())
+            assertThat(logger.themeSeedColor).isEqualTo(Color.parseColor("#ABCDEF"))
         }
 
     @Test

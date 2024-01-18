@@ -22,7 +22,8 @@
     <string name="clock_title" msgid="1974314575211361352">"घड़ी का आइकॉन"</string>
     <string name="clock_description" msgid="3563839327378948">"घड़ी आइकॉन चुनें"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"पसंद के मुताबिक घड़ी का आइकॉन बदलें"</string>
-    <string name="clock_settings_title" msgid="2940654205471453913">"घड़ी की सेटिंग"</string>
+    <string name="select_clock_action_description" msgid="5025888763471843648">"स्मार्टवॉच की स्क्रीन के डिज़ाइन के लिए विकल्प <xliff:g id="ID_1">%1$s</xliff:g>"</string>
+    <string name="clock_settings_title" msgid="2050906379377120431">"घड़ी का रंग और साइज़"</string>
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"घड़ी का रंग और साइज़"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>"</string>
     <string name="clock_color" msgid="8081608867289156163">"रंग"</string>
@@ -39,7 +40,8 @@
     <string name="clock_size_dynamic" msgid="1023930312455061642">"डाइनैमिक"</string>
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"लॉक स्क्रीन के कॉन्टेंट के हिसाब से घड़ी का साइज़ बदलता है"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"बड़ा"</string>
-    <string name="clock_size_small" msgid="2280449912094164133">"छोटा करें"</string>
+    <string name="clock_size_small" msgid="2280449912094164133">"छोटा"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"आपके डिवाइस की स्क्रीन के कोने में एक छोटी घड़ी दिखती है"</string>
     <string name="grid_title" msgid="1688173478777254123">"ऐप्लिकेशन ग्रिड"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"लागू करें"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"बदलाव करने के लिए टैप करें"</string>
@@ -65,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"हर स्क्रीन पर अपने पसंदीदा फ़ॉन्ट जोड़ें"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"ग्रिड का साइज़ चुनें"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"ग्रिड साइज़ बदलने पर फ़ाइल फ़ोल्डर फिर से लोड होगा. इसमें शायद समय लगे."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"%1$s ग्रिड के साथ फ़ाइल फ़ोल्डर को फिर से लोड किया जा रहा है"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"%1$s ग्रिड के साथ फ़ाइल फ़ोल्डर को फिर से लोड नहीं किया जा सका"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"थीम सेट हो गई"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"घड़ी सेट हो गई"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"ग्रिड सेट हो गया"</string>
@@ -98,6 +103,7 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"पसंद के मुताबिक रंग"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"पसंद के मुताबिक आकार"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"पसंद के मुताबिक बनाई गई स्टाइल का नाम"</string>
+    <string name="accessibility_clock_slider_description" msgid="8374135133110681332">"कलर इंटेंसिटी"</string>
     <string name="mode_title" msgid="2394873501427436055">"गहरे रंग वाली थीम"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"बैटरी सेवर मोड चालू होने की वजह से, इस सुविधा को कुछ समय के लिए बंद कर दिया गया है"</string>
     <string name="mode_changed" msgid="2243581369395418584">"थीम को बदला गया"</string>
@@ -116,7 +122,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"बायां शॉर्टकट"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"दायां शॉर्टकट"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"कोई नहीं"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"`<xliff:g id="APPNAME">%1$s</xliff:g>` को चुनने के लिए, दिए गए निर्देशों का पालन करें"</string>
+    <string name="keyguard_affordance_enablement_dialog_headline" msgid="365379085932610314">"शॉर्टकट नहीं जोड़ा जा सकता"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g> खोलें"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"<xliff:g id="APPNAME">%1$s</xliff:g> ऐप्लिकेशन को शॉर्टकट के तौर पर जोड़ने के लिए, इन बातों का ध्यान रखें"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"हो गया"</string>
@@ -125,12 +131,16 @@
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"कोई नहीं"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"लॉक स्क्रीन पर सूचनाएं दिखाएं"</string>
-    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"लॉक स्क्रीन पर सूचनाएं छिपाएं"</string>
-    <!-- no translation found for more_settings_section_title (1331425454775815958) -->
-    <skip />
-    <!-- no translation found for more_settings_section_description (1860115709122398325) -->
-    <skip />
-    <string name="more_colors" msgid="3191071655353004591">"ज़्यादा कलर"</string>
+    <string name="more_settings_section_title" msgid="1331425454775815958">"लॉक स्क्रीन के और विकल्प"</string>
+    <string name="more_settings_section_description" msgid="1860115709122398325">"निजता, \'अभी चल रहा है\' सुविधा, और अन्य सुविधा"</string>
+    <string name="more_colors" msgid="3191071655353004591">"कुछ और रंग"</string>
+    <string name="content_description_dynamic_color_option" msgid="2191721655642529886">"प्राइमरी डाइनैमिक थीम"</string>
+    <string name="content_description_neutral_color_option" msgid="3385443834001275301">"प्राइमरी न्यूट्रल थीम"</string>
+    <string name="content_description_vibrant_color_option" msgid="2230249305878632821">"प्राइमरी वाइब्रेंट थीम"</string>
+    <string name="content_description_expressive_color_option" msgid="6081295313456341282">"प्राइमरी एक्सप्रेसिव थीम"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"रंग का डिफ़ॉल्ट विकल्प"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"रंग का विकल्प <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"स्मार्टवॉच की स्क्रीन का डिज़ाइन चुनने के लिए बाईं ओर स्वाइप करें"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"स्मार्टवॉच की स्क्रीन का डिज़ाइन चुनने के लिए दाईं ओर स्वाइप करें"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"स्मार्टवॉच की स्क्रीन का डिज़ाइन पसंद के मुताबिक बनाएं"</string>
 </resources>

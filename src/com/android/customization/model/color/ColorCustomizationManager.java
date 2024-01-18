@@ -15,6 +15,11 @@
  */
 package com.android.customization.model.color;
 
+import static android.stats.style.StyleEnums.COLOR_SOURCE_HOME_SCREEN_WALLPAPER;
+import static android.stats.style.StyleEnums.COLOR_SOURCE_LOCK_SCREEN_WALLPAPER;
+import static android.stats.style.StyleEnums.COLOR_SOURCE_PRESET_COLOR;
+import static android.stats.style.StyleEnums.COLOR_SOURCE_UNSPECIFIED;
+
 import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_COLOR;
 import static com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_SYSTEM_PALETTE;
 import static com.android.customization.model.color.ColorOptionsProvider.COLOR_SOURCE_PRESET;
@@ -27,6 +32,7 @@ import android.app.WallpaperColors;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.ContentObserver;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
@@ -41,6 +47,7 @@ import com.android.customization.model.CustomizationManager;
 import com.android.customization.model.ResourceConstants;
 import com.android.customization.model.color.ColorOptionsProvider.ColorSource;
 import com.android.customization.model.theme.OverlayManagerCompat;
+import com.android.customization.module.logging.ThemesUserEventLogger;
 import com.android.wallpaper.R;
 
 import org.json.JSONArray;
@@ -182,22 +189,7 @@ public class ColorCustomizationManager implements CustomizationManager<ColorOpti
             lockWallpaperColors = null;
         }
         mProvider.fetch(callback, reload, mHomeWallpaperColors,
-                lockWallpaperColors,  /* shouldUseRevampedUi= */ false);
-    }
-
-    /**
-     * Fetch options function for the customization hub revamped UI
-     *
-     * TODO (b/276417460): refactor to reduce code repetition with the other fetch options function
-     */
-    public void fetchRevampedUIOptions(OptionsFetchedListener<ColorOption> callback,
-            boolean reload) {
-        WallpaperColors lockWallpaperColors = mLockWallpaperColors;
-        if (lockWallpaperColors != null && mLockWallpaperColors.equals(mHomeWallpaperColors)) {
-            lockWallpaperColors = null;
-        }
-        mProvider.fetch(callback, reload, mHomeWallpaperColors,
-                lockWallpaperColors,  /* shouldUseRevampedUi= */ true);
+                lockWallpaperColors);
     }
 
     /**
@@ -218,6 +210,38 @@ public class ColorCustomizationManager implements CustomizationManager<ColorOpti
             parseSettings(getStoredOverlays());
         }
         return mCurrentOverlays;
+    }
+
+    /** */
+    public int getCurrentColorSourceForLogging() {
+        String colorSource = getCurrentColorSource();
+        if (colorSource == null) {
+            return COLOR_SOURCE_UNSPECIFIED;
+        }
+        return switch (colorSource) {
+            case ColorOptionsProvider.COLOR_SOURCE_PRESET -> COLOR_SOURCE_PRESET_COLOR;
+            case ColorOptionsProvider.COLOR_SOURCE_HOME -> COLOR_SOURCE_HOME_SCREEN_WALLPAPER;
+            case ColorOptionsProvider.COLOR_SOURCE_LOCK -> COLOR_SOURCE_LOCK_SCREEN_WALLPAPER;
+            default -> COLOR_SOURCE_UNSPECIFIED;
+        };
+    }
+
+    /** */
+    public int getCurrentStyleForLogging() {
+        String style = getCurrentStyle();
+        return style != null ? style.hashCode() : 0;
+    }
+
+    /** */
+    public int getCurrentSeedColorForLogging() {
+        String seedColor = getCurrentOverlays().get(OVERLAY_CATEGORY_SYSTEM_PALETTE);
+        if (seedColor == null || seedColor.isEmpty()) {
+            return ThemesUserEventLogger.NULL_SEED_COLOR;
+        }
+        if (!seedColor.startsWith("#")) {
+            seedColor = "#" + seedColor;
+        }
+        return Color.parseColor(seedColor);
     }
 
     /**

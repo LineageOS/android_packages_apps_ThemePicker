@@ -21,9 +21,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.android.customization.model.color.ColorOptionImpl
+import com.android.customization.module.logging.ThemesUserEventLogger
+import com.android.customization.module.logging.ThemesUserEventLogger.Companion.NULL_SEED_COLOR
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.shared.ClockSize
 import com.android.customization.picker.clock.shared.model.ClockMetadataModel
+import com.android.customization.picker.clock.shared.toClockSizeForLogging
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
 import com.android.customization.picker.color.shared.model.ColorOptionModel
 import com.android.customization.picker.color.shared.model.ColorType
@@ -53,6 +56,7 @@ private constructor(
     private val clockPickerInteractor: ClockPickerInteractor,
     private val colorPickerInteractor: ColorPickerInteractor,
     private val getIsReactiveToTone: (clockId: String?) -> Boolean,
+    private val logger: ThemesUserEventLogger,
 ) : ViewModel() {
 
     enum class Tab {
@@ -106,15 +110,17 @@ private constructor(
     suspend fun onSliderProgressStop(progress: Int) {
         val selectedColorId = selectedColorId.value ?: return
         val clockColorViewModel = colorMap[selectedColorId] ?: return
+        val seedColor =
+            blendColorWithTone(
+                color = clockColorViewModel.color,
+                colorTone = clockColorViewModel.getColorTone(progress),
+            )
         clockPickerInteractor.setClockColor(
             selectedColorId = selectedColorId,
             colorToneProgress = progress,
-            seedColor =
-                blendColorWithTone(
-                    color = clockColorViewModel.color,
-                    colorTone = clockColorViewModel.getColorTone(progress),
-                )
+            seedColor = seedColor,
         )
+        logger.logClockColorApplied(seedColor)
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -169,18 +175,20 @@ private constructor(
                                     } else {
                                         {
                                             viewModelScope.launch {
+                                                val seedColor =
+                                                    blendColorWithTone(
+                                                        color = colorModel.color,
+                                                        colorTone =
+                                                            colorModel.getColorTone(
+                                                                colorToneProgress,
+                                                            ),
+                                                    )
                                                 clockPickerInteractor.setClockColor(
                                                     selectedColorId = colorModel.colorId,
                                                     colorToneProgress = colorToneProgress,
-                                                    seedColor =
-                                                        blendColorWithTone(
-                                                            color = colorModel.color,
-                                                            colorTone =
-                                                                colorModel.getColorTone(
-                                                                    colorToneProgress,
-                                                                ),
-                                                        ),
+                                                    seedColor = seedColor,
                                                 )
+                                                logger.logClockColorApplied(seedColor)
                                             }
                                         }
                                     }
@@ -244,6 +252,7 @@ private constructor(
                                         ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS,
                                     seedColor = null,
                                 )
+                                logger.logClockColorApplied(NULL_SEED_COLOR)
                             }
                         }
                     }
@@ -254,7 +263,10 @@ private constructor(
     val selectedClockSize: Flow<ClockSize> = clockPickerInteractor.selectedClockSize
 
     fun setClockSize(size: ClockSize) {
-        viewModelScope.launch { clockPickerInteractor.setClockSize(size) }
+        viewModelScope.launch {
+            clockPickerInteractor.setClockSize(size)
+            logger.logClockSizeApplied(size.toClockSizeForLogging())
+        }
     }
 
     private val _selectedTabPosition = MutableStateFlow(Tab.COLOR)
@@ -304,6 +316,7 @@ private constructor(
         private val context: Context,
         private val clockPickerInteractor: ClockPickerInteractor,
         private val colorPickerInteractor: ColorPickerInteractor,
+        private val logger: ThemesUserEventLogger,
         private val getIsReactiveToTone: (clockId: String?) -> Boolean,
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -312,6 +325,7 @@ private constructor(
                 context = context,
                 clockPickerInteractor = clockPickerInteractor,
                 colorPickerInteractor = colorPickerInteractor,
+                logger = logger,
                 getIsReactiveToTone = getIsReactiveToTone,
             )
                 as T

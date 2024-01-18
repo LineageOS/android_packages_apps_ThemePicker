@@ -42,9 +42,14 @@ class KeyguardQuickAffordanceSnapshotRestorer(
     }
 
     override suspend fun restoreToSnapshot(snapshot: RestorableSnapshot) {
+        // reset all current selections
+        interactor.unselectAll()
+
+        val allSelections = checkNotNull(snapshot.args[KEY_SELECTIONS])
+        if (allSelections.isEmpty()) return
+
         val selections: List<Pair<String, String>> =
-            checkNotNull(snapshot.args[KEY_SELECTIONS]).split(SELECTION_SEPARATOR).map { selection
-                ->
+            allSelections.split(SELECTION_SEPARATOR).map { selection ->
                 val (slotId, affordanceId) = selection.split(SLOT_AFFORDANCE_SEPARATOR)
                 slotId to affordanceId
             }

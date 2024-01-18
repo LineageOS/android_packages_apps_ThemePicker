@@ -22,7 +22,8 @@
     <string name="clock_title" msgid="1974314575211361352">"นาฬิกาที่กำหนดเอง"</string>
     <string name="clock_description" msgid="3563839327378948">"เลือกนาฬิกาที่กำหนดเอง"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"เปลี่ยนนาฬิกาที่กำหนดเอง"</string>
-    <string name="clock_settings_title" msgid="2940654205471453913">"ตั้งค่านาฬิกา"</string>
+    <string name="select_clock_action_description" msgid="5025888763471843648">"ตัวเลือกหน้าปัดนาฬิกา <xliff:g id="ID_1">%1$s</xliff:g>"</string>
+    <string name="clock_settings_title" msgid="2050906379377120431">"สีและขนาดนาฬิกา"</string>
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"สีและขนาดนาฬิกา"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>"</string>
     <string name="clock_color" msgid="8081608867289156163">"สี"</string>
@@ -40,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"ขนาดของนาฬิกาจะเปลี่ยนตามเนื้อหาในหน้าจอล็อก"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"ใหญ่"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"เล็ก"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"นาฬิกาขนาดเล็กจะแสดงที่มุมของหน้าจอ"</string>
     <string name="grid_title" msgid="1688173478777254123">"ตารางกริดแอป"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"ใช้"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"แตะเพื่อแก้ไข"</string>
@@ -65,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"เพิ่มแบบอักษรที่ชอบในทุกหน้าจอ"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"เลือกขนาดตารางกริด"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"การเปลี่ยนขนาดตารางกริดจะโหลดพื้นที่ทำงานซ้ำและอาจใช้เวลาสักครู่"</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"กำลังโหลดพื้นที่ทำงานซ้ำด้วยตารางกริด %1$s"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"โหลดพื้นที่ทำงานซ้ำด้วยตาราง %1$s ไม่สำเร็จ"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"ตั้งค่ารูปแบบเรียบร้อยแล้ว"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"ตั้งนาฬิกาเรียบร้อยแล้ว"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"ตั้งค่าตารางกริดเรียบร้อยแล้ว"</string>
@@ -98,6 +103,7 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"สีที่กำหนดเอง"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"รูปร่างที่กำหนดเอง"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"ชื่อรูปแบบที่กำหนดเอง"</string>
+    <string name="accessibility_clock_slider_description" msgid="8374135133110681332">"ความเข้มของสี"</string>
     <string name="mode_title" msgid="2394873501427436055">"ธีมมืด"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"ปิดใช้ชั่วคราวเนื่องจากอยู่ในโหมดประหยัดแบตเตอรี่"</string>
     <string name="mode_changed" msgid="2243581369395418584">"เปลี่ยนธีมแล้ว"</string>
@@ -116,7 +122,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"ทางลัดทางซ้าย"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"ทางลัดทางขวา"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"ไม่มี"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"หากต้องการเลือก \"<xliff:g id="APPNAME">%1$s</xliff:g>\" โปรดตรวจสอบรายการต่อไปนี้"</string>
+    <string name="keyguard_affordance_enablement_dialog_headline" msgid="365379085932610314">"เพิ่มทางลัดไม่ได้"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"เปิด <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"หากต้องการเพิ่มแอป <xliff:g id="APPNAME">%1$s</xliff:g> เป็นทางลัด โปรดตรวจสอบดังต่อไปนี้"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"เสร็จสิ้น"</string>
@@ -125,12 +131,16 @@
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"ไม่มี"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"แสดงการแจ้งเตือนบนหน้าจอล็อก"</string>
-    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"ซ่อนการแจ้งเตือนบนหน้าจอล็อก"</string>
-    <!-- no translation found for more_settings_section_title (1331425454775815958) -->
-    <skip />
-    <!-- no translation found for more_settings_section_description (1860115709122398325) -->
-    <skip />
+    <string name="more_settings_section_title" msgid="1331425454775815958">"ตัวเลือกหน้าจอล็อกเพิ่มเติม"</string>
+    <string name="more_settings_section_description" msgid="1860115709122398325">"ความเป็นส่วนตัว ฟีเจอร์ \"กำลังเล่น\" และอื่นๆ"</string>
     <string name="more_colors" msgid="3191071655353004591">"สีเพิ่มเติม"</string>
+    <string name="content_description_dynamic_color_option" msgid="2191721655642529886">"ธีมหลักแบบไดนามิก"</string>
+    <string name="content_description_neutral_color_option" msgid="3385443834001275301">"ธีมหลักแบบใช้สีโทนกลาง"</string>
+    <string name="content_description_vibrant_color_option" msgid="2230249305878632821">"ธีมหลักแบบสีสันสดใส"</string>
+    <string name="content_description_expressive_color_option" msgid="6081295313456341282">"ธีมหลักแบบชัดเจน"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"ตัวเลือกสีเริ่มต้น"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"ตัวเลือกสี <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"ปัดซ้ายเพื่อเลือกหน้าปัดแบบต่างๆ"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"ปัดขวาเพื่อเลือกหน้าปัดแบบต่างๆ"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"หน้าปัดแบบกำหนดเอง"</string>
 </resources>

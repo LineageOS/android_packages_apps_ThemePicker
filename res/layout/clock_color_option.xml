@@ -22,7 +22,7 @@
     android:orientation="vertical"
     android:clipChildren="false">
 
-    <include layout="@layout/color_option_2"/>
+    <include layout="@layout/color_option"/>
 
     <TextView
         android:id="@+id/text"

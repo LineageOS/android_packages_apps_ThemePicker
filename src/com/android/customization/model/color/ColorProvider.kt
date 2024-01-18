@@ -48,6 +48,7 @@ import kotlinx.coroutines.withContext
 
 /**
  * Default implementation of {@link ColorOptionsProvider} that reads preset colors from a stub APK.
+ * TODO (b/311212666): Make [ColorProvider] and [ColorCustomizationManager] injectable
  */
 class ColorProvider(private val context: Context, stubPackageName: String) :
     ResourcesApkProvider(context, stubPackageName), ColorOptionsProvider {
@@ -68,8 +69,6 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
             arrayOf(Style.TONAL_SPOT, Style.SPRITZ, Style.VIBRANT, Style.EXPRESSIVE)
         else arrayOf(Style.TONAL_SPOT)
 
-    private val monochromeEnabled =
-        InjectorProvider.getInjector().getFlags().isMonochromaticThemeEnabled(mContext)
     private var monochromeBundleName: String? = null
 
     private val scope =
@@ -93,7 +92,6 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
         reload: Boolean,
         homeWallpaperColors: WallpaperColors?,
         lockWallpaperColors: WallpaperColors?,
-        shouldUseRevampedUi: Boolean
     ) {
         val wallpaperColorsChanged =
             this.homeWallpaperColors != homeWallpaperColors ||
@@ -106,13 +104,12 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
             scope.launch {
                 try {
                     if (colorBundles == null || reload) {
-                        loadPreset(shouldUseRevampedUi)
+                        loadPreset()
                     }
                     if (wallpaperColorsChanged || reload) {
                         loadSeedColors(
                             homeWallpaperColors,
                             lockWallpaperColors,
-                            shouldUseRevampedUi
                         )
                     }
                 } catch (e: Throwable) {
@@ -138,7 +135,6 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
     private fun loadSeedColors(
         homeWallpaperColors: WallpaperColors?,
         lockWallpaperColors: WallpaperColors?,
-        shouldUseRevampedUi: Boolean,
     ) {
         if (homeWallpaperColors == null) return
 
@@ -159,7 +155,6 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
                 if (shouldLockColorsGoFirst) COLOR_SOURCE_LOCK else COLOR_SOURCE_HOME,
                 true,
                 bundles,
-                shouldUseRevampedUi
             )
             // Second half of the colors
             buildColorSeeds(
@@ -168,7 +163,6 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
                 if (shouldLockColorsGoFirst) COLOR_SOURCE_HOME else COLOR_SOURCE_LOCK,
                 false,
                 bundles,
-                shouldUseRevampedUi
             )
         } else {
             buildColorSeeds(
@@ -177,35 +171,20 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
                 COLOR_SOURCE_HOME,
                 true,
                 bundles,
-                shouldUseRevampedUi
             )
         }
 
-        if (shouldUseRevampedUi) {
-            // Insert monochrome in the second position if it is enabled and included in preset
-            // colors
-            if (monochromeEnabled) {
-                monochromeBundleName?.let {
-                    bundles.add(
-                        1,
-                        buildRevampedUIPreset(
-                            it,
-                            -1,
-                            Style.MONOCHROMATIC,
-                            ColorType.WALLPAPER_COLOR
-                        )
-                    )
-                }
+        // Insert monochrome in the second position if it is enabled and included in preset
+        // colors
+        if (InjectorProvider.getInjector().getFlags().isMonochromaticThemeEnabled(mContext)) {
+            monochromeBundleName?.let {
+                bundles.add(1, buildPreset(it, -1, Style.MONOCHROMATIC, ColorType.WALLPAPER_COLOR))
             }
-            bundles.addAll(
-                colorBundles?.filterNot {
-                    (it as ColorOptionImpl).type == ColorType.WALLPAPER_COLOR
-                }
-                    ?: emptyList()
-            )
-        } else {
-            bundles.addAll(colorBundles?.filterNot { it is ColorSeedOption } ?: emptyList())
         }
+        bundles.addAll(
+            colorBundles?.filterNot { (it as ColorOptionImpl).type == ColorType.WALLPAPER_COLOR }
+                ?: emptyList()
+        )
         colorBundles = bundles
     }
 
@@ -215,13 +194,12 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
         source: String,
         containsDefault: Boolean,
         bundles: MutableList<ColorOption>,
-        shouldUseRevampedUi: Boolean,
     ) {
         val seedColors = ColorScheme.getSeedColors(wallpaperColors)
         val defaultSeed = seedColors.first()
-        buildBundle(defaultSeed, 0, containsDefault, source, bundles, shouldUseRevampedUi)
+        buildBundle(defaultSeed, 0, containsDefault, source, bundles)
         for ((i, colorInt) in seedColors.drop(1).take(maxColors - 1).withIndex()) {
-            buildBundle(colorInt, i + 1, false, source, bundles, shouldUseRevampedUi)
+            buildBundle(colorInt, i + 1, false, source, bundles)
         }
     }
 
@@ -231,99 +209,38 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
         isDefault: Boolean,
         source: String,
         bundles: MutableList<ColorOption>,
-        shouldUseRevampedUi: Boolean,
     ) {
         // TODO(b/202145216): Measure time cost in the loop.
-        if (shouldUseRevampedUi) {
-            for (style in styleList) {
-                val lightColorScheme = ColorScheme(colorInt, /* darkTheme= */ false, style)
-                val darkColorScheme = ColorScheme(colorInt, /* darkTheme= */ true, style)
-                val builder = ColorOptionImpl.Builder()
-                builder.lightColors = getRevampedUILightColorPreview(lightColorScheme)
-                builder.darkColors = getRevampedUIDarkColorPreview(darkColorScheme)
-                builder.addOverlayPackage(
-                    OVERLAY_CATEGORY_SYSTEM_PALETTE,
-                    if (isDefault) "" else toColorString(colorInt)
-                )
-                builder.title =
-                    when (style) {
-                        Style.TONAL_SPOT ->
-                            context.getString(R.string.content_description_dynamic_color_option)
-                        Style.SPRITZ ->
-                            context.getString(R.string.content_description_neutral_color_option)
-                        Style.VIBRANT ->
-                            context.getString(R.string.content_description_vibrant_color_option)
-                        Style.EXPRESSIVE ->
-                            context.getString(R.string.content_description_expressive_color_option)
-                        else -> context.getString(R.string.content_description_dynamic_color_option)
-                    }
-                builder.source = source
-                builder.style = style
-                // Color option index value starts from 1.
-                builder.index = i + 1
-                builder.isDefault = isDefault
-                builder.type = ColorType.WALLPAPER_COLOR
-                bundles.add(builder.build())
-            }
-        } else {
-            for (style in styleList) {
-                val lightColorScheme = ColorScheme(colorInt, /* darkTheme= */ false, style)
-                val darkColorScheme = ColorScheme(colorInt, /* darkTheme= */ true, style)
-                val builder = ColorSeedOption.Builder()
-                builder
-                    .setLightColors(lightColorScheme.getLightColorPreview())
-                    .setDarkColors(darkColorScheme.getDarkColorPreview())
-                    .addOverlayPackage(
-                        OVERLAY_CATEGORY_SYSTEM_PALETTE,
-                        if (isDefault) "" else toColorString(colorInt)
-                    )
-                    .addOverlayPackage(
-                        OVERLAY_CATEGORY_COLOR,
-                        if (isDefault) "" else toColorString(colorInt)
-                    )
-                    .setSource(source)
-                    .setStyle(style)
-                    // Color option index value starts from 1.
-                    .setIndex(i + 1)
-
-                if (isDefault) builder.asDefault()
-
-                bundles.add(builder.build())
-            }
+        for (style in styleList) {
+            val lightColorScheme = ColorScheme(colorInt, /* darkTheme= */ false, style)
+            val darkColorScheme = ColorScheme(colorInt, /* darkTheme= */ true, style)
+            val builder = ColorOptionImpl.Builder()
+            builder.lightColors = getLightColorPreview(lightColorScheme)
+            builder.darkColors = getDarkColorPreview(darkColorScheme)
+            builder.addOverlayPackage(
+                OVERLAY_CATEGORY_SYSTEM_PALETTE,
+                if (isDefault) "" else toColorString(colorInt)
+            )
+            builder.title =
+                when (style) {
+                    Style.TONAL_SPOT ->
+                        context.getString(R.string.content_description_dynamic_color_option)
+                    Style.SPRITZ ->
+                        context.getString(R.string.content_description_neutral_color_option)
+                    Style.VIBRANT ->
+                        context.getString(R.string.content_description_vibrant_color_option)
+                    Style.EXPRESSIVE ->
+                        context.getString(R.string.content_description_expressive_color_option)
+                    else -> context.getString(R.string.content_description_dynamic_color_option)
+                }
+            builder.source = source
+            builder.style = style
+            // Color option index value starts from 1.
+            builder.index = i + 1
+            builder.isDefault = isDefault
+            builder.type = ColorType.WALLPAPER_COLOR
+            bundles.add(builder.build())
         }
-    }
-
-    /**
-     * Returns the colors for the light theme version of the preview of a ColorScheme based on this
-     * order: top left, top right, bottom left, bottom right
-     */
-    @ColorInt
-    private fun ColorScheme.getLightColorPreview(): IntArray {
-        return when (this.style) {
-            Style.EXPRESSIVE ->
-                intArrayOf(
-                    setAlphaComponent(this.accent1.s100, ALPHA_MASK),
-                    setAlphaComponent(this.accent1.s100, ALPHA_MASK),
-                    ColorStateList.valueOf(this.neutral2.s500).withLStar(80f).colors[0],
-                    setAlphaComponent(this.accent2.s500, ALPHA_MASK)
-                )
-            else ->
-                intArrayOf(
-                    setAlphaComponent(this.accent1.s100, ALPHA_MASK),
-                    setAlphaComponent(this.accent1.s100, ALPHA_MASK),
-                    ColorStateList.valueOf(this.accent3.s500).withLStar(85f).colors[0],
-                    setAlphaComponent(this.accent1.s500, ALPHA_MASK)
-                )
-        }
-    }
-
-    /**
-     * Returns the color for the dark theme version of the preview of a ColorScheme based on this
-     * order: top left, top right, bottom left, bottom right
-     */
-    @ColorInt
-    private fun ColorScheme.getDarkColorPreview(): IntArray {
-        return getLightColorPreview()
     }
 
     /**
@@ -334,7 +251,7 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
      * LStar 85, and Tertiary LStar 70
      */
     @ColorInt
-    private fun getRevampedUILightColorPreview(colorScheme: ColorScheme): IntArray {
+    private fun getLightColorPreview(colorScheme: ColorScheme): IntArray {
         return intArrayOf(
             setAlphaComponent(colorScheme.accent1.s600, ALPHA_MASK),
             setAlphaComponent(colorScheme.accent1.s600, ALPHA_MASK),
@@ -351,7 +268,7 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
      * 35, and Tertiary LStar 70
      */
     @ColorInt
-    private fun getRevampedUIDarkColorPreview(colorScheme: ColorScheme): IntArray {
+    private fun getDarkColorPreview(colorScheme: ColorScheme): IntArray {
         return intArrayOf(
             setAlphaComponent(colorScheme.accent1.s200, ALPHA_MASK),
             setAlphaComponent(colorScheme.accent1.s200, ALPHA_MASK),
@@ -368,7 +285,7 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
      * LStar 85, and Tertiary LStar 70
      */
     @ColorInt
-    private fun getRevampedUILightMonochromePreview(colorScheme: ColorScheme): IntArray {
+    private fun getLightMonochromePreview(colorScheme: ColorScheme): IntArray {
         return intArrayOf(
             setAlphaComponent(colorScheme.accent1.s1000, ALPHA_MASK),
             setAlphaComponent(colorScheme.accent1.s1000, ALPHA_MASK),
@@ -385,7 +302,7 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
      * LStar 35, and Tertiary LStar 70
      */
     @ColorInt
-    private fun getRevampedUIDarkMonochromePreview(colorScheme: ColorScheme): IntArray {
+    private fun getDarkMonochromePreview(colorScheme: ColorScheme): IntArray {
         return intArrayOf(
             setAlphaComponent(colorScheme.accent1.s10, ALPHA_MASK),
             setAlphaComponent(colorScheme.accent1.s10, ALPHA_MASK),
@@ -398,7 +315,7 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
      * Returns the Revamped UI preview of a preset ColorScheme based on this order: top left, top
      * right, bottom left, bottom right
      */
-    private fun getRevampedUIPresetColorPreview(colorScheme: ColorScheme, seed: Int): IntArray {
+    private fun getPresetColorPreview(colorScheme: ColorScheme, seed: Int): IntArray {
         val colors =
             when (colorScheme.style) {
                 Style.FRUIT_SALAD -> intArrayOf(seed, colorScheme.accent1.s200)
@@ -414,22 +331,8 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
         )
     }
 
-    private fun ColorScheme.getPresetColorPreview(seed: Int): IntArray {
-        return when (this.style) {
-            Style.FRUIT_SALAD -> intArrayOf(seed, this.accent1.s100)
-            Style.TONAL_SPOT -> intArrayOf(this.accentColor, this.accentColor)
-            Style.MONOCHROMATIC ->
-                intArrayOf(
-                    setAlphaComponent(0x000000, 255),
-                    setAlphaComponent(0xFFFFFF, 255),
-                )
-            else -> intArrayOf(this.accent1.s100, this.accent1.s100)
-        }
-    }
-
-    private suspend fun loadPreset(shouldUseRevampedUi: Boolean) =
+    private suspend fun loadPreset() =
         withContext(Dispatchers.IO) {
-            val extractor = ColorBundlePreviewExtractor(mContext)
             val bundles: MutableList<ColorOption> = ArrayList()
 
             val bundleNames =
@@ -438,95 +341,50 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
             var index = 1
             val maxPresetColors = if (themeStyleEnabled) bundleNames.size else MAX_PRESET_COLORS
 
-            if (shouldUseRevampedUi) {
-                // keep track of whether monochrome is included in preset colors to determine
-                // inclusion in wallpaper colors
-                var hasMonochrome = false
-                for (bundleName in bundleNames.take(maxPresetColors)) {
-                    if (themeStyleEnabled) {
-                        val styleName =
-                            try {
-                                getItemStringFromStub(COLOR_BUNDLE_STYLE_PREFIX, bundleName)
-                            } catch (e: Resources.NotFoundException) {
-                                null
-                            }
-                        val style =
-                            try {
-                                if (styleName != null) Style.valueOf(styleName)
-                                else Style.TONAL_SPOT
-                            } catch (e: IllegalArgumentException) {
-                                Style.TONAL_SPOT
-                            }
-
-                        if (style == Style.MONOCHROMATIC) {
-                            if (!monochromeEnabled) {
-                                continue
-                            }
-                            hasMonochrome = true
-                            monochromeBundleName = bundleName
+            // keep track of whether monochrome is included in preset colors to determine
+            // inclusion in wallpaper colors
+            var hasMonochrome = false
+            for (bundleName in bundleNames.take(maxPresetColors)) {
+                if (themeStyleEnabled) {
+                    val styleName =
+                        try {
+                            getItemStringFromStub(COLOR_BUNDLE_STYLE_PREFIX, bundleName)
+                        } catch (e: Resources.NotFoundException) {
+                            null
                         }
-                        bundles.add(buildRevampedUIPreset(bundleName, index, style))
-                    } else {
-                        bundles.add(buildRevampedUIPreset(bundleName, index, null))
-                    }
+                    val style =
+                        try {
+                            if (styleName != null) Style.valueOf(styleName) else Style.TONAL_SPOT
+                        } catch (e: IllegalArgumentException) {
+                            Style.TONAL_SPOT
+                        }
 
-                    index++
-                }
-                if (!hasMonochrome) {
-                    monochromeBundleName = null
-                }
-            } else {
-                for (bundleName in bundleNames.take(maxPresetColors)) {
-                    val builder = ColorBundle.Builder()
-                    builder.title = getItemStringFromStub(COLOR_BUNDLE_NAME_PREFIX, bundleName)
-                    builder.setIndex(index)
-                    val colorFromStub =
-                        getItemColorFromStub(COLOR_BUNDLE_MAIN_COLOR_PREFIX, bundleName)
-                    extractor.addPrimaryColor(builder, colorFromStub)
-                    extractor.addSecondaryColor(builder, colorFromStub)
-                    if (themeStyleEnabled) {
-                        val styleName =
-                            try {
-                                getItemStringFromStub(COLOR_BUNDLE_STYLE_PREFIX, bundleName)
-                            } catch (e: Resources.NotFoundException) {
-                                null
-                            }
-                        extractor.addColorStyle(builder, styleName)
-                        val style =
-                            try {
-                                if (styleName != null) Style.valueOf(styleName)
-                                else Style.TONAL_SPOT
-                            } catch (e: IllegalArgumentException) {
-                                Style.TONAL_SPOT
-                            }
-
-                        if (style == Style.MONOCHROMATIC && !monochromeEnabled) {
+                    if (style == Style.MONOCHROMATIC) {
+                        if (
+                            !InjectorProvider.getInjector()
+                                .getFlags()
+                                .isMonochromaticThemeEnabled(mContext)
+                        ) {
                             continue
                         }
-
-                        val darkColors =
-                            ColorScheme(colorFromStub, /* darkTheme= */ true, style)
-                                .getPresetColorPreview(colorFromStub)
-                        val lightColors =
-                            ColorScheme(colorFromStub, /* darkTheme= */ false, style)
-                                .getPresetColorPreview(colorFromStub)
-                        builder
-                            .setColorPrimaryDark(darkColors[0])
-                            .setColorSecondaryDark(darkColors[1])
-                        builder
-                            .setColorPrimaryLight(lightColors[0])
-                            .setColorSecondaryLight(lightColors[1])
+                        hasMonochrome = true
+                        monochromeBundleName = bundleName
                     }
-
-                    bundles.add(builder.build(mContext))
-                    index++
+                    bundles.add(buildPreset(bundleName, index, style))
+                } else {
+                    bundles.add(buildPreset(bundleName, index, null))
                 }
+
+                index++
+            }
+            if (!hasMonochrome) {
+                monochromeBundleName = null
             }
 
             colorBundles = bundles
         }
 
-    private fun buildRevampedUIPreset(
+    private fun buildPreset(
         bundleName: String,
         index: Int,
         style: Style? = null,
@@ -554,12 +412,12 @@ class ColorProvider(private val context: Context, stubPackageName: String) :
 
             when (style) {
                 Style.MONOCHROMATIC -> {
-                    darkColors = getRevampedUIDarkMonochromePreview(darkColorScheme)
-                    lightColors = getRevampedUILightMonochromePreview(lightColorScheme)
+                    darkColors = getDarkMonochromePreview(darkColorScheme)
+                    lightColors = getLightMonochromePreview(lightColorScheme)
                 }
                 else -> {
-                    darkColors = getRevampedUIPresetColorPreview(darkColorScheme, colorFromStub)
-                    lightColors = getRevampedUIPresetColorPreview(lightColorScheme, colorFromStub)
+                    darkColors = getPresetColorPreview(darkColorScheme, colorFromStub)
+                    lightColors = getPresetColorPreview(lightColorScheme, colorFromStub)
                 }
             }
         }

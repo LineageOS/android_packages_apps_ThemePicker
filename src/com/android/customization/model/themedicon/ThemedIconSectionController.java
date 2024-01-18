@@ -24,10 +24,12 @@ import androidx.lifecycle.Observer;
 
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconInteractor;
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconSnapshotRestorer;
+import com.android.customization.module.logging.ThemesUserEventLogger;
 import com.android.customization.picker.themedicon.ThemedIconSectionView;
 import com.android.wallpaper.R;
 import com.android.wallpaper.model.CustomizationSectionController;
 
+// TODO (b/311712452): Refactor CustomizationSectionController to use recommended arch UI components
 /** The {@link CustomizationSectionController} for themed icon section. */
 public class ThemedIconSectionController implements
         CustomizationSectionController<ThemedIconSectionView> {
@@ -38,6 +40,7 @@ public class ThemedIconSectionController implements
     private final ThemedIconInteractor mInteractor;
     private final ThemedIconSnapshotRestorer mSnapshotRestorer;
     private final Observer<Boolean> mIsActivatedChangeObserver;
+    private final ThemesUserEventLogger mThemesUserEventLogger;
 
     private ThemedIconSectionView mThemedIconSectionView;
     private boolean mSavedThemedIconEnabled = false;
@@ -46,7 +49,8 @@ public class ThemedIconSectionController implements
             ThemedIconSwitchProvider themedIconOptionsProvider,
             ThemedIconInteractor interactor,
             @Nullable Bundle savedInstanceState,
-            ThemedIconSnapshotRestorer snapshotRestorer) {
+            ThemedIconSnapshotRestorer snapshotRestorer,
+            ThemesUserEventLogger themesUserEventLogger) {
         mThemedIconOptionsProvider = themedIconOptionsProvider;
         mInteractor = interactor;
         mSnapshotRestorer = snapshotRestorer;
@@ -55,6 +59,7 @@ public class ThemedIconSectionController implements
                 mThemedIconSectionView.getSwitch().setChecked(isActivated);
             }
         };
+        mThemesUserEventLogger = themesUserEventLogger;
 
         if (savedInstanceState != null) {
             mSavedThemedIconEnabled = savedInstanceState.getBoolean(
@@ -75,7 +80,10 @@ public class ThemedIconSectionController implements
         mThemedIconSectionView.setViewListener(this::onViewActivated);
         mThemedIconSectionView.getSwitch().setChecked(mSavedThemedIconEnabled);
         mThemedIconOptionsProvider.fetchThemedIconEnabled(
-                enabled -> mThemedIconSectionView.getSwitch().setChecked(enabled));
+                enabled -> {
+                    mInteractor.setActivated(enabled);
+                    mThemedIconSectionView.getSwitch().setChecked(enabled);
+                });
         mInteractor.isActivatedAsLiveData().observeForever(mIsActivatedChangeObserver);
         return mThemedIconSectionView;
     }
@@ -91,6 +99,7 @@ public class ThemedIconSectionController implements
         }
         mThemedIconOptionsProvider.setThemedIconEnabled(viewActivated);
         mInteractor.setActivated(viewActivated);
+        mThemesUserEventLogger.logThemedIconApplied(viewActivated);
         mSnapshotRestorer.store(viewActivated);
     }
 

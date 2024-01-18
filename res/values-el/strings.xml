@@ -22,7 +22,8 @@
     <string name="clock_title" msgid="1974314575211361352">"Προσαρ. ρολόι"</string>
     <string name="clock_description" msgid="3563839327378948">"Επιλογή προσαρ. ρολογιού"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Αλλαγή προσαρ. ρολογιού"</string>
-    <string name="clock_settings_title" msgid="2940654205471453913">"Ρυθμ. ρολογιού"</string>
+    <string name="select_clock_action_description" msgid="5025888763471843648">"Επιλογή όψης ρολογιού <xliff:g id="ID_1">%1$s</xliff:g>"</string>
+    <string name="clock_settings_title" msgid="2050906379377120431">"Χρώμα/μέγεθ. ρολογ."</string>
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"Χρώμα και μέγεθος"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>"</string>
     <string name="clock_color" msgid="8081608867289156163">"Χρώμα"</string>
@@ -40,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Το μέγεθος του ρολογιού αλλάζει ανάλογα με το περιεχόμενο της οθόνης κλειδώματος"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Μεγάλο"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"Μικρό"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"Ένα μικρό ρολόι εμφανίζεται στη γωνία της οθόνης"</string>
     <string name="grid_title" msgid="1688173478777254123">"Πλέγμα εφαρμ."</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Εφαρμογή"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Πατήστε για επεξεργασία"</string>
@@ -55,7 +57,7 @@
     <string name="option_previewed_description" msgid="3467217598865047661">"Αυτήν τη στιγμή εμφανίζεται σε προεπισκόπηση η επιλογή <xliff:g id="ID_1">%1$s</xliff:g>"</string>
     <string name="option_change_applied_previewed_description" msgid="9197311327728570816">"<xliff:g id="ID_1">%1$s</xliff:g>, η αλλαγή επιλέχθηκε και προβλήθηκε σε προεπισκόπηση"</string>
     <string name="theme_description" msgid="3697012391785254635">"Γραμματοσειρά: <xliff:g id="ID_1">%1$s</xliff:g>, εικονίδια: <xliff:g id="ID_2">%2$s</xliff:g>, σχήμα: <xliff:g id="ID_3">%3$s</xliff:g>, χρώμα: <xliff:g id="ID_4">%4$s</xliff:g>"</string>
-    <string name="default_theme_title" msgid="2555741736622366797">"Προεπιλογή"</string>
+    <string name="default_theme_title" msgid="2555741736622366797">"Προεπιλ."</string>
     <string name="preview_name_font" msgid="4465423899630037038">"Γραμματοσειρά"</string>
     <string name="preview_name_icon" msgid="6818927315316316440">"Εικονίδιο"</string>
     <string name="preview_name_color" msgid="8776203144994416172">"Χρώμα"</string>
@@ -65,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"Προσθέστε τις αγαπημένες σας γραμματοσειρές σε κάθε οθόνη"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"Επιλέξτε μέγεθος πλέγματος"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"Αλλάζ. μέγεθος πλέγμ. επαναλαμβ. η φόρτ. χώρου εργ. σε λίγα δευτ."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"Επανάληψη φόρτωσης χώρου εργασίας με πλέγμα %1$s"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"Απέτυχε η επανάληψη φόρτωσης του χώρου εργασίας με πλέγμα %1$s"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"Επιτυχής ρύθμιση στιλ"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"Επιτυχής ρύθμιση ρολογιού"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"Επιτυχής ρύθμιση πλέγματος"</string>
@@ -98,6 +103,7 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"Προσαρμοσμένο χρώμα"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"Προσαρμοσμένο σχήμα"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"Προσαρμοσμένο όνομα στιλ"</string>
+    <string name="accessibility_clock_slider_description" msgid="8374135133110681332">"Ένταση χρωμάτων"</string>
     <string name="mode_title" msgid="2394873501427436055">"Σκούρο θέμα"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"Απενεργοποιήθηκε προσωρινά λόγω Εξοικονόμησης μπαταρίας"</string>
     <string name="mode_changed" msgid="2243581369395418584">"Το θέμα άλλαξε"</string>
@@ -116,7 +122,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Αριστερή συντόμ."</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Δεξιά συντόμευση"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Καμία"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"Για να επιλέξετε \"<xliff:g id="APPNAME">%1$s</xliff:g>\", ελέγξτε τα εξής"</string>
+    <string name="keyguard_affordance_enablement_dialog_headline" msgid="365379085932610314">"Δεν είναι δυνατή η προσθήκη συντόμευσης"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Άνοιγμα <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Για να προσθέσετε την εφαρμογή <xliff:g id="APPNAME">%1$s</xliff:g> ως συντόμευση, βεβαιωθείτε ότι"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Τέλος"</string>
@@ -125,10 +131,16 @@
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"Καμία"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Εμφάνιση ειδοποιήσεων στην οθόνη κλειδώματος"</string>
-    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Απόκρυψη ειδοποιήσεων στην οθόνη κλειδώματος"</string>
     <string name="more_settings_section_title" msgid="1331425454775815958">"Περισσότ. επιλογές οθόνης κλειδ."</string>
     <string name="more_settings_section_description" msgid="1860115709122398325">"Απόρρητο, Ακούγεται τώρα κ.ά."</string>
     <string name="more_colors" msgid="3191071655353004591">"Περισσότερα χρώματα"</string>
+    <string name="content_description_dynamic_color_option" msgid="2191721655642529886">"Κύριο δυναμικό θέμα"</string>
+    <string name="content_description_neutral_color_option" msgid="3385443834001275301">"Κύριο ουδέτερο θέμα"</string>
+    <string name="content_description_vibrant_color_option" msgid="2230249305878632821">"Κύριο ζωηρό θέμα"</string>
+    <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Κύριο εκφραστικό θέμα"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Επιλογή προεπιλεγμένου χρώματος"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Επιλογή χρώματος <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Σύρετε προς τα αριστερά για να επιλέξετε μια διαφορετική όψη ρολογιού"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Σύρετε προς τα δεξιά για να επιλέξετε μια διαφορετική όψη ρολογιού"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"Προσαρμοσμένα ρολόγια"</string>
 </resources>

@@ -21,6 +21,7 @@ import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.android.customization.module.logging.ThemesUserEventLogger
 import com.android.customization.picker.notifications.domain.interactor.NotificationsInteractor
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -31,6 +32,7 @@ class NotificationSectionViewModel
 @VisibleForTesting
 constructor(
     private val interactor: NotificationsInteractor,
+    private val logger: ThemesUserEventLogger,
 ) : ViewModel() {
 
     /** Whether the switch should be on. */
@@ -39,16 +41,23 @@ constructor(
 
     /** Notifies that the section has been clicked. */
     fun onClicked() {
-        viewModelScope.launch { interactor.toggleShowNotificationsOnLockScreenEnabled() }
+        viewModelScope.launch {
+            interactor.toggleShowNotificationsOnLockScreenEnabled()
+            logger.logLockScreenNotificationApplied(
+                interactor.getSettings().isShowNotificationsOnLockScreenEnabled
+            )
+        }
     }
 
     class Factory(
         private val interactor: NotificationsInteractor,
+        private val logger: ThemesUserEventLogger,
     ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return NotificationSectionViewModel(
                 interactor = interactor,
+                logger = logger,
             )
                 as T
         }

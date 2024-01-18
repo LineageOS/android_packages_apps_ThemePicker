@@ -1,8 +1,10 @@
 package com.android.customization.picker.clock.ui.viewmodel
 
 import android.content.Context
+import android.stats.style.StyleEnums
 import androidx.test.filters.SmallTest
 import androidx.test.platform.app.InstrumentationRegistry
+import com.android.customization.module.logging.TestThemesUserEventLogger
 import com.android.customization.picker.clock.data.repository.FakeClockPickerRepository
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.domain.interactor.ClockPickerSnapshotRestorer
@@ -35,6 +37,7 @@ import org.robolectric.RobolectricTestRunner
 @RunWith(RobolectricTestRunner::class)
 class ClockSettingsViewModelTest {
 
+    private val logger = TestThemesUserEventLogger()
     private lateinit var context: Context
     private lateinit var testScope: TestScope
     private lateinit var colorPickerInteractor: ColorPickerInteractor
@@ -81,6 +84,7 @@ class ClockSettingsViewModelTest {
                     context = context,
                     clockPickerInteractor = clockPickerInteractor,
                     colorPickerInteractor = colorPickerInteractor,
+                    logger = logger,
                     getIsReactiveToTone = getIsReactiveToTone,
                 )
                 .create(ClockSettingsViewModel::class.java)
@@ -186,9 +190,11 @@ class ClockSettingsViewModelTest {
         val observedClockSize = collectLastValue(underTest.selectedClockSize)
         underTest.setClockSize(ClockSize.DYNAMIC)
         assertThat(observedClockSize()).isEqualTo(ClockSize.DYNAMIC)
+        assertThat(logger.getLoggedClockSize()).isEqualTo(StyleEnums.CLOCK_SIZE_DYNAMIC)
 
         underTest.setClockSize(ClockSize.SMALL)
         assertThat(observedClockSize()).isEqualTo(ClockSize.SMALL)
+        assertThat(logger.getLoggedClockSize()).isEqualTo(StyleEnums.CLOCK_SIZE_SMALL)
     }
 
     @Test

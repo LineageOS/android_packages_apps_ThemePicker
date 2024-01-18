@@ -22,8 +22,9 @@
     <string name="clock_title" msgid="1974314575211361352">"कस्टम क्लॉक"</string>
     <string name="clock_description" msgid="3563839327378948">"कस्टम क्लॉक निवडा"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"कस्टम क्लॉक बदला"</string>
-    <string name="clock_settings_title" msgid="2940654205471453913">"क्लॉक सेटिंग्ज"</string>
-    <string name="clock_color_and_size_title" msgid="7146791234905111351">"Clock चा रंग व आकार"</string>
+    <string name="select_clock_action_description" msgid="5025888763471843648">"क्लॉक फेस पर्याय <xliff:g id="ID_1">%1$s</xliff:g>"</string>
+    <string name="clock_settings_title" msgid="2050906379377120431">"Clock चा रंग व आकार"</string>
+    <string name="clock_color_and_size_title" msgid="7146791234905111351">"घड्याळाचा रंग व आकार"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>"</string>
     <string name="clock_color" msgid="8081608867289156163">"रंग"</string>
     <string name="clock_color_red" msgid="3843504214807597810">"लाल"</string>
@@ -40,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"लॉक स्‍क्रीनवरील आशयानुसार घड्याळाचा आकार बदलेल"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"मोठा"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"छोटे"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"तुमच्या स्क्रीनच्या कोपऱ्यामध्ये एक लहान घड्याळ दिसते"</string>
     <string name="grid_title" msgid="1688173478777254123">"ॲप ग्रिड"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"लागू करा"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"संपादित करण्‍यासाठी टॅप करा"</string>
@@ -65,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"प्रत्येक स्क्रीनवर तुमचे आवडते फॉंट जोडा"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"ग्रिडचा आकार निवडा"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"ग्रिडचा आकार बदल्याने वर्कस्पेस रीलोड होईल, याला काही सेकंद लागू शकतात."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"%1$s ग्रिड वापरून वर्कस्पेस रीलोड करत आहे"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"%1$s ग्रिड वापरून वर्कस्पेस रीलोड करता आली नाही"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"शैली यशस्वीरीत्या सेट केली"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"क्लॉक यशस्वीरीत्या सेट केले"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"ग्रिड यशस्वीरीत्या सेट केले"</string>
@@ -98,6 +103,7 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"कस्टम रंग"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"कस्टम आकार"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"कस्टम शैलीचे नाव"</string>
+    <string name="accessibility_clock_slider_description" msgid="8374135133110681332">"रंगाची तीव्रता"</string>
     <string name="mode_title" msgid="2394873501427436055">"गडद थीम"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"बॅटरी सेव्हर मुळे तात्पुरते बंद केले आहे"</string>
     <string name="mode_changed" msgid="2243581369395418584">"थीम बदलली आहे"</string>
@@ -116,7 +122,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"डावा शॉर्टकट"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"उजवा शॉर्टकट"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"काहीही नाही"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"`<xliff:g id="APPNAME">%1$s</xliff:g>` निवडण्यासाठी पुढील गोष्टी तपासा"</string>
+    <string name="keyguard_affordance_enablement_dialog_headline" msgid="365379085932610314">"शॉर्टकट जोडू शकत नाही"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g> उघडा"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"<xliff:g id="APPNAME">%1$s</xliff:g> हे अ‍ॅप शॉर्टकट म्हणून जोडण्यासाठी, पुढील गोष्टींची खात्री करा"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"पूर्ण झाले"</string>
@@ -125,10 +131,16 @@
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"काहीही नाही"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"लॉक स्‍क्रीनवर सूचना दाखवा"</string>
-    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"लॉक स्‍क्रीनवर सूचना लपवा"</string>
     <string name="more_settings_section_title" msgid="1331425454775815958">"आणखी लॉक स्‍क्रीन पर्याय"</string>
     <string name="more_settings_section_description" msgid="1860115709122398325">"गोपनीयता, Now Playing आणि आणखी बरेच काही"</string>
     <string name="more_colors" msgid="3191071655353004591">"आणखी रंग"</string>
+    <string name="content_description_dynamic_color_option" msgid="2191721655642529886">"प्राथमिक डायनॅमिक थीम"</string>
+    <string name="content_description_neutral_color_option" msgid="3385443834001275301">"प्राथमिक न्यूट्रल थीम"</string>
+    <string name="content_description_vibrant_color_option" msgid="2230249305878632821">"प्राथमिक आकर्षक थीम"</string>
+    <string name="content_description_expressive_color_option" msgid="6081295313456341282">"प्राथमिक भावदर्शी थीम"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"रंगाचा डीफॉल्ट पर्याय"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"<xliff:g id="ID_1">%1$d</xliff:g> रंगाचा पर्याय"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"वेगळे क्लॉक फेस निवडण्यासाठी डावीकडे स्‍वाइप करा"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"वेगळे क्लॉक फेस निवडण्यासाठी उजवीकडे स्‍वाइप करा"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"कस्टम क्लॉक"</string>
 </resources>

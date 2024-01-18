@@ -15,14 +15,11 @@
  */
 package com.android.customization.model.grid;
 
-import android.content.Context;
-import android.graphics.PorterDuff.Mode;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 
@@ -30,7 +27,6 @@ import com.android.customization.model.CustomizationManager;
 import com.android.customization.model.CustomizationOption;
 import com.android.customization.widget.GridTileDrawable;
 import com.android.wallpaper.R;
-import com.android.wallpaper.util.ResourceUtils;
 
 /**
  * Represents a grid layout option available in the current launcher.
@@ -94,21 +90,7 @@ public class GridOption implements CustomizationOption<GridOption>, Parcelable {
 
     @Override
     public void bindThumbnailTile(View view) {
-        Context context = view.getContext();
-
-        int colorFilter = ResourceUtils.getColorAttr(context,
-                view.isActivated()
-                        ? (mIsCurrent
-                            ? android.R.attr.textColorPrimary
-                            : android.R.attr.textColorPrimaryInverse)
-                        : android.R.attr.textColorTertiary);
-        mTileDrawable.setColorFilter(colorFilter, Mode.SRC_ATOP);
-        ((ImageView) view.findViewById(R.id.grid_option_thumbnail))
-                .setImageDrawable(mTileDrawable);
-
-        int backgroundResource = view.isActivated() && !mIsCurrent
-                ? R.drawable.option_border_new_selection : R.drawable.option_border;
-        view.findViewById(R.id.option_tile).setBackgroundResource(backgroundResource);
+        // Do nothing. This function will no longer be used in the Revamped UI
     }
 
     @Override
