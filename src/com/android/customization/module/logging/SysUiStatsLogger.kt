@@ -60,6 +60,7 @@ class SysUiStatsLogger(val action: Int) {
     private var toggleOn = false
     private var shortcut = ""
     private var shortcutSlotId = ""
+    private var lockEffectIdHash = 0
 
     fun setColorPackageHash(colorPackageHash: Int) = apply {
         this.colorPackageHash = colorPackageHash
@@ -151,6 +152,10 @@ class SysUiStatsLogger(val action: Int) {
 
     fun setShortcutSlotId(shortcutSlotId: String) = apply { this.shortcutSlotId = shortcutSlotId }
 
+    fun setLockEffectIdHash(lockEffectIdHash: Int) = apply {
+        this.lockEffectIdHash = lockEffectIdHash
+    }
+
     fun log() {
         SysUiStatsLog.write(
             STYLE_UI_CHANGED,
@@ -185,6 +190,7 @@ class SysUiStatsLogger(val action: Int) {
             toggleOn,
             shortcut,
             shortcutSlotId,
+            lockEffectIdHash,
         )
     }
 }
