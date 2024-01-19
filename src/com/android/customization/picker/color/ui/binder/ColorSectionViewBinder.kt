@@ -99,11 +99,7 @@ object ColorSectionViewBinder {
                 LayoutInflater.from(view.context)
                     .inflate(R.layout.color_option_no_background, view, false)
             item.payload?.let {
-                ColorOptionIconBinder.bind(
-                    itemView.requireViewById(R.id.option_tile),
-                    item.payload,
-                    night
-                )
+                ColorOptionIconBinder.bind(itemView.requireViewById(R.id.option_tile), it, night)
                 ContentDescriptionViewBinder.bind(
                     view = itemView.requireViewById(R.id.option_tile),
                     viewModel = item.text,

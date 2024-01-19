@@ -19,28 +19,36 @@ package {
     default_applicable_licenses: ["Android-Apache-2.0"],
 }
 
-filegroup {
-    name: "ThemePicker_srcs",
-    srcs: [
-        "src/**/*.java",
-        "src/**/*.kt",
-    ],
-}
-
-filegroup {
-    name: "ThemePicker_src_overrides",
-    srcs: [
-        "src_override/**/*.java",
-        "src_override/**/*.kt",
-    ],
-}
-
 // Production-only files that should be excluded in tests.
 filegroup {
     name: "ThemePicker_src_prod",
     visibility: [":__subpackages__"],
     srcs: ["src_override/com/android/customization/picker/CustomizationPickerApplication.java"],
 }
+
+java_library {
+    name: "ThemePickerOverridesLib",
+    srcs: [
+        "src_override/**/*.java",
+        "src_override/**/*.kt",
+    ],
+    exclude_srcs: [":ThemePicker_src_prod"],
+    libs: [
+        "hilt_android",
+        "ThemePickerLib",
+    ],
+}
+
+java_library {
+    name: "ThemePickerApplicationLib",
+    srcs: [":ThemePicker_src_prod"],
+    libs: [
+        "hilt_android",
+        "ThemePickerLib",
+        "ThemePickerOverridesLib",
+    ],
+}
+
 
 filegroup {
     name: "ThemePicker_Manifest",
@@ -49,39 +57,14 @@ filegroup {
     ],
 }
 
-genrule {
-    name: "ThemePicker_res",
-    tools: ["soong_zip"],
-    srcs: [
-        "res/**/*",
-    ],
-    out: ["ThemePicker_res.zip"],
-    cmd: "INPUTS=($(in)) && "
-        + "RES_DIR=$$(dirname $$(dirname $${INPUTS[0]})) && "
-        + "$(location soong_zip) -o $(out) -C $$RES_DIR -D $$RES_DIR"
-}
-
-genrule {
-    name: "ThemePicker_res_overrides",
-    tools: ["soong_zip"],
-    srcs: [
-        "res_override/**/*",
-    ],
-    out: ["ThemePicker_res_overrides.zip"],
-    cmd: "INPUTS=($(in)) && "
-        + "RES_DIR=$$(dirname $$(dirname $${INPUTS[0]})) && "
-        + "$(location soong_zip) -o $(out) -C $$RES_DIR -D $$RES_DIR"
-}
-
-// Common defaults that doesn't have ThemePicker specifics.
-java_defaults {
-    name: "ThemePicker_common_defaults",
+android_library {
+    name: "ThemePickerLib",
 
     static_libs: [
         "guava",
         "monet",
-	    "renderscript_toolkit",
-        "wallpaper-common-deps",
+        "renderscript_toolkit",
+        "WallpaperPicker2Lib",
         "SettingsLibSettingsTheme",
         "SystemUI-statsd",
         "styleprotoslite",
@@ -93,20 +76,34 @@ java_defaults {
         "hilt_android",
     ],
 
-    jni_libs: [
-        "librenderscript-toolkit",
+    srcs: [
+        "src/**/*.java",
+        "src/**/*.kt",
     ],
 
-    srcs: [
-        ":WallpaperPicker2_srcs",
-        ":ThemePicker_srcs",
+    resource_dirs: [
+        "res",
+        "res_override",
+    ],
+
+    manifest: "AndroidManifest-empty.xml",
+}
+
+java_defaults {
+    name: "ThemePicker_defaults",
+    static_libs: [
+        "ThemePickerLib",
+        "ThemePickerOverridesLib",
+        "hilt_android",
+    ],
+
+    jni_libs: [
+        "librenderscript-toolkit",
     ],
 
     required: ["android.software.theme_picker.xml"],
 
     use_embedded_native_libs: true,
-
-    resource_zips: [":WallpaperPicker2_res", ":ThemePicker_res", ":ThemePicker_res_overrides"],
 
     optimize: {
         enabled: false,
@@ -116,12 +113,6 @@ java_defaults {
 
     privileged: true,
     system_ext_specific: true,
-}
-
-java_defaults {
-    name: "ThemePicker_defaults",
-    defaults: ["ThemePicker_common_defaults"],
-    srcs: [":ThemePicker_src_overrides"],
 }
 
 prebuilt_etc {
@@ -142,4 +133,5 @@ android_app {
     manifest: "AndroidManifest.xml",
     additional_manifests: [":WallpaperPicker2_Manifest"],
     overrides: ["WallpaperPicker", "WallpaperPicker2"],
+    static_libs: ["ThemePickerApplicationLib"],
 }
