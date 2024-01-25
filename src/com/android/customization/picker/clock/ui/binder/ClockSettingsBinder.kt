@@ -46,7 +46,7 @@ import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.clock.ui.viewmodel.ClockSettingsViewModel
 import com.android.customization.picker.color.ui.binder.ColorOptionIconBinder
 import com.android.customization.picker.common.ui.view.ItemSpacing
-import com.android.wallpaper.R
+import com.android.themepicker.R
 import com.android.wallpaper.picker.option.ui.binder.OptionItemBinder
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.mapNotNull

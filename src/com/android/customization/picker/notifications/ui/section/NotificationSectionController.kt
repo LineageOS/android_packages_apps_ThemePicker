@@ -24,7 +24,7 @@ import androidx.lifecycle.LifecycleOwner
 import com.android.customization.picker.notifications.ui.binder.NotificationSectionBinder
 import com.android.customization.picker.notifications.ui.view.NotificationSectionView
 import com.android.customization.picker.notifications.ui.viewmodel.NotificationSectionViewModel
-import com.android.wallpaper.R
+import com.android.themepicker.R
 import com.android.wallpaper.model.CustomizationSectionController
 
 /** Controls a section with UI that lets the user toggle notification settings. */

@@ -31,7 +31,7 @@ import com.android.customization.model.grid.GridOption;
 import com.android.customization.model.grid.GridOptionsManager;
 import com.android.customization.picker.grid.ui.fragment.GridFragment;
 import com.android.customization.picker.grid.ui.view.GridSectionView;
-import com.android.wallpaper.R;
+import com.android.themepicker.R;
 import com.android.wallpaper.model.CustomizationSectionController;
 
 import java.util.List;

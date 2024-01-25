@@ -30,7 +30,7 @@ import com.android.customization.module.logging.ThemesUserEventLogger
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
 import com.android.systemui.shared.keyguard.shared.model.KeyguardQuickAffordanceSlots
 import com.android.systemui.shared.quickaffordance.shared.model.KeyguardPreviewConstants
-import com.android.wallpaper.R
+import com.android.themepicker.R
 import com.android.wallpaper.module.CurrentWallpaperInfoFactory
 import com.android.wallpaper.module.CustomizationSections
 import com.android.wallpaper.picker.common.button.ui.viewmodel.ButtonStyle
@@ -76,7 +76,7 @@ private constructor(
                     context = applicationContext,
                     authority =
                         applicationContext.getString(
-                            R.string.lock_screen_preview_provider_authority,
+                            com.android.wallpaper.R.string.lock_screen_preview_provider_authority,
                         ),
                 ),
             initialExtrasProvider = {

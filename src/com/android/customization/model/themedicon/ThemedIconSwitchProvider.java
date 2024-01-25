@@ -25,7 +25,7 @@ import android.os.Looper;
 import androidx.annotation.Nullable;
 
 import com.android.customization.module.CustomizationPreferences;
-import com.android.wallpaper.R;
+import com.android.themepicker.R;
 import com.android.wallpaper.module.InjectorProvider;
 
 import java.util.concurrent.ExecutorService;

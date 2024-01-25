@@ -29,7 +29,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.customization.picker.common.ui.view.ItemSpacing
 import com.android.customization.picker.grid.ui.viewmodel.GridIconViewModel
 import com.android.customization.picker.grid.ui.viewmodel.GridScreenViewModel
-import com.android.wallpaper.R
+import com.android.themepicker.R
 import com.android.wallpaper.picker.option.ui.adapter.OptionItemAdapter
 import com.android.wallpaper.picker.option.ui.binder.OptionItemBinder
 import kotlinx.coroutines.CoroutineDispatcher
@@ -45,7 +45,7 @@ object GridScreenBinder {
         isGridApplyButtonEnabled: Boolean,
         onOptionApplied: () -> Unit,
     ) {
-        val optionView: RecyclerView = view.requireViewById(R.id.options)
+        val optionView: RecyclerView = view.requireViewById(com.android.wallpaper.R.id.options)
         optionView.layoutManager =
             LinearLayoutManager(
                 view.context,
@@ -60,8 +60,10 @@ object GridScreenBinder {
                 backgroundDispatcher = backgroundDispatcher,
                 foregroundTintSpec =
                     OptionItemBinder.TintSpec(
-                        selectedColor = view.context.getColor(R.color.system_on_surface),
-                        unselectedColor = view.context.getColor(R.color.system_on_surface),
+                        selectedColor =
+                            view.context.getColor(com.android.wallpaper.R.color.system_on_surface),
+                        unselectedColor =
+                            view.context.getColor(com.android.wallpaper.R.color.system_on_surface),
                     ),
                 bindIcon = { foregroundView: View, gridIcon: GridIconViewModel ->
                     val imageView = foregroundView as? ImageView

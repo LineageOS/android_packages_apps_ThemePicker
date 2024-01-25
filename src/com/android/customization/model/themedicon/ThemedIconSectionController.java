@@ -26,7 +26,7 @@ import com.android.customization.model.themedicon.domain.interactor.ThemedIconIn
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconSnapshotRestorer;
 import com.android.customization.module.logging.ThemesUserEventLogger;
 import com.android.customization.picker.themedicon.ThemedIconSectionView;
-import com.android.wallpaper.R;
+import com.android.themepicker.R;
 import com.android.wallpaper.model.CustomizationSectionController;
 
 // TODO (b/311712452): Refactor CustomizationSectionController to use recommended arch UI components

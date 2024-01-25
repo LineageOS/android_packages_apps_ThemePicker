@@ -24,7 +24,7 @@ import com.android.customization.picker.quickaffordance.ui.binder.KeyguardQuickA
 import com.android.customization.picker.quickaffordance.ui.fragment.KeyguardQuickAffordancePickerFragment
 import com.android.customization.picker.quickaffordance.ui.view.KeyguardQuickAffordanceSectionView
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel
-import com.android.wallpaper.R
+import com.android.themepicker.R
 import com.android.wallpaper.config.BaseFlags
 import com.android.wallpaper.model.CustomizationSectionController
 import com.android.wallpaper.model.CustomizationSectionController.CustomizationSectionNavigationController as NavigationController

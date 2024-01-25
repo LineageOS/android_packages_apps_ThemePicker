@@ -38,7 +38,7 @@ import com.android.customization.model.color.ColorUtils.toColorString
 import com.android.customization.picker.color.shared.model.ColorType
 import com.android.systemui.monet.ColorScheme
 import com.android.systemui.monet.Style
-import com.android.wallpaper.R
+import com.android.themepicker.R
 import com.android.wallpaper.module.InjectorProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
