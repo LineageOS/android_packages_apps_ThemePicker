@@ -26,7 +26,7 @@ import androidx.annotation.Nullable;
 import com.android.customization.model.CustomizationManager;
 import com.android.customization.model.CustomizationOption;
 import com.android.customization.widget.GridTileDrawable;
-import com.android.wallpaper.R;
+import com.android.themepicker.R;
 
 /**
  * Represents a grid layout option available in the current launcher.

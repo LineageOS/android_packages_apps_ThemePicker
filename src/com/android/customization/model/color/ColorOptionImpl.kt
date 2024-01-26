@@ -23,7 +23,7 @@ import androidx.annotation.ColorInt
 import com.android.customization.model.color.ColorOptionsProvider.ColorSource
 import com.android.customization.picker.color.shared.model.ColorType
 import com.android.systemui.monet.Style
-import com.android.wallpaper.R
+import com.android.themepicker.R
 
 /**
  * Represents a color option in the revamped UI, it can be used for both wallpaper and preset colors
