@@ -75,9 +75,10 @@ constructor(
         SysUiStatsLogger(SNAPSHOT)
             .setWallpaperCategoryHash(preferences.getHomeCategoryHash())
             .setWallpaperIdHash(preferences.getHomeWallpaperIdHash())
+            .setEffectIdHash(preferences.getHomeWallpaperEffectsIdHash())
             .setLockWallpaperCategoryHash(preferences.getLockCategoryHash())
             .setLockWallpaperIdHash(preferences.getLockWallpaperIdHash())
-            .setEffectIdHash(preferences.getHomeWallpaperEffectsIdHash())
+            .setLockEffectIdHash(preferences.getLockWallpaperEffectsIdHash())
             .setColorSource(colorManager.currentColorSourceForLogging)
             .setColorVariant(colorManager.currentStyleForLogging)
             .setSeedColor(colorManager.currentSeedColorForLogging)
@@ -110,9 +111,10 @@ constructor(
             .setAppSessionId(appSessionId.getId())
             .setWallpaperCategoryHash(if (isHomeWallpaperSet) categoryHash else 0)
             .setWallpaperIdHash(if (isHomeWallpaperSet) wallpaperIdHash else 0)
+            .setEffectIdHash(if (isHomeWallpaperSet) getIdHashCode(effects) else 0)
             .setLockWallpaperCategoryHash(if (isLockWallpaperSet) categoryHash else 0)
             .setLockWallpaperIdHash(if (isLockWallpaperSet) wallpaperIdHash else 0)
-            .setEffectIdHash(getIdHashCode(effects))
+            .setLockEffectIdHash(if (isLockWallpaperSet) getIdHashCode(effects) else 0)
             .setSetWallpaperEntryPoint(setWallpaperEntryPoint)
             .setWallpaperDestination(destination)
             .log()
@@ -291,6 +293,11 @@ constructor(
     /** If not set, the output hash is 0. */
     private fun WallpaperPreferences.getHomeWallpaperEffectsIdHash(): Int {
         return getIdHashCode(getHomeWallpaperEffects())
+    }
+
+    /** If not set, the output hash is 0. */
+    private fun WallpaperPreferences.getLockWallpaperEffectsIdHash(): Int {
+        return getIdHashCode(getLockWallpaperEffects())
     }
 
     private fun getIdHashCode(id: String?): Int {
