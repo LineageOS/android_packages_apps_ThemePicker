@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- The package name here must match the Studio namespace given in
+     WallpaperPickerGoogle gradle config for Studio builds to succeed.
+     `package_name` in Android.bp overrides this with the actual package name.
+ -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-          package="com.android.wallpaper">
+          package="com.google.android.apps.wallpaper">
 
     <uses-sdk android:targetSdkVersion="30" android:minSdkVersion="28"/>
 
