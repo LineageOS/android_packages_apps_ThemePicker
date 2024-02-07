@@ -127,6 +127,7 @@ prebuilt_etc {
 //
 android_app {
     name: "ThemePicker",
+    package_name: "com.android.wallpaper",
     defaults: ["ThemePicker_defaults"],
 
     platform_apis: true,
