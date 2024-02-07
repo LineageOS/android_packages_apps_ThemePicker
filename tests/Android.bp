@@ -17,6 +17,7 @@
 // Build rule for WallpaperPicker2 tests
 //
 package {
+    default_team: "trendy_team_customization_picker",
     default_applicable_licenses: ["Android-Apache-2.0"],
 }
 
