@@ -33,6 +33,7 @@
         android:layout_weight="1"
         android:layout_gravity="center"
         android:text="@string/show_notifications_on_lock_screen"
+        android:paddingEnd="@dimen/notification_section_title_padding"
         style="@style/SectionTitleTextStyle"/>
 
     <Switch
