@@ -24,7 +24,7 @@
             <shape>
                 <size android:height="4dp" />
                 <corners android:radius="2dp" />
-                <solid android:color="@color/system_outline_variant" />
+                <solid android:color="@color/system_outline" />
             </shape>
         </inset>
     </item>
