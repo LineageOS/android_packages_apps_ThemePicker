@@ -214,7 +214,7 @@ constructor(
                                 WallpaperClientImpl(
                                     context = appContext,
                                     wallpaperManager = WallpaperManager.getInstance(appContext),
-                                    wallpaperPreferences = getPreferences(appContext)
+                                    wallpaperPreferences = getPreferences(appContext),
                                 ),
                             wallpaperPreferences = getPreferences(context = appContext),
                             backgroundDispatcher = bgDispatcher,
