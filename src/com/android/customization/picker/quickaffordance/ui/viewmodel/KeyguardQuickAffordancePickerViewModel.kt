@@ -26,6 +26,7 @@ import androidx.annotation.DrawableRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.android.customization.module.logging.ThemesUserEventLogger
 import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
 import com.android.systemui.shared.keyguard.shared.model.KeyguardQuickAffordanceSlots
 import com.android.systemui.shared.quickaffordance.shared.model.KeyguardPreviewConstants
@@ -63,6 +64,7 @@ private constructor(
     private val quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor,
     private val wallpaperInteractor: WallpaperInteractor,
     private val wallpaperInfoFactory: CurrentWallpaperInfoFactory,
+    private val logger: ThemesUserEventLogger,
 ) : ViewModel() {
 
     @SuppressLint("StaticFieldLeak") private val applicationContext = context.applicationContext
@@ -92,11 +94,11 @@ private constructor(
             wallpaperInfoProvider = { forceReload ->
                 suspendCancellableCoroutine { continuation ->
                     wallpaperInfoFactory.createCurrentWallpaperInfos(
-                        { homeWallpaper, lockWallpaper, _ ->
-                            continuation.resume(lockWallpaper ?: homeWallpaper, null)
-                        },
+                        context,
                         forceReload,
-                    )
+                    ) { homeWallpaper, lockWallpaper, _ ->
+                        continuation.resume(lockWallpaper ?: homeWallpaper, null)
+                    }
                 }
             },
             wallpaperInteractor = wallpaperInteractor,
@@ -158,7 +160,8 @@ private constructor(
                                         Icon.Loaded(
                                             drawable =
                                                 getAffordanceIcon(affordanceModel.iconResourceId),
-                                            contentDescription = null,
+                                            contentDescription =
+                                                Text.Loaded(getSlotContentDescription(slot.id)),
                                         ),
                                     text = Text.Loaded(affordanceModel.name),
                                     isSelected = MutableStateFlow(true) as StateFlow<Boolean>,
@@ -214,7 +217,13 @@ private constructor(
                             if (!isSelected) {
                                 {
                                     viewModelScope.launch {
-                                        quickAffordanceInteractor.unselectAll(selectedSlotId)
+                                        quickAffordanceInteractor.unselectAllFromSlot(
+                                            selectedSlotId
+                                        )
+                                        logger.logShortcutApplied(
+                                            shortcut = "none",
+                                            shortcutSlotId = selectedSlotId,
+                                        )
                                     }
                                 }
                             } else {
@@ -249,6 +258,10 @@ private constructor(
                                                 quickAffordanceInteractor.select(
                                                     slotId = selectedSlotId,
                                                     affordanceId = affordance.id,
+                                                )
+                                                logger.logShortcutApplied(
+                                                    shortcut = affordance.id,
+                                                    shortcutSlotId = selectedSlotId,
                                                 )
                                             }
                                         }
@@ -423,6 +436,18 @@ private constructor(
         )
     }
 
+    private fun getSlotContentDescription(slotId: String): String {
+        return applicationContext.getString(
+            when (slotId) {
+                KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_START ->
+                    R.string.keyguard_slot_name_bottom_start
+                KeyguardQuickAffordanceSlots.SLOT_ID_BOTTOM_END ->
+                    R.string.keyguard_slot_name_bottom_end
+                else -> error("No accessibility label for slot with ID \"$slotId\"!")
+            }
+        )
+    }
+
     private suspend fun getAffordanceIcon(@DrawableRes iconResourceId: Int): Drawable {
         return quickAffordanceInteractor.getAffordanceIcon(iconResourceId)
     }
@@ -463,6 +488,7 @@ private constructor(
         private val quickAffordanceInteractor: KeyguardQuickAffordancePickerInteractor,
         private val wallpaperInteractor: WallpaperInteractor,
         private val wallpaperInfoFactory: CurrentWallpaperInfoFactory,
+        private val logger: ThemesUserEventLogger,
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             @Suppress("UNCHECKED_CAST")
@@ -471,6 +497,7 @@ private constructor(
                 quickAffordanceInteractor = quickAffordanceInteractor,
                 wallpaperInteractor = wallpaperInteractor,
                 wallpaperInfoFactory = wallpaperInfoFactory,
+                logger = logger,
             )
                 as T
         }

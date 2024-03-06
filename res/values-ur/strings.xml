@@ -22,7 +22,8 @@
     <string name="clock_title" msgid="1974314575211361352">"حسب ضرورت گھڑی"</string>
     <string name="clock_description" msgid="3563839327378948">"حسب ضرورت گھڑی چنیں"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"حسب ضرورت گھڑی کو تبدیل کریں"</string>
-    <string name="clock_settings_title" msgid="2940654205471453913">"گھڑی کی ترتیبات"</string>
+    <string name="select_clock_action_description" msgid="5025888763471843648">"گھڑی کے رخ کا اختیار <xliff:g id="ID_1">%1$s</xliff:g>"</string>
+    <string name="clock_settings_title" msgid="2050906379377120431">"گھڑی کا رنگ و سائز"</string>
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"گھڑی کا رنگ اور سائز"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>، <xliff:g id="ID_2">%2$s</xliff:g>"</string>
     <string name="clock_color" msgid="8081608867289156163">"رنگ"</string>
@@ -40,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"مقفل اسکرین کے مواد کے مطابق گھڑی کا سائز تبدیل ہوتا ہے"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"بڑا"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"چھوٹا"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"آپ کی اسکرین کے کونے میں ایک چھوٹی گھڑی دکھائی دیتی ہے"</string>
     <string name="grid_title" msgid="1688173478777254123">"ایپ گرڈ"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"لاگو کریں"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"ترمیم کرنے کے لیے تھپتھپائيں"</string>
@@ -65,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"ہر اسکرین میں اپنے پسندیدہ فونٹس شامل کریں"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"گرڈ کا سائز منتخب کریں"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"GRid کا سائز تبدیل کرنے سے ورک اسپیس دوبارہ لوڈ ہو جائے گا اور اس میں چند سیکنڈ لگ سکتے ہیں۔"</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"%1$s GRid کے ساتھ ورک اسپیس کو دوبارہ لوڈ کرنا"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"%1$s GRid کے ساتھ ورک اسپیس کو دوبارہ لوڈ کرنے میں ناکام"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"طرز کامیابی کے ساتھ سیٹ ہو گیا"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"گھڑی کامیابی کے ساتھ سیٹ ہو گئی"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"گرڈ کامیابی کے ساتھ سیٹ ہو گیا"</string>
@@ -98,6 +103,7 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"حسب ضرورت رنگ"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"حسب ضرورت شکل"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"حسب ضرورت طرز کا نام"</string>
+    <string name="accessibility_clock_slider_description" msgid="8374135133110681332">"رنگ کی شدت"</string>
     <string name="mode_title" msgid="2394873501427436055">"گہری تھیم"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"بیٹری سیور کی وجہ سے عارضی طور پر غیر فعال ہے"</string>
     <string name="mode_changed" msgid="2243581369395418584">"تھیم تبدیل کر دی گئی"</string>
@@ -105,7 +111,7 @@
     <string name="beta_title" msgid="8703819523760746458">"بی ٹا"</string>
     <string name="gird_picker_entry_content_description" msgid="9087651470212293439">"ایپ گرڈ تبدیل کریں"</string>
     <string name="wallpaper_color_tab" msgid="1447926591721403840">"وال پیپر کے رنگ"</string>
-    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"آپ کے وال پیپر موجود آئیکنز، ٹیکسٹ اور مزید مماثل رنگ"</string>
+    <string name="wallpaper_color_subheader" msgid="4044464573669965670">"آئیکنز، ٹیکسٹ اور مزید آپ کے وال پیپر سے مماثل رنگ"</string>
     <string name="wallpaper_color_title" msgid="5687965239180986458">"وال پیپر کا رنگ"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"بنیادی رنگ"</string>
     <string name="preset_color_tab_2" msgid="1444107326712562538">"دیگر رنگ"</string>
@@ -116,7 +122,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"دائیں جانب کا شارٹ کٹ"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"بائیں جانب کا شارٹ کٹ"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"کوئی نہیں"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"`<xliff:g id="APPNAME">%1$s</xliff:g>` کو منتخب کرنے کے لیے درج ذیل کو چیک کریں"</string>
+    <string name="keyguard_affordance_enablement_dialog_headline" msgid="365379085932610314">"شارٹ کٹ شامل نہیں کیا جا سکتا"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g> کھولیں"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"<xliff:g id="APPNAME">%1$s</xliff:g> ایپ کو شارٹ کٹ کے طور پر شامل کرنے کے لیے درج ذیل کو یقینی بنائیں"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"ہو گیا"</string>
@@ -125,12 +131,16 @@
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>، <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"کوئی نہیں"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"مقفل اسکرین پر اطلاعات دکھائیں"</string>
-    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"مقفل اسکرین پر اطلاعات چھپائیں"</string>
-    <!-- no translation found for more_settings_section_title (1331425454775815958) -->
-    <skip />
-    <!-- no translation found for more_settings_section_description (1860115709122398325) -->
-    <skip />
+    <string name="more_settings_section_title" msgid="1331425454775815958">"مقفل اسکرین کے مزید اختیارات"</string>
+    <string name="more_settings_section_description" msgid="1860115709122398325">"رازداری، Now Playing اور مزید"</string>
     <string name="more_colors" msgid="3191071655353004591">"مزید رنگ"</string>
+    <string name="content_description_dynamic_color_option" msgid="2191721655642529886">"بنیادی ڈائنیمک تھیم"</string>
+    <string name="content_description_neutral_color_option" msgid="3385443834001275301">"بنیادی نیوٹرل تھیم"</string>
+    <string name="content_description_vibrant_color_option" msgid="2230249305878632821">"بنیادی وائبرنٹ تھیم"</string>
+    <string name="content_description_expressive_color_option" msgid="6081295313456341282">"بنیادی معنی خیز تھیم"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"رنگ کا ڈیفالٹ اختیار"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"<xliff:g id="ID_1">%1$d</xliff:g> رنگ کا اختیار"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"گھڑی کا مختلف چہرہ منتخب کرنے کے لیے دائیں طرف سوائپ کریں"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"گھڑی کا مختلف چہرہ منتخب کرنے کے لیے بائیں طرف سوائپ کریں"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"حسب ضرورت گھڑی کے چہرے"</string>
 </resources>

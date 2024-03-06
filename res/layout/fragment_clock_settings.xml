@@ -14,7 +14,6 @@
   ~ limitations under the License.
   ~
   -->
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -153,17 +152,37 @@
                     android:layout_gravity="center_vertical"
                     android:minHeight="48dp"
                     android:thumb="@null"
+                    android:contentDescription="@string/accessibility_clock_slider_description"
                     android:background="@null"
                     android:paddingHorizontal="16dp"
                     android:progressDrawable="@drawable/saturation_progress_drawable"
                     android:splitTrack="false" />
             </LinearLayout>
 
-            <com.android.customization.picker.clock.ui.view.ClockSizeRadioButtonGroup
+            <RadioGroup
                 android:id="@+id/clock_size_radio_button_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="16dp" />
+                android:orientation="vertical"
+                android:layout_marginHorizontal="16dp">
+                <!-- The radio button text is set when binding the view -->
+                <RadioButton android:id="@+id/radio_dynamic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
+                    android:maxLines="3"
+                    android:ellipsize="end"
+                    android:singleLine="false"
+                    android:layout_marginBottom="8dp"/>
+                <!-- The radio button text is set when binding the view -->
+                <RadioButton android:id="@+id/radio_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
+                    android:maxLines="3"
+                    android:ellipsize="end"
+                    android:singleLine="false" />
+            </RadioGroup>
         </FrameLayout>
     </LinearLayout>
 </LinearLayout>

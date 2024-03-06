@@ -27,7 +27,7 @@ import androidx.lifecycle.LiveData;
 
 import com.android.customization.model.CustomizationManager;
 import com.android.customization.module.CustomizationInjector;
-import com.android.customization.module.ThemesUserEventLogger;
+import com.android.customization.module.logging.ThemesUserEventLogger;
 import com.android.wallpaper.R;
 import com.android.wallpaper.module.InjectorProvider;
 import com.android.wallpaper.util.PreviewUtils;

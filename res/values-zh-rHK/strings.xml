@@ -22,7 +22,8 @@
     <string name="clock_title" msgid="1974314575211361352">"自訂時鐘"</string>
     <string name="clock_description" msgid="3563839327378948">"揀選自訂時鐘"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"變更自訂時鐘"</string>
-    <string name="clock_settings_title" msgid="2940654205471453913">"時鐘設定"</string>
+    <string name="select_clock_action_description" msgid="5025888763471843648">"錶面選項 <xliff:g id="ID_1">%1$s</xliff:g>"</string>
+    <string name="clock_settings_title" msgid="2050906379377120431">"時鐘顏色及大小"</string>
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"時鐘顏色及大小"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>，<xliff:g id="ID_2">%2$s</xliff:g>"</string>
     <string name="clock_color" msgid="8081608867289156163">"顏色"</string>
@@ -40,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"時鐘按上鎖畫面內容變更大小"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"大"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"小"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"在螢幕角落顯示小時鐘"</string>
     <string name="grid_title" msgid="1688173478777254123">"應用程式網格"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"套用"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"輕按即可編輯"</string>
@@ -62,9 +64,12 @@
     <string name="preview_name_shape" msgid="5676971146080968721">"形狀"</string>
     <string name="preview_name_wallpaper" msgid="1738652462949531828">"桌布"</string>
     <string name="font_card_title" msgid="2343292653502548685">"ABC • abc • 123"</string>
-    <string name="font_card_body" msgid="6790525594503904468">"讓每個畫面顯示您喜愛的字型"</string>
+    <string name="font_card_body" msgid="6790525594503904468">"讓每個畫面顯示你喜愛的字型"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"請選擇網格大小"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g> x <xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"如果變更網格大小，系統會重新載入工作區，過程可能需時數秒。"</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"正在重新載入網格大小為「%1$s」的工作區"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"無法重新載入網格大小為「%1$s」的工作區"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"成功設定樣式"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"成功設定時鐘"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"成功設定網格"</string>
@@ -98,6 +103,7 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"自訂顏色"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"自訂形狀"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"自訂樣式嘅名"</string>
+    <string name="accessibility_clock_slider_description" msgid="8374135133110681332">"顏色強度"</string>
     <string name="mode_title" msgid="2394873501427436055">"深色主題背景"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"因「慳電模式」而暫時停用"</string>
     <string name="mode_changed" msgid="2243581369395418584">"已經變咗主題"</string>
@@ -109,14 +115,14 @@
     <string name="wallpaper_color_title" msgid="5687965239180986458">"桌布顏色"</string>
     <string name="preset_color_tab" msgid="3133391839341329314">"基本顏色"</string>
     <string name="preset_color_tab_2" msgid="1444107326712562538">"其他顏色"</string>
-    <string name="preset_color_subheader" msgid="8230588536141279371">"為圖示、時鐘等選擇任何顏色"</string>
+    <string name="preset_color_subheader" msgid="8230588536141279371">"為圖示、時鐘等選擇顏色"</string>
     <string name="color_changed" msgid="7029571720331641235">"已經變咗顏色"</string>
     <string name="adaptive_color_title" msgid="1336508599235896205">"動態"</string>
     <string name="color_picker_title" msgid="6666830057938082864">"系統顏色"</string>
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"向左捷徑"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"向右捷徑"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"無"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"請勾選以下選項以選取「<xliff:g id="APPNAME">%1$s</xliff:g>」"</string>
+    <string name="keyguard_affordance_enablement_dialog_headline" msgid="365379085932610314">"無法新增捷徑"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"開啟「<xliff:g id="APPNAME">%1$s</xliff:g>」"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"如要新增「<xliff:g id="APPNAME">%1$s</xliff:g>」應用程式為快速鍵，請確保："</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"完成"</string>
@@ -125,12 +131,16 @@
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>，<xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"無"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"在上鎖畫面顯示通知"</string>
-    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"在上鎖畫面隱藏通知"</string>
-    <!-- no translation found for more_settings_section_title (1331425454775815958) -->
-    <skip />
-    <!-- no translation found for more_settings_section_description (1860115709122398325) -->
-    <skip />
+    <string name="more_settings_section_title" msgid="1331425454775815958">"更多上鎖畫面選項"</string>
+    <string name="more_settings_section_description" msgid="1860115709122398325">"私隱、歌曲識別和其他設定"</string>
     <string name="more_colors" msgid="3191071655353004591">"更多顏色"</string>
+    <string name="content_description_dynamic_color_option" msgid="2191721655642529886">"動態主要主題"</string>
+    <string name="content_description_neutral_color_option" msgid="3385443834001275301">"中性主要主題"</string>
+    <string name="content_description_vibrant_color_option" msgid="2230249305878632821">"鮮艷主要主題"</string>
+    <string name="content_description_expressive_color_option" msgid="6081295313456341282">"熱情主要主題"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"預設顏色選項"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"顏色選項：<xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"向左滑動即可選擇其他錶面"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"向右滑動即可選擇其他錶面"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"自訂時鐘"</string>
 </resources>

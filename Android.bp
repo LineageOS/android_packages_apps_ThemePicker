@@ -35,6 +35,13 @@ filegroup {
     ],
 }
 
+// Production-only files that should be excluded in tests.
+filegroup {
+    name: "ThemePicker_src_prod",
+    visibility: [":__subpackages__"],
+    srcs: ["src_override/com/android/customization/picker/CustomizationPickerApplication.java"],
+}
+
 filegroup {
     name: "ThemePicker_Manifest",
     srcs: [
@@ -66,8 +73,9 @@ genrule {
         + "$(location soong_zip) -o $(out) -C $$RES_DIR -D $$RES_DIR"
 }
 
+// Common defaults that doesn't have ThemePicker specifics.
 java_defaults {
-    name: "ThemePicker_defaults",
+    name: "ThemePicker_common_defaults",
 
     static_libs: [
         "guava",
@@ -92,7 +100,6 @@ java_defaults {
     srcs: [
         ":WallpaperPicker2_srcs",
         ":ThemePicker_srcs",
-        ":ThemePicker_src_overrides",
     ],
 
     required: ["android.software.theme_picker.xml"],
@@ -109,6 +116,12 @@ java_defaults {
 
     privileged: true,
     system_ext_specific: true,
+}
+
+java_defaults {
+    name: "ThemePicker_defaults",
+    defaults: ["ThemePicker_common_defaults"],
+    srcs: [":ThemePicker_src_overrides"],
 }
 
 prebuilt_etc {

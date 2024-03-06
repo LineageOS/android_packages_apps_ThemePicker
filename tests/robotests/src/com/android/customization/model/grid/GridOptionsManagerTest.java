@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
 import androidx.annotation.Nullable;
 
 import com.android.customization.model.CustomizationManager.Callback;
-import com.android.customization.module.ThemesUserEventLogger;
+import com.android.customization.module.logging.ThemesUserEventLogger;
 
 import org.junit.Before;
 import org.junit.Ignore;

@@ -15,13 +15,14 @@
  */
 package com.android.customization.model.color
 
+import com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_SYSTEM_PALETTE
 import com.android.customization.model.color.ColorOptionsProvider.COLOR_SOURCE_HOME
 import com.android.customization.model.color.ColorOptionsProvider.COLOR_SOURCE_LOCK
 import com.android.customization.model.color.ColorOptionsProvider.COLOR_SOURCE_PRESET
+import com.android.customization.picker.color.shared.model.ColorType
 import com.android.systemui.monet.Style
 import com.google.common.truth.Truth.assertThat
-import org.junit.Assert.assertEquals
-import org.junit.Ignore
+import org.json.JSONObject
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -40,108 +41,77 @@ class ColorOptionTest {
     @Mock private lateinit var manager: ColorCustomizationManager
 
     @Test
-    fun colorOption_Source_Preset() {
-        val bundleOption: ColorOption =
-            ColorBundle(
-                "fake color",
-                mapOf("fake_package" to "fake_color"),
-                false,
-                null,
-                /* index= */ 0,
-                null
-            )
-        assertEquals(COLOR_SOURCE_PRESET, bundleOption.source)
+    fun colorOption_Source() {
+        testColorOptionSource(COLOR_SOURCE_HOME)
+        testColorOptionSource(COLOR_SOURCE_LOCK)
+        testColorOptionSource(COLOR_SOURCE_PRESET)
     }
 
-    @Test
-    fun colorOption_bundle_index() {
-        testBundleOptionIndex(1)
-        testBundleOptionIndex(2)
-        testBundleOptionIndex(3)
-        testBundleOptionIndex(4)
-    }
-
-    private fun testBundleOptionIndex(index: Int) {
-        val bundleOption: ColorBundle =
-            ColorBundle(
-                "fake color",
-                mapOf("fake_package" to "fake_color"),
-                false,
-                null,
-                /* index= */ index,
-                null
-            )
-        assertThat(bundleOption.index).isEqualTo(index)
-    }
-
-    @Test
-    fun colorOption_Source_Seed() {
-        testSeedOptionSource(COLOR_SOURCE_HOME)
-        testSeedOptionSource(COLOR_SOURCE_LOCK)
-    }
-
-    private fun testSeedOptionSource(source: String) {
-        val seedOption: ColorOption =
-            ColorSeedOption(
+    private fun testColorOptionSource(source: String) {
+        val colorOption: ColorOption =
+            ColorOptionImpl(
                 "fake color",
                 mapOf("fake_package" to "fake_color"),
                 false,
                 source,
-                null,
+                Style.TONAL_SPOT,
                 /* index= */ 0,
-                null
+                ColorOptionImpl.PreviewInfo(intArrayOf(0), intArrayOf(0)),
+                ColorType.WALLPAPER_COLOR
             )
-        assertThat(seedOption.source).isEqualTo(source)
+        assertThat(colorOption.source).isEqualTo(source)
     }
 
     @Test
-    fun colorOption_seed_style() {
-        testSeedOptionStyle(Style.TONAL_SPOT)
-        testSeedOptionStyle(Style.SPRITZ)
-        testSeedOptionStyle(Style.VIBRANT)
-        testSeedOptionStyle(Style.EXPRESSIVE)
+    fun colorOption_style() {
+        testColorOptionStyle(Style.TONAL_SPOT)
+        testColorOptionStyle(Style.SPRITZ)
+        testColorOptionStyle(Style.VIBRANT)
+        testColorOptionStyle(Style.EXPRESSIVE)
     }
 
-    private fun testSeedOptionStyle(style: Style) {
-        val seedOption: ColorOption =
-            ColorSeedOption(
+    private fun testColorOptionStyle(style: Style) {
+        val colorOption: ColorOption =
+            ColorOptionImpl(
                 "fake color",
                 mapOf("fake_package" to "fake_color"),
                 /* isDefault= */ false,
                 "fake_source",
                 style,
                 0,
-                null
+                ColorOptionImpl.PreviewInfo(intArrayOf(0), intArrayOf(0)),
+                ColorType.WALLPAPER_COLOR
             )
-        assertThat(seedOption.style).isEqualTo(style)
+        assertThat(colorOption.style).isEqualTo(style)
     }
 
     @Test
-    fun colorOption_seed_index() {
-        testSeedOptionIndex(1)
-        testSeedOptionIndex(2)
-        testSeedOptionIndex(3)
-        testSeedOptionIndex(4)
+    fun colorOption_index() {
+        testColorOptionIndex(1)
+        testColorOptionIndex(2)
+        testColorOptionIndex(3)
+        testColorOptionIndex(4)
     }
 
-    private fun testSeedOptionIndex(index: Int) {
-        val seedOption: ColorOption =
-            ColorSeedOption(
+    private fun testColorOptionIndex(index: Int) {
+        val colorOption: ColorOption =
+            ColorOptionImpl(
                 "fake color",
                 mapOf("fake_package" to "fake_color"),
                 /* isDefault= */ false,
                 "fake_source",
                 Style.TONAL_SPOT,
                 index,
-                /* previewInfo= */ null
+                ColorOptionImpl.PreviewInfo(intArrayOf(0), intArrayOf(0)),
+                ColorType.WALLPAPER_COLOR
             )
-        assertThat(seedOption.index).isEqualTo(index)
+        assertThat(colorOption.index).isEqualTo(index)
     }
 
-    private fun setUpSeedOption(
+    private fun setUpWallpaperColorOption(
         isDefault: Boolean,
         source: String = "some_source"
-    ): ColorSeedOption {
+    ): ColorOptionImpl {
         val overlays =
             if (isDefault) {
                 HashMap()
@@ -149,67 +119,69 @@ class ColorOptionTest {
                 mapOf("package" to "value", "otherPackage" to "otherValue")
             }
         `when`(manager.currentOverlays).thenReturn(overlays)
-        return ColorSeedOption(
+        return ColorOptionImpl(
             "seed",
             overlays,
             isDefault,
             source,
             Style.TONAL_SPOT,
             /* index= */ 0,
-            /* previewInfo= */ null
+            ColorOptionImpl.PreviewInfo(intArrayOf(0), intArrayOf(0)),
+            ColorType.WALLPAPER_COLOR
         )
     }
 
     @Test
-    fun seedOption_isActive_notDefault_SourceSet() {
+    fun wallpaperColorOption_isActive_notDefault_SourceSet() {
         val source = "some_source"
-        val seedOption = setUpSeedOption(false, source)
+        val colorOption = setUpWallpaperColorOption(false, source)
         `when`(manager.currentColorSource).thenReturn(source)
 
-        assertThat(seedOption.isActive(manager)).isTrue()
+        assertThat(colorOption.isActive(manager)).isTrue()
     }
 
     @Test
-    fun seedOption_isActive_notDefault_NoSource() {
-        val seedOption = setUpSeedOption(false)
+    fun wallpaperColorOption_isActive_notDefault_NoSource() {
+        val colorOption = setUpWallpaperColorOption(false)
         `when`(manager.currentColorSource).thenReturn(null)
 
-        assertThat(seedOption.isActive(manager)).isTrue()
+        assertThat(colorOption.isActive(manager)).isTrue()
     }
 
     @Test
-    fun seedOption_isActive_notDefault_differentSource() {
-        val seedOption = setUpSeedOption(false)
+    fun wallpaperColorOption_isActive_notDefault_differentSource() {
+        val colorOption = setUpWallpaperColorOption(false)
         `when`(manager.currentColorSource).thenReturn("some_other_source")
 
-        assertThat(seedOption.isActive(manager)).isFalse()
+        assertThat(colorOption.isActive(manager)).isFalse()
     }
 
     @Test
-    fun seedOption_isActive_default_emptyJson() {
-        val seedOption = setUpSeedOption(true)
+    fun wallpaperColorOption_isActive_default_emptyJson() {
+        val colorOption = setUpWallpaperColorOption(true)
         `when`(manager.storedOverlays).thenReturn("")
 
-        assertThat(seedOption.isActive(manager)).isTrue()
+        assertThat(colorOption.isActive(manager)).isTrue()
     }
 
     @Test
-    fun seedOption_isActive_default_nonEmptyJson() {
-        val seedOption = setUpSeedOption(true)
+    fun wallpaperColorOption_isActive_default_nonEmptyJson() {
+        val colorOption = setUpWallpaperColorOption(true)
 
         `when`(manager.storedOverlays).thenReturn("{non-empty-json}")
 
         // Should still be Active because overlays is empty
-        assertThat(seedOption.isActive(manager)).isTrue()
+        assertThat(colorOption.isActive(manager)).isTrue()
     }
 
     @Test
-    @Ignore("b/260925899")
-    fun seedOption_isActive_default_nonEmptyOverlays() {
-        val seedOption = setUpSeedOption(true)
+    fun wallpaperColorOption_isActive_default_nonEmptyOverlays() {
+        val colorOption = setUpWallpaperColorOption(true)
 
-        `when`(manager.currentOverlays).thenReturn(mapOf("a" to "b"))
-        // TODO(b/222433744): failing as it's true
-        assertThat(seedOption.isActive(manager)).isFalse()
+        val settings = mapOf(OVERLAY_CATEGORY_SYSTEM_PALETTE to "fake_color")
+        val json = JSONObject(settings).toString()
+        `when`(manager.storedOverlays).thenReturn(json)
+        `when`(manager.currentOverlays).thenReturn(settings)
+        assertThat(colorOption.isActive(manager)).isFalse()
     }
 }

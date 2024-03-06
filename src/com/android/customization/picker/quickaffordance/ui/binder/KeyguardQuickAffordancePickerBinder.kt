@@ -20,7 +20,11 @@ package com.android.customization.picker.quickaffordance.ui.binder
 import android.app.Dialog
 import android.content.Context
 import android.view.View
+import android.view.ViewGroup
+import android.view.accessibility.AccessibilityEvent
 import android.widget.ImageView
+import androidx.core.view.AccessibilityDelegateCompat
+import androidx.core.view.ViewCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
@@ -62,6 +66,26 @@ object KeyguardQuickAffordancePickerBinder {
         slotTabView.layoutManager =
             LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
         slotTabView.addItemDecoration(ItemSpacing(ItemSpacing.TAB_ITEM_SPACING_DP))
+
+        // Setting a custom accessibility delegate so that the default content descriptions
+        // for items in a list aren't announced (for left & right shortcuts). We populate
+        // the content description for these shortcuts later on with the right (expected)
+        // values.
+        val slotTabViewDelegate: AccessibilityDelegateCompat =
+            object : AccessibilityDelegateCompat() {
+                override fun onRequestSendAccessibilityEvent(
+                    host: ViewGroup,
+                    child: View,
+                    event: AccessibilityEvent
+                ): Boolean {
+                    if (event.eventType != AccessibilityEvent.TYPE_VIEW_FOCUSED) {
+                        child.contentDescription = null
+                    }
+                    return super.onRequestSendAccessibilityEvent(host, child, event)
+                }
+            }
+
+        ViewCompat.setAccessibilityDelegate(slotTabView, slotTabViewDelegate)
         val affordancesAdapter =
             OptionItemAdapter(
                 layoutResourceId = R.layout.keyguard_quick_affordance,

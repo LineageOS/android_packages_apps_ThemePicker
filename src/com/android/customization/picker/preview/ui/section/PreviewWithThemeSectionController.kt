@@ -25,16 +25,17 @@ import com.android.customization.model.themedicon.domain.interactor.ThemedIconIn
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
 import com.android.customization.picker.preview.ui.viewmodel.PreviewWithThemeViewModel
 import com.android.wallpaper.R
-import com.android.wallpaper.model.WallpaperColorsViewModel
 import com.android.wallpaper.model.WallpaperPreviewNavigator
 import com.android.wallpaper.module.CurrentWallpaperInfoFactory
 import com.android.wallpaper.module.CustomizationSections
+import com.android.wallpaper.picker.customization.data.repository.WallpaperColorsRepository
 import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInteractor
 import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewSectionController
 import com.android.wallpaper.picker.customization.ui.viewmodel.CustomizationPickerViewModel
 import com.android.wallpaper.picker.customization.ui.viewmodel.ScreenPreviewViewModel
 import com.android.wallpaper.util.DisplayUtils
 import com.android.wallpaper.util.PreviewUtils
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.suspendCancellableCoroutine
 
 /**
@@ -46,7 +47,7 @@ open class PreviewWithThemeSectionController(
     lifecycleOwner: LifecycleOwner,
     private val screen: CustomizationSections.Screen,
     private val wallpaperInfoFactory: CurrentWallpaperInfoFactory,
-    private val colorViewModel: WallpaperColorsViewModel,
+    private val wallpaperColorsRepository: WallpaperColorsRepository,
     displayUtils: DisplayUtils,
     wallpaperPreviewNavigator: WallpaperPreviewNavigator,
     private val wallpaperInteractor: WallpaperInteractor,
@@ -61,7 +62,7 @@ open class PreviewWithThemeSectionController(
         lifecycleOwner,
         screen,
         wallpaperInfoFactory,
-        colorViewModel,
+        wallpaperColorsRepository,
         displayUtils,
         wallpaperPreviewNavigator,
         wallpaperInteractor,
@@ -69,6 +70,7 @@ open class PreviewWithThemeSectionController(
         isTwoPaneAndSmallWidth,
         customizationPickerViewModel,
     ) {
+    @OptIn(ExperimentalCoroutinesApi::class)
     override fun createScreenPreviewViewModel(context: Context): ScreenPreviewViewModel {
         return PreviewWithThemeViewModel(
             previewUtils =
@@ -92,28 +94,28 @@ open class PreviewWithThemeSectionController(
             wallpaperInfoProvider = { forceReload ->
                 suspendCancellableCoroutine { continuation ->
                     wallpaperInfoFactory.createCurrentWallpaperInfos(
-                        { homeWallpaper, lockWallpaper, _ ->
-                            val wallpaper =
-                                if (isOnLockScreen) {
-                                    lockWallpaper ?: homeWallpaper
-                                } else {
-                                    homeWallpaper ?: lockWallpaper
-                                }
-                            loadInitialColors(
-                                context = context,
-                                screen = screen,
-                            )
-                            continuation.resume(wallpaper, null)
-                        },
+                        context,
                         forceReload,
-                    )
+                    ) { homeWallpaper, lockWallpaper, _ ->
+                        val wallpaper =
+                            if (isOnLockScreen) {
+                                lockWallpaper ?: homeWallpaper
+                            } else {
+                                homeWallpaper ?: lockWallpaper
+                            }
+                        loadInitialColors(
+                            context = context,
+                            screen = screen,
+                        )
+                        continuation.resume(wallpaper, null)
+                    }
                 }
             },
             onWallpaperColorChanged = { colors ->
                 if (isOnLockScreen) {
-                    colorViewModel.setLockWallpaperColors(colors)
+                    wallpaperColorsRepository.setLockWallpaperColors(colors)
                 } else {
-                    colorViewModel.setHomeWallpaperColors(colors)
+                    wallpaperColorsRepository.setHomeWallpaperColors(colors)
                 }
             },
             initialExtrasProvider = { getInitialExtras(isOnLockScreen) },

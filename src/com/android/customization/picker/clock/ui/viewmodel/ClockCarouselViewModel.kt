@@ -15,12 +15,15 @@
  */
 package com.android.customization.picker.clock.ui.viewmodel
 
+import android.content.res.Resources
 import android.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.android.customization.module.logging.ThemesUserEventLogger
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.shared.ClockSize
+import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.wallpaper.R
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -43,6 +46,9 @@ import kotlinx.coroutines.launch
 class ClockCarouselViewModel(
     private val interactor: ClockPickerInteractor,
     private val backgroundDispatcher: CoroutineDispatcher,
+    private val clockViewFactory: ClockViewFactory,
+    private val resources: Resources,
+    private val logger: ThemesUserEventLogger,
 ) : ViewModel() {
     @OptIn(ExperimentalCoroutinesApi::class)
     val allClocks: StateFlow<List<ClockCarouselItemViewModel>> =
@@ -50,7 +56,14 @@ class ClockCarouselViewModel(
             .mapLatest { allClocks ->
                 // Delay to avoid the case that the full list of clocks is not initiated.
                 delay(CLOCKS_EVENT_UPDATE_DELAY_MILLIS)
-                allClocks.map { ClockCarouselItemViewModel(it.clockId, it.isSelected) }
+                allClocks.map {
+                    val contentDescription =
+                        resources.getString(
+                            R.string.select_clock_action_description,
+                            clockViewFactory.getController(it.clockId).config.description
+                        )
+                    ClockCarouselItemViewModel(it.clockId, it.isSelected, contentDescription)
+                }
             }
             .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
 
@@ -111,18 +124,27 @@ class ClockCarouselViewModel(
     fun setSelectedClock(clockId: String) {
         setSelectedClockJob?.cancel()
         setSelectedClockJob =
-            viewModelScope.launch(backgroundDispatcher) { interactor.setSelectedClock(clockId) }
+            viewModelScope.launch(backgroundDispatcher) {
+                interactor.setSelectedClock(clockId)
+                logger.logClockApplied(clockId)
+            }
     }
 
     class Factory(
         private val interactor: ClockPickerInteractor,
         private val backgroundDispatcher: CoroutineDispatcher,
+        private val clockViewFactory: ClockViewFactory,
+        private val resources: Resources,
+        private val logger: ThemesUserEventLogger,
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             @Suppress("UNCHECKED_CAST")
             return ClockCarouselViewModel(
                 interactor = interactor,
                 backgroundDispatcher = backgroundDispatcher,
+                clockViewFactory = clockViewFactory,
+                resources = resources,
+                logger = logger,
             )
                 as T
         }

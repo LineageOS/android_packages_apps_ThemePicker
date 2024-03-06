@@ -22,7 +22,8 @@
     <string name="clock_title" msgid="1974314575211361352">"Fərdi Saat"</string>
     <string name="clock_description" msgid="3563839327378948">"Fərdi saat seç"</string>
     <string name="clock_picker_entry_content_description" msgid="8377139273468595734">"Fərdi saatı dəyişdir"</string>
-    <string name="clock_settings_title" msgid="2940654205471453913">"Saat Ayarları"</string>
+    <string name="select_clock_action_description" msgid="5025888763471843648">"Siferblat seçimi <xliff:g id="ID_1">%1$s</xliff:g>"</string>
+    <string name="clock_settings_title" msgid="2050906379377120431">"Saat rəngi və ölçü"</string>
     <string name="clock_color_and_size_title" msgid="7146791234905111351">"Saat rəngi və ölçüsü"</string>
     <string name="clock_color_and_size_description" msgid="6578061553012886817">"<xliff:g id="ID_1">%1$s</xliff:g>, <xliff:g id="ID_2">%2$s</xliff:g>"</string>
     <string name="clock_color" msgid="8081608867289156163">"Rəng"</string>
@@ -40,6 +41,7 @@
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"Saat ölçüsü kilid ekranının məzmununa görə dəyişir"</string>
     <string name="clock_size_large" msgid="3143248715744138979">"Böyük"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"Kiçik"</string>
+    <string name="clock_size_small_description" msgid="4089511196955732480">"Ekranın mərkəzində kiçik saat görünür"</string>
     <string name="grid_title" msgid="1688173478777254123">"Tətbiq toru"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Tətbiq edin"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Redaktə etmək üçün klikləyin"</string>
@@ -65,6 +67,9 @@
     <string name="font_card_body" msgid="6790525594503904468">"Sevimli şriftlərinizi hər ekrana əlavə edin"</string>
     <string name="grid_options_title" msgid="7071930966989877023">"Tor ölçüsü seçin"</string>
     <string name="grid_title_pattern" msgid="9188866567612607806">"<xliff:g id="ID_1">%1$d</xliff:g>x<xliff:g id="ID_2">%2$d</xliff:g>"</string>
+    <string name="apply_grid_btn_note" msgid="2966021967355139181">"Tor ölçüsü dəyişəndə iş yeri yenidən yüklənəcək."</string>
+    <string name="toast_of_changing_grid" msgid="3515633981312731121">"%1$s toru ilə iş yeri yenidən yüklənir"</string>
+    <string name="toast_of_failure_to_change_grid" msgid="1349622908271736044">"%1$s toru ilə iş yeri yenidən yüklənmədi"</string>
     <string name="applied_theme_msg" msgid="3749018706366796244">"Üslub uğurla ayarlandı"</string>
     <string name="applied_clock_msg" msgid="1303338016701443767">"Saat uğurla ayarlandı"</string>
     <string name="applied_grid_msg" msgid="3250499654436933034">"Tor uğurla ayarlandı"</string>
@@ -98,6 +103,7 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"Fərdi rəng"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"Fərdi forma"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"Fərdi üslub adı"</string>
+    <string name="accessibility_clock_slider_description" msgid="8374135133110681332">"Rəng intensivliyi"</string>
     <string name="mode_title" msgid="2394873501427436055">"Tünd tema"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"Enerjiyə Qənaət rejiminə görə müvəqqəti deaktivdir"</string>
     <string name="mode_changed" msgid="2243581369395418584">"Tema dəyişdirildi"</string>
@@ -116,7 +122,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Sol qısayol"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Sağ qısayol"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Heç biri"</string>
-    <string name="keyguard_affordance_enablement_dialog_title" msgid="3389730825561696493">"\"<xliff:g id="APPNAME">%1$s</xliff:g>\" seçmək üçün aşağıdakıları yoxlayın"</string>
+    <string name="keyguard_affordance_enablement_dialog_headline" msgid="365379085932610314">"Qısayol əlavə etmək olmur"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"<xliff:g id="APPNAME">%1$s</xliff:g> linkini açın"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"<xliff:g id="APPNAME">%1$s</xliff:g> tətbiqini qısayol kimi əlavə etmək üçün bunları təmin edin:"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Hazırdır"</string>
@@ -125,10 +131,16 @@
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"Heç biri"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Kilid ekranında bildirişləri göstərin"</string>
-    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Kilid ekranında bildirişləri gizlədin"</string>
     <string name="more_settings_section_title" msgid="1331425454775815958">"Digər kilid ekranı seçimləri"</string>
     <string name="more_settings_section_description" msgid="1860115709122398325">"Məxfilik, İndi Efirdə və s."</string>
     <string name="more_colors" msgid="3191071655353004591">"Digər rənglər"</string>
+    <string name="content_description_dynamic_color_option" msgid="2191721655642529886">"Əsas dinamik tema"</string>
+    <string name="content_description_neutral_color_option" msgid="3385443834001275301">"Əsas neytral tema"</string>
+    <string name="content_description_vibrant_color_option" msgid="2230249305878632821">"Əsas canlı tema"</string>
+    <string name="content_description_expressive_color_option" msgid="6081295313456341282">"Əsas ekspressiv tema"</string>
     <string name="content_description_default_color_option" msgid="7011899327541080695">"Defolt rəng seçimi"</string>
     <string name="content_description_color_option" msgid="4169813692012119578">"Rəng seçimi <xliff:g id="ID_1">%1$d</xliff:g>"</string>
+    <string name="scroll_forward_and_select" msgid="6156132388656395769">"Fərqli siferblat seçmək üçün sola sürüşdürün"</string>
+    <string name="scroll_backward_and_select" msgid="5472202348434803757">"Fərqli siferblat seçmək üçün sağa sürüşdürün"</string>
+    <string name="custom_clocks_label" msgid="8168419717593569347">"Fərdi saatlar"</string>
 </resources>
