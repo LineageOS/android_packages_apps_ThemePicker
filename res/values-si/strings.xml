@@ -103,6 +103,7 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"අභිරුචි වර්ණය"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"අභිරුචි හැඩය"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"අභිරුචි මෝස්තර නම"</string>
+    <string name="accessibility_clock_slider_description" msgid="8374135133110681332">"වර්ණ තීව්‍රතාවය"</string>
     <string name="mode_title" msgid="2394873501427436055">"අඳුරු තේමාව"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"බැටරි සුරැකුම හේතුවෙන් තාවකාලිකව අබල කරන ලදි"</string>
     <string name="mode_changed" msgid="2243581369395418584">"තේමාව වෙනස් විය"</string>
@@ -130,7 +131,6 @@
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"කිසිවක් නැත"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"අගුළු තිරය මත දැනුම්දීම් පෙන්වන්න"</string>
-    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"අගුළු තිරය මත දැනුම්දීම් සඟවන්න"</string>
     <string name="more_settings_section_title" msgid="1331425454775815958">"තවත් අගුලු තිර විකල්ප"</string>
     <string name="more_settings_section_description" msgid="1860115709122398325">"පෞද්ගලිකත්වය, Now Playing, සහ තවත් දේ"</string>
     <string name="more_colors" msgid="3191071655353004591">"තවත් වර්ණ"</string>

@@ -109,7 +109,7 @@ object ColorSectionViewBinder {
                     viewModel = item.text,
                 )
             }
-            val optionSelectedView = itemView.findViewById<ImageView>(R.id.option_selected)
+            val optionSelectedView = itemView.requireViewById<ImageView>(R.id.option_selected)
 
             lifecycleOwner.lifecycleScope.launch {
                 launch {

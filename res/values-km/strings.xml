@@ -103,6 +103,7 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"ពណ៌​ផ្ទាល់ខ្លួន"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"រូបរាង​ផ្ទាល់ខ្លួន"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"ឈ្មោះ​រចនាប័ទ្ម​ផ្ទាល់ខ្លួន"</string>
+    <string name="accessibility_clock_slider_description" msgid="8374135133110681332">"កម្រិតពណ៌"</string>
     <string name="mode_title" msgid="2394873501427436055">"ទម្រង់រចនាងងឹត"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"បានបិទ​ជា​បណ្តោះអាសន្ន ដោយសារ​មុខងារ​សន្សំ​ថ្ម"</string>
     <string name="mode_changed" msgid="2243581369395418584">"បាន​ផ្លាស់ប្ដូរ​រចនាប័ទ្ម"</string>
@@ -130,7 +131,6 @@
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"គ្មាន"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"បង្ហាញការជូនដំណឹងនៅលើអេក្រង់ចាក់សោ"</string>
-    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"លាក់ការជូនដំណឹងនៅលើអេក្រង់ចាក់សោ"</string>
     <string name="more_settings_section_title" msgid="1331425454775815958">"ជម្រើសអេក្រង់ចាក់សោច្រើនទៀត"</string>
     <string name="more_settings_section_description" msgid="1860115709122398325">"ឯកជនភាព, Now Playing និងអ្វីៗច្រើនទៀត"</string>
     <string name="more_colors" msgid="3191071655353004591">"ពណ៌​ច្រើនទៀត"</string>

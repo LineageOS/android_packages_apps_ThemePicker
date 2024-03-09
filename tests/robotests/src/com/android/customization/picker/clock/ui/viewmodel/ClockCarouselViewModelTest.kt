@@ -16,11 +16,15 @@
 package com.android.customization.picker.clock.ui.viewmodel
 
 import androidx.test.filters.SmallTest
+import androidx.test.platform.app.InstrumentationRegistry
+import com.android.customization.module.logging.TestThemesUserEventLogger
 import com.android.customization.picker.clock.data.repository.ClockPickerRepository
 import com.android.customization.picker.clock.data.repository.FakeClockPickerRepository
 import com.android.customization.picker.clock.domain.interactor.ClockPickerInteractor
 import com.android.customization.picker.clock.domain.interactor.ClockPickerSnapshotRestorer
 import com.android.customization.picker.clock.shared.model.ClockMetadataModel
+import com.android.customization.picker.clock.ui.FakeClockViewFactory
+import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.wallpaper.testing.FakeSnapshotStore
 import com.android.wallpaper.testing.collectLastValue
 import com.google.common.truth.Truth.assertThat
@@ -48,8 +52,7 @@ class ClockCarouselViewModelTest {
         FakeClockPickerRepository(
             listOf(
                 ClockMetadataModel(
-                    clockId = "clock0",
-                    name = "clock0",
+                    clockId = FakeClockPickerRepository.CLOCK_ID_0,
                     isSelected = true,
                     selectedColorId = null,
                     colorToneProgress = ClockMetadataModel.DEFAULT_COLOR_TONE_PROGRESS,
@@ -58,13 +61,16 @@ class ClockCarouselViewModelTest {
             )
         )
     }
+
     private lateinit var testDispatcher: CoroutineDispatcher
     private lateinit var underTest: ClockCarouselViewModel
     private lateinit var interactor: ClockPickerInteractor
+    private lateinit var clockViewFactory: ClockViewFactory
 
     @Before
     fun setUp() {
         testDispatcher = StandardTestDispatcher()
+        clockViewFactory = FakeClockViewFactory()
         Dispatchers.setMain(testDispatcher)
     }
 
@@ -78,7 +84,10 @@ class ClockCarouselViewModelTest {
         underTest =
             ClockCarouselViewModel(
                 getClockPickerInteractor(repositoryWithMultipleClocks),
-                testDispatcher
+                backgroundDispatcher = testDispatcher,
+                clockViewFactory = clockViewFactory,
+                resources = InstrumentationRegistry.getInstrumentation().targetContext.resources,
+                logger = TestThemesUserEventLogger(),
             )
         val observedSelectedIndex = collectLastValue(underTest.selectedIndex)
         advanceTimeBy(ClockCarouselViewModel.CLOCKS_EVENT_UPDATE_DELAY_MILLIS)

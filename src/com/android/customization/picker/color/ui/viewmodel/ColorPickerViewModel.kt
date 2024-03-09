@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.android.customization.model.color.ColorOptionImpl
+import com.android.customization.module.logging.ThemesUserEventLogger
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
 import com.android.customization.picker.color.shared.model.ColorType
 import com.android.wallpaper.R
@@ -43,6 +44,7 @@ class ColorPickerViewModel
 private constructor(
     context: Context,
     private val interactor: ColorPickerInteractor,
+    private val logger: ThemesUserEventLogger,
 ) : ViewModel() {
 
     private val selectedColorTypeTabId = MutableStateFlow<ColorType?>(null)
@@ -142,6 +144,14 @@ private constructor(
                                                 {
                                                     viewModelScope.launch {
                                                         interactor.select(colorOptionModel)
+                                                        logger.logThemeColorApplied(
+                                                            colorOptionModel.colorOption
+                                                                .sourceForLogging,
+                                                            colorOptionModel.colorOption
+                                                                .styleForLogging,
+                                                            colorOptionModel.colorOption
+                                                                .seedColorForLogging,
+                                                        )
                                                     }
                                                 }
                                             }
@@ -205,12 +215,14 @@ private constructor(
     class Factory(
         private val context: Context,
         private val interactor: ColorPickerInteractor,
+        private val logger: ThemesUserEventLogger,
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             @Suppress("UNCHECKED_CAST")
             return ColorPickerViewModel(
                 context = context,
                 interactor = interactor,
+                logger = logger,
             )
                 as T
         }

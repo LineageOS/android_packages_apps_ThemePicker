@@ -103,6 +103,7 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"କଷ୍ଟମ୍ ରଙ୍ଗ"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"କଷ୍ଟମ୍ ଆକାର"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"କଷ୍ଟମ୍ ଷ୍ଟାଇଲ୍ ନାମ"</string>
+    <string name="accessibility_clock_slider_description" msgid="8374135133110681332">"ରଙ୍ଗ ଇଣ୍ଟେନସିଟି"</string>
     <string name="mode_title" msgid="2394873501427436055">"ଗାଢ଼ା ଥିମ୍"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"ବ୍ୟାଟେରୀ ସେଭର୍ ଯୋଗୁଁ ଅସ୍ଥାୟୀ ଭାବେ ଅକ୍ଷମ କରାଯାଇଛି"</string>
     <string name="mode_changed" msgid="2243581369395418584">"ଥିମ ପରିବର୍ତ୍ତନ କରାଯାଇଛି"</string>
@@ -130,7 +131,6 @@
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"କିଛି ନାହିଁ"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"ଲକ ସ୍କ୍ରିନରେ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକୁ ଦେଖାନ୍ତୁ"</string>
-    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"ଲକ ସ୍କ୍ରିନରେ ବିଜ୍ଞପ୍ତିଗୁଡ଼ିକୁ ଲୁଚାନ୍ତୁ"</string>
     <string name="more_settings_section_title" msgid="1331425454775815958">"ଅଧିକ ଲକ ସ୍କ୍ରିନ ବିକଳ୍ପ"</string>
     <string name="more_settings_section_description" msgid="1860115709122398325">"ଗୋପନୀୟତା, ବର୍ତ୍ତମାନ ପ୍ଲେ ହେଉଛି ଏବଂ ଆହୁରି ଅନେକ କିଛି"</string>
     <string name="more_colors" msgid="3191071655353004591">"ଅଧିକ ରଙ୍ଗ"</string>

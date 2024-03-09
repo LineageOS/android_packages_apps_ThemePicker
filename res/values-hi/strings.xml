@@ -103,6 +103,7 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"पसंद के मुताबिक रंग"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"पसंद के मुताबिक आकार"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"पसंद के मुताबिक बनाई गई स्टाइल का नाम"</string>
+    <string name="accessibility_clock_slider_description" msgid="8374135133110681332">"कलर इंटेंसिटी"</string>
     <string name="mode_title" msgid="2394873501427436055">"गहरे रंग वाली थीम"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"बैटरी सेवर मोड चालू होने की वजह से, इस सुविधा को कुछ समय के लिए बंद कर दिया गया है"</string>
     <string name="mode_changed" msgid="2243581369395418584">"थीम को बदला गया"</string>
@@ -130,7 +131,6 @@
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"कोई नहीं"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"लॉक स्क्रीन पर सूचनाएं दिखाएं"</string>
-    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"लॉक स्क्रीन पर सूचनाएं छिपाएं"</string>
     <string name="more_settings_section_title" msgid="1331425454775815958">"लॉक स्क्रीन के और विकल्प"</string>
     <string name="more_settings_section_description" msgid="1860115709122398325">"निजता, \'अभी चल रहा है\' सुविधा, और अन्य सुविधा"</string>
     <string name="more_colors" msgid="3191071655353004591">"कुछ और रंग"</string>

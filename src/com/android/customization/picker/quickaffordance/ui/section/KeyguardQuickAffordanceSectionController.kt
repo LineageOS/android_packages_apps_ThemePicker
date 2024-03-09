@@ -20,27 +20,23 @@ package com.android.customization.picker.quickaffordance.ui.section
 import android.content.Context
 import android.view.LayoutInflater
 import androidx.lifecycle.LifecycleOwner
-import com.android.customization.picker.quickaffordance.domain.interactor.KeyguardQuickAffordancePickerInteractor
 import com.android.customization.picker.quickaffordance.ui.binder.KeyguardQuickAffordanceSectionViewBinder
 import com.android.customization.picker.quickaffordance.ui.fragment.KeyguardQuickAffordancePickerFragment
 import com.android.customization.picker.quickaffordance.ui.view.KeyguardQuickAffordanceSectionView
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel
 import com.android.wallpaper.R
+import com.android.wallpaper.config.BaseFlags
 import com.android.wallpaper.model.CustomizationSectionController
 import com.android.wallpaper.model.CustomizationSectionController.CustomizationSectionNavigationController as NavigationController
-import kotlinx.coroutines.runBlocking
 
 class KeyguardQuickAffordanceSectionController(
     private val navigationController: NavigationController,
-    private val interactor: KeyguardQuickAffordancePickerInteractor,
     private val viewModel: KeyguardQuickAffordancePickerViewModel,
     private val lifecycleOwner: LifecycleOwner,
 ) : CustomizationSectionController<KeyguardQuickAffordanceSectionView> {
 
-    private val isFeatureEnabled: Boolean = runBlocking { interactor.isFeatureEnabled() }
-
     override fun isAvailable(context: Context): Boolean {
-        return isFeatureEnabled
+        return BaseFlags.get().isKeyguardQuickAffordanceEnabled(context)
     }
 
     override fun createView(context: Context): KeyguardQuickAffordanceSectionView {

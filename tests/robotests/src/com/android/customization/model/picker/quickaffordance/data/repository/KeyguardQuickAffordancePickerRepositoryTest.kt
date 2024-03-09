@@ -17,17 +17,12 @@
 
 package com.android.customization.model.picker.quickaffordance.data.repository
 
-import android.content.Context
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.filters.SmallTest
 import com.android.customization.picker.quickaffordance.data.repository.KeyguardQuickAffordancePickerRepository
-import com.android.systemui.shared.customization.data.content.CustomizationProviderClient
 import com.android.systemui.shared.customization.data.content.FakeCustomizationProviderClient
-import com.android.wallpaper.config.BaseFlags
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
@@ -59,26 +54,17 @@ class KeyguardQuickAffordancePickerRepositoryTest {
             KeyguardQuickAffordancePickerRepository(
                 client = client,
                 scope = testScope.backgroundScope,
-                flags =
-                    object : BaseFlags() {
-                        override fun getCachedFlags(
-                            context: Context
-                        ): List<CustomizationProviderClient.Flag> {
-                            return runBlocking { client.queryFlags() }
-                        }
-                    },
-                context = ApplicationProvider.getApplicationContext()
             )
-    }
-
-    @After
-    fun tearDown() {
-        Dispatchers.resetMain()
     }
 
     // We need at least one test to prevent Studio errors
     @Test
     fun creationSucceeds() {
         assertThat(underTest).isNotNull()
+    }
+
+    @After
+    fun tearDown() {
+        Dispatchers.resetMain()
     }
 }

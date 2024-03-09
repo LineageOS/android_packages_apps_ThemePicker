@@ -35,7 +35,7 @@
     <string name="clock_color_indigo" msgid="8910855386698452917">"نیلی"</string>
     <string name="clock_color_violet" msgid="3454503847169375826">"یاسی"</string>
     <string name="clock_color_gray" msgid="9221530636948859231">"خاکستری"</string>
-    <string name="clock_color_teal" msgid="7499223425741344251">"سبز دودی"</string>
+    <string name="clock_color_teal" msgid="7499223425741344251">"سبزآبی"</string>
     <string name="clock_size" msgid="5028923902364418263">"اندازه"</string>
     <string name="clock_size_dynamic" msgid="1023930312455061642">"پویا"</string>
     <string name="clock_size_dynamic_description" msgid="2776620745774561662">"اندازه ساعت نسبت به محتوای صفحه قفل تغییر می‌کند"</string>
@@ -103,6 +103,7 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"رنگ سفارشی"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"شکل سفارشی"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"نام سبک سفارشی"</string>
+    <string name="accessibility_clock_slider_description" msgid="8374135133110681332">"شدت رنگ"</string>
     <string name="mode_title" msgid="2394873501427436055">"زمینه تیره"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"به‌دلیل روشن بودن «بهینه‌سازی باتری» موقتاً غیرفعال شده است"</string>
     <string name="mode_changed" msgid="2243581369395418584">"زمینه تغییر کرد"</string>
@@ -130,7 +131,6 @@
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>، <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"هیچ‌کدام"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"نمایش اعلان‌ها در صفحه قفل"</string>
-    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"پنهان کردن اعلان‌ها در صفحه قفل"</string>
     <string name="more_settings_section_title" msgid="1331425454775815958">"گزینه‌های بیشتر برای صفحه قفل"</string>
     <string name="more_settings_section_description" msgid="1860115709122398325">"«حریم خصوصی»، «درحال پخش»، و موارد دیگر"</string>
     <string name="more_colors" msgid="3191071655353004591">"رنگ‌های بیشتر"</string>

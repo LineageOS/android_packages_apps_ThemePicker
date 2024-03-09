@@ -17,12 +17,10 @@
 
 package com.android.customization.picker.quickaffordance.data.repository
 
-import android.content.Context
 import com.android.customization.picker.quickaffordance.shared.model.KeyguardQuickAffordancePickerAffordanceModel as AffordanceModel
 import com.android.customization.picker.quickaffordance.shared.model.KeyguardQuickAffordancePickerSelectionModel as SelectionModel
 import com.android.customization.picker.quickaffordance.shared.model.KeyguardQuickAffordancePickerSlotModel as SlotModel
 import com.android.systemui.shared.customization.data.content.CustomizationProviderClient as Client
-import com.android.wallpaper.config.BaseFlags
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
@@ -35,15 +33,8 @@ import kotlinx.coroutines.flow.shareIn
  */
 class KeyguardQuickAffordancePickerRepository(
     private val client: Client,
-    private val scope: CoroutineScope,
-    private val flags: BaseFlags,
-    private val context: Context
+    private val scope: CoroutineScope
 ) {
-    /** Whether the feature is enabled. */
-    fun isFeatureEnabled(): Boolean {
-        return flags.isQuickAffordancesEnabled(context)
-    }
-
     /** List of slots available on the device. */
     val slots: Flow<List<SlotModel>> =
         client.observeSlots().map { slots -> slots.map { slot -> slot.toModel() } }

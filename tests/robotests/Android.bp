@@ -1,6 +1,12 @@
-
 package {
     default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+android_app {
+    name: "ThemePickerShell",
+    defaults: ["ThemePicker_defaults"],
+    platform_apis: true,
+    static_libs: ["ThemePickerTestLib"],
 }
 
 android_robolectric_test {
@@ -9,16 +15,17 @@ android_robolectric_test {
         "src/**/*.java",
         "src/**/*.kt",
     ],
-    // TODO(b/291104503) Enable this test
-    exclude_srcs: ["src/com/android/customization/model/picker/quickaffordance/ui/viewmodel/KeyguardQuickAffordancePickerViewModelTest.kt"],
     java_resource_dirs: ["config"],
+
+    // Do not add picker-related dependencies here. Add them to ThemePickerShell
+    // instead.
     static_libs: [
-        "WallpaperPicker2TestLib",
         "androidx.test.rules",
         "junit",
         "kotlinx_coroutines_test",
-        "truth-prebuilt",
+        "truth",
     ],
+
     libs: [
         "androidx.test.core",
         "androidx.test.runner",
@@ -26,5 +33,5 @@ android_robolectric_test {
 
     upstream: true,
 
-    instrumentation_for: "ThemePicker",
+    instrumentation_for: "ThemePickerShell",
 }

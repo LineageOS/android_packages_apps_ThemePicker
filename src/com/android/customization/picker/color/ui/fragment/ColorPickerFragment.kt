@@ -34,11 +34,11 @@ import com.android.customization.model.mode.DarkModeSectionController
 import com.android.customization.module.ThemePickerInjector
 import com.android.customization.picker.color.ui.binder.ColorPickerBinder
 import com.android.wallpaper.R
-import com.android.wallpaper.model.WallpaperColorsModel
-import com.android.wallpaper.model.WallpaperColorsViewModel
 import com.android.wallpaper.module.CustomizationSections
 import com.android.wallpaper.module.InjectorProvider
 import com.android.wallpaper.picker.AppbarFragment
+import com.android.wallpaper.picker.customization.data.repository.WallpaperColorsRepository
+import com.android.wallpaper.picker.customization.shared.model.WallpaperColorsModel
 import com.android.wallpaper.picker.customization.ui.binder.ScreenPreviewBinder
 import com.android.wallpaper.picker.customization.ui.viewmodel.ScreenPreviewViewModel
 import com.android.wallpaper.util.DisplayUtils
@@ -89,7 +89,7 @@ class ColorPickerFragment : AppbarFragment() {
         val homeScreenView: CardView = view.requireViewById(R.id.home_preview)
         val wallpaperInfoFactory = injector.getCurrentWallpaperInfoFactory(requireContext())
         val displayUtils: DisplayUtils = injector.getDisplayUtils(requireContext())
-        val wcViewModel = injector.getWallpaperColorsViewModel()
+        val wallpaperColorsRepository = injector.getWallpaperColorsRepository()
         val wallpaperManager = WallpaperManager.getInstance(requireContext())
 
         binding =
@@ -100,7 +100,7 @@ class ColorPickerFragment : AppbarFragment() {
                             requireActivity(),
                             injector.getColorPickerViewModelFactory(
                                 context = requireContext(),
-                                wallpaperColorsViewModel = wcViewModel,
+                                wallpaperColorsRepository = wallpaperColorsRepository,
                             ),
                         )
                         .get(),
@@ -127,27 +127,27 @@ class ColorPickerFragment : AppbarFragment() {
                         wallpaperInfoProvider = { forceReload ->
                             suspendCancellableCoroutine { continuation ->
                                 wallpaperInfoFactory.createCurrentWallpaperInfos(
-                                    { homeWallpaper, lockWallpaper, _ ->
-                                        lifecycleScope.launch {
-                                            if (
-                                                wcViewModel.lockWallpaperColors.value
-                                                    is WallpaperColorsModel.Loading
-                                            ) {
-                                                loadInitialColors(
-                                                    wallpaperManager,
-                                                    wcViewModel,
-                                                    CustomizationSections.Screen.LOCK_SCREEN
-                                                )
-                                            }
-                                        }
-                                        continuation.resume(lockWallpaper ?: homeWallpaper, null)
-                                    },
+                                    context,
                                     forceReload,
-                                )
+                                ) { homeWallpaper, lockWallpaper, _ ->
+                                    lifecycleScope.launch {
+                                        if (
+                                            wallpaperColorsRepository.lockWallpaperColors.value
+                                                is WallpaperColorsModel.Loading
+                                        ) {
+                                            loadInitialColors(
+                                                wallpaperManager,
+                                                wallpaperColorsRepository,
+                                                CustomizationSections.Screen.LOCK_SCREEN
+                                            )
+                                        }
+                                    }
+                                    continuation.resume(lockWallpaper ?: homeWallpaper, null)
+                                }
                             }
                         },
                         onWallpaperColorChanged = { colors ->
-                            wcViewModel.setLockWallpaperColors(colors)
+                            wallpaperColorsRepository.setLockWallpaperColors(colors)
                         },
                         wallpaperInteractor = injector.getWallpaperInteractor(requireContext()),
                         screen = CustomizationSections.Screen.LOCK_SCREEN,
@@ -178,27 +178,27 @@ class ColorPickerFragment : AppbarFragment() {
                     wallpaperInfoProvider = { forceReload ->
                         suspendCancellableCoroutine { continuation ->
                             wallpaperInfoFactory.createCurrentWallpaperInfos(
-                                { homeWallpaper, lockWallpaper, _ ->
-                                    lifecycleScope.launch {
-                                        if (
-                                            wcViewModel.homeWallpaperColors.value
-                                                is WallpaperColorsModel.Loading
-                                        ) {
-                                            loadInitialColors(
-                                                wallpaperManager,
-                                                wcViewModel,
-                                                CustomizationSections.Screen.HOME_SCREEN
-                                            )
-                                        }
-                                    }
-                                    continuation.resume(homeWallpaper ?: lockWallpaper, null)
-                                },
+                                context,
                                 forceReload,
-                            )
+                            ) { homeWallpaper, lockWallpaper, _ ->
+                                lifecycleScope.launch {
+                                    if (
+                                        wallpaperColorsRepository.homeWallpaperColors.value
+                                            is WallpaperColorsModel.Loading
+                                    ) {
+                                        loadInitialColors(
+                                            wallpaperManager,
+                                            wallpaperColorsRepository,
+                                            CustomizationSections.Screen.HOME_SCREEN
+                                        )
+                                    }
+                                }
+                                continuation.resume(homeWallpaper ?: lockWallpaper, null)
+                            }
                         }
                     },
                     onWallpaperColorChanged = { colors ->
-                        wcViewModel.setHomeWallpaperColors(colors)
+                        wallpaperColorsRepository.setHomeWallpaperColors(colors)
                     },
                     wallpaperInteractor = injector.getWallpaperInteractor(requireContext()),
                     screen = CustomizationSections.Screen.HOME_SCREEN,
@@ -215,7 +215,8 @@ class ColorPickerFragment : AppbarFragment() {
             DarkModeSectionController(
                     context,
                     lifecycle,
-                    injector.getDarkModeSnapshotRestorer(requireContext())
+                    injector.getDarkModeSnapshotRestorer(requireContext()),
+                    injector.getUserEventLogger(requireContext()),
                 )
                 .createView(requireContext())
         darkModeSectionView.background = null
@@ -231,7 +232,7 @@ class ColorPickerFragment : AppbarFragment() {
 
     private suspend fun loadInitialColors(
         wallpaperManager: WallpaperManager,
-        colorViewModel: WallpaperColorsViewModel,
+        colorViewModel: WallpaperColorsRepository,
         screen: CustomizationSections.Screen,
     ) {
         withContext(Dispatchers.IO) {

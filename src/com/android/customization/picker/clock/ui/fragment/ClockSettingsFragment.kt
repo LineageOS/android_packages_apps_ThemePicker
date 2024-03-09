@@ -80,7 +80,7 @@ class ClockSettingsFragment : AppbarFragment() {
         val injector = InjectorProvider.getInjector() as ThemePickerInjector
 
         val lockScreenView: CardView = view.requireViewById(R.id.lock_preview)
-        val colorViewModel = injector.getWallpaperColorsViewModel()
+        val wallpaperColorsRepository = injector.getWallpaperColorsRepository()
         val displayUtils = injector.getDisplayUtils(context)
         ScreenPreviewBinder.bind(
             activity = activity,
@@ -100,18 +100,18 @@ class ClockSettingsFragment : AppbarFragment() {
                             injector
                                 .getCurrentWallpaperInfoFactory(context)
                                 .createCurrentWallpaperInfos(
-                                    { homeWallpaper, lockWallpaper, _ ->
-                                        continuation.resume(
-                                            lockWallpaper ?: homeWallpaper,
-                                            null,
-                                        )
-                                    },
+                                    context,
                                     forceReload,
-                                )
+                                ) { homeWallpaper, lockWallpaper, _ ->
+                                    continuation.resume(
+                                        lockWallpaper ?: homeWallpaper,
+                                        null,
+                                    )
+                                }
                         }
                     },
                     onWallpaperColorChanged = { colors ->
-                        colorViewModel.setLockWallpaperColors(colors)
+                        wallpaperColorsRepository.setLockWallpaperColors(colors)
                     },
                     initialExtrasProvider = {
                         Bundle().apply {
@@ -137,7 +137,7 @@ class ClockSettingsFragment : AppbarFragment() {
                     this,
                     injector.getClockSettingsViewModelFactory(
                         context,
-                        injector.getWallpaperColorsViewModel(),
+                        injector.getWallpaperColorsRepository(),
                         injector.getClockViewFactory(activity),
                     ),
                 )

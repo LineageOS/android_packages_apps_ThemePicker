@@ -14,7 +14,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<com.android.customization.picker.grid.GridSectionView
+<com.android.customization.picker.grid.ui.view.GridSectionView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -54,4 +54,4 @@
         android:background="@drawable/picker_section_icon_background"
         android:contentDescription="@string/gird_picker_entry_content_description" />
 
-</com.android.customization.picker.grid.GridSectionView>
+</com.android.customization.picker.grid.ui.view.GridSectionView>

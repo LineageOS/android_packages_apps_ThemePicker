@@ -18,6 +18,8 @@
 package com.android.customization.picker.notifications.ui.viewmodel
 
 import androidx.test.filters.SmallTest
+import com.android.customization.module.logging.TestThemesUserEventLogger
+import com.android.customization.module.logging.ThemesUserEventLogger
 import com.android.customization.picker.notifications.data.repository.NotificationsRepository
 import com.android.customization.picker.notifications.domain.interactor.NotificationsInteractor
 import com.android.customization.picker.notifications.domain.interactor.NotificationsSnapshotRestorer
@@ -43,6 +45,8 @@ import org.robolectric.RobolectricTestRunner
 @SmallTest
 @RunWith(RobolectricTestRunner::class)
 class NotificationSectionViewModelTest {
+
+    private val logger: ThemesUserEventLogger = TestThemesUserEventLogger()
 
     private lateinit var underTest: NotificationSectionViewModel
 
@@ -73,6 +77,7 @@ class NotificationSectionViewModelTest {
         underTest =
             NotificationSectionViewModel(
                 interactor = interactor,
+                logger = logger,
             )
     }
 

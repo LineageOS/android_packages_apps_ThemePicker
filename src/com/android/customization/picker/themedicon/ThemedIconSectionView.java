@@ -40,18 +40,16 @@ public class ThemedIconSectionView extends SectionView {
     protected void onFinishInflate() {
         super.onFinishInflate();
         mSwitchView = findViewById(R.id.themed_icon_toggle);
-        setOnClickListener(v -> mSwitchView.toggle());
-        mSwitchView.setOnCheckedChangeListener((buttonView, isChecked) -> viewActivated(isChecked));
+        setOnClickListener(v -> {
+            mSwitchView.toggle();
+            if (mSectionViewListener != null) {
+                mSectionViewListener.onViewActivated(getContext(), mSwitchView.isChecked());
+            }
+        });
     }
 
     /** Gets the switch view. */
     public Switch getSwitch() {
         return mSwitchView;
-    }
-
-    private void viewActivated(boolean isChecked) {
-        if (mSectionViewListener != null) {
-            mSectionViewListener.onViewActivated(getContext(), isChecked);
-        }
     }
 }

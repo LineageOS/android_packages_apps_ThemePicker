@@ -103,6 +103,7 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"맞춤 색상"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"맞춤 모양"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"맞춤 스타일 이름"</string>
+    <string name="accessibility_clock_slider_description" msgid="8374135133110681332">"색상 강도"</string>
     <string name="mode_title" msgid="2394873501427436055">"어두운 테마"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"절전 모드로 인해 일시적으로 사용 중지됨"</string>
     <string name="mode_changed" msgid="2243581369395418584">"테마 변경됨"</string>
@@ -130,7 +131,6 @@
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"없음"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"잠금 화면에 알림 표시"</string>
-    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"잠금 화면에서 알림 숨기기"</string>
     <string name="more_settings_section_title" msgid="1331425454775815958">"잠금 화면 옵션 더보기"</string>
     <string name="more_settings_section_description" msgid="1860115709122398325">"개인 정보 보호, Now Playing 등"</string>
     <string name="more_colors" msgid="3191071655353004591">"색상 더보기"</string>

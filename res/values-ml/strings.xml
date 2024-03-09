@@ -103,6 +103,7 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"ഇഷ്‌ടാനുസൃത നിറം"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"ഇഷ്‌ടാനുസൃത രൂപം"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"ഇഷ്‌ടാനുസൃത സ്‌റ്റൈലിന്റെ പേര്"</string>
+    <string name="accessibility_clock_slider_description" msgid="8374135133110681332">"വർണ തീവ്രത"</string>
     <string name="mode_title" msgid="2394873501427436055">"ഡാർക്ക് തീം"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"ബാറ്ററി ലാഭിക്കൽ കാരണം തൽക്കാലം പ്രവർത്തനരഹിതമാണ്"</string>
     <string name="mode_changed" msgid="2243581369395418584">"തീം മാറ്റി"</string>
@@ -130,7 +131,6 @@
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"ഒന്നുമില്ല"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"ലോക്ക് സ്ക്രീനിൽ അറിയിപ്പുകൾ കാണിക്കുക"</string>
-    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"ലോക്ക് സ്ക്രീനിൽ അറിയിപ്പുകൾ മറയ്ക്കുക"</string>
     <string name="more_settings_section_title" msgid="1331425454775815958">"കൂടുതൽ ലോക്ക് സ്‌ക്രീൻ ഓപ്‌ഷനുകൾ"</string>
     <string name="more_settings_section_description" msgid="1860115709122398325">"സ്വകാര്യത, ഇപ്പോൾ കേൾക്കുന്നത്, എന്നിവയും മറ്റും"</string>
     <string name="more_colors" msgid="3191071655353004591">"കൂടുതൽ നിറങ്ങൾ"</string>

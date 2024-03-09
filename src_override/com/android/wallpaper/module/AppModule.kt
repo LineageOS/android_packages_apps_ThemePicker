@@ -16,9 +16,16 @@
 package com.android.wallpaper.module
 
 import android.content.Context
+import com.android.customization.model.color.ColorCustomizationManager
+import com.android.customization.model.theme.OverlayManagerCompat
 import com.android.customization.module.CustomizationInjector
 import com.android.customization.module.DefaultCustomizationPreferences
 import com.android.customization.module.ThemePickerInjector
+import com.android.customization.module.logging.ThemesUserEventLogger
+import com.android.customization.module.logging.ThemesUserEventLoggerImpl
+import com.android.wallpaper.module.logging.UserEventLogger
+import com.android.wallpaper.util.converter.DefaultWallpaperModelFactory
+import com.android.wallpaper.util.converter.WallpaperModelFactory
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -32,6 +39,20 @@ import javax.inject.Singleton
 abstract class AppModule {
     @Binds @Singleton abstract fun bindInjector(impl: ThemePickerInjector): CustomizationInjector
 
+    @Binds
+    @Singleton
+    abstract fun bindUserEventLogger(impl: ThemesUserEventLoggerImpl): UserEventLogger
+
+    @Binds
+    @Singleton
+    abstract fun bindThemesUserEventLogger(impl: ThemesUserEventLoggerImpl): ThemesUserEventLogger
+
+    @Binds
+    @Singleton
+    abstract fun bindWallpaperModelFactory(
+        impl: DefaultWallpaperModelFactory
+    ): WallpaperModelFactory
+
     companion object {
         @Provides
         @Singleton
@@ -39,6 +60,14 @@ abstract class AppModule {
             @ApplicationContext context: Context
         ): WallpaperPreferences {
             return DefaultCustomizationPreferences(context)
+        }
+
+        @Provides
+        @Singleton
+        fun provideColorCustomizationManager(
+            @ApplicationContext context: Context
+        ): ColorCustomizationManager {
+            return ColorCustomizationManager.getInstance(context, OverlayManagerCompat(context))
         }
     }
 }

@@ -103,6 +103,7 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"అనుకూల రంగు"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"అనుకూల ఆకారం"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"అనుకూల స్టయిల్ పేరు"</string>
+    <string name="accessibility_clock_slider_description" msgid="8374135133110681332">"రంగు తీవ్రత"</string>
     <string name="mode_title" msgid="2394873501427436055">"ముదురు రంగు రూపం"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"బ్యాటరీ సేవర్ కారణంగా తాత్కాలికంగా డిజేబుల్‌ చేయబడింది"</string>
     <string name="mode_changed" msgid="2243581369395418584">"థీమ్ మార్చబడింది"</string>
@@ -130,7 +131,6 @@
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"ఏదీ ఎంచుకోలేదు"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"లాక్ స్క్రీన్‌లో నోటిఫికేషన్‌లను చూపండి"</string>
-    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"లాక్ స్క్రీన్‌లో నోటిఫికేషన్‌లను దాచండి"</string>
     <string name="more_settings_section_title" msgid="1331425454775815958">"మరిన్ని లాక్ స్క్రీన్ ఆప్షన్‌లు"</string>
     <string name="more_settings_section_description" msgid="1860115709122398325">"గోప్యత, Now Playing, ఇంకా మరిన్ని"</string>
     <string name="more_colors" msgid="3191071655353004591">"మరిన్ని రంగులు"</string>

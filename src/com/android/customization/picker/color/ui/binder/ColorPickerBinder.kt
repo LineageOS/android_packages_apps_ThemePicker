@@ -62,7 +62,7 @@ object ColorPickerBinder {
         colorTypeTabView.addItemDecoration(ItemSpacing(ItemSpacing.TAB_ITEM_SPACING_DP))
         val colorOptionAdapter =
             OptionItemAdapter(
-                layoutResourceId = R.layout.color_option_2,
+                layoutResourceId = R.layout.color_option,
                 lifecycleOwner = lifecycleOwner,
                 bindIcon = { foregroundView: View, colorIcon: ColorOptionIconViewModel ->
                     val colorOptionIconView = foregroundView as? ColorOptionIconView

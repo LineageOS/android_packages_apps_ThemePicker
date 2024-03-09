@@ -17,7 +17,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name" msgid="1647136562008520313">"Оформлення і стиль"</string>
+    <string name="app_name" msgid="1647136562008520313">"Оформлення й стиль"</string>
     <string name="theme_title" msgid="2144932106319405101">"Стиль"</string>
     <string name="clock_title" msgid="1974314575211361352">"Свій циферблат"</string>
     <string name="clock_description" msgid="3563839327378948">"Виберіть свій циферблат"</string>
@@ -103,6 +103,7 @@
     <string name="accessibility_custom_color_title" msgid="4124246598886320663">"Спеціальний колір"</string>
     <string name="accessibility_custom_shape_title" msgid="7708408259374643129">"Спеціальна фігура"</string>
     <string name="accessibility_custom_name_title" msgid="5494460518085463262">"Назва спеціального стилю"</string>
+    <string name="accessibility_clock_slider_description" msgid="8374135133110681332">"Інтенсивність кольору"</string>
     <string name="mode_title" msgid="2394873501427436055">"Темна тема"</string>
     <string name="mode_disabled_msg" msgid="9196245518435936512">"Тимчасово вимкнено, оскільки працює режим енергозбереження"</string>
     <string name="mode_changed" msgid="2243581369395418584">"Тему змінено"</string>
@@ -130,7 +131,6 @@
     <string name="keyguard_quick_affordance_two_selected_template" msgid="1757099194522296363">"<xliff:g id="FIRST">%1$s</xliff:g>, <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="keyguard_quick_affordance_none_selected" msgid="8494127020144112003">"Немає"</string>
     <string name="show_notifications_on_lock_screen" msgid="4157744243084646720">"Показувати сповіщення на заблокованому екрані"</string>
-    <string name="hide_notifications_on_lock_screen" msgid="7413548956484779174">"Приховувати сповіщення на заблокованому екрані"</string>
     <string name="more_settings_section_title" msgid="1331425454775815958">"Інші параметри заблоков. екрана"</string>
     <string name="more_settings_section_description" msgid="1860115709122398325">"Конфіденційність, функція \"Зараз грає\" тощо"</string>
     <string name="more_colors" msgid="3191071655353004591">"Більше кольорів"</string>
