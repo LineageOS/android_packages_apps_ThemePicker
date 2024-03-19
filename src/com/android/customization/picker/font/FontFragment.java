@@ -33,7 +33,7 @@ import com.android.customization.model.CustomizationManager.Callback;
 import com.android.customization.model.CustomizationManager.OptionsFetchedListener;
 import com.android.customization.model.CustomizationOption;
 import com.android.customization.model.theme.OverlayManagerCompat;
-import com.android.customization.module.ThemesUserEventLogger;
+import com.android.customization.module.logging.ThemesUserEventLogger;
 import com.android.customization.picker.WallpaperPreviewer;
 import com.android.customization.widget.OptionSelectorController;
 import com.android.customization.widget.OptionSelectorController.CheckmarkStyle;
