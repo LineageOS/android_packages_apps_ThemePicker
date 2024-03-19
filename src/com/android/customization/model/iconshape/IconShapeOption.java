@@ -33,7 +33,7 @@ import android.widget.ImageView;
 
 import androidx.core.graphics.ColorUtils;
 
-import com.android.customization.model.theme.ThemeBundle;
+import com.android.customization.model.theme.ShapeAppIcon;
 import com.android.wallpaper.R;
 import com.android.wallpaper.util.ResourceUtils;
 
@@ -47,7 +47,7 @@ import java.util.Objects;
 public class IconShapeOption implements CustomizationOption<IconShapeOption> {
 
     private final LayerDrawable mShape;
-    private final List<ThemeBundle.PreviewInfo.ShapeAppIcon> mAppIcons;
+    private final List<ShapeAppIcon> mAppIcons;
     private final String mTitle;
     private final String mOverlayPackage;
     private final Path mPath;
@@ -59,7 +59,7 @@ public class IconShapeOption implements CustomizationOption<IconShapeOption> {
 
     public IconShapeOption(String packageName, String title, Path path,
                            @Dimension int cornerRadius, Drawable shapeDrawable,
-                           List<ThemeBundle.PreviewInfo.ShapeAppIcon> appIcons) {
+                           List<ShapeAppIcon> appIcons) {
         mOverlayPackage = packageName;
         mTitle = title;
         mAppIcons = appIcons;
