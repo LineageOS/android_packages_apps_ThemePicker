@@ -19,6 +19,7 @@ package {
 
 android_library {
     name: "ThemePickerTestModule",
+    defaults: ["ThemePicker_defaults_with_overrides"],
     srcs: ["src/com/android/customization/TestModule.kt"],
     static_libs: [
         "ThemePickerTestLib",
