@@ -24,18 +24,16 @@ import com.android.customization.model.color.ColorOptionImpl
 import com.android.customization.module.logging.ThemesUserEventLogger
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor
 import com.android.customization.picker.color.shared.model.ColorType
-import com.android.wallpaper.R
+import com.android.themepicker.R
 import com.android.wallpaper.picker.common.text.ui.viewmodel.Text
 import com.android.wallpaper.picker.option.ui.viewmodel.OptionItemViewModel
 import kotlin.math.max
 import kotlin.math.min
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -95,122 +93,97 @@ private constructor(
     /** The list of all color options mapped by their color type */
     private val allColorOptions:
         Flow<Map<ColorType, List<OptionItemViewModel<ColorOptionIconViewModel>>>> =
-        interactor.colorOptions
-            .map { colorOptions ->
-                colorOptions
-                    .map { colorOptionEntry ->
-                        colorOptionEntry.key to
-                            colorOptionEntry.value.map { colorOptionModel ->
-                                val colorOption: ColorOptionImpl =
-                                    colorOptionModel.colorOption as ColorOptionImpl
-                                val lightThemeColors =
-                                    colorOption.previewInfo.resolveColors(/* darkTheme= */ false)
-                                val darkThemeColors =
-                                    colorOption.previewInfo.resolveColors(/* darkTheme= */ true)
-                                val isSelectedFlow: StateFlow<Boolean> =
-                                    interactor.activeColorOption
-                                        .map {
-                                            it?.colorOption?.isEquivalent(
-                                                colorOptionModel.colorOption
-                                            )
-                                                ?: colorOptionModel.isSelected
-                                        }
-                                        .stateIn(viewModelScope)
-                                OptionItemViewModel<ColorOptionIconViewModel>(
-                                    key =
-                                        MutableStateFlow(colorOptionModel.key) as StateFlow<String>,
-                                    payload =
-                                        ColorOptionIconViewModel(
-                                            lightThemeColor0 = lightThemeColors[0],
-                                            lightThemeColor1 = lightThemeColors[1],
-                                            lightThemeColor2 = lightThemeColors[2],
-                                            lightThemeColor3 = lightThemeColors[3],
-                                            darkThemeColor0 = darkThemeColors[0],
-                                            darkThemeColor1 = darkThemeColors[1],
-                                            darkThemeColor2 = darkThemeColors[2],
-                                            darkThemeColor3 = darkThemeColors[3],
-                                        ),
-                                    text =
-                                        Text.Loaded(
-                                            colorOption.getContentDescription(context).toString()
-                                        ),
-                                    isTextUserVisible = false,
-                                    isSelected = isSelectedFlow,
-                                    onClicked =
-                                        isSelectedFlow.map { isSelected ->
-                                            if (isSelected) {
-                                                null
-                                            } else {
-                                                {
-                                                    viewModelScope.launch {
-                                                        interactor.select(colorOptionModel)
-                                                        logger.logThemeColorApplied(
-                                                            colorOptionModel.colorOption
-                                                                .sourceForLogging,
-                                                            colorOptionModel.colorOption
-                                                                .styleForLogging,
-                                                            colorOptionModel.colorOption
-                                                                .seedColorForLogging,
-                                                        )
-                                                    }
+        interactor.colorOptions.map { colorOptions ->
+            colorOptions
+                .map { colorOptionEntry ->
+                    colorOptionEntry.key to
+                        colorOptionEntry.value.map { colorOptionModel ->
+                            val colorOption: ColorOptionImpl =
+                                colorOptionModel.colorOption as ColorOptionImpl
+                            val lightThemeColors =
+                                colorOption.previewInfo.resolveColors(/* darkTheme= */ false)
+                            val darkThemeColors =
+                                colorOption.previewInfo.resolveColors(/* darkTheme= */ true)
+                            val isSelectedFlow: StateFlow<Boolean> =
+                                interactor.selectingColorOption
+                                    .map {
+                                        it?.colorOption?.isEquivalent(colorOptionModel.colorOption)
+                                            ?: colorOptionModel.isSelected
+                                    }
+                                    .stateIn(viewModelScope)
+                            OptionItemViewModel<ColorOptionIconViewModel>(
+                                key = MutableStateFlow(colorOptionModel.key) as StateFlow<String>,
+                                payload =
+                                    ColorOptionIconViewModel(
+                                        lightThemeColor0 = lightThemeColors[0],
+                                        lightThemeColor1 = lightThemeColors[1],
+                                        lightThemeColor2 = lightThemeColors[2],
+                                        lightThemeColor3 = lightThemeColors[3],
+                                        darkThemeColor0 = darkThemeColors[0],
+                                        darkThemeColor1 = darkThemeColors[1],
+                                        darkThemeColor2 = darkThemeColors[2],
+                                        darkThemeColor3 = darkThemeColors[3],
+                                    ),
+                                text =
+                                    Text.Loaded(
+                                        colorOption.getContentDescription(context).toString()
+                                    ),
+                                isTextUserVisible = false,
+                                isSelected = isSelectedFlow,
+                                onClicked =
+                                    isSelectedFlow.map { isSelected ->
+                                        if (isSelected) {
+                                            null
+                                        } else {
+                                            {
+                                                viewModelScope.launch {
+                                                    interactor.select(colorOptionModel)
+                                                    logger.logThemeColorApplied(
+                                                        colorOptionModel.colorOption
+                                                            .sourceForLogging,
+                                                        colorOptionModel.colorOption
+                                                            .styleForLogging,
+                                                        colorOptionModel.colorOption
+                                                            .seedColorForLogging,
+                                                    )
                                                 }
                                             }
-                                        },
-                                )
-                            }
-                    }
-                    .toMap()
-            }
-            .shareIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(),
-                replay = 1,
-            )
+                                        }
+                                    },
+                            )
+                        }
+                }
+                .toMap()
+        }
 
     /** The list of all available color options for the selected Color Type. */
     val colorOptions: Flow<List<OptionItemViewModel<ColorOptionIconViewModel>>> =
         combine(allColorOptions, selectedColorTypeTabId) {
-                allColorOptions:
-                    Map<ColorType, List<OptionItemViewModel<ColorOptionIconViewModel>>>,
-                selectedColorTypeIdOrNull ->
-                val selectedColorTypeId = selectedColorTypeIdOrNull ?: ColorType.WALLPAPER_COLOR
-                allColorOptions[selectedColorTypeId]!!
-            }
-            .shareIn(
-                scope = viewModelScope,
-                started = SharingStarted.Eagerly,
-                replay = 1,
-            )
+            allColorOptions: Map<ColorType, List<OptionItemViewModel<ColorOptionIconViewModel>>>,
+            selectedColorTypeIdOrNull ->
+            val selectedColorTypeId = selectedColorTypeIdOrNull ?: ColorType.WALLPAPER_COLOR
+            allColorOptions[selectedColorTypeId]!!
+        }
 
     /** The list of color options for the color section */
     val colorSectionOptions: Flow<List<OptionItemViewModel<ColorOptionIconViewModel>>> =
-        allColorOptions
-            .map { allColorOptions ->
-                val wallpaperOptions = allColorOptions[ColorType.WALLPAPER_COLOR]
-                val presetOptions = allColorOptions[ColorType.PRESET_COLOR]
-                val subOptions =
-                    wallpaperOptions!!.subList(
-                        0,
-                        min(COLOR_SECTION_OPTION_SIZE, wallpaperOptions.size)
+        allColorOptions.map { allColorOptions ->
+            val wallpaperOptions = allColorOptions[ColorType.WALLPAPER_COLOR]
+            val presetOptions = allColorOptions[ColorType.PRESET_COLOR]
+            val subOptions =
+                wallpaperOptions!!.subList(0, min(COLOR_SECTION_OPTION_SIZE, wallpaperOptions.size))
+            // Add additional options based on preset colors if size of wallpaper color options is
+            // less than COLOR_SECTION_OPTION_SIZE
+            val additionalSubOptions =
+                presetOptions!!.subList(
+                    0,
+                    min(
+                        max(0, COLOR_SECTION_OPTION_SIZE - wallpaperOptions.size),
+                        presetOptions.size,
                     )
-                // Add additional options based on preset colors if size of wallpaper color options
-                // is
-                // less than COLOR_SECTION_OPTION_SIZE
-                val additionalSubOptions =
-                    presetOptions!!.subList(
-                        0,
-                        min(
-                            max(0, COLOR_SECTION_OPTION_SIZE - wallpaperOptions.size),
-                            presetOptions.size,
-                        )
-                    )
-                subOptions + additionalSubOptions
-            }
-            .shareIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(),
-                replay = 1,
-            )
+                )
+            subOptions + additionalSubOptions
+        }
 
     class Factory(
         private val context: Context,

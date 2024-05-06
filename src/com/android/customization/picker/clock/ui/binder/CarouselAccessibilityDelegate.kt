@@ -21,7 +21,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.accessibility.AccessibilityNodeInfo
-import com.android.wallpaper.R
+import com.android.themepicker.R
 
 class CarouselAccessibilityDelegate(
     private val context: Context,

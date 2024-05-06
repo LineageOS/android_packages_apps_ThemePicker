@@ -23,12 +23,12 @@ package {
 android_library {
     name: "ThemePickerTestLib",
 
-    defaults: ["ThemePicker_common_defaults"],
     srcs: [
         "src/**/*.java",
         "src/**/*.kt",
     ],
     static_libs: [
+        "ThemePickerLib",
         "WallpaperPicker2TestLib",
         "androidx.annotation_annotation",
         "kotlinx_coroutines_test",

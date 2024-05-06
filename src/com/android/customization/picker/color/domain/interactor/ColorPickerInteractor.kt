@@ -20,6 +20,8 @@ import com.android.customization.picker.color.data.repository.ColorPickerReposit
 import com.android.customization.picker.color.shared.model.ColorOptionModel
 import javax.inject.Provider
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.onEach
 
 /** Single entry-point for all application state and business logic related to system color. */
 class ColorPickerInteractor(
@@ -30,20 +32,28 @@ class ColorPickerInteractor(
 
     /**
      * The newly selected color option for overwriting the current active option during an
-     * optimistic update, the value is set to null when update fails
+     * optimistic update, the value is set to null when update completes
      */
-    val activeColorOption = MutableStateFlow<ColorOptionModel?>(null)
+    private val _selectingColorOption = MutableStateFlow<ColorOptionModel?>(null)
+    val selectingColorOption = _selectingColorOption.asStateFlow()
 
     /** List of wallpaper and preset color options on the device, categorized by Color Type */
-    val colorOptions = repository.colorOptions
+    val colorOptions =
+        repository.colorOptions.onEach {
+            // Reset optimistic update value when colorOptions updates
+            _selectingColorOption.value = null
+        }
 
     suspend fun select(colorOptionModel: ColorOptionModel) {
-        activeColorOption.value = colorOptionModel
+        _selectingColorOption.value = colorOptionModel
         try {
+            // Do not reset optimistic update selection on selection success because UI color is not
+            // actually updated until the picker restarts. Wait to do so when updated color options
+            // become available
             repository.select(colorOptionModel)
             snapshotRestorer.get().storeSnapshot(colorOptionModel)
         } catch (e: Exception) {
-            activeColorOption.value = null
+            _selectingColorOption.value = null
         }
     }
 

@@ -34,7 +34,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.customization.picker.common.ui.view.ItemSpacing
 import com.android.customization.picker.quickaffordance.ui.adapter.SlotTabAdapter
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel
-import com.android.wallpaper.R
+import com.android.themepicker.R
 import com.android.wallpaper.picker.common.dialog.ui.viewbinder.DialogViewBinder
 import com.android.wallpaper.picker.common.dialog.ui.viewmodel.DialogViewModel
 import com.android.wallpaper.picker.common.icon.ui.viewbinder.IconViewBinder

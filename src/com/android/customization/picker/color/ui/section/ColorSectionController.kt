@@ -24,7 +24,7 @@ import com.android.customization.picker.color.ui.binder.ColorSectionViewBinder
 import com.android.customization.picker.color.ui.fragment.ColorPickerFragment
 import com.android.customization.picker.color.ui.view.ColorSectionView
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel
-import com.android.wallpaper.R
+import com.android.themepicker.R
 import com.android.wallpaper.model.CustomizationSectionController
 import com.android.wallpaper.model.CustomizationSectionController.CustomizationSectionNavigationController as NavigationController
 
