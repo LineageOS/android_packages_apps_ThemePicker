@@ -1,4 +1,3 @@
 +src/
 +src_override/
 +tests/
--src/com/android/customization/module/SysUiStatsLogger.kt
