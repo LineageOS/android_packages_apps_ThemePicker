@@ -16,4 +16,7 @@
   -->
 <resources>
     <string name="default_color_name">Klasik</string>
+    <string name="bundle1_color_name">Karbon</string>
+    <string name="bundle2_color_name">Kertas</string>
+    <string name="bundle3_color_name">Matahari</string>
 </resources>
