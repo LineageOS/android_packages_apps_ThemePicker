@@ -33,14 +33,17 @@
         android:text="@string/mode_title"
         style="@style/SectionTitleTextStyle" />
 
-    <Switch
+    <com.google.android.material.materialswitch.MaterialSwitch
         android:id="@+id/dark_mode_toggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
         android:clickable="false"
         android:focusable="false"
+        android:theme="@style/Theme.Material3.DynamicColors.DayNight"
         android:minHeight="0dp"
-        style="@style/Switch.SettingsLib" />
+        android:text=""
+        android:textOn=""
+        android:textOff="" />
 
 </com.android.customization.picker.mode.DarkModeSectionView>
