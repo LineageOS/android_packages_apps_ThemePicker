@@ -202,6 +202,10 @@
     <dimen name="customization_option_entry_clock_icon_size">44dp</dimen>
     <dimen name="customization_option_entry_color_icon_size">48dp</dimen>
 
+    <!-- preview page -->
+    <dimen name="preview_page_top_margin">16dp</dimen>
+    <dimen name="preview_page_bottom_margin">16dp</dimen>
+
     <!-- Clock font control dimensions -->
     <dimen name="clock_font_axis_name_width">64dp</dimen>
     <dimen name="clock_axis_control_text_margin_end">16dp</dimen>

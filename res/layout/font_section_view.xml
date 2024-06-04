@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.android.customization.picker.font.FontSectionView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:paddingBottom="@dimen/section_bottom_padding"
-    android:paddingHorizontal="@dimen/section_horizontal_padding"
+    android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:background="?selectableItemBackground"
+    android:clickable="true"
+    android:paddingVertical="@dimen/option_section_vertical_padding"
+    android:paddingHorizontal="@dimen/section_horizontal_padding"
+    android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_gravity="center_vertical"
+        android:layout_gravity="center"
         android:orientation="vertical">
 
         <TextView
@@ -32,7 +34,7 @@
         android:layout_width="@dimen/option_tile_width"
         android:layout_height="@dimen/option_tile_width"
         android:scaleType="center"
-        android:background="@drawable/option_border_color">
+        android:background="@drawable/picker_section_icon_background">
         <TextView
             android:id="@+id/thumbnail_text"
             android:layout_width="wrap_content"

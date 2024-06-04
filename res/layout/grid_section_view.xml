@@ -16,11 +16,11 @@
 -->
 <com.android.customization.picker.grid.ui.view.GridSectionView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_width="match_parent"
     android:background="?selectableItemBackground"
     android:clickable="true"
-    android:paddingBottom="@dimen/section_bottom_padding"
+    android:paddingVertical="@dimen/option_section_vertical_padding"
     android:paddingHorizontal="@dimen/section_horizontal_padding"
     android:orientation="horizontal">
 
@@ -28,7 +28,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_gravity="center_vertical"
+        android:layout_gravity="center"
         android:orientation="vertical">
 
         <TextView
@@ -44,14 +44,26 @@
             style="@style/SectionSubtitleTextStyle"/>
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/grid_section_tile"
+    <LinearLayout
         android:layout_width="@dimen/option_tile_width"
         android:layout_height="@dimen/option_tile_width"
-        android:scaleType="center"
-        android:src="@drawable/ic_grid_24px"
-        android:tint="@color/system_on_surface"
+        android:orientation="horizontal"
         android:background="@drawable/picker_section_icon_background"
-        android:contentDescription="@string/gird_picker_entry_content_description" />
+        android:contentDescription="@string/gird_picker_entry_content_description"
+        android:importantForAccessibility="noHideDescendants"
+        android:gravity="center"
+        android:divider="@drawable/horizontal_divider_14dp"
+        android:layout_gravity="center"
+        android:showDividers="middle">
+
+        <ImageView
+            android:id="@+id/grid_section_tile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            android:src="@drawable/ic_grid_24px"
+            android:tint="@color/system_on_surface" />
+
+    </LinearLayout>
 
 </com.android.customization.picker.grid.ui.view.GridSectionView>
