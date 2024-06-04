@@ -172,4 +172,8 @@
     <dimen name="clock_color_size_button_corner_radius">16dp</dimen>
     <dimen name="clock_color_size_button_icon_size">20dp</dimen>
     <dimen name="clock_color_size_button_icon_margin_end">12dp</dimen>
+
+    <!-- preview page -->
+    <dimen name="preview_page_top_margin">16dp</dimen>
+    <dimen name="preview_page_bottom_margin">16dp</dimen>
 </resources>
