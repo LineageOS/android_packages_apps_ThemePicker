@@ -176,4 +176,7 @@
     <!-- Notification item dimensions -->
     <dimen name="notification_section_title_padding">8dp</dimen>
 
+    <!-- preview page -->
+    <dimen name="preview_page_top_margin">16dp</dimen>
+    <dimen name="preview_page_bottom_margin">16dp</dimen>
 </resources>
