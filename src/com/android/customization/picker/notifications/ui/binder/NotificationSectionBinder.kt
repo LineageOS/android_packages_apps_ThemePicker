@@ -19,13 +19,13 @@ package com.android.customization.picker.notifications.ui.binder
 
 import android.annotation.SuppressLint
 import android.view.View
-import android.widget.Switch
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.android.customization.picker.notifications.ui.viewmodel.NotificationSectionViewModel
 import com.android.themepicker.R
+import com.google.android.material.materialswitch.MaterialSwitch
 import kotlinx.coroutines.launch
 
 /**
@@ -38,7 +38,7 @@ object NotificationSectionBinder {
         viewModel: NotificationSectionViewModel,
         lifecycleOwner: LifecycleOwner,
     ) {
-        val switch: Switch = view.requireViewById(R.id.switcher)
+        val switch: MaterialSwitch = view.requireViewById(R.id.switcher)
 
         view.setOnClickListener { viewModel.onClicked() }
 

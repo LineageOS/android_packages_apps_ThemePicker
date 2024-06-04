@@ -39,15 +39,18 @@
             android:text="@string/themed_icon_title"
             style="@style/SectionTitleTextStyle" />
 
-        <Switch
+        <com.google.android.material.materialswitch.MaterialSwitch
             android:id="@+id/themed_icon_toggle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
             android:clickable="false"
             android:focusable="false"
+            android:theme="@style/Theme.Material3.DynamicColors.DayNight"
             android:minHeight="0dp"
-            style="@style/Switch.SettingsLib"/>
+            android:text=""
+            android:textOn=""
+            android:textOff="" />
 
     </LinearLayout>
 </com.android.customization.picker.themedicon.ThemedIconSectionView>
