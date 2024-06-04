@@ -30,7 +30,6 @@ import android.os.Looper;
 import android.os.PowerManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.MainThread;
@@ -43,6 +42,7 @@ import com.android.customization.module.logging.ThemesUserEventLogger;
 import com.android.customization.picker.mode.DarkModeSectionView;
 import com.android.themepicker.R;
 import com.android.wallpaper.model.CustomizationSectionController;
+import com.google.android.material.materialswitch.MaterialSwitch;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -127,7 +127,7 @@ public class DarkModeSectionController implements
         if (context == null) {
             return;
         }
-        Switch switchView = mDarkModeSectionView.findViewById(R.id.dark_mode_toggle);
+        MaterialSwitch switchView = mDarkModeSectionView.findViewById(R.id.dark_mode_toggle);
         if (!switchView.isEnabled()) {
             Toast disableToast = Toast.makeText(mContext,
                     mContext.getString(R.string.mode_disabled_msg), Toast.LENGTH_SHORT);

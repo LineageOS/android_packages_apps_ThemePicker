@@ -17,19 +17,19 @@ package com.android.customization.picker.themedicon;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.Switch;
 
 import androidx.annotation.Nullable;
 
 import com.android.themepicker.R;
 import com.android.wallpaper.picker.SectionView;
+import com.google.android.material.materialswitch.MaterialSwitch;
 
 /**
  * The {@link SectionView} for themed icon section view
  */
 public class ThemedIconSectionView extends SectionView {
 
-    private Switch mSwitchView;
+    private MaterialSwitch mSwitchView;
 
     public ThemedIconSectionView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -49,7 +49,7 @@ public class ThemedIconSectionView extends SectionView {
     }
 
     /** Gets the switch view. */
-    public Switch getSwitch() {
+    public MaterialSwitch getSwitch() {
         return mSwitchView;
     }
 }

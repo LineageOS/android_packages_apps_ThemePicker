@@ -18,12 +18,12 @@ package com.android.customization.picker.mode;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.util.AttributeSet;
-import android.widget.Switch;
 
 import androidx.annotation.Nullable;
 
 import com.android.themepicker.R;
 import com.android.wallpaper.picker.SectionView;
+import com.google.android.material.materialswitch.MaterialSwitch;
 
 /** The view of section in the customization picker fragment. */
 public final class DarkModeSectionView extends SectionView {
@@ -40,7 +40,7 @@ public final class DarkModeSectionView extends SectionView {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        Switch switchView = findViewById(R.id.dark_mode_toggle);
+        MaterialSwitch switchView = findViewById(R.id.dark_mode_toggle);
         switchView.setChecked(mIsDarkModeActivated);
         switchView.setOnCheckedChangeListener((buttonView, isChecked) ->
                 switchView.setChecked(mIsDarkModeActivated)

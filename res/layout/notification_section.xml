@@ -17,7 +17,6 @@
   -->
 <com.android.customization.picker.notifications.ui.view.NotificationSectionView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?selectableItemBackground"
@@ -36,14 +35,17 @@
         android:paddingEnd="@dimen/notification_section_title_padding"
         style="@style/SectionTitleTextStyle"/>
 
-    <Switch
+    <com.google.android.material.materialswitch.MaterialSwitch
         android:id="@+id/switcher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@null"
         android:focusable="false"
         android:clickable="false"
-        android:layout_gravity="center"
-        style="@style/Switch.SettingsLib"
-        tools:ignore="UseSwitchCompatOrMaterialXml" />
+        android:theme="@style/Theme.Material3.DynamicColors.DayNight"
+        android:text=""
+        android:textOn=""
+        android:textOff="" />
 
 </com.android.customization.picker.notifications.ui.view.NotificationSectionView>
