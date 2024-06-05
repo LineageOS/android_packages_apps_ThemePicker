@@ -49,6 +49,7 @@
         android:textAppearance="@style/OptionTitleTextAppearance"
         android:singleLine="true"
         android:scrollHorizontally="true"
+        android:focusable="true"
         android:ellipsize="marquee"
         android:marqueeRepeatLimit="marquee_forever"/>
 </LinearLayout>
