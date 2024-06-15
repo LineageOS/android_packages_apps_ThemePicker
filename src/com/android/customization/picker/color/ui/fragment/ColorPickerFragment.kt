@@ -33,7 +33,7 @@ import androidx.transition.doOnStart
 import com.android.customization.model.mode.DarkModeSectionController
 import com.android.customization.module.ThemePickerInjector
 import com.android.customization.picker.color.ui.binder.ColorPickerBinder
-import com.android.wallpaper.R
+import com.android.themepicker.R
 import com.android.wallpaper.module.CustomizationSections
 import com.android.wallpaper.module.InjectorProvider
 import com.android.wallpaper.picker.AppbarFragment
@@ -121,7 +121,8 @@ class ColorPickerFragment : AppbarFragment() {
                                 authority =
                                     requireContext()
                                         .getString(
-                                            R.string.lock_screen_preview_provider_authority,
+                                            com.android.wallpaper.R.string
+                                                .lock_screen_preview_provider_authority,
                                         ),
                             ),
                         wallpaperInfoProvider = { forceReload ->
@@ -172,7 +173,7 @@ class ColorPickerFragment : AppbarFragment() {
                             authorityMetadataKey =
                                 requireContext()
                                     .getString(
-                                        R.string.grid_control_metadata_name,
+                                        com.android.wallpaper.R.string.grid_control_metadata_name,
                                     ),
                         ),
                     wallpaperInfoProvider = { forceReload ->
@@ -216,7 +217,7 @@ class ColorPickerFragment : AppbarFragment() {
                     context,
                     lifecycle,
                     injector.getDarkModeSnapshotRestorer(requireContext()),
-                    injector.getUserEventLogger(requireContext()),
+                    injector.getUserEventLogger(),
                 )
                 .createView(requireContext())
         darkModeSectionView.background = null
@@ -268,6 +269,9 @@ class ColorPickerFragment : AppbarFragment() {
     }
 
     override fun getToolbarTextColor(): Int {
-        return ContextCompat.getColor(requireContext(), R.color.system_on_surface)
+        return ContextCompat.getColor(
+            requireContext(),
+            com.android.wallpaper.R.color.system_on_surface
+        )
     }
 }

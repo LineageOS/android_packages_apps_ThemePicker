@@ -32,7 +32,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.android.customization.model.ResourceConstants;
-import com.android.wallpaper.R;
+import com.android.themepicker.R;
 import com.android.wallpaper.config.BaseFlags;
 import com.android.wallpaper.util.PreviewUtils;
 

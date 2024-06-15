@@ -21,7 +21,7 @@ import android.widget.Switch;
 
 import androidx.annotation.Nullable;
 
-import com.android.wallpaper.R;
+import com.android.themepicker.R;
 import com.android.wallpaper.picker.SectionView;
 
 /**

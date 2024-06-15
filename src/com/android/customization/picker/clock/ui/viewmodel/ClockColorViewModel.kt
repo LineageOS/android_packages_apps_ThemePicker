@@ -19,7 +19,7 @@ package com.android.customization.picker.clock.ui.viewmodel
 import android.annotation.ColorInt
 import android.content.res.Resources
 import android.graphics.Color
-import com.android.wallpaper.R
+import com.android.themepicker.R
 
 /** The view model that defines custom clock colors. */
 data class ClockColorViewModel(

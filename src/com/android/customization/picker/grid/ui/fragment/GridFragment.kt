@@ -35,7 +35,7 @@ import com.android.customization.module.ThemePickerInjector
 import com.android.customization.picker.grid.domain.interactor.GridInteractor
 import com.android.customization.picker.grid.ui.binder.GridScreenBinder
 import com.android.customization.picker.grid.ui.viewmodel.GridScreenViewModel
-import com.android.wallpaper.R
+import com.android.themepicker.R
 import com.android.wallpaper.config.BaseFlags
 import com.android.wallpaper.module.CurrentWallpaperInfoFactory
 import com.android.wallpaper.module.CustomizationSections
@@ -166,7 +166,10 @@ class GridFragment : AppbarFragment() {
     }
 
     override fun getToolbarTextColor(): Int {
-        return ContextCompat.getColor(requireContext(), R.color.system_on_surface)
+        return ContextCompat.getColor(
+            requireContext(),
+            com.android.wallpaper.R.color.system_on_surface
+        )
     }
 
     private fun bindScreenPreview(
@@ -186,7 +189,7 @@ class GridFragment : AppbarFragment() {
                             authorityMetadataKey =
                                 requireContext()
                                     .getString(
-                                        R.string.grid_control_metadata_name,
+                                        com.android.wallpaper.R.string.grid_control_metadata_name,
                                     ),
                         ),
                     initialExtrasProvider = {

@@ -30,7 +30,7 @@ import com.android.customization.model.CustomizationOption;
 import com.android.customization.model.color.ColorOptionsProvider.ColorSource;
 import com.android.customization.module.logging.ThemesUserEventLogger;
 import com.android.systemui.monet.Style;
-import com.android.wallpaper.R;
+import com.android.themepicker.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -42,7 +42,7 @@
     <string name="clock_size_large" msgid="3143248715744138979">"Grande"</string>
     <string name="clock_size_small" msgid="2280449912094164133">"Pequeño"</string>
     <string name="clock_size_small_description" msgid="4089511196955732480">"Aparece un reloj pequeño en la esquina de tu pantalla"</string>
-    <string name="grid_title" msgid="1688173478777254123">"Cuadr. de apps"</string>
+    <string name="grid_title" msgid="1688173478777254123">"Cuadrícula de apps"</string>
     <string name="apply_theme_btn" msgid="6293081192321303991">"Aplicar"</string>
     <string name="edit_custom_theme_lbl" msgid="5211377705710775224">"Presiona para editar"</string>
     <string name="keep_my_wallpaper" msgid="8012385376769568517">"Conservar fondo de pantalla actual"</string>
@@ -122,7 +122,7 @@
     <string name="keyguard_slot_name_bottom_start" msgid="8747677880200629719">"Acceso izquierdo"</string>
     <string name="keyguard_slot_name_bottom_end" msgid="2525487375680217083">"Acceso derecho"</string>
     <string name="keyguard_affordance_none" msgid="1751643933430782312">"Ninguno"</string>
-    <string name="keyguard_affordance_enablement_dialog_headline" msgid="365379085932610314">"No se puede agregar el acceso directo"</string>
+    <string name="keyguard_affordance_enablement_dialog_headline" msgid="365379085932610314">"No se puede agregar"</string>
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8117011931337357438">"Abrir <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_message" msgid="6136286758939253570">"Para agregar la app <xliff:g id="APPNAME">%1$s</xliff:g> como acceso directo, asegúrate que se cumplan los siguientes requisitos:"</string>
     <string name="keyguard_affordance_enablement_dialog_dismiss_button" msgid="629754625264422508">"Listo"</string>

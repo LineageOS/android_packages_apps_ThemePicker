@@ -15,6 +15,7 @@
  */
 package com.android.customization.module.logging
 
+import android.util.Log
 import com.android.internal.logging.InstanceId
 import com.android.internal.logging.InstanceIdSequence
 import javax.inject.Inject
@@ -23,7 +24,9 @@ import javax.inject.Singleton
 @Singleton
 class AppSessionId @Inject constructor() {
 
-    private var sessionId: InstanceId = newInstanceId()
+    private var idSequence: InstanceIdSequence? = null
+
+    private var sessionId: InstanceId? = null
 
     fun createNewId(): AppSessionId {
         sessionId = newInstanceId()
@@ -31,12 +34,23 @@ class AppSessionId @Inject constructor() {
     }
 
     fun getId(): Int {
-        return sessionId.hashCode()
+        val id =
+            sessionId
+                ?: newInstanceId().also {
+                    Log.w(
+                        TAG,
+                        "Session ID should not be null. We should always call createNewId() before calling getId()."
+                    )
+                    sessionId = it
+                }
+        return id.hashCode()
     }
 
-    private fun newInstanceId(): InstanceId = InstanceIdSequence(INSTANCE_ID_MAX).newInstanceId()
+    private fun newInstanceId(): InstanceId =
+        (idSequence ?: InstanceIdSequence(INSTANCE_ID_MAX).also { idSequence = it }).newInstanceId()
 
     companion object {
+        private const val TAG = "AppSessionId"
         // At most 20 bits: ~1m possibilities, ~0.5% probability of collision in 100 values
         private const val INSTANCE_ID_MAX = 1 shl 20
     }

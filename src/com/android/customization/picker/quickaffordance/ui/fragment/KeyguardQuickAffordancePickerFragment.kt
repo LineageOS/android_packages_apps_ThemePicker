@@ -32,7 +32,7 @@ import com.android.customization.module.ThemePickerInjector
 import com.android.customization.picker.quickaffordance.ui.binder.KeyguardQuickAffordancePickerBinder
 import com.android.customization.picker.quickaffordance.ui.binder.KeyguardQuickAffordancePreviewBinder
 import com.android.customization.picker.quickaffordance.ui.viewmodel.KeyguardQuickAffordancePickerViewModel
-import com.android.wallpaper.R
+import com.android.themepicker.R
 import com.android.wallpaper.module.InjectorProvider
 import com.android.wallpaper.picker.AppbarFragment
 
@@ -110,6 +110,9 @@ class KeyguardQuickAffordancePickerFragment : AppbarFragment() {
     }
 
     override fun getToolbarTextColor(): Int {
-        return ContextCompat.getColor(requireContext(), R.color.system_on_surface)
+        return ContextCompat.getColor(
+            requireContext(),
+            com.android.wallpaper.R.color.system_on_surface
+        )
     }
 }

@@ -172,4 +172,8 @@
     <dimen name="clock_color_size_button_corner_radius">16dp</dimen>
     <dimen name="clock_color_size_button_icon_size">20dp</dimen>
     <dimen name="clock_color_size_button_icon_margin_end">12dp</dimen>
+
+    <!-- Notification item dimensions -->
+    <dimen name="notification_section_title_padding">8dp</dimen>
+
 </resources>

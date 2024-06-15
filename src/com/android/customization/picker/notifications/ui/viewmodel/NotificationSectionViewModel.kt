@@ -22,35 +22,33 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.android.customization.module.logging.ThemesUserEventLogger
-import com.android.customization.picker.notifications.domain.interactor.NotificationsInteractor
+import com.android.systemui.shared.notifications.domain.interactor.NotificationSettingsInteractor
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 /** Models UI state for a section that lets the user control the notification settings. */
 class NotificationSectionViewModel
 @VisibleForTesting
 constructor(
-    private val interactor: NotificationsInteractor,
+    private val interactor: NotificationSettingsInteractor,
     private val logger: ThemesUserEventLogger,
 ) : ViewModel() {
 
     /** Whether the switch should be on. */
-    val isSwitchOn: Flow<Boolean> =
-        interactor.settings.map { model -> model.isShowNotificationsOnLockScreenEnabled }
+    val isSwitchOn: Flow<Boolean> = interactor.isShowNotificationsOnLockScreenEnabled
 
     /** Notifies that the section has been clicked. */
     fun onClicked() {
         viewModelScope.launch {
-            interactor.toggleShowNotificationsOnLockScreenEnabled()
+            interactor.toggleShowNotificationsOnLockscreenEnabled()
             logger.logLockScreenNotificationApplied(
-                interactor.getSettings().isShowNotificationsOnLockScreenEnabled
+                interactor.isShowNotificationsOnLockScreenEnabled.value
             )
         }
     }
 
     class Factory(
-        private val interactor: NotificationsInteractor,
+        private val interactor: NotificationSettingsInteractor,
         private val logger: ThemesUserEventLogger,
     ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")

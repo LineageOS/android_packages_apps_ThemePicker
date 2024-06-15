@@ -24,32 +24,40 @@ import android.util.Log
 import com.android.customization.model.ResourceConstants.OVERLAY_CATEGORY_THEME_STYLE
 import com.android.systemui.monet.ColorScheme
 import com.android.systemui.monet.Style
+import com.android.systemui.shared.settings.data.repository.SecureSettingsRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.json.JSONException
 import org.json.JSONObject
 
-class ThemedWallpaperColorResources(wallpaperColors: WallpaperColors, context: Context) :
-    WallpaperColorResources(wallpaperColors) {
+class ThemedWallpaperColorResources(
+    private val wallpaperColors: WallpaperColors,
+    private val secureSettingsRepository: SecureSettingsRepository,
+) : WallpaperColorResources() {
 
-    init {
-        val wallpaperColorScheme =
-            ColorScheme(
-                wallpaperColors = wallpaperColors,
-                darkTheme = false,
-                style = fetchThemeStyleFromSetting(context)
-            )
-        addOverlayColor(wallpaperColorScheme.neutral1, R.color.system_neutral1_10)
-        addOverlayColor(wallpaperColorScheme.neutral2, R.color.system_neutral2_10)
-        addOverlayColor(wallpaperColorScheme.accent1, R.color.system_accent1_10)
-        addOverlayColor(wallpaperColorScheme.accent2, R.color.system_accent2_10)
-        addOverlayColor(wallpaperColorScheme.accent3, R.color.system_accent3_10)
+    override suspend fun apply(context: Context, callback: () -> Unit) {
+        withContext(Dispatchers.IO) {
+            val wallpaperColorScheme =
+                ColorScheme(
+                    wallpaperColors = wallpaperColors,
+                    darkTheme = false,
+                    style = fetchThemeStyleFromSetting(),
+                )
+            with(wallpaperColorScheme) {
+                addOverlayColor(neutral1, R.color.system_neutral1_10)
+                addOverlayColor(neutral2, R.color.system_neutral2_10)
+                addOverlayColor(accent1, R.color.system_accent1_10)
+                addOverlayColor(accent2, R.color.system_accent2_10)
+                addOverlayColor(accent3, R.color.system_accent3_10)
+            }
+            applyToContext(context)
+            callback.invoke()
+        }
     }
 
-    private fun fetchThemeStyleFromSetting(context: Context): Style {
+    private suspend fun fetchThemeStyleFromSetting(): Style {
         val overlayPackageJson =
-            Settings.Secure.getString(
-                context.contentResolver,
-                Settings.Secure.THEME_CUSTOMIZATION_OVERLAY_PACKAGES,
-            )
+            secureSettingsRepository.getString(Settings.Secure.THEME_CUSTOMIZATION_OVERLAY_PACKAGES)
         return if (!overlayPackageJson.isNullOrEmpty()) {
             try {
                 val jsonObject = JSONObject(overlayPackageJson)

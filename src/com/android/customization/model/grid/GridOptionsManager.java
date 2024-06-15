@@ -56,8 +56,8 @@ public class GridOptionsManager implements CustomizationManager<GridOption> {
         if (sGridOptionsManager == null) {
             Context appContext = context.getApplicationContext();
             CustomizationInjector injector = (CustomizationInjector) InjectorProvider.getInjector();
-            ThemesUserEventLogger eventLogger = (ThemesUserEventLogger) injector.getUserEventLogger(
-                    appContext);
+            ThemesUserEventLogger eventLogger =
+                    (ThemesUserEventLogger) injector.getUserEventLogger();
             sGridOptionsManager = new GridOptionsManager(
                     new LauncherGridOptionsProvider(appContext,
                             appContext.getString(R.string.grid_control_metadata_name)),

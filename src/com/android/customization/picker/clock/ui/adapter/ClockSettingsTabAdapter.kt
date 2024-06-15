@@ -22,7 +22,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.customization.picker.clock.ui.viewmodel.ClockSettingsTabViewModel
-import com.android.wallpaper.R
+import com.android.themepicker.R
 
 /** Adapter for the tab recycler view on the clock settings screen. */
 class ClockSettingsTabAdapter : RecyclerView.Adapter<ClockSettingsTabAdapter.ViewHolder>() {
