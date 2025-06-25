@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "855bcc6c_0b7023be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 19282
+      },
+      "writtenOn": "2025-06-25T06:25:04Z",
+      "side": 1,
+      "message": "How about going even one step further and turning it into a config, which can be overlaid?\n\nWe got context in the method where it is used, so we can use `context.getString()`.",
+      "revId": "54c652fc971d2cd9d86c2c6e297b27c662cf64c2",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
