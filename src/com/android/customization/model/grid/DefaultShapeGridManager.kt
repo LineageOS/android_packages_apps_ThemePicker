@@ -162,7 +162,9 @@ constructor(
         try {
             val drawable =
                 ResourcesCompat.getDrawable(
-                    context.packageManager.getResourcesForApplication(APP_RESOURCES_PACKAGE_NAME),
+                    context.packageManager.getResourcesForApplication(
+                        context.getString(com.android.themepicker.R.string.launcher_overlayable_package)
+                    ),
                     iconId,
                     /* theme = */ null,
                 )
@@ -170,7 +172,7 @@ constructor(
         } catch (exception: Resources.NotFoundException) {
             Log.w(
                 TAG,
-                "Unable to find drawable resource from package $APP_RESOURCES_PACKAGE_NAME with resource ID $iconId",
+                "Unable to find drawable resource from launcher_overlayable_package with resource ID $iconId",
             )
             return null
         }
@@ -192,7 +194,5 @@ constructor(
         const val COL_IS_DEFAULT: String = "is_default"
         const val COL_PATH: String = "path"
         const val KEY_GRID_ICON_ID: String = "grid_icon_id"
-        private const val APP_RESOURCES_PACKAGE_NAME: String =
-            "com.google.android.apps.nexuslauncher"
     }
 }
