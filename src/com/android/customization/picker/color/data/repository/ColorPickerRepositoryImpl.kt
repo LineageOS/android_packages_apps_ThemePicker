@@ -140,7 +140,9 @@ constructor(
     override fun getCurrentColorOption(): ColorOptionModel {
         val overlays = colorManager.currentOverlays
         val styleOrNull = colorManager.currentStyle
-        val style = styleOrNull?.let { Style.valueOf(it) } ?: Style.TONAL_SPOT
+        val style = runCatching {
+            styleOrNull?.let { Style.valueOf(it) }
+        }.getOrNull() ?: Style.TONAL_SPOT
         val source = colorManager.currentColorSource
         val colorOptionBuilder = ColorOptionImpl.Builder()
         colorOptionBuilder.source = source
