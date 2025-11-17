@@ -16,20 +16,49 @@
   -->
 <resources>
     <string name="default_color_name">Classic</string>
+
     <string name="bundle1_color_name">Carbon</string>
     <string name="bundle2_color_name">Paper</string>
     <string name="bundle3_color_name">Sun</string>
 
+    <string name="indigo_color_name">Indigo</string>
+    <string name="iris_color_name">Iris</string>
+    <string name="jade_color_name">Jade</string>
+    <string name="lemongrass_color_name">Lemongrass</string>
+    <string name="moonstone_color_name">Moonstone</string>
+    <string name="obsidian_color_name">Obsidian</string>
+    <string name="peony_color_name">Peony</string>
+    <string name="porcelain_color_name">Porcelain</string>
+
     <string name="bundle_name_default" translatable="false">@string/default_color_name</string>
+
     <string name="bundle_name_bundle1" translatable="false">@string/bundle1_color_name</string>
     <string name="bundle_name_bundle2" translatable="false">@string/bundle2_color_name</string>
     <string name="bundle_name_bundle3" translatable="false">@string/bundle3_color_name</string>
+
+    <string name="bundle_name_indigo" translatable="false">@string/indigo_color_name</string>
+    <string name="bundle_name_iris" translatable="false">@string/iris_color_name</string>
+    <string name="bundle_name_jade" translatable="false">@string/jade_color_name</string>
+    <string name="bundle_name_lemongrass" translatable="false">@string/lemongrass_color_name</string>
+    <string name="bundle_name_moonstone" translatable="false">@string/moonstone_color_name</string>
+    <string name="bundle_name_obsidian" translatable="false">@string/obsidian_color_name</string>
+    <string name="bundle_name_peony" translatable="false">@string/peony_color_name</string>
+    <string name="bundle_name_porcelain" translatable="false">@string/porcelain_color_name</string>
 
     <string name="bundle_name_fruits1" translatable="false">@string/default_color_name</string>
     <string name="bundle_name_fruits2" translatable="false">@string/default_color_name</string>
     <string name="bundle_name_fruits3" translatable="false">@string/default_color_name</string>
     <string name="bundle_name_fruits4" translatable="false">@string/default_color_name</string>
     <string name="bundle_name_fruits5" translatable="false">@string/default_color_name</string>
+
+    <string name="color_style_indigo" translatable="false">VIBRANT</string>
+    <string name="color_style_iris" translatable="false">EXPRESSIVE</string>
+    <string name="color_style_jade" translatable="false">TONAL_SPOT</string>
+    <string name="color_style_lemongrass" translatable="false">EXPRESSIVE</string>
+    <string name="color_style_moonstone" translatable="false">SPRITZ</string>
+    <string name="color_style_obsidian" translatable="false">SPRITZ</string>
+    <string name="color_style_peony" translatable="false">VIBRANT</string>
+    <string name="color_style_porcelain" translatable="false">SPRITZ</string>
 
     <string name="color_style_fruits1" translatable="false">FRUIT_SALAD</string>
     <string name="color_style_fruits2" translatable="false">FRUIT_SALAD</string>
