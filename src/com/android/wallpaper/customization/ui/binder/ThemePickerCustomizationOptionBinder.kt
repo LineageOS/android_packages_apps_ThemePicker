@@ -27,6 +27,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.ui.platform.ComposeView
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.graphics.drawable.DrawableCompat
@@ -44,6 +45,7 @@ import com.android.customization.picker.clock.ui.view.ClockViewFactory
 import com.android.customization.picker.color.ui.binder.ColorOptionIconBinder2
 import com.android.customization.picker.color.ui.view.ColorOptionIconView2
 import com.android.customization.picker.color.ui.viewmodel.ColorOptionIconViewModel
+import com.android.customization.picker.font.ui.view.FontSectionScreen
 import com.android.customization.picker.icon.ui.util.IconStyleViewUtil
 import com.android.customization.picker.settings.ui.binder.ColorContrastSectionViewBinder2
 import com.android.systemui.plugins.keyguard.ui.clocks.ClockAxisStyle
@@ -68,6 +70,7 @@ import com.android.wallpaper.picker.customization.ui.viewmodel.CustomizationOpti
 import com.android.wallpaper.picker.customization.ui.viewmodel.CustomizationPickerViewModel2
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.google.android.flexbox.FlexboxLayout
 import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -177,6 +180,19 @@ constructor(private val defaultCustomizationOptionsBinder: DefaultCustomizationO
             )
         }
 
+        val fontOptionEntries =
+            allCustomizationOptionEntries
+                .filter { it.first == ThemePickerLockCustomizationOption.FONT }
+                .map { it.second }
+
+        fontOptionEntries.forEach { view ->
+            val lp = view.layoutParams as? FlexboxLayout.LayoutParams
+            if (lp != null) {
+                lp.flexBasisPercent = 1.0f // 100% width forces a row
+                view.layoutParams = lp
+            }
+        }
+
         val optionClock: View =
             lockScreenCustomizationOptionEntries
                 .first { it.first == ThemePickerLockCustomizationOption.CLOCK }
@@ -284,6 +300,9 @@ constructor(private val defaultCustomizationOptionsBinder: DefaultCustomizationO
         ColorUpdateBinder.bind(
             setColor = { color ->
                 optionClockIcon.setColorFilter(color)
+                fontOptionEntries.forEach {
+                    it.findViewById<ImageView>(R.id.option_entry_icon)?.setColorFilter(color)
+                }
                 if (isKeyguardQuickAffordanceEnabled) {
                     optionShortcutIcon1?.setColorFilter(color)
                     optionShortcutIcon2?.setColorFilter(color)
@@ -312,6 +331,23 @@ constructor(private val defaultCustomizationOptionsBinder: DefaultCustomizationO
                 launch {
                     optionsViewModel.clockPickerViewModel.selectedClock.collect {
                         optionClockIcon.setImageDrawable(it.thumbnail)
+                    }
+                }
+
+                launch {
+                    optionsViewModel.onCustomizeFontsClicked.collect { clickAction ->
+                        fontOptionEntries.forEach { entryView ->
+                            entryView.setOnClickListener { _ -> clickAction?.invoke() }
+                        }
+                    }
+                }
+
+                launch {
+                    optionsViewModel.fontPickerViewModel.activeOption.collect { option ->
+                        fontOptionEntries.forEach { entryView ->
+                            entryView.findViewById<TextView>(R.id.option_entry_description)?.text =
+                                option?.title
+                        }
                     }
                 }
 
@@ -655,6 +691,18 @@ constructor(private val defaultCustomizationOptionsBinder: DefaultCustomizationO
                     lifecycleOwner,
                     Dispatchers.IO,
                 )
+            }
+
+        customizationOptionFloatingSheetViewMap
+            ?.get(ThemePickerLockCustomizationOption.FONT)
+            ?.let { view ->
+                (view as ComposeView).setContent {
+                    val isDark = isSystemInDarkTheme()
+                    FontSectionScreen(
+                        viewModel = optionsViewModel.fontPickerViewModel,
+                        isDark = isDark,
+                    )
+                }
             }
 
         customizationOptionFloatingSheetViewMap?.get(ThemePickerHomeCustomizationOption.GRID)?.let {

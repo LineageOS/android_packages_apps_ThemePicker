@@ -35,6 +35,7 @@ import com.android.wallpaper.customization.ui.util.ThemePickerCustomizationOptio
 import com.android.wallpaper.customization.ui.util.ThemePickerCustomizationOptionUtil.ThemePickerHomeCustomizationOption.PACK_THEME
 import com.android.wallpaper.customization.ui.util.ThemePickerCustomizationOptionUtil.ThemePickerHomeCustomizationOption.SCREEN_SAVER
 import com.android.wallpaper.customization.ui.util.ThemePickerCustomizationOptionUtil.ThemePickerLockCustomizationOption.CLOCK
+import com.android.wallpaper.customization.ui.util.ThemePickerCustomizationOptionUtil.ThemePickerLockCustomizationOption.FONT
 import com.android.wallpaper.customization.ui.util.ThemePickerCustomizationOptionUtil.ThemePickerLockCustomizationOption.LOCK_SCREEN_NOTIFICATIONS
 import com.android.wallpaper.customization.ui.util.ThemePickerCustomizationOptionUtil.ThemePickerLockCustomizationOption.MORE_LOCK_SCREEN_SETTINGS
 import com.android.wallpaper.customization.ui.util.ThemePickerCustomizationOptionUtil.ThemePickerLockCustomizationOption.SHORTCUTS
@@ -54,7 +55,7 @@ import javax.inject.Inject
 class ThemePickerCustomizationOptionViewUtil
 @Inject
 constructor(
-    private val defaultCustomizationOptionUtil: DefaultCustomizationOptionViewUtil,
+    private val defaultCustomizationOptionViewUtil: DefaultCustomizationOptionViewUtil,
     @ActivityContext private val context: Context,
 ) : CustomizationOptionViewUtil {
 
@@ -77,7 +78,7 @@ constructor(
                 /* def= */ 0,
             ) == 1
         val defaultOptionEntries =
-            defaultCustomizationOptionUtil.getOptionEntries(
+            defaultCustomizationOptionViewUtil.getOptionEntries(
                 customizationOptionsData = customizationOptionsData,
                 screen = screen,
                 optionContainer = optionContainer,
@@ -101,6 +102,14 @@ constructor(
                         CLOCK to
                             layoutInflater.inflate(
                                 R.layout.customization_option_entry_clock,
+                                optionContainer,
+                                false,
+                            )
+                    )
+                    add(
+                        FONT to
+                            layoutInflater.inflate(
+                                R.layout.customization_option_entry_font,
                                 optionContainer,
                                 false,
                             )
@@ -171,6 +180,14 @@ constructor(
                                 false,
                             )
                     )
+                    add(
+                        FONT to
+                            layoutInflater.inflate(
+                                R.layout.customization_option_entry_font,
+                                optionContainer,
+                                false,
+                            )
+                    )
                     if (
                         customizationOptionsData.isIconStyleAvailable ||
                             customizationOptionsData.isShapeAvailable
@@ -204,7 +221,7 @@ constructor(
     ): Map<CustomizationOptionUtil.CustomizationOption, View> {
         customizationOptionsData as ThemePickerCustomizationOptionsData
         val map =
-            defaultCustomizationOptionUtil.initFloatingSheet(
+            defaultCustomizationOptionViewUtil.initFloatingSheet(
                 customizationOptionsData = customizationOptionsData,
                 bottomSheetContainer = bottomSheetContainer,
                 layoutInflater = layoutInflater,
@@ -216,6 +233,14 @@ constructor(
             BaseFlags.get().isKeyguardQuickAffordanceEnabled(bottomSheetContainer.context)
         return buildMap {
             putAll(map)
+
+            put(
+                FONT,
+                ComposeView(context).also {
+                    bottomSheetContainer.addView(it)
+                }
+            )
+
             put(
                 CLOCK,
                 inflateFloatingSheet(CLOCK, bottomSheetContainer, layoutInflater).also {

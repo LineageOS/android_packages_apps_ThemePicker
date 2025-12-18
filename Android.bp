@@ -150,7 +150,10 @@ android_app {
 
     platform_apis: true,
     manifest: "AndroidManifest.xml",
-    additional_manifests: [":WallpaperPicker2_Manifest"],
+    additional_manifests: [
+        "LineageManifest.xml",
+        ":WallpaperPicker2_Manifest",
+    ],
     overrides: [
         "WallpaperCropper",
         "WallpaperPicker",
