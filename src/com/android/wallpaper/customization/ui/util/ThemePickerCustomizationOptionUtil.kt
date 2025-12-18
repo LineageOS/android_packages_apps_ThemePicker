@@ -34,6 +34,7 @@ constructor(private val defaultCustomizationOptionUtil: DefaultCustomizationOpti
         SHORTCUTS,
         LOCK_SCREEN_NOTIFICATIONS,
         MORE_LOCK_SCREEN_SETTINGS,
+        FONT,
     }
 
     enum class ThemePickerHomeCustomizationOption : CustomizationOption {
@@ -43,6 +44,7 @@ constructor(private val defaultCustomizationOptionUtil: DefaultCustomizationOpti
         COLOR_CONTRAST,
         APP_ICONS,
         GRID,
+        FONT,
     }
 
     override fun getCustomizationOptionFromDestination(destination: String): CustomizationOption? {
