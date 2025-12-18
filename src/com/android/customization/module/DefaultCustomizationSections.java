@@ -7,7 +7,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 
+import com.android.customization.model.font.FontSectionController;
 import com.android.customization.model.grid.GridOptionsManager;
 import com.android.customization.model.themedicon.ThemedIconSectionController;
 import com.android.customization.model.themedicon.ThemedIconSwitchProvider;
@@ -19,6 +21,7 @@ import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewMode
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor;
 import com.android.customization.picker.color.ui.section.ColorSectionController;
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel;
+import com.android.customization.picker.font.ui.viewmodel.FontPickerViewModel;
 import com.android.customization.picker.grid.domain.interactor.GridInteractor;
 import com.android.customization.picker.grid.ui.section.GridSectionController;
 import com.android.customization.picker.notifications.ui.section.NotificationSectionController;
@@ -66,6 +69,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
     private final ColorPickerInteractor mColorPickerInteractor;
     private final ThemesUserEventLogger mThemesUserEventLogger;
 
+    private final FontPickerViewModel.Factory mFontPickerViewModelFactory;
+
     public DefaultCustomizationSections(
             ColorPickerViewModel.Factory colorPickerViewModelFactory,
             KeyguardQuickAffordancePickerViewModel.Factory
@@ -79,7 +84,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
             ThemedIconInteractor themedIconInteractor,
             GridInteractor gridInteractor,
             ColorPickerInteractor colorPickerInteractor,
-            ThemesUserEventLogger themesUserEventLogger) {
+            ThemesUserEventLogger themesUserEventLogger,
+            FontPickerViewModel.Factory fontPickerViewModelFactory) {
         mColorPickerViewModelFactory = colorPickerViewModelFactory;
         mKeyguardQuickAffordancePickerViewModelFactory =
                 keyguardQuickAffordancePickerViewModelFactory;
@@ -93,6 +99,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
         mColorPickerInteractor = colorPickerInteractor;
         mThemesUserEventLogger = themesUserEventLogger;
         mColorContrastSectionViewModelFactory = colorContrastSectionViewModelFactory;
+        mFontPickerViewModelFactory = fontPickerViewModelFactory;
     }
 
     @Override
@@ -192,6 +199,11 @@ public final class DefaultCustomizationSections implements CustomizationSections
 
                 // More settings section.
                 sectionControllers.add(new MoreSettingsSectionController());
+
+                // Font selection section.
+                sectionControllers.add(new FontSectionController(
+                        mFontPickerViewModelFactory,
+                        (ViewModelStoreOwner) activity));
                 break;
 
             case HOME_SCREEN:
@@ -203,6 +215,11 @@ public final class DefaultCustomizationSections implements CustomizationSections
                                 savedInstanceState,
                                 mThemedIconSnapshotRestorer,
                                 mThemesUserEventLogger));
+
+                // Font selection section.
+                sectionControllers.add(new FontSectionController(
+                        mFontPickerViewModelFactory,
+                        (ViewModelStoreOwner) activity));
 
                 // Color contrast section
                     sectionControllers.add(
