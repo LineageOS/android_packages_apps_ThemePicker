@@ -30,6 +30,10 @@
         <!-- Package of camera for icon shape -->
         <package android:name="com.android.camera2" />
 
+        <!-- Fonts -->
+        <package android:name="org.lineageos.overlay.font.lato" />
+        <package android:name="org.lineageos.overlay.font.rubik" />
+
         <!-- Specific intents Wallpaper picker query for -->
         <!-- Package for theme stub -->
         <package android:name="com.android.customization.themes" />
