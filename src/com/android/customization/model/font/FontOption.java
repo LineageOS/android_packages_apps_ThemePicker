@@ -15,50 +15,36 @@
  */
 package com.android.customization.model.font;
 
-import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.PorterDuff.Mode;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.customization.model.CustomizationManager;
 import com.android.customization.model.CustomizationOption;
-import com.android.customization.model.ResourceConstants;
-import com.android.customization.model.theme.OverlayManagerCompat;
 import com.android.themepicker.R;
 import com.android.wallpaper.util.ResourceUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-
 public class FontOption implements CustomizationOption<FontOption> {
 
+    private final String mTitle;
+    private final String mOverlayPackage;
     private final Typeface mHeadlineFont;
     private final Typeface mBodyFont;
-    private String mTitle;
-    private String mOverlayPackage;
 
-    public FontOption(String overlayPackage, String label, Typeface headlineFont, Typeface bodyFont) {
-        mTitle = label;
+    public FontOption(String overlayPackage, String title, Typeface headlineFont,
+            Typeface bodyFont) {
+        mOverlayPackage = overlayPackage;
+        mTitle = title;
         mHeadlineFont = headlineFont;
         mBodyFont = bodyFont;
-        mOverlayPackage = overlayPackage;
     }
 
     @Override
     public void bindThumbnailTile(View view) {
-        Resources res = view.getContext().getResources();
-        ((TextView) view.findViewById(R.id.thumbnail_text)).setTypeface(
-                mHeadlineFont);
         int colorFilter = ResourceUtils.getColorAttr(view.getContext(),
-                view.isActivated() || view.getId() == R.id.font_section_tile
+                view.isActivated() || view.getId() == R.id.option_entry_icon_container
                         ? android.R.attr.textColorPrimary
                         : android.R.attr.textColorTertiary);
         ((TextView) view.findViewById(R.id.thumbnail_text)).setTextColor(colorFilter);
@@ -97,5 +83,13 @@ public class FontOption implements CustomizationOption<FontOption> {
         bodyText.setTypeface(mBodyFont);
         container.findViewById(R.id.font_card_divider).setBackgroundColor(
                 title.getCurrentTextColor());
+    }
+
+    public Typeface getHeadlineFont() {
+        return mHeadlineFont;
+    }
+
+    public Typeface getBodyFont() {
+        return mBodyFont;
     }
 }

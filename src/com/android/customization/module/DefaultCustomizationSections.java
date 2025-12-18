@@ -7,9 +7,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 
-import com.android.customization.model.font.FontManager;
-import com.android.customization.model.font.FontSectionController;
 import com.android.customization.model.grid.GridOptionsManager;
 import com.android.customization.model.iconpack.IconPackManager;
 import com.android.customization.model.iconpack.IconPackSectionController;
@@ -21,11 +20,13 @@ import com.android.customization.model.themedicon.ThemedIconSwitchProvider;
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconInteractor;
 import com.android.customization.model.themedicon.domain.interactor.ThemedIconSnapshotRestorer;
 import com.android.customization.module.logging.ThemesUserEventLogger;
+import com.android.customization.model.font.FontSectionController;
 import com.android.customization.picker.clock.ui.view.ClockViewFactory;
 import com.android.customization.picker.clock.ui.viewmodel.ClockCarouselViewModel;
 import com.android.customization.picker.color.domain.interactor.ColorPickerInteractor;
 import com.android.customization.picker.color.ui.section.ColorSectionController;
 import com.android.customization.picker.color.ui.viewmodel.ColorPickerViewModel;
+import com.android.customization.picker.font.ui.viewmodel.FontPickerViewModel; 
 import com.android.customization.picker.grid.domain.interactor.GridInteractor;
 import com.android.customization.picker.grid.ui.section.GridSectionController;
 import com.android.customization.picker.notifications.ui.section.NotificationSectionController;
@@ -73,6 +74,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
     private final ColorPickerInteractor mColorPickerInteractor;
     private final ThemesUserEventLogger mThemesUserEventLogger;
 
+    private final FontPickerViewModel.Factory mFontPickerViewModelFactory;
+
     public DefaultCustomizationSections(
             ColorPickerViewModel.Factory colorPickerViewModelFactory,
             KeyguardQuickAffordancePickerViewModel.Factory
@@ -86,7 +89,8 @@ public final class DefaultCustomizationSections implements CustomizationSections
             ThemedIconInteractor themedIconInteractor,
             GridInteractor gridInteractor,
             ColorPickerInteractor colorPickerInteractor,
-            ThemesUserEventLogger themesUserEventLogger) {
+            ThemesUserEventLogger themesUserEventLogger,
+            FontPickerViewModel.Factory fontPickerViewModelFactory) {
         mColorPickerViewModelFactory = colorPickerViewModelFactory;
         mKeyguardQuickAffordancePickerViewModelFactory =
                 keyguardQuickAffordancePickerViewModelFactory;
@@ -100,6 +104,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
         mColorPickerInteractor = colorPickerInteractor;
         mThemesUserEventLogger = themesUserEventLogger;
         mColorContrastSectionViewModelFactory = colorContrastSectionViewModelFactory;
+        mFontPickerViewModelFactory = fontPickerViewModelFactory;
     }
 
     @Override
@@ -178,6 +183,11 @@ public final class DefaultCustomizationSections implements CustomizationSections
 
         switch (screen) {
             case LOCK_SCREEN:
+                // Icon pack selection section.
+                sectionControllers.add(new IconPackSectionController(
+                        IconPackManager.getInstance(activity, new OverlayManagerCompat(activity)),
+                        sectionNavigationController));
+
                 // Lock screen quick affordances section.
                 sectionControllers.add(
                         new KeyguardQuickAffordanceSectionController(
@@ -188,17 +198,7 @@ public final class DefaultCustomizationSections implements CustomizationSections
                                         .get(KeyguardQuickAffordancePickerViewModel.class),
                                 lifecycleOwner));
 
-                // Icon pack selection section.
-                sectionControllers.add(new IconPackSectionController(
-                        IconPackManager.getInstance(activity, new OverlayManagerCompat(activity)),
-                        sectionNavigationController));
-
-                // Font selection section.
-                sectionControllers.add(new FontSectionController(
-                        FontManager.getInstance(activity, new OverlayManagerCompat(activity)),
-                        sectionNavigationController));
-
-                // Notifications section.
+                // // Notifications section.
                 sectionControllers.add(
                         new NotificationSectionController(
                                 new ViewModelProvider(
@@ -209,6 +209,11 @@ public final class DefaultCustomizationSections implements CustomizationSections
 
                 // More settings section.
                 sectionControllers.add(new MoreSettingsSectionController());
+
+                // Font selection section.
+                sectionControllers.add(new FontSectionController(
+                        mFontPickerViewModelFactory,
+                        (ViewModelStoreOwner) activity));
                 break;
 
             case HOME_SCREEN:
@@ -221,12 +226,18 @@ public final class DefaultCustomizationSections implements CustomizationSections
                                 mThemedIconSnapshotRestorer,
                                 mThemesUserEventLogger));
 
-                // Color contrast section
-                    sectionControllers.add(
-                            new ColorContrastSectionController(new ViewModelProvider(activity,
-                                    mColorContrastSectionViewModelFactory)
-                                    .get(ColorContrastSectionViewModel.class), lifecycleOwner));
-                // App grid section.
+                // // Font selection section.
+                sectionControllers.add(new FontSectionController(
+                        mFontPickerViewModelFactory,
+                        (ViewModelStoreOwner) activity));
+
+                // Color Contrast section.
+                sectionControllers.add(
+                        new ColorContrastSectionController(new ViewModelProvider(activity,
+                                mColorContrastSectionViewModelFactory)
+                                .get(ColorContrastSectionViewModel.class), lifecycleOwner));
+
+                // App Grid section.
                 sectionControllers.add(
                         new GridSectionController(
                                 GridOptionsManager.getInstance(activity),
@@ -236,11 +247,6 @@ public final class DefaultCustomizationSections implements CustomizationSections
                 // Icon pack selection section.
                 sectionControllers.add(new IconPackSectionController(
                         IconPackManager.getInstance(activity, new OverlayManagerCompat(activity)),
-                        sectionNavigationController));
-
-                // Font selection section.
-                sectionControllers.add(new FontSectionController(
-                        FontManager.getInstance(activity, new OverlayManagerCompat(activity)),
                         sectionNavigationController));
 
                 // Icon shape selection section.
