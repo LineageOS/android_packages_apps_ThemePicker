@@ -214,4 +214,7 @@
     <!-- Shared dimensions for Material 3 sliders -->
     <dimen name="slider_track_height">24dp</dimen>
     <dimen name="slider_thumb_height">36dp</dimen>
+
+    <dimen name="option_label_width">100dp</dimen>
+    <dimen name="customization_option_entry_icon_interior_size">24dp</dimen>
 </resources>

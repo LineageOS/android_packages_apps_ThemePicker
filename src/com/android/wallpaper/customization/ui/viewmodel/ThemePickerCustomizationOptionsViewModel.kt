@@ -18,12 +18,14 @@ package com.android.wallpaper.customization.ui.viewmodel
 
 import android.content.Context
 import android.view.accessibility.AccessibilityManager
+import com.android.customization.picker.font.ui.viewmodel.FontPickerViewModel
 import com.android.customization.picker.mode.ui.viewmodel.DarkModeViewModel
 import com.android.wallpaper.config.BaseFlags
 import com.android.wallpaper.customization.ui.util.ThemePickerCustomizationOptionUtil.ThemePickerHomeCustomizationOption.APP_ICONS
 import com.android.wallpaper.customization.ui.util.ThemePickerCustomizationOptionUtil.ThemePickerHomeCustomizationOption.COLORS
 import com.android.wallpaper.customization.ui.util.ThemePickerCustomizationOptionUtil.ThemePickerHomeCustomizationOption.GRID
 import com.android.wallpaper.customization.ui.util.ThemePickerCustomizationOptionUtil.ThemePickerLockCustomizationOption.CLOCK
+import com.android.wallpaper.customization.ui.util.ThemePickerCustomizationOptionUtil.ThemePickerLockCustomizationOption.FONT
 import com.android.wallpaper.customization.ui.util.ThemePickerCustomizationOptionUtil.ThemePickerLockCustomizationOption.SHORTCUTS
 import com.android.wallpaper.picker.customization.ui.view.ApplyButton
 import com.android.wallpaper.picker.customization.ui.view.ApplyButton.ApplyButtonState.APPLY_BUTTON_DISABLED
@@ -61,6 +63,7 @@ constructor(
     clockPickerViewModelFactory: ClockPickerViewModel.Factory,
     gridPickerViewModelFactory: GridPickerViewModel.Factory,
     appIconPickerViewModelFactory: AppIconPickerViewModel.Factory,
+    fontPickerViewModelFactory: FontPickerViewModel.Factory,
     val colorContrastSectionViewModel: ColorContrastSectionViewModel2,
     val darkModeViewModel: DarkModeViewModel,
     val themedIconViewModel: ThemedIconViewModel,
@@ -88,8 +91,8 @@ constructor(
         )
     val colorPickerViewModel2 = colorPickerViewModel2Factory.create(viewModelScope = viewModelScope)
     val gridPickerViewModel = gridPickerViewModelFactory.create(viewModelScope = viewModelScope)
-    val appIconPickerViewModel =
-        appIconPickerViewModelFactory.create(viewModelScope = viewModelScope)
+    val appIconPickerViewModel = appIconPickerViewModelFactory.create(viewModelScope = viewModelScope)
+    val fontPickerViewModel = fontPickerViewModelFactory.create(FontPickerViewModel::class.java)
 
     override val customizationOptionsData: Flow<CustomizationOptionsData> =
         if (BaseFlags.get().isExtendibleThemeManager()) {
@@ -97,42 +100,26 @@ constructor(
                 gridPickerViewModel.isGridCustomizationAvailable,
                 appIconPickerViewModel.isIconStyleAvailable,
                 appIconPickerViewModel.isShapeOptionsAvailable,
-            ) { isGridCustomizationAvailable, isIconStyleAvailable, isShapeOptionsAvailable ->
-                ThemePickerCustomizationOptionsData(
-                    isGridCustomizationAvailable = isGridCustomizationAvailable,
-                    isIconStyleAvailable = isIconStyleAvailable,
-                    isShapeAvailable = isShapeOptionsAvailable,
-                )
+            ) { isGrid, isIcon, isShape ->
+                ThemePickerCustomizationOptionsData(isGrid, isIcon, isShape)
             }
         } else {
             combine(
                 gridPickerViewModel.isGridCustomizationAvailable,
                 appIconPickerViewModel.isThemedIconAvailable,
                 appIconPickerViewModel.isShapeOptionsAvailable,
-            ) { isGridCustomizationAvailable, isThemedIconAvailable, isShapeOptionsAvailable ->
-                ThemePickerCustomizationOptionsData(
-                    isGridCustomizationAvailable = isGridCustomizationAvailable,
-                    isIconStyleAvailable = isThemedIconAvailable,
-                    isShapeAvailable = isShapeOptionsAvailable,
-                )
+            ) { isGrid, isIcon, isShape ->
+                ThemePickerCustomizationOptionsData(isGrid, isIcon, isShape)
             }
         }
 
     private var onApplyJob: Job? = null
 
-    override val selectedOption = defaultCustomizationOptionsViewModel.selectedOption
+    override val selectedOption get() = defaultCustomizationOptionsViewModel.selectedOption
 
-    override val discardChangesDialogViewModel =
-        defaultCustomizationOptionsViewModel.discardChangesDialogViewModel
+    override val discardChangesDialogViewModel get() = defaultCustomizationOptionsViewModel.discardChangesDialogViewModel
 
     override fun handleBackPressed(): Boolean {
-        if (applyButtonState.value == APPLY_BUTTON_ENABLED) {
-            defaultCustomizationOptionsViewModel.showDiscardChangesDialogViewModel(
-                // Hide the picker's clock when we start the transition back to the primary screen.
-                onDiscard = { clockPickerViewModel.setShowPickerClockControllerView(false) }
-            )
-            return true
-        }
         // Hide the picker's clock when we start the transition back to the primary screen.
         clockPickerViewModel.setShowPickerClockControllerView(false)
         return defaultCustomizationOptionsViewModel.handleBackPressed()
@@ -187,6 +174,15 @@ constructor(
             }
         }
 
+    val onCustomizeFontsClicked: Flow<(() -> Unit)?> =
+        selectedOption.map {
+            if (it == null) {
+                { defaultCustomizationOptionsViewModel.selectOption(FONT) }
+            } else {
+                null
+            }
+        }
+
     val onCustomizeShortcutClicked: Flow<(() -> Unit)?> =
         selectedOption.map {
             if (it == null) {
@@ -231,6 +227,7 @@ constructor(
                     CLOCK -> clockPickerViewModel.onApply
                     SHORTCUTS -> keyguardQuickAffordancePickerViewModel2.onApply
                     GRID -> gridPickerViewModel.onApply
+                    FONT -> fontPickerViewModel.onApply
                     APP_ICONS ->
                         if (BaseFlags.get().isExtendibleThemeManager()) {
                             appIconPickerViewModel.iconStyleAndShapeOnApply
@@ -261,7 +258,7 @@ constructor(
                             onApplyJob =
                                 viewModelScope.launch {
                                     isApplyInProgress.value = true
-                                    onApply()
+                                    (onApply as? suspend () -> Unit)?.invoke()
                                     onComplete()
                                     isApplyInProgress.value = false
                                     onApplyJob = null
