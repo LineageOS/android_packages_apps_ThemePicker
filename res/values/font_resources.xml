@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="customization_option_entry_icon_interior_size">24dp</dimen>
+    <dimen name="customization_option_entry_title_margin_top">8dp</dimen>
+
+    <style name="CustomizationOptionEntryTitleTextAppearance" parent="@android:style/TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+</resources>
