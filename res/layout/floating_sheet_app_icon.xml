@@ -116,21 +116,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/themed_icon_toggle"
                     app:layout_constraintTop_toBottomOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/themed_icon_beta_title" />
-
-                <TextView
-                    style="@style/BetaTagTextStyle"
-                    android:id="@+id/themed_icon_beta_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/floating_sheet_content_horizontal_padding"
-                    android:layout_marginEnd="@dimen/floating_sheet_clock_style_clock_size_text_margin_end"
-                    android:importantForAccessibility="no"
-                    android:textColor="@color/text_color_on_accent"
-                    android:text="@string/beta_title"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/themed_icon_toggle_title"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintBottom_toTopOf="@+id/themed_icon_toggle" />
 
                 <com.google.android.material.materialswitch.MaterialSwitch
                     style="@style/SettingslibSwitchStyle.Expressive"
@@ -141,7 +127,7 @@
                     android:contentDescription="@string/themed_icon_title"
                     android:clickable="true"
                     app:layout_constraintTop_toTopOf="@+id/themed_icon_toggle_title"
-                    app:layout_constraintBottom_toBottomOf="@+id/themed_icon_beta_title"
+                    app:layout_constraintBottom_toBottomOf="@+id/themed_icon_toggle_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:theme="@style/Theme.Material3.DynamicColors.DayNight" />
             </androidx.constraintlayout.widget.ConstraintLayout>
