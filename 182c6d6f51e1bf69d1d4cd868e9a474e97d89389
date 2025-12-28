@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c28e8e2b_2bd52a51",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2025-12-28T11:01:31Z",
+      "side": 1,
+      "message": "Maybe stack this on top of https://review.lineageos.org/c/LineageOS/android_packages_apps_ThemePicker/+/465932/ instead of rewriting a downstream commit, since that first commit contains many changes that are now duplicate, eg, icon shape picker",
+      "revId": "182c6d6f51e1bf69d1d4cd868e9a474e97d89389",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
