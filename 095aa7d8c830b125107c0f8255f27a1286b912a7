@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f8fe7c9_0f1ea619",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-12-30T18:23:26Z",
+      "side": 1,
+      "message": "Can be squashed into previous if we merge the font addition into lineage-23.0 branch. I am going to test it there, since on 23.2 none of the fonts seem to be applied.",
+      "revId": "095aa7d8c830b125107c0f8255f27a1286b912a7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
