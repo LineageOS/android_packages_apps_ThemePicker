@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63155e17_61e7aeac",
+        "filename": "src/com/android/wallpaper/customization/ui/binder/ThemePickerCustomizationOptionBinder.kt",
+        "patchSetId": 10
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2025-12-30T13:28:27Z",
+      "side": 1,
+      "message": "There are extensive changes in this file which don\u0027t look directly related to this change.",
+      "revId": "6f4692153e74458dcd4d9907347188fa45fe185a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf7860c7_ff56d422",
+        "filename": "src/com/android/wallpaper/customization/ui/viewmodel/ThemePickerCustomizationOptionsViewModel.kt",
+        "patchSetId": 10
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2025-12-30T13:28:27Z",
+      "side": 1,
+      "message": "Same comment as the other files",
+      "revId": "6f4692153e74458dcd4d9907347188fa45fe185a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
