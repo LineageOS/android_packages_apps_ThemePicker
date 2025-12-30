@@ -19,6 +19,7 @@
 
     <queries>
         <!-- Fonts -->
+        <package android:name="org.lineageos.overlay.font.googlesansflex" />
         <package android:name="org.lineageos.overlay.font.lato" />
         <package android:name="org.lineageos.overlay.font.rubik" />
     </queries>
