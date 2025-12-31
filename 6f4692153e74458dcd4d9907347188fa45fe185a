@@ -33,6 +33,24 @@
       "message": "Same comment as the other files",
       "revId": "6f4692153e74458dcd4d9907347188fa45fe185a",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35c1fa8c_cee8d9b5",
+        "filename": "src/com/android/wallpaper/customization/ui/viewmodel/ThemePickerCustomizationOptionsViewModel.kt",
+        "patchSetId": 10
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 35199
+      },
+      "writtenOn": "2025-12-31T09:19:59Z",
+      "side": 1,
+      "message": "were needed for the binder to pick up the new impl. you may seperate these into two commits if needed.",
+      "parentUuid": "bf7860c7_ff56d422",
+      "revId": "6f4692153e74458dcd4d9907347188fa45fe185a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
