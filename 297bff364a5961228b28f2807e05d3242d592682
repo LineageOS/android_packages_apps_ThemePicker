@@ -18,6 +18,24 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ff4d63a_f506036f",
+        "filename": "src/com/android/customization/model/font/FontSectionController.kt",
+        "patchSetId": 13
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 35199
+      },
+      "writtenOn": "2026-01-19T08:57:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e96145b6_dea94af8",
+      "revId": "297bff364a5961228b28f2807e05d3242d592682",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "135765ea_340b6a25",
@@ -41,6 +59,30 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc8d41dd_e0c25886",
+        "filename": "src/com/android/customization/model/font/FontSectionController.kt",
+        "patchSetId": 13
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 35199
+      },
+      "writtenOn": "2026-01-19T08:57:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "135765ea_340b6a25",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 51
+      },
+      "revId": "297bff364a5961228b28f2807e05d3242d592682",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c9513e45_60e73dd2",
@@ -54,6 +96,30 @@
       "writtenOn": "2026-01-19T08:38:49Z",
       "side": 1,
       "message": "can\u0027t you create the FontPickerViewModel here directly?\nYou should be able to without any issue",
+      "range": {
+        "startLine": 205,
+        "startChar": 0,
+        "endLine": 206,
+        "endChar": 57
+      },
+      "revId": "297bff364a5961228b28f2807e05d3242d592682",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c2170e9_e0b03c58",
+        "filename": "src/com/android/customization/module/DefaultCustomizationSections.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 35199
+      },
+      "writtenOn": "2026-01-19T08:57:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9513e45_60e73dd2",
       "range": {
         "startLine": 205,
         "startChar": 0,
