@@ -16,6 +16,24 @@
       "message": "Works fine with 23.2 and the fonts do apply system-wide",
       "revId": "1f90c83793bc07e5ddc952e1e69251eb01c0920e",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb80386f_6f82c1e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35199
+      },
+      "writtenOn": "2026-01-21T06:54:07Z",
+      "side": 1,
+      "message": "They do?",
+      "parentUuid": "50d98132_58353a4a",
+      "revId": "1f90c83793bc07e5ddc952e1e69251eb01c0920e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
