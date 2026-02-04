@@ -22,6 +22,30 @@
       },
       "revId": "3dbaa84be42d64dd15596517684920e4bf7da230",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b30c613_33967893",
+        "filename": "LineageManifest.xml",
+        "patchSetId": 15
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2026-02-04T22:23:30Z",
+      "side": 1,
+      "message": "adding `\u003cuses-permission android:name\u003d\"android.permission.QUERY_ALL_PACKAGES\" /\u003e`, same as on lineage-23.0 might make more sense",
+      "parentUuid": "f665d95b_4bc211d7",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 2
+      },
+      "revId": "3dbaa84be42d64dd15596517684920e4bf7da230",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
