@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f665d95b_4bc211d7",
+        "filename": "LineageManifest.xml",
+        "patchSetId": 15
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2026-02-04T22:05:03Z",
+      "side": 1,
+      "message": "it kinda sucks having to hardcode all overlays here + noto serif is missing:\n02-04 22:42:43.702  7789  7789 W FontOptionProvider: Couldn\u0027t load font overlay com.android.theme.font.notoserifsource, will skip it\n02-04 22:42:43.702  7789  7789 W FontOptionProvider: android.content.pm.PackageManager$NameNotFoundException: com.android.theme.font.notoserifsource",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 2
+      },
+      "revId": "3dbaa84be42d64dd15596517684920e4bf7da230",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
