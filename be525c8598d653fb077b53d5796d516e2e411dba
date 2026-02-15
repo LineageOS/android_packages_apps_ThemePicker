@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f14b4e92_b9d62ef6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2026-02-15T16:57:36Z",
+      "side": 1,
+      "message": "While this feature kind of works, the fonts don\u0027t apply to many places system wide anymore, so I am not sure if we should reintroduce this feature in its current state.",
+      "revId": "be525c8598d653fb077b53d5796d516e2e411dba",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "964257ab_91a3708f",
+        "filename": "src/com/android/wallpaper/customization/ui/viewmodel/ThemePickerCustomizationOptionsViewModel.kt",
+        "patchSetId": 18
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2026-02-15T16:57:36Z",
+      "side": 1,
+      "message": "Again, code style is being changed in this file and probably others for no reason.",
+      "revId": "be525c8598d653fb077b53d5796d516e2e411dba",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
