@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"பிரத்தியேகக் கடிகார முகப்புகள்"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"வாட்ச் முகப்பின் அகலம்"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d, %2$d முதல் %3$d வரையிலான வரம்பு"</string>
+    <string name="global_icon_shape_title">"ஐகான் வடிவத்தை எல்லா இடங்களிலும் பயன்படுத்தும்"</string>
+    <string name="global_icon_shape_description">"ஆப்ஸ் தொடக்கத் திரைகளிலும் சிஸ்டம் அடாப்டிவ் ஐகான்களிலும் இந்த வடிவத்தைப் பயன்படுத்தும்"</string>
 </resources>

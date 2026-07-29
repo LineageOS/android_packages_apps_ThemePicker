@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"ساعت‌های سفارشی"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"عرض صفحه ساعت"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"‫%1$d، در محدوده %2$d تا %3$d"</string>
+    <string name="global_icon_shape_title">"اعمال شکل نماد در سراسر سیستم"</string>
+    <string name="global_icon_shape_description">"استفاده از این شکل در صفحه‌های راه‌اندازی برنامه و نمادهای تطبیقی سیستم"</string>
 </resources>

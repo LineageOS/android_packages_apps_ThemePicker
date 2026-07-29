@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"घडीको स्क्रिनका कस्टम डिजाइनहरू"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"वाचफेसको चौडाइ"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d, %2$d देखि %3$d सम्मको दायरा"</string>
+    <string name="global_icon_shape_title">"आइकनको आकार सबैतिर लागू गर्नुहोस्"</string>
+    <string name="global_icon_shape_description">"एप सुरु हुने स्क्रिन र प्रणालीका अनुकूलनीय आइकनमा यो आकार प्रयोग गर्नुहोस्"</string>
 </resources>

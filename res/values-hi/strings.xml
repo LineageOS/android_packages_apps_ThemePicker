@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"स्मार्टवॉच की स्क्रीन का डिज़ाइन पसंद के मुताबिक बनाएं"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"वॉच फ़ेस की चौड़ाई"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d, %2$d से %3$d तक"</string>
+    <string name="global_icon_shape_title">"आइकॉन का आकार पूरे सिस्टम पर लागू करें"</string>
+    <string name="global_icon_shape_description">"ऐप लॉन्च स्क्रीन और सिस्टम के अडैप्टिव आइकॉन में इस आकार का इस्तेमाल करें"</string>
 </resources>

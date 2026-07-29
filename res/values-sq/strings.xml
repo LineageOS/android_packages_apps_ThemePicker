@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"Fusha ore të personalizuara"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"Gjerësia e fushës së orës"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d, diapazoni nga %2$d deri në %3$d"</string>
+    <string name="global_icon_shape_title">"Zbato formën e ikonave në gjithë sistemin"</string>
+    <string name="global_icon_shape_description">"Përdor këtë formë në ekranet e nisjes së aplikacioneve dhe ikonat përshtatëse të sistemit"</string>
 </resources>

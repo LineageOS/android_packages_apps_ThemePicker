@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"Προσαρμοσμένα ρολόγια"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"Πλάτος πρόσοψης ρολογιού"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d, εύρος από %2$d έως %3$d"</string>
+    <string name="global_icon_shape_title">"Εφαρμογή σχήματος εικονιδίων παντού"</string>
+    <string name="global_icon_shape_description">"Χρήση αυτού του σχήματος στις οθόνες εκκίνησης εφαρμογών και στα προσαρμοστικά εικονίδια συστήματος"</string>
 </resources>

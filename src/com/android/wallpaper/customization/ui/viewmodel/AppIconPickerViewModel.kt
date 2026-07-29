@@ -19,9 +19,11 @@ package com.android.wallpaper.customization.ui.viewmodel
 import android.content.Context
 import android.stats.style.StyleEnums.APP_ICON_STYLE_UNSPECIFIED
 import android.util.Log
+import android.widget.Toast
 import com.android.customization.model.grid.ShapeOptionModel
 import com.android.customization.module.logging.ThemesUserEventLogger
 import com.android.customization.picker.grid.ui.viewmodel.ShapeIconViewModel
+import com.android.customization.picker.icon.data.GlobalIconShapeManager
 import com.android.customization.picker.icon.domain.interactor.AppIconInteractor
 import com.android.customization.picker.icon.shared.model.IconStyle
 import com.android.customization.picker.icon.shared.model.IconStyleModel
@@ -60,6 +62,7 @@ class AppIconPickerViewModel
 constructor(
     @ApplicationContext private val applicationContext: Context,
     interactor: AppIconInteractor,
+    private val globalIconShapeManager: GlobalIconShapeManager,
     private val logger: ThemesUserEventLogger,
     @Assisted private val viewModelScope: CoroutineScope,
 ) {
@@ -117,6 +120,27 @@ constructor(
             {
                 val newValue = !it
                 overridingIsThemedIconEnabled.value = newValue
+            }
+        }
+
+    //// Global icon shape
+    private val overridingGlobalIconShapeEnabled = MutableStateFlow<Boolean?>(null)
+    val isGlobalIconShapeEnabled =
+        globalIconShapeManager.isEnabled.shareIn(
+            scope = viewModelScope,
+            started = SharingStarted.Lazily,
+            replay = 1,
+        )
+    val previewingGlobalIconShapeEnabled =
+        combine(overridingGlobalIconShapeEnabled, isGlobalIconShapeEnabled) {
+            overridingGlobalIconShapeEnabled,
+            isGlobalIconShapeEnabled ->
+            overridingGlobalIconShapeEnabled ?: isGlobalIconShapeEnabled
+        }
+    val toggleGlobalIconShape: Flow<suspend () -> Unit> =
+        previewingGlobalIconShapeEnabled.map {
+            {
+                overridingGlobalIconShapeEnabled.value = !it
             }
         }
 
@@ -302,25 +326,52 @@ constructor(
             selectedShape,
             overridingIsThemedIconEnabled,
             isThemedIconEnabled,
+            combine(overridingGlobalIconShapeEnabled, isGlobalIconShapeEnabled, ::Pair),
         ) {
             overridingShapeKey,
             selectedShape,
             overridingIsThemedIconEnabled,
-            currentIsThemedIconEnabled ->
+            currentIsThemedIconEnabled,
+            globalIconShapeState ->
+            val (overridingGlobalIconShapeEnabled, currentGlobalIconShapeEnabled) =
+                globalIconShapeState
             val shapeNeedsUpdate =
                 overridingShapeKey != null && overridingShapeKey != selectedShape.key.value
             val themedIconNeedsUpdate =
                 overridingIsThemedIconEnabled != null &&
                     overridingIsThemedIconEnabled != currentIsThemedIconEnabled
-            if (shapeNeedsUpdate || themedIconNeedsUpdate) {
+            val globalIconShapeNeedsUpdate =
+                overridingGlobalIconShapeEnabled != null &&
+                    overridingGlobalIconShapeEnabled != currentGlobalIconShapeEnabled
+            if (shapeNeedsUpdate || themedIconNeedsUpdate || globalIconShapeNeedsUpdate) {
                 {
-                    if (shapeNeedsUpdate) {
+                    val targetShapeKey = overridingShapeKey ?: selectedShape.key.value
+                    val targetGlobalIconShapeEnabled =
+                        overridingGlobalIconShapeEnabled ?: currentGlobalIconShapeEnabled
+                    val globalIconShapeApplied =
+                        if (
+                        globalIconShapeNeedsUpdate ||
+                            (shapeNeedsUpdate && targetGlobalIconShapeEnabled)
+                    ) {
+                        val result =
+                            globalIconShapeManager.setEnabled(
+                                targetGlobalIconShapeEnabled,
+                                targetShapeKey,
+                            )
+                        if (result.isFailure) {
+                            showGlobalIconShapeFailure(result.exceptionOrNull())
+                        }
+                        result.isSuccess
+                    } else {
+                        true
+                    }
+                    if (globalIconShapeApplied && shapeNeedsUpdate) {
                         overridingShapeKey?.let {
                             interactor.applyShape(it)
                             logger.logShapeApplied(it)
                         }
                     }
-                    if (themedIconNeedsUpdate) {
+                    if (globalIconShapeApplied && themedIconNeedsUpdate) {
                         coroutineScope {
                             launch {
                                 overridingIsThemedIconEnabled?.let {
@@ -340,24 +391,56 @@ constructor(
         }
 
     val iconStyleAndShapeOnApply: Flow<(suspend () -> Unit)?> =
-        combine(overridingShapeKey, selectedShape, overridingIconStyle, selectedIconStyle) {
+        combine(
             overridingShapeKey,
             selectedShape,
             overridingIconStyle,
-            currentIconStyle ->
+            selectedIconStyle,
+            combine(overridingGlobalIconShapeEnabled, isGlobalIconShapeEnabled, ::Pair),
+        ) {
+            overridingShapeKey,
+            selectedShape,
+            overridingIconStyle,
+            currentIconStyle,
+            globalIconShapeState ->
+            val (overridingGlobalIconShapeEnabled, currentGlobalIconShapeEnabled) =
+                globalIconShapeState
             val shapeNeedsUpdate =
                 overridingShapeKey != null && overridingShapeKey != selectedShape.key.value
             val styleNeedsUpdate =
                 overridingIconStyle != null && overridingIconStyle != currentIconStyle
-            if (shapeNeedsUpdate || styleNeedsUpdate) {
+            val globalIconShapeNeedsUpdate =
+                overridingGlobalIconShapeEnabled != null &&
+                    overridingGlobalIconShapeEnabled != currentGlobalIconShapeEnabled
+            if (shapeNeedsUpdate || styleNeedsUpdate || globalIconShapeNeedsUpdate) {
                 {
-                    if (shapeNeedsUpdate) {
+                    val targetShapeKey = overridingShapeKey ?: selectedShape.key.value
+                    val targetGlobalIconShapeEnabled =
+                        overridingGlobalIconShapeEnabled ?: currentGlobalIconShapeEnabled
+                    val globalIconShapeApplied =
+                        if (
+                        globalIconShapeNeedsUpdate ||
+                            (shapeNeedsUpdate && targetGlobalIconShapeEnabled)
+                    ) {
+                        val result =
+                            globalIconShapeManager.setEnabled(
+                                targetGlobalIconShapeEnabled,
+                                targetShapeKey,
+                            )
+                        if (result.isFailure) {
+                            showGlobalIconShapeFailure(result.exceptionOrNull())
+                        }
+                        result.isSuccess
+                    } else {
+                        true
+                    }
+                    if (globalIconShapeApplied && shapeNeedsUpdate) {
                         overridingShapeKey?.let {
                             interactor.applyShape(it)
                             logger.logShapeApplied(it)
                         }
                     }
-                    if (styleNeedsUpdate) {
+                    if (globalIconShapeApplied && styleNeedsUpdate) {
                         coroutineScope {
                             val waitForUpdate = launch {
                                 try {
@@ -398,11 +481,23 @@ constructor(
     fun resetPreview() {
         overridingShapeKey.value = null
         overridingIsThemedIconEnabled.value = null
+        overridingGlobalIconShapeEnabled.value = null
     }
 
     fun resetPreview2() {
         overridingShapeKey.value = null
         overridingIconStyle.value = null
+        overridingGlobalIconShapeEnabled.value = null
+    }
+
+    private fun showGlobalIconShapeFailure(throwable: Throwable?) {
+        Log.e(TAG, "Failed to apply global icon shape", throwable)
+        Toast.makeText(
+                applicationContext,
+                R.string.global_icon_shape_apply_failed,
+                Toast.LENGTH_LONG,
+            )
+            .show()
     }
 
     private fun toShapeOptionItemViewModel(

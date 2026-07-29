@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"Карыстальніцкія цыферблаты"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"Шырыня цыферблата"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d, дыяпазон ад %2$d да %3$d"</string>
+    <string name="global_icon_shape_title">"Прымяніць форму значкоў глабальна"</string>
+    <string name="global_icon_shape_description">"Выкарыстоўваць гэту форму на экранах запуску праграм і для адаптыўных сістэмных значкоў"</string>
 </resources>

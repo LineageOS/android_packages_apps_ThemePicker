@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"Настраиваемые циферблаты"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"Ширина циферблата"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d в диапазоне от %2$d до %3$d"</string>
+    <string name="global_icon_shape_title">"Применить форму значков во всей системе"</string>
+    <string name="global_icon_shape_description">"Использовать эту форму на экранах запуска приложений и для адаптивных системных значков"</string>
 </resources>

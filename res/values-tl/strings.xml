@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"Mga Custom na Orasan"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"Lapad ng clock face"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d, mula %2$d hanggang %3$d"</string>
+    <string name="global_icon_shape_title">"Ilapat ang hugis ng icon sa buong system"</string>
+    <string name="global_icon_shape_description">"Gamitin ang hugis na ito sa mga screen ng paglunsad ng app at mga adaptive na icon ng system"</string>
 </resources>

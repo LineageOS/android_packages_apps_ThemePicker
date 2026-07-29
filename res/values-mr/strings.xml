@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"कस्टम क्लॉक"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"घड्याळाची रूंदी"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d, %2$d ते %3$d पर्यंतची रेंज"</string>
+    <string name="global_icon_shape_title">"आयकॉनचा आकार संपूर्ण सिस्टमवर लागू करा"</string>
+    <string name="global_icon_shape_description">"अ‍ॅप लाँच स्क्रीन आणि सिस्टमच्या अ‍ॅडॅप्टिव्ह आयकॉनमध्ये हा आकार वापरा"</string>
 </resources>

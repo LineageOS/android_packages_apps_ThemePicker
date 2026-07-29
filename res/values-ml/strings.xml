@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"ഇഷ്‌ടാനുസൃത ക്ലോക്കുകൾ"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"ക്ലോക്ക് ഫെയ്‌സിന്റെ വീതി"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d, ശ്രേണി %2$d മുതൽ %3$d വരെയാണ്"</string>
+    <string name="global_icon_shape_title">"ഐക്കൺ ആകൃതി എല്ലായിടത്തും പ്രയോഗിക്കുക"</string>
+    <string name="global_icon_shape_description">"ആപ്പ് ലോഞ്ച് സ്ക്രീനുകളിലും സിസ്റ്റം അഡാപ്റ്റീവ് ഐക്കണുകളിലും ഈ ആകൃതി ഉപയോഗിക്കുക"</string>
 </resources>

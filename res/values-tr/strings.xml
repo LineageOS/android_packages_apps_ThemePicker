@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"Özel Saatler"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"Kadran genişliği"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d, %2$d ile %3$d arasında"</string>
+    <string name="global_icon_shape_title">"Simge şeklini sistem genelinde uygula"</string>
+    <string name="global_icon_shape_description">"Bu şekli uygulama başlatma ekranlarında ve sistemin uyarlanabilir simgelerinde kullan"</string>
 </resources>

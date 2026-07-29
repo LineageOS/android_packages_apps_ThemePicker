@@ -109,7 +109,7 @@ object AppIconFloatingSheetBinder {
         )
 
         val styleContent = view.requireViewById<View>(R.id.app_icon_style_container)
-        val shapeContent = view.requireViewById<View>(R.id.app_shape_container)
+        val shapeContent = view.requireViewById<View>(R.id.app_shape_content)
 
         val shapeOptionListAdapter =
             createShapeOptionItemAdapter(
@@ -139,6 +139,12 @@ object AppIconFloatingSheetBinder {
         val themedIconsSwitch = view.requireViewById<MaterialSwitch>(R.id.themed_icon_toggle)
         val themedIconEntry = view.requireViewById<ViewGroup>(R.id.themed_icon_toggle_entry)
         val themedIconTitle = view.requireViewById<TextView>(R.id.themed_icon_toggle_title)
+        val globalIconShapeSwitch =
+            view.requireViewById<MaterialSwitch>(R.id.global_icon_shape_toggle)
+        val globalIconShapeEntry =
+            view.requireViewById<ViewGroup>(R.id.global_icon_shape_toggle_entry)
+        val globalIconShapeTitle =
+            view.requireViewById<TextView>(R.id.global_icon_shape_toggle_title)
 
         data class FloatingSheetHeightsViewModel(
             val styleContentHeight: Int? = null,
@@ -197,6 +203,46 @@ object AppIconFloatingSheetBinder {
                             (shapeOptionList.layoutManager as LinearLayoutManager).scrollToPosition(
                                 indexToFocus
                             )
+                        }
+                    }
+                }
+
+                launch {
+                    viewModel.isShapeOptionsAvailable.collect { isAvailable ->
+                        globalIconShapeEntry.isVisible = isAvailable
+                        globalIconShapeSwitch.isEnabled = isAvailable
+                    }
+                }
+
+                launch {
+                    var switchBinding: SwitchColorBinder.Binding? = null
+                    var titleBinding: ColorUpdateBinder.Binding? = null
+                    viewModel.previewingGlobalIconShapeEnabled.collect {
+                        globalIconShapeSwitch.isChecked = it
+                        titleBinding?.destroy()
+                        titleBinding =
+                            bindTitleColor(
+                                globalIconShapeTitle,
+                                colorUpdateViewModel,
+                                isFloatingSheetActive,
+                                lifecycleOwner,
+                            )
+                        switchBinding?.destroy()
+                        switchBinding =
+                            SwitchColorBinder.bind(
+                                switch = globalIconShapeSwitch,
+                                isChecked = it,
+                                colorUpdateViewModel = colorUpdateViewModel,
+                                shouldAnimateColor = isFloatingSheetActive,
+                                lifecycleOwner = lifecycleOwner,
+                            )
+                    }
+                }
+
+                launch {
+                    viewModel.toggleGlobalIconShape.collect { toggle ->
+                        globalIconShapeSwitch.setOnCheckedChangeListener { _, _ ->
+                            launch { toggle.invoke() }
                         }
                     }
                 }

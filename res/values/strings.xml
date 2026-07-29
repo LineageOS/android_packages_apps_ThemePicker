@@ -389,6 +389,9 @@
 
     <!-- Title of a section of the customization where the user can select color override for icon. [CHAR LIMIT=30] -->
     <string name="themed_icon_title" msgid="4305612684940220645">Themed icons</string>
+    <string name="global_icon_shape_title">Apply icon shape globally</string>
+    <string name="global_icon_shape_description">Use this shape in app launch screens and system adaptive icons</string>
+    <string name="global_icon_shape_apply_failed">Couldn\'t apply icon shape globally. Your current setting was kept.</string>
 
     <!-- Title of a section of the customization where the user can select color override for icon. [CHAR LIMIT=40] -->
     <string name="themed_icon_beta_title">Themed icons (beta)</string>
