@@ -148,4 +148,6 @@
     <string name="scroll_forward_and_select" msgid="6156132388656395769">"‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‎‎‎‎‎‏‏‏‏‏‏‏‏‏‏‏‎‏‎‏‎‏‎‏‏‎‏‏‏‎‏‏‏‏‏‎‎‏‏‏‎‎‏‎‏‎‎‏‏‏‏‎‎‎‎‎‏‎‎‏‎‎‎‎‏‏‎‏‎‏‏‏‏‏‏‎‎‏‎Swipe left to choose a different clock face‎‏‎‎‏‎"</string>
     <string name="scroll_backward_and_select" msgid="5472202348434803757">"‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‎‎‎‎‎‏‏‏‏‏‏‏‏‏‏‏‎‎‏‎‏‏‏‏‏‏‎‎‎‏‎‎‏‎‏‎‏‏‎‎‎‎‏‎‏‎‏‏‏‏‏‏‎‏‏‎‎‎‎‎‏‏‏‏‎‎‏‏‎‎‎‎‏‎‏‏‎‏‎Swipe right to choose a different clock face‎‏‎‎‏‎"</string>
     <string name="custom_clocks_label" msgid="8168419717593569347">"‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‏‎‎‎‎‎‎‎‏‏‏‏‏‏‏‏‏‏‏‏‏‎‎‎‏‎‏‎‏‏‏‎‎‎‎‎‎‏‏‏‎‎‏‏‏‎‏‎‎‎‏‏‏‏‎‏‏‎‏‏‏‎‏‏‎‎‎‎‏‏‎‎‎‎‏‎‎‎‎‏‏‎Custom Clocks‎‏‎‎‏‎"</string>
+    <string name="global_icon_shape_title">"Apply icon shape globally"</string>
+    <string name="global_icon_shape_description">"Use this shape in app launch screens and system adaptive icons"</string>
 </resources>

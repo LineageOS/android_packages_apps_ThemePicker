@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"Quadranti personalizzati"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"Larghezza del quadrante orologio"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d, intervallo da %2$d a %3$d"</string>
+    <string name="global_icon_shape_title">"Applica la forma delle icone a livello globale"</string>
+    <string name="global_icon_shape_description">"Usa questa forma nelle schermate di avvio delle app e per le icone adattive di sistema"</string>
 </resources>

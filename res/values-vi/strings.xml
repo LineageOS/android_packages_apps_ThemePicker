@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"Đồng hồ tuỳ chỉnh"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"Chiều rộng mặt đồng hồ"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d, phạm vi từ %2$d đến %3$d"</string>
+    <string name="global_icon_shape_title">"Áp dụng hình dạng biểu tượng trên toàn hệ thống"</string>
+    <string name="global_icon_shape_description">"Dùng hình dạng này trong màn hình khởi chạy ứng dụng và biểu tượng thích ứng của hệ thống"</string>
 </resources>

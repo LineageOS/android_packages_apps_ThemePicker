@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"自定义表盘"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"表盘宽度"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d，范围为 %2$d 到 %3$d"</string>
+    <string name="global_icon_shape_title">"在整个系统中应用图标形状"</string>
+    <string name="global_icon_shape_description">"将此形状用于应用启动画面和系统自适应图标"</string>
 </resources>

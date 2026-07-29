@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"Jam Tersuai"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"Lebar muka jam"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d, julat daripada %2$d hingga %3$d"</string>
+    <string name="global_icon_shape_title">"Gunakan bentuk ikon secara global"</string>
+    <string name="global_icon_shape_description">"Gunakan bentuk ini pada skrin pelancaran apl dan ikon mudah suai sistem"</string>
 </resources>

@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"自訂錶面"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"錶面寬度"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d，範圍介於 %2$d 到 %3$d"</string>
+    <string name="global_icon_shape_title">"在整個系統套用圖示形狀"</string>
+    <string name="global_icon_shape_description">"在應用程式啟動畫面和系統自動調整圖示中使用此形狀"</string>
 </resources>

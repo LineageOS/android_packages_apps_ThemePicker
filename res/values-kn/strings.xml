@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"ಕಸ್ಟಮ್ ಕ್ಲಾಕ್‌ಗಳು"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"ಗಡಿಯಾರದ ಮುಖದ ಅಗಲ"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d, %2$d ರಿಂದ %3$d ನ ಶ್ರೇಣಿಯಲ್ಲಿದೆ"</string>
+    <string name="global_icon_shape_title">"ಐಕಾನ್ ಆಕಾರವನ್ನು ಎಲ್ಲೆಡೆ ಅನ್ವಯಿಸಿ"</string>
+    <string name="global_icon_shape_description">"ಆ್ಯಪ್ ಪ್ರಾರಂಭ ಪರದೆಗಳು ಮತ್ತು ಸಿಸ್ಟಂನ ಅಡಾಪ್ಟಿವ್ ಐಕಾನ್‌ಗಳಲ್ಲಿ ಈ ಆಕಾರವನ್ನು ಬಳಸಿ"</string>
 </resources>

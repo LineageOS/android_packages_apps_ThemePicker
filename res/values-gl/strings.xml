@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"Reloxos personalizados"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"Largura da esfera do reloxo"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d, intervalo de %2$d a %3$d"</string>
+    <string name="global_icon_shape_title">"Aplicar globalmente a forma das iconas"</string>
+    <string name="global_icon_shape_description">"Usar esta forma nas pantallas de inicio das aplicacións e nas iconas adaptativas do sistema"</string>
 </resources>

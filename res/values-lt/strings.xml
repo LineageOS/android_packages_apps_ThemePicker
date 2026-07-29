@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"Tinkinti ciferblatai"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"Laikrodžio ciferblato plotis"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d, diapazonas nuo %2$d iki %3$d"</string>
+    <string name="global_icon_shape_title">"Taikyti piktogramų formą visoje sistemoje"</string>
+    <string name="global_icon_shape_description">"Naudoti šią formą programų paleidimo ekranuose ir sistemos prisitaikančiose piktogramose"</string>
 </resources>

@@ -60,6 +60,7 @@
         </FrameLayout>
 
         <LinearLayout
+            android:id="@+id/app_shape_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -127,6 +128,54 @@
                     android:clickable="true"
                     app:layout_constraintTop_toTopOf="@+id/themed_icon_toggle_title"
                     app:layout_constraintBottom_toBottomOf="@+id/themed_icon_toggle_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:theme="@style/Theme.Material3.DynamicColors.DayNight" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/global_icon_shape_toggle_entry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/floating_sheet_content_vertical_padding"
+                android:clipToPadding="false"
+                android:clipChildren="false">
+
+                <TextView
+                    style="@style/CustomizationOptionEntryTitleTextStyle"
+                    android:id="@+id/global_icon_shape_toggle_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/floating_sheet_content_horizontal_padding"
+                    android:layout_marginEnd="@dimen/floating_sheet_clock_style_clock_size_text_margin_end"
+                    android:text="@string/global_icon_shape_title"
+                    android:importantForAccessibility="no"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/global_icon_shape_toggle"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/CustomizationOptionEntrySubtitleTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/floating_sheet_content_horizontal_padding"
+                    android:layout_marginEnd="@dimen/floating_sheet_clock_style_clock_size_text_margin_end"
+                    android:text="@string/global_icon_shape_description"
+                    android:importantForAccessibility="no"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/global_icon_shape_toggle"
+                    app:layout_constraintTop_toBottomOf="@id/global_icon_shape_toggle_title"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    style="@style/SettingslibSwitchStyle.Expressive"
+                    android:id="@+id/global_icon_shape_toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/floating_sheet_content_horizontal_padding"
+                    android:contentDescription="@string/global_icon_shape_title"
+                    android:clickable="true"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:theme="@style/Theme.Material3.DynamicColors.DayNight" />
             </androidx.constraintlayout.widget.ConstraintLayout>

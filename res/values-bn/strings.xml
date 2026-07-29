@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"কাস্টমাইজ করা ঘড়ি"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"ঘড়ি যতটা চওড়া"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d, রেঞ্জ %2$d থেকে %3$d পর্যন্ত"</string>
+    <string name="global_icon_shape_title">"আইকনের আকৃতি সর্বত্র প্রয়োগ করুন"</string>
+    <string name="global_icon_shape_description">"অ্যাপ চালুর স্ক্রিন ও সিস্টেমের অভিযোজিত আইকনে এই আকৃতি ব্যবহার করুন"</string>
 </resources>

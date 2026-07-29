@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"କ୍ଲକ ଫେସ କଷ୍ଟମ କରନ୍ତୁ"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"କ୍ଲକ ଫେସ ଚଉଡ଼ା"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d, ରେଞ୍ଜ %2$dରୁ %3$d"</string>
+    <string name="global_icon_shape_title">"ଆଇକନ ଆକାରକୁ ସବୁଠାରେ ପ୍ରୟୋଗ କରନ୍ତୁ"</string>
+    <string name="global_icon_shape_description">"ଆପ୍ ଲଞ୍ଚ ସ୍କ୍ରିନ୍ ଓ ସିଷ୍ଟମ୍ ଆଡାପ୍ଟିଭ୍ ଆଇକନରେ ଏହି ଆକାର ବ୍ୟବହାର କରନ୍ତୁ"</string>
 </resources>

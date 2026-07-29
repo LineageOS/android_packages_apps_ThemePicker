@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"시계 페이스 맞춤설정"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"시계 페이스 너비"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d, 범위: %2$d~%3$d"</string>
+    <string name="global_icon_shape_title">"아이콘 모양을 시스템 전체에 적용"</string>
+    <string name="global_icon_shape_description">"앱 시작 화면과 시스템 적응형 아이콘에 이 모양 사용"</string>
 </resources>

@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"នាឡិកាផ្ទាល់ខ្លួន"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"ទទឹងមុខនាឡិកា"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d, ចន្លោះពី %2$d ទៅ %3$d"</string>
+    <string name="global_icon_shape_title">"អនុវត្តរូបរាងរូបតំណាងទូទាំងប្រព័ន្ធ"</string>
+    <string name="global_icon_shape_description">"ប្រើរូបរាងនេះនៅលើអេក្រង់ចាប់ផ្ដើមកម្មវិធី និងរូបតំណាងសម្របខ្លួនរបស់ប្រព័ន្ធ"</string>
 </resources>

@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"Rellotges personalitzats"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"Amplada de l\'esfera del rellotge"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d, interval de %2$d a %3$d"</string>
+    <string name="global_icon_shape_title">"Aplica la forma de les icones globalment"</string>
+    <string name="global_icon_shape_description">"Utilitza aquesta forma a les pantalles d'inici d'aplicacions i a les icones adaptatives del sistema"</string>
 </resources>

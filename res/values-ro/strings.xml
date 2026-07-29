@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"Ceasuri personalizate"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"Lățimea aspectului ceasului"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d, intervalul %2$d – %3$d"</string>
+    <string name="global_icon_shape_title">"Aplică forma pictogramelor la nivel global"</string>
+    <string name="global_icon_shape_description">"Folosește această formă pe ecranele de pornire ale aplicațiilor și pentru pictogramele adaptive ale sistemului"</string>
 </resources>

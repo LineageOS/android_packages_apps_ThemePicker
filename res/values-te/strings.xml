@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"అనుకూల గడియారాలు"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"గడియారం ముఖం వెడల్పు"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d, %2$d నుండి %3$d వరకు పరిధి"</string>
+    <string name="global_icon_shape_title">"ఐకాన్ ఆకారాన్ని సిస్టమ్ అంతటా వర్తింపజేయండి"</string>
+    <string name="global_icon_shape_description">"యాప్ ప్రారంభ స్క్రీన్‌లు మరియు సిస్టమ్ అడాప్టివ్ ఐకాన్‌లలో ఈ ఆకారాన్ని ఉపయోగించండి"</string>
 </resources>

@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"စိတ်ကြိုက် နာရီဒိုင်ခွက်များ"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"နာရီမျက်နှာပြင်အကျယ်"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d၊ %2$d မှ %3$d အထိ အပိုင်းအခြား"</string>
+    <string name="global_icon_shape_title">"အိုင်ကွန်ပုံသဏ္ဌာန်ကို စနစ်တစ်ခုလုံးတွင် သုံးရန်"</string>
+    <string name="global_icon_shape_description">"အက်ပ်စတင်မျက်နှာပြင်များနှင့် စနစ်အလိုက်သင့်အိုင်ကွန်များတွင် ဤပုံသဏ္ဌာန်ကို သုံးပါ"</string>
 </resources>

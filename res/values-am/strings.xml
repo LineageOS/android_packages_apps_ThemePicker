@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"ብጁ ሰዓቶች"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"የClock መልክ ስፋት"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d፣ ከ%2$d እስከ %3$d ክልል"</string>
+    <string name="global_icon_shape_title">"የአዶ ቅርጽን በሁሉም ቦታ ተግብር"</string>
+    <string name="global_icon_shape_description">"ይህን ቅርጽ በመተግበሪያ ማስጀመሪያ ማያ ገጾች እና በስርዓት አስማሚ አዶዎች ላይ ተጠቀም"</string>
 </resources>

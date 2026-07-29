@@ -174,4 +174,6 @@
     <string name="custom_clocks_label" msgid="8168419717593569347">"Maxsus soatlar"</string>
     <string name="clock_face_width" msgid="5818129719338363570">"Soat yuzi kengligi"</string>
     <string name="slider_state_description_template" msgid="1028160527998877233">"%1$d, %2$d - %3$d oraliqda"</string>
+    <string name="global_icon_shape_title">"Ikonka shaklini butun tizimda qo‘llash"</string>
+    <string name="global_icon_shape_description">"Bu shaklni ilovalarni ishga tushirish ekranlari va tizimning moslashuvchan ikonkalarida ishlatish"</string>
 </resources>
