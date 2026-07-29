@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="global_icon_shape_title">Apply icon shape globally</string>
+    <string name="global_icon_shape_description">Use this shape in app launch screens and system adaptive icons</string>
+    <string name="global_icon_shape_apply_failed">Couldn\'t apply icon shape globally. Your current setting was kept.</string>
+</resources>
