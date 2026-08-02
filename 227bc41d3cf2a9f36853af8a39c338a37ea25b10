@@ -16,6 +16,24 @@
       "message": "We don\u0027t do translations via patches but via crowdin. Own additions of strings to aosp projects therefore go into lineage_strings.xml (only the english original), or, if already present, cm_strings.xml. Translations then happen later automatically via the usual way",
       "revId": "227bc41d3cf2a9f36853af8a39c338a37ea25b10",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a573f9b_1c4f0c26",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 37587
+      },
+      "writtenOn": "2026-08-02T15:32:56Z",
+      "side": 1,
+      "message": "CR updated per comments.",
+      "parentUuid": "2049c511_92fa9db5",
+      "revId": "227bc41d3cf2a9f36853af8a39c338a37ea25b10",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
