@@ -68,7 +68,6 @@ import com.android.wallpaper.picker.customization.ui.viewmodel.CustomizationOpti
 import com.android.wallpaper.picker.customization.ui.viewmodel.CustomizationPickerViewModel2
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineName
@@ -810,7 +809,8 @@ constructor(private val defaultCustomizationOptionsBinder: DefaultCustomizationO
                                 R.string.clock_style_update_toast,
                                 clockStyle,
                             )
-                        Snackbar.make(rootView, toastMessage, Snackbar.LENGTH_SHORT).show()
+                        Toast.makeText(rootView.context, toastMessage, Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
             }
