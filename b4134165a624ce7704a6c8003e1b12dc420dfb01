@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f2ae9ca_e4057f3f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 37876
+      },
+      "writtenOn": "2026-09-03T08:47:40Z",
+      "side": 1,
+      "message": "Tested on caiman (Pixel 9 Pro), ThemePicker resulted no crash",
+      "revId": "b4134165a624ce7704a6c8003e1b12dc420dfb01",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
