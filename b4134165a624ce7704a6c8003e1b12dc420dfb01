@@ -33,6 +33,24 @@
       "message": "this looks AI generated, please take a look at https://github.com/LineageOS/charter/blob/main/ai-coding-assistants.md.",
       "revId": "b4134165a624ce7704a6c8003e1b12dc420dfb01",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc09a68f_d279880e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 37876
+      },
+      "writtenOn": "2026-09-03T10:33:00Z",
+      "side": 1,
+      "message": "Alright, thank you! I didn\u0027t see related ai guidelines inside LineageOS wiki, will notice next time.",
+      "parentUuid": "179c69fb_2252266a",
+      "revId": "b4134165a624ce7704a6c8003e1b12dc420dfb01",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
