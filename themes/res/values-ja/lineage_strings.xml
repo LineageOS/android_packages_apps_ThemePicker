@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2022 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources>
+    <string name="default_color_name">クラシック</string>
+    <string name="bundle1_color_name">カーボン</string>
+    <string name="bundle2_color_name">紙</string>
+    <string name="bundle3_color_name">太陽</string>
+    <string name="bue_color_name">ラベンダー</string>
+    <string name="red_color_name">ベリー</string>
+    <string name="wht_color_name">霧</string>
+    <string name="indigo_color_name">インディゴ</string>
+    <string name="iris_color_name">虹彩</string>
+    <string name="jade_color_name">ヒスイ</string>
+    <string name="lemongrass_color_name">レモングラス</string>
+    <string name="moonstone_color_name">月光石</string>
+    <string name="obsidian_color_name">黒曜石</string>
+    <string name="peony_color_name">牡丹</string>
+    <string name="porcelain_color_name">磁器</string>
+    <string name="fruit1_color_name">黄色と赤の2色のパレット</string>
+    <string name="fruit2_color_name">緑とオレンジの2色パレット</string>
+    <string name="fruit3_color_name">青と緑の2色パレット</string>
+    <string name="fruit4_color_name">薄紫と青の2色パレット</string>
+    <string name="fruit5_color_name">ピンクと藍色の2色パレット</string>
+</resources>

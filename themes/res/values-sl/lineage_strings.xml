@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2022 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources>
+    <string name="default_color_name">Klasična</string>
+    <string name="bundle1_color_name">Karbon</string>
+    <string name="bundle2_color_name">Papir</string>
+    <string name="bundle3_color_name">Sonce</string>
+    <string name="bue_color_name">Sivka</string>
+    <string name="red_color_name">Jagodičevje</string>
+    <string name="wht_color_name">Megla</string>
+    <string name="indigo_color_name">Indigo</string>
+    <string name="iris_color_name">Iris</string>
+    <string name="jade_color_name">Žad</string>
+    <string name="lemongrass_color_name">Limonska trava</string>
+    <string name="moonstone_color_name">Mesečev kamen</string>
+    <string name="obsidian_color_name">Obsidian</string>
+    <string name="peony_color_name">Potonika</string>
+    <string name="porcelain_color_name">Porcelan</string>
+    <string name="fruit1_color_name">Rumena in rdeča dvobarvna paleta</string>
+    <string name="fruit2_color_name">Zelena in oranžna dvobarvna paleta</string>
+    <string name="fruit3_color_name">Modra in zelena dvobarvna paleta</string>
+    <string name="fruit4_color_name">Svetlo vijolična in modra dvobarvna paleta</string>
+    <string name="fruit5_color_name">Roza in indigo dvobarvna paleta</string>
+</resources>

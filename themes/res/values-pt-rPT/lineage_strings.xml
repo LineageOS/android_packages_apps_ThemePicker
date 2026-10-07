@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2022 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources>
+    <string name="default_color_name">Clássico</string>
+    <string name="bundle1_color_name">Carbono</string>
+    <string name="bundle2_color_name">Papel</string>
+    <string name="bundle3_color_name">Sol</string>
+    <string name="bue_color_name">Lavanda</string>
+    <string name="red_color_name">Baga</string>
+    <string name="wht_color_name">Nevoeiro</string>
+    <string name="indigo_color_name">Índigo</string>
+    <string name="iris_color_name">Íris</string>
+    <string name="jade_color_name">Jade</string>
+    <string name="lemongrass_color_name">Cidreira</string>
+    <string name="moonstone_color_name">Pedra da Lua</string>
+    <string name="obsidian_color_name">Obsidiana</string>
+    <string name="peony_color_name">Peónia</string>
+    <string name="porcelain_color_name">Porcelana</string>
+    <string name="fruit1_color_name">Paleta de duas cores, amarelo e vermelho</string>
+    <string name="fruit2_color_name">Paleta de duas cores, verde e laranja</string>
+    <string name="fruit3_color_name">Paleta de duas cores, azul e verde</string>
+    <string name="fruit4_color_name">Paleta de duas cores, púrpura claro e azul</string>
+    <string name="fruit5_color_name">Paleta de duas cores, rosa e índigo</string>
+</resources>

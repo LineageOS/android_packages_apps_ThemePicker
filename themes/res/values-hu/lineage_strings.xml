@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2022 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources>
+    <string name="default_color_name">Klasszikus</string>
+    <string name="bundle1_color_name">Karbon</string>
+    <string name="bundle2_color_name">Papír</string>
+    <string name="bundle3_color_name">Napos</string>
+    <string name="bue_color_name">Levendula</string>
+    <string name="red_color_name">Pirosbogyó</string>
+    <string name="wht_color_name">Ködfehér</string>
+    <string name="indigo_color_name">Indigókék</string>
+    <string name="iris_color_name">Írisz</string>
+    <string name="jade_color_name">Jádezöld</string>
+    <string name="lemongrass_color_name">Citromfű</string>
+    <string name="moonstone_color_name">Holdkő</string>
+    <string name="obsidian_color_name">Obszidián</string>
+    <string name="peony_color_name">Babarózsa</string>
+    <string name="porcelain_color_name">Porcelán</string>
+    <string name="fruit1_color_name">Sárga és piros kéttónusú paletta</string>
+    <string name="fruit2_color_name">Zöld és narancs kéttónusú paletta</string>
+    <string name="fruit3_color_name">Kék és zöld kéttónusú paletta</string>
+    <string name="fruit4_color_name">Lila és kék kéttónusú paletta</string>
+    <string name="fruit5_color_name">Rózsaszín és indigókék kéttónusú paletta</string>
+</resources>

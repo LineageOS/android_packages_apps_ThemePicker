@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2022 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources>
+    <string name="default_color_name">Clasic</string>
+    <string name="bundle1_color_name">Carbon</string>
+    <string name="bundle2_color_name">Hârtie</string>
+    <string name="bundle3_color_name">Soare</string>
+    <string name="bue_color_name">Lavandă</string>
+    <string name="red_color_name">Fructe de pădure</string>
+    <string name="wht_color_name">Ceață</string>
+    <string name="indigo_color_name">Indigo</string>
+    <string name="iris_color_name">Iris</string>
+    <string name="jade_color_name">Jad</string>
+    <string name="lemongrass_color_name">Lemongrass</string>
+    <string name="moonstone_color_name">Moonstone</string>
+    <string name="obsidian_color_name">Obsidian</string>
+    <string name="peony_color_name">Bujor</string>
+    <string name="porcelain_color_name">Porțelan</string>
+    <string name="fruit1_color_name">Paletă în 2 culori galben-roșu</string>
+    <string name="fruit2_color_name">Paletă cu două culori verde-portocaliu</string>
+    <string name="fruit3_color_name">Paletă cu două culori albastră-verde</string>
+    <string name="fruit4_color_name">Paletă de două culori violet deschis și albastru</string>
+    <string name="fruit5_color_name">Paletă cu două culori roz-indigo</string>
+</resources>
