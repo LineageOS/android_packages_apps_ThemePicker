@@ -19,6 +19,9 @@
     <string name="bundle1_color_name">Than</string>
     <string name="bundle2_color_name">Giấy</string>
     <string name="bundle3_color_name">Mặt trời</string>
+    <string name="bue_color_name">Oải hương</string>
+    <string name="red_color_name">Quả mọng</string>
+    <string name="wht_color_name">Sương mù</string>
     <string name="indigo_color_name">Chàm</string>
     <string name="iris_color_name">Diên vĩ</string>
     <string name="jade_color_name">Ngọc bích</string>
@@ -27,4 +30,9 @@
     <string name="obsidian_color_name">Đá vỏ chai</string>
     <string name="peony_color_name">Mẫu đơn</string>
     <string name="porcelain_color_name">Sứ</string>
+    <string name="fruit1_color_name">Bảng màu hai tông vàng và đỏ</string>
+    <string name="fruit2_color_name">Bảng màu hai tông xanh lá và cam</string>
+    <string name="fruit3_color_name">Bảng màu hai tông xanh dương và xanh lá</string>
+    <string name="fruit4_color_name">Bảng màu hai tông màu tím nhạt và xanh dương</string>
+    <string name="fruit5_color_name">Bảng màu hai tông hồng và chàm</string>
 </resources>

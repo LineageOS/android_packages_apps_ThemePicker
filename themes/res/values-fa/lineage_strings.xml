@@ -19,6 +19,9 @@
     <string name="bundle1_color_name">کربن</string>
     <string name="bundle2_color_name">کاغذ</string>
     <string name="bundle3_color_name">خورشید</string>
+    <string name="bue_color_name">اسطوخودوس</string>
+    <string name="red_color_name">توت</string>
+    <string name="wht_color_name">مه</string>
     <string name="indigo_color_name">نیلی</string>
     <string name="iris_color_name">قوس</string>
     <string name="jade_color_name">یشم</string>
@@ -27,4 +30,9 @@
     <string name="obsidian_color_name">شیشه‌سنگ</string>
     <string name="peony_color_name">گل صدتومانی</string>
     <string name="porcelain_color_name">پرسلان</string>
+    <string name="fruit1_color_name">پالت رنگی دوگانه زرد و قرمز</string>
+    <string name="fruit2_color_name">پالت رنگی دوگانه سبز و نارنجی</string>
+    <string name="fruit3_color_name">پالت رنگی دوگانه آبی و سبز</string>
+    <string name="fruit4_color_name">پالت رنگی دوگانه بنفش روشن و آبی</string>
+    <string name="fruit5_color_name">پالت رنگی دوگانه صورتی و نیلی</string>
 </resources>

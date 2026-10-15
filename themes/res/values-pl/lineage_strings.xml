@@ -19,6 +19,9 @@
     <string name="bundle1_color_name">Karbon</string>
     <string name="bundle2_color_name">Papier</string>
     <string name="bundle3_color_name">Słońce</string>
+    <string name="bue_color_name">Lawendowy</string>
+    <string name="red_color_name">Jagodowy</string>
+    <string name="wht_color_name">Mgła</string>
     <string name="indigo_color_name">Indygo</string>
     <string name="iris_color_name">Tęczowy</string>
     <string name="jade_color_name">Jadeitowy</string>
@@ -27,4 +30,9 @@
     <string name="obsidian_color_name">Obsydian</string>
     <string name="peony_color_name">Piwonia</string>
     <string name="porcelain_color_name">Porcelanowy</string>
+    <string name="fruit1_color_name">Dwukolorowa paleta: żółty i czerwony</string>
+    <string name="fruit2_color_name">Dwukolorowa paleta: zielony i pomarańczowy</string>
+    <string name="fruit3_color_name">Dwukolorowa paleta: niebieski i zielony</string>
+    <string name="fruit4_color_name">Dwukolorowa paleta: jasno-purpurowy i niebieski</string>
+    <string name="fruit5_color_name">Dwukolorowa paleta: różowy i indygo</string>
 </resources>

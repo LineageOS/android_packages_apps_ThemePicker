@@ -19,6 +19,9 @@
     <string name="bundle1_color_name">Karbon</string>
     <string name="bundle2_color_name">Kağız</string>
     <string name="bundle3_color_name">Günəş</string>
+    <string name="bue_color_name">Lavanda</string>
+    <string name="red_color_name">Gilə</string>
+    <string name="wht_color_name">Duman</string>
     <string name="indigo_color_name">Tünd mavi</string>
     <string name="iris_color_name">Açıq bənövşəyi</string>
     <string name="jade_color_name">Yaşılımtıl</string>
@@ -27,4 +30,9 @@
     <string name="obsidian_color_name">Obsidian</string>
     <string name="peony_color_name">Tünd çəhrəyı</string>
     <string name="porcelain_color_name">Porselen</string>
+    <string name="fruit1_color_name">Sarı və qırmızıdan ibarət iki rəngli palitra</string>
+    <string name="fruit2_color_name">Yaşıl və narıncıdan ibarət iki rəngli palitra</string>
+    <string name="fruit3_color_name">Göy və yaşıldan ibarət iki rəngli palitra</string>
+    <string name="fruit4_color_name">Açıq bənövşəyi və göydən ibarət iki rəngli palitra</string>
+    <string name="fruit5_color_name">Çəhrayı və indiqodan ibarət iki rəngli palitra</string>
 </resources>

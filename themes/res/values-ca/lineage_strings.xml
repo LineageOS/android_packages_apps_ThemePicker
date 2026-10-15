@@ -19,6 +19,9 @@
     <string name="bundle1_color_name">Carbó</string>
     <string name="bundle2_color_name">Paper</string>
     <string name="bundle3_color_name">Sol</string>
+    <string name="bue_color_name">Lavanda</string>
+    <string name="red_color_name">Baia</string>
+    <string name="wht_color_name">Boira</string>
     <string name="indigo_color_name">Anyil</string>
     <string name="iris_color_name">Iris</string>
     <string name="jade_color_name">Jade</string>
@@ -27,4 +30,9 @@
     <string name="obsidian_color_name">Obsidiana</string>
     <string name="peony_color_name">Peònia</string>
     <string name="porcelain_color_name">Porcellana</string>
+    <string name="fruit1_color_name">Paleta bicolor groga i vermella</string>
+    <string name="fruit2_color_name">Paleta bicolor verda i taronja</string>
+    <string name="fruit3_color_name">Paleta bicolor blava i verda</string>
+    <string name="fruit4_color_name">Paleta bicolor lila clar i blava</string>
+    <string name="fruit5_color_name">Paleta bicolor rosa i indi</string>
 </resources>

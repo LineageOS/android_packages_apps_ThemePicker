@@ -19,6 +19,9 @@
     <string name="bundle1_color_name">کاربۆن</string>
     <string name="bundle2_color_name">کاغەز</string>
     <string name="bundle3_color_name">خۆر</string>
+    <string name="bue_color_name">لاڤێندەر</string>
+    <string name="red_color_name">تووتڕک (بێری)</string>
+    <string name="wht_color_name">تەم</string>
     <string name="indigo_color_name">نیلی</string>
     <string name="iris_color_name">زەنبەقی</string>
     <string name="jade_color_name">سەوزی یەشمی</string>
@@ -27,4 +30,9 @@
     <string name="obsidian_color_name">ڕەشی تۆخ</string>
     <string name="peony_color_name">پەمەیی تۆخ</string>
     <string name="porcelain_color_name">سپیی گەش</string>
+    <string name="fruit1_color_name">پالێتی دوو ڕەنگی زەرد و سوور</string>
+    <string name="fruit2_color_name">پالێتی دوو ڕەنگی سەوز و پرتەقاڵی</string>
+    <string name="fruit3_color_name">پالێتی دوو ڕەنگی شین و سەوز</string>
+    <string name="fruit4_color_name">پالێتی دوو ڕەنگی مۆری کاڵ و شین</string>
+    <string name="fruit5_color_name">پالێتی دوو ڕەنگی پەمەیی و نیلی</string>
 </resources>
