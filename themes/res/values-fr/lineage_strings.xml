@@ -20,6 +20,8 @@
     <string name="bundle2_color_name">Papier</string>
     <string name="bundle3_color_name">Soleil</string>
     <string name="bue_color_name">Lavande</string>
+    <string name="red_color_name">Baie</string>
+    <string name="wht_color_name">Brouillard</string>
     <string name="indigo_color_name">Indigo</string>
     <string name="iris_color_name">Iris</string>
     <string name="jade_color_name">Jade</string>
@@ -31,5 +33,6 @@
     <string name="fruit1_color_name">Palette bicolore jaune et rouge</string>
     <string name="fruit2_color_name">Palette bicolore verte et orange</string>
     <string name="fruit3_color_name">Palette bicolore bleue et verte</string>
+    <string name="fruit4_color_name">Palette bicolore violette et bleue</string>
     <string name="fruit5_color_name">Palette bicolore rose et indigo</string>
 </resources>
